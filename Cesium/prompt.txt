@@ -1,12 +1,17 @@
-Photorealistic 8k architectural photograph located at Broughton, City of Edinburgh, United Kingdom (lat: 55.95919, lon: -3.19135), camera height 133.5 meters, pitch -7.7°, heading 256.1°. Solar time and illumination match ISO timestamp 2026-08-04T23:20:25.3949999999967986Z.
+Photorealistic 8k architectural photograph located at Broughton, City of Edinburgh, United Kingdom (lat: 55.95921, lon: -3.19120), camera height 146.5 meters, pitch -10.3°, heading 253.9°. Solar time and illumination match ISO timestamp 2026-08-05T21:01:16.15599999999903957Z.
+
+ATMOSPHERIC & WEATHER CONDITIONS:
+Overcast, 13.9°C.
 
 ARCHITECTURAL MATERIALS & STYLE:
-Historic Georgian architecture, authentic 200-year-old Craigleith sandstone masonry, slate roofing, period timber sash windows, authentic stone detailing.
+Authentic regional architecture and historic building materials native to Broughton, City of Edinburgh, United Kingdom.
 
-IMAGE CONDITIONING INSTRUCTIONS:
-- Use depth_map.png (grayscale depth) as exact camera perspective and spatial distance boundaries.
-- Use clay_map.png (shaded white clay model) as structural architectural geometry, rooflines, and shadow angles.
-- Use base_photogrammetry.png for real-world environmental layout, foliage placement, and urban context.
+5-PASS CONTROL INSTRUCTIONS:
+- Use depth_map.png (grayscale depth) for camera perspective and spatial distance bounds.
+- Use lineart_map.png (clean architectural outlines) for exact 90° building silhouettes, window sashes, and rooflines.
+- Use normal_map.png (surface orientation vectors) for wall plane directions and specular light reflections.
+- Use clay_map.png (shaded clay model) for structural shadow angles and sun illumination.
+- Use base_photogrammetry.png for real-world environmental layout and context.
 
-STYLE:
-Cinematic daylight architectural photography, sharp stone textures, authentic period detailing, realistic Scottish atmosphere.
+FINISHING CARPENTRY & CLEANUP DIRECTIVES:
+Replace any low-poly photogrammetry mesh blobs with crisp 8k architectural masonry, sharp window sashes, and realistic high-resolution foliage matching Overcast, 13.9°C atmospheric lighting.

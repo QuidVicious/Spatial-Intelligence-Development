@@ -1,0 +1,17 @@
+Photorealistic 8k architectural photograph located at Broughton, City of Edinburgh, United Kingdom (lat: 55.95911, lon: -3.19221), camera height 116.8 meters, pitch -10.8°, heading 250.7°. Solar time and illumination match ISO timestamp 2026-08-05T20:04:02.1569999999992433Z.
+
+ATMOSPHERIC & WEATHER CONDITIONS:
+Overcast, 14.0°C.
+
+ARCHITECTURAL MATERIALS & STYLE:
+Authentic regional architecture and historic building materials native to Broughton, City of Edinburgh, United Kingdom.
+
+5-PASS CONTROL INSTRUCTIONS:
+- Use depth_map.png (grayscale depth) for camera perspective and spatial distance bounds.
+- Use lineart_map.png (clean architectural outlines) for exact 90° building silhouettes, window sashes, and rooflines.
+- Use normal_map.png (surface orientation vectors) for wall plane directions and specular light reflections.
+- Use clay_map.png (shaded clay model) for structural shadow angles and sun illumination.
+- Use base_photogrammetry.png for real-world environmental layout and context.
+
+FINISHING CARPENTRY & CLEANUP DIRECTIVES:
+Replace any low-poly photogrammetry mesh blobs with crisp 8k architectural masonry, sharp window sashes, and realistic high-resolution foliage matching Overcast, 14.0°C atmospheric lighting.

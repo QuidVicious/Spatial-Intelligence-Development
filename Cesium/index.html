@@ -44,10 +44,11 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+      width: 240px;
     }
     button {
-      padding: 10px 15px;
+      padding: 9px 12px;
       background: #008CBA;
       color: white;
       border: none;
@@ -57,12 +58,25 @@
       text-align: left;
     }
     button:hover { background: #005f73; }
-    button.export-btn { background: #28a745; text-align: center; }
+    button.export-btn { background: #28a745; text-align: center; margin-top: 4px; }
     button.export-btn:hover { background: #1e7e34; }
     .status-badge {
       font-size: 12px;
       color: #aaa;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+    }
+    label {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+    input[type="text"], select {
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -74,8 +88,25 @@
     <button onclick="setMode('depth')">2. View Linear Depth Map</button>
     <button onclick="setMode('clay')">3. View Shaded Clay Model</button>
     <button onclick="setMode('normal')">4. View Surface Normal Map</button>
-    <hr style="border: 0.5px solid #444; width: 100%;">
-    <button class="export-btn" onclick="captureGroundTruth()">Export 4-Pass Payload</button>
+    <button onclick="setMode('edges')">5. View Clean LineArt Edges</button>
+
+    <label for="timeInput">Time of Day (Live Sun Control):</label>
+    <select id="timeInput" onchange="updateSunTime()">
+      <option value="auto">Auto (Live GIS Solar Time)</option>
+      <option value="sunset">Sunset / Gloaming</option>
+      <option value="golden">Golden Hour</option>
+      <option value="noon">Midday / Clear Sun</option>
+      <option value="twilight">Night / Twilight</option>
+    </select>
+    
+    <label for="weatherInput">Weather Conditions:</label>
+    <input type="text" id="weatherInput" placeholder="Auto (Live GIS Weather)...">
+
+    <label for="materialInput">Architectural Notes:</label>
+    <input type="text" id="materialInput" placeholder="Auto (GIS Regional Style)...">
+
+    <hr style="border: 0.5px solid #444; width: 100%; margin: 2px 0;">
+    <button class="export-btn" onclick="captureGroundTruth()">Export 5-Pass Payload</button>
   </div>
 
   <div id="cesiumContainer"></div>
@@ -94,13 +125,36 @@
       timeline: false
     });
 
-    // Disable OIT to prevent framebuffer resolve crashes
+    // Disable OIT to prevent WebGL target framebuffer resolve crashes
     viewer.scene.orderIndependentTranslucency = false;
 
     let googleTileset = null;
     let currentMode = 'rgb';
 
-    // 2. Define GPU Linear Grayscale Depth Shader
+    // 2. Interactive Sun Position Controller
+    function updateSunTime() {
+      const choice = document.getElementById('timeInput').value;
+      const now = new Date();
+
+      if (choice === 'sunset') {
+        now.setUTCHours(19, 30, 0);
+        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+      } else if (choice === 'golden') {
+        now.setUTCHours(18, 0, 0);
+        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+      } else if (choice === 'noon') {
+        now.setUTCHours(12, 0, 0);
+        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+      } else if (choice === 'twilight') {
+        now.setUTCHours(21, 0, 0);
+        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
+      } else if (choice === 'auto') {
+        viewer.clock.currentTime = Cesium.JulianDate.now();
+      }
+      viewer.render();
+    }
+
+    // 3. Shaders (Depth, Surface Normals, LineArt Edges)
     const depthShader = new Cesium.CustomShader({
       lightingModel: Cesium.LightingModel.UNLIT,
       translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
@@ -117,30 +171,46 @@
       `
     });
 
-    // 3. Define Surface Normal Shader (Calculates exact surface angles on-the-fly via Derivatives)
     const normalShader = new Cesium.CustomShader({
       lightingModel: Cesium.LightingModel.UNLIT,
       translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
       fragmentShaderText: `
         void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) {
           vec3 posEC = fsInput.attributes.positionEC;
-
-          // Compute surface tangent vectors from screen-space position derivatives
           vec3 dx = dFdx(posEC);
           vec3 dy = dFdy(posEC);
-
-          // Compute exact face normal vector via cross product
           vec3 normalEC = normalize(cross(dx, dy));
-
-          // Remap normal vector [-1.0, 1.0] into [0.0, 1.0] RGB color space
           vec3 normalColor = normalEC * 0.5 + 0.5;
-
           material.diffuse = normalColor;
           material.alpha = 1.0;
         }
       `
     });
-    
+
+    const lineArtShader = new Cesium.CustomShader({
+      lightingModel: Cesium.LightingModel.UNLIT,
+      translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
+      fragmentShaderText: `
+        void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) {
+          vec3 posEC = fsInput.attributes.positionEC;
+          float dxDepth = dFdx(-posEC.z);
+          float dyDepth = dFdy(-posEC.z);
+          float depthGradient = length(vec2(dxDepth, dyDepth));
+
+          vec3 dx = dFdx(posEC);
+          vec3 dy = dFdy(posEC);
+          vec3 normalEC = normalize(cross(dx, dy));
+          float normalGradient = length(dFdx(normalEC)) + length(dFdy(normalEC));
+
+          float edgeSignal = smoothstep(0.8, 4.0, depthGradient) + smoothstep(2.0, 6.0, normalGradient);
+          float line = clamp(edgeSignal, 0.0, 1.0);
+
+          material.diffuse = vec3(line);
+          material.alpha = 1.0;
+        }
+      `
+    });
+
     // 4. Load Google Photorealistic 3D Tiles
     async function loadGoogle3DTiles() {
       try {
@@ -152,7 +222,6 @@
 
         viewer.scene.primitives.add(googleTileset);
 
-        // Fly camera default to SF view
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(-122.401, 37.789, 250),
           orientation: {
@@ -169,14 +238,13 @@
 
     loadGoogle3DTiles();
 
-    // 5. Mode Switcher Engine
+    // 5. Mode Switcher
     function setMode(mode) {
       currentMode = mode;
       document.getElementById('modeStatus').innerText = `Mode: ${mode.toUpperCase()}`;
 
       if (!googleTileset) return;
 
-      // Reset tile custom shaders and style defaults
       googleTileset.customShader = undefined;
       googleTileset.style = undefined;
       googleTileset.colorBlendMode = Cesium.Cesium3DTileColorBlendMode.HIGHLIGHT;
@@ -187,7 +255,6 @@
         viewer.scene.backgroundColor = Cesium.Color.BLACK;
         viewer.shadows = false;
         googleTileset.shadows = Cesium.ShadowMode.DISABLED;
-
         googleTileset.customShader = depthShader;
       } 
       else if (mode === 'normal') {
@@ -196,14 +263,20 @@
         viewer.scene.backgroundColor = Cesium.Color.BLACK;
         viewer.shadows = false;
         googleTileset.shadows = Cesium.ShadowMode.DISABLED;
-
         googleTileset.customShader = normalShader;
+      }
+      else if (mode === 'edges') {
+        viewer.scene.fog.enabled = false;
+        viewer.scene.skyAtmosphere.show = false;
+        viewer.scene.backgroundColor = Cesium.Color.BLACK;
+        viewer.shadows = false;
+        googleTileset.shadows = Cesium.ShadowMode.DISABLED;
+        googleTileset.customShader = lineArtShader;
       }
       else if (mode === 'clay') {
         viewer.scene.fog.enabled = false;
         viewer.scene.skyAtmosphere.show = false;
         viewer.scene.backgroundColor = Cesium.Color.fromCssColorString('#111111');
-        
         viewer.shadows = true;
         googleTileset.shadows = Cesium.ShadowMode.ENABLED;
 
@@ -224,13 +297,17 @@
       viewer.render();
     }
 
-    // 6. Export 4-Pass Payload
+    // 6. Export 5-Pass Payload
     async function captureGroundTruth() {
-      console.log("Exporting 4-pass ground truth payload...");
+      console.log("Exporting 5-pass ground truth payload...");
 
       try {
         const camera = viewer.camera;
         const cartographic = camera.positionCartographic;
+
+        const timeChoice = document.getElementById('timeInput').value;
+        const userWeather = document.getElementById('weatherInput').value.trim();
+        const userNotes = document.getElementById('materialInput').value.trim();
 
         const metadata = {
           geographic_location: {
@@ -244,33 +321,41 @@
             roll_deg: Cesium.Math.toDegrees(camera.roll)
           },
           environment: {
-            datetime_iso: Cesium.JulianDate.toIso8601(viewer.clock.currentTime)
-          }
+            datetime_iso: Cesium.JulianDate.toIso8601(viewer.clock.currentTime),
+            time_of_day_setting: timeChoice,
+            weather_setting: userWeather
+          },
+          architectural_notes: userNotes
         };
 
         const originalMode = currentMode;
 
-        // Pass 1: RGB Photogrammetry
+        // Pass 1: RGB
         setMode('rgb');
         viewer.render();
         const rgbImage = viewer.canvas.toDataURL('image/png');
 
-        // Pass 2: Linear Depth Map
+        // Pass 2: Depth
         setMode('depth');
         viewer.render();
         const depthImage = viewer.canvas.toDataURL('image/png');
 
-        // Pass 3: Shaded Clay Model
+        // Pass 3: Clay
         setMode('clay');
         viewer.render();
         const clayImage = viewer.canvas.toDataURL('image/png');
 
-        // Pass 4: Surface Normal Map
+        // Pass 4: Normal
         setMode('normal');
         viewer.render();
         const normalImage = viewer.canvas.toDataURL('image/png');
 
-        // Restore original user view
+        // Pass 5: LineArt Edges
+        setMode('edges');
+        viewer.render();
+        const edgeImage = viewer.canvas.toDataURL('image/png');
+
+        // Restore view
         setMode(originalMode);
 
         const payload = {
@@ -278,10 +363,10 @@
           rgb_image: rgbImage,
           depth_image: depthImage,
           clay_image: clayImage,
-          normal_image: normalImage
+          normal_image: normalImage,
+          edge_image: edgeImage
         };
 
-        // Download JSON Payload
         const jsonStr = JSON.stringify(payload, null, 2);
         const blob = new Blob([jsonStr], { type: "application/json" });
         const url = URL.createObjectURL(blob);
@@ -297,7 +382,7 @@
           URL.revokeObjectURL(url);
         }, 100);
 
-        alert("Success! Exported 4-Pass Payload (RGB + Depth + Clay + Surface Normals).");
+        alert("Success! Exported 5-Pass Payload.");
 
       } catch (err) {
         console.error("Export Error:", err);
