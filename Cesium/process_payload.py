@@ -80,7 +80,12 @@ pitch = meta['camera_transform']['pitch_deg']
 datetime_iso = meta.get('environment', {}).get('datetime_iso', 'N/A')
 time_setting = meta.get('environment', {}).get('time_of_day_setting', 'auto')
 user_weather = meta.get('environment', {}).get('weather_setting', '').strip()
-user_notes = meta.get('architectural_notes', '').strip()
+
+# Domain Key Inputs
+domain_keys = meta.get('domain_keys', {})
+user_geology = domain_keys.get('geology_lithology', '').strip()
+user_era = domain_keys.get('era_architecture_style', '').strip()
+user_weathering = domain_keys.get('weathering_patina', '').strip()
 
 # 3. Lookup GIS Location Context & Weather
 print("Resolving GIS location & live weather context...")
@@ -95,48 +100,67 @@ else:
     weather_desc = get_live_weather(lat, lon)
     print(f"Weather (Live GIS Fetch): {weather_desc}\n")
 
-# Determine material prompt text cleanly
-if user_notes:
-    materials_desc = user_notes
-elif location_name:
-    materials_desc = f"Authentic regional architecture and historic building materials native to {location_name}"
-else:
-    materials_desc = "Authentic historic stone masonry, period building materials, and natural foliage"
-
-# Determine solar / time of day text
+# Solar / time of day text
 if time_setting != 'auto':
-    time_desc = f"Time of Day: {time_setting.capitalize()} (Sun angle matched in clay model)."
+    time_desc = f"{time_setting.capitalize()} sun angle matched in clay model."
 else:
-    time_desc = f"Solar time and illumination match ISO timestamp {datetime_iso}."
+    time_desc = f"Solar orientation matched to ISO timestamp {datetime_iso}."
 
-# 4. Construct 5-Pass Spatial Conditioning Prompt
+# 4. Latent Space Archaeology: Domain Key Synthesis Engine
+print("Synthesizing Domain Key Stack (Latent Space Archeology)...")
+
+# Lens 1: Geology & Lithology
+if user_geology:
+    geology_lens = user_geology
+elif location_name:
+    geology_lens = f"Native bedrock lithology and regional quarry stone characteristics of {location_name}"
+else:
+    geology_lens = "Authentic load-bearing stone masonry, igneous rock strata, and regional mineral soil"
+
+# Lens 2: Architecture & Period Craft
+if user_era:
+    architecture_lens = user_era
+elif location_name:
+    architecture_lens = f"Period-accurate architectural vernacular, timber joinery, and structural masonry native to {location_name}"
+else:
+    architecture_lens = "Historic architectural masonry, period window mullion profiles, and hand-tooled facades"
+
+# Lens 3: Material Weathering & Patina
+if user_weathering:
+    weathering_lens = user_weathering
+else:
+    weathering_lens = "Natural environmental efflorescence, historic masonry corner wear, subtle rainwater staining, and organic moss patina"
+
+# 5. Construct Structured Multi-Domain Prompt (Target Model: Nano Banana 2 / gemini-3.1-flash-image)
 prompt = (
-    f"Photorealistic 8k architectural photograph located at {location_name if location_name else 'GIS location'} "
-    f"(lat: {lat:.5f}, lon: {lon:.5f}), camera height {alt:.1f} meters, pitch {pitch:.1f}°, heading {heading:.1f}°. "
+    f"Photorealistic 8k architectural master photograph located at {location_name if location_name else 'GIS location'} "
+    f"(lat: {lat:.5f}, lon: {lon:.5f}), camera elevation {alt:.1f}m, pitch {pitch:.1f}°, heading {heading:.1f}°. "
     f"{time_desc}\n\n"
-    f"ATMOSPHERIC & WEATHER CONDITIONS:\n"
-    f"{weather_desc}.\n\n"
-    f"ARCHITECTURAL MATERIALS & STYLE:\n"
-    f"{materials_desc}.\n\n"
-    f"5-PASS CONTROL INSTRUCTIONS:\n"
-    f"- Use depth_map.png (grayscale depth) for camera perspective and spatial distance bounds.\n"
-    f"- Use lineart_map.png (clean architectural outlines) for exact 90° building silhouettes, window sashes, and rooflines.\n"
-    f"- Use normal_map.png (surface orientation vectors) for wall plane directions and specular light reflections.\n"
-    f"- Use clay_map.png (shaded clay model) for structural shadow angles and sun illumination.\n"
-    f"- Use base_photogrammetry.png for real-world environmental layout and context.\n\n"
-    f"FINISHING CARPENTRY & CLEANUP DIRECTIVES:\n"
-    f"Replace any low-poly photogrammetry mesh blobs with crisp 8k architectural masonry, sharp window sashes, and realistic high-resolution foliage matching {weather_desc} atmospheric lighting."
+    f"--- DOMAIN KEY LATENT EXPANSION STACK ---\n"
+    f"[GEOLOGY & LITHOLOGY LENS]: {geology_lens}.\n"
+    f"[ARCHITECTURAL & PERIOD CRAFT LENS]: {architecture_lens}.\n"
+    f"[CIVIL ENGINEERING & STRUCTURAL LOGIC LENS]: Authentic structural load paths, heavy foundation anchors, precise roof pitches, and gravity-aligned wall planes.\n"
+    f"[ATMOSPHERIC & SOLAR PHYSICS LENS]: {weather_desc}. Direct sun vectors calibrated to clay shadows, microclimate atmospheric scattering, and ambient ray bounce.\n"
+    f"[MATERIAL WEATHERING & PATINA LENS]: {weathering_lens}.\n\n"
+    f"--- 5-PASS SPATIAL CONTROL DIRECTIVES (Nano Banana 2) ---\n"
+    f"- depth_map.png (grayscale linear depth): Controls camera depth bounds, volumetric distance, and spatial occlusion.\n"
+    f"- lineart_map.png (architectural outlines): Drives sharp 90° wall corners, window sash frames, and rooflines.\n"
+    f"- normal_map.png (surface orientation vectors): Enforces physical wall directions, specular reflections, and surface normal alignment.\n"
+    f"- clay_map.png (shaded clay model): Dictates exact solar shadow angles, key light direction, and ambient occlusion balance.\n"
+    f"- base_photogrammetry.png: Provides real-world contextual layout and ground truth layout.\n\n"
+    f"FINISHING CARPENTRY & MESH REFINEMENT DIRECTIVE:\n"
+    f"Eliminate photogrammetry artifacts and low-poly mesh distortions. Render crisp 8k architectural stonework, sharp glass window panes, and lush photorealistic vegetation illuminated by {weather_desc} lighting."
 )
 
-# Determine safe output directory (same folder as script)
+# Determine safe output directory
 output_dir = os.path.dirname(os.path.abspath(__file__))
 
-# 5. Save Prompt to prompt.txt
+# 6. Save Prompt to prompt.txt
 prompt_path = os.path.join(output_dir, 'prompt.txt')
 with open(prompt_path, 'w') as f:
     f.write(prompt)
 
-# 6. Safe helper to decode base64 PNGs directly to current folder
+# 7. Helper to decode base64 PNGs directly
 def save_base64_png(base64_str, output_filename):
     if not base64_str:
         return
@@ -147,7 +171,7 @@ def save_base64_png(base64_str, output_filename):
     with open(filepath, 'wb') as f:
         f.write(image_bytes)
 
-# 7. Save All Image Files
+# 8. Save All Image Files
 save_base64_png(payload.get('rgb_image'), 'base_photogrammetry.png')
 save_base64_png(payload.get('depth_image'), 'depth_map.png')
 
@@ -160,11 +184,11 @@ if 'normal_image' in payload and payload['normal_image']:
 if 'edge_image' in payload and payload['edge_image']:
     save_base64_png(payload['edge_image'], 'lineart_map.png')
 
-print("--- GENERATED SPATIAL PROMPT ---")
+print("--- GENERATED MULTI-DOMAIN SPATIAL PROMPT ---")
 print(prompt)
-print("--------------------------------\n")
+print("---------------------------------------------\n")
 
-print("Successfully saved files in your project directory:")
+print("Successfully saved files in project directory:")
 print(f" -> {os.path.join(output_dir, 'prompt.txt')}")
 print(f" -> {os.path.join(output_dir, 'base_photogrammetry.png')}")
 print(f" -> {os.path.join(output_dir, 'depth_map.png')}")
