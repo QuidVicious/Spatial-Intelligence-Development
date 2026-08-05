@@ -1,0 +1,12 @@
+Photorealistic 8k architectural photograph located at Broughton, City of Edinburgh, United Kingdom (lat: 55.95919, lon: -3.19135), camera height 133.5 meters, pitch -7.7°, heading 256.1°. Solar time and illumination match ISO timestamp 2026-08-04T23:20:25.3949999999967986Z.
+
+ARCHITECTURAL MATERIALS & STYLE:
+Historic Georgian architecture, authentic 200-year-old Craigleith sandstone masonry, slate roofing, period timber sash windows, authentic stone detailing.
+
+IMAGE CONDITIONING INSTRUCTIONS:
+- Use depth_map.png (grayscale depth) as exact camera perspective and spatial distance boundaries.
+- Use clay_map.png (shaded white clay model) as structural architectural geometry, rooflines, and shadow angles.
+- Use base_photogrammetry.png for real-world environmental layout, foliage placement, and urban context.
+
+STYLE:
+Cinematic daylight architectural photography, sharp stone textures, authentic period detailing, realistic Scottish atmosphere.
