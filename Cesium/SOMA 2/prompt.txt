@@ -1,0 +1,18 @@
+Photorealistic 8k architectural master photograph located at South of Market, San Francisco, United States (lat: 37.79585, lon: -122.39691), camera elevation 40.3m, pitch -3.9°, heading 167.1°. Solar orientation matched to ISO timestamp 2026-08-06T16:59:35.44099999999889405Z.
+
+--- DOMAIN KEY LATENT EXPANSION STACK ---
+[GEOLOGY & LITHOLOGY LENS]: Native bedrock lithology and regional quarry stone characteristics of South of Market, San Francisco, United States.
+[ARCHITECTURAL & PERIOD CRAFT LENS]: Period-accurate architectural vernacular, timber joinery, and structural masonry native to South of Market, San Francisco, United States.
+[CIVIL ENGINEERING & STRUCTURAL LOGIC LENS]: Authentic structural load paths, heavy foundation anchors, precise roof pitches, and gravity-aligned wall planes.
+[ATMOSPHERIC & SOLAR PHYSICS LENS]: Overcast, 16.2°C. Direct sun vectors calibrated to clay shadows, microclimate atmospheric scattering, and ambient ray bounce.
+[MATERIAL WEATHERING & PATINA LENS]: Natural environmental efflorescence, historic masonry corner wear, subtle rainwater staining, and organic moss patina.
+
+--- 5-PASS SPATIAL CONTROL DIRECTIVES (Nano Banana 2) ---
+- depth_map.png (grayscale linear depth): Controls camera depth bounds, volumetric distance, and spatial occlusion.
+- lineart_map.png (architectural outlines): Drives sharp 90° wall corners, window sash frames, and rooflines.
+- normal_map.png (surface orientation vectors): Enforces physical wall directions, specular reflections, and surface normal alignment.
+- clay_map.png (shaded clay model): Dictates exact solar shadow angles, key light direction, and ambient occlusion balance.
+- base_photogrammetry.png: Provides real-world contextual layout and ground truth layout.
+
+FINISHING CARPENTRY & MESH REFINEMENT DIRECTIVE:
+Eliminate photogrammetry artifacts and low-poly mesh distortions. Render crisp 8k architectural stonework, sharp glass window panes, and lush photorealistic vegetation illuminated by Overcast, 16.2°C lighting.

@@ -1,10 +1,10 @@
-Photorealistic 8k architectural master photograph located at Broughton, City of Edinburgh, United Kingdom (lat: 55.95917, lon: -3.19136), camera elevation 124.9m, pitch -12.4°, heading 255.9°. Solar orientation matched to ISO timestamp 2026-08-05T22:02:11.22699999999895226Z.
+Photorealistic 8k architectural master photograph located at Haymarket, City of Edinburgh, United Kingdom (lat: 55.95378, lon: -3.21616), camera elevation 131.6m, pitch -11.0°, heading 106.9°. Solar orientation matched to ISO timestamp 2026-08-06T18:24:34.023000000001047738Z.
 
 --- DOMAIN KEY LATENT EXPANSION STACK ---
-[GEOLOGY & LITHOLOGY LENS]: Native bedrock lithology and regional quarry stone characteristics of Broughton, City of Edinburgh, United Kingdom.
-[ARCHITECTURAL & PERIOD CRAFT LENS]: Period-accurate architectural vernacular, timber joinery, and structural masonry native to Broughton, City of Edinburgh, United Kingdom.
+[GEOLOGY & LITHOLOGY LENS]: Native bedrock lithology and regional quarry stone characteristics of Haymarket, City of Edinburgh, United Kingdom.
+[ARCHITECTURAL & PERIOD CRAFT LENS]: Period-accurate architectural vernacular, timber joinery, and structural masonry native to Haymarket, City of Edinburgh, United Kingdom.
 [CIVIL ENGINEERING & STRUCTURAL LOGIC LENS]: Authentic structural load paths, heavy foundation anchors, precise roof pitches, and gravity-aligned wall planes.
-[ATMOSPHERIC & SOLAR PHYSICS LENS]: Overcast, 13.6°C. Direct sun vectors calibrated to clay shadows, microclimate atmospheric scattering, and ambient ray bounce.
+[ATMOSPHERIC & SOLAR PHYSICS LENS]: Overcast, 16.6°C. Direct sun vectors calibrated to clay shadows, microclimate atmospheric scattering, and ambient ray bounce.
 [MATERIAL WEATHERING & PATINA LENS]: Natural environmental efflorescence, historic masonry corner wear, subtle rainwater staining, and organic moss patina.
 
 --- 5-PASS SPATIAL CONTROL DIRECTIVES (Nano Banana 2) ---
@@ -15,4 +15,4 @@ Photorealistic 8k architectural master photograph located at Broughton, City of 
 - base_photogrammetry.png: Provides real-world contextual layout and ground truth layout.
 
 FINISHING CARPENTRY & MESH REFINEMENT DIRECTIVE:
-Eliminate photogrammetry artifacts and low-poly mesh distortions. Render crisp 8k architectural stonework, sharp glass window panes, and lush photorealistic vegetation illuminated by Overcast, 13.6°C lighting.
+Eliminate photogrammetry artifacts and low-poly mesh distortions. Render crisp 8k architectural stonework, sharp glass window panes, and lush photorealistic vegetation illuminated by Overcast, 16.6°C lighting.
