@@ -1,0 +1,23 @@
+Image 1 is a raw 3D photogrammetry render showing base colors and building layouts.
+Image 2 is depth_map.png showing exact 3D distance and structural geometry.
+
+TASK:
+Synthesize a clean, photorealistic architectural photograph from the exact camera perspective, horizon line, and elevation ratio set by Image 2 (depth_map.png) at Stockbridge / Dean Village / New Town, City of Edinburgh, United Kingdom (lat: 55.95447, lon: -3.21764), camera elevation 149.6m, pitch -12.5°, heading 121.5°. Solar orientation matched to ISO timestamp 2026-08-07T19:04:15.8509999999987485Z.
+
+[STRICT SPATIAL BOUNDARY LOCK]
+- Treat Image 2 (depth_map.png) as an absolute geometric anchor.
+- Render ONLY the physical building structures, roof planes, and topography present in Image 2.
+- Do NOT add unrequested towers, monuments, or foreign structures. Treat empty spatial zones as open sky or natural valley terrain.
+
+[NOISE PURGE & RECONSTRUCTION]
+- Inspect Image 1 and Image 2. Identify and purge all photogrammetry scan artifacts, melted polygon meshes, spiky edges, and blurred textures.
+- Reconstruct all building facades, window openings, rooflines, and pavements into crisp, structurally sound, real-world architecture.
+
+[LOCATION & DOMAIN STACK]
+- Lithology & Stone: The prevalent stone is a finely-grained local sandstone, varying from a warm golden-buff to a cooler, light ashlar grey, exhibiting subtle variations in hue depending on light and moisture. Facades are constructed with large, precisely cut rectangular ashlar blocks, laid with exceptionally tight, almost invisible fine-line mortar joints, typically a pale buff or light grey that blends seamlessly with the stone.
+- Architecture & Style: Dominant facades embody Georgian Neoclassical elegance, characterized by balanced symmetry, smooth ashlar surfaces, and a hierarchical arrangement of window sizes, often featuring ground-floor rustication and prominent string courses. Windows are universally vertical sliding sashes, typically painted white or dark grey, with slim timber glazing bars configured as six-over-six panes in upper stories and sometimes nine-over-nine below. Roofs exhibit a moderate to steep pitch, clad in dark blue-grey natural slates laid in neat courses, often punctuated by numerous decorative stone chimney stacks and crowned by robust, projecting stone cornices, some with classical mouldings, defining the building's robust silhouette against the sky.
+- Weathering & Patina: Centuries of Edinburgh's damp climate and industrial past have imparted a rich patina, with widespread evidence of historic soot buildup manifesting as dark grey to black staining, particularly concentrated in sheltered recesses, under deep cornices, and within window reveals. Vertical rain streaks are clearly visible, tracing dark, often greenish-tinged lines down the sandstone from ledges and window sills, while exposed masonry edges and architectural details show a gentle rounding and subtle erosion from wind and rain, occasionally revealing localized repairs where newer, lighter stone contrasts with the aged surfaces.
+- Atmosphere & Lighting: Overcast, 17.3°C. Direct sunlight calibrated to depth map shadows.
+
+[PHOTOGRAPHIC DIRECTIVE]
+Render as a crisp 8k architectural photograph. Shot on a 35mm prime lens with natural diffuse lighting, clean structural lines, and authentic material textures.

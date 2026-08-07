@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cesium Ground Truth Generator - Depth-Filtered Edition</title>
+  <title>Cesium Ground Truth Generator - Spatial Intelligence Edition</title>
 
   <!-- 1. CDN Base URL -->
   <script>
@@ -45,7 +45,7 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      width: 260px;
+      width: 280px;
       max-height: 94vh;
       overflow-y: auto;
     }
@@ -61,7 +61,7 @@
       font-size: 11px;
     }
     button:hover { background: #005f73; }
-    button.export-btn { background: #28a745; text-align: center; margin-top: 4px; font-size: 12px; }
+    button.export-btn { background: #28a745; text-align: center; margin-top: 6px; font-size: 12px; }
     button.export-btn:hover { background: #1e7e34; }
     .status-badge {
       font-size: 12px;
@@ -72,7 +72,7 @@
       font-size: 11px;
       font-weight: bold;
       color: #00bcd4;
-      margin-top: 6px;
+      margin-top: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -95,6 +95,10 @@
       accent-color: #00bcd4;
       cursor: pointer;
     }
+    .val-badge {
+      color: #00bcd4;
+      float: right;
+    }
   </style>
 </head>
 <body>
@@ -103,16 +107,35 @@
     <div class="status-badge" id="modeStatus">Mode: Photogrammetry (RGB)</div>
     <button onclick="setMode('rgb')">1. View RGB Photogrammetry</button>
     <button onclick="setMode('depth')">2. View Dynamic Depth Map</button>
-    <button onclick="setMode('clay')">3. View Shaded Clay Model</button>
-    <button onclick="setMode('normal')">4. View Surface Normal Map</button>
-    <button onclick="setMode('edges')">5. View Clean LineArt Edges</button>
 
-    <div class="section-header">Spatial Filter & Smoothing</div>
-    <label for="depthSmoothingSlider">Depth Noise Suppression (Filter Bumps):</label>
+    <div class="section-header">Depth Shader Controls</div>
+    <label for="depthSmoothingSlider">Noise Suppression: <span class="val-badge" id="v_smooth">0.40</span></label>
     <input type="range" id="depthSmoothingSlider" min="0.0" max="1.0" step="0.05" value="0.4" oninput="updateShaderUniforms()">
 
+    <label for="depthPowerSlider">Focus Falloff: <span class="val-badge" id="v_power">0.08</span></label>
+    <input type="range" id="depthPowerSlider" min="0.01" max="0.80" step="0.01" value="0.08" oninput="updateShaderUniforms()">
+
+    <div class="section-header">AI Pipeline Controls</div>
+    <label for="pass1_temp">Pass 1 Temp (Spatial Lock): <span class="val-badge" id="v_p1_t">0.20</span></label>
+    <input type="range" id="pass1_temp" min="0.05" max="0.50" step="0.05" value="0.20" oninput="document.getElementById('v_p1_t').innerText=this.value">
+
+    <label for="pass1_top_p">Pass 1 Top P: <span class="val-badge" id="v_p1_p">0.25</span></label>
+    <input type="range" id="pass1_top_p" min="0.05" max="0.80" step="0.05" value="0.25" oninput="document.getElementById('v_p1_p').innerText=this.value">
+
+    <label for="pass2_temp">Pass 2 Temp (Refinement): <span class="val-badge" id="v_p2_t">0.25</span></label>
+    <input type="range" id="pass2_temp" min="0.05" max="0.60" step="0.05" value="0.25" oninput="document.getElementById('v_p2_t').innerText=this.value">
+
+    <label for="pass2_top_p">Pass 2 Top P: <span class="val-badge" id="v_p2_p">0.45</span></label>
+    <input type="range" id="pass2_top_p" min="0.10" max="0.95" step="0.05" value="0.45" oninput="document.getElementById('v_p2_p').innerText=this.value">
+
+    <label for="thinkingLevel">Thinking Level:</label>
+    <select id="thinkingLevel">
+      <option value="HIGH" selected>HIGH (Strict Boundary Lock)</option>
+      <option value="LOW">LOW (Fast)</option>
+    </select>
+
     <div class="section-header">Solar & Atmosphere</div>
-    <label for="timeInput">Time of Day (Sun Control):</label>
+    <label for="timeInput">Time of Day:</label>
     <select id="timeInput" onchange="updateSunTime()">
       <option value="auto">Auto (Live GIS Solar Time)</option>
       <option value="sunset">Sunset / Gloaming</option>
@@ -121,35 +144,21 @@
       <option value="twilight">Night / Twilight</option>
     </select>
     
-    <label for="weatherInput">Weather Conditions:</label>
+    <label for="weatherInput">Weather Override:</label>
     <input type="text" id="weatherInput" placeholder="Auto (Live GIS Weather)...">
 
-    <div class="section-header">Domain Key Prompting Lenses</div>
-    <label for="geologyInput">1. Geology & Lithology Lens:</label>
-    <input type="text" id="geologyInput" placeholder="Auto (e.g., Old Red Sandstone, Granite)...">
+    <div class="section-header">Domain Key Lenses (Optional)</div>
+    <label for="geologyInput">1. Lithology & Stone:</label>
+    <input type="text" id="geologyInput" placeholder="Auto-resolved via GIS...">
 
-    <label for="eraStyleInput">2. Architecture & Era Lens:</label>
-    <input type="text" id="eraStyleInput" placeholder="Auto (e.g., Victorian Masonry, Gothic)...">
+    <label for="eraStyleInput">2. Architecture Style:</label>
+    <input type="text" id="eraStyleInput" placeholder="Auto-resolved via GIS...">
 
-    <label for="weatheringInput">3. Material Patina & Erosion Lens:</label>
-    <input type="text" id="weatheringInput" placeholder="Auto (e.g., Moss staining, Salt patina)...">
+    <label for="weatheringInput">3. Patina & Weathering:</label>
+    <input type="text" id="weatheringInput" placeholder="Auto-resolved via GIS...">
 
-    <div class="section-header">Live Pass Fine-Tuning</div>
-    
-    <label for="depthPowerSlider">1. Depth Focus Falloff (Lower = Near Focus):</label>
-    <input type="range" id="depthPowerSlider" min="0.01" max="0.80" step="0.01" value="0.08" oninput="updateShaderUniforms()">
-
-    <label for="normalSmoothSlider">2. Normal Facade Smoothing (Higher = Flat Planes):</label>
-    <input type="range" id="normalSmoothSlider" min="0.0" max="2.0" step="0.05" value="1.0" oninput="updateShaderUniforms()">
-
-    <label for="lineSensitivitySlider">3. LineArt Stroke Sensitivity (Higher = Fine Detail):</label>
-    <input type="range" id="lineSensitivitySlider" min="0.2" max="8.0" step="0.1" value="2.5" oninput="updateShaderUniforms()">
-
-    <label for="clayBlendSlider">4. Clay Model Plaster Blend (1.0 = Pure Plaster):</label>
-    <input type="range" id="clayBlendSlider" min="0.0" max="1.0" step="0.02" value="1.0" oninput="updateShaderUniforms()">
-
-    <hr style="border: 0.5px solid #444; width: 100%; margin: 4px 0;">
-    <button class="export-btn" onclick="captureGroundTruth()">Export 5-Pass Payload</button>
+    <hr style="border: 0.5px solid #444; width: 100%; margin: 6px 0;">
+    <button class="export-btn" onclick="captureGroundTruth()">Export 2-Pass Payload</button>
   </div>
 
   <div id="cesiumContainer"></div>
@@ -159,7 +168,7 @@
     let currentMode = 'rgb';
     let viewer = null;
 
-    // 1. Dynamic Interactive Shaders with Noise Suppression Filtering
+    // Depth Shader with Screen-Space Noise Filter
     const depthShader = new Cesium.CustomShader({
       lightingModel: Cesium.LightingModel.UNLIT,
       translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
@@ -173,7 +182,6 @@
         void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) {
           float rawEyeDepth = -fsInput.attributes.positionEC.z;
           
-          // Screen-Space Noise Filter: suppresses micro-jitter on surface polygons
           float dxDepth = dFdx(rawEyeDepth);
           float dyDepth = dFdy(rawEyeDepth);
           float depthGrad = length(vec2(dxDepth, dyDepth));
@@ -191,103 +199,17 @@
       `
     });
 
-    const normalShader = new Cesium.CustomShader({
-      lightingModel: Cesium.LightingModel.UNLIT,
-      translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
-      uniforms: {
-        u_normalSmoothing: { type: Cesium.UniformType.FLOAT, value: 1.0 },
-        u_depthSmoothing: { type: Cesium.UniformType.FLOAT, value: 0.4 }
-      },
-      fragmentShaderText: `
-        void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) {
-          vec3 posEC = fsInput.attributes.positionEC;
-          
-          // Filtered position derivatives to eliminate crumpled-foil mesh noise
-          vec3 dx = dFdx(posEC);
-          vec3 dy = dFdy(posEC);
-          
-          // Suppress micro derivatives below noise threshold
-          float noiseThreshold = 0.05 * u_depthSmoothing;
-          if (length(dx) < noiseThreshold) dx = vec3(0.0);
-          if (length(dy) < noiseThreshold) dy = vec3(0.0);
-
-          vec3 rawNormalEC = normalize(cross(dx, dy));
-
-          vec3 absN = abs(rawNormalEC);
-          float maxComp = max(absN.x, max(absN.y, absN.z));
-          vec3 dominantAxis = sign(rawNormalEC) * step(vec3(maxComp), absN);
-          
-          float smoothFactor = clamp(u_normalSmoothing, 0.0, 1.0);
-          vec3 smoothedNormal = normalize(mix(rawNormalEC, dominantAxis, smoothFactor));
-
-          if (u_normalSmoothing > 1.0) {
-            float hardSnap = u_normalSmoothing - 1.0;
-            smoothedNormal = normalize(mix(smoothedNormal, dominantAxis, hardSnap));
-          }
-
-          vec3 normalColor = smoothedNormal * 0.5 + 0.5;
-          material.diffuse = normalColor;
-          material.alpha = 1.0;
-        }
-      `
-    });
-
-    const lineArtShader = new Cesium.CustomShader({
-      lightingModel: Cesium.LightingModel.UNLIT,
-      translucencyMode: Cesium.CustomShaderTranslucencyMode.OPAQUE,
-      uniforms: {
-        u_lineSensitivity: { type: Cesium.UniformType.FLOAT, value: 2.5 },
-        u_depthSmoothing: { type: Cesium.UniformType.FLOAT, value: 0.4 }
-      },
-      fragmentShaderText: `
-        void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) {
-          vec3 posEC = fsInput.attributes.positionEC;
-          float eyeDepth = -posEC.z;
-
-          float dxDepth = dFdx(eyeDepth);
-          float dyDepth = dFdy(eyeDepth);
-          float depthGrad = (length(vec2(dxDepth, dyDepth)) / max(1.0, eyeDepth * 0.025)) * u_lineSensitivity;
-
-          vec3 dx = dFdx(posEC);
-          vec3 dy = dFdy(posEC);
-          vec3 normalEC = normalize(cross(dx, dy));
-          float normalGrad = (length(dFdx(normalEC)) + length(dFdy(normalEC))) * u_lineSensitivity;
-
-          // Apply noise gate to prevent line art from triggering on photogrammetry surface jitter
-          float gateThreshold = 0.15 * u_depthSmoothing;
-          float depthEdge = smoothstep(0.10 + gateThreshold, 0.40 + gateThreshold, depthGrad);
-          float normalEdge = smoothstep(1.2 + gateThreshold, 3.2 + gateThreshold, normalGrad);
-
-          float edgeSignal = clamp(depthEdge + normalEdge * 0.6, 0.0, 1.0);
-
-          material.diffuse = vec3(1.0 - edgeSignal);
-          material.alpha = 1.0;
-        }
-      `
-    });
-
-    // 2. Live Real-Time Slider Controller
     function updateShaderUniforms() {
       if (!viewer) return;
 
       const depthVal = parseFloat(document.getElementById('depthPowerSlider').value);
-      const normalVal = parseFloat(document.getElementById('normalSmoothSlider').value);
-      const lineVal = parseFloat(document.getElementById('lineSensitivitySlider').value);
-      const clayVal = parseFloat(document.getElementById('clayBlendSlider').value);
       const smoothVal = parseFloat(document.getElementById('depthSmoothingSlider').value);
+
+      document.getElementById('v_power').innerText = depthVal.toFixed(2);
+      document.getElementById('v_smooth').innerText = smoothVal.toFixed(2);
 
       depthShader.setUniform('u_depthPower', depthVal);
       depthShader.setUniform('u_depthSmoothing', smoothVal);
-      
-      normalShader.setUniform('u_normalSmoothing', normalVal);
-      normalShader.setUniform('u_depthSmoothing', smoothVal);
-      
-      lineArtShader.setUniform('u_lineSensitivity', lineVal);
-      lineArtShader.setUniform('u_depthSmoothing', smoothVal);
-
-      if (googleTileset && currentMode === 'clay') {
-        googleTileset.colorBlendAmount = clayVal;
-      }
 
       const cameraAlt = viewer.camera.positionCartographic.height;
       const nearBound = Math.max(1.0, cameraAlt * 0.05);
@@ -298,31 +220,21 @@
       viewer.render();
     }
 
-    // 3. Interactive Sun Position Controller
     function updateSunTime() {
       if (!viewer) return;
       const choice = document.getElementById('timeInput').value;
       const now = new Date();
 
-      if (choice === 'sunset') {
-        now.setUTCHours(19, 30, 0);
-        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
-      } else if (choice === 'golden') {
-        now.setUTCHours(18, 0, 0);
-        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
-      } else if (choice === 'noon') {
-        now.setUTCHours(12, 0, 0);
-        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
-      } else if (choice === 'twilight') {
-        now.setUTCHours(21, 0, 0);
-        viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
-      } else if (choice === 'auto') {
-        viewer.clock.currentTime = Cesium.JulianDate.now();
-      }
+      if (choice === 'sunset') now.setUTCHours(19, 30, 0);
+      else if (choice === 'golden') now.setUTCHours(18, 0, 0);
+      else if (choice === 'noon') now.setUTCHours(12, 0, 0);
+      else if (choice === 'twilight') now.setUTCHours(21, 0, 0);
+      else if (choice === 'auto') now = new Date();
+
+      viewer.clock.currentTime = Cesium.JulianDate.fromDate(now);
       viewer.render();
     }
 
-    // 4. Load Google 3D Tiles
     async function loadGoogle3DTiles() {
       try {
         if (typeof Cesium.createGooglePhotorealistic3DTileset === 'function') {
@@ -342,13 +254,11 @@
             }
           });
         }
-        console.log("Google Photorealistic 3D Tiles loaded successfully!");
       } catch (error) {
         console.error("Error loading Google 3D Tiles:", error);
       }
     }
 
-    // 5. Mode Switcher
     function setMode(mode) {
       if (!viewer || !googleTileset) return;
       currentMode = mode;
@@ -367,38 +277,7 @@
         viewer.shadows = false;
         googleTileset.shadows = Cesium.ShadowMode.DISABLED;
         googleTileset.customShader = depthShader;
-      } 
-      else if (mode === 'normal') {
-        viewer.scene.fog.enabled = false;
-        viewer.scene.skyAtmosphere.show = false;
-        viewer.scene.backgroundColor = Cesium.Color.BLACK;
-        viewer.shadows = false;
-        googleTileset.shadows = Cesium.ShadowMode.DISABLED;
-        googleTileset.customShader = normalShader;
-      }
-      else if (mode === 'edges') {
-        viewer.scene.fog.enabled = false;
-        viewer.scene.skyAtmosphere.show = false;
-        viewer.scene.backgroundColor = Cesium.Color.BLACK;
-        viewer.shadows = false;
-        googleTileset.shadows = Cesium.ShadowMode.DISABLED;
-        googleTileset.customShader = lineArtShader;
-      }
-      else if (mode === 'clay') {
-        const clayVal = parseFloat(document.getElementById('clayBlendSlider').value);
-        viewer.scene.fog.enabled = false;
-        viewer.scene.skyAtmosphere.show = false;
-        viewer.scene.backgroundColor = Cesium.Color.fromCssColorString('#181818');
-        viewer.shadows = true;
-        googleTileset.shadows = Cesium.ShadowMode.ENABLED;
-
-        googleTileset.colorBlendMode = Cesium.Cesium3DTileColorBlendMode.MIX;
-        googleTileset.colorBlendAmount = clayVal;
-        googleTileset.style = new Cesium.Cesium3DTileStyle({
-          color: "color('#e0e0e0')"
-        });
-      }
-      else if (mode === 'rgb') {
+      } else if (mode === 'rgb') {
         viewer.scene.fog.enabled = true;
         viewer.scene.skyAtmosphere.show = true;
         viewer.scene.backgroundColor = Cesium.Color.BLACK;
@@ -409,7 +288,6 @@
       viewer.render();
     }
 
-    // 6. Synchronized Render Wait
     function waitForRender() {
       return new Promise((resolve) => {
         const removeListener = viewer.scene.postRender.addEventListener(() => {
@@ -420,10 +298,8 @@
       });
     }
 
-    // 7. Ground Truth Export
     async function captureGroundTruth() {
       if (!viewer) return;
-      console.log("Exporting 5-pass ground truth payload with domain keys & custom uniforms...");
 
       try {
         const camera = viewer.camera;
@@ -458,6 +334,14 @@
           }
         };
 
+        const pipeline_parameters = {
+          pass1_temperature: parseFloat(document.getElementById('pass1_temp').value),
+          pass1_top_p: parseFloat(document.getElementById('pass1_top_p').value),
+          pass2_temperature: parseFloat(document.getElementById('pass2_temp').value),
+          pass2_top_p: parseFloat(document.getElementById('pass2_top_p').value),
+          thinking_level: document.getElementById('thinkingLevel').value
+        };
+
         const originalMode = currentMode;
 
         setMode('rgb');
@@ -468,27 +352,13 @@
         await waitForRender();
         const depthImage = viewer.canvas.toDataURL('image/png');
 
-        setMode('clay');
-        await waitForRender();
-        const clayImage = viewer.canvas.toDataURL('image/png');
-
-        setMode('normal');
-        await waitForRender();
-        const normalImage = viewer.canvas.toDataURL('image/png');
-
-        setMode('edges');
-        await waitForRender();
-        const edgeImage = viewer.canvas.toDataURL('image/png');
-
         setMode(originalMode);
 
         const payload = {
           metadata: metadata,
+          pipeline_parameters: pipeline_parameters,
           rgb_image: rgbImage,
-          depth_image: depthImage,
-          clay_image: clayImage,
-          normal_image: normalImage,
-          edge_image: edgeImage
+          depth_image: depthImage
         };
 
         const jsonStr = JSON.stringify(payload, null, 2);
@@ -506,15 +376,12 @@
           URL.revokeObjectURL(url);
         }, 100);
 
-        alert("Success! Exported 5-Pass Payload with Domain Keys & Depth Noise Filtering.");
-
       } catch (err) {
         console.error("Export Error:", err);
         alert("Export Failed: " + err.message);
       }
     }
 
-    // 8. Application Initialization
     async function initApp() {
       try {
         const response = await fetch('.env');
@@ -528,15 +395,12 @@
       }
 
       viewer = new Cesium.Viewer('cesiumContainer', {
-        contextOptions: {
-          webgl: { preserveDrawingBuffer: true }
-        },
+        contextOptions: { webgl: { preserveDrawingBuffer: true } },
         animation: false,
         timeline: false
       });
 
       viewer.scene.orderIndependentTranslucency = false;
-
       loadGoogle3DTiles();
     }
 

@@ -1,0 +1,23 @@
+Image 1 is a raw 3D photogrammetry render showing base colors and building layouts.
+Image 2 is depth_map.png showing exact 3D distance and structural geometry.
+
+TASK:
+Synthesize a clean, photorealistic architectural photograph from the exact camera perspective, horizon line, and elevation ratio set by Image 2 (depth_map.png) at Stockbridge / Dean Village / New Town, City of Edinburgh, United Kingdom (lat: 55.95446, lon: -3.21777), camera elevation 153.2m, pitch -13.2°, heading 119.7°. Solar orientation matched to ISO timestamp 2026-08-07T15:41:34.8610000000007858Z.
+
+[STRICT SPATIAL BOUNDARY LOCK]
+- Treat Image 2 (depth_map.png) as an absolute geometric anchor.
+- Render ONLY the physical building structures, roof planes, and topography present in Image 2.
+- Do NOT add unrequested towers, monuments, or foreign structures. Treat empty spatial zones as open sky or natural valley terrain.
+
+[NOISE PURGE & RECONSTRUCTION]
+- Inspect Image 1 and Image 2. Identify and purge all photogrammetry scan artifacts, melted polygon meshes, spiky edges, and blurred textures.
+- Reconstruct all building facades, window openings, rooflines, and pavements into crisp, structurally sound, real-world architecture.
+
+[LOCATION & DOMAIN STACK]
+- Lithology & Stone: Water of Leith Valley, New Town, Edinburgh
+- Architecture & Style: New Town, Edinburgh
+- Weathering & Patina: Craigsleith Sandstone
+- Atmosphere & Lighting: Overcast, 18.2°C. Direct sunlight calibrated to depth map shadows.
+
+[PHOTOGRAPHIC DIRECTIVE]
+Render as a crisp 8k architectural photograph. Shot on a 35mm prime lens with natural diffuse lighting, clean structural lines, and authentic material textures.
