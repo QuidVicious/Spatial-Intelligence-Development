@@ -87,18 +87,31 @@ def get_live_weather(lat, lon):
         return "Overcast diffuse daylight, 18°C"
 
 
-def resolve_mother_stack_native(location_name, lat, lon, api_key):
-    """Stage 1: Calls Gemini 2.5 Flash to produce DESCRIPTIVE VISUAL prompts."""
-    if not api_key:
-        return {
-            "geology": f"Constructed from local ashlar-cut buff sandstone with natural granular surface texture and tight mortar lines typical of {location_name}.",
-            "architecture": f"Period-accurate classical Georgian and early Victorian residential architecture featuring proportioned sash windows, slate roofs, and stone cornices native to {location_name}.",
-            "patina": "Subtle historic coal soot weathering in sheltered stone recesses, mild rainwater run-off staining on sills, and faint moss accumulation near base masonry."
-        }
+def resolve_mother_stack_native(location_name, lat, lon, api_key, domain_keys=None, model_name="gemini-3.6-flash"):
+    """Stage 1: Calls Gemini 3.6 Flash (Text LLM) to produce DESCRIPTIVE VISUAL prompts.
+    Respects manual domain_keys overrides from metadata if present."""
+    domain_keys = domain_keys or {}
+    user_geo = domain_keys.get("geology_lithology", "").strip()
+    user_arch = domain_keys.get("era_architecture_style", "").strip()
+    user_patina = domain_keys.get("weathering_patina", "").strip()
 
-    print(f"Resolving Mother Stack via Gemini REST API for: {location_name}...")
+    fallback_stack = {
+        "geology": user_geo or f"Constructed from local ashlar-cut buff sandstone with natural granular surface texture and tight mortar lines typical of {location_name}.",
+        "architecture": user_arch or f"Period-accurate classical Georgian and early Victorian residential architecture featuring proportioned sash windows, slate roofs, and stone cornices native to {location_name}.",
+        "patina": user_patina or "Subtle historic coal soot weathering in sheltered stone recesses, mild rainwater run-off staining on sills, and faint moss accumulation near base masonry."
+    }
+
+    if user_geo and user_arch and user_patina:
+        print("Using user-defined domain keys from metadata overrides.")
+        return fallback_stack
+
+    if not api_key:
+        print("Warning: GEMINI_API_KEY missing for Stage 1. Using fallback domain keys.")
+        return fallback_stack
+
+    print(f"Resolving Mother Stack via Gemini REST API ({model_name}) for: {location_name}...")
     try:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
         
         prompt_text = (
             f"You are an expert architectural historian and visual director. "
@@ -112,7 +125,9 @@ def resolve_mother_stack_native(location_name, lat, lon, api_key):
 
         request_body = {
             "contents": [{"parts": [{"text": prompt_text}]}],
-            "generationConfig": {"responseMimeType": "application/json"}
+            "generationConfig": {
+                "responseMimeType": "application/json"
+            }
         }
 
         req = urllib.request.Request(
@@ -121,37 +136,50 @@ def resolve_mother_stack_native(location_name, lat, lon, api_key):
             headers={'Content-Type': 'application/json'}
         )
 
-        with urllib.request.urlopen(req, timeout=10) as response:
+        with urllib.request.urlopen(req, timeout=15) as response:
             res_data = json.loads(response.read().decode('utf-8'))
             text_result = res_data['candidates'][0]['content']['parts'][0]['text']
-            return json.loads(text_result)
+            parsed_stack = json.loads(text_result)
+            return {
+                "geology": user_geo or parsed_stack.get("geology", fallback_stack["geology"]),
+                "architecture": user_arch or parsed_stack.get("architecture", fallback_stack["architecture"]),
+                "patina": user_patina or parsed_stack.get("patina", fallback_stack["patina"])
+            }
             
     except Exception as e:
         print(f"Warning: Mother Stack API resolution failed ({e}). Using native fallbacks.\n")
-        return {
-            "geology": f"Constructed from local ashlar-cut buff sandstone with natural granular surface texture and tight mortar lines typical of {location_name}.",
-            "architecture": f"Period-accurate classical Georgian and early Victorian residential architecture featuring proportioned sash windows, slate roofs, and stone cornices native to {location_name}.",
-            "patina": "Subtle historic coal soot weathering in sheltered stone recesses, mild rainwater run-off staining on sills, and faint moss accumulation near base masonry."
-        }
+        return fallback_stack
 
 
-def call_gemini_image_api(prompt, images_b64_list, api_key, temp, top_p):
-    """Generic REST dispatcher for Gemini 3.1 Flash Image."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key={api_key}"
+def call_gemini_image_api(prompt, images_b64_list, api_key, temp, top_p, thinking_level="HIGH", model_name="gemini-3.1-flash-image"):
+    """Generic REST dispatcher for Gemini Image Generation (gemini-3.1-flash-image / Nano Banana 2) with thinkingConfig support.
+    
+    1. Multimodal Part Ordering: Input images are added FIRST, prompt text added LAST.
+    2. Thought Draft Filtering: Filters out intermediate thought draft parts ('thought': true) and picks the LAST valid image (the final high-res render).
+    """
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
 
     def clean(b64):
         return b64.split(",")[1] if "," in b64 else b64
 
-    parts_list = [{"text": prompt}]
+    # Fix 1: Place input images FIRST so Image 1 maps to parts[0] and Image 2 maps to parts[1]
+    parts_list = []
     for b64 in images_b64_list:
         if b64:
             parts_list.append({"inlineData": {"mimeType": "image/png", "data": clean(b64)}})
+    
+    # Text prompt placed LAST
+    parts_list.append({"text": prompt})
 
+    # Injects thinkingConfig into generationConfig REST payload
     request_body = {
         "contents": [{"parts": parts_list}],
         "generationConfig": {
             "temperature": float(temp),
-            "topP": float(top_p)
+            "topP": float(top_p),
+            "thinkingConfig": {
+                "thinkingLevel": str(thinking_level).upper()
+            }
         }
     }
 
@@ -161,14 +189,28 @@ def call_gemini_image_api(prompt, images_b64_list, api_key, temp, top_p):
         headers={'Content-Type': 'application/json'}
     )
 
-    with urllib.request.urlopen(req, timeout=90) as response:
+    with urllib.request.urlopen(req, timeout=120) as response:
         res_data = json.loads(response.read().decode('utf-8'))
+        
+        valid_images = []
+        # Fix 2: Parse candidates for inlineData and filter out thought draft images
         for candidate in res_data.get('candidates', []):
             for part in candidate.get('content', {}).get('parts', []):
+                # Ignore intermediate reasoning thought draft images
+                if part.get('thought') is True:
+                    continue
+                    
                 img_data = part.get('inlineData') or part.get('inline_data')
-                if img_data:
-                    return img_data['data']
-        raise Exception("API response contained no image payload.")
+                if img_data and img_data.get('data'):
+                    valid_images.append(img_data['data'])
+                elif 'text' in part:
+                    print(f"\n[MODEL TEXT RESPONSE OUTPUT]: {part['text'][:300]}...")
+
+        if valid_images:
+            # Return the LAST non-thought image part (the final render)
+            return valid_images[-1]
+
+        raise Exception(f"API response from {model_name} contained no valid final image payload.")
 
 
 def save_base64_png(base64_str, output_filename, output_dir):
@@ -211,12 +253,14 @@ if __name__ == "__main__":
     pitch = meta['camera_transform']['pitch_deg']
     datetime_iso = meta.get('environment', {}).get('datetime_iso', 'N/A')
     user_weather = meta.get('environment', {}).get('weather_setting', '').strip()
+    domain_keys = meta.get('domain_keys', {})
 
     pipeline_params = payload.get('pipeline_parameters', {})
-    pass1_temp = pipeline_params.get('pass1_temperature', float(os.environ.get("PASS1_TEMP", 0.20)))
+    pass1_temp = pipeline_params.get('pass1_temperature', float(os.environ.get("PASS1_TEMP", 0.15)))
     pass1_top_p = pipeline_params.get('pass1_top_p', float(os.environ.get("PASS1_TOP_P", 0.25)))
-    pass2_temp = pipeline_params.get('pass2_temperature', float(os.environ.get("PASS2_TEMP", 0.20)))
-    pass2_top_p = pipeline_params.get('pass2_top_p', float(os.environ.get("PASS2_TOP_P", 0.40)))
+    pass2_temp = pipeline_params.get('pass2_temperature', float(os.environ.get("PASS2_TEMP", 0.15)))
+    pass2_top_p = pipeline_params.get('pass2_top_p', float(os.environ.get("PASS2_TOP_P", 0.25)))
+    thinking_level = pipeline_params.get('thinking_level', os.environ.get("THINKING_LEVEL", "HIGH"))
 
     output_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -229,43 +273,52 @@ if __name__ == "__main__":
     location_name = get_location_context(lat, lon)
     weather_desc = user_weather if user_weather else get_live_weather(lat, lon)
 
-    ai_stack = resolve_mother_stack_native(location_name, lat, lon, GEMINI_API_KEY)
+    # Stage 1: Calls gemini-3.6-flash for descriptive text generation
+    ai_stack = resolve_mother_stack_native(
+        location_name, lat, lon, GEMINI_API_KEY, 
+        domain_keys=domain_keys, model_name="gemini-3.6-flash"
+    )
 
     # --- PASS 1: SPATIAL LOCK RENDER ---
     print("\n==================================================")
     print(" EXECUTING PASS 1: SPATIAL BOUNDARY LOCK RENDER")
-    print(f" -> Temp: {pass1_temp} | Top P: {pass1_top_p}")
+    print(f" -> Model: gemini-3.1-flash-image | Temp: {pass1_temp} | Top P: {pass1_top_p} | Thinking: {thinking_level}")
     print("==================================================")
 
     pass1_prompt = (
         f"Image 1 is a raw 3D photogrammetry render showing base colors and building layouts.\n"
         f"Image 2 is depth_map.png showing exact 3D distance and structural geometry.\n\n"
         f"TASK:\n"
-        f"Synthesize a clean architectural photograph from the exact camera perspective, horizon line, "
-        f"and elevation ratio set by Image 2 at {location_name} (lat: {lat:.5f}, lon: {lon:.5f}), "
-        f"camera elevation {alt:.1f}m, pitch {pitch:.1f}°, heading {heading:.1f}°.\n\n"
+        f"Synthesize a clean, photorealistic architectural photograph from the exact camera perspective, horizon line, and elevation ratio set by Image 2 (depth_map.png) at {location_name} (lat: {lat:.5f}, lon: {lon:.5f}).\n\n"
         f"[STRICT SPATIAL BOUNDARY LOCK]\n"
         f"- Treat Image 2 (depth_map.png) as an absolute geometric anchor.\n"
-        f"- Render ONLY the physical building structures and topography present in Image 2.\n"
-        f"- Do NOT add unrequested towers, monuments, or foreign structures. Treat empty zones as open sky or valley terrain.\n\n"
+        f"- Render ONLY the physical building structures, roof planes, and topography present in Image 2.\n"
+        f"- Do NOT add unrequested towers, monuments, or foreign structures. Treat empty spatial zones as open sky or natural valley terrain.\n\n"
+        f"[NOISE PURGE & RECONSTRUCTION]\n"
+        f"- Inspect Image 1 and Image 2. Identify and purge all photogrammetry scan artifacts, melted polygon meshes, spiky edges, and blurred textures.\n"
+        f"- Reconstruct all building facades, window openings, rooflines, and pavements into clean, structurally sound architecture.\n\n"
         f"[LOCATION & DOMAIN STACK]\n"
         f"- Lithology & Stone: {ai_stack['geology']}\n"
         f"- Architecture & Style: {ai_stack['architecture']}\n"
         f"- Weathering & Patina: {ai_stack['patina']}\n"
-        f"- Atmosphere: {weather_desc}.\n\n"
-        f"Render as an architectural photograph. Clean structural lines and authentic material textures."
+        f"- Atmosphere & Lighting: {weather_desc}. Direct sunlight calibrated to depth map shadows.\n\n"
+        f"[PHOTOGRAPHIC DIRECTIVE]\n"
+        f"Render as a clean architectural photograph shot on a 35mm prime lens with natural diffuse lighting, clean structural lines, and authentic material textures."
     )
 
     if not GEMINI_API_KEY:
         print("ERROR: GEMINI_API_KEY is missing from .env file!")
         exit(1)
 
+    # Stage 2 Pass 1: Calls gemini-3.1-flash-image with thinkingLevel: HIGH
     pass1_b64_output = call_gemini_image_api(
         pass1_prompt, 
         [rgb_b64, depth_b64], 
         GEMINI_API_KEY, 
         temp=pass1_temp, 
-        top_p=pass1_top_p
+        top_p=pass1_top_p,
+        thinking_level=thinking_level,
+        model_name="gemini-3.1-flash-image"
     )
     
     save_base64_png(pass1_b64_output, 'pass1_spatial_anchor.png', output_dir)
@@ -273,29 +326,37 @@ if __name__ == "__main__":
 
     # --- PASS 2: SEMANTIC VISUAL INFERENCE ---
     print("\n==================================================")
-    print(" EXECUTING PASS 2: SEMANTIC VISUAL INFERENCE")
-    print(f" -> Temp: {pass2_temp} | Top P: {pass2_top_p}")
+    print(" EXECUTING PASS 2: SEMANTIC VISUAL INFERENCE (MASTER RETOUCHER)")
+    print(f" -> Model: gemini-3.1-flash-image | Temp: {pass2_temp} | Top P: {pass2_top_p} | Thinking: {thinking_level}")
     print("==================================================")
 
     pass2_prompt = (
-        f"Image 1 is a low-res 3D mesh render of {location_name}. Use Image 1 as a strict spatial template and base layer.\n\n"
+        f"Image 1 is a spatially accurate, perspective-locked architectural render.\n\n"
         f"TASK:\n"
-        f"Perform a high-definition 8K architectural render pass on Image 1, strictly preserving the original spatial arrangement while adding precise, realistic materials.\n\n"
-        f"MATERIAL & TEXTURE DEFINITIONS:\n"
-        f"- Facades: Reconstruct building facades using {ai_stack['geology']} with clean mortar joints and stone cornices.\n"
-        f"- Roofs: Render precise dark slate roof tiles and stone chimneys.\n"
-        f"- Windows & Accents: Sharp timber sash window frames with realistic glass, deep sills, and metal drainpipes casting thin shadows.\n"
-        f"- Streets & Vegetation: Paved asphalt streets, stone curbs, and individual leaf definitions for the vegetation.\n\n"
-        f"PRESERVATION LOCK:\n"
-        f"Strictly preserve the exact spatial positions of all structures, roads, vegetation, and lighting vectors from Image 1."
+        f"Perform an 8K high-definition material refinement and sharpening pass on Image 1. Act as a master architectural retoucher.\n\n"
+        f"[STRICT SPATIAL PRESERVATION LOCK]\n"
+        f"- Do NOT alter camera angle, horizon line, building footprints, wall planes, window positions, or roof contours.\n"
+        f"- Preserve every structure, tree, and road in its exact spatial position as shown in Image 1.\n"
+        f"- Do NOT add new buildings, towers, monuments, or unrequested landmarks.\n\n"
+        f"[MICRO-TEXTURE & MATERIAL SYNTHESIZER]\n"
+        f"- FACADES: Reconstruct all wall surfaces into clean, razor-sharp masonry matching {ai_stack['geology']} with defined stone block mortar joints and crisp stone cornices.\n"
+        f"- WINDOWS: Replace soft window shapes with sharp, rectangular multi-pane timber sash windows featuring deep-set sills and subtle glass reflections.\n"
+        f"- ROOFS: Synthesize individual dark slate roof tiles with sharp edge highlights and realistic stone chimneys.\n"
+        f"- STREETS & VEGETATION: Refine asphalt paving, stone curb gutters, and individual leaf definitions on trees.\n\n"
+        f"[LIGHTING & PHOTOGRAPHIC DIRECTIVE]\n"
+        f"- Retain the exact directional lighting, sun angle, and shadow placement from Image 1, but sharpen shadow edge contrast.\n"
+        f"- Render as a crisp, hyper-realistic 8K architectural photograph shot on a 35mm prime lens with zero mesh blur, smudging, or noise."
     )
 
+    # Stage 2 Pass 2: Calls gemini-3.1-flash-image with thinkingLevel: HIGH
     final_b64_output = call_gemini_image_api(
         pass2_prompt, 
         [pass1_b64_output], 
         GEMINI_API_KEY, 
         temp=pass2_temp, 
-        top_p=pass2_top_p
+        top_p=pass2_top_p,
+        thinking_level=thinking_level,
+        model_name="gemini-3.1-flash-image"
     )
 
     save_base64_png(final_b64_output, 'final_photoreal_render.png', output_dir)
