@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latent Space Archaeology | Agnostic Engine</title>
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-card: #0F1626;
+            --border-color: #1E293B;
+            --accent-glow: #38BDF8;
+            --accent-success: #34D399;
+            --accent-fail: #F87171;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --code-bg: #030712;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Courier New', Courier, monospace; }
+        body { background-color: var(--bg-main); color: var(--text-primary); padding: 2rem; }
+        .container { max-width: 1500px; margin: 0 auto; }
+        
+        header { border-bottom: 2px solid var(--border-color); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+        h1 { font-size: 1.6rem; color: var(--text-primary); letter-spacing: -0.01em; }
+        h1 span { color: var(--accent-glow); }
+        .subtitle { color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.85rem; }
+
+        /* Two-Column Grid Setup */
+        .workspace-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+        @media (min-width: 1100px) { .workspace-grid { grid-template-columns: 550px 1fr; } }
+
+        /* Left Side: Modular Stack Inputs */
+        .control-panel { background: var(--bg-card); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px; display: flex; flex-direction: column; gap: 1.2rem; }
+        .panel-title { font-size: 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+        
+        .input-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        label { color: var(--accent-glow); font-size: 0.8rem; font-weight: bold; }
+        input, select, textarea { background: var(--code-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.6rem; border-radius: 4px; font-size: 0.85rem; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-glow); outline: none; }
+        
+        button { background: var(--accent-glow); color: var(--bg-main); border: none; padding: 0.85rem; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; margin-top: 0.5rem; }
+        button:hover { background: #7DD3FC; }
+
+        /* Right Side: Compiled Terminals & Log Ledger */
+        .output-panel { display: flex; flex-direction: column; gap: 2rem; }
+        
+        .terminal-box { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+        .terminal-header { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        
+        .compiled-prompt { color: #A7F3D0; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.5; min-height: 120px; }
+
+        .history-section { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; }
+        .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .export-btn { background: transparent; border: 1px solid var(--accent-success); color: var(--accent-success); padding: 0.4rem 0.8rem; font-size: 0.75rem; cursor: pointer; }
+        .export-btn:hover { background: var(--accent-success); color: var(--bg-main); }
+        
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.8rem; }
+        th, td { padding: 0.75rem; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+        th { color: var(--accent-glow); font-size: 0.75rem; }
+        
+        .status-badge { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: bold; font-size: 0.7rem; }
+        .status-success { background: rgba(52, 211, 153, 0.1); color: var(--accent-success); border: 1px solid var(--accent-success); }
+        .status-fail { background: rgba(248, 113, 113, 0.1); color: var(--accent-fail); border: 1px solid var(--accent-fail); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>LATENT_SPACE_ARCHAEOLOGY // <span>agnostic_pipeline_engine</span></h1>
+        <p class="subtitle">An open, modular framework interface. Manually feed extracted domain data tiers to compile structured prompt matrices for any coordinate block.</p>
+    </header>
+
+    <div class="workspace-grid">
+        <!-- Control Inputs Panel (Completely Open Fields) -->
+        <div class="control-panel">
+            <div class="panel-title">// CORE ENVIRONMENT META</div>
+            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 100px; gap: 1rem;">
+                <div class="input-group">
+                    <label>Target Address / Coordinates</label>
+                    <input type="text" id="locationInput" value="Ainslie Place, New Town, Edinburgh">
+                </div>
+                <div class="input-group">
+                    <label>Target Year</label>
+                    <input type="number" id="yearInput" value="1966">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Viewpoint Position &amp; Camera Lens Angling</label>
+                <input type="text" id="viewpointInput" value="Looking downward through the historic leaded sash windows of the Piano Nobile level">
+            </div>
+
+            <div class="panel-title" style="margin-top: 0.5rem;">// THE DOMAIN DATA STACK CONTROLS</div>
+            
+            <div class="input-group">
+                <label>1. Geography &amp; Topology Rules</label>
+                <input type="text" id="geoInput" value="Steep geometric slope layout grade dropping down toward the Water of Leith drainage basin.">
+            </div>
+
+            <div class="input-group">
+                <label>2. Geology Material Matrix</label>
+                <input type="text" id="geologyInput" value="Subsurface structural shifts requiring foundational vaulted support reinforcements. Wet basalt cobblestone setts layout.">
+            </div>
+
+            <div class="input-group">
+                <label>3. Civil Records &amp; Structural Boundaries</label>
+                <input type="text" id="civilInput" value="Strict compliance with James Gillespie Graham's master plan fenestration line configurations and high window clearances.">
+            </div>
+
+            <div class="input-group">
+                <label>4. Formal Architectural Grammar</label>
+                <input type="text" id="archInput" value="1820s Scottish Georgian residential sandstone design system boundaries.">
+            </div>
+
+            <div class="input-group">
+                <label>5. Cultural &amp; Historical Atmosphere Filter</label>
+                <textarea id="cultureInput" rows="2">Pre-Clean Air Act conditioning. Heavy organic dark coal-smoke soot weathering layers coating the exterior facades. Low-angle overcast autumn sky layout.</textarea>
+            </div>
+
+            <div class="panel-title" style="margin-top: 0.5rem;">// QA LOGGING VARIABLES</div>
+            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <label>Run Assessment</label>
+                    <select id="statusInput">
+                        <option value="SUCCESS">HIT GOLD (Valid Spatial Layout)</option>
+                        <option value="FAILURE">HALLUCINATED (Perspective Fail)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Model Version Tag</label>
+                    <input type="text" id="modelInput" value="Gemini Flash + Nano Banana 2">
+                </div>
+            </div>
+
+            <button onclick="compileAgnosticMatrix()">Compile Stack &amp; Log Configuration</button>
+        </div>
+
+        <!-- Terminal Displays and Dynamic Database Log Ledger -->
+        <div class="output-panel">
+            
+            <!-- Agnostic Compilation Terminal Window -->
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>AGNOSTIC_COMPILER_OUTPUT</span>
+                    <span id="timestampDisplay">SYSTEM_IDLE</span>
+                </div>
+                <div class="compiled-prompt" id="promptDisplay">// Inject open domain tier array structures to assemble a target prompt matrix...</div>
+            </div>
+
+            <!-- Experiment Run Ledger Tracking System -->
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>Archaeology System Tracking Registry</h2>
+                    <button class="export-btn" onclick="exportAgnosticCSV()">Export Master Spreadsheet (.CSV)</button>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Target Coordinate (Year)</th>
+                                <th>Assembled Multi-Modal Prompt Matrix Stack</th>
+                                <th>Evaluation</th>
+                                <th>Engine Config</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logTableBody">
+                            <!-- User experiments append instantly here via script layer -->
+                        </tbody>
+
+// Pure Agnostic Compilation Engine Layer
+function compileAgnosticMatrix() {
+// Pull raw strings straight out of the UI text containers (No hardcoding)
+const location = document.getElementById("locationInput").value;
+const year = document.getElementById("yearInput").value;
+const viewpoint = document.getElementById("viewpointInput").value;
+const geography = document.getElementById("geoInput").value;
+const geology = document.getElementById("geologyInput").value;
+const civil = document.getElementById("civilInput").value;
+const architecture = document.getElementById("archInput").value;
+const culture = document.getElementById("cultureInput").value;
+const status = document.getElementById("statusInput").value;
+const modelTag = document.getElementById("modelInput").value;
+const now = new Date().toLocaleString();
+// Dynamically piece together your cross-disciplinary multi-modal instruction matrix
+const agnosticPromptMatrix =
+[SPATIAL POSITION AXIS]: ${viewpoint}. [GEOGRAPHY/TOPOLOGY RULES]: ${geography} [GEOLOGY MATERIAL PROPERTIES]: ${geology} [CIVIL GEOMETRIC CONSTRAINTS]: ${civil} [ARCHITECTURAL GRAMMAR CONSTRAINTS]: ${architecture} [LOCAL HISTORIC/CULTURAL LENS (YEAR ${year})]: Enforce atmospheric conditioning: ${culture} [ENGINE SAFEGUARDS]: Adhere strictly to 3D virtual viewport coordinates. Prevent planar line distortion.;
+// Render straight into the active code sandbox display panel
+document.getElementById("timestampDisplay").innerText = COMPILED // ${now};
+document.getElementById("promptDisplay").innerText = agnosticPromptMatrix;
+// Build log table entry layout row
+const tableBody = document.getElementById("logTableBody");
+const newRow = document.createElement("tr");
+const statusClass = status === "SUCCESS" ? "status-success" : "status-fail";
+const statusLabel = status === "SUCCESS" ? "HIT GOLD" : "HALLUCINATED";
+newRow.innerHTML = <td style="color: var(--text-secondary); white-space: nowrap;">${now}</td> <td><strong>${location}</strong><br><span style="color: var(--accent-glow)">Era: ${year}</span></td> <td style="color: #A7F3D0; font-size:0.75rem; max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${agnosticPromptMatrix}">${agnosticPromptMatrix}</td> <td><span class="status-badge ${statusClass}">${statusLabel}</span></td> <td style="color: var(--text-secondary); font-size:0.75rem;">${modelTag}</td>;
+// Push new experiment logs directly to the top of your ledger spreadsheet
+tableBody.insertBefore(newRow, tableBody.firstChild);
+}
+// Export System: Flattens table metadata values directly into an uncompressed spreadsheet file download
+function exportAgnosticCSV() {
+const rows = document.querySelectorAll("table tr");
+let csvDataString = "data:text/csv;charset=utf-8,";
+rows.forEach(row => {
+const cols = row.querySelectorAll("td, th");
+const dataFields = Array.from(cols).map(c => "${c.innerText.replace(/"/g, '""')}").join(",");
+csvDataString += dataFields + "\r\n";
+});
+const encodedUri = encodeURI(csvDataString);
+const fileLinkAnchor = document.createElement("a");
+fileLinkAnchor.setAttribute("href", encodedUri);
+fileLinkAnchor.setAttribute("download", "agnostic_archeology_matrix_logs.csv");
+document.body.appendChild(fileLinkAnchor);
+fileLinkAnchor.click();
+document.body.removeChild(fileLinkAnchor);
+}

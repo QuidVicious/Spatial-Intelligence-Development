@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spatial Intelligence HUD — Viewfinder</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --panel-bg: rgba(14, 18, 25, 0.88);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --text-main: #f1f5f9;
+      --text-dim: #94a3b8;
+      --border: rgba(56, 189, 248, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color: var(--text-main); }
+    #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+    
+    /* Top HUD */
+    .hud-panel {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      z-index: 10;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      max-width: 420px;
+    }
+    .hud-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+    .hud-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 16px; font-size: 13px; }
+    .hud-label { color: var(--text-dim); }
+    .hud-value { font-family: monospace; font-weight: 600; color: #fff; text-align: right; }
+    
+    .temporal-box {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .temporal-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+    .temporal-input {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+    }
+    .temporal-input:focus { border-color: var(--accent); }
+    
+    .btn-synthesize {
+      margin-top: 12px;
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--accent-glow);
+      transition: all 0.2s;
+    }
+    .btn-synthesize:hover { background: linear-gradient(135deg, #0ea5e9, #0284c7); transform: translateY(-1px); }
+    .btn-synthesize:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Results Drawer */
+    #drawer {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      bottom: 16px;
+      width: 500px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(540px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+    }
+    #drawer.open { transform: translateX(0); }
+    .drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .drawer-title { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; }
+    .btn-close { background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+    .drawer-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    
+    .address-card { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px 14px; border-left: 3px solid var(--accent); font-size: 13px; line-height: 1.4; }
+    .preview-img { width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover; }
+    .section-title { font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; font-weight: 700; }
+    .prompt-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 12px; font-size: 12px; line-height: 1.5; color: #cbd5e1; max-height: 160px; overflow-y: auto; }
+    .json-box { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; font-family: monospace; font-size: 11px; color: #a5f3fc; max-height: 160px; overflow-y: auto; white-space: pre-wrap; }
+    
+    .loader { display: none; text-align: center; padding: 30px 0; color: var(--accent); font-size: 13px; }
+    .loader.active { display: block; }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <!-- Telemetry HUD -->
+  <div class="hud-panel">
+    <div class="hud-title">6-DoF Viewport Telemetry</div>
+    <div class="hud-grid">
+      <span class="hud-label">Latitude</span><span class="hud-value" id="hud-lat">--</span>
+      <span class="hud-label">Longitude</span><span class="hud-value" id="hud-lon">--</span>
+      <span class="hud-label">Altitude (AGL)</span><span class="hud-value" id="hud-agl">-- m</span>
+      <span class="hud-label">Heading</span><span class="hud-value" id="hud-heading">--°</span>
+      <span class="hud-label">Pitch</span><span class="hud-value" id="hud-pitch">--°</span>
+      <span class="hud-label">FOV</span><span class="hud-value" id="hud-fov">--°</span>
+    </div>
+
+    <div class="temporal-box">
+      <span class="temporal-label">Temporal Anchor</span>
+      <input type="text" id="temporal-input" class="temporal-input" value="Present Day" placeholder="e.g. October 1966 or Present Day" />
+    </div>
+
+    <button id="btn-synthesize" class="btn-synthesize">✨ Synthesize Spatial Twin</button>
+  </div>
+
+  <!-- Results Drawer -->
+  <div id="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Spatial Twin Result</span>
+      <button class="btn-close" id="btn-close">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div id="loader" class="loader">
+        <div>Synthesizing Spatial Twin...</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Visual Frustum Ingestion ➔ GeoJSON ➔ Nano Banana 2</div>
+      </div>
+      
+      <div id="results-view" style="display:none; flex-direction: column; gap: 16px;">
+        <div class="address-card" id="res-address">--</div>
+        
+        <div>
+          <div class="section-title">Generative Twin Simulation</div>
+          <img id="res-image" class="preview-img" src="" alt="Synthesized Twin" />
+        </div>
+
+        <div>
+          <div class="section-title">Multimodal Prompt ("The Eye")</div>
+          <div class="prompt-box" id="res-prompt">--</div>
+        </div>
+
+        <div>
+          <div class="section-title">GeoJSON Cognitive Scaffold</div>
+          <pre class="json-box" id="res-geojson">--</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let viewer = null;
+
+    async function init() {
+      // 1. Fetch Config
+      const configRes = await fetch("/api/config");
+      const config = await configRes.json();
+      
+      if (config.cesium_ion_token) {
+        Cesium.Ion.defaultAccessToken = config.cesium_ion_token;
+      }
+      if (config.google_maps_api_key) {
+        Cesium.GoogleMaps.defaultApiKey = config.google_maps_api_key;
+      }
+
+      // 2. Initialize Cesium Viewport with preserveDrawingBuffer enabled for screenshot captures
+      viewer = new Cesium.Viewer("cesiumContainer", {
+        globe: false,
+        animation: false,
+        timeline: false,
+        geocoder: false,
+        homeButton: false,
+        baseLayerPicker: false,
+        navigationHelpButton: false,
+        sceneModePicker: false,
+        contextOptions: {
+          webgl: {
+            preserveDrawingBuffer: true
+          }
+        }
+      });
+
+      // Add Google Photorealistic 3D Tiles
+      try {
+        const tileset = await Cesium.createGooglePhotorealistic3DTileset();
+        viewer.scene.primitives.add(tileset);
+      } catch (e) {
+        console.error("Failed to load 3D Tiles:", e);
+      }
+
+      // Position Camera at Ainslie Place, Edinburgh
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 75.0),
+        orientation: {
+          heading: Cesium.Math.toRadians(315.0),
+          pitch: Cesium.Math.toRadians(-12.0),
+          roll: 0.0
+        },
+        duration: 0
+      });
+
+      // 3. Live HUD Updates
+      viewer.camera.changed.addEventListener(updateHUD);
+      updateHUD();
+
+      // UI Listeners
+      document.getElementById("btn-synthesize").addEventListener("click", triggerSynthesis);
+      document.getElementById("btn-close").addEventListener("click", () => {
+        document.getElementById("drawer").classList.remove("open");
+      });
+    }
+
+    function getTelemetry() {
+      if (!viewer || !viewer.camera) return { lat: 0, lon: 0, heading: 0, pitch: 0, altitude_agl: 4.5, altitude_amsl: 50.0, fov: 75.0 };
+
+      const camera = viewer.camera;
+      const carto = Cesium.Cartographic.fromCartesian(camera.position);
+      if (!carto) return { lat: 0, lon: 0, heading: 0, pitch: 0, altitude_agl: 4.5, altitude_amsl: 50.0, fov: 75.0 };
+
+      const lat = Cesium.Math.toDegrees(carto.latitude);
+      const lon = Cesium.Math.toDegrees(carto.longitude);
+      const heading = Cesium.Math.toDegrees(camera.heading);
+      const pitch = Cesium.Math.toDegrees(camera.pitch);
+      
+      let fov = 75.0;
+      if (camera.frustum && camera.frustum.fovy) {
+        fov = Cesium.Math.toDegrees(camera.frustum.fovy);
+      }
+
+      const amsl = carto.height || 0;
+      const globeHeight = viewer.scene.globe ? (viewer.scene.globe.getHeight(carto) || 0) : 0;
+      const agl = Math.max(1.5, amsl - globeHeight);
+
+      return { lat, lon, heading, pitch, altitude_agl: agl, altitude_amsl: amsl, fov };
+    }
+
+    function updateHUD() {
+      const t = getTelemetry();
+      document.getElementById("hud-lat").innerText = t.lat.toFixed(6);
+      document.getElementById("hud-lon").innerText = t.lon.toFixed(6);
+      document.getElementById("hud-agl").innerText = t.altitude_agl.toFixed(1) + " m";
+      document.getElementById("hud-heading").innerText = t.heading.toFixed(1) + "°";
+      document.getElementById("hud-pitch").innerText = t.pitch.toFixed(1) + "°";
+      document.getElementById("hud-fov").innerText = t.fov.toFixed(1) + "°";
+    }
+
+    async function triggerSynthesis() {
+      const btn = document.getElementById("btn-synthesize");
+      const drawer = document.getElementById("drawer");
+      const loader = document.getElementById("loader");
+      const resultsView = document.getElementById("results-view");
+      const temporalVal = document.getElementById("temporal-input").value.trim() || "Present Day";
+
+      btn.disabled = true;
+      drawer.classList.add("open");
+      loader.classList.add("active");
+      resultsView.style.display = "none";
+
+      // 1. Force a fresh WebGL frame render and capture viewport canvas
+      viewer.render();
+      const screenshot = viewer.scene.canvas.toDataURL("image/jpeg", 0.85);
+
+      const telemetry = getTelemetry();
+      const payload = {
+        ...telemetry,
+        temporal_anchor: temporalVal,
+        viewport_image: screenshot
+      };
+
+      try {
+        const resp = await fetch("/api/process_view", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) throw new Error(await resp.text());
+        const data = await resp.json();
+
+        // Render Results
+        document.getElementById("res-address").innerHTML = `<strong>📍 ${data.address}</strong><br><span style="color:var(--text-dim); font-size:11px;">Anchor: ${data.temporal_anchor}</span>`;
+        document.getElementById("res-prompt").innerText = data.prompt || "No prompt generated.";
+        document.getElementById("res-geojson").innerText = JSON.stringify(data.geojson, null, 2);
+        
+        if (data.synthesized_image) {
+          document.getElementById("res-image").src = data.synthesized_image;
+          document.getElementById("res-image").style.display = "block";
+        } else {
+          document.getElementById("res-image").style.display = "none";
+        }
+
+        loader.classList.remove("active");
+        resultsView.style.display = "flex";
+      } catch (err) {
+        alert("Synthesis failed: " + err.message);
+        loader.classList.remove("active");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
