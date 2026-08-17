@@ -1,0 +1,184 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Gaick Lodge / Glen Tromie Basin, Cairngorms National Park",
+    "observer_elevation_agl_m": 531.5,
+    "observer_elevation_amsl_m": 980.0,
+    "view_direction_deg": 6.4,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.935842,
+      -4.043556
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.043556,
+          56.935842
+        ]
+      },
+      "properties": {
+        "element": "observer_frame",
+        "description": "High-angle oblique aerial perspective suspended 531m above the southern approach to Gaick Lodge, looking north-northeast into the glacial trough of Glen Tromie toward Loch Bhrodainn and Loch an t-Seilich."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.055,
+              56.93
+            ],
+            [
+              -4.03,
+              56.93
+            ],
+            [
+              -4.03,
+              56.955
+            ],
+            [
+              -4.055,
+              56.955
+            ],
+            [
+              -4.055,
+              56.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "subterranean_geology",
+        "bedrock_formation": "Grampian Group Dalradian Supergroup metasedimentary quartz-feldspar psammite and schist, intruded by Devonian granitic plutons",
+        "glacial_geomorphology": "Classic U-shaped glacial breach with steep scree talus slopes, lateral moraine deposits, and peat-veneered fluvioglacial gravels across the valley floor",
+        "soil_taxonomy": "Peaty podzols and dystric histosols (blanket bog) over compacted glacial till"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.041,
+            56.932
+          ],
+          [
+            -4.0425,
+            56.937
+          ],
+          [
+            -4.045,
+            56.945
+          ]
+        ]
+      },
+      "properties": {
+        "element": "ground_surface_and_track",
+        "material": "Unpaved highland estate track composed of crushed schorl/granite aggregate and compacted glacial gravel with central grassy berm",
+        "topography": "Gentle northward valley floor descent bordered by abrupt, scree-laden mountain flanks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.046,
+                56.937
+              ],
+              [
+                -4.041,
+                56.937
+              ],
+              [
+                -4.041,
+                56.94
+              ],
+              [
+                -4.046,
+                56.94
+              ],
+              [
+                -4.046,
+                56.937
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "landscape_ecology",
+        "vegetation": "Managed Calluna vulgaris heather moorland, degraded Molinia caerulea tussocks, and Eriophorum bog; symmetric planted shelterbelts of Pinus sylvestris (Scots pine) and Picea sitchensis bordering the lodge enclosure"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.045,
+              56.9378
+            ],
+            [
+              -4.043,
+              56.9378
+            ],
+            [
+              -4.043,
+              56.9392
+            ],
+            [
+              -4.045,
+              56.9392
+            ],
+            [
+              -4.045,
+              56.9378
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "built_environment",
+        "structure_name": "Gaick Forest Hunting Lodge & Outbuildings",
+        "masonry": "Locally quarried granite and whinstone rubble masonry, lime-harl coating, Ballachulish slate pitched roofing with lead flashing and stone chimneys",
+        "layout": "Enclosed walled compound with principal two-storey lodge and associated single-storey gabled keeper outbuildings and kennels"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.043556,
+          56.935842
+        ]
+      },
+      "properties": {
+        "element": "atmospheric_state",
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 28.5,
+        "illuminance_lux": 42000,
+        "color_temp_k": 5600,
+        "relative_humidity_percent": 74,
+        "ambient_temp_c": 11.5,
+        "visibility_km": 35.0
+      }
+    }
+  ]
+}

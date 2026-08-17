@@ -1,0 +1,14 @@
+{
+  "address": "30-31 Wright's Houses, Edinburgh EH10 4HR, UK",
+  "temporal_anchor": "Present Day",
+  "timestamp": "2026-08-17T10:23:11.232372",
+  "telemetry": {
+    "lat": 55.939836877812546,
+    "lon": -3.2030699575916772,
+    "heading": 283.5868763539827,
+    "pitch": -8.325108679539067,
+    "altitude_agl": 144.18024904491253,
+    "altitude_amsl": 144.18024904491253,
+    "fov": 32.79971690006522
+  }
+}

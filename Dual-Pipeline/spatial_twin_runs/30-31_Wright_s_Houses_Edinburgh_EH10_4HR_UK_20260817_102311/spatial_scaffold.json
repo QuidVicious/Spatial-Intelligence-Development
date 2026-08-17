@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "30-31 Wright's Houses, Bruntsfield Links, Edinburgh",
+    "coordinates": [
+      55.939836877812546,
+      -3.2030699575916772
+    ],
+    "observer_elevation_agl_m": 144.2,
+    "observer_elevation_amsl_m": 144.2,
+    "view_direction_deg": 283.6,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2030699575916772,
+          55.939836877812546
+        ]
+      },
+      "properties": {
+        "layer": "observer_frame",
+        "description": "Elevated perspective looking west-northwest over the perimeter turf of Bruntsfield Links toward Wright's Houses."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2045,
+              55.9395
+            ],
+            [
+              -3.2025,
+              55.9395
+            ],
+            [
+              -3.2025,
+              55.9405
+            ],
+            [
+              -3.2045,
+              55.9405
+            ],
+            [
+              -3.2045,
+              55.9395
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "subterranean_geology",
+        "bedrock": "Gullane Formation (interbedded sandstone, siltstone, mudstone)",
+        "superficial_deposits": "Devensian glacial till and lacustrine deposits",
+        "topsoil": "Urban humic soil over clay loam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.204,
+            55.9397
+          ],
+          [
+            -3.203,
+            55.9399
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "street_pavement",
+        "surface": "Dense graded asphalt roadway, Caithness flagstone and modern concrete pedestrian slabs, dressed granite kerb stones",
+        "gradient": "Gentle upward rise toward Bruntsfield Place"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2038,
+                55.9399
+              ],
+              [
+                -3.2033,
+                55.9401
+              ],
+              [
+                -3.2032,
+                55.9398
+              ],
+              [
+                -3.2037,
+                55.9397
+              ],
+              [
+                -3.2038,
+                55.9399
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "built_environment",
+        "facades": "Historic multi-storey stone tenements (The Golf Tavern and adjoining buildings)",
+        "materials": [
+          "Polished blonde and weathered red ashlar sandstone",
+          "Timber sash-and-case windows",
+          "Painted pub frontage at ground level",
+          "Scottish slate pitched roofs with dressed stone chimney stacks"
+        ],
+        "height_levels": "3 to 4 storeys plus pitched attic mansards"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.2033,
+            55.9398
+          ],
+          [
+            -3.2035,
+            55.93985
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "landscape_ecology",
+        "vegetation": "Mature Acer pseudoplatanus and young parkland deciduous trees framing the edge of the Links",
+        "ground_cover": "Short-mown amenity turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2034,
+          55.9398
+        ]
+      },
+      "properties": {
+        "layer": "atmospheric_state",
+        "solar_azimuth_deg": 215.0,
+        "solar_elevation_deg": 28.0,
+        "illuminance_lux": 45000,
+        "color_temp_k": 5600,
+        "weather_condition": "Soft overcast with diffuse daylight"
+      }
+    }
+  ]
+}

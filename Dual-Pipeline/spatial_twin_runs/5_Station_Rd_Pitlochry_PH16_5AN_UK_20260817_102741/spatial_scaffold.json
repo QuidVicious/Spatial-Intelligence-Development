@@ -1,0 +1,212 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "5 Station Road, Pitlochry, Perthshire, Scotland",
+    "observer_elevation_agl_m": 188.3,
+    "observer_elevation_amsl_m": 188.3,
+    "view_direction_deg": 27.4,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.703557009793755,
+      -3.7366230965136347
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7366230965136347,
+          56.703557009793755
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "description": "High-angle oblique aerial vantage looking north-northeast down onto the Station Road urban corridor and pitched slate roofs."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.738,
+              56.7025
+            ],
+            [
+              -3.735,
+              56.7025
+            ],
+            [
+              -3.735,
+              56.705
+            ],
+            [
+              -3.738,
+              56.705
+            ],
+            [
+              -3.738,
+              56.7025
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "topsoil": "Humic podzols and glaciofluvial sands",
+        "bedrock": "Neoproterozoic Dalradian Supergroup (quartzite and mica-schist)",
+        "gradient": "Valley slope descending southwest toward the River Tummel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.737,
+            56.703
+          ],
+          [
+            -3.7366,
+            56.7042
+          ],
+          [
+            -3.736,
+            56.705
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "street_pavement",
+        "surface": "Asphalt road surfaces, whinstone and granite kerbing, paved pedestrian footpaths",
+        "drainage": "Cast-iron municipal gullies along asphalt edges"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.7375,
+                56.7032
+              ],
+              [
+                -3.7368,
+                56.7032
+              ],
+              [
+                -3.7368,
+                56.7048
+              ],
+              [
+                -3.7375,
+                56.7048
+              ],
+              [
+                -3.7375,
+                56.7032
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.7365,
+                56.7035
+              ],
+              [
+                -3.7355,
+                56.7035
+              ],
+              [
+                -3.7355,
+                56.7048
+              ],
+              [
+                -3.7365,
+                56.7048
+              ],
+              [
+                -3.7365,
+                56.7035
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Victorian Scottish Baronial and traditional Highland stone terraces and lodges",
+        "materials": "Dressed Scottish schist, sandstone dressings, Ballachulish slate roofs with zinc ridges, timber dormers",
+        "fenestration": "Timber-framed sash windows, painted fascias, stone chimney stacks with terracotta pots"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.7362,
+            56.7038
+          ],
+          [
+            -3.7358,
+            56.7045
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "species": [
+          "Betula pendula (Silver Birch)",
+          "Acer pseudoplatanus (Sycamore)",
+          "Pinus sylvestris (Scots Pine)"
+        ],
+        "canopy": "Dense, mature seasonal mixed woodland fringes and garden plots"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7366,
+          56.7038
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "elements": "Parked contemporary passenger vehicles, local pedestrian traffic, light vehicular movement on access roads"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7366,
+          56.7035
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 38.5,
+        "illuminance_lux": 42000,
+        "color_temp_k": 5500,
+        "relative_humidity_pct": 68,
+        "ambient_temp_c": 14.5
+      }
+    }
+  ]
+}

@@ -147,7 +147,7 @@
     </div>
     <div class="drawer-content">
       <div id="loader" class="loader">
-        <div>Synthesizing Spatial Twin...</div>
+        <div id="loader-title">Synthesizing Spatial Twin...</div>
         <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Visual Frustum Ingestion ➔ GeoJSON ➔ Nano Banana 2</div>
       </div>
       
@@ -174,6 +174,7 @@
 
   <script>
     let viewer = null;
+    let tileset = null;
 
     async function init() {
       // 1. Fetch Config
@@ -206,7 +207,7 @@
 
       // Add Google Photorealistic 3D Tiles
       try {
-        const tileset = await Cesium.createGooglePhotorealistic3DTileset();
+        tileset = await Cesium.createGooglePhotorealistic3DTileset();
         viewer.scene.primitives.add(tileset);
       } catch (e) {
         console.error("Failed to load 3D Tiles:", e);
@@ -272,52 +273,81 @@
       const btn = document.getElementById("btn-synthesize");
       const drawer = document.getElementById("drawer");
       const loader = document.getElementById("loader");
+      const loaderTitle = document.getElementById("loader-title");
       const resultsView = document.getElementById("results-view");
-      const temporalVal = document.getElementById("temporal-input").value.trim() || "Present Day";
-
-      btn.disabled = true;
-      drawer.classList.add("open");
-      loader.classList.add("active");
-      resultsView.style.display = "none";
-
-      // 1. Force a fresh WebGL frame render and capture viewport canvas
-      viewer.render();
-      const screenshot = viewer.scene.canvas.toDataURL("image/jpeg", 0.85);
-
-      const telemetry = getTelemetry();
-      const payload = {
-        ...telemetry,
-        temporal_anchor: temporalVal,
-        viewport_image: screenshot
-      };
 
       try {
-        const resp = await fetch("/api/process_view", {
+        // 1. Open drawer & show loader
+        btn.disabled = true;
+        drawer.classList.add("open");
+        loader.classList.add("active");
+        resultsView.style.display = "none";
+        loaderTitle.innerText = "Analyzing Viewport Geometry...";
+
+        // 2. Force fresh render and capture frame
+        viewer.scene.render();
+        const canvas = viewer.scene.canvas;
+        const screenshot = canvas.toDataURL("image/jpeg", 0.95);
+
+        // 3. Extract Telemetry
+        const t = getTelemetry();
+
+        // 4. Zero-Cost 3D Tiles vs 2D Satellite Check
+        const isTilesetActive = (typeof tileset !== 'undefined' && tileset && tileset.show);
+        const centerPixel = new Cesium.Cartesian2(canvas.clientWidth / 2, canvas.clientHeight / 2);
+        const pickedFeature = isTilesetActive ? viewer.scene.pick(centerPixel) : null;
+        
+        const tile_mode = (
+          pickedFeature instanceof Cesium.Cesium3DTileFeature || 
+          (pickedFeature && pickedFeature.primitive === tileset)
+        ) ? "3D_TILES" : "2D_SATELLITE";
+
+        console.log(`[Telemetry] Camera Lat: ${t.lat.toFixed(5)}, Lon: ${t.lon.toFixed(5)} | Tile Mode: ${tile_mode}`);
+
+        loaderTitle.innerText = `Synthesizing Spatial Twin (${tile_mode})...`;
+
+        // 5. Build Payload
+        const payload = {
+          screenshot: screenshot,
+          temporal_anchor: document.getElementById("temporal-input").value || "Present Day",
+          telemetry: {
+            latitude: t.lat,
+            longitude: t.lon,
+            altitude_agl: t.altitude_agl,
+            heading: t.heading,
+            pitch: t.pitch,
+            fov: t.fov,
+            tile_mode: tile_mode
+          }
+        };
+
+        // 6. POST to FastAPI Backend
+        const response = await fetch("/api/process_view", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
 
-        if (!resp.ok) throw new Error(await resp.text());
-        const data = await resp.json();
-
-        // Render Results
-        document.getElementById("res-address").innerHTML = `<strong>📍 ${data.address}</strong><br><span style="color:var(--text-dim); font-size:11px;">Anchor: ${data.temporal_anchor}</span>`;
-        document.getElementById("res-prompt").innerText = data.prompt || "No prompt generated.";
-        document.getElementById("res-geojson").innerText = JSON.stringify(data.geojson, null, 2);
-        
-        if (data.synthesized_image) {
-          document.getElementById("res-image").src = data.synthesized_image;
-          document.getElementById("res-image").style.display = "block";
-        } else {
-          document.getElementById("res-image").style.display = "none";
+        if (!response.ok) {
+          throw new Error(`Server returned HTTP ${response.status}: ${await response.text()}`);
         }
 
+        const data = await response.json();
+
+        // 7. Populate Results UI
+        document.getElementById("res-address").innerText = data.address || "Unknown Location";
+        document.getElementById("res-image").src = data.synthesized_image_url || "";
+        document.getElementById("res-prompt").innerText = data.prompt || "";
+        document.getElementById("res-geojson").innerText = JSON.stringify(data.geojson, null, 2);
+
+        // 8. Hide Loader & Reveal Results
         loader.classList.remove("active");
         resultsView.style.display = "flex";
+
       } catch (err) {
-        alert("Synthesis failed: " + err.message);
-        loader.classList.remove("active");
+        console.error("[Synthesis Error]:", err);
+        loaderTitle.innerText = `Synthesis Failed: ${err.message}`;
+        alert(`Synthesis failed: ${err.message}`);
       } finally {
         btn.disabled = false;
       }

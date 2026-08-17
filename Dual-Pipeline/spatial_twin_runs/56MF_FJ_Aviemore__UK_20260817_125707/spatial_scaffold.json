@@ -1,0 +1,205 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Strathspey Moorland & Agricultural Outpost near Aviemore",
+    "observer_elevation_agl_m": 369.8,
+    "observer_elevation_amsl_m": 615.0,
+    "view_direction_deg": 217.3,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      57.183652,
+      -3.775924
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775924,
+          57.183652,
+          615.0
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "description": "High aerial vantage looking southwest across the expansive Strathspey basin towards the Monadhliath and Cairngorm foothills, looking down upon an isolated agricultural compound surrounded by grazing pasture and native heath."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.785,
+              57.175
+            ],
+            [
+              -3.765,
+              57.175
+            ],
+            [
+              -3.765,
+              57.19
+            ],
+            [
+              -3.785,
+              57.19
+            ],
+            [
+              -3.785,
+              57.175
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock": "Badenoch Group Psammite and Semipelite, Dalradian Supergroup metasediments intruded by Late Caledonian granitic complexes",
+        "superficial_deposits": "Glaciolacustrine and glaciofluvial sand and gravel hummocks over stony glacial till (Devensian glaciation)",
+        "soil_profile": "Peaty podzols and dystric rankers overlaid with humic moorland peat layers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -3.777,
+              57.182
+            ],
+            [
+              -3.7745,
+              57.1825
+            ],
+            [
+              -3.771,
+              57.1835
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "material": "Compacted crushed granite and quartz trackway, rutted mud aprons, unpaved farm access roads cutting through meadow grass",
+        "topography": "Undulating river valley terrace rising gently towards glacial knolls"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.782,
+              57.178
+            ],
+            [
+              -3.768,
+              57.178
+            ],
+            [
+              -3.768,
+              57.188
+            ],
+            [
+              -3.782,
+              57.188
+            ],
+            [
+              -3.782,
+              57.178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "biome": "Cairngorms sub-montane pine and heather moorland mosaic",
+        "dominant_flora": [
+          "Calluna vulgaris (Common Heather)",
+          "Erica tetralix (Cross-leaved Heath)",
+          "Pinus sylvestris var. scotica (Caledonian Scots Pine stands in mid-distance)",
+          "Agrostis capillaris / Festuca ovina pasture grasses",
+          "Betula pubescens (Downy Birch fringes along drainage gullies)"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7762,
+              57.1828
+            ],
+            [
+              -3.7748,
+              57.1828
+            ],
+            [
+              -3.7748,
+              57.1838
+            ],
+            [
+              -3.7762,
+              57.1838
+            ],
+            [
+              -3.7762,
+              57.1828
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "structures": "Low-slung agricultural complex comprising steel-portal framed barns clad in profile corrugated metal sheets, weathered timber outbuildings, and traditional pitched-roof masonry storehouses with corrugated cement-fibre roofing."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7755,
+          57.1832
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "vehicles": "Parked utility 4x4 vehicles and agricultural tractors on gravel pads",
+        "ambient_elements": "Occasional livestock grazing across fenced pasture paddocks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775924,
+          57.183652
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "solar_azimuth_deg": 205.0,
+        "solar_elevation_deg": 38.5,
+        "illuminance_lux": 65000,
+        "color_temperature_k": 5500,
+        "relative_humidity_percent": 68,
+        "ambient_temp_c": 14.0,
+        "sky_conditions": "Crisp northern light under high broken stratocumulus; long shadows cast across heather-covered mountain shoulders"
+      }
+    }
+  ]
+}

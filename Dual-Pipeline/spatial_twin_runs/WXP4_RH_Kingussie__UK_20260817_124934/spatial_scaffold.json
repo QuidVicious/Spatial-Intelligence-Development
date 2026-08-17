@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Gaick Lodge / Glen Tromie Approach, Cairngorms",
+    "observer_elevation_agl_m": 499.1,
+    "observer_elevation_amsl_m": 920.0,
+    "view_direction_deg": 8.4,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.937069,
+      -4.043619
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.043619,
+          56.937069
+        ]
+      },
+      "properties": {
+        "layer": "observer_frame",
+        "description": "Elevated southward-to-northward aerial perspective looking down into the glacial trough of Glen Tromie toward Gaick."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.055,
+              56.93
+            ],
+            [
+              -4.03,
+              56.93
+            ],
+            [
+              -4.03,
+              56.95
+            ],
+            [
+              -4.055,
+              56.95
+            ],
+            [
+              -4.055,
+              56.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "subterranean_geology",
+        "bedrock": "Neoproterozoic Grampian Group psammite and semipelite",
+        "soil_profile": "Peaty podzols and montane rankers over glacial till"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.044,
+            56.932
+          ],
+          [
+            -4.042,
+            56.945
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "ground_surface",
+        "surface": "Unpaved estate track, crushed schist and gravel",
+        "drainage": "Braided upland runoff draining toward Gaick Burn and Loch an t-Seilich"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.04,
+                56.936
+              ],
+              [
+                -4.035,
+                56.936
+              ],
+              [
+                -4.035,
+                56.942
+              ],
+              [
+                -4.04,
+                56.942
+              ],
+              [
+                -4.04,
+                56.936
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "landscape_ecology",
+        "biome": "Highland heather moorland (Calluna vulgaris, Erica cinerea) with small Scots pine / larch shelterbelt plantation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0445,
+          56.9382
+        ]
+      },
+      "properties": {
+        "layer": "built_environment",
+        "typology": "Highland shooting lodge complex and outbuildings",
+        "materials": "Harled stone masonry, Scottish slate roofing, timber outbuildings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.043619,
+          56.937069
+        ]
+      },
+      "properties": {
+        "layer": "atmospheric_state",
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 22.5,
+        "color_temperature_k": 5600,
+        "visibility_km": 35.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Highland Ridge overlooking Killiecrankie Pass / Ben Vrackie Slopes",
+    "observer_elevation_agl_m": 552.4,
+    "observer_elevation_amsl_m": 552.4,
+    "view_direction_deg": 101.5,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.74653737514558,
+      -3.740061482110327
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.740061482110327,
+          56.74653737514558
+        ]
+      },
+      "properties": {
+        "name": "observer_frame",
+        "description": "Elevated mountain slope vantage point overlooking an undulating col and ridgeline curving down to the center-right against an open night sky."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.745,
+              56.744
+            ],
+            [
+              -3.735,
+              56.744
+            ],
+            [
+              -3.735,
+              56.749
+            ],
+            [
+              -3.745,
+              56.749
+            ],
+            [
+              -3.745,
+              56.744
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "subterranean_geology",
+        "bedrock_formation": "Dalradian Supergroup metasedimentary schists and quartzites",
+        "soil_profile": "Shallow montane peaty podzol with glacial till and exposed metamorphic scree"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.743,
+              56.745
+            ],
+            [
+              -3.737,
+              56.745
+            ],
+            [
+              -3.737,
+              56.748
+            ],
+            [
+              -3.743,
+              56.748
+            ],
+            [
+              -3.743,
+              56.745
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "landscape_ecology",
+        "biome": "Subalpine heathland and moorland",
+        "vegetation": "Calluna vulgaris (heather), Erica tetralix, Nardus stricta, and alpine moss-lichen patches across stony ground"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.74,
+          56.747
+        ]
+      },
+      "properties": {
+        "name": "atmospheric_state",
+        "solar_elevation_deg": -22.0,
+        "solar_azimuth_deg": 350.0,
+        "illuminance_lux": 0.002,
+        "color_temp_k": 7500,
+        "relative_humidity_pct": 82,
+        "ambient_temp_c": 4
+      }
+    }
+  ]
+}

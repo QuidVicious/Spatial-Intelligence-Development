@@ -1,0 +1,14 @@
+{
+  "address": "5 Station Rd, Pitlochry PH16 5AN, UK",
+  "temporal_anchor": "Present Day",
+  "timestamp": "2026-08-17T10:27:41.911601",
+  "telemetry": {
+    "lat": 56.703557009793755,
+    "lon": -3.7366230965136347,
+    "heading": 27.363041833124587,
+    "pitch": -29.883142612367514,
+    "altitude_agl": 188.2875720373771,
+    "altitude_amsl": 188.2875720373771,
+    "fov": 32.79971690006522
+  }
+}

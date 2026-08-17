@@ -1,0 +1,14 @@
+{
+  "address": "P7W5+JX Killiecrankie, UK",
+  "temporal_anchor": "Present Day",
+  "timestamp": "2026-08-17T10:29:25.318059",
+  "telemetry": {
+    "lat": 56.74653737514558,
+    "lon": -3.740061482110327,
+    "heading": 101.47137081141993,
+    "pitch": 8.462104030130853,
+    "altitude_agl": 552.399024952984,
+    "altitude_amsl": 552.399024952984,
+    "fov": 32.79971690006522
+  }
+}

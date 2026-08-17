@@ -1,0 +1,197 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Gaick Lodge, Kingussie, Scottish Highlands",
+    "observer_elevation_agl_m": 620.3,
+    "observer_elevation_amsl_m": 995.0,
+    "view_direction_deg": 339.7,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.93583126658896,
+      -4.041636192581831
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "observer_frame",
+        "description": "High-angle oblique aerial perspective looking NNW down into the remote Glen Gaick valley floor."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041636,
+          56.935831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "topsoil": "Blanket peat, podzols, and thin upland organic soils",
+        "subsoil": "Glacial till, scree deposits, and fluvioglacial gravels",
+        "bedrock": "Neoproterozoic metamorphic psammite and pelite (Grampian Group, Dalradian Supergroup)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.05,
+              56.93
+            ],
+            [
+              -4.03,
+              56.93
+            ],
+            [
+              -4.03,
+              56.945
+            ],
+            [
+              -4.05,
+              56.945
+            ],
+            [
+              -4.05,
+              56.93
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "ground_surface",
+        "primary_track": "Compacted unpaved crushed stone/gravel estate access track entering from south-southeast",
+        "topography": "Alluvial valley floor flanked by steep, scree-laden mountain slopes to the east and braided riverbeds to the northwest"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.04,
+            56.933
+          ],
+          [
+            -4.042,
+            56.938
+          ],
+          [
+            -4.036,
+            56.944
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy": "Stands of mature Scots pine (Pinus sylvestris) and larch windbreaks arranged in rectangular shelterbelts around the estate compound",
+        "ground_cover": "Heather moorland (Calluna vulgaris), sedge grasses, and damp peatland tracts"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.043,
+                56.937
+              ],
+              [
+                -4.041,
+                56.937
+              ],
+              [
+                -4.041,
+                56.939
+              ],
+              [
+                -4.043,
+                56.939
+              ],
+              [
+                -4.043,
+                56.937
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "built_environment",
+        "structure": "Gaick Lodge and outbuildings",
+        "materials": "Highland granite/schist rubble masonry, whitewashed harling, Scottish slate gabled roofs, and enclosed livestock/kennel walls"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.044,
+              56.936
+            ],
+            [
+              -4.042,
+              56.936
+            ],
+            [
+              -4.042,
+              56.938
+            ],
+            [
+              -4.044,
+              56.938
+            ],
+            [
+              -4.044,
+              56.936
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "elements": "Estate 4x4 vehicles on access road and yard, mountain wind rustling conifer shelterbelts"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041,
+          56.935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "solar_azimuth_deg": 215.0,
+        "solar_elevation_deg": 32.0,
+        "illuminance_lux": 68000,
+        "color_temp_k": 5600,
+        "relative_humidity_pct": 75,
+        "ambient_temp_c": 11.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041636,
+          56.935831
+        ]
+      }
+    }
+  ]
+}

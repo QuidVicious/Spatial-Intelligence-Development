@@ -1,0 +1,189 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Glen Tromie / Gaick Pass approach, Highland, Scotland",
+    "observer_elevation_agl_m": 501.4,
+    "observer_elevation_amsl_m": 880.0,
+    "view_direction_deg": 284.0,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.937713,
+      -4.041971
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041971,
+          56.937713
+        ]
+      },
+      "properties": {
+        "layer": "observer_frame",
+        "description": "High-angle panoramic aerial vantage looking west-northwest across the glacial glen floor towards the steep massif flanks of the Monadhliath / Drumochter Grampian margins."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.08,
+              56.93
+            ],
+            [
+              -4.02,
+              56.93
+            ],
+            [
+              -4.02,
+              56.96
+            ],
+            [
+              -4.08,
+              56.96
+            ],
+            [
+              -4.08,
+              56.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "subterranean_geology",
+        "bedrock": "Neoproterozoic Grampian Group psammites and semipelites, intruded by Caledonian granite suites",
+        "geomorphology": "U-shaped glacial trough with extensive fluvioglacial outwash, morainic drift, and blanket peat bogs",
+        "soil_taxonomy": "Peaty podzols and dystric histosols"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -4.06,
+              56.936
+            ],
+            [
+              -4.045,
+              56.938
+            ],
+            [
+              -4.03,
+              56.94
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "ground_surface",
+        "surface_types": [
+          "Crushed whinstone unpaved estate track",
+          "Alluvial gravel and sand margins",
+          "Waterlogged heather moorland"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.055,
+                56.935
+              ],
+              [
+                -4.045,
+                56.935
+              ],
+              [
+                -4.045,
+                56.942
+              ],
+              [
+                -4.055,
+                56.942
+              ],
+              [
+                -4.055,
+                56.935
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "landscape_ecology",
+        "vegetation_zones": "Montane dwarf shrub heath (Calluna vulgaris, Erica tetralix), Nardus stricta grasslands, interspersed with managed shelterbelt patches of Scots pine (Pinus sylvestris) and wet rush pastures (Juncus effusus)",
+        "flank_features": "Scree slopes, quartzite talus outcroppings, erosion scars on steep heather slopes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.053,
+              56.937
+            ],
+            [
+              -4.048,
+              56.937
+            ],
+            [
+              -4.048,
+              56.939
+            ],
+            [
+              -4.053,
+              56.939
+            ],
+            [
+              -4.053,
+              56.937
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "built_environment",
+        "settlement_type": "Isolated Highland sporting estate steadings / lodge outbuildings",
+        "materials": "Rubble masonry fieldstone walls, dark Ballachulish slate roofs, corrugated metal agricultural sheds, deer fencing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041971,
+          56.937713
+        ]
+      },
+      "properties": {
+        "layer": "atmospheric_state",
+        "solar_azimuth_deg": 215.0,
+        "solar_elevation_deg": 28.5,
+        "illuminance_lux": 42000,
+        "color_temp_k": 5600,
+        "relative_humidity_pct": 74,
+        "ambient_temp_c": 11.0,
+        "weather_state": "High overcast with diffused Highland light, crisp cold mountain air, intermittent cloud shadows raking across talus slopes"
+      }
+    }
+  ]
+}

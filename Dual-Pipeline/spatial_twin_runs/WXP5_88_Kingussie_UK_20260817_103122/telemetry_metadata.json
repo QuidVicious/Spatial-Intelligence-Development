@@ -1,0 +1,14 @@
+{
+  "address": "WXP5+88 Kingussie, UK",
+  "temporal_anchor": "Present Day",
+  "timestamp": "2026-08-17T10:31:22.058667",
+  "telemetry": {
+    "lat": 56.93583126658896,
+    "lon": -4.041636192581831,
+    "heading": 339.71529701251836,
+    "pitch": -24.475727100017927,
+    "altitude_agl": 620.2901759992682,
+    "altitude_amsl": 620.2901759992682,
+    "fov": 32.79971690006522
+  }
+}

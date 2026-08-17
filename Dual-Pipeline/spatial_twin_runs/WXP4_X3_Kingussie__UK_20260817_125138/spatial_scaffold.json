@@ -1,0 +1,207 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Highland Estate Grounds, Strathspey near Kingussie",
+    "observer_elevation_agl_m": 557.1,
+    "observer_elevation_amsl_m": 845.0,
+    "view_direction_deg": 71.8,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      56.93743,
+      -4.044829
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "observer_frame",
+        "description": "High-angle oblique aerial perspective looking east-northeast over an enclosed Highland rural steading compound, capturing open pasture, agricultural tracks, and dense shelterbelt clusters."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.044829,
+          56.93743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock": "Grampian Group Dalradian metasedimentary schists and quartzites, capped by glacial till and humic peaty podzols of the Spey valley margins",
+        "drainage": "Permeable sub-gravels with surface runoff channeled into linear estate ditch lines"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.048,
+              56.935
+            ],
+            [
+              -4.041,
+              56.935
+            ],
+            [
+              -4.041,
+              56.94
+            ],
+            [
+              -4.048,
+              56.94
+            ],
+            [
+              -4.048,
+              56.935
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "ground_surface",
+        "surface_composition": "Compacted crushed granite and aggregate access track, coarse grazed turf, and heather-tussock moorland verge",
+        "condition": "Faint twin-track wheel ruts cutting across coarse pale-green rough pasture"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.0475,
+            56.9365
+          ],
+          [
+            -4.0448,
+            56.9374
+          ],
+          [
+            -4.042,
+            56.9385
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_composition": "Dense rectangular windbreak copse of Pinus sylvestris (Scots pine) and Picea sitchensis (Sitka spruce)",
+        "understory": "Rough bentgrass, heather moorland, and rush tussocks bordering wire estate fencing"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.046,
+                56.9382
+              ],
+              [
+                -4.0445,
+                56.9385
+              ],
+              [
+                -4.0442,
+                56.938
+              ],
+              [
+                -4.0458,
+                56.9378
+              ],
+              [
+                -4.046,
+                56.9382
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -4.0435,
+                56.938
+              ],
+              [
+                -4.042,
+                56.9382
+              ],
+              [
+                -4.0418,
+                56.9375
+              ],
+              [
+                -4.0432,
+                56.9373
+              ],
+              [
+                -4.0435,
+                56.938
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "built_environment",
+        "structure_style": "Traditional Scottish vernacular multi-pitched steading / estate lodge compound",
+        "materials": "Highland fieldstone rubble masonry, dark slate pitched hip-and-gable roofs, corrugated utility sheds to the western perimeter",
+        "form": "L-shaped and courtyard-configured stone complex flanked by an open gravel courtyard"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.0455,
+              56.937
+            ],
+            [
+              -4.0445,
+              56.9375
+            ],
+            [
+              -4.044,
+              56.9372
+            ],
+            [
+              -4.045,
+              56.9367
+            ],
+            [
+              -4.0455,
+              56.937
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "solar_azimuth_deg": 215.0,
+        "solar_elevation_deg": 32.5,
+        "illuminance_lux": 48000,
+        "color_temp_k": 5400,
+        "relative_humidity_pct": 68,
+        "ambient_temp_c": 11.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.044829,
+          56.93743
+        ]
+      }
+    }
+  ]
+}

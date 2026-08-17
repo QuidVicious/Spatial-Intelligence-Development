@@ -1,0 +1,210 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Loch an Eilein Farmstead / Rothiemurchus Estate Outskirts, Aviemore",
+    "observer_elevation_agl_m": 403.2,
+    "observer_elevation_amsl_m": 670.0,
+    "view_direction_deg": 242.5,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      57.182937,
+      -3.775776
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775776,
+          57.182937
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "description": "High-angle oblique aerial perspective looking southwest at 242.5 degrees with a -23.9 degree down-pitch over undulating Highland pasture and ancient Caledonian pinewood fringes."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.785,
+              57.18
+            ],
+            [
+              -3.77,
+              57.18
+            ],
+            [
+              -3.77,
+              57.186
+            ],
+            [
+              -3.785,
+              57.186
+            ],
+            [
+              -3.785,
+              57.18
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock": "Neoproterozoic Dalradian Supergroup metasediments and late-Caledonian Cairngorm granite intrusions",
+        "superficial_deposits": "Glacial hummocky till, fluvioglacial sand, and gravel outwash terraces",
+        "topsoil": "Acidic podzols and peaty gleys under improved pasture"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7745,
+            57.1845
+          ],
+          [
+            -3.777,
+            57.1832
+          ],
+          [
+            -3.7785,
+            57.1825
+          ],
+          [
+            -3.78,
+            57.182
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "surface_material": "Compacted crushed granite gravel, graded earth farm access tracks, and exposed sandy dirt paths crossing rough turf",
+        "slope_gradient": "Gentle 3-5 degree northwesterly decline toward the River Spey floodplain"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.782,
+                57.184
+              ],
+              [
+                -3.775,
+                57.186
+              ],
+              [
+                -3.772,
+                57.184
+              ],
+              [
+                -3.782,
+                57.184
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_dominant": "Pinus sylvestris var. scotica (Scots Pine), Betula pendula (Silver Birch), and Alnus glutinosa along damp hollows",
+        "ground_cover": "Agrostis-Festuca improved grass swards, Calluna vulgaris patches, and field rushes (Juncus effusus)",
+        "boundaries": "Post-and-wire livestock fencing, weathered timber gates, and drystone clearance dyke remnants"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7788,
+              57.1828
+            ],
+            [
+              -3.7775,
+              57.1835
+            ],
+            [
+              -3.7768,
+              57.1827
+            ],
+            [
+              -3.778,
+              57.1822
+            ],
+            [
+              -3.7788,
+              57.1828
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "structures": [
+          {
+            "name": "Main Agricultural Shed & Steading",
+            "materials": "Corrugated fiber cement and profile steel gabled roofing, timber framing, and low Scottish granite rubble plinth"
+          },
+          {
+            "name": "Traditional Whitewashed Farmhouse & Annexes",
+            "materials": "Harl-rendered granite masonry, lime whitewash, Scottish slate roofs with pitched dormers, and stone chimney stacks"
+          },
+          {
+            "name": "Ancillary Outbuildings",
+            "materials": "Corrugated iron roofs with weathered orange-brown rust oxidation, timber cladding"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7778,
+          57.183
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "elements": "Highland livestock grazing in distant paddocks, agricultural machinery tracks, light farm traffic, and gentle wind-rustle through pine canopy"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775776,
+          57.182937
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 42.0,
+        "illuminance_lux": 68000,
+        "color_temperature_k": 5600,
+        "relative_humidity_percent": 65,
+        "ambient_temperature_c": 16.0
+      }
+    }
+  ]
+}
