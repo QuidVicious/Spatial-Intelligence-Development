@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_153019",
+  "resolved_address": "56MC+5P Aviemore, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Morning sunrise, August",
+  "telemetry": {
+    "latitude": 57.18299755428652,
+    "longitude": -3.7782202061571155,
+    "altitude_agl": 371.32402712344066,
+    "heading": 170.51742691879775,
+    "pitch": -13.949757986467523,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776353,
+          57.181633
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "telemetry": {
+          "altitude_agl_m": 365.4,
+          "camera_heading_deg": 317.0,
+          "camera_pitch_deg": -9.3,
+          "camera_fov_deg": 32.8
+        },
+        "geological_strata": {
+          "bedrock_classification": "Badenoch Group metamorphic psammite and pelite overlain by Scottish Highland fluvioglacial sands and gravels",
+          "foundation_bedding": "Granular glacial outwash till with alluvial topsoil matrix",
+          "ground_plane": "Compacted unpaved farm access tracks, crushed granite aggregate, unpaved dirt aprons, and uneven pasture turf"
+        },
+        "built_envelope": {
+          "agricultural_steading_complex": {
+            "rectification_protocol": "Plumb distorted photogrammetric walls, straighten corrugated barn gables, planarize low-pitched shed roofing planes",
+            "masonry": "Traditional Highland whinstone and granite rubble walling with lime mortar pointing on farmhouse, corrugated iron sheeting and timber cladding on steading barns",
+            "roofing_material": "Scottish slate tiles on traditional cottage structures, oxidized corrugated profile metal sheeting on modern agricultural storage units",
+            "fenestration": "Small rectangular sash-and-case timber windows with painted white reveals on dwelling, large open-bay portal frames and sliding agricultural timber doors on barns"
+          }
+        },
+        "landscape_ecology": {
+          "flora_classification": "Scottish Highlands moorland edge pasture, patchy heather (Calluna vulgaris), bracken, creeping thistles, rough grazing grassland",
+          "woodland_edge": "Scattered native Scots pine (Pinus sylvestris) and silver birch (Betula pendula) copses along distant field boundaries",
+          "topography": "Undulating Speyside valley floor leading northwest towards low rounded Monadhliath ridges in the far distance"
+        },
+        "lighting_and_atmosphere": {
+          "temporal_anchor": "Golden Hour, October",
+          "solar_azimuth_deg": 235.0,
+          "solar_elevation_deg": 8.0,
+          "color_temperature_k": 3100,
+          "atmospheric_optics": "Low-angle golden autumnal sunlight raking across the Spey valley floor, casting long soft-edged directional shadows northeast, light autumn ground haze in mountain distance"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56MF+27 Aviemore, UK",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 225.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77695,
+              57.18265
+            ],
+            [
+              -3.77662,
+              57.18248
+            ],
+            [
+              -3.77648,
+              57.18258
+            ],
+            [
+              -3.77682,
+              57.18274
+            ],
+            [
+              -3.77695,
+              57.18265
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Highland Farmsteading Longhouse / Cottage Complex",
+        "material": "Harled whitewashed stone masonry with granite quoins",
+        "height_m": 5.5,
+        "storeys": 1.5,
+        "roof_type": "Pitched Scottish slate with gabled wallhead dormers and chimney stacks",
+        "architectural_style": "Scottish Highland Vernacular Steading"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77708,
+              57.18242
+            ],
+            [
+              -3.77692,
+              57.18233
+            ],
+            [
+              -3.7768,
+              57.18241
+            ],
+            [
+              -3.77697,
+              57.1825
+            ],
+            [
+              -3.77708,
+              57.18242
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Ancillary Outbuilding / Workshop",
+        "material": "Timber cladding and dark stone rubble",
+        "height_m": 3.2,
+        "storeys": 1,
+        "roof_type": "Corrugated iron / slate pitch",
+        "architectural_style": "Vernacular Agricultural Outbuilding"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77735,
+              57.18295
+            ],
+            [
+              -3.7767,
+              57.18315
+            ],
+            [
+              -3.77645,
+              57.1829
+            ],
+            [
+              -3.77712,
+              57.1827
+            ],
+            [
+              -3.77735,
+              57.18295
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Agricultural Barn Enclosure",
+        "material": "Timber frame with profile metal sheeting",
+        "height_m": 6.0,
+        "storeys": 1,
+        "roof_type": "Low-pitch corrugated sheeting with translucent skylight panels",
+        "architectural_style": "Modern Agrarian"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.778,
+              57.182
+            ],
+            [
+              -3.7755,
+              57.182
+            ],
+            [
+              -3.7755,
+              57.1835
+            ],
+            [
+              -3.778,
+              57.1835
+            ],
+            [
+              -3.778,
+              57.182
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_micro_ecology",
+        "feature_name": "Strathspey Pasture & Farm Tracks",
+        "material": "Glacial till topsoil, compacted gravel/dirt farm track, rough sheep pasture turf",
+        "indigenous_flora": "Festuca rubra, Calluna vulgaris patches, Scots pine boundary clusters"
+      }
+    }
+  ]
+}

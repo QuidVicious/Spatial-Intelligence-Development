@@ -1,0 +1,145 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "15 Rue du Petit Pont, 75005 Paris, France",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 34.0,
+    "confidence_score": 0.96
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34645,
+              48.85238
+            ],
+            [
+              2.34662,
+              48.85236
+            ],
+            [
+              2.34658,
+              48.85221
+            ],
+            [
+              2.34641,
+              48.85223
+            ],
+            [
+              2.34645,
+              48.85238
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Corner Parisian Tenement (Rue du Petit Pont / Rue de la Huchette corner)",
+        "material": "Lutetian Limestone Ashlar with Zinc and Slate Mansard",
+        "height_m": 18.5,
+        "storeys": 6,
+        "roof_type": "Parisian Mansard with Zinc Flashing and Projecting Gabled Dormers",
+        "architectural_style": "18th/19th Century Pre-Haussmannian / Haussmannian Infill"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34615,
+              48.8525
+            ],
+            [
+              2.3464,
+              48.85246
+            ],
+            [
+              2.3463,
+              48.85215
+            ],
+            [
+              2.34605,
+              48.8522
+            ],
+            [
+              2.34615,
+              48.8525
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Western Historic Street Block (Rue Saint-S\u00e9verin / Rue de la Huchette perimeter)",
+        "material": "Plastered Rubble Masonry, Limestone Cornices, Slate and Zinc Pitched Roofs",
+        "height_m": 19.0,
+        "storeys": 6,
+        "roof_type": "Multi-pitched Mansard with Terracotta Flue Chimneystacks",
+        "architectural_style": "Historic Latin Quarter Vernacular / Early Parisian Classical"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.3466,
+              48.8526
+            ],
+            [
+              2.34685,
+              48.8526
+            ],
+            [
+              2.34675,
+              48.85205
+            ],
+            [
+              2.3465,
+              48.85205
+            ],
+            [
+              2.3466,
+              48.8526
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_plane",
+        "feature_name": "Rue du Petit Pont & Adjacent Boulevard Carriageway",
+        "material": "Asphaltic Concrete, Granite Curbs, Painted Pedestrian Crossings",
+        "infrastructure_elements": [
+          "Curbside bus/taxi lanes",
+          "Historic sidewalk paving",
+          "Subsurface utility accesses"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.346546,
+          48.852351
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_foundation",
+        "geological_context": "Paris Basin Lutetian limestone substratum beneath Quaternary Seine alluvium",
+        "foundation_type": "Deep masonry vaulted cellars and direct bedrock footings"
+      }
+    }
+  ]
+}

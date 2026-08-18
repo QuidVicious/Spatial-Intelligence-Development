@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_143338",
+  "resolved_address": "15 Rue du Petit Pont, 75005 Paris, France",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 48.852351083723974,
+    "longitude": 2.3465458399607355,
+    "altitude_agl": 135.50120385986722,
+    "heading": 182.69533446042388,
+    "pitch": -55.14753559968743,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

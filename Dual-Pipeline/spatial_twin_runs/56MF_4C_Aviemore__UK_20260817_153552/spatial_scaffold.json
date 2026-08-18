@@ -1,0 +1,149 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "stratum": "Subterranean & Bedrock Foundation",
+        "geological_classification": "Badenoch Glacial Till over Moine Supergroup Metasedimentary Gneiss and Cairngorms Granite intrusion",
+        "hydrogeological_context": "Strathspey alluvial flood-terrace aquifer; peaty podzol soils",
+        "structural_bearing": "Spread gravel footings beneath traditional stone walling and compacted pad footings for modern agricultural steel sheds"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776392,
+          57.182861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "Pavement & Ground Plane",
+        "topography": "Undulating Strathspey moorland edge gently descending northwest toward native woodland",
+        "ground_cover": "Crushed granite aggregate farm tracks, packed earth unpaved access spurs, patchy pastoral grass, rough heath border",
+        "drainage": "Open field perimeter swales and gravel dispersal along farmyard tracks"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.778,
+              57.1818
+            ],
+            [
+              -3.7745,
+              57.1818
+            ],
+            [
+              -3.7745,
+              57.184
+            ],
+            [
+              -3.778,
+              57.184
+            ],
+            [
+              -3.778,
+              57.1818
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "Built Massing & Envelope (Verticals & Roofs)",
+        "typology": "Traditional Scottish Highland Farmstead complex (Steading and Residential Farmhouse)",
+        "farmhouse_massing": "1.5-storey linear farmhouse, whitewashed harled rubble stone masonry, pitched roof clad in Ballachulish slate or corrugated sheet, small dormers along roofline, end gable stone chimneys",
+        "steading_massing": "Enclosed U-shaped agricultural steading courtyard with low-pitched corrugated iron/fibre-cement roofs, red oxidized metal cladding, modern central portal-frame barn with grey profile metal roof sheeting and translucent ridge skylights",
+        "rectification_directives": "Plumb distorted photogrammetry mesh walls to true vertical; flatten and sharpen corrugated barn roof planes, define crisp eave lines on U-shaped outbuildings, align farm track edges cleanly"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.777,
+              57.1822
+            ],
+            [
+              -3.7758,
+              57.1822
+            ],
+            [
+              -3.7758,
+              57.1834
+            ],
+            [
+              -3.777,
+              57.1834
+            ],
+            [
+              -3.777,
+              57.1822
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "Landscape & Micro-Ecology",
+        "vegetation": "Cairngorms National Park transition zone; dense native Scots Pine (Pinus sylvestris) and Silver Birch (Betula pendula) woodland to the west, heather-flecked pasture grasses turning golden-brown in autumn, low post-and-wire livestock fencing",
+        "seasonality": "Late autumn foliage with russet bracken, deep green pines, and yellowing birch accents"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.779,
+              57.181
+            ],
+            [
+              -3.7735,
+              57.181
+            ],
+            [
+              -3.7735,
+              57.185
+            ],
+            [
+              -3.779,
+              57.185
+            ],
+            [
+              -3.779,
+              57.181
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "Atmosphere, Optics & Solar Geometry",
+        "temporal_anchor": "Golden Hour, October",
+        "solar_azimuth": "225.0\u00b0 (Southwest)",
+        "solar_elevation": "12.5\u00b0",
+        "color_temperature": "2950K low raking golden sunlight with cool 7500K ambient mountain skylight",
+        "shadow_dynamics": "Long, sharp physical cast shadows extending northeast across pastoral fields and tracks, accentuating roof pitch profiles and mature pine crowns",
+        "atmospheric_clarity": "Crisp, cold Highland autumnal air with faint translucent moisture haze in the distant Strathspey valley"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776392,
+          57.182861
+        ]
+      }
+    }
+  ]
+}

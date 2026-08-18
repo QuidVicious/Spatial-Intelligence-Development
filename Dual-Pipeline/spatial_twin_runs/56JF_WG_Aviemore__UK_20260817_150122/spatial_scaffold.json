@@ -1,0 +1,129 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56JF+WG Aviemore, Highland, Scotland, UK",
+    "temporal_anchor": "Golden Hour, October",
+    "ground_elevation_amsl_m": 240.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7766,
+              57.18205
+            ],
+            [
+              -3.776,
+              57.18205
+            ],
+            [
+              -3.776,
+              57.1818
+            ],
+            [
+              -3.7766,
+              57.1818
+            ],
+            [
+              -3.7766,
+              57.18205
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Traditional Scottish Farmhouse & Steading Complex",
+        "material": "Highland granite rubble masonry with lime mortar, whitewashed roughcast harling",
+        "height_m": 6.8,
+        "storeys": 2,
+        "roof_type": "Pitched Scottish slate gabled roof with dormers and stone coped gables",
+        "architectural_style": "Vernacular Scottish Rural Farmhouse"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7778,
+              57.1826
+            ],
+            [
+              -3.7768,
+              57.1826
+            ],
+            [
+              -3.7768,
+              57.1821
+            ],
+            [
+              -3.7778,
+              57.1821
+            ],
+            [
+              -3.7778,
+              57.1826
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Agricultural Barn and Outbuildings",
+        "material": "Steel portal frame, treated vertical timber cladding, corrugated sheet cladding",
+        "height_m": 5.5,
+        "storeys": 1,
+        "roof_type": "Corrugated metal and fibre-cement dual-pitch roof with skylight strips",
+        "architectural_style": "Modern Utilitarian Agricultural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.1835
+            ],
+            [
+              -3.7745,
+              57.1835
+            ],
+            [
+              -3.7745,
+              57.1805
+            ],
+            [
+              -3.7785,
+              57.1805
+            ],
+            [
+              -3.7785,
+              57.1835
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "feature_name": "Cairngorms Pasture & Access Tracks",
+        "material": "Compacted gravel farm tracks, peat-rich loamy topsoil, rough pasture grass, gorse, heather",
+        "height_m": 0.0,
+        "storeys": 0,
+        "roof_type": "N/A",
+        "architectural_style": "Highland Pasture Landscape"
+      }
+    }
+  ]
+}

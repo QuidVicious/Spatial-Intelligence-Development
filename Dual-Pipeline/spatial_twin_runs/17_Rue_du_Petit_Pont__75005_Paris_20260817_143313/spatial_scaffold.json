@@ -1,0 +1,128 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "17 Rue du Petit Pont, 75005 Paris, France",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 35.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34635,
+              48.85205
+            ],
+            [
+              2.34645,
+              48.85202
+            ],
+            [
+              2.34638,
+              48.85188
+            ],
+            [
+              2.34628,
+              48.85191
+            ],
+            [
+              2.34635,
+              48.85205
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Haussmannian / Neoclassical Parisian Street Frontage (East Fa\u00e7ade)",
+        "material": "Lutetian limestone (pierre de taille) ashlar with zinc mansard roof and wrought iron balconies",
+        "height_m": 21.5,
+        "storeys": 6,
+        "roof_type": "Mansard with standing-seam zinc and dormers",
+        "architectural_style": "19th-Century Parisian Neoclassical / Haussmannian"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34652,
+              48.85208
+            ],
+            [
+              2.34662,
+              48.85205
+            ],
+            [
+              2.34655,
+              48.85191
+            ],
+            [
+              2.34645,
+              48.85194
+            ],
+            [
+              2.34652,
+              48.85208
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Rue du Petit Pont Corridor & West Fa\u00e7ade",
+        "material": "Cut limestone ashlar with ground-floor boutique storefronts",
+        "height_m": 20.0,
+        "storeys": 6,
+        "roof_type": "Zinc mansard with decorative lead flashing",
+        "architectural_style": "Historic Latin Quarter Parisian Domestic"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.34648,
+            48.85225
+          ],
+          [
+            2.34642,
+            48.85185
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "pavement_ground",
+        "feature_name": "Rue du Petit Pont Carriageway",
+        "material": "Asphalt roadbed bordered by Parisian granite curbs and modular asphalt/paving-slab sidewalks",
+        "width_m": 12.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.346471,
+          48.852198
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean",
+        "feature_name": "Subterranean Bedrock & Historic Stratigraphy",
+        "bedrock_type": "Lutetian limestone formation overlain by historic alluvium and medieval anthropic backfill",
+        "depth_to_bedrock_m": 4.5
+      }
+    }
+  ]
+}

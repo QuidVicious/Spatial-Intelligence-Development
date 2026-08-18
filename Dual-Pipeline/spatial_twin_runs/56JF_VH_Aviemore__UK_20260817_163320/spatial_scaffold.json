@@ -1,0 +1,197 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Strathspey Rural Farmstead & Pastoral Enclosure, Aviemore",
+    "observer_elevation_agl_m": 382.8,
+    "observer_elevation_amsl_m": 645.0,
+    "view_direction_deg": 285.6,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Present Day",
+    "coordinates": [
+      57.182175,
+      -3.776109
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776109,
+          57.182175
+        ]
+      },
+      "properties": {
+        "layer": "observer_frame",
+        "description": "High oblique aerial vantage looking west-northwest across Strathspey valley slopes, capturing pastureland gradient and agricultural courtyard."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.784,
+              57.178
+            ],
+            [
+              -3.77,
+              57.178
+            ],
+            [
+              -3.77,
+              57.186
+            ],
+            [
+              -3.784,
+              57.186
+            ],
+            [
+              -3.784,
+              57.178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "subterranean_geology",
+        "topsoil": "Acid brown earth and podzolic humus over glacial drift",
+        "subsoil": "Quaternary glacial till containing schist and granitic clasts",
+        "bedrock": "Neoproterozoic Moine Supergroup psammite and pelitic metamorphic bedrock with Cairngorms granitic intrusions"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.782,
+            57.181
+          ],
+          [
+            -3.778,
+            57.183
+          ],
+          [
+            -3.775,
+            57.185
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "street_pavement_ground_surface",
+        "surface_type": "Compacted crushed granite and quartz gravel farm tracks, unpaved agricultural tracks with earthen tire wear, rough grass verges"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.78,
+                57.18
+              ],
+              [
+                -3.772,
+                57.18
+              ],
+              [
+                -3.772,
+                57.186
+              ],
+              [
+                -3.78,
+                57.186
+              ],
+              [
+                -3.78,
+                57.18
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "landscape_ecology",
+        "dominant_flora": [
+          "Agrostis-Festuca semi-improved pasture",
+          "Scots Pine (Pinus sylvestris)",
+          "Silver Birch (Betula pendula)",
+          "Ulex europaeus (gorse along dry margins)"
+        ],
+        "field_boundaries": "Post-and-wire livestock fencing, weathered drystone dykes embedded along perimeter breaks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.781,
+                57.182
+              ],
+              [
+                -3.779,
+                57.182
+              ],
+              [
+                -3.779,
+                57.183
+              ],
+              [
+                -3.781,
+                57.183
+              ],
+              [
+                -3.781,
+                57.182
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "built_environment",
+        "structures": [
+          {
+            "type": "Agricultural Barn Complex",
+            "materials": "Corrugated iron sheeting with red oxide/weathered rust, profile steel panels with translucent skylights, timber frames"
+          },
+          {
+            "type": "Highland Farmhouse & Steading",
+            "materials": "Scottish slate pitched roofs, whitewashed rubble masonry, granite quoins, dormer windows"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776109,
+          57.182175
+        ]
+      },
+      "properties": {
+        "layer": "atmospheric_state",
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 41.5,
+        "illuminance_lux": 75000,
+        "color_temp_k": 5600,
+        "relative_humidity_pct": 68,
+        "ambient_temp_c": 16.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77785,
+              57.18245
+            ],
+            [
+              -3.77735,
+              57.18235
+            ],
+            [
+              -3.77745,
+              57.18205
+            ],
+            [
+              -3.77795,
+              57.18215
+            ],
+            [
+              -3.77785,
+              57.18245
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "name": "Residential Farmstead / Steading Row",
+        "taxonomy": "Traditional Scottish vernacular steading with dormer gables",
+        "cladding": "Harled whitewashed stone masonry with dark trim",
+        "roof_covering": "Ballachulish-style dark grey Scottish slate with pitched dormers",
+        "fenestration": "Timber multi-pane sash windows with dark lintels",
+        "rectification_notes": "Plumb wobbly photogrammetry walls to true vertical; resolve smeared dormer roof profile into crisp pitched slate gables"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77665,
+              57.18295
+            ],
+            [
+              -3.77585,
+              57.18285
+            ],
+            [
+              -3.77605,
+              57.18245
+            ],
+            [
+              -3.77685,
+              57.18255
+            ],
+            [
+              -3.77665,
+              57.18295
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "name": "Central Agricultural Barn Complex",
+        "taxonomy": "Large utilitarian portal-frame agricultural shed flanked by lean-to wings",
+        "cladding": "Corrugated steel profile sheeting and timber slatted siding over concrete base",
+        "roof_covering": "Corrugated composite roof sheeting with transluscent apex skylights",
+        "rectification_notes": "Planarize distorted roof planes, establish sharp linear roof ridge with aligned translucent skylight strips"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77545,
+              57.18275
+            ],
+            [
+              -3.77495,
+              57.18265
+            ],
+            [
+              -3.77515,
+              57.18235
+            ],
+            [
+              -3.77565,
+              57.18245
+            ],
+            [
+              -3.77545,
+              57.18275
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "name": "Outbuilding / Open Storage Shed",
+        "taxonomy": "Pitched roof storage shed",
+        "cladding": "Weathered corrugated metal and timber framing",
+        "roof_covering": "Oxidized corrugated iron sheeting",
+        "rectification_notes": "Sharpen sagging eaves and define open bays"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7792,
+            57.1831
+          ],
+          [
+            -3.7777,
+            57.1828
+          ],
+          [
+            -3.7771,
+            57.1824
+          ],
+          [
+            -3.7755,
+            57.1828
+          ],
+          [
+            -3.7745,
+            57.1822
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Farm Access Track Network",
+        "surface": "Compacted crushed granite gravel and light sandy aggregate track with central grassy strip",
+        "drainage": "Unlined roadside swales cut into glacial till"
+      }
+    }
+  ]
+}

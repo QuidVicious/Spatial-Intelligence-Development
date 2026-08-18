@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56MF+4P Aviemore, Highlands, Scotland, UK",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 225.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7766,
+              57.1825
+            ],
+            [
+              -3.7758,
+              57.1822
+            ],
+            [
+              -3.7755,
+              57.1826
+            ],
+            [
+              -3.7763,
+              57.1829
+            ],
+            [
+              -3.7766,
+              57.1825
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Agricultural Steading & Barn Complex",
+        "material": "Profiled Metal Sheeting & Stone Foundation Footings",
+        "height_m": 6.5,
+        "storeys": 1,
+        "roof_type": "Pitched Metal Sheeting with Skylights",
+        "architectural_style": "Modern Highland Agricultural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7758,
+              57.1821
+            ],
+            [
+              -3.7751,
+              57.1818
+            ],
+            [
+              -3.7749,
+              57.182
+            ],
+            [
+              -3.7756,
+              57.1823
+            ],
+            [
+              -3.7758,
+              57.1821
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Farmhouse & Residential Cottage Wing",
+        "material": "Whitewashed Stone Masonry / Harling",
+        "height_m": 5.2,
+        "storeys": 1.5,
+        "roof_type": "Dual-Pitch Dark Scottish Slate with Dormers and Chimneystacks",
+        "architectural_style": "Scottish Vernacular"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7752,
+              57.1832
+            ],
+            [
+              -3.7749,
+              57.1831
+            ],
+            [
+              -3.7748,
+              57.1834
+            ],
+            [
+              -3.7751,
+              57.1835
+            ],
+            [
+              -3.7752,
+              57.1832
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Detached Workshop / Ancillary Shed",
+        "material": "Timber Cladding & Corrugated Metal",
+        "height_m": 3.8,
+        "storeys": 1,
+        "roof_type": "Gable Corrugated Roof",
+        "architectural_style": "Agricultural Outbuilding"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.778,
+              57.181
+            ],
+            [
+              -3.773,
+              57.181
+            ],
+            [
+              -3.773,
+              57.185
+            ],
+            [
+              -3.778,
+              57.185
+            ],
+            [
+              -3.778,
+              57.181
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_and_micro_ecology",
+        "feature_name": "Speyside Pasture and Riparian Woodland Edge",
+        "material": "Highland Heather, Coarse Grazing Grass, Mixed Birch and Scots Pine Canopy",
+        "architectural_style": "Cairngorms Straths Landscape"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.77822,
+          57.182998
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "site_typology": "Highland agricultural farmstead and moorland clearing",
+        "bedrock_geology": "Grampian Group Dalradian metasedimentary schist and granite basement overlain by glacial till and peaty podzol soils",
+        "ground_plane": "Compacted gravel and rutted dirt farm tracks, pasture grasses, and undulating moorland scrub",
+        "built_structures": [
+          {
+            "description": "Central steel-portal frame agricultural barn with shallow-pitched corrugated fiber cement roof and translucent skylight panels, surrounded by low-pitched timber lean-to sheds",
+            "rectification": "Planarize warped corrugated roof planes, plumb vertical steel posts and timber cladding, sharpen clean gables and roof ridge lines"
+          },
+          {
+            "description": "Long linear outbuilding / livestock shed to the west with corrugated metal roofing and fieldstone masonry base",
+            "rectification": "De-warp linear eaves, straighten parapets and timber partition walls"
+          },
+          {
+            "description": "Long ancillary shed to the southeast with weathered profiled tin roofing",
+            "rectification": "Align roof planes, sharpen roof apex and eaves boundaries"
+          }
+        ],
+        "vegetation": "Native Pinus sylvestris (Scots pine) forest canopy, heather (Calluna vulgaris), bracken, and mixed upland pasture",
+        "solar_resynthesis": {
+          "azimuth": 85.0,
+          "elevation": 14.5,
+          "color_temperature_k": 3400,
+          "shadow_behavior": "Long, crisp low-angle morning shadows cast westward across the access tracks and dew-covered pasture"
+        }
+      }
+    }
+  ]
+}

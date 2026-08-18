@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_143126",
+  "resolved_address": "56 Rue Galande, 75005 Paris, France",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 48.852186700159535,
+    "longitude": 2.346800638827679,
+    "altitude_agl": 111.03542657307753,
+    "heading": 234.78198961522176,
+    "pitch": -50.586232556185166,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

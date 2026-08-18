@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56 Rue Galande, 75005 Paris, France",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 35.2,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34665,
+              48.8521
+            ],
+            [
+              2.34685,
+              48.85202
+            ],
+            [
+              2.34695,
+              48.85218
+            ],
+            [
+              2.34675,
+              48.85226
+            ],
+            [
+              2.34665,
+              48.8521
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "56 Rue Galande & Adjacent Timber/Ashlar Buildings",
+        "material": "Lutetian Limestone (Pierre de Taille) with Timber Framing and Zinc Mansard Roofs",
+        "height_m": 18.5,
+        "storeys": 6,
+        "roof_type": "Parisian Mansard with Zinc Sheeting and Slate Mansard Dormers",
+        "architectural_style": "16th-18th Century Parisian Vernacular / Pre-Haussmannian Core"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3464,
+            48.8523
+          ],
+          [
+            2.34675,
+            48.85215
+          ],
+          [
+            2.3471,
+            48.852
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_plane",
+        "feature_name": "Rue Galande Paved Corridor",
+        "material": "Granite Porphyry Cobblestone and Bitumen Asphalt Roadbed with Raised Granite Curbs",
+        "width_m": 6.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.346,
+              48.8518
+            ],
+            [
+              2.3475,
+              48.8518
+            ],
+            [
+              2.3475,
+              48.8525
+            ],
+            [
+              2.346,
+              48.8525
+            ],
+            [
+              2.346,
+              48.8518
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_foundation",
+        "feature_name": "Paris Basin Lutetian Bedrock and Historical Quarry Cavities",
+        "material": "Coarse Lutetian Limestone Strata with River Seine Alluvial Sand Overlay",
+        "depth_m": 12.0
+      }
+    }
+  ]
+}

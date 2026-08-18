@@ -1,0 +1,213 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "site_name": "Strathspey Rural Steading, Aviemore Vicinity",
+    "observer_elevation_agl_m": 353.4,
+    "observer_elevation_amsl_m": 585.0,
+    "view_direction_deg": 238.3,
+    "field_of_view_deg": 32.8,
+    "temporal_anchor": "Golden Hour, October (Mid-Autumn)",
+    "coordinates": [
+      57.182566,
+      -3.776806
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776806,
+          57.182566
+        ]
+      },
+      "properties": {
+        "element": "observer_frame",
+        "elevation_agl_m": 353.4,
+        "pitch_deg": -9.4,
+        "heading_deg": 238.3,
+        "perspective": "High oblique aerial vantage looking southwest across the rolling alluvial floodplain and moraine terraces of Strathspey toward the Cairngorm mountain foothills."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.785,
+              57.178
+            ],
+            [
+              -3.77,
+              57.178
+            ],
+            [
+              -3.77,
+              57.186
+            ],
+            [
+              -3.785,
+              57.186
+            ],
+            [
+              -3.785,
+              57.178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "subterranean_geology",
+        "topsoil": "Humic podzols and peaty alluvium, free-draining sandy loam over glacial gravels",
+        "subsoil": "Quaternary glaciofluvial outwash, sand, and gravel deposits",
+        "bedrock": "Neoproterozoic Dalradian Supergroup metasediments and Central Highlands Grampian Group psammite/schist with granite intrusions"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -3.779,
+              57.181
+            ],
+            [
+              -3.775,
+              57.183
+            ],
+            [
+              -3.772,
+              57.184
+            ]
+          ],
+          [
+            [
+              -3.78,
+              57.182
+            ],
+            [
+              -3.776,
+              57.181
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "street_pavement_ground_surface",
+        "surfaces": [
+          "Compacted crushed quartzite and granitic farm tracks with muddy ruts and grassy central verges",
+          "Hardstanding concrete yard and gravel aprons around the modern steel-framed agricultural sheds",
+          "Pasture fields subdivided by wire-fenced post-and-rail borders and low drystone dyke field margins"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.786,
+                57.18
+              ],
+              [
+                -3.778,
+                57.185
+              ],
+              [
+                -3.775,
+                57.18
+              ],
+              [
+                -3.786,
+                57.18
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "landscape_ecology",
+        "canopy": "Scattered stands of Scots Pine (Pinus sylvestris), Silver Birch (Betula pendula) displaying golden autumn senescent foliage, rowan, and dense riparian gorse and broom along field fringes",
+        "ground_cover": "Rough pasture grasses (Festuca, Agrostis) mixed with patches of Calluna vulgaris heather and damp rush (Juncus effusus) in field hollows"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.778,
+                57.182
+              ],
+              [
+                -3.776,
+                57.182
+              ],
+              [
+                -3.776,
+                57.181
+              ],
+              [
+                -3.778,
+                57.181
+              ],
+              [
+                -3.778,
+                57.182
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "element": "built_environment",
+        "complex_type": "Agricultural farmstead / steading",
+        "structures": [
+          {
+            "type": "Primary agricultural shed complex",
+            "materials": "Corrugated fiber cement and rusted steel profile sheet roofing, dark timber/metal clad siding, steel portal frame structure"
+          },
+          {
+            "type": "Traditional steading and farmhouse row",
+            "materials": "Whitewashed rubble stone masonry with Ballachulish slate roofs, traditional pitched gables, chimney stacks, and timber sash frames"
+          },
+          {
+            "type": "Outbuildings / barn",
+            "materials": "Low profile tin/slate pitched roof outbuilding adjacent to trackway"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7768,
+          57.1825
+        ]
+      },
+      "properties": {
+        "element": "atmospheric_state",
+        "solar_azimuth_deg": 220.0,
+        "solar_elevation_deg": 14.5,
+        "illuminance_lux": 18500,
+        "color_temp_k": 3200,
+        "relative_humidity_pct": 74,
+        "ambient_temp_c": 9.0,
+        "conditions": "Low golden hour autumn sunlight skimming across Strathspey, casting long raking cast shadows eastward from agricultural buildings and terrain crests, with faint peat smoke haze in the cool Highland air"
+      }
+    }
+  ]
+}

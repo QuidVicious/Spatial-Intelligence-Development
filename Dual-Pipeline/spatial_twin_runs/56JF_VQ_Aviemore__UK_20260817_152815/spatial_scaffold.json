@@ -1,0 +1,90 @@
+{
+  "type": "FeatureCollection",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "camera_telemetry": {
+    "resolved_address": "56JF+VQ Aviemore, UK",
+    "coordinates": [
+      57.18216,
+      -3.775594
+    ],
+    "altitude_agl_m": 361.0,
+    "heading_deg": 278.1,
+    "pitch_deg": -4.5,
+    "fov_deg": 32.8
+  },
+  "strata_analysis": {
+    "subterranean_bedrock": "Dalradian Supergroup metamorphic schist and Caledonian intrusive granites overlain by Quaternary fluvioglacial sands, gravels, and peat podzols of the Strathspey basin.",
+    "ground_plane": "Compacted gravel and crushed aggregate farm tracks, graded dirt airstrip runway/access lanes, improved pastoral grass fields, drainage ditches, and rough moorland verges.",
+    "built_massing_envelope": {
+      "structural_typology": "Scottish Highland agricultural and estate farmstead complex with steel-portal frame barns, corrugated metal sheet cladding, pitched profile roofing, and masonry ancillary outbuildings.",
+      "rectification_targets": [
+        "Plumb warped vertical walls of the large agricultural storage sheds",
+        "Sharpen corrugated roof pitches, gables, and ridge lines",
+        "Rectify low-rise outbuilding eaves and planar ground-contact margins"
+      ]
+    },
+    "landscape_micro_ecology": "Highland Strathspey pastoral meadows, patches of semi-natural Scots pine (Pinus sylvestris), birch scrub (Betula pendula), gorse (Ulex europaeus), and background heather-clad (Calluna vulgaris) rolling hills.",
+    "atmosphere_optics": "Temperate Scottish Highland daylight, dynamic broken stratocumulus clouds producing shifting light patterns, diffuse daylight (~5500K), clear crisp atmospheric visibility across the glen."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.182
+            ],
+            [
+              -3.7765,
+              57.1825
+            ],
+            [
+              -3.7755,
+              57.1818
+            ],
+            [
+              -3.7775,
+              57.1812
+            ],
+            [
+              -3.7785,
+              57.182
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Agricultural Complex",
+        "rectification_note": "Planarize steel shed facades, correct low-pitch corrugated gable roofs, and define gravel yard perimeter."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.778,
+            57.1805
+          ],
+          [
+            -3.776,
+            57.1822
+          ],
+          [
+            -3.7735,
+            57.184
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Access Track & Airstrip Spur",
+        "surface": "Unpaved gravel and compacted aggregate"
+      }
+    }
+  ]
+}

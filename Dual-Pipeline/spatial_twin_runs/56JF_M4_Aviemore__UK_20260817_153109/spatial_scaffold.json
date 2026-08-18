@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77745,
+              57.18185
+            ],
+            [
+              -3.7771,
+              57.18192
+            ],
+            [
+              -3.77695,
+              57.18178
+            ],
+            [
+              -3.7773,
+              57.18171
+            ],
+            [
+              -3.77745,
+              57.18185
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "stratum": "built_massing",
+        "name": "Rural Highland Farmstead / Steading Complex",
+        "building_type": "agricultural_residential",
+        "facade_material": "Whitewashed rubble masonry and roughcast harling",
+        "roof_taxonomy": "Gabled pitched roof with Scottish blue-grey slate and dark corrugated metal sheeting",
+        "architectural_details": {
+          "rectification_needs": "Plumb distorted photogrammetry eaves, straighten ridgelines, and sharpen planar masonry wall surfaces",
+          "chimneys": "Capped stone gable-end chimney stacks",
+          "fenestration": "Timber sash windows set in deep reveals"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.77725,
+            57.1813
+          ],
+          [
+            -3.7772,
+            57.18165
+          ],
+          [
+            -3.77705,
+            57.1818
+          ],
+          [
+            -3.7777,
+            57.18195
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "pavement_ground_plane",
+        "name": "Unpaved Farm Track / Access Road",
+        "surface_material": "Compacted glacial gravel, dirt, and crushed granite aggregate with central grass median strip"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.785,
+              57.178
+            ],
+            [
+              -3.765,
+              57.178
+            ],
+            [
+              -3.765,
+              57.195
+            ],
+            [
+              -3.785,
+              57.195
+            ],
+            [
+              -3.785,
+              57.178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_and_landscape",
+        "geological_context": "Badenoch and Strathspey glacial drift overlying Neoproterozoic Grampian Group psammite and granite bedrock",
+        "landscape_context": "Pastoral grazing meadows, rough moorland rough pasture, heather (Calluna vulgaris), and distant rolling Monadhliath foothills"
+      }
+    }
+  ]
+}

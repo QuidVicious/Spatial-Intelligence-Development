@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776705,
+          57.182264,
+          348.9
+        ]
+      },
+      "properties": {
+        "spatial_mode": "3D_RECTIFICATION",
+        "view_telemetry": {
+          "heading": 273.9,
+          "pitch": -2.4,
+          "fov": 32.8,
+          "altitude_agl": 348.9
+        },
+        "geological_substrate": "Cairngorms granitic bedrock overlaid with glacial till, podzolic soils, and peat layers in the Strathspey basin",
+        "ground_plane": "Compacted gravel farm tracks, dirt access roads, and undulating pastureland with drainage swales",
+        "built_envelope": {
+          "farm_complex": "Agricultural steading complex with corrugated sheet steel and profiled metal pitched roofs, roughcast harled masonry and timber-clad walls, low-pitch gabled sheds and outbuildings",
+          "rectification_needs": "Sharpen melting rooflines and eaves on agricultural sheds, plumb vertical harled facades, planarize distorted ground footprint"
+        },
+        "landscape_ecology": "Open Highland moorland and pasture, patches of heather (*Calluna vulgaris*), Scot's pine (*Pinus sylvestris*) fringes, and the Monadhliath mountain ridgeline across the western horizon",
+        "lighting_atmosphere": {
+          "temporal_anchor": "Golden Hour, October",
+          "solar_azimuth": 255.0,
+          "solar_elevation": 8.0,
+          "color_temperature": "3100K warm amber raking light with long eastward-cast shadows and cool indigo ambient haze over distant ridges"
+        }
+      }
+    }
+  ]
+}

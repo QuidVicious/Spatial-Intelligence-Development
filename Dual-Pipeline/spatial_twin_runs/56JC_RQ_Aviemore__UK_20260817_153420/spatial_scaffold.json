@@ -1,0 +1,238 @@
+{
+  "type": "FeatureCollection",
+  "spatial_mode": "3D_RECTIFICATION",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77815,
+              57.18228
+            ],
+            [
+              -3.77785,
+              57.18224
+            ],
+            [
+              -3.7777,
+              57.18195
+            ],
+            [
+              -3.778,
+              57.18188
+            ],
+            [
+              -3.77825,
+              57.1821
+            ],
+            [
+              -3.77815,
+              57.18228
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "entity_type": "agricultural_complex",
+        "name": "Central Farm Steading & Barn Complex",
+        "structural_subtypes": [
+          "portal_frame_agricultural_shed",
+          "traditional_vernacular_byres"
+        ],
+        "height_m": 8.5,
+        "roof": {
+          "style": "pitched_gabled_combination",
+          "materials": [
+            "profiled_fibre_cement_sheeting",
+            "corrugated_iron_oxide_panels",
+            "translucent_skylight_insets"
+          ],
+          "pitch_deg": 22.0
+        },
+        "facade": {
+          "materials": [
+            "granite_rubble_masonry",
+            "timber_vertical_slat_cladding",
+            "galvanized_steel_framing"
+          ],
+          "condition": "weathered_working_farm"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.18178
+            ],
+            [
+              -3.77835,
+              57.18178
+            ],
+            [
+              -3.77832,
+              57.18155
+            ],
+            [
+              -3.77848,
+              57.18155
+            ],
+            [
+              -3.7785,
+              57.18178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "entity_type": "residential_dwelling",
+        "name": "Highland Farmhouse",
+        "height_m": 6.8,
+        "storeys": 2,
+        "roof": {
+          "style": "dual_pitch_gable",
+          "material": "scottish_ballachulish_slate",
+          "chimneys": 2,
+          "dormers": false
+        },
+        "facade": {
+          "material": "whitewashed_lime_render_over_granite",
+          "fenestration": "timber_sash_windows_four_over_four"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77755,
+              57.18212
+            ],
+            [
+              -3.77725,
+              57.18195
+            ],
+            [
+              -3.77732,
+              57.18188
+            ],
+            [
+              -3.77762,
+              57.18205
+            ],
+            [
+              -3.77755,
+              57.18212
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "entity_type": "outbuilding",
+        "name": "East Field Barn",
+        "height_m": 4.5,
+        "roof": {
+          "style": "gable_pitched",
+          "material": "rusted_red_corrugated_tin"
+        },
+        "facade": {
+          "material": "drystone_granite_and_timber"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7789,
+            57.18235
+          ],
+          [
+            -3.77845,
+            57.18238
+          ],
+          [
+            -3.77832,
+            57.18205
+          ],
+          [
+            -3.7783,
+            57.18175
+          ],
+          [
+            -3.778,
+            57.1816
+          ],
+          [
+            -3.77765,
+            57.1813
+          ],
+          [
+            -3.7766,
+            57.18105
+          ]
+        ]
+      },
+      "properties": {
+        "infrastructure_type": "unpaved_access_track",
+        "surface": "compacted_granite_gravel_and_loam",
+        "width_m": 3.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7792,
+              57.1826
+            ],
+            [
+              -3.7765,
+              57.1826
+            ],
+            [
+              -3.7765,
+              57.181
+            ],
+            [
+              -3.7792,
+              57.181
+            ],
+            [
+              -3.7792,
+              57.1826
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "environment": "highland_pasture_and_woodland_fringe",
+        "geology": {
+          "bedrock": "grampian_group_metamorphic_granite_schist",
+          "topsoil": "podzolic_peaty_alluvial_gravel"
+        },
+        "vegetation": [
+          "scots_pine_remnants",
+          "silver_birch_canopy",
+          "rough_pasture_bent_grass",
+          "calluna_vulgaris_heather_patches"
+        ]
+      }
+    }
+  ]
+}

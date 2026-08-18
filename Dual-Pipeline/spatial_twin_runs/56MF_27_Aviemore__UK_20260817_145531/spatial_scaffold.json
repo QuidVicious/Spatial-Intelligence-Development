@@ -1,0 +1,126 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56MF+27 Aviemore, UK",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 220.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77665,
+              57.18248
+            ],
+            [
+              -3.7761,
+              57.18235
+            ],
+            [
+              -3.77595,
+              57.1825
+            ],
+            [
+              -3.7765,
+              57.18263
+            ],
+            [
+              -3.77665,
+              57.18248
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Traditional Scottish Farmhouse & Steading Range",
+        "material": "Harled/whitewashed rubble granite masonry with dressed stone margins",
+        "height_m": 6.5,
+        "storeys": 2,
+        "roof_type": "Pitched Scottish slate roof with stone skews and gabled dormers",
+        "architectural_style": "Scottish Vernacular Agricultural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7774,
+              57.18295
+            ],
+            [
+              -3.7766,
+              57.1828
+            ],
+            [
+              -3.7764,
+              57.18315
+            ],
+            [
+              -3.7772,
+              57.1833
+            ],
+            [
+              -3.7774,
+              57.18295
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Modern Agricultural Portal Frame Barn",
+        "material": "Profiled metal box-profile cladding over steel portal frame",
+        "height_m": 5.8,
+        "storeys": 1,
+        "roof_type": "Low-pitch corrugated sheeting with translucent ridge skylights",
+        "architectural_style": "Modern Utilitarian Agricultural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.778,
+              57.1818
+            ],
+            [
+              -3.775,
+              57.1818
+            ],
+            [
+              -3.775,
+              57.184
+            ],
+            [
+              -3.778,
+              57.184
+            ],
+            [
+              -3.778,
+              57.1818
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "feature_name": "Strathspey Pastoral Pasture and Dirt Access Tracks",
+        "material": "Compacted glacial till, alluvial turf pasture, crushed granite trackways",
+        "vegetation_type": "Highland acidic grassland, scrub birch and Scots pine pockets"
+      }
+    }
+  ]
+}

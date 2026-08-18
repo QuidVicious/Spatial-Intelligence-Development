@@ -39,7 +39,7 @@ PROMPT_TEMPLATE_PATH = BASE_DIR / "eye_prompt.md"
 # -----------------------------------------------------------------------------
 # 2. FastAPI Initialization
 # -----------------------------------------------------------------------------
-app = FastAPI(title="Spatial Twin Intelligence Pipeline", version="2.0.0")
+app = FastAPI(title="Spatial Twin Intelligence Pipeline", version="2.3.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -87,17 +87,17 @@ def reverse_geocode(lat: float, lon: float) -> str:
     return f"{lat:.5f}, {lon:.5f}"
 
 def query_the_eye(address: str, telemetry: TelemetryData, screenshot_b64: str, temporal_anchor: str) -> tuple[Dict[str, Any], str, str]:
-    """Sends telemetry, image, and system instructions to Gemini 3.7 Flash."""
+    """Sends telemetry, image, and system instructions to Gemini 3.7 Flash with Agnostic Search Grounding."""
     system_instruction = ""
     if PROMPT_TEMPLATE_PATH.exists():
         system_instruction = PROMPT_TEMPLATE_PATH.read_text(encoding="utf-8")
     
-    # Strip base64 data prefix if present
     raw_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
-
+    is_2d_satellite = (telemetry.tile_mode == "2D_SATELLITE")
+    
     telemetry_summary = f"""
     TARGET LOCATION TELEMETRY:
-    - Resolved Address: {address}
+    - Resolved Address / Postal Sector: {address}
     - GPS Coordinates: {telemetry.latitude:.6f}, {telemetry.longitude:.6f}
     - Altitude (AGL): {telemetry.altitude_agl:.1f} meters
     - Camera Heading: {telemetry.heading:.1f}°
@@ -106,6 +106,20 @@ def query_the_eye(address: str, telemetry: TelemetryData, screenshot_b64: str, t
     - Tile Rendering Mode: {telemetry.tile_mode}
     - Temporal Anchor: {temporal_anchor}
     """
+
+    user_instruction = (
+        "Analyze the spatial scene and output the RFC 7946 GeoJSON followed by '--- DOCUMENTARY PROMPT ---' and the 35mm documentary prompt."
+    )
+    
+    if is_2d_satellite:
+        user_instruction += (
+            f"\n\nSEARCH DIRECTIVE (Cascading Fallback Protocol):\n"
+            f"1. Search specifically for any named property, farmstead, lodge, ranch, estate, or historic building located at coordinates "
+            f"({telemetry.latitude:.6f}, {telemetry.longitude:.6f}) near '{address}'.\n"
+            f"2. If a specific named property/building is identified, extract its documented storeys, roof type, masonry/finishes, fenestration, and landscaping records.\n"
+            f"3. If no specific entity exists, fall back to the regional agricultural/vernacular typology and construction materials typical of this county/region.\n"
+            f"4. Apply the 'Skeleton vs. Skin' rule: Use search findings for material textures and fenestration skin, but strictly respect the viewport footprint and camera perspective."
+        )
 
     payload = {
         "system_instruction": {
@@ -122,7 +136,7 @@ def query_the_eye(address: str, telemetry: TelemetryData, screenshot_b64: str, t
                             "data": raw_b64
                         }
                     },
-                    {"text": "Analyze the spatial scene and output the RFC 7946 GeoJSON followed by '--- DOCUMENTARY PROMPT ---' and the 35mm documentary prompt."}
+                    {"text": user_instruction}
                 ]
             }
         ],
@@ -135,16 +149,28 @@ def query_the_eye(address: str, telemetry: TelemetryData, screenshot_b64: str, t
         }
     }
 
+    if is_2d_satellite:
+        print("[The Eye] Mode is 2D_SATELLITE -> Enabling Google Search Grounding with Skeleton vs Skin Protocol.")
+        payload["tools"] = [{"googleSearch": {}}]
+    else:
+        print("[The Eye] Mode is 3D_TILES -> Using pure latent domain reasoning (Search disabled).")
+
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key={GEMINI_API_KEY}"
-    resp = requests.post(url, json=payload, headers={"Content-Type": "application/json"}, timeout=45)
+    resp = requests.post(url, json=payload, headers={"Content-Type": "application/json"}, timeout=60)
     
     if resp.status_code != 200:
         raise HTTPException(status_code=resp.status_code, detail=f"The Eye (Gemini 3.7 Flash) Error: {resp.text}")
 
     resp_json = resp.json()
-    candidate_text = resp_json["candidates"][0]["content"]["parts"][0]["text"]
+    candidates = resp_json.get("candidates", [])
+    if not candidates:
+        raise HTTPException(status_code=500, detail=f"The Eye returned no candidates: {resp_json}")
 
-    # Parse GeoJSON block
+    parts = candidates[0].get("content", {}).get("parts", [])
+    text_parts = [p.get("text", "") for p in parts if "text" in p]
+    candidate_text = "\n".join(text_parts)
+
+    # 1. Parse GeoJSON safely
     geojson_data = {}
     geojson_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", candidate_text, re.DOTALL)
     if geojson_match:
@@ -153,32 +179,75 @@ def query_the_eye(address: str, telemetry: TelemetryData, screenshot_b64: str, t
         except Exception as err:
             print(f"[GeoJSON Parse Warning]: {err}")
 
-    # Parse Natural Language Documentary Prompt
+    # 2. Extract clean documentary prompt (prevent raw JSON leakage)
     if "--- DOCUMENTARY PROMPT ---" in candidate_text:
         doc_prompt = candidate_text.split("--- DOCUMENTARY PROMPT ---")[-1].strip()
+    elif "Prompt:" in candidate_text:
+        doc_prompt = candidate_text.split("Prompt:")[-1].strip()
     else:
-        doc_prompt = candidate_text
+        doc_prompt = re.sub(r"```(?:json)?.*?```", "", candidate_text, flags=re.DOTALL).strip()
 
-    # Extract spatial mode
-    spatial_mode = geojson_data.get("properties", {}).get("spatial_mode", telemetry.tile_mode)
+    # 3. Resolve spatial mode across all features and top properties
+    top_props = geojson_data.get("properties", {}) if isinstance(geojson_data.get("properties"), dict) else {}
+    spatial_mode = top_props.get("spatial_mode")
+    if not spatial_mode:
+        for feat in geojson_data.get("features", []):
+            if isinstance(feat, dict) and "spatial_mode" in feat.get("properties", {}):
+                spatial_mode = feat["properties"]["spatial_mode"]
+                break
+
     if spatial_mode not in ["3D_RECTIFICATION", "2D_EXTRUSION"]:
         spatial_mode = "3D_RECTIFICATION" if telemetry.tile_mode == "3D_TILES" else "2D_EXTRUSION"
 
     return geojson_data, doc_prompt, spatial_mode
 
-def synthesize_twin_image(prompt: str, screenshot_b64: str, spatial_mode: str, telemetry: TelemetryData) -> str:
-    """Dispatches descriptive prompt and viewport image to gemini-3.1-flash-image."""
+def synthesize_twin_image(prompt: str, screenshot_b64: str, spatial_mode: str, telemetry: TelemetryData, geojson_data: Dict[str, Any]) -> str:
+    """Dispatches descriptive prompt and viewport image to gemini-3.1-flash-image with GeoJSON-enforced massing."""
     raw_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
+
+    # Scan all 7 features + top properties for massing constraints
+    extracted_storeys = None
+    extracted_height = None
+
+    for feat in geojson_data.get("features", []):
+        if isinstance(feat, dict):
+            props = feat.get("properties", {})
+            if "storeys" in props and extracted_storeys is None:
+                try:
+                    extracted_storeys = int(props["storeys"])
+                except (ValueError, TypeError):
+                    pass
+            if "height_m" in props and extracted_height is None:
+                try:
+                    extracted_height = float(props["height_m"])
+                except (ValueError, TypeError):
+                    pass
+
+    top_props = geojson_data.get("properties", {}) if isinstance(geojson_data.get("properties"), dict) else {}
+    if extracted_storeys is None and "storeys" in top_props:
+        try:
+            extracted_storeys = int(top_props["storeys"])
+        except (ValueError, TypeError):
+            pass
+    if extracted_height is None and "height_m" in top_props:
+        try:
+            extracted_height = float(top_props["height_m"])
+        except (ValueError, TypeError):
+            pass
+
+    # Authoritative minimum bounds (prevent 1.5-storey prior collapse)
+    extracted_storeys = extracted_storeys if extracted_storeys is not None else 2
+    extracted_height = extracted_height if extracted_height is not None else 7.0
 
     if spatial_mode == "2D_EXTRUSION":
         temp = 0.4
         top_p = 0.4
         wrapper = (
             f"DIRECTIVE: VOLUMETRIC EXTRUSION FROM 2D SATELLITE FOOTPRINT.\n"
-            f"Treat the attached image as a flat 2D site-plan / satellite footprint. "
-            f"Extrude 3D building masses, vertical facades, and realistic roof structures upward perpendicular to the ground plane, "
-            f"strictly matching the camera pitch ({telemetry.pitch:.1f}°) and heading ({telemetry.heading:.1f}°). "
-            f"Do not paint textures flat on the ground. Plumb vertical walls.\n\n"
+            f"MANDATORY MASSING: Erect structure to exactly {extracted_storeys} full storeys ({extracted_height}m vertical elevation). "
+            f"Do not render as a low flat 1-storey cottage. Eaves and roof ridges must rise distinctly above terrain to {extracted_height}m. "
+            f"Render elevated roof pitches and distinct cast shadows on the ground plane, strictly matching camera pitch ({telemetry.pitch:.1f}°) and heading ({telemetry.heading:.1f}°). "
+            f"Apply authentic surface materials across vertical facades. DO NOT paint textures flat on ground. Plumb all vertical walls perpendicular to terrain.\n\n"
             f"SCENE DESCRIPTION:\n{prompt}"
         )
     else:
@@ -226,7 +295,6 @@ def synthesize_twin_image(prompt: str, screenshot_b64: str, spatial_mode: str, t
 
     parts = candidates[0].get("content", {}).get("parts", [])
     
-    # Iterate through parts and find image data (supporting both camelCase and snake_case)
     for part in parts:
         if "inlineData" in part:
             img_b64 = part["inlineData"]["data"]
@@ -235,7 +303,6 @@ def synthesize_twin_image(prompt: str, screenshot_b64: str, spatial_mode: str, t
             img_b64 = part["inline_data"]["data"]
             return f"data:image/png;base64,{img_b64}"
     
-    # If the model only returned text, log the text to console for troubleshooting
     text_responses = [p.get("text") for p in parts if "text" in p]
     print(f"[Image Synthesis Text Output (No Image Bytes)]: {text_responses}")
     raise HTTPException(status_code=500, detail=f"Synthesis model did not return image data. Response text: {text_responses}")
@@ -249,21 +316,15 @@ def archive_run(address: str, telemetry: TelemetryData, spatial_mode: str, tempo
     run_path = RUNS_DIR / folder_name
     run_path.mkdir(parents=True, exist_ok=True)
 
-    # 1. viewport_capture.jpg
     raw_viewport = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
     (run_path / "viewport_capture.jpg").write_bytes(base64.b64decode(raw_viewport))
 
-    # 2. synthesized_twin.png
     raw_synth = synthesized_b64.split(",")[-1] if "," in synthesized_b64 else synthesized_b64
     (run_path / "synthesized_twin.png").write_bytes(base64.b64decode(raw_synth))
 
-    # 3. spatial_scaffold.json
     (run_path / "spatial_scaffold.json").write_text(json.dumps(geojson_data, indent=2), encoding="utf-8")
-
-    # 4. prompt.txt
     (run_path / "prompt.txt").write_text(prompt, encoding="utf-8")
 
-    # 5. telemetry_metadata.json
     meta = {
         "timestamp": timestamp,
         "resolved_address": address,
@@ -305,12 +366,13 @@ def process_view(req: SynthesisRequest):
     )
     print(f"[The Eye Complete] Mode: {spatial_mode}")
 
-    # 3. Generative Twin Image Synthesis
+    # 3. Generative Twin Image Synthesis (with GeoJSON-enforced Massing)
     twin_image_b64 = synthesize_twin_image(
         prompt=prompt,
         screenshot_b64=req.screenshot,
         spatial_mode=spatial_mode,
-        telemetry=req.telemetry
+        telemetry=req.telemetry,
+        geojson_data=geojson_data
     )
     print("[Synthesis Complete] Image generated.")
 

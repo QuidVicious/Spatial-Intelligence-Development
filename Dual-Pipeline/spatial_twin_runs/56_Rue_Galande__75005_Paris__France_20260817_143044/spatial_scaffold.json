@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "spatial_mode": "3D_RECTIFICATION",
+    "resolved_address": "56 Rue Galande, 75005 Paris, France",
+    "temporal_anchor": "Present Day",
+    "ground_elevation_amsl_m": 35.0,
+    "confidence_score": 0.94
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.34652,
+              48.8522
+            ],
+            [
+              2.34672,
+              48.8521
+            ],
+            [
+              2.34658,
+              48.85195
+            ],
+            [
+              2.34638,
+              48.85205
+            ],
+            [
+              2.34652,
+              48.8522
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "feature_name": "Historic Latin Quarter Timber-Framed & Ashlar Tenement (Studio Galande / Rue Galande Corbelled Facade)",
+        "material": "Lutetian limestone ground floor, half-timbering with plaster infill, zinc and slate mansard",
+        "height_m": 18.5,
+        "storeys": 6,
+        "roof_type": "Mansard with Zinc and Slate, Gabled Dormers",
+        "architectural_style": "Medieval / Early Modern Parisian Vernacular"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.34635,
+            48.85225
+          ],
+          [
+            2.34685,
+            48.852
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "pavement_ground_plane",
+        "feature_name": "Rue Galande Paved Street Alignment",
+        "material": "Parisian Granite Sett Cobblestones, Sandstone Curbs",
+        "condition": "Historic dense street canyon with narrow pedestrian walkways"
+      }
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "spatial_mode": "3D_RECTIFICATION",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.77695,
+              57.18235
+            ],
+            [
+              -3.77655,
+              57.18238
+            ],
+            [
+              -3.77652,
+              57.18225
+            ],
+            [
+              -3.77692,
+              57.18222
+            ],
+            [
+              -3.77695,
+              57.18235
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "building_envelope",
+        "description": "Traditional 1.5-storey Scottish vernacular stone farm steading and cottage with whitewashed harled masonry, pitched Scottish slate roof, and dormer windows",
+        "materials": {
+          "facade": "Whitewashed lime harling over Scottish granite/schist rubble masonry",
+          "roof": "Ballachulish dark grey slate with stone ridge tiles and lead flashing",
+          "fenestration": "White-painted timber sash windows and timber entry doors"
+        },
+        "rectification": {
+          "vertical_plumbing": "True gravity vertical on all harled wall elevations",
+          "ridge_alignment": "Sharp linear ridgeline running east-northeast with crisp dormer projections",
+          "eaves": "Clean timber fascias and cast-iron half-round rainwater goods"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7776,
+              57.18265
+            ],
+            [
+              -3.77715,
+              57.1827
+            ],
+            [
+              -3.77705,
+              57.18245
+            ],
+            [
+              -3.7775,
+              57.1824
+            ],
+            [
+              -3.7776,
+              57.18265
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "building_envelope",
+        "description": "Large agricultural barn complex with gabled roof, corrugated sheeting, and attached open-sided tractor sheds",
+        "materials": {
+          "facade": "Vertical profiled steel cladding and timber weatherboard lower skirts",
+          "roof": "Weathered corrugated fiber-cement and steel roofing with integrated translucent skylight panels",
+          "ancillary_wings": "Oxidized corrugated tin roofs on timber pole frames"
+        },
+        "rectification": {
+          "vertical_plumbing": "Straightened structural post lines and planarized expansive roof slopes",
+          "ridge_alignment": "Level apex ridges with sharp gable ends"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7762,
+            57.1828
+          ],
+          [
+            -3.7766,
+            57.1825
+          ],
+          [
+            -3.777,
+            57.1823
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "description": "Unpaved farm access track and working yard composed of compacted crushed granite aggregate, sand, and tyre ruts leading into open pasture",
+        "surface_treatment": "Rutted gravel, exposed subsoil, patchy verge turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.778,
+              57.182
+            ],
+            [
+              -3.7755,
+              57.182
+            ],
+            [
+              -3.7755,
+              57.1832
+            ],
+            [
+              -3.778,
+              57.1832
+            ],
+            [
+              -3.778,
+              57.182
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_and_terrain",
+        "description": "Undulating Strathspey glacial drift and alluvium over Dalradian metamorphic bedrock, supporting lush green highland grazing pasture",
+        "micro_ecology": "Scottish highland grasses, occasional broom scrub, gorse bushes, and distant heather margins"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_153109",
+  "resolved_address": "56JF+M4 Aviemore, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Morning sunrise, August",
+  "telemetry": {
+    "latitude": 57.18173468465904,
+    "longitude": -3.777218372750462,
+    "altitude_agl": 349.1372226312825,
+    "heading": 347.95432313714934,
+    "pitch": -5.892726294450898,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}
