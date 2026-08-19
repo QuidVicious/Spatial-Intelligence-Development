@@ -1,0 +1,159 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193052,
+          55.949649,
+          190.2
+        ]
+      },
+      "properties": {
+        "stratum": "sensor_telemetry",
+        "postal_sector": "EH1 2NT",
+        "address": "449 Lawnmarket, Edinburgh, Scotland, UK",
+        "heading_deg": 297.5,
+        "pitch_deg": -50.3,
+        "fov_deg": 32.8,
+        "rendering_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1936,
+              55.9493
+            ],
+            [
+              -3.1925,
+              55.9493
+            ],
+            [
+              -3.1925,
+              55.95
+            ],
+            [
+              -3.1936,
+              55.95
+            ],
+            [
+              -3.1936,
+              55.9493
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Arthur's Seat Volcanic Formation & Carboniferous Ballagan Sandstone/Siltstone",
+        "geomorphology": "Glaciated crag-and-tail volcanic plug with resilient basaltic spine and eastward-trailing sedimentary ridge",
+        "overburden_depth_m": 0.8,
+        "hydrology": "Rapid eastern surface runoff along historic medieval close alignments down to the Cowgate and North Bank depressions"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.19335,
+                55.94968
+              ],
+              [
+                -3.19315,
+                55.94975
+              ],
+              [
+                -3.19305,
+                55.94962
+              ],
+              [
+                -3.19325,
+                55.94955
+              ],
+              [
+                -3.19335,
+                55.94968
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.19305,
+                55.94962
+              ],
+              [
+                -3.1928,
+                55.9497
+              ],
+              [
+                -3.1927,
+                55.9495
+              ],
+              [
+                -3.19295,
+                55.94942
+              ],
+              [
+                -3.19305,
+                55.94962
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "urban_fabric": "Old Town Royal Mile high-density medieval tenement blocks and Baronial revivals",
+        "structures": [
+          {
+            "id": "lawnmarket_tenement_north",
+            "type": "Historic Tenement / Commercial Mixed-Use",
+            "storeys": 6,
+            "height_m": 22.5,
+            "facade_material": "Craigleith ashlar and dressed blonde/buff sandstone with soot patina",
+            "roof_material": "Scottish slate with lead flashing, dormered mansards, and corbelled crow-stepped gables",
+            "fenestration": "Timber 12-pane sash-and-case vertical windows"
+          },
+          {
+            "id": "brodies_close_flank",
+            "type": "Historic Close Infill / Tenement",
+            "storeys": 5,
+            "height_m": 18.2,
+            "facade_material": "Random rubble Craigleith sandstone, lime-harled sections, heavy ashlar quoins",
+            "roof_material": "Pitched Scottish slate, multiple masonry chimney stacks with terracotta clay pots"
+          }
+        ],
+        "ground_pavement": "Traditional whinstone and granite sett paving, dressed kerbstones, historic stone flag footways"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193052,
+          55.949649
+        ]
+      },
+      "properties": {
+        "stratum": "temporal_environmental",
+        "lighting_condition": "Overcast northern maritime ambient with soft silver daylight diffusion (~5500K)",
+        "atmospheric_haze": "Light urban sea fret (haar) mist softening distant contrast",
+        "surface_moisture": "Damp glistening whinstone setts and dark wet sandstone courses along base plinths"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_172458",
+  "resolved_address": "610 Hiwassee Hill Drive Extended SE, Johnson City, TN 37601, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 36.306389910693284,
+    "longitude": -82.32977434823198,
+    "altitude_agl": 491.691551775706,
+    "heading": 133.92752578271,
+    "pitch": -6.192308980187605,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

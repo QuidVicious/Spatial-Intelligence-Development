@@ -1,0 +1,131 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.505242,
+          47.621106
+        ]
+      },
+      "properties": {
+        "stratum": "geographical_and_geological",
+        "location_name": "Bainbridge Island Ferry Terminal / Eagle Harbor",
+        "elevation_m": 0.0,
+        "geology": {
+          "formation": "Vashon Glacial Till and Recessional Outwash",
+          "bedrock_depth_m": 45.0,
+          "soil_taxonomy": "Alderwood gravelly sandy loam along shoreline bluff; marine silt and gravel in intertidal zone",
+          "hydrology": "Puget Sound (Central Basin) marine interface, Eagle Harbor embayment"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.512,
+              47.62
+            ],
+            [
+              -122.5,
+              47.62
+            ],
+            [
+              -122.5,
+              47.626
+            ],
+            [
+              -122.512,
+              47.626
+            ],
+            [
+              -122.512,
+              47.62
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "infrastructure": "Washington State Ferries Bainbridge Island Terminal, Olympic Drive multi-lane staging corridor, toll booths, pedestrian overhead walkway, offshore steel/timber dolphin clusters, vehicle transfer bridge",
+        "structures": [
+          {
+            "name": "WSF Jumbo Mark II Class Ferry (in berth)",
+            "type": "Vessel / Floating Infrastructure",
+            "storeys": 4,
+            "height_m": 23.5,
+            "cladding": "Marine-grade steel hull (evergreen and white livery), aluminum superstructure"
+          },
+          {
+            "name": "Bainbridge Island Ferry Terminal Building & Overhead Walkway",
+            "type": "Transit Facility",
+            "storeys": 2,
+            "height_m": 11.2,
+            "cladding": "Structural steel framework, architectural glass curtain walls, corrugated metal roofing, concrete pier deck"
+          },
+          {
+            "name": "Harbour Square / Olympic Terrace Multi-Family Complexes",
+            "type": "Residential Mixed-Use",
+            "storeys": 4,
+            "height_m": 15.8,
+            "cladding": "Cementitious fiber siding (warm grey/taupe), cedar shingle accents, asphalt shingle hipped roofs"
+          },
+          {
+            "name": "Winslow Waterfront Condominiums (West Shoreline)",
+            "type": "Residential Multi-Family",
+            "storeys": 3,
+            "height_m": 12.0,
+            "cladding": "Stucco and horizontal timber weatherboard, asphalt shingle multi-gabled roofs"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.515,
+              47.618
+            ],
+            [
+              -122.498,
+              47.618
+            ],
+            [
+              -122.498,
+              47.63
+            ],
+            [
+              -122.515,
+              47.63
+            ],
+            [
+              -122.515,
+              47.618
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological",
+        "biome": "Puget Lowland Temperate Coniferous Forest / Estuarine Marine",
+        "canopy_species": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Arbutus menziesii (Pacific madrone)"
+        ],
+        "intertidal_vegetation": "Zostera marina (Eelgrass), Fucus distichus (Rockweed)"
+      }
+    }
+  ]
+}

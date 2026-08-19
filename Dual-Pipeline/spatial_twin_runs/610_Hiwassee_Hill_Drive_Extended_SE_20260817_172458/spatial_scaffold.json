@@ -1,0 +1,144 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.329774,
+          36.30639,
+          491.7
+        ]
+      },
+      "properties": {
+        "stratum": "geological_foundation",
+        "bedrock_formation": "Honaker Dolomite and Rome Formation complex",
+        "lithology": "Interbedded massive gray dolomite, microcrystalline limestone, and calcareous shale",
+        "topsoil": "Dunmore-Carbo silt loam complex (deep, well-drained, clayey subsoil residuum)",
+        "karst_risk": "Moderate",
+        "drainage": "Appalachian Ridge and Valley dendritic drainage, draining toward Brush Creek basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.33005,
+              36.30625
+            ],
+            [
+              -82.32945,
+              36.30625
+            ],
+            [
+              -82.32945,
+              36.30655
+            ],
+            [
+              -82.33005,
+              36.30655
+            ],
+            [
+              -82.33005,
+              36.30625
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_dwelling",
+            "type": "single_family_residential",
+            "style": "Split-foyer / Mid-century Ranch",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_form": "low-pitch gabled",
+            "roof_material": "architectural asphalt shingles (weathered charcoal gray)",
+            "facade_materials": [
+              "wire-cut red-brown Appalachian clay brick veneer",
+              "horizontal white aluminum/vinyl siding on upper tier"
+            ],
+            "fenestration": "Double-hung vinyl-clad windows, fixed picture window framing rear yard",
+            "foundation": "Poured concrete and concrete masonry unit partially exposed basement level"
+          }
+        ],
+        "civil_infrastructure": {
+          "access_road": "Hiwassee Hill Drive Extended SE (worn asphalt surface with aggregate exposed edges)",
+          "driveway": "Poured concrete apron leading to lower-level basement garage bay",
+          "utilities": "Overhead electrical drop with wooden utility pole, pole-mounted transformer"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.3302,
+              36.3061
+            ],
+            [
+              -82.3293,
+              36.3061
+            ],
+            [
+              -82.3293,
+              36.3067
+            ],
+            [
+              -82.3302,
+              36.3067
+            ],
+            [
+              -82.3302,
+              36.3061
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_canopy",
+        "dominant_canopy": [
+          "Quercus alba (White Oak)",
+          "Liriodendron tulipifera (Tulip Poplar)",
+          "Pinus virginiana (Virginia Pine)",
+          "Acer rubrum (Red Maple)"
+        ],
+        "understory": [
+          "Cornus florida (Flowering Dogwood)",
+          "Cercis canadensis (Eastern Redbud)",
+          "Festuca arundinacea (Tall Fescue residential lawn)"
+        ],
+        "canopy_height_m": 16.5,
+        "vegetation_health": "Dense mature deciduous canopy characteristic of Southern Appalachian Ridge and Valley foothills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.329774,
+          36.30639,
+          491.7
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_optics",
+        "temporal_anchor": "Golden Hour",
+        "solar_azimuth": 268.4,
+        "solar_elevation": 9.2,
+        "correlated_color_temperature_k": 3300,
+        "atmosphere": "Warm golden raking sunlight skimming across the hillside, casting long sweeping shadows eastward, light mist settling in valley depressions, deep amber highlights on brick and tree foliage"
+      }
+    }
+  ]
+}

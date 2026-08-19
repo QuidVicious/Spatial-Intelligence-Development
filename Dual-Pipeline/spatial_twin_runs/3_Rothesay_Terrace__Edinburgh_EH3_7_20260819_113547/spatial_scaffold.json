@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 118.3,
+          "pitch_deg": -15.6,
+          "heading_deg": 322.7,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Gullane Formation Sandstone and Igneous Basalt intrusions",
+        "mineralogy": "Quartz-rich carboniferous sedimentary sandstone with volcanic basalt outcroppings",
+        "drainage": "Steep valley-side hydraulic descent into the incised Water of Leith riverbed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Traditional Scottish granite sett cobblestones, flagstone pavements, and riverside retaining walls",
+        "wear_characteristics": "Moisture-darkened drainage gutters, damp biological patina, smoothed stone wear along vehicular courtyards",
+        "micro_grading": "Terraced gorge topography descending rapidly from Rothesay Terrace plateau down into Dean Village hollow"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ulmus glabra (Wych Elm)",
+          "Acer pseudoplatanus (Sycamore)",
+          "Fraxinus excelsior (European Ash)",
+          "Salix alba (White Willow)"
+        ],
+        "understory_flora": [
+          "Hedera helix (English Ivy)",
+          "Dryopteris filix-mas (Male Fern)",
+          "Rubus fruticosus (Bramble)"
+        ],
+        "groundcover": "Dense deciduous river-gorge woodland canopy, riparian mosses, and clinging wall vegetation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Scots Baronial and 19th-century vernacular milling village housing",
+        "structures": [
+          {
+            "name": "Well Court (Central Baronial Complex)",
+            "storeys": 4,
+            "height_m": 18.5,
+            "roof_geometry": "Steeply pitched red clay pantile and Scottish slate roofs with crow-stepped gables, conical-roofed corner turrets (tourelles), and a central polygonal clock tower with lead spire",
+            "facade_material": "Course-squared red/buff sandstone ashlar and rubble masonry",
+            "weathering_patina": "Deep atmospheric soot and carbon encrustation in cornice reveals, carved stone strapwork, and rain-washed upper ashlar"
+          },
+          {
+            "name": "Hawthornbank Lane / Dean Path Terraces (Flanking Tenements)",
+            "storeys": 4,
+            "height_m": 14.2,
+            "roof_geometry": "Pitched Scottish slate and red pantile dormered roofs with heavy stone chimney stacks",
+            "facade_material": "Harled/rendered pale sandstone rubble and exposed dressed stone dressings",
+            "weathering_patina": "Mineral wash lines, wet mortar repointing, and localized soot accumulation beneath sills"
+          },
+          {
+            "name": "Background Terraces (Bells Mills / Rothesay Plunge Enclosure)",
+            "storeys": 3,
+            "height_m": 11.0,
+            "roof_geometry": "Continuous pitched slate rooflines with multiple gabled wall-head dormers",
+            "facade_material": "Pale lime-harled masonry with exposed sandstone quoins",
+            "weathering_patina": "Even graying and rain streak patina along northern exposure"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Parked modern European estate cars and hatchbacks in court cul-de-sac"
+        ],
+        "street_furniture": [
+          "Wrought iron railings",
+          "Heritage cast-iron gas-style street lanterns",
+          "Traditional timber sash-and-case windows"
+        ],
+        "pedestrian_profiles": [
+          "Occasional local residents and walkers on the Water of Leith Walkway"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5500,
+        "lighting_condition": "Crisp temperate midday Scottish sunlight with soft atmospheric dispersion and defined, raking shadows across valley slopes"
+      }
+    }
+  ]
+}

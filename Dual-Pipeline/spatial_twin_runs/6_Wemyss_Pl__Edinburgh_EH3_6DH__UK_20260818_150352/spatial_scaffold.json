@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205844,
+          55.95422
+        ]
+      },
+      "properties": {
+        "stratum": "camera_anchor",
+        "altitude_agl_m": 115.1,
+        "heading_deg": 343.7,
+        "pitch_deg": -14.2,
+        "fov_deg": 32.8,
+        "resolved_address": "6 Wemyss Place, New Town, Edinburgh, EH3 6DH, Scotland, United Kingdom",
+        "capture_mode": "3D_TILES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2064,
+              55.954
+            ],
+            [
+              -3.2052,
+              55.954
+            ],
+            [
+              -3.2052,
+              55.9548
+            ],
+            [
+              -3.2064,
+              55.9548
+            ],
+            [
+              -3.2064,
+              55.954
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock": "Gullane Formation (Carboniferous Sandstone, Siltstone, Mudstone)",
+        "superficial_deposits": "Devensian Glacial Till and Stiff Diamicton",
+        "topography_slope_pct": 4.8,
+        "slope_orientation": "North-northwest toward the Water of Leith and Firth of Forth",
+        "drainage": "Urban subterranean culverts integrated into historic New Town cellarage vaults"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2062,
+                55.95435
+              ],
+              [
+                -3.20595,
+                55.95435
+              ],
+              [
+                -3.20595,
+                55.9546
+              ],
+              [
+                -3.2062,
+                55.9546
+              ],
+              [
+                -3.2062,
+                55.95435
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.2057,
+                55.95435
+              ],
+              [
+                -3.20545,
+                55.95435
+              ],
+              [
+                -3.20545,
+                55.9546
+              ],
+              [
+                -3.2057,
+                55.9546
+              ],
+              [
+                -3.2057,
+                55.95435
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "urban_fabric": "Edinburgh New Town (UNESCO World Heritage Site / Northern Extension by Robert Reid and William Sibbald, c. 1802-1825)",
+        "structures": [
+          {
+            "name": "Wemyss Place West Block (Corner of Wemyss Place & Albyn Place)",
+            "storeys": 4,
+            "height_m": 15.8,
+            "typology": "Georgian Ashlar Townhouse Terrace with Basement Area",
+            "materials": "Craigleith and Hailes pale buff carboniferous ashlar sandstone, rusticated ground floor, polished upper ashlar, Scottish slate roof, wrought iron droff railings"
+          },
+          {
+            "name": "Wemyss Place East Block / Darnaway Street Flank",
+            "storeys": 4,
+            "height_m": 15.8,
+            "typology": "Georgian Neoclassical End-Pavilion Townhouse Terrace",
+            "materials": "Fine-grained ashlar sandstone with channelled rustications, timber sash and case 12-pane glazing, lead flashings"
+          },
+          {
+            "name": "Darnaway Street / North Viewpoint Distant Flanks",
+            "storeys": 3,
+            "height_m": 12.2,
+            "typology": "Residential Georgian Terraced Tenement / Mews Infill",
+            "materials": "Rubble sandstone secondary elevations, dressed stone quoins, timber astragals"
+          }
+        ],
+        "ground_pavement": "High-iron Whinstone and granite sett carriageway, Caithness flagstone pedestrian sidewalks, dressed stone kerbstones and subterranean cellar lightwell gratings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205844,
+          55.95422
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_physics",
+        "solar_elevation_deg": 38.5,
+        "solar_azimuth_deg": 195.2,
+        "lighting_temperature_k": 5400,
+        "atmosphere_quality": "Temperate maritime, crisp Scottish coastal daylight with pale azure diffuse skylight reflecting into recessed north-facing ashlar window embrasures",
+        "vegetation": "Mature broadleaf urban trees flanking Queen Street Gardens West with lush spring/summer deciduous canopies"
+      }
+    }
+  ]
+}

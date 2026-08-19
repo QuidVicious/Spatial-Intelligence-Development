@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 133.4,
+          "pitch_deg": 6.1,
+          "heading_deg": 174.4,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Lower Oil-Shale Sandstone / Gullane Formation",
+        "mineralogy": "Fine-to-medium grained quartz-rich Craigleith/Hailes sandstone with interbedded siltstone and mudstone",
+        "drainage": "Well-drained gentle urban glacial till over bedrock, directing subterranean run-off southward toward the Meadows basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Dense asphalt roadway flanked by Caithness stone slab pavements and granite kerbstones",
+        "wear_characteristics": "Polished asphalt tire lanes with minor bitumen patching, hairline pavement joint cracking, and recessed cast-iron drainage gratings",
+        "micro_grading": "Gradual southward downward slope along Leven Street toward Bruntsfield Place"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Hedera helix climbing alley walls",
+          "Parietaria judaica (pellitory-of-the-wall) in masonry joints"
+        ],
+        "groundcover": "Cultivated tree pit grates and sparse mosses in shaded stone reveals"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian Scottish Baronial / Gothic Revival Church and 4-storey Classical Tenements",
+        "structures": [
+          {
+            "name": "Barclay Viewforth Church (Barclay Memorial Church)",
+            "storeys": 3,
+            "height_m": 76.0,
+            "roof_geometry": "Steeply pitched multi-gabled slate roofs with colossal southwest stone spire rising to 250ft (76m)",
+            "facade_material": "Rough-hewn squared snecked sandstone rubble with fine polished ashlar dressings and carved Gothic tracery",
+            "weathering_patina": "Pronounced dark soot-crusted carbon patina in sheltered lancet window reveals and deep cornice undercuts, contrasting with rain-washed ashlar quoins"
+          },
+          {
+            "name": "East Street-Wall Tenements (Leven Street / Home Street)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched Scottish slate with prominent stone chimney stacks and lead flashings",
+            "facade_material": "Blonde and grey Craigleith/Hailes sandstone ashlar with ground-floor commercial frontages",
+            "weathering_patina": "Historical coal-smoke blackening around upper storeys, weathered lime mortar repointing, and oxidized cast-iron rainwater downpipes"
+          },
+          {
+            "name": "West Street-Wall Tenements (Leven Street)",
+            "storeys": 4,
+            "height_m": 16.0,
+            "roof_geometry": "Pitched slate with dormer projections and ashlar skews",
+            "facade_material": "Coursed sandstone ashlar with continuous string courses and rusticated ground-floor masonry",
+            "weathering_patina": "Vertical water run-off staining beneath sills and dark carbon deposits across deep eaves"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Lothian double-decker bus",
+          "Modern passenger cars parked curbside"
+        ],
+        "street_furniture": [
+          "Victorian-style cast-iron lampposts",
+          "Standard UK traffic signals",
+          "Pedestrian guardrails at crossings"
+        ],
+        "pedestrian_profiles": [
+          "Commuters and local residents in casual outerwear traversing sidewalks"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203481,
+          55.941552
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.5,
+        "azimuth_deg": 262.0,
+        "kelvin_temperature": 3300,
+        "lighting_condition": "Warm Golden Hour with low-angled raking amber sunlight casting long eastward shadows across the roadway"
+      }
+    }
+  ]
+}

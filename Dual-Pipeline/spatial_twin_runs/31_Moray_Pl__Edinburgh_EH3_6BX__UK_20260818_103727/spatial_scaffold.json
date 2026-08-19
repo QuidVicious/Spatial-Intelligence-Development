@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211541,
+          55.954388
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_geology": "Lower Carboniferous (Tournaisian/Visean) Calders Member of the Strathclyde Group (sandstone, siltstone, and mudstone) intruded by quartz-dolerite sills",
+        "superficial_deposits": "Glacial till (boulder clay) and Devensian glaciolacustrine sands overlying steep river valley incisions",
+        "topography": "North-facing steep declivity dropping sharply into the deeply incised Water of Leith gorge, stabilizing the northern boundary of the New Town plateau",
+        "soil_class": "Brown earths with well-drained loam across terraced domestic plots; moisture-retentive alluvium along river bluffs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.21215,
+              55.9547
+            ],
+            [
+              -3.2109,
+              55.9542
+            ],
+            [
+              -3.2104,
+              55.954
+            ],
+            [
+              -3.2107,
+              55.9538
+            ],
+            [
+              -3.2118,
+              55.95425
+            ],
+            [
+              -3.21235,
+              55.9545
+            ],
+            [
+              -3.21215,
+              55.9547
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_style": "Georgian / Greek Revival (James Gillespie Graham, master plan c. 1822)",
+        "structures": [
+          {
+            "name": "Moray Place Northern Crescent Terraces (Nos. 31-36)",
+            "storeys": 4,
+            "height_m": 18.5,
+            "primary_material": "Craigleith / Hailes Carboniferous sandstone ashlar",
+            "roof_material": "Scotch and Welsh blue-grey slate mansards with lead valleys and heavy sandstone chimney stacks",
+            "fenestration": "12-pane timber sash and case windows with cast-iron balconettes, rusticated lower ashlar courses, and canted stone bay extrusions to the rear"
+          },
+          {
+            "name": "Terraced Rear Mews & Sub-Level Vaulted Outbuildings",
+            "storeys": 2,
+            "height_m": 6.8,
+            "primary_material": "Rubble sandstone with dressed quoins",
+            "roof_material": "Pitched slate with lead capping"
+          }
+        ],
+        "infrastructural_elements": "Curved sandstone parapets, steep retaining terrace walls descending to rear private garden plots, boundary stone copings, and cast-iron spearhead railings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2105,
+              55.9548
+            ],
+            [
+              -3.2098,
+              55.9542
+            ],
+            [
+              -3.211,
+              55.9536
+            ],
+            [
+              -3.2118,
+              55.9541
+            ],
+            [
+              -3.2105,
+              55.9548
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "vegetation_strata": "Dense mature deciduous canopy on steep valley embankment leading down to Dean Gardens and the Water of Leith",
+        "dominant_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fagus sylvatica (European Beech)",
+          "Ulmus glabra (Wych Elm)",
+          "Aesculus hippocastanum (Horse Chestnut)"
+        ],
+        "understory": "Hedera helix (Common Ivy), bramble thickets, and manicured terrace lawn grass with ornamental rhododendrons"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211541,
+          55.954388
+        ]
+      },
+      "properties": {
+        "stratum": "sensory_and_atmospheric",
+        "lighting_regime": "Diffused late afternoon cool northern skylight balanced by soft low-angle western solar grazing, illuminating soot-patinated sandstone ashlar textures",
+        "sensory_profile": "Distant rushing waters of the Water of Leith echoing through the gorge, damp earth scent from mature beech leaf litter, cold crisp Scottish maritime breeze, chimney downdraft soot notes"
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 118.3,
+          "pitch_deg": -15.6,
+          "heading_deg": 322.7,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous sedimentary sandstone and mudstone (Gullane Formation) intersected by volcanic quartz-dolerite intrusions",
+        "mineralogy": "Fine to medium-grained quartzose sandstone, siltstone, and volcanic basaltic dolerite",
+        "drainage": "Steep hydrological runoff north-westward into the incised Water of Leith river basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Historic Whinstone setts, river valley revetment masonry, and tarmac access lanes",
+        "wear_characteristics": "Damp moss-fringed drainage channels, smoothed historic setts along Dean Path, aged river-bank retaining walls",
+        "micro_grading": "Steep natural gorge terrace dropping sharply from Rothesay Terrace down toward the Water of Leith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fraxinus excelsior (European Ash)",
+          "Ulmus glabra (Wych Elm)",
+          "Fagus sylvatica (European Beech)"
+        ],
+        "understory_flora": [
+          "Hedera helix (English Ivy)",
+          "Polystichum setiferum (Soft Shield Fern)",
+          "Sambucus nigra (Elder)"
+        ],
+        "groundcover": "Riverbank turf, mossy embankment beds, and riparian scrub along the gorge flanks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Scots Baronial and Vernacular 19th-century residential tenements and historic grain milling village complex (Dean Village)",
+        "structures": [
+          {
+            "name": "Well Court Tenement and Clock Tower Complex",
+            "storeys": 4,
+            "height_m": 18.5,
+            "roof_geometry": "Steeply pitched red clay pantiles and Scots slate with conical corbelled bartizans, crow-stepped gables, and a prominent clock tower",
+            "facade_material": "Pinkish and buff coursed Craigleith/Hailes sandstone ashlar and rubble",
+            "weathering_patina": "Pronounced historical coal-smoke carbon crusting in sheltered cornices, lintel soiling, and light lime efflorescence"
+          },
+          {
+            "name": "Damside / Mill Lower Vernacular Cottages",
+            "storeys": 2,
+            "height_m": 8.0,
+            "roof_geometry": "Pitched red pantile and grey slate dormered roofs",
+            "facade_material": "Harled masonry and exposed rubble sandstone with dressed quoins",
+            "weathering_patina": "Lichen growth on clay tiles, damp rising patina near river retaining wall base"
+          },
+          {
+            "name": "Hawthornbank Lane / Upper Valley Terraces",
+            "storeys": 5,
+            "height_m": 19.5,
+            "roof_geometry": "Multi-gabled grey Scottish slate roofs with heavy chimneystacks",
+            "facade_material": "Cream-buff ashlar sandstone and harled pale facades",
+            "weathering_patina": "Uniform urban soot wash, rain-washed water tables, and soot-blackened chimney pots"
+          },
+          {
+            "name": "Eastern Mansard Tenement Block",
+            "storeys": 4,
+            "height_m": 15.0,
+            "roof_geometry": "Steep grey slate mansard with timber-framed dormers and tall gable chimney gables",
+            "facade_material": "Stained buff sandstone ashlar with dressed margin architraves",
+            "weathering_patina": "Atmospheric coal-dust deposition across upper stone friezes and zinc/lead flashings"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Parked modern European compact passenger vehicles on paved court"
+        ],
+        "street_furniture": [
+          "Cast-iron Victorian street lanterns",
+          "Low rubble stone boundary walls with coping stones",
+          "Wrought iron railings along the river weir"
+        ],
+        "pedestrian_profiles": [
+          "Occasional morning commuters and walkers traversing the valley floor footpaths"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 22.4,
+        "solar_azimuth_deg": 118.5,
+        "kelvin_temperature": 3800,
+        "lighting_condition": "Crisp Scottish early morning sunlight raking across the Dean gorge with warm low-angle golden highlights and cool blue skylight in deep architectural recesses"
+      }
+    }
+  ]
+}

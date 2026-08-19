@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_172923",
+  "resolved_address": "PGWH+M2 Indianola, WA, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 47.74666994899654,
+    "longitude": -122.47249141901835,
+    "altitude_agl": 1.5,
+    "heading": 288.86593903503905,
+    "pitch": 2.248196478447995,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

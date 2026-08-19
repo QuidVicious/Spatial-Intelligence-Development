@@ -1,0 +1,249 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "bluff_terrace_stratum",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.477,
+              47.7455
+            ],
+            [
+              -122.473,
+              47.7458
+            ],
+            [
+              -122.4728,
+              47.7438
+            ],
+            [
+              -122.4768,
+              47.7435
+            ],
+            [
+              -122.477,
+              47.7455
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_geomorphology",
+        "landform": "Active Marine Feeder Bluff and Coastal Scarp",
+        "elevation_scarp_top_m": 22.0,
+        "elevation_beach_base_m": 0.5,
+        "geological_formation": "Vashon Glacial Till over Advance Outwash Sand and Silt (Lawton/Kitsap Formation complex)",
+        "subterranean_strata": [
+          "Colluvium and weathered Indianola series gravelly sandy loam (0.0m - 1.5m)",
+          "Vashon lodgement till compacted silty gravelly diamicton (1.5m - 6.0m)",
+          "Esperance/Advance glaciofluvial outwash sands, stratified light tan/buff (6.0m - 18.0m)",
+          "Interglacial lacustrine silts and clays forming basal hydrological aquiclude (18.0m - 22.0m)"
+        ],
+        "morphological_processes": [
+          "Subaerial weathering and sheetwash rilling",
+          "Rotational slumping and raveling failures",
+          "Wave-action toe erosion and beach accretion"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "riparian_marine_intertidal_zone",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.4775,
+            47.744
+          ],
+          [
+            -122.475,
+            47.7443
+          ],
+          [
+            -122.4725,
+            47.7446
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "hydrology_and_intertidal",
+        "water_body": "Port Madison / Puget Sound",
+        "shoreline_morphology": "Coarse gravel-cobble intertidal swash zone with drift logs and sandy low-tide flats",
+        "salinity_psu": 29.5,
+        "tidal_range_m": 3.8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "built_environment",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.47545,
+                47.74512
+              ],
+              [
+                -122.47525,
+                47.74514
+              ],
+              [
+                -122.47523,
+                47.74502
+              ],
+              [
+                -122.47543,
+                47.745
+              ],
+              [
+                -122.47545,
+                47.74512
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47485,
+                47.74518
+              ],
+              [
+                -122.4746,
+                47.7452
+              ],
+              [
+                -122.47458,
+                47.74508
+              ],
+              [
+                -122.47483,
+                47.74506
+              ],
+              [
+                -122.47485,
+                47.74518
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47415,
+                47.74522
+              ],
+              [
+                -122.4739,
+                47.74524
+              ],
+              [
+                -122.47388,
+                47.74512
+              ],
+              [
+                -122.47413,
+                47.7451
+              ],
+              [
+                -122.47415,
+                47.74522
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Pacific Northwest Blufftop Residential Enclave",
+        "settlement_name": "Indianola Bluff Coastal Strip",
+        "structures": [
+          {
+            "id": "residence_west_central",
+            "type": "Primary Residential Dwelling",
+            "storeys": 2,
+            "height_m": 7.8,
+            "footprint_m2": 185.0,
+            "cladding": "Weathered western red cedar shingle siding and dark trim",
+            "roof_form": "Asymmetrical gabled standing-seam matte metal and composition shingle",
+            "foundation": "Deep augered concrete grade beams on pin pilings behind scarp line"
+          },
+          {
+            "id": "residence_center_east",
+            "type": "Primary Residential Dwelling (Modern Pacific Vernacular)",
+            "storeys": 2,
+            "height_m": 8.2,
+            "footprint_m2": 210.0,
+            "cladding": "Off-white horizontal lap siding with vertical cedar board accents and cantilevering viewing deck",
+            "roof_form": "Shed / low-pitch standing seam roof with overhangs",
+            "foundation": "Reinforced poured concrete stem wall set back from bluff lip"
+          },
+          {
+            "id": "residence_east_annex",
+            "type": "Primary Residential Dwelling",
+            "storeys": 2,
+            "height_m": 7.4,
+            "footprint_m2": 160.0,
+            "cladding": "Stained dark timber siding, glass-railed perimeter deck",
+            "roof_form": "Cross-gable composite shingle roof",
+            "foundation": "Reinforced concrete pad and grade beam foundation"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canopy_and_botany",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4772,
+              47.7458
+            ],
+            [
+              -122.4725,
+              47.746
+            ],
+            [
+              -122.4725,
+              47.7448
+            ],
+            [
+              -122.4772,
+              47.7446
+            ],
+            [
+              -122.4772,
+              47.7458
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "vegetation_and_canopy",
+        "ecozone": "Puget Trough Coastal Coniferous Forest",
+        "canopy_height_m": 38.0,
+        "overstory_species": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western Red Cedar)",
+          "Tsuga heterophylla (Western Hemlock)",
+          "Arbutus menziesii (Pacific Madrone)"
+        ],
+        "understory_and_bluff_colonizers": [
+          "Gaultheria shallon (Salal)",
+          "Polystichum munitum (Sword Fern)",
+          "Rubus ursinus (Trailing Blackberry)",
+          "Equisetum telmateia (Giant Horsetail)",
+          "Alnus rubra (Red Alder)"
+        ]
+      }
+    }
+  ]
+}

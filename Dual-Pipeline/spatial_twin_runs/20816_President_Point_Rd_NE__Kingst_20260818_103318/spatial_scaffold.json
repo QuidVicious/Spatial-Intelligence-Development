@@ -1,0 +1,272 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472583,
+          47.748257,
+          14.0
+        ]
+      },
+      "properties": {
+        "stratum": "camera_anchor",
+        "telemetry": {
+          "address": "20816 President Point Rd NE, Kingston, WA 98346, USA",
+          "heading_deg": 263.8,
+          "pitch_deg": -10.9,
+          "fov_deg": 32.8,
+          "altitude_agl_m": 14.0,
+          "mode": "3D_TILES",
+          "temporal_anchor": "Present Day"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4735,
+              47.7478
+            ],
+            [
+              -122.472,
+              47.7478
+            ],
+            [
+              -122.472,
+              47.7488
+            ],
+            [
+              -122.4735,
+              47.7488
+            ],
+            [
+              -122.4735,
+              47.7478
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_and_geomorphology",
+        "geology": {
+          "formation": "Vashon Glacial Till over Esperance Sand and Lawton Clay",
+          "stratigraphy": "Unsorted glacial deposit containing compacted clay, silt, sand, and gravel over deep marine glacial lacustrine beds",
+          "topography": "Steep Puget Sound coastal bluff dropping eastward directly into a cobble/pebble drift beach, perched coastal terrace above the shoreline",
+          "hydrology": "High bluff seepage, marine cliff groundwater runoff towards Admiralty Inlet/Puget Sound, moist coastal soil with dense organic duff"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.47285,
+                47.74818
+              ],
+              [
+                -122.47265,
+                47.7482
+              ],
+              [
+                -122.47268,
+                47.74835
+              ],
+              [
+                -122.47288,
+                47.74832
+              ],
+              [
+                -122.47285,
+                47.74818
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4726,
+                47.74815
+              ],
+              [
+                -122.47248,
+                47.74816
+              ],
+              [
+                -122.4725,
+                47.74828
+              ],
+              [
+                -122.47262,
+                47.74827
+              ],
+              [
+                -122.4726,
+                47.74815
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47245,
+                47.74805
+              ],
+              [
+                -122.47235,
+                47.74806
+              ],
+              [
+                -122.47237,
+                47.74818
+              ],
+              [
+                -122.47247,
+                47.74817
+              ],
+              [
+                -122.47245,
+                47.74805
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.473,
+                47.7485
+              ],
+              [
+                -122.47285,
+                47.74852
+              ],
+              [
+                -122.47288,
+                47.74862
+              ],
+              [
+                -122.47303,
+                47.7486
+              ],
+              [
+                -122.473,
+                47.7485
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_residence",
+            "type": "Multi-level Coastal Residence with Observation Turret / Clerestory",
+            "storeys": 3,
+            "height_m": 10.5,
+            "materials": {
+              "facade": "Weathered cedar shingle and vertical tongue-and-groove siding with painted white timber fascia and deck supports",
+              "roof": "Multi-gabled architectural asphalt shingles with lead flashing and elevated glass viewing cupola",
+              "foundation": "Poured reinforced concrete on stepped bluff footings"
+            }
+          },
+          {
+            "id": "secondary_annex_workshop",
+            "type": "Two-Story Detached Studio / Garage",
+            "storeys": 2,
+            "height_m": 7.2,
+            "materials": {
+              "facade": "Painted horizontal lap siding with white framed double-hung windows",
+              "roof": "Pitched asphalt composite shingle roof"
+            }
+          },
+          {
+            "id": "coastal_shed_carriage_house",
+            "type": "Two-Story Outbuilding / Boat Storage",
+            "storeys": 2,
+            "height_m": 6.8,
+            "materials": {
+              "facade": "White-washed wood siding, batten seams, ground-level timber bay doors",
+              "roof": "Gabled standing seam or asphalt shingle roof"
+            }
+          },
+          {
+            "id": "north_upper_outbuilding",
+            "type": "Guest Cottage / Garage",
+            "storeys": 2,
+            "height_m": 7.0,
+            "materials": {
+              "facade": "Natural cedar siding and painted trim",
+              "roof": "Medium-pitch composite shingle roof"
+            }
+          }
+        ],
+        "hardscape": "Compacted earth and crushed gravel access driveway, timber retaining bulkheads, wooden perimeter guardrails along the bluff edge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4736,
+              47.7476
+            ],
+            [
+              -122.4718,
+              47.7476
+            ],
+            [
+              -122.4718,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.7476
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_botany",
+        "canopy_composition": "Dense Pacific Northwest coastal temperate rainforest: mature Pseudotsuga menziesii (Douglas-fir), Thuja plicata (Western Red Cedar), Acer macrophyllum (Bigleaf Maple), and Alnus rubra (Red Alder)",
+        "understory": "Polystichum munitum (Sword Fern), Gaultheria shallon (Salal), Rubus spectabilis (Salmonberry), and coastal mosses clinging to damp bark and loam",
+        "coastal_ecotone": "Sandy/gravel bluff face with rooted dune grass, sea-drifted logs, and salt-spray-hardened shoreline shrubs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472583,
+          47.748257,
+          14.0
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_optics",
+        "illumination": "Crisp morning maritime daylight with low Pacific Northwest sun penetrating through dense conifer canopy",
+        "color_temperature_k": 4900,
+        "haze_and_aerosol": "Moist Puget Sound marine air, soft coastal mist hanging over the tree line, mild salt-air diffusion",
+        "shadow_characteristics": "Dappled, directional tree shadows extending westward across the dry gravel yard and timber structures"
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.475447,
+          47.748024,
+          11.4
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "heading_degrees": 101.8,
+        "pitch_degrees": -3.0,
+        "fov_degrees": 32.8,
+        "rendering_mode": "3D_TILES",
+        "altitude_agl_meters": 11.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4752,
+              47.74815
+            ],
+            [
+              -122.4748,
+              47.74815
+            ],
+            [
+              -122.4748,
+              47.7479
+            ],
+            [
+              -122.4752,
+              47.7479
+            ],
+            [
+              -122.4752,
+              47.74815
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_waterfront_residence",
+            "type": "residential_multilevel_home",
+            "storeys": 2,
+            "height_m": 7.8,
+            "cladding": "cedar_shingle_and_painted_lap_siding",
+            "roof_form": "complex_hip_and_gable_composition_shingle",
+            "glazing": "panoramic_casement_view_windows_facing_puget_sound"
+          }
+        ],
+        "access_infrastructure": "sloping_gravel_driveway_and_aggregate_pathway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.476,
+              47.7485
+            ],
+            [
+              -122.474,
+              47.7485
+            ],
+            [
+              -122.474,
+              47.7475
+            ],
+            [
+              -122.476,
+              47.7475
+            ],
+            [
+              -122.476,
+              47.7485
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_hydrology",
+        "bedrock_formation": "Fraser_glaciation_Vashon_till_and_advance_outwash",
+        "soil_profile": "Alderwood_gravelly_sandy_loam_with_dense_subsurface_pan",
+        "hydrology": "marine_shoreline_facing_Puget_Sound_main_basin_and_Edmonds_eastern_shore",
+        "slope_stability": "moderately_steep_bluff_descent_to_intertidal_pebble_beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4758,
+              47.7484
+            ],
+            [
+              -122.4745,
+              47.7484
+            ],
+            [
+              -122.4745,
+              47.7476
+            ],
+            [
+              -122.4758,
+              47.7476
+            ],
+            [
+              -122.4758,
+              47.7484
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "biota_ecology",
+        "canopy_composition": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western Red Cedar)",
+          "Arbutus menziesii (Pacific Madrone)",
+          "Acer macrophyllum (Bigleaf Maple)"
+        ],
+        "understory": [
+          "Polystichum munitum (Western Sword Fern)",
+          "Gaultheria shallon (Salal)",
+          "Holodiscus discolor (Oceanspray)"
+        ]
+      }
+    }
+  ]
+}

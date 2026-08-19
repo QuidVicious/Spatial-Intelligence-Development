@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_151457",
+  "resolved_address": "38 Queen St, Edinburgh EH2 1JX, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 55.95482393877118,
+    "longitude": -3.2014899781364448,
+    "altitude_agl": 111.62989517874908,
+    "heading": 350.91718859865153,
+    "pitch": -5.638334352645612,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

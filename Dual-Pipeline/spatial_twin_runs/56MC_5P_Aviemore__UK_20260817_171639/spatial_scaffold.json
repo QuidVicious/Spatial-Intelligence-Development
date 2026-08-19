@@ -1,0 +1,243 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.778194,
+          57.1829,
+          377.4
+        ]
+      },
+      "properties": {
+        "stratum": "geodetic_registration",
+        "resolved_address": "56MC+5P Aviemore, UK",
+        "elevation_agl_m": 377.4,
+        "camera_heading_deg": 161.8,
+        "camera_pitch_deg": -22.7,
+        "field_of_view_deg": 32.8,
+        "tile_mode": "3D_TILES",
+        "temporal_anchor": "Golden Hour"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7815,
+              57.1812
+            ],
+            [
+              -3.775,
+              57.1812
+            ],
+            [
+              -3.775,
+              57.1845
+            ],
+            [
+              -3.7815,
+              57.1845
+            ],
+            [
+              -3.7815,
+              57.1812
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Grampian Group Metasedimentary Complex (Neoproterozoic Psammite and Semipelite) intruded by Cairngorm Granite plutons",
+        "superficial_deposits": "Glacial till, hummocky moraine deposits, and alluvial gravel terraces derived from Spey Valley glaciation",
+        "soil_profile": "Humic podzols and peaty gleys over permeable fluvioglacial coarse sand and gravel, exhibiting natural drainage towards the Strathspey floodplain",
+        "hydrogeology": "Unconfined shallow upland aquifers feeding localized peat drainage runs and burn tributaries"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.7784,
+                57.1828
+              ],
+              [
+                -3.778,
+                57.1825
+              ],
+              [
+                -3.7777,
+                57.1827
+              ],
+              [
+                -3.7781,
+                57.183
+              ],
+              [
+                -3.7784,
+                57.1828
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.7792,
+                57.1829
+              ],
+              [
+                -3.7788,
+                57.1826
+              ],
+              [
+                -3.7785,
+                57.1828
+              ],
+              [
+                -3.7789,
+                57.1831
+              ],
+              [
+                -3.7792,
+                57.1829
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.7772,
+                57.1825
+              ],
+              [
+                -3.7766,
+                57.1823
+              ],
+              [
+                -3.7764,
+                57.1825
+              ],
+              [
+                -3.777,
+                57.1827
+              ],
+              [
+                -3.7772,
+                57.1825
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Highland Agricultural Farmstead and Modern Livestock Barn Complex",
+        "structures": [
+          {
+            "id": "central_livestock_barn",
+            "type": "agricultural_steading",
+            "storeys": 1,
+            "height_m": 7.8,
+            "facade_material": "Corrugated fiber cement profile roofing with translucent skylight panels, treated timber cladding, and concrete dwarf wall foundations",
+            "structural_form": "Steel portal-frame clear-span barn with low-pitch dual-pitched roof and flanking lean-to extensions"
+          },
+          {
+            "id": "traditional_stone_steading_dwelling",
+            "type": "longhouse_residence_ancillary",
+            "storeys": 2,
+            "height_m": 7.2,
+            "facade_material": "Random-rubble Cairngorm granite and metamorphic fieldstone masonry, lime mortar pointing, Scottish slate gabled roof with timber rafters",
+            "structural_form": "Linear traditional Highland vernacular farm cottage and attached byre"
+          },
+          {
+            "id": "eastern_equipment_shed",
+            "type": "ancillary_outbuilding",
+            "storeys": 1,
+            "height_m": 4.5,
+            "facade_material": "Oxidized corrugated iron/metal sheeting over timber post-and-beam frame",
+            "structural_form": "Monopitch open/semi-enclosed agricultural equipment shed"
+          }
+        ],
+        "civil_infrastructure": {
+          "access_roads": "Compacted crushed granite aggregate and exposed glacial gravel farm tracks with grass center-strips and soft verge runoffs",
+          "yard_pavement": "Packed earth, gravel wash, and weathered concrete apron pads"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7815,
+              57.1812
+            ],
+            [
+              -3.775,
+              57.1812
+            ],
+            [
+              -3.775,
+              57.1845
+            ],
+            [
+              -3.7815,
+              57.1845
+            ],
+            [
+              -3.7815,
+              57.1812
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_envelope",
+        "biome": "Caledonian Highland Moorland and Native Woodland Transition",
+        "canopy_composition": [
+          "Pinus sylvestris (Scots pine)",
+          "Betula pendula (Silver birch)",
+          "Betula pubescens (Downy birch)",
+          "Sorbus aucuparia (Rowan)"
+        ],
+        "understory_vegetation": [
+          "Calluna vulgaris (Heather)",
+          "Erica cinerea (Bell heather)",
+          "Pteridium aquilinum (Bracken fern)",
+          "Agrostis capillaris (Common bent grass)"
+        ],
+        "phenology": "Late summer to early autumn transitional palette with deep conifer greens, bronze bracken patches, and golden-green meadow turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.778194,
+          57.1829,
+          377.4
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_physics",
+        "solar_azimuth_deg": 265.4,
+        "solar_elevation_deg": 12.8,
+        "color_temperature_k": 3300,
+        "ambient_light": "Warm low-angle amber sunlight casting long raking cast shadows eastward across the rolling terrain, with soft ultramarine-tinted skylight filling shadowed facets",
+        "atmospheric_scattering": "Highland Rayleigh scattering with slight orographic mist and golden particulate suspension over the Spey basin"
+      }
+    }
+  ]
+}

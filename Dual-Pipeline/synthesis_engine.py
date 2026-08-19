@@ -107,13 +107,13 @@ def synthesize_twin_image(
         compound_details = ""
 
     if spatial_mode == "2D_EXTRUSION":
-        temp = 0.4
-        top_p = 0.4
+        temp = 0.25
+        top_p = 0.75
         wrapper = (
             f"DIRECTIVE: VOLUMETRIC EXTRUSION FROM 2D SATELLITE FOOTPRINT.\n"
             f"MANDATORY MASSING: Erect primary structure to exactly {massing['primary_storeys']} full storeys "
             f"({massing['primary_height_m']}m vertical ridge elevation).{compound_details} "
-            f"Do not render as a low flat 1-storey cottage. Eaves and roof ridges must rise distinctly above terrain. "
+            f"Do not render as a low flat 1-storey building. Eaves and roof ridges must rise distinctly above terrain. "
             f"Render elevated roof pitches and pronounced physical cast shadows on the ground plane, strictly matching camera pitch ({pitch:.1f}°) and heading ({heading:.1f}°). "
             f"Apply authentic surface materials across vertical facades. DO NOT paint textures flat on ground. Plumb all vertical walls perpendicular to terrain.\n\n"
             f"SCENE DESCRIPTION:\n{prompt}"
@@ -121,7 +121,7 @@ def synthesize_twin_image(
     else:
         # Mode A: 3D Rectification with Hybrid Massing Safeguard
         temp = 0.2
-        top_p = 0.2
+        top_p = 0.35
         wrapper = (
             f"DIRECTIVE: UNIVERSAL GEOMETRIC RECTIFICATION & FACADE MASSING.\n"
             f"Treat the attached image as a true 3D geometric wireframe. Plumb all vertical walls to gravity vertical, "

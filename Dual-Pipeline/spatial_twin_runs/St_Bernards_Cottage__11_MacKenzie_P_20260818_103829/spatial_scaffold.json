@@ -1,0 +1,94 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211342,
+          55.955639
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_geology": "Inverclyde Group and Strathclyde Group (Carboniferous Sandstone, Siltstone, and Mudstone sequence)",
+        "fluvial_geomorphology": "Incised river gorge carved by the Water of Leith through glacial till and sedimentary strata",
+        "soil_profile": "Alluvial silts, dark humic loam over glacial boulder clay and rocky riverbank debris",
+        "hydrology": "Water of Leith riverbed at approximately 12\u201315m above sea level, subject to natural urban-rural catchment runoff"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.21155,
+              55.95545
+            ],
+            [
+              -3.21115,
+              55.95545
+            ],
+            [
+              -3.21115,
+              55.9558
+            ],
+            [
+              -3.21155,
+              55.9558
+            ],
+            [
+              -3.21155,
+              55.95545
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "name": "St Bernard's Well Pumphouse (Neoclassical Rotunda / Temple)",
+            "storeys": 1,
+            "height_m": 8.5,
+            "architectural_style": "Neoclassical Doric circular temple (Alexander Nasmyth design, 1789)",
+            "materials": {
+              "facade": "Craigleith ashlar blonde sandstone",
+              "columns": "10 fluted Doric sandstone columns",
+              "dome": "Lead-covered shallow dome surmounted by a pineapple finial",
+              "interior_statue": "Marble statue of Hygieia (Goddess of Health)"
+            }
+          },
+          {
+            "name": "Retaining Walls & River Embankment Footpath",
+            "storeys": 0,
+            "height_m": 2.2,
+            "materials": {
+              "walls": "Coursed rubble sandstone with dressed coping stones",
+              "pavement": "Compacted gravel and stone slab walkways along the Water of Leith Walkway"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211342,
+          55.955639
+        ]
+      },
+      "properties": {
+        "stratum": "temporal_and_ecological",
+        "temporal_anchor": "Present Day",
+        "vegetation": "Mature canopy of weeping willows, sycamores, beech, and alder flanking the river gorge; mosses, liverworts, and ferns lining wet sandstone river walls",
+        "atmosphere": "Cool Scottish valley microclimate, morning river mist clearing, filtered northern daylight (5200K) casting soft raking beams through dense overhanging deciduous foliage"
+      }
+    }
+  ]
+}

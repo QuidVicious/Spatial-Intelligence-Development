@@ -1,0 +1,171 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.497046,
+          47.796494,
+          24.7
+        ]
+      },
+      "properties": {
+        "layer": "sensor_telemetry",
+        "camera": {
+          "heading_deg": 9.0,
+          "pitch_deg": -28.7,
+          "fov_deg": 32.8,
+          "altitude_agl_m": 24.7,
+          "tile_mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4976,
+              47.796
+            ],
+            [
+              -122.4965,
+              47.796
+            ],
+            [
+              -122.4965,
+              47.7972
+            ],
+            [
+              -122.4976,
+              47.7972
+            ],
+            [
+              -122.4976,
+              47.796
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "subterranean_and_geology",
+        "bedrock_formation": "Puget Sound Glacial Drift / Vashon Till",
+        "topsoil": "Gravelly sandy loam, glacial outwash alluvium",
+        "hydrology": "Appletree Cove estuarine watershed, Puget Sound littoral edge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.4975,
+                47.7964
+              ],
+              [
+                -122.4971,
+                47.7964
+              ],
+              [
+                -122.4971,
+                47.7967
+              ],
+              [
+                -122.4975,
+                47.7967
+              ],
+              [
+                -122.4975,
+                47.7964
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4968,
+                47.7968
+              ],
+              [
+                -122.4964,
+                47.7968
+              ],
+              [
+                -122.4964,
+                47.7971
+              ],
+              [
+                -122.4968,
+                47.7971
+              ],
+              [
+                -122.4968,
+                47.7968
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "built_environment",
+        "structures": [
+          {
+            "name": "Commercial Strip & Port Waterfront Retail",
+            "storeys": 2,
+            "height_m": 7.8,
+            "facade_material": "Horizontal cedar clapboard, painted stucco, plate glass display glazing",
+            "roof_type": "Low-slope flat roof with parapets and asphalt membrane"
+          },
+          {
+            "name": "Port of Kingston Marina Support Building / Waterfront Hall",
+            "storeys": 1,
+            "height_m": 5.4,
+            "facade_material": "Corrugated steel panel siding, board-and-batten timber accents",
+            "roof_type": "Gabled standing-seam sheet metal"
+          }
+        ],
+        "infrastructure": {
+          "roadway": "NE State Route 104 / Central Avenue arterial intersection",
+          "street_pavement": "Dark aggregate asphaltic concrete, thermal-plastic pedestrian striping",
+          "park_features": "Mike Wallace Park landscaped berms, turfgrass lawn, paved harbor parking lots"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -122.4973,
+            47.7965
+          ],
+          [
+            -122.497,
+            47.7963
+          ],
+          [
+            -122.4966,
+            47.7967
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "ecology_and_canopy",
+        "species": [
+          "Acer macrophyllum (Bigleaf Maple)",
+          "Pseudotsuga menziesii (Douglas Fir)",
+          "Thuja plicata (Western Red Cedar)"
+        ],
+        "canopy_height_m": 16.5
+      }
+    }
+  ]
+}

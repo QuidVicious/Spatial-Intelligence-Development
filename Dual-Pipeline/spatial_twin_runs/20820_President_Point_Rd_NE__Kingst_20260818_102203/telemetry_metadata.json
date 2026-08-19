@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_102203",
+  "resolved_address": "20820 President Point Rd NE, Kingston, WA 98346, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.74840507110181,
+    "longitude": -122.47227586259898,
+    "altitude_agl": 29.85983422588961,
+    "heading": 255.8621856002474,
+    "pitch": -12.717879237053605,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

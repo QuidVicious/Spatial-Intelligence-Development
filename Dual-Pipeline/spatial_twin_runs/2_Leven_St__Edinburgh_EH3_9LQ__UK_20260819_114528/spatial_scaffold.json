@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 161.9,
+          "pitch_deg": -29.5,
+          "heading_deg": 223.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Gullane Formation Sandstone / Lower Carboniferous Sedimentary",
+        "mineralogy": "Fine to medium-grained quartzose sandstone, siltstone, and mudstone",
+        "drainage": "Urban engineered storm runoff into the Water of Leith drainage basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "High-density asphalt roadway with painted white hatchings, yellow box junctions, and Caithness flagstone / concrete aggregate pedestrian sidewalks",
+        "wear_characteristics": "Pavement oil staining, aggregate wear along traffic tracks, weathered granite kerbstones",
+        "micro_grading": "Gradual southern descent along Leven Street towards Bruntsfield Place"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore maple)",
+          "Fraxinus excelsior (European ash)"
+        ],
+        "understory_flora": [
+          "Hedera helix (Common ivy)",
+          "Domestic ornamental garden shrubs"
+        ],
+        "groundcover": "Rear private courtyard grass turf and perimeter climbing vegetation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian / Georgian Scottish Tenement and Commercial Row",
+        "structures": [
+          {
+            "name": "King's Theatre / Leven Street Commercial Block",
+            "storeys": 3,
+            "height_m": 15.5,
+            "roof_geometry": "Mansard zinc/lead roof with repetitive dormer windows and flat rear stage house fly-tower",
+            "facade_material": "Blonde polished ashlar sandstone with painted commercial shopfront lintels and pilasters",
+            "weathering_patina": "Historical industrial coal-smoke soot deposits concentrated in cornice reveals and window jambs"
+          },
+          {
+            "name": "Corner Tenement (Leven St & Valleyfield St)",
+            "storeys": 4,
+            "height_m": 16.2,
+            "roof_geometry": "Double-pitched Scottish slate roof with curved corner hip, lead ridge rolls, and prominent masonry chimney stacks with clay pots",
+            "facade_material": "Stonework of coursed blonde sandstone ashlar and squared rubble side walls",
+            "weathering_patina": "Dark carbon patina in recessed reveals, lime efflorescence around stone cornices, biological lichen patches"
+          },
+          {
+            "name": "Western Leven Street Tenement Row",
+            "storeys": 3,
+            "height_m": 12.0,
+            "roof_geometry": "Pitched Scottish slate with gabled end walls and dormers",
+            "facade_material": "Stugged and droved blonde sandstone",
+            "weathering_patina": "Rain-washed pale stone surfaces contrasting with heavy historical soot crusting under eaves"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern Lothian double-decker bus",
+          "Stationary and moving modern saloon and hatchback passenger cars"
+        ],
+        "street_furniture": [
+          "Cast-iron bollards",
+          "Steel streetlamp columns",
+          "Pedestrian guardrails",
+          "Bus stop shelter"
+        ],
+        "pedestrian_profiles": [
+          "Urban pedestrians in casual modern attire on sidewalks"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.203106,
+          55.942009
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.4,
+        "solar_azimuth_deg": 195.2,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Sun with crisp directional shadows casting northeast across Leven Street"
+      }
+    }
+  ]
+}

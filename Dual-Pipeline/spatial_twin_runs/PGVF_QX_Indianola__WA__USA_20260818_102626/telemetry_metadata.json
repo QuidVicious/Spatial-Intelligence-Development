@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_102626",
+  "resolved_address": "PGVF+QX Indianola, WA, USA",
+  "spatial_mode": "2D_EXTRUSION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.74449153295154,
+    "longitude": -122.47501348359768,
+    "altitude_agl": 1.5,
+    "heading": 334.5561268698846,
+    "pitch": 10.408564608240624,
+    "fov": 32.79971690006522,
+    "tile_mode": "2D_SATELLITE"
+  }
+}

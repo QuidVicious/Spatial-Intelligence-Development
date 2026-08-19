@@ -1,0 +1,189 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.042475,
+          56.937461,
+          497.7
+        ]
+      },
+      "properties": {
+        "stratum": "camera_sensor",
+        "heading_deg": 311.0,
+        "pitch_deg": -3.7,
+        "fov_deg": 32.8,
+        "altitude_agl_m": 497.7,
+        "mode": "3D_TILES",
+        "rectification": "De-noise low-polygon terrain mesh; resolve baked shadow artifacts across Badenoch Strath; erect crisp multi-tier architectural farmstead massing at the valley floor; de-warp scree slopes and heather moorland flanks of the Monadhliath / Cairngorms transition."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.055,
+              56.93
+            ],
+            [
+              -4.03,
+              56.93
+            ],
+            [
+              -4.03,
+              56.955
+            ],
+            [
+              -4.055,
+              56.955
+            ],
+            [
+              -4.055,
+              56.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock": "Grampian Group Neoproterozoic Dalradian metasediments, predominantly quartzites, semipelites, and micaceous psammites interspersed with Caledonian granitic intrusions",
+        "stratigraphy": "Glacial till and boulder clay mantle topped by deep periglacial scree on upper mountain slopes; glaciofluvial outwash sands, gravelly alluvial braids, and acidic ombrotrophic peat within the Spey valley bottom",
+        "soil_profile": "Peaty podzols and gleys in low drainage zones transitioning to alpine raw soils and skeletal leptosols across the upper fellfield",
+        "hydrology": "Catchment drainage funneling toward the River Spey floodplain; surface cut by peat runnels, bog hollows, and seasonal snowmelt gullies"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.049,
+              56.938
+            ],
+            [
+              -4.04,
+              56.938
+            ],
+            [
+              -4.04,
+              56.946
+            ],
+            [
+              -4.049,
+              56.946
+            ],
+            [
+              -4.049,
+              56.938
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Highland agricultural steadings, steading clusters, and rural estate ancillary outbuildings",
+        "structures": [
+          {
+            "id": "primary_farmstead_house",
+            "type": "residential_farmhouse",
+            "storeys": 2,
+            "height_m": 7.8,
+            "facade": "Roughcast lime-harled rubblestone with exposed granite ashlar dressings",
+            "roof": "Steeply pitched Ballachulish grey-blue slate with stone gable copings and dual chimney stacks"
+          },
+          {
+            "id": "attached_byre_barn",
+            "type": "agricultural_steading",
+            "storeys": 1,
+            "height_m": 4.5,
+            "facade": "Dry-stone and lime-mortared field granite rubble",
+            "roof": "Weathered corrugated tin and dark bitumen sheeting over heavy timber rafters"
+          },
+          {
+            "id": "ancillary_timber_shed",
+            "type": "machinery_store",
+            "storeys": 1,
+            "height_m": 3.8,
+            "facade": "Treated vertical larch boarding weathered to silver-grey",
+            "roof": "Galvanized profile metal roofing"
+          }
+        ],
+        "civil_infrastructure": {
+          "tracks": "Crushed granite aggregate access track with packed soil margins and drainage ditches",
+          "boundaries": "Drystone dykes (consumption walls) and post-and-wire deer fencing"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.06,
+              56.93
+            ],
+            [
+              -4.02,
+              56.93
+            ],
+            [
+              -4.02,
+              56.96
+            ],
+            [
+              -4.06,
+              56.96
+            ],
+            [
+              -4.06,
+              56.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_vegetation",
+        "biome": "Scottish Highland Moorland and Montane Scrub Transition",
+        "flora": [
+          "Calluna vulgaris (ling heather)",
+          "Erica cinerea (bell heather)",
+          "Vaccinium myrtillus (bilberry/blaeberry)",
+          "Eriophorum vaginatum (cotton grass)",
+          "Juncus effusus (soft rush) in waterlogged marsh flats",
+          "Scots pine (Pinus sylvestris) remnants and shelterbelt lodgepole pine/sitka spruce stands",
+          "Dwarf willow and lichen-encrusted quartzite fellfields on high ridges"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.042475,
+          56.937461
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_optics",
+        "elevation_angle_deg": -3.7,
+        "fov_deg": 32.8,
+        "solar_azimuth_deg": 195.0,
+        "solar_elevation_deg": 38.0,
+        "color_temperature_k": 5400,
+        "lighting_conditions": "Diffused high-latitude Scottish daylight with clear intervals; crisp mountain atmosphere; soft natural shadow casting across the valley floor devoid of digital meshing artifacts",
+        "optical_artifacts": "Natural telephoto field compression; crisp rendering of heather mosaic and distant montane ridge contours"
+      }
+    }
+  ]
+}

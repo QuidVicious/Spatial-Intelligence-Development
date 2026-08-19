@@ -1,0 +1,177 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.476225,
+          47.74654,
+          44.7
+        ]
+      },
+      "properties": {
+        "stratum": "spatial_telemetry",
+        "address": "12825 NE Marine View Dr, Kingston, WA 98346, USA",
+        "camera": {
+          "heading_deg": 23.8,
+          "pitch_deg": -27.8,
+          "fov_deg": 32.8,
+          "altitude_agl_m": 44.7,
+          "mode": "3D_TILES"
+        },
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4766,
+              47.7463
+            ],
+            [
+              -122.4759,
+              47.7463
+            ],
+            [
+              -122.4759,
+              47.7468
+            ],
+            [
+              -122.4766,
+              47.7468
+            ],
+            [
+              -122.4766,
+              47.7463
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "formation": "Vashon Drift & Lawton Clay (Pleistocene Glacial Sediments)",
+        "topography": "Bluff crest overlooking Puget Sound; steep, highly erodible marine cliffside with sand and gravel colluvium",
+        "soil_profile": "Alderwood gravelly sandy loam transitioning to exposed glacial till on coastal scarp",
+        "drainage": "Rapid radial surface runoff and perched groundwater seepage along bluff stratigraphy"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.47645,
+                47.74652
+              ],
+              [
+                -122.47625,
+                47.74662
+              ],
+              [
+                -122.47612,
+                47.7465
+              ],
+              [
+                -122.47632,
+                47.7464
+              ],
+              [
+                -122.47645,
+                47.74652
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4766,
+                47.7467
+              ],
+              [
+                -122.47645,
+                47.74675
+              ],
+              [
+                -122.4764,
+                47.74668
+              ],
+              [
+                -122.47655,
+                47.74663
+              ],
+              [
+                -122.4766,
+                47.7467
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "role": "primary_residence",
+            "style": "Pacific Northwest Craftsman / Coastal Modernist",
+            "storeys": 2,
+            "height_m": 8.8,
+            "footprint_geometry": "Articulated multi-gable lodge with sprawling cantilevered sea-facing cedar deck and extensive glazing",
+            "facade": "Western red cedar lap siding, board-and-batten accents, fieldstone chimney, white-framed multi-pane view windows",
+            "roof": "Multi-pitched slate-gray architectural composite shingles with zinc-coated drip flashings"
+          },
+          {
+            "role": "outbuilding_garage",
+            "style": "Detached accessory structure / workshop",
+            "storeys": 1,
+            "height_m": 4.5,
+            "facade": "Matching cedar horizontal siding with light trim",
+            "roof": "Low-pitch gable architectural shingles"
+          }
+        ],
+        "civil_infrastructure": {
+          "driveway": "Crushed limestone and exposed-aggregate concrete walkways",
+          "landscaping": "Manicured terraced lawn, drought-tolerant coastal ornamental borders, timber retaining ties"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -122.47595,
+            47.74655
+          ],
+          [
+            -122.4761,
+            47.74665
+          ],
+          [
+            -122.4762,
+            47.7467
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "dominant_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Arbutus menziesii (Pacific madrone)",
+          "Polystichum munitum (Western sword fern)"
+        ],
+        "coastal_ecotone": "Salish Sea coastal bluff evergreen forest and littoral edge"
+      }
+    }
+  ]
+}

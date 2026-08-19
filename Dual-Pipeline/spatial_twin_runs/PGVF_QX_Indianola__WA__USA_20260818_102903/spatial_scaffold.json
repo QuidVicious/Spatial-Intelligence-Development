@@ -1,0 +1,121 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.475013,
+          47.744492
+        ]
+      },
+      "properties": {
+        "feature_type": "camera_anchor",
+        "description": "Marine feeder bluff observation point looking north-northwest toward Indianola shoreline over Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.482,
+              47.742
+            ],
+            [
+              -122.468,
+              47.746
+            ],
+            [
+              -122.468,
+              47.748
+            ],
+            [
+              -122.482,
+              47.744
+            ],
+            [
+              -122.482,
+              47.742
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_and_geomorphology",
+        "geology": {
+          "strata": "Pleistocene Vashon Glacial Drift, unconsolidated advance outwash sand and gravel over dense Lawton clay/silt",
+          "landform": "Active marine feeder bluff escarpment, 20-30 meters vertical relief, subject to subaerial erosion and shallow colluvial ravelling",
+          "intertidal_fringe": "Cobble, pebble, and coarse sand littoral depositional shelf with drift logs along the high-tide wrack line"
+        },
+        "botany": {
+          "canopy": "Pseudotsuga menziesii (Douglas-fir), Thuja plicata (Western Redcedar), Acer macrophyllum (Bigleaf Maple), Alnus rubra (Red Alder)",
+          "understory": "Polystichum munitum (Sword fern), Gaultheria shallon (Salal), Rubus spectabilis (Salmonberry), invasive Hedera helix patches"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4765,
+              47.7452
+            ],
+            [
+              -122.4735,
+              47.7462
+            ],
+            [
+              -122.4733,
+              47.7468
+            ],
+            [
+              -122.4763,
+              47.7458
+            ],
+            [
+              -122.4765,
+              47.7452
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Pacific Northwest Bluff-Edge Coastal Residential",
+        "structures": [
+          {
+            "id": "residence_central_bluff",
+            "name": "Bluff-crest custom timber residence",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_type": "Asymmetric low-pitch gabled and shed rooflines, slate-gray composite asphalt shingles",
+            "facade": "Natural weathered western red cedar horizontal bevel siding, floor-to-ceiling panoramic glass facing sound, broad cantilevered redwood view deck"
+          },
+          {
+            "id": "residence_east_bluff",
+            "name": "Adjacent coastal contemporary home",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_type": "Cross-gabled roof, metal standing seam dark charcoal",
+            "facade": "Painted hardie-plank board and batten, expansive seaward glazing"
+          },
+          {
+            "id": "outbuilding_shed",
+            "name": "Blufftop detached garden studio / shed",
+            "storeys": 1,
+            "height_m": 3.4,
+            "roof_type": "Monoslope shed roof",
+            "facade": "Cedar shingle cladding"
+          }
+        ]
+      }
+    }
+  ]
+}

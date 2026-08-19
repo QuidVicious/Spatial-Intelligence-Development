@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_173110",
+  "resolved_address": "PGVF+W9 Indianola, WA, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 47.744850395268514,
+    "longitude": -122.47654700431129,
+    "altitude_agl": 4.830819101984523,
+    "heading": 22.96989511159611,
+    "pitch": -0.9242945833338431,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

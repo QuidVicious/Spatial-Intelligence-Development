@@ -1,0 +1,137 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193052,
+          55.949649,
+          190.2
+        ]
+      },
+      "properties": {
+        "stratum": "spatial_telemetry",
+        "address": "449 Lawnmarket, Edinburgh EH1 2NT, UK",
+        "camera_heading": 297.5,
+        "camera_pitch": -50.3,
+        "camera_fov": 32.8,
+        "mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1936,
+              55.9493
+            ],
+            [
+              -3.1925,
+              55.9493
+            ],
+            [
+              -3.1925,
+              55.95
+            ],
+            [
+              -3.1936,
+              55.95
+            ],
+            [
+              -3.1936,
+              55.9493
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Crag and Tail volcanic plug (olivine basalt) overlain by Carboniferous sedimentary sandstones and shales of the Ballagan Formation",
+        "topsoil": "Urban modified anthrosol over compacted glacial till and dense silty clays",
+        "drainage": "Steep north-to-south runoff draining down the Royal Mile spine toward the Cowgate gorge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.19345,
+              55.94945
+            ],
+            [
+              -3.19265,
+              55.94945
+            ],
+            [
+              -3.19265,
+              55.9499
+            ],
+            [
+              -3.19345,
+              55.9499
+            ],
+            [
+              -3.19345,
+              55.94945
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "lawnmarket_tenement_north",
+            "type": "historic_tenement_and_civic",
+            "storeys": 6,
+            "height_m": 22.4,
+            "facade_material": "Craigleith ashlar and dressed blonde/buff Carboniferous sandstone with soot patina",
+            "roof_material": "Scotch slate with lead flashing, crow-stepped gables, and heavy stone chimney stacks"
+          },
+          {
+            "id": "brodies_close_flank",
+            "type": "residential_tenement",
+            "storeys": 5,
+            "height_m": 18.2,
+            "facade_material": "Harled and coursed rubble sandstone masonry",
+            "roof_material": "Pitched Scottish slate with zinc ridges"
+          },
+          {
+            "id": "masonic_hall_adjacent",
+            "type": "civic_institutional",
+            "storeys": 4,
+            "height_m": 16.0,
+            "facade_material": "Fine-tooled Scottish blonde sandstone with decorative corbelling and oriel window projections",
+            "roof_material": "Slate mansard with glazed skylights and lead roll seams"
+          }
+        ],
+        "paving_and_ground": "Granite sett paving with smooth Caithness flagstone pedestrian sidewalks and cut-stone kerbs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193052,
+          55.949649
+        ]
+      },
+      "properties": {
+        "stratum": "sensory_atmosphere",
+        "solar_illumination": "Crisp Scottish afternoon light piercing through high cloud cover, casting sharp diagonal shadows across the Royal Mile pavement",
+        "acoustic_texture": "Low resonant rumble of vehicle traffic over granite setts, footsteps echoing between high canyon-like tenement walls, wind shearing off the Castlehill ridge",
+        "olfactory_notes": "Damp stone, aged wood, faint chimney peat soot, cold North Sea maritime air"
+      }
+    }
+  ]
+}

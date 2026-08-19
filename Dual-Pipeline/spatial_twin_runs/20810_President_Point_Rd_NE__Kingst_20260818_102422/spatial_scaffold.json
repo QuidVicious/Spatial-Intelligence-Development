@@ -1,0 +1,152 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474473,
+          47.748187
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "geology": {
+          "formation": "Vashon Glacial Till and Recessional Outwash",
+          "bedrock_depth_m": 45.0,
+          "topsoil_type": "Alderwood gravelly sandy loam, heavily compacted glacial drift with dense organic duff",
+          "hydrology": "Perched littoral groundwater draining eastward toward Puget Sound shoreline bluff"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4747,
+              47.7483
+            ],
+            [
+              -122.47425,
+              47.7483
+            ],
+            [
+              -122.47425,
+              47.74805
+            ],
+            [
+              -122.4747,
+              47.74805
+            ],
+            [
+              -122.4747,
+              47.7483
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_residence",
+            "type": "Pacific Northwest Modern / Timber Frame Waterfront Residence",
+            "storeys": 2,
+            "height_m": 8.2,
+            "roof_profile": "Asymmetrical shed-and-clerestory standing seam metal roof",
+            "cladding": "Horizontal natural western red cedar siding, charcoal standing-seam zinc panels, and floor-to-ceiling double-glazed aluminium fenestration facing Puget Sound"
+          },
+          {
+            "id": "detached_garage_outbuilding",
+            "type": "Detached Workshop / Garage",
+            "storeys": 1,
+            "height_m": 3.8,
+            "roof_profile": "Single-pitch metal shed roof",
+            "cladding": "Weathered board-and-batten cedar siding with concrete apron slab"
+          }
+        ],
+        "infrastructure": {
+          "driveway": "Packed gravel and crushed basalt aggregate access lane leading from President Point Road",
+          "decking": "Cantilevered ipe wood viewing deck along the eastern maritime-facing elevation"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4748,
+              47.7484
+            ],
+            [
+              -122.4741,
+              47.7484
+            ],
+            [
+              -122.4741,
+              47.7479
+            ],
+            [
+              -122.4748,
+              47.7479
+            ],
+            [
+              -122.4748,
+              47.7484
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "flora_inventory": [
+          {
+            "species": "Pseudotsuga menziesii",
+            "common_name": "Douglas fir",
+            "canopy_height_m": 38.0
+          },
+          {
+            "species": "Thuja plicata",
+            "common_name": "Western redcedar",
+            "canopy_height_m": 32.0
+          },
+          {
+            "species": "Acer macrophyllum",
+            "common_name": "Bigleaf maple",
+            "canopy_height_m": 22.0
+          },
+          {
+            "species": "Polystichum munitum",
+            "common_name": "Western sword fern",
+            "understory_density": "Dense understory carpet"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474473,
+          47.748187
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_and_temporal",
+        "temporal_anchor": "Present Day",
+        "solar_elevation_deg": 41.5,
+        "solar_azimuth_deg": 195.0,
+        "color_temperature_k": 5400,
+        "atmospheric_condition": "Soft coastal maritime light with diffused cirrus, crisp ocean-cleared air, damp shaded forest floor"
+      }
+    }
+  ]
+}

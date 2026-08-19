@@ -1,0 +1,201 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.329717,
+          36.306506,
+          503.7
+        ]
+      },
+      "properties": {
+        "stratum": "geodetic_registration",
+        "address": "701 Hiwassee Hill Dr SE, Johnson City, TN 37601, USA",
+        "camera": {
+          "heading_deg": 150.6,
+          "pitch_deg": -16.0,
+          "fov_deg": 32.8,
+          "mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.3301,
+              36.3062
+            ],
+            [
+              -82.3293,
+              36.3062
+            ],
+            [
+              -82.3293,
+              36.3068
+            ],
+            [
+              -82.3301,
+              36.3068
+            ],
+            [
+              -82.3301,
+              36.3062
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_and_geology",
+        "bedrock_formation": "Knox Group dolomite and limestone (Valley and Ridge province)",
+        "karst_character": "Residual cherty clay overburden, moderate subsurface solution weathering",
+        "soil_profile": "Dunmore-Urban land complex, deep well-drained silty clay loam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -82.3298,
+                36.3065
+              ],
+              [
+                -82.3295,
+                36.3065
+              ],
+              [
+                -82.3295,
+                36.3067
+              ],
+              [
+                -82.3298,
+                36.3067
+              ],
+              [
+                -82.3298,
+                36.3065
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -82.3294,
+                36.3064
+              ],
+              [
+                -82.3291,
+                36.3064
+              ],
+              [
+                -82.3291,
+                36.3066
+              ],
+              [
+                -82.3294,
+                36.3066
+              ],
+              [
+                -82.3294,
+                36.3064
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_residence_701",
+            "type": "Single-family ranch/split-level dwelling",
+            "storeys": 1,
+            "height_m": 5.8,
+            "facade": "Running bond red-brown Appalachian clay brick veneer, painted wood horizontal siding",
+            "roof": "Gabled asphalt composite shingle roof with low-pitch ridgeline and brick chimney"
+          },
+          {
+            "id": "adjacent_residence_east",
+            "type": "Single-family detached suburban residence",
+            "storeys": 2,
+            "height_m": 7.4,
+            "facade": "Lap siding and structural masonry base",
+            "roof": "Hipped and gabled dark architectural shingle roof"
+          }
+        ],
+        "infrastructure": {
+          "pavement": "Curvilinear asphalt residential cul-de-sac and driveway access",
+          "curbs": "Uncurbed undulating grassy swale transitions"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.3305,
+              36.306
+            ],
+            [
+              -82.3285,
+              36.306
+            ],
+            [
+              -82.3285,
+              36.3075
+            ],
+            [
+              -82.3305,
+              36.3075
+            ],
+            [
+              -82.3305,
+              36.306
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "flora": [
+          "Quercus alba (White Oak)",
+          "Acer saccharum (Sugar Maple)",
+          "Pinus virginiana (Virginia Pine)",
+          "Managed fescue and bluegrass residential lawn turf"
+        ],
+        "topography": "Undulating Appalachian ridge-and-valley foot slopes, sloping downward toward the north-northwest"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.329717,
+          36.306506
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_illumination",
+        "lighting_regime": "Golden Hour",
+        "color_temperature_k": 3400,
+        "solar_azimuth_deg": 255.0,
+        "solar_elevation_deg": 14.0,
+        "shadow_character": "Elongated, warm-tinted directional shadows cast eastward across slopes"
+      }
+    }
+  ]
+}

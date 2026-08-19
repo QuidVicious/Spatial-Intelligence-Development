@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 116.3,
+          "pitch_deg": -12.0,
+          "heading_deg": 341.4,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Gullane Formation Sandstone and Siltstone / Edinburgh Volcanic Complex",
+        "mineralogy": "Fine-to-medium grained quartz arenite sandstone, carboniferous limestone, basaltic intrusives",
+        "drainage": "Engineered Victorian subterranean storm conduits discharging northward toward the Water of Leith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Coarsely textured asphalt carriageway with whinstone/granite sett margins, kerbs, and flagstone pedestrian pavements",
+        "wear_characteristics": "Polished kerb edges, bituminous patchwork over utility cuts, damp gutter lines",
+        "micro_grading": "Steep northward downward slope descending rapidly toward North West Circus Place and Stockbridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Tilia europaea (Common Lime)",
+          "Ulmus glabra (Wych Elm)"
+        ],
+        "understory_flora": [
+          "Hedera helix",
+          "Taxus baccata"
+        ],
+        "groundcover": "Ornamental private garden foliage and moss-encrusted boundary base plantings within Queen Street Gardens West"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Neoclassical Georgian ashlar terrace and tenement blocks",
+        "structures": [
+          {
+            "name": "Wemyss Place / Albyn Place Terraced Pavilion (West)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Mansard and pitched Scottish slate with stone chimney stacks",
+            "facade_material": "Craigleith and Hailes carboniferous sandstone ashlar with rusticated ground-floor arcade",
+            "weathering_patina": "Deep charcoal industrial coal soot crusting under cornices, lintel returns, and window reveals, rain-cleansed upper ashlar courses"
+          },
+          {
+            "name": "Wemyss Place Terraced Pavilion (East)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched slate with ashlar wallheads and dormers",
+            "facade_material": "Blonde Scottish sandstone ashlar, cast-iron basement lightwell railings",
+            "weathering_patina": "Pronounced soot staining on leeward ashlar joints, lime efflorescence, water run-off weathering"
+          },
+          {
+            "name": "Fettes Row / Stockbridge Valley Terraces (Distant Axial Vista)",
+            "storeys": 3,
+            "height_m": 12.0,
+            "roof_geometry": "Double-pitch grey slate roofs punctuated by massive masonry chimney stacks",
+            "facade_material": "Sandstone rubble and squared ashlar",
+            "weathering_patina": "Muted grey-brown atmospheric patina with chimney soot darkening"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern executive saloons and hatchbacks parallel-parked along the kerbside"
+        ],
+        "street_furniture": [
+          "Victorian-style cast-iron lamp posts",
+          "Black painted steel drop-railings lining deep sunken lightwells",
+          "Modern retrofitted street signage"
+        ],
+        "pedestrian_profiles": [
+          "Solitary urban commuters in contemporary outerwear navigating the steep pavement"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205772,
+          55.954227
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "solar_azimuth_deg": 195.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Temperate Edinburgh daylight with directional sunlight grazing northern facades and deep ambient skylight fill in the street canyon"
+      }
+    }
+  ]
+}

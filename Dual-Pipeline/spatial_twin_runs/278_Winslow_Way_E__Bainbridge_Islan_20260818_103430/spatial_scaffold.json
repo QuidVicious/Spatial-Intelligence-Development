@@ -1,0 +1,133 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_formation": "Vashon Stade Glacial Till and Recessional Outwash",
+        "topsoil_type": "Harstine gravelly sandy loam",
+        "water_table_depth_m": 4.2,
+        "seismic_zone": "Caspar-Seattle Fault Complex (Zone 4)",
+        "elevation_asl_m": 12.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.518117,
+          47.624855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "primary_thoroughfare": "Winslow Way East",
+        "road_width_m": 11.5,
+        "pavement_material": "Dense-graded asphaltic concrete with decorative brick crosswalk accents and poured aggregate concrete sidewalks",
+        "street_furniture": [
+          "Cast-iron pedestrian lampposts with hanging flower planters",
+          "Hardwood and steel public benches",
+          "Municipal bicycle racks",
+          "Bollards with low-voltage warm downlighting"
+        ],
+        "structures": [
+          {
+            "role": "commercial_retail_building_north_side",
+            "footprint": "elongated_strip_frontage",
+            "storeys": 2,
+            "height_m": 8.5,
+            "facade": "Western red cedar lap siding, board-and-batten accents, and clear anodized aluminum-framed ground-floor display vitrines",
+            "roof_profile": "Low-slope parapet with standing-seam zinc-coated metal awnings overhanging pedestrian walkways"
+          },
+          {
+            "role": "commercial_pavilion_south_side",
+            "footprint": "setback_linear_block",
+            "storeys": 1,
+            "height_m": 4.8,
+            "facade": "Timber post-and-beam frame with painted shiplap and expansive glazing",
+            "roof_profile": "Shingled gable roof with exposed rafter tails"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.5175,
+            47.6248
+          ],
+          [
+            -122.518117,
+            47.624855
+          ],
+          [
+            -122.5192,
+            47.62495
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "vegetation_and_ecology",
+        "canopy_composition": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Acer circinatum (Vine maple)",
+          "Betula papyrifera (Paper birch)",
+          "Prunus cerasifera (Flowering plum urban street plantings)"
+        ],
+        "ground_cover": "Cultivated perennial street-side bioswale gardens with sword ferns and ornamental grasses",
+        "foliage_density": "Moderate urban street canopy transitioning to dense maritime coniferous backdrop"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.5185,
+              47.6246
+            ],
+            [
+              -122.5178,
+              47.6246
+            ],
+            [
+              -122.5178,
+              47.6251
+            ],
+            [
+              -122.5185,
+              47.6251
+            ],
+            [
+              -122.5185,
+              47.6246
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "temporal_and_atmospheric",
+        "lighting_condition": "Late afternoon crisp maritime sunlight (4800K)",
+        "sun_azimuth_deg": 245.0,
+        "sun_elevation_deg": 22.0,
+        "visibility_km": 25.0,
+        "relative_humidity_percent": 68,
+        "microclimate": "Puget Sound maritime temperate"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.518117,
+          47.624855
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_104329",
+  "resolved_address": "1 Gloucester St, Edinburgh EH3 6TQ, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.95761873352407,
+    "longitude": -3.2080610307072486,
+    "altitude_agl": 106.83067696181588,
+    "heading": 322.34302767393655,
+    "pitch": -17.44028638456642,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

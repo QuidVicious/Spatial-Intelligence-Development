@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_154712",
+  "resolved_address": "5-19 Leven St, Edinburgh EH3 9LH, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "golden hour",
+  "telemetry": {
+    "latitude": 55.94155212999538,
+    "longitude": -3.203481143462539,
+    "altitude_agl": 133.37255619736163,
+    "heading": 174.42953334595748,
+    "pitch": 6.142332187228527,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

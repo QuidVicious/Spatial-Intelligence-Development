@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_101802",
+  "resolved_address": "Mike Wallace Park, NE State Hwy 104, Kingston, WA 98346, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.79654632351171,
+    "longitude": -122.4969758803361,
+    "altitude_agl": 22.27213274643018,
+    "heading": 8.992760219704701,
+    "pitch": -28.726380386171122,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

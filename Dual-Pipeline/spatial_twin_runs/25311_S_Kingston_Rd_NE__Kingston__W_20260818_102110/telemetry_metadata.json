@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_102110",
+  "resolved_address": "25311 S Kingston Rd NE, Kingston, WA 98346, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.79142376191102,
+    "longitude": -122.50704972206589,
+    "altitude_agl": 159.7852278126555,
+    "heading": 315.07724892333187,
+    "pitch": -50.91024163633991,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

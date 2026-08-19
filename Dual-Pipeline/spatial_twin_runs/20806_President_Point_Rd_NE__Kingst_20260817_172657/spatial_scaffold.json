@@ -1,0 +1,135 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.473904,
+          47.748003
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_formation": "Vashon Glacial Till over Esperance Sand (Pleistocene)",
+        "soil_profile": "Alderwood gravelly sandy loam, heavily compacted hardpan substratum with moderate drainage",
+        "topography": "Bluff-flanked marine coastal terrace rising westward from Puget Sound shoreline",
+        "hydrology": "Perched shallow groundwater table, coastal runoff swales draining eastward toward Admiralty Inlet"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4742,
+              47.7478
+            ],
+            [
+              -122.4736,
+              47.7478
+            ],
+            [
+              -122.4736,
+              47.7482
+            ],
+            [
+              -122.4742,
+              47.7482
+            ],
+            [
+              -122.4742,
+              47.7478
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "dominant_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Polystichum munitum (Western sword fern)",
+          "Rubus spectabilis (Salmonberry)"
+        ],
+        "canopy_density": "Dense coastal maritime temperate rainforest canopy fringing the clearing",
+        "understory": "Lush evergreen undergrowth, salal, and damp moss carpets along road shoulders"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.47412,
+              47.74805
+            ],
+            [
+              -122.47395,
+              47.74805
+            ],
+            [
+              -122.47395,
+              47.74815
+            ],
+            [
+              -122.47412,
+              47.74815
+            ],
+            [
+              -122.47412,
+              47.74805
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "infrastructure": "Private residential asphalt-and-concrete ribbon driveway branching from President Point Road",
+        "structures": [
+          {
+            "name": "Primary Coastal Residence",
+            "type": "residential",
+            "storeys": 2,
+            "height_m": 7.8,
+            "facade": "Horizontal cedar lap siding with dark slate accents, expansive low-e glazed windows, timber-framed eaves",
+            "roof": "Architectural standing-seam dark charcoal metal roof with low-pitch gables"
+          },
+          {
+            "name": "Detached Workshop / Garage",
+            "type": "outbuilding",
+            "storeys": 1,
+            "height_m": 4.2,
+            "facade": "Vertical cedar board-and-batten siding",
+            "roof": "Matching dark metal shed roof"
+          }
+        ],
+        "hardscape": "Paved aggregate driveway, exposed aggregate retaining curbs, crushed basalt gravel shoulders"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.473904,
+          47.748003
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_and_illumination",
+        "temporal_anchor": "Golden Hour",
+        "solar_azimuth_deg": 258.4,
+        "solar_elevation_deg": 12.1,
+        "color_temperature_k": 3300,
+        "lighting_quality": "Warm amber direct sunlight raking horizontally through towering conifer trunks, casting long, sharp linear shadows across the paved driveway; deep cyan skylight filling shadow pockets in the forest edge"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_104442",
+  "resolved_address": "449 Lawnmarket, Edinburgh EH1 2NT, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.949648183744436,
+    "longitude": -3.1930525534334224,
+    "altitude_agl": 190.16313513462327,
+    "heading": 297.48677348962394,
+    "pitch": -50.25592131688119,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

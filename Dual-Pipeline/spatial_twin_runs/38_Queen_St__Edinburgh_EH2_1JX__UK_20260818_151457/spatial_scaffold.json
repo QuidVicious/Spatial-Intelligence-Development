@@ -1,0 +1,119 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20149,
+          55.954824
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "resolved_address": "38 Queen St, Edinburgh EH2 1JX, UK",
+        "altitude_agl_m": 111.6,
+        "camera_heading_deg": 350.9,
+        "camera_pitch_deg": -5.6,
+        "fov_deg": 32.8,
+        "rendering_mode": "3D_TILES",
+        "temporal_anchor": "Golden Hour"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.20149,
+            55.954824
+          ],
+          [
+            -3.20235,
+            55.9598
+          ],
+          [
+            -3.2045,
+            55.968
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "topography_and_axis",
+        "corridor_name": "Frederick Street to St Stephen's Church axis",
+        "urban_plan": "James Craig's First New Town (1767)",
+        "gradient": "Steep north-falling glacial crag-and-tail slope descending ~35m toward the Water of Leith basin",
+        "terminal_vista": "St Stephen's Church (William Henry Playfair, 1827-1828) terminating the axis of St Vincent Street"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2025,
+              55.9545
+            ],
+            [
+              -3.2005,
+              55.9545
+            ],
+            [
+              -3.2005,
+              55.9595
+            ],
+            [
+              -3.2025,
+              55.9595
+            ],
+            [
+              -3.2025,
+              55.9545
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_style": "Scottish Neoclassical Georgian",
+        "masonry_fabric": "Craigleith and Hailes carboniferous sandstone ashlar, droved rustication on ground floors, coursed rubble to rear elevations",
+        "roofing": "Scotch blue-grey slate roofs with lead flashings, ashlar chimneys, cast-iron rainwater goods",
+        "fenestration": "Timber 12-pane (six-over-six) sash-and-case windows, cast-iron spearhead boundary railings and basement area lightwells",
+        "structures": [
+          {
+            "name": "Queen Street & North Frederick Street Georgian Tenement Terraces (Flanking)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "classification": "Terraced neoclassical tenements and townhouses"
+          },
+          {
+            "name": "St Stephen's Church (Terminal Focal Point)",
+            "storeys": 3,
+            "height_m": 49.0,
+            "classification": "Monumental Neoclassical parish church with square clock tower"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20149,
+          55.954824
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_and_geology",
+        "bedrock": "Early Carboniferous sedimentary strata (Gullane Formation: sandstones, siltstones, and mudstones) cut by volcanic intrusive quartz-dolerite sills",
+        "surficial_deposits": "Stiff glacial till (boulder clay) overlying scoured bedrock, dry well-drained topsoils in Queen Street Gardens",
+        "infrastructure": "18th-century subterranean vaulted cellarage, stone-lined barrel culverts, modern utilities embedded below whinstone setts"
+      }
+    }
+  ]
+}

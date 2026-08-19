@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_114205",
+  "resolved_address": "2 Donaldson Dr, Edinburgh EH12 5JH, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 55.946608775131814,
+    "longitude": -3.224663300907413,
+    "altitude_agl": 377.24860899464056,
+    "heading": 336.96621835841074,
+    "pitch": -61.521740802109605,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

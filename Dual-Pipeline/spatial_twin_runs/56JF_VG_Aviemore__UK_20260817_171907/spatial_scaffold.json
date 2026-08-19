@@ -1,0 +1,208 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776225,
+          57.182224,
+          367.3
+        ]
+      },
+      "properties": {
+        "stratum": "spatial_anchor",
+        "heading_deg": 282.4,
+        "pitch_deg": -19.8,
+        "fov_deg": 32.8,
+        "render_mode": "3D_TILES",
+        "temporal_anchor": "Golden Hour"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1835
+            ],
+            [
+              -3.7785,
+              57.1835
+            ],
+            [
+              -3.7785,
+              57.1812
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock": "Badenoch Group micaceous schist and Neoproterozoic metamorphic meta-sediments",
+        "superficial_deposits": "Glaciolacustrine till, fluvioglacial morainic gravels, and peaty podzolic loams",
+        "hydrology": "Free-draining uplands sloping toward the Strathspey aquifer basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.7766,
+                57.1821
+              ],
+              [
+                -3.7761,
+                57.1821
+              ],
+              [
+                -3.7761,
+                57.1819
+              ],
+              [
+                -3.7766,
+                57.1819
+              ],
+              [
+                -3.7766,
+                57.1821
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.7774,
+                57.1827
+              ],
+              [
+                -3.7767,
+                57.1827
+              ],
+              [
+                -3.7767,
+                57.1823
+              ],
+              [
+                -3.7774,
+                57.1823
+              ],
+              [
+                -3.7774,
+                57.1827
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_farmhouse",
+            "type": "residential_manor_farmhouse",
+            "storeys": 2,
+            "height_m": 7.8,
+            "materials": {
+              "facade": "Whitewashed roughcast harling over local granite rubble masonry",
+              "roof": "Scottish Ballachulish slate with dual stone chimney stacks and dormer pediments"
+            }
+          },
+          {
+            "id": "agricultural_barn_complex",
+            "type": "utilitarian_steading",
+            "storeys": 1,
+            "height_m": 5.4,
+            "materials": {
+              "cladding": "Corrugated iron sheeting with red iron-oxide primer and timber weatherboarding",
+              "roof": "Corrugated fiber cement and rusted metal sheets with translucent rooflights"
+            }
+          },
+          {
+            "id": "ancillary_outbuildings",
+            "type": "byres_and_sheds",
+            "storeys": 1,
+            "height_m": 3.8,
+            "materials": {
+              "walls": "Exposed whinstone and fieldstone rubble masonry",
+              "roof": "Weathered corrugated steel"
+            }
+          }
+        ],
+        "infrastructure": {
+          "access_roads": "Compacted gravel farm tracks, unpaved crushed stone byways, and worn mud tire ruts",
+          "boundaries": "Drystone dykes, timber post-and-wire livestock fencing, and rough tree lines"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1835
+            ],
+            [
+              -3.7785,
+              57.1835
+            ],
+            [
+              -3.7785,
+              57.1812
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_topographical",
+        "topography": "Undulating Speyside moorland terrace transitioning into pastoral upland fields",
+        "flora": "Agrostis-Festuca pasture grasses, heather clumps (Calluna vulgaris), bracken, and Scots Pine (Pinus sylvestris) hedgerows"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776225,
+          57.182224
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_optics",
+        "lighting_condition": "Golden Hour",
+        "solar_altitude_deg": 11.5,
+        "solar_azimuth_deg": 268.0,
+        "color_temperature_k": 3300,
+        "sky_state": "Clear Highland sky with low-hanging amber sun throwing long, sharp cast shadows across the pasture"
+      }
+    }
+  ]
+}

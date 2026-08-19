@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_154603",
+  "resolved_address": "18 Heriot Row, Edinburgh EH3 6HP, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "golden hour",
+  "telemetry": {
+    "latitude": 55.95545824522225,
+    "longitude": -3.201316878757352,
+    "altitude_agl": 111.07395320334315,
+    "heading": 62.06597623301031,
+    "pitch": -10.940263999350957,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

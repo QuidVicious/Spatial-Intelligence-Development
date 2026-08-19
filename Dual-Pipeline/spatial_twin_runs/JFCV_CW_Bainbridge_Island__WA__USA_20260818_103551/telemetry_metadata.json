@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_103551",
+  "resolved_address": "JFCV+CW Bainbridge Island, WA, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.621105641289425,
+    "longitude": -122.50524184735025,
+    "altitude_agl": 84.86766310419233,
+    "heading": 303.89788024904493,
+    "pitch": -15.161044127945374,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.476547,
+          47.74485
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_formation": "Vashon Glacial Till and Advance Outwash",
+        "stratigraphy": "Unconsolidated Pleistocene sand, gravel, and silt bluffs overlying Lawton Clay",
+        "topsoil": "Sandy-loam colluvium subject to marine bluff retreat",
+        "drainage": "Direct eastward overland and seeping interflow to Puget Sound (Port Madison)",
+        "coastal_geomorphology": "High wave-cut glaciofluvial bluff, sand-and-gravel intertidal foreshore with drift logs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4785,
+              47.7455
+            ],
+            [
+              -122.475,
+              47.747
+            ],
+            [
+              -122.473,
+              47.743
+            ],
+            [
+              -122.477,
+              47.742
+            ],
+            [
+              -122.4785,
+              47.7455
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "dominant_flora": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western redcedar)",
+          "Arbutus menziesii (Pacific madrone)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Polystichum munitum (Western sword fern)"
+        ],
+        "canopy_density_percent": 75,
+        "intertidal_ecology": "Zostera marina (eelgrass) beds, barnacle and mussel clusters on cobble substrate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.4774,
+                47.7458
+              ],
+              [
+                -122.477,
+                47.7459
+              ],
+              [
+                -122.4771,
+                47.7461
+              ],
+              [
+                -122.4775,
+                47.746
+              ],
+              [
+                -122.4774,
+                47.7458
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4768,
+                47.7455
+              ],
+              [
+                -122.4762,
+                47.7457
+              ],
+              [
+                -122.4764,
+                47.7459
+              ],
+              [
+                -122.477,
+                47.7457
+              ],
+              [
+                -122.4768,
+                47.7455
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_vernacular": "Pacific Northwest Contemporary coastal residential",
+        "structures": [
+          {
+            "id": "residence_northwest",
+            "type": "primary_dwelling",
+            "storeys": 2,
+            "height_m": 8.2,
+            "roof_form": "Gabled with wide overhangs",
+            "materials": {
+              "facade": "Western redcedar siding, painted fiber-cement panels, extensive glazing",
+              "roof": "Architectural standing-seam metal and composite shingle",
+              "foundation": "Poured concrete pile-and-grade beam cliffside anchoring"
+            }
+          },
+          {
+            "id": "residence_promontory",
+            "type": "primary_dwelling",
+            "storeys": 2,
+            "height_m": 8.6,
+            "roof_form": "Cross-gabled multi-pitch",
+            "materials": {
+              "facade": "Natural cedar shake, horizontal lap siding, timber rafter tails",
+              "roof": "Dark composite asphalt shingle",
+              "deck": "Cantilevered treated timber deck with glass balustrade"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.476547,
+          47.74485
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_and_illumination",
+        "lighting_condition": "Golden Hour",
+        "solar_elevation_deg": 12.4,
+        "solar_azimuth_deg": 272.0,
+        "color_temperature_k": 3300,
+        "ambient_fill": "Deep cool marine cyan skylight fill on shadowed east-facing bluff facets",
+        "glare_and_reflections": "Golden glint and specular sheen across the rippling tidal waters of Port Madison"
+      }
+    }
+  ]
+}

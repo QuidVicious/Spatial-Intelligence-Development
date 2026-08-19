@@ -1,0 +1,108 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "geological_foundation",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193053,
+          55.949648
+        ]
+      },
+      "properties": {
+        "bedrock_formation": "Arthur's Seat Volcanic Formation & Ballagan Formation (Carboniferous basalt plug and sedimentary sandstone tail)",
+        "geomorphology": "Glaciated crag-and-tail ridge formed by eastward Pleistocene ice sheet scour",
+        "topography_slope_deg": 4.8,
+        "soil_profile": "Compacted urban anthropocene deposit over dense devensian glacial till and olivine basalt bedrock",
+        "groundwater_depth_m": 14.2
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "built_environment",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.19342,
+              55.94978
+            ],
+            [
+              -3.19275,
+              55.94985
+            ],
+            [
+              -3.19258,
+              55.94942
+            ],
+            [
+              -3.1933,
+              55.94938
+            ],
+            [
+              -3.19342,
+              55.94978
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "urban_fabric": "High-density medieval burgage plots with historic Scottish Baronial and Victorian Old Town tenements",
+        "thoroughfare": "Lawnmarket / Castlehill (Royal Mile)",
+        "structures": [
+          {
+            "name": "Lawnmarket High Tenements & Commercial Range (449-455 Lawnmarket)",
+            "typology": "Multi-storey Scottish Baronial & Old Town tenement block",
+            "storeys": 6,
+            "height_m": 22.8,
+            "facade_material": "Craigleith / Hailes ashlar sandstone and coursed rubble, lime mortar pointing",
+            "roofing": "Scotch slate, steeply pitched crow-stepped gables, zinc flashing, dormers, stone chimney stacks"
+          },
+          {
+            "name": "Brodie's Close / Fisher's Close North Tenement Flank",
+            "typology": "Historic tenement with timber-projecting cantilevers and stone stair towers",
+            "storeys": 5,
+            "height_m": 18.5,
+            "facade_material": "Soot-stained squared sandstone rubble with lime harling remnants",
+            "roofing": "Ballachulish slate with cast-iron rooflights"
+          },
+          {
+            "name": "South Lawnmarket Flank & Close Enclosure",
+            "typology": "Stepped 19th-century Scots vernacular civic/commercial frontage",
+            "storeys": 4,
+            "height_m": 15.2,
+            "facade_material": "Tooled sandstone ashlar, timber sash-and-case fenestration",
+            "roofing": "Mansard and pitched slate with zinc hip caps"
+          }
+        ],
+        "paving_surface": "Scottish whinstone and granite sett carriageway with Caithness flagstone pedestrian footways and carved kerbstones"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "atmospheric_optical_telemetry",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193053,
+          55.949648
+        ]
+      },
+      "properties": {
+        "solar_elevation_deg": 38.4,
+        "solar_azimuth_deg": 164.2,
+        "lighting_condition": "Diffuse North-Atlantic maritime daylight with soft directional sun filtering through broken stratocumulus",
+        "correlated_color_temperature_k": 5400,
+        "camera_reconstruction": {
+          "altitude_agl_m": 190.2,
+          "heading_deg": 297.5,
+          "pitch_deg": -50.3,
+          "horizontal_fov_deg": 32.8
+        }
+      }
+    }
+  ]
+}

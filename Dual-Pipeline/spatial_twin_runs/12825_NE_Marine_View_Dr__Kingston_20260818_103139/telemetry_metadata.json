@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_103139",
+  "resolved_address": "12825 NE Marine View Dr, Kingston, WA 98346, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.746539843379935,
+    "longitude": -122.4762250677491,
+    "altitude_agl": 44.72598724714273,
+    "heading": 23.81503932324114,
+    "pitch": -27.795185998206065,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

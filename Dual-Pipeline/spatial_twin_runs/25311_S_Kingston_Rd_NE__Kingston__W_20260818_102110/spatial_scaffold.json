@@ -1,0 +1,158 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.50705,
+          47.791424
+        ]
+      },
+      "properties": {
+        "stratum": "geographical_anchor",
+        "address": "25311 S Kingston Rd NE, Kingston, WA 98346, USA",
+        "elevation_agl_m": 159.8,
+        "camera_heading_deg": 315.1,
+        "camera_pitch_deg": -50.9,
+        "camera_fov_deg": 32.8,
+        "mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.5076,
+              47.7919
+            ],
+            [
+              -122.5065,
+              47.7919
+            ],
+            [
+              -122.5065,
+              47.791
+            ],
+            [
+              -122.5076,
+              47.791
+            ],
+            [
+              -122.5076,
+              47.7919
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_and_geology",
+        "bedrock_formation": "Vashon Glacial Till over Pre-Fraser Quaternary unconsolidated sediments",
+        "soil_taxonomy": "Alderwood gravelly sandy loam, moderately well-drained, dense basal lodgement till layer at 50-100cm depth",
+        "hydrogeology": "Perched shallow groundwater tables during wet winter months; regional drainage toward Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.5075,
+              47.7918
+            ],
+            [
+              -122.5066,
+              47.7918
+            ],
+            [
+              -122.5066,
+              47.7911
+            ],
+            [
+              -122.5075,
+              47.7911
+            ],
+            [
+              -122.5075,
+              47.7918
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_residence",
+            "type": "residential_multilevel",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_type": "cross-gabled asphalt shingle",
+            "facade_material": "Pacific Northwest cedar lap siding with timber deck and clerestory glazing"
+          },
+          {
+            "id": "red_barn_outbuilding",
+            "type": "agricultural_barn",
+            "storeys": 1,
+            "height_m": 5.8,
+            "roof_type": "gabled corrugated standing-seam red metal",
+            "facade_material": "Board-and-batten painted siding"
+          },
+          {
+            "id": "south_workshop_garage",
+            "type": "workshop_outbuilding",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_type": "shed / low-pitch composite roof",
+            "facade_material": "Timber frame with utility siding"
+          }
+        ],
+        "circulation": "Curvilinear crushed basalt and compacted dirt access driveway branching from South Kingston Road",
+        "lot_condition": "Rural cleared clearing carved out of dense temperate coniferous forest"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.508,
+              47.7922
+            ],
+            [
+              -122.506,
+              47.7922
+            ],
+            [
+              -122.506,
+              47.7908
+            ],
+            [
+              -122.508,
+              47.7908
+            ],
+            [
+              -122.508,
+              47.7922
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "botanical_and_ecological",
+        "dominant_canopy": "Pseudotsuga menziesii (Douglas fir), Thuja plicata (Western redcedar), Tsuga heterophylla (Western hemlock)",
+        "understory": "Polystichum munitum (Western swordfern), Gaultheria shallon (Salal), Acer circinatum (Vine maple), Rubus spectabilis (Salmonberry)",
+        "canopy_height_m": 35.0
+      }
+    }
+  ]
+}

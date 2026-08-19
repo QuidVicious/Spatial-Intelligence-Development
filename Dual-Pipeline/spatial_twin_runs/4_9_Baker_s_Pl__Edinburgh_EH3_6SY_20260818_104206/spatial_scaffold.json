@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207995,
+          55.95768,
+          74.6
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "heading_degrees": 307.5,
+        "pitch_degrees": 10.2,
+        "fov_degrees": 32.8,
+        "rendering_mode": "3D_TILES",
+        "temporal_anchor": "Present Day",
+        "location": "Baker's Place / Kerr Street corridor, Stockbridge, Edinburgh, Scotland"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2085,
+              55.9573
+            ],
+            [
+              -3.2072,
+              55.9574
+            ],
+            [
+              -3.2075,
+              55.9582
+            ],
+            [
+              -3.2088,
+              55.9581
+            ],
+            [
+              -3.2085,
+              55.9573
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean",
+        "bedrock": "Carboniferous Lower Oil-Shale Sandstone / Craigleith and Hailes sandstone formations, interbedded with siltstone and shale",
+        "superficial_deposits": "Glacial till overlain by Quaternary alluvial gravels and silt associated with the Water of Leith river incised valley",
+        "soil_profile": "Urban disturbed brown earths and compacted aggregate fill over river terrace gravels",
+        "hydrology": "Water of Leith riparian drainage system traversing immediately north, shallow perched groundwater table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2084,
+              55.9574
+            ],
+            [
+              -3.2074,
+              55.9575
+            ],
+            [
+              -3.2076,
+              55.9581
+            ],
+            [
+              -3.2086,
+              55.958
+            ],
+            [
+              -3.2084,
+              55.9574
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "urban_morphology": "Georgian / Early 19th-century New Town northern fringe urban tenement block and church focal terminus",
+        "structures": [
+          {
+            "name": "St Stephen's Church (background vista terminus / spired landmark)",
+            "storeys": 3,
+            "height_m": 49.5,
+            "materials": "Craigleith ashlar sandstone, leaded and pitched slate spire, clock tower, classical Renaissance/Baroque details"
+          },
+          {
+            "name": "North West Circus Place / Kerr Street Tenement Terraces (curving street flank left/right)",
+            "storeys": 4,
+            "height_m": 16.2,
+            "materials": "Blonde ashlar sandstone, rusticated ground floors, cast-iron railings, timber sash windows, pitched Scotch slate roofing"
+          },
+          {
+            "name": "Baker's Place Commercial / Residential Row",
+            "storeys": 3,
+            "height_m": 12.8,
+            "materials": "Ashlar sandstone facades, painted timber shopfronts, lead flashing, chimney stacks with clay pots"
+          }
+        ],
+        "paving_and_ground": "Macadam roadway with Scottish whinstone kerbstones and historic Caithness flagstone pedestrian sidewalks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2086,
+                55.9575
+              ],
+              [
+                -3.2083,
+                55.9575
+              ],
+              [
+                -3.2084,
+                55.9577
+              ],
+              [
+                -3.2087,
+                55.9577
+              ],
+              [
+                -3.2086,
+                55.9575
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "vegetation": "Mature urban deciduous canopy including Acer pseudoplatanus (Sycamore) and Tilia cordata (Lime), with river valley riparian shrubs and damp moss colonization along northern masonry joints",
+        "foliage_density": "Moderate urban street trees and riparian edge foliage"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207995,
+          55.95768
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_lighting",
+        "solar_altitude_degrees": 28.4,
+        "solar_azimuth_degrees": 204.0,
+        "lighting_condition": "Overcast northern maritime daylight with diffused silver-grey sky illumination (~5800K), soft omnidirectional ambient shadowing, and slight moisture sheen on sandstone facades and Caithness flagstones"
+      }
+    }
+  ]
+}

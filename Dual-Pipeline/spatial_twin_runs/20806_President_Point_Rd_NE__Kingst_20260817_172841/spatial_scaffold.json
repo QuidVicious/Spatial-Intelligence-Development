@@ -1,0 +1,179 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.473159,
+          47.746982,
+          42.8
+        ]
+      },
+      "properties": {
+        "stratum": "geodetic_registration",
+        "address": "20806 President Point Rd NE, Kingston, WA 98346, USA",
+        "camera_telemetry": {
+          "heading_deg": 309.1,
+          "pitch_deg": -19.2,
+          "fov_deg": 32.8,
+          "altitude_agl_m": 42.8,
+          "rendering_mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4745,
+              47.746
+            ],
+            [
+              -122.4715,
+              47.746
+            ],
+            [
+              -122.4715,
+              47.7485
+            ],
+            [
+              -122.4745,
+              47.7485
+            ],
+            [
+              -122.4745,
+              47.746
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "formation": "Vashon Glacial Till and Advance Outwash Sand/Gravel",
+        "coastal_geomorphology": "Bluff-backed beach coastline on Puget Sound, unconsolidated sediment prone to coastal bluff retreat and slumping",
+        "soil_profile": "Alderwood gravelly sandy loam along the upland crest, transitional sandy colluvium on the steep embankment",
+        "hydrology": "Perched groundwater seepage emerging through sand horizons along the exposed bluff face above high-tide gravel shore"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.474,
+              47.7462
+            ],
+            [
+              -122.472,
+              47.7462
+            ],
+            [
+              -122.472,
+              47.7482
+            ],
+            [
+              -122.474,
+              47.7482
+            ],
+            [
+              -122.474,
+              47.7462
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "forest_type": "Pacific Northwest Lowland Coniferous Forest",
+        "dominant_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Polystichum munitum (Western swordfern)",
+          "Gaultheria shallon (Salal)"
+        ],
+        "canopy_height_m": 35.0,
+        "understory_density": "Dense coastal understory anchoring bluff margins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4728,
+              47.7468
+            ],
+            [
+              -122.4723,
+              47.7468
+            ],
+            [
+              -122.4723,
+              47.7473
+            ],
+            [
+              -122.4728,
+              47.7473
+            ],
+            [
+              -122.4728,
+              47.7468
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "name": "Waterfront Multi-Level Residence",
+            "footprint": "Multi-tier articulated polygonal with bay-facing balconies and tiered rooflines",
+            "storeys": 3,
+            "height_m": 10.5,
+            "facade_material": "Cedar shake shingles and neutral architectural cladding with timber deck railings",
+            "roof_material": "Standing seam metal and architectural composite shingles"
+          },
+          {
+            "name": "Detached Carriage House / Garage",
+            "storeys": 1,
+            "height_m": 4.8,
+            "facade_material": "Horizontal timber lap siding",
+            "roof_material": "Composite gabled shingle roof"
+          }
+        ],
+        "civil_infrastructure": {
+          "access": "Paved and compacted gravel private driveways branching off President Point Road NE",
+          "shoreline_armor": "Driftwood accumulations and natural sand-gravel foreshore with subtle boulder riprap stabilizers"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.473159,
+          47.746982
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_optics",
+        "temporal_anchor": "Golden Hour",
+        "solar_azimuth_deg": 265.0,
+        "solar_elevation_deg": 14.5,
+        "color_temperature_k": 3300,
+        "atmospheric_qualities": "Warm amber coastal side-lighting casting elongated shadows across Puget Sound gravel flats and through tall Douglas fir canopies; maritime sea mist suspended in the lower atmosphere"
+      }
+    }
+  ]
+}

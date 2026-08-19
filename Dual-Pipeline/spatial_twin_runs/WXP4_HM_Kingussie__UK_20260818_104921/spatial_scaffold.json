@@ -1,0 +1,154 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.043303,
+          56.936472
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "altitude_agl_m": 525.4,
+        "heading_deg": 1.5,
+        "pitch_deg": -10.0,
+        "fov_deg": 32.8,
+        "mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.0465,
+              56.935
+            ],
+            [
+              -4.0395,
+              56.935
+            ],
+            [
+              -4.0395,
+              56.942
+            ],
+            [
+              -4.0465,
+              56.942
+            ],
+            [
+              -4.0465,
+              56.935
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "bedrock": "Neoproterozoic Grampian Group psammite and pelite metamorphic schists",
+        "superficial_deposits": "Glacial till, hummocky moraine deposits, and upland peat ombrotrophic blanket bogs",
+        "drainage": "Glen Tromie / Allt Bhran catchment draining northward toward the River Spey",
+        "topography": "Deep glacial trough valley (Glen Tromie) bounded by steep scree-strewn mountainous flanks rising sharply to high corries"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.045,
+              56.936
+            ],
+            [
+              -4.041,
+              56.936
+            ],
+            [
+              -4.041,
+              56.9385
+            ],
+            [
+              -4.045,
+              56.9385
+            ],
+            [
+              -4.045,
+              56.936
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "settlement_type": "Highland sporting estate lodge and remote steading enclosure (Gaick / Glen Tromie corridor)",
+        "structures": [
+          {
+            "id": "primary_estate_lodge",
+            "type": "Residential / Sporting Lodge",
+            "storeys": 2,
+            "height_m": 7.8,
+            "materials": {
+              "facade": "Dressed granite and metamorphic rubble masonry with light lime harling",
+              "roof": "Steeply pitched Ballachulish grey slate with sandstone ridge tiles and prominent stone chimney stacks",
+              "fenestration": "Painted white timber sash-and-case windows"
+            }
+          },
+          {
+            "id": "ancillary_steading_west",
+            "type": "Agricultural outbuilding / Stable / Kennels",
+            "storeys": 1,
+            "height_m": 4.2,
+            "materials": {
+              "facade": "Rubble masonry and timber cladding",
+              "roof": "Corrugated iron and slate mix"
+            }
+          },
+          {
+            "id": "north_outbuildings",
+            "type": "Shed / Workshop / Storage",
+            "storeys": 1,
+            "height_m": 3.8,
+            "materials": {
+              "facade": "Stone and treated timber boards",
+              "roof": "Profiled metal sheeting"
+            }
+          }
+        ],
+        "enclosures": "Fenced paddocks, drystone dyke remnants, rectangular shelterbelts composed of Scots pine (Pinus sylvestris) and European larch"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.0412,
+            56.9352
+          ],
+          [
+            -4.0425,
+            56.938
+          ],
+          [
+            -4.044,
+            56.943
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "civil_infrastructure",
+        "type": "Unpaved estate track / gravel vehicular access route",
+        "surface": "Compacted crushed granite gravel, weathered aggregate, and twin-track turf verge center"
+      }
+    }
+  ]
+}

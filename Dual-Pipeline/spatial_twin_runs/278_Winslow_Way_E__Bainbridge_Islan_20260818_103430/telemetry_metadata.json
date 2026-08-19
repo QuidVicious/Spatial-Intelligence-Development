@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_103430",
+  "resolved_address": "278 Winslow Way E, Bainbridge Island, WA 98110, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.624855017071326,
+    "longitude": -122.51811699621697,
+    "altitude_agl": 5.106020978576519,
+    "heading": 282.00794797188,
+    "pitch": 0.6761479980209888,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

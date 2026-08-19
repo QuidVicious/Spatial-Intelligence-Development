@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_150352",
+  "resolved_address": "6 Wemyss Pl, Edinburgh EH3 6DH, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.9542200846132,
+    "longitude": -3.2058440616596062,
+    "altitude_agl": 115.08932314496771,
+    "heading": 343.653084207304,
+    "pitch": -14.215885781168701,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

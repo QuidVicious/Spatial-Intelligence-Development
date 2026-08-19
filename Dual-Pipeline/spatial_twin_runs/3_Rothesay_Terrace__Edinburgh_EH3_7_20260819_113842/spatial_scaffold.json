@@ -1,0 +1,173 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 118.3,
+          "pitch_deg": -15.6,
+          "heading_deg": 322.7,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Calciferous Sandstone Measures (Lower Carboniferous) and intrusive dolerite sills",
+        "mineralogy": "Fine-grained quartz arenite sandstone, siltstone, basaltic volcanic tuffs, and glacial boulder clay till",
+        "drainage": "Steep dendritic alluvial incision via the incised gorge of the Water of Leith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite setts, whinstone kerbstones, compacted river-gravel pathways, and mortared sandstone retaining embankments",
+        "wear_characteristics": "Wagon iron-wheel ruts, damp river-gorge moss accumulation along lower retaining revetments, and unpaved mud edges",
+        "micro_grading": "Steep terraced riverside valley floor rising to sheer structural gorge retaining walls"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Fraxinus excelsior (European Ash)",
+          "Fagus sylvatica (European Beech)"
+        ],
+        "understory_flora": [
+          "Hedera helix (English Ivy)",
+          "Crataegus monogyna (Common Hawthorn)",
+          "Dryopteris filix-mas (Male Fern)"
+        ],
+        "groundcover": "Riverbank riparian grasses, herbaceous weeds, damp moss patches, and autumn leaf litter"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Scots Baronial & Vernacular Revival Tenements and Milling Complexes (Dean Village / Well Court)",
+        "structures": [
+          {
+            "name": "Well Court Complex (Primary Scots Baronial Tenement & Clock Tower)",
+            "storeys": 4,
+            "height_m": 18.5,
+            "roof_geometry": "Steep pitched roofs with crow-stepped gables, conical corner turrets, dormers, and prominent 26m octagonal clock tower",
+            "facade_material": "Pinkish-red Hailes and Craigleith sandstone ashlar and coursed squared rubble with red clay pantiles and Scotch slate",
+            "weathering_patina": "Pronounced late-Victorian industrial coal smoke and soot deposition in cornices, dripstones, and sheltered undercuts, with damp moss near water levels"
+          },
+          {
+            "name": "Eastern Riverside Tenements (Damside / Hawthornbank)",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "Steeply pitched Ballachulish slate roofs with dormer windows and tall masonry chimney stacks",
+            "facade_material": "Blonde Craigleith coursed rubble sandstone and lime harl",
+            "weathering_patina": "Moderate soot staining, iron oxide leaching beneath sills, and lime bloom"
+          },
+          {
+            "name": "Northern Terraced Housing Row (Historic Mill Cottages)",
+            "storeys": 3,
+            "height_m": 10.5,
+            "roof_geometry": "Pitched Scottish slate and clay pantile roofs with stepped parapets",
+            "facade_material": "Buff lime-harled sandstone rubble",
+            "weathering_patina": "Weather-worn lime wash, damp base course staining, and chimney carbon crusts"
+          },
+          {
+            "name": "Western Valley Cottages and Workshops",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "Low-pitched red pantile and slate gables",
+            "facade_material": "Rubble masonry with timber lintels",
+            "weathering_patina": "Heavily patinated riverside moisture marks and coal dust"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Horse-drawn dray cart with wooden-spoke iron-rimmed wheels",
+          "Two-wheeled delivery barrow"
+        ],
+        "street_furniture": [
+          "Cast-iron fluted gas lamp posts with square copper lanterns",
+          "Timber riverside handrails",
+          "Granite mounting blocks"
+        ],
+        "pedestrian_profiles": [
+          "Late-Victorian mill workers in woollen waistcoats and flat caps",
+          "Local residents in heavy tweed shawls and long dark aprons"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216769,
+          55.951398
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.2,
+        "solar_azimuth_deg": 242.0,
+        "kelvin_temperature": 3300,
+        "lighting_condition": "Late-afternoon low-raking Golden Hour sunlight cutting across the incised valley, casting elongated warm shadows with cool indigo skylight in gorge recesses"
+      }
+    }
+  ]
+}

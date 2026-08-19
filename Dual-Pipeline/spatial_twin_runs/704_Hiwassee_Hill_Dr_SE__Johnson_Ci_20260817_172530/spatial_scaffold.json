@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.328827,
+          36.30568
+        ]
+      },
+      "properties": {
+        "stratum": "geodetic_registration",
+        "altitude_agl_m": 485.5,
+        "camera_heading_deg": 321.4,
+        "camera_pitch_deg": 0.5,
+        "field_of_view_deg": 32.8,
+        "mode": "3D_TILES",
+        "location": "Johnson City, Washington County, Tennessee"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.3292,
+              36.3054
+            ],
+            [
+              -82.3285,
+              36.3054
+            ],
+            [
+              -82.3285,
+              36.306
+            ],
+            [
+              -82.3292,
+              36.306
+            ],
+            [
+              -82.3292,
+              36.3054
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "lithosphere_and_topography",
+        "geological_context": "Valley and Ridge Province, underlain by folded and faulted Paleozoic sedimentary strata, dominated by Knox Group carbonates, limestone, and dolostone with moderate karst terrain",
+        "soil_profile": "Dunmore and Dewey silt loams, well-drained, reddish-brown clayey subsoils derived from weathered limestone residuum",
+        "topographical_relief": "Rolling Appalachian foothill terrain, gently sloping north-northwest toward Watauga watershed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.32905,
+              36.30575
+            ],
+            [
+              -82.3287,
+              36.30575
+            ],
+            [
+              -82.3287,
+              36.30605
+            ],
+            [
+              -82.32905,
+              36.30605
+            ],
+            [
+              -82.32905,
+              36.30575
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Single-family residential parcel in low-density suburban woodland setting",
+        "structures": [
+          {
+            "id": "primary_dwelling_704",
+            "type": "Split-level / Two-storey Suburban Residence",
+            "storeys": 2,
+            "height_m": 7.2,
+            "facade_material": "Red Appalachian clay brick veneer combined with horizontal painted weatherboard siding",
+            "roof_form": "Multi-gabled and hip roofline clad in dark architectural asphalt shingles",
+            "fenestration": "Double-hung multi-pane sash windows with crisp white casing and raised masonry sill courses"
+          },
+          {
+            "id": "outbuilding_garage_shed",
+            "type": "Detached accessory structure / garage",
+            "storeys": 1,
+            "height_m": 3.8,
+            "facade_material": "Painted timber lap siding, asphalt shingle roofing"
+          }
+        ],
+        "civil_infrastructure": "Asphalt-paved curvilinear residential driveway leading off Hiwassee Hill Drive, buried electrical/telecom utilities, low concrete perimeter edging"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.3293,
+              36.3053
+            ],
+            [
+              -82.3283,
+              36.3053
+            ],
+            [
+              -82.3283,
+              36.3062
+            ],
+            [
+              -82.3293,
+              36.3062
+            ],
+            [
+              -82.3293,
+              36.3053
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "biosphere_and_flora",
+        "canopy_composition": "Mixed Southern Appalachian deciduous-coniferous canopy: Quercus alba (White Oak), Acer rubrum (Red Maple), Liriodendron tulipifera (Tulip Poplar), Pinus virginiana (Virginia Pine), and mature ornamental Japanese Maples with dense understory turf grass (Festuca arundinacea)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.328827,
+          36.30568
+        ]
+      },
+      "properties": {
+        "stratum": "photometric_and_atmospheric",
+        "temporal_anchor": "Golden Hour",
+        "correlated_color_temperature_k": 3300,
+        "solar_azimuth_deg": 265.0,
+        "solar_altitude_deg": 12.5,
+        "atmospheric_haze": "Warm amber Appalachian ridge haze, low-angle raking sunlight casting deep elongated shadows across manicured lawn gradients"
+      }
+    }
+  ]
+}

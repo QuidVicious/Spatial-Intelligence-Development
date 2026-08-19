@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_103727",
+  "resolved_address": "31 Moray Pl, Edinburgh EH3 6BX, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.954388349786704,
+    "longitude": -3.2115407918077588,
+    "altitude_agl": 177.47050599641872,
+    "heading": 170.16406829166533,
+    "pitch": -39.06421395850804,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

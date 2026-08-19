@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_104206",
+  "resolved_address": "4/9 Baker's Pl, Edinburgh EH3 6SY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.95768043419669,
+    "longitude": -3.2079951637659,
+    "altitude_agl": 74.5596058147594,
+    "heading": 307.502699965583,
+    "pitch": 10.17877306554515,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_155911",
+  "resolved_address": "521 Wall St #100, Seattle, WA 98121, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "golden hour",
+  "telemetry": {
+    "latitude": 47.61759339526213,
+    "longitude": -122.34363868541065,
+    "altitude_agl": 13.664696748083614,
+    "heading": 300.506690485266,
+    "pitch": 2.386910498012511,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

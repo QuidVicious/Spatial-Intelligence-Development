@@ -1,0 +1,184 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775837,
+          57.182255,
+          366.1
+        ]
+      },
+      "properties": {
+        "stratum": "camera_sensor_telemetry",
+        "heading_degrees": 276.4,
+        "pitch_degrees": -10.5,
+        "fov_degrees": 32.8,
+        "render_mode": "3D_TILES",
+        "temporal_anchor": "Present Day",
+        "region_designation": "Cairngorms National Park, Badenoch and Strathspey, Scotland"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.785,
+              57.178
+            ],
+            [
+              -3.765,
+              57.178
+            ],
+            [
+              -3.765,
+              57.188
+            ],
+            [
+              -3.785,
+              57.188
+            ],
+            [
+              -3.785,
+              57.178
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Grampian Group Neoproterozoic metasedimentary psammite and semipelite, intruded by Caledonian granite plutons",
+        "superficial_deposits": "Quaternary glaciolacustrine sands, hummocky glacial moraine till, and Strathspey outwash gravels",
+        "topsoil": "Podzolic, humic-rich peaty sandy loam, highly permeable with localized subsoil compaction along agricultural lanes",
+        "hydrology": "Gentle westward drainage feeding unchannelled agricultural swales toward the River Spey floodplain"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7802,
+              57.1815
+            ],
+            [
+              -3.7745,
+              57.1815
+            ],
+            [
+              -3.7745,
+              57.1845
+            ],
+            [
+              -3.7802,
+              57.1845
+            ],
+            [
+              -3.7802,
+              57.1815
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Highland agricultural steadings, outbuildings, and farm dwelling",
+        "structures": [
+          {
+            "id": "farmhouse_steading_cluster",
+            "type": "Primary Residential Steading",
+            "storeys": 2,
+            "height_m": 7.8,
+            "materials": {
+              "facade": "Whitewashed roughcast harling over local fieldstone granite rubble",
+              "roof": "Gable-ended Scottish Ballachulish slate with dual chimney stacks and zinc ridge cappings",
+              "fenestration": "Painted white timber-framed sash and case windows, recessed deep in masonry reveals"
+            }
+          },
+          {
+            "id": "primary_modern_shed",
+            "type": "Agricultural Portal Frame Barn",
+            "storeys": 1,
+            "height_m": 6.5,
+            "materials": {
+              "facade": "Profiled goosewing-grey plastisol corrugated metal cladding over concrete base walls",
+              "roof": "Low-pitch fiber-cement sheeting with translucent corrugated skylight panels",
+              "openings": "Wide sliding galvanized metal equipment doors"
+            }
+          },
+          {
+            "id": "low_outbuildings_sheds",
+            "type": "Ancillary Livestock / Storage Byres",
+            "storeys": 1,
+            "height_m": 4.2,
+            "materials": {
+              "facade": "Weathered corrugated steel and rustic vertical timber boarding",
+              "roof": "Corrugated iron roofing sheet with aged rust oxidation patina"
+            }
+          }
+        ],
+        "infrastructural_surfaces": "Compacted pale granite-grit farm tracks, weathered crushed stone yards, and perimeter sheep fencing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.782,
+              57.18
+            ],
+            [
+              -3.77,
+              57.18
+            ],
+            [
+              -3.77,
+              57.186
+            ],
+            [
+              -3.782,
+              57.186
+            ],
+            [
+              -3.782,
+              57.18
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecosystem_and_biome",
+        "vegetation_cover": "Improved upland pasture, coarse bentgrass (Agrostis), sheep's fescue, patchworks of heather (Calluna vulgaris) along field fringes",
+        "tree_canopy": "Native Scots Pine (Pinus sylvestris), downy birch (Betula pubescens), and dense riparian scrub bordering field boundaries",
+        "soil_moisture_regime": "Seasonally damp, peat-influenced upland hummocks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.775837,
+          57.182255
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_illumination",
+        "solar_altitude_deg": 38.0,
+        "solar_azimuth_deg": 195.0,
+        "lighting_condition": "Crisp sub-Arctic northern light, filtered by high cirrostratus clouds, casting soft-edged directional shadows northeastward across the pastoral slopes",
+        "atmospheric_haze": "Clear, crisp mountain air with mild atmospheric blue scattering softening the distant Monadhliath foothills"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_103829",
+  "resolved_address": "St Bernards Cottage, 11 MacKenzie Pl, Edinburgh EH3 6TS, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.95563940193275,
+    "longitude": -3.211341711076951,
+    "altitude_agl": 82.89266365069098,
+    "heading": 194.79012258488234,
+    "pitch": -9.232858052383458,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

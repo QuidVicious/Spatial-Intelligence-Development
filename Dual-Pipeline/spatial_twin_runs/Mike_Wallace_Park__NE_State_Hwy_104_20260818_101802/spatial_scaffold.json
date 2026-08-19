@@ -1,0 +1,172 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.496976,
+          47.796546
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "altitude_agl_m": 22.3,
+        "heading_deg": 9.0,
+        "pitch_deg": -28.7,
+        "fov_deg": 32.8,
+        "render_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4976,
+              47.7962
+            ],
+            [
+              -122.4963,
+              47.7962
+            ],
+            [
+              -122.4963,
+              47.7971
+            ],
+            [
+              -122.4976,
+              47.7971
+            ],
+            [
+              -122.4976,
+              47.7962
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geological_foundation",
+        "bedrock_formation": "Puget Group sedimentary baseline",
+        "surficial_geology": "Vashon advance outwash and lodgement till (glaciomarine drift gravels, sand, compact clay)",
+        "soil_profile": "Alderwood gravelly sandy loam, moderate drainage with coastal moisture retention",
+        "topography": "Gentle coastal marine terrace sloping eastward towards Appletree Cove and Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.49675,
+                47.79695
+              ],
+              [
+                -122.49655,
+                47.79705
+              ],
+              [
+                -122.49645,
+                47.7969
+              ],
+              [
+                -122.49665,
+                47.7968
+              ],
+              [
+                -122.49675,
+                47.79695
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4975,
+                47.79645
+              ],
+              [
+                -122.49725,
+                47.79655
+              ],
+              [
+                -122.49715,
+                47.7964
+              ],
+              [
+                -122.4974,
+                47.7963
+              ],
+              [
+                -122.4975,
+                47.79645
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "coastal_commercial_north",
+            "name": "North Commercial Waterfront Building",
+            "storeys": 2,
+            "height_m": 8.5,
+            "primary_material": "Horizontal painted cedar lap siding, corrugated metal and composition shingle gabled roofing",
+            "fenestration": "Double-hung commercial insulated glazing with white painted wood casings",
+            "foundation": "Poured-in-place concrete footing and slab-on-grade"
+          },
+          {
+            "id": "mixed_use_west",
+            "name": "West Main Street Retail Row",
+            "storeys": 1,
+            "height_m": 4.8,
+            "primary_material": "Timber frame with clapboard siding and parapet flat roof with bitumen membrane",
+            "fenestration": "Aluminum-framed storefront display windows and recessed glass entryways",
+            "foundation": "Reinforced concrete perimeter stem wall"
+          }
+        ],
+        "civil_infrastructure": {
+          "roadway": "NE State Highway 104 terminal approach, high-durability bituminous asphalt paving",
+          "markings": "Thermoplastic white crosswalk ladder stripes, green-painted bicycle transitions, designated parking stalls",
+          "curbs_sidewalks": "Brushed aggregate poured concrete pedestrian walkways and ADA-compliant curb cuts",
+          "street_furniture": "Galvanized steel luminaire poles, coastal signage, marine parking pay stations"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -122.4971,
+            47.7967
+          ],
+          [
+            -122.4973,
+            47.7966
+          ],
+          [
+            -122.4965,
+            47.7964
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_envelope",
+        "canopy": "Mature Western Red Cedar (Thuja plicata), Douglas fir (Pseudotsuga menziesii), Bigleaf Maple (Acer macrophyllum)",
+        "understory": "Salal (Gaultheria shallon), Sword fern (Polystichum munitum), cultivated municipal coastal turfgrass",
+        "marine_influence": "High-salinity maritime air, frequent morning mist, cool temperate coastal Puget Sound microclimate"
+      }
+    }
+  ]
+}

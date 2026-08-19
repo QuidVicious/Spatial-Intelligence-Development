@@ -1,0 +1,152 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0417,
+          56.937417
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_formation": "Grampian Group Metasediments (Neoproterozoic Psammite and Semipelite)",
+        "superficial_deposits": "Glacial Till (Devensian diamicton) overlain by blanket peat and humic podzols",
+        "hydrology": "Highland plateau runoff feeding upper tributaries of the River Spey; poorly drained peat soils with perimeter field drains"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.0435,
+              56.9382
+            ],
+            [
+              -4.0398,
+              56.9385
+            ],
+            [
+              -4.0402,
+              56.9365
+            ],
+            [
+              -4.044,
+              56.9362
+            ],
+            [
+              -4.0435,
+              56.9382
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "site_classification": "Highland Estate / Rural Steading Compound",
+        "structures": [
+          {
+            "id": "primary_lodge_complex",
+            "type": "residential_manor_lodge",
+            "storeys": 2,
+            "height_m": 8.2,
+            "envelope": {
+              "walls": "Dressed Scottish granite and mica-schist rubble masonry with lime pointing",
+              "roof": "Multi-gabled pitch roof with Ballachulish slate shingles, lead flashing, and stone chimney stacks"
+            }
+          },
+          {
+            "id": "north_outbuilding_range",
+            "type": "steading_and_stables",
+            "storeys": 1,
+            "height_m": 4.5,
+            "envelope": {
+              "walls": "Roughcast harled masonry and timber weatherboarding",
+              "roof": "Corrugated iron and slate roofing"
+            }
+          },
+          {
+            "id": "ancillary_sheds",
+            "type": "agricultural_sheds",
+            "storeys": 1,
+            "height_m": 3.8,
+            "envelope": {
+              "walls": "Timber planking on stone plinths",
+              "roof": "Corrugated profile metal sheet"
+            }
+          }
+        ],
+        "circulation": {
+          "access_road": "Unpaved compact crushed granitic gravel and dirt track traversing open moorland",
+          "courtyard": "Graded pea-gravel apron and packed earthen driveways"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.0425,
+                56.9368
+              ],
+              [
+                -4.041,
+                56.9369
+              ],
+              [
+                -4.0408,
+                56.9363
+              ],
+              [
+                -4.0423,
+                56.9362
+              ],
+              [
+                -4.0425,
+                56.9368
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -4.0438,
+                56.9372
+              ],
+              [
+                -4.0428,
+                56.9373
+              ],
+              [
+                -4.0426,
+                56.9367
+              ],
+              [
+                -4.0436,
+                56.9366
+              ],
+              [
+                -4.0438,
+                56.9372
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "canopy_composition": "Shelterbelt blocks of mature Scots Pine (Pinus sylvestris) and Sitka Spruce (Picea sitchensis)",
+        "ground_cover": "Heavily grazed acidic moorland pasture, heather (Calluna vulgaris), and moor-grass tussocks"
+      }
+    }
+  ]
+}

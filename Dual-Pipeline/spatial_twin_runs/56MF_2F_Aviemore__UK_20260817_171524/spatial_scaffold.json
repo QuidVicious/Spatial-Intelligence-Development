@@ -1,0 +1,196 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776257,
+          57.182543
+        ]
+      },
+      "properties": {
+        "stratum": "spatial_anchor",
+        "resolved_location": "Pityoulish / Coylumbridge rural steading, Cairngorms National Park, near Aviemore, Scotland",
+        "elevation_agl_m": 383.6,
+        "camera_heading_deg": 255.1,
+        "camera_pitch_deg": -28.3,
+        "camera_fov_deg": 32.8,
+        "rendering_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7785,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1812
+            ],
+            [
+              -3.7745,
+              57.1838
+            ],
+            [
+              -3.7785,
+              57.1838
+            ],
+            [
+              -3.7785,
+              57.1812
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_geology": "Grampian Group psammite and pelite metamorphic bedrock overlaid with Devensian glaciofluvial hummocky moraine deposits",
+        "pedology": "Podzolic, freely draining gritty sandy loams with pockets of shallow peat and alluvial glacial drift",
+        "hydrology": "Gentle southwesterly surface drainage feeding into the River Luineag and River Spey catchment"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7772,
+              57.1821
+            ],
+            [
+              -3.7752,
+              57.1821
+            ],
+            [
+              -3.7752,
+              57.1832
+            ],
+            [
+              -3.7772,
+              57.1832
+            ],
+            [
+              -3.7772,
+              57.1821
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Highland agricultural farmstead and converted residential steading complex",
+        "structures": [
+          {
+            "id": "primary_residential_steading",
+            "type": "residential_steading_range",
+            "storeys": 2,
+            "height_m": 7.8,
+            "materials": {
+              "facade": "Whitewashed rubble stone masonry with smooth lime harling and dressed granite quoins",
+              "roof": "Gable-ended Scottish Ballachulish slate with dormer projections, lead flashing, and stone chimney stacks"
+            }
+          },
+          {
+            "id": "main_agricultural_shed",
+            "type": "steel_portal_frame_barn",
+            "storeys": 1,
+            "height_m": 6.5,
+            "materials": {
+              "cladding": "Corrugated profile metal roof decking with skylight inserts and timber-boarded lower perimeter",
+              "frame": "Structural steel portal rafters"
+            }
+          },
+          {
+            "id": "ancillary_lean_to_ranges",
+            "type": "outbuildings_and_byres",
+            "storeys": 1,
+            "height_m": 3.8,
+            "materials": {
+              "facade": "Rough-faced granite fieldstone and weathered larch weatherboarding",
+              "roof": "Oxidized corrugated tin and profile sheeting"
+            }
+          },
+          {
+            "id": "detached_field_shelter",
+            "type": "timber_shed",
+            "storeys": 1,
+            "height_m": 3.2,
+            "materials": {
+              "facade": "Treated timber stud walling",
+              "roof": "Corrugated cement fiber panels"
+            }
+          }
+        ],
+        "ground_cover": "Compacted granitic sandy-gravel farm tracks, unpaved hardstanding yards, and dense fescue pastoral grasslands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.7782,
+                57.1828
+              ],
+              [
+                -3.7768,
+                57.1828
+              ],
+              [
+                -3.7768,
+                57.1836
+              ],
+              [
+                -3.7782,
+                57.1836
+              ],
+              [
+                -3.7782,
+                57.1828
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_and_canopy",
+        "arboreal_species": [
+          "Pinus sylvestris (Scots pine)",
+          "Betula pendula (Silver birch)",
+          "Alnus glutinosa (Common alder)"
+        ],
+        "ground_flora": "Upland rough pasture, Calluna vulgaris (heather) margins, moss hummocks, and field boundary hedgerows"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.776257,
+          57.182543
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_lighting",
+        "solar_azimuth_deg": 215.0,
+        "solar_elevation_deg": 38.0,
+        "color_temperature_k": 5400,
+        "atmospheric_conditions": "Crisp Highland highland daylight, thin cirrus dispersion, sharp natural directional shading across gables and pitched roofs"
+      }
+    }
+  ]
+}

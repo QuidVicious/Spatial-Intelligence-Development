@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_172424",
+  "resolved_address": "701 Hiwassee Hill Dr SE, Johnson City, TN 37601, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 36.30650555244844,
+    "longitude": -82.32971711497203,
+    "altitude_agl": 503.73608486104115,
+    "heading": 150.5730462771154,
+    "pitch": -15.957966965640914,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472519,
+          47.748199
+        ]
+      },
+      "properties": {
+        "stratum": "camera_telemetry",
+        "elevation_agl_m": 43.4,
+        "heading_degrees": 264.3,
+        "pitch_degrees": -19.5,
+        "fov_degrees": 32.8,
+        "render_mode": "3D_TILES",
+        "temporal_anchor": "Golden Hour"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4731,
+              47.7478
+            ],
+            [
+              -122.4719,
+              47.7478
+            ],
+            [
+              -122.4719,
+              47.7487
+            ],
+            [
+              -122.4731,
+              47.7487
+            ],
+            [
+              -122.4731,
+              47.7478
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Vashon Glacial Drift & Esperance Sand / Lawton Clay member",
+        "soil_profile": "Alderwood gravelly sandy loam, glacial till matrix with dense hardpan layer at depth",
+        "geomorphology": "High-bluff Puget Sound marine littoral escarpment subject to colluvial creep and wave-action bluff erosion",
+        "hydrology": "Unconfined perched aquifers draining east toward Puget Sound; coastal shoreline with cobble and driftwood deposition"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.47265,
+                47.74812
+              ],
+              [
+                -122.47245,
+                47.74812
+              ],
+              [
+                -122.47245,
+                47.7483
+              ],
+              [
+                -122.47265,
+                47.7483
+              ],
+              [
+                -122.47265,
+                47.74812
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4724,
+                47.74805
+              ],
+              [
+                -122.4723,
+                47.74805
+              ],
+              [
+                -122.4723,
+                47.7482
+              ],
+              [
+                -122.4724,
+                47.7482
+              ],
+              [
+                -122.4724,
+                47.74805
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47235,
+                47.7479
+              ],
+              [
+                -122.47222,
+                47.7479
+              ],
+              [
+                -122.47222,
+                47.74805
+              ],
+              [
+                -122.47235,
+                47.74805
+              ],
+              [
+                -122.47235,
+                47.7479
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47275,
+                47.74845
+              ],
+              [
+                -122.4726,
+                47.74845
+              ],
+              [
+                -122.4726,
+                47.7486
+              ],
+              [
+                -122.47275,
+                47.7486
+              ],
+              [
+                -122.47275,
+                47.74845
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_style": "Pacific Northwest Coastal Contemporary / Custom Multi-Tier Waterfront Estate",
+        "structures": [
+          {
+            "id": "primary_coastal_residence",
+            "type": "custom_residential_manor",
+            "storeys": 3,
+            "height_m": 10.5,
+            "cladding": "Horizontal cedar lap siding, weathered architectural shingles, expansive multi-pane marine glazing, faceted observation cupola",
+            "roof_form": "Complex cross-gabled standing-seam metal and composition shingle with rounded polygonal bay turret"
+          },
+          {
+            "id": "adjacent_carriage_wing",
+            "type": "attached_garage_and_living_quarters",
+            "storeys": 2,
+            "height_m": 7.2,
+            "cladding": "Painted white clapboard, light gray standing seam gabled roof"
+          },
+          {
+            "id": "detached_lower_cottage",
+            "type": "ancillary_guest_house",
+            "storeys": 2,
+            "height_m": 6.8,
+            "cladding": "White horizontal weatherboard siding, pitched asphalt shingle roof"
+          },
+          {
+            "id": "upper_north_workshop",
+            "type": "outbuilding_workshop",
+            "storeys": 1,
+            "height_m": 4.5,
+            "cladding": "Corrugated metal and timber board-and-batten utility building"
+          }
+        ],
+        "hardscape": "Paved asphalt access driveway winding from President Point Road, crushed gravel aprons, timber retaining bulkheads, low stone garden retaining tiers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4732,
+              47.7476
+            ],
+            [
+              -122.4718,
+              47.7476
+            ],
+            [
+              -122.4718,
+              47.7489
+            ],
+            [
+              -122.4732,
+              47.7489
+            ],
+            [
+              -122.4732,
+              47.7476
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "botanical_and_ecological",
+        "canopy_composition": "Pseudotsuga menziesii (Douglas fir), Thuja plicata (Western redcedar), Acer macrophyllum (Bigleaf maple), Alnus rubra (Red alder)",
+        "understory": "Polystichum munitum (Sword fern), Gaultheria shallon (Salal), Rubus spectabilis (Salmonberry), dry manicured turf grass clearings",
+        "coastal_ecotone": "Sandy-gravel beach intertidal zone with weathered sea-cast driftwood trunks, marine macroalgae, and sea-cliff erosion vegetation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472519,
+          47.748199
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_optics",
+        "sun_elevation_degrees": 14.2,
+        "sun_azimuth_degrees": 258.0,
+        "color_temperature_kelvin": 3350,
+        "shadow_characteristics": "Elongated, warm-rimmed direct amber highlights with cool diffuse skylight fill in shaded cedar understory",
+        "atmospheric_clarity": "Maritime golden hour haze, subtle Puget Sound coastal mist, high clarity"
+      }
+    }
+  ]
+}

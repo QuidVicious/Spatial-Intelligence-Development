@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_105046",
+  "resolved_address": "WXP5+X8 Kingussie, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 56.93741721113048,
+    "longitude": -4.04170001366549,
+    "altitude_agl": 551.7122799008481,
+    "heading": 295.9280642788097,
+    "pitch": -31.49127176636222,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.475013,
+          47.744492
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "geological_formation": "Quaternary Vashon Drift / Fraser Glaciation deposit",
+        "stratigraphy": [
+          "Vashon glacial till (dense unstratified clay-silt-gravel matrix)",
+          "Esperance sand advance outwash (permeable fluvial/lacustrine sands)",
+          "Lawton clay lacustrine base aquitard"
+        ],
+        "geomorphology": "Active marine erosion bluff / Puget Sound coastal feeder cliff",
+        "hydrology": "Perched shallow groundwater seeping along sand-clay boundary planes draining into Puget Sound / Port Madison"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.478,
+            47.746
+          ],
+          [
+            -122.475013,
+            47.744492
+          ],
+          [
+            -122.472,
+            47.743
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "topography_and_coastline",
+        "feature_type": "Coastal Bluff & Intertidal Littoral Zone",
+        "bluff_height_m": 22.0,
+        "slope_gradient_deg": 65.0,
+        "beach_composition": "Unconsolidated glacial cobble, pebble gravel, fine sand, and driftwood wrack lines",
+        "tidal_range_m": 3.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4765,
+              47.7455
+            ],
+            [
+              -122.4735,
+              47.7448
+            ],
+            [
+              -122.4732,
+              47.7456
+            ],
+            [
+              -122.4762,
+              47.7462
+            ],
+            [
+              -122.4765,
+              47.7455
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "ecozone": "Puget Trough Lowland Coniferous Forest",
+        "dominant_canopy_species": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western red cedar)",
+          "Tsuga heterophylla (Western hemlock)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Alnus rubra (Red alder)"
+        ],
+        "understory_vegetation": [
+          "Polystichum munitum (Western sword fern)",
+          "Rubus spectabilis (Salmonberry)",
+          "Gaultheria shallon (Salal)"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.4754,
+                47.7451
+              ],
+              [
+                -122.4752,
+                47.7451
+              ],
+              [
+                -122.4752,
+                47.7453
+              ],
+              [
+                -122.4754,
+                47.7453
+              ],
+              [
+                -122.4754,
+                47.7451
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.4748,
+                47.7449
+              ],
+              [
+                -122.4745,
+                47.7449
+              ],
+              [
+                -122.4745,
+                47.7451
+              ],
+              [
+                -122.4748,
+                47.7451
+              ],
+              [
+                -122.4748,
+                47.7449
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "settlement_type": "Puget Sound coastal bluff residential",
+        "structures": [
+          {
+            "id": "residence_primary_center",
+            "typology": "Pacific Northwest contemporary timber-frame blufftop residence",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_form": "Asymmetrical shed and low-pitch gable",
+            "cladding": "Horizontal cedar lap siding and zinc standing seam accents",
+            "fenestration": "Expansive sea-facing double-glazed curtain windows and cantilevered timber viewing deck"
+          },
+          {
+            "id": "residence_secondary_east",
+            "typology": "Single-family coastal bungalow / residential outbuilding",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_form": "Pitched asphalt composite shingle gable",
+            "cladding": "Painted cedar shingle siding with white fascia trim"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.475013,
+          47.744492
+        ]
+      },
+      "properties": {
+        "stratum": "optics_and_atmosphere",
+        "camera_telemetry": {
+          "heading_deg": 334.6,
+          "pitch_deg": 10.4,
+          "altitude_agl_m": 1.5,
+          "fov_deg": 32.8
+        },
+        "lighting_regime": {
+          "solar_altitude_deg": 42.0,
+          "color_temperature_k": 5400,
+          "sky_condition": "Temperate marine sky with subtle high-altitude cirrus diffusion",
+          "water_surface": "Deep cerulean and slate-blue Salish Sea swells with gentle wind ripples"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472955,
+          47.748494
+        ]
+      },
+      "properties": {
+        "stratum": "geodetic_registration",
+        "resolved_address": "20816 President Point Rd NE, Kingston, WA 98346, USA",
+        "altitude_agl": 1.5,
+        "camera_heading": 245.1,
+        "camera_pitch": 4.9,
+        "camera_fov": 32.8,
+        "tile_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4736,
+              47.748
+            ],
+            [
+              -122.4722,
+              47.748
+            ],
+            [
+              -122.4722,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.748
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "bedrock_formation": "Vashon Glacial Drift over Blakeley Formation",
+        "sedimentology": "Unconsolidated glacial outwash gravels, sands, and marine bluffs",
+        "hydrological_interaction": "Puget Sound littoral fringe with intertidal gravel and sandy cobble foreshore to the east, steep wooded ravine run-off"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.47315,
+                47.74845
+              ],
+              [
+                -122.47302,
+                47.74845
+              ],
+              [
+                -122.47302,
+                47.74858
+              ],
+              [
+                -122.47315,
+                47.74858
+              ],
+              [
+                -122.47315,
+                47.74845
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47295,
+                47.74838
+              ],
+              [
+                -122.47285,
+                47.74838
+              ],
+              [
+                -122.47285,
+                47.74848
+              ],
+              [
+                -122.47295,
+                47.74848
+              ],
+              [
+                -122.47295,
+                47.74838
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -122.47335,
+                47.74875
+              ],
+              [
+                -122.47322,
+                47.74875
+              ],
+              [
+                -122.47322,
+                47.74885
+              ],
+              [
+                -122.47335,
+                47.74885
+              ],
+              [
+                -122.47335,
+                47.74875
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_vernacular": "Pacific Northwest Coastal Contemporary & Woodland Cedar Clad",
+        "structures": [
+          {
+            "id": "primary_coastal_residence",
+            "type": "residential_dwelling",
+            "storeys": 2,
+            "height_m": 8.2,
+            "envelope": "Western red cedar shingle siding, standing-seam charcoal zinc roof pitches, expansive double-glazed marine view fenestration, fieldstone foundation accents"
+          },
+          {
+            "id": "adjacent_outbuilding_and_carport",
+            "type": "garage_and_guest_suite",
+            "storeys": 1.5,
+            "height_m": 5.8,
+            "envelope": "Horizontal cedar tongue-and-groove cladding, low-pitch shed roof with standing seam metal"
+          },
+          {
+            "id": "upper_slope_retreat",
+            "type": "secondary_dwelling",
+            "storeys": 2,
+            "height_m": 7.5,
+            "envelope": "Weathered natural timber siding, architectural composite shingles, timber viewing deck"
+          }
+        ],
+        "civil_infrastructure": "Crushed gravel access drive ascending President Point Road NE, weathered timber retaining cribbing along the cut bank"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4736,
+              47.7481
+            ],
+            [
+              -122.4725,
+              47.7481
+            ],
+            [
+              -122.4725,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.749
+            ],
+            [
+              -122.4736,
+              47.7481
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "vegetation_and_canopy",
+        "canopy_composition": "Dense second-growth Pseudotsuga menziesii (Douglas fir), Thuja plicata (Western red cedar), Acer macrophyllum (Bigleaf maple), and coastal Alnus rubra (Red alder)",
+        "understory": "Polystichum munitum (Sword fern), Gaultheria shallon (Salal), and coastal blackberry scrub"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472955,
+          47.748494
+        ]
+      },
+      "properties": {
+        "stratum": "lighting_and_atmosphere",
+        "solar_azimuth": 230.0,
+        "solar_elevation": 28.5,
+        "color_temperature_k": 4800,
+        "sky_conditions": "Soft coastal maritime dispersion with breakable marine haze, clear high atmospheric ceiling, diffuse reflections over the waters of Puget Sound"
+      }
+    }
+  ]
+}

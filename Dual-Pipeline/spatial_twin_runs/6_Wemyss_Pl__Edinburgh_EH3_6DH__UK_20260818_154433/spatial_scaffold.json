@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 108.1,
+          "pitch_deg": -1.2,
+          "heading_deg": 341.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Gullane Formation / Craigleith beds)",
+        "mineralogy": "Quartz arenite with subordinate siltstone and mudstone; underlying volcanic tuffs",
+        "drainage": "Sloping urban drainage descending northward toward the Water of Leith basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite setts and dressed whinstone kerbstones with smooth bitumen carriageway infill",
+        "wear_characteristics": "Polished wheel-track wear on stone setts, weathered sandstone flagstone pavements, damp gutter depressions",
+        "micro_grading": "Northward-sloping gradient down Forres Street and Wemyss Place towards Moray Place"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ulmus glabra (Wych Elm)",
+          "Acer pseudoplatanus (Sycamore)",
+          "Tilia europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Hedera helix",
+          "Ligustrum vulgare",
+          "Taxus baccata"
+        ],
+        "groundcover": "Enclosed private pleasure gardens with manicured perennial turf and iron-railed perimeter shrubbery"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Neoclassical Georgian Residential Terraced Townhouses (Moray Estate)",
+        "structures": [
+          {
+            "name": "Wemyss Place / Forres Street Corner Pavilions (Left Flank)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched Scottish slate with lead hips, dormers, and ashlar chimney stacks",
+            "facade_material": "Craigleith polished ashlar sandstone with rusticated ground-floor and basement lightwells",
+            "weathering_patina": "Historical coal smoke carbon soot deposits in friezes and cornice recesses, washed cream-buff ashlar faces, cast-iron railings with oxidized black paint"
+          },
+          {
+            "name": "Wemyss Place Terraced Block (Right Flank)",
+            "storeys": 4,
+            "height_m": 15.2,
+            "roof_geometry": "Pitched Ballachulish slate with dressed stone coped skews",
+            "facade_material": "Fine-jointed Craigleith sandstone ashlar with classical architraves and sash-and-case fenestration",
+            "weathering_patina": "Deep atmospheric carbon staining along string courses, mortar repointing variations, pale mineral leaching"
+          },
+          {
+            "name": "Descending Moray Place Vista (Center Background)",
+            "storeys": 4,
+            "height_m": 16.0,
+            "roof_geometry": "Mansard and pitched slate roofs punctuated by massive multi-flue ashlar chimney stacks",
+            "facade_material": "Neoclassical ashlar sandstone facades with Doric/Ionic pilastered orders",
+            "weathering_patina": "Pronounced urban soot stratification and weathered grey-buff stone tone"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Parked contemporary saloon and estate cars along kerbsides"
+        ],
+        "street_furniture": [
+          "Traditional black cast-iron Edinburgh 'globe' street lamp columns",
+          "Wrought-iron basement lightwell railings with urn finials",
+          "Dressed stone mounting blocks and cast-iron boot scrapers"
+        ],
+        "pedestrian_profiles": [
+          "Occasional pedestrians in urban attire walking along paved footpaths"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205806,
+          55.954252
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.5,
+        "kelvin_temperature": 3300,
+        "lighting_condition": "Golden Hour warm raking low-angle sunlight with deep cool blue ambient sky fill"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_113842",
+  "resolved_address": "3 Rothesay Terrace, Edinburgh EH3 7RY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour, October 1899",
+  "telemetry": {
+    "latitude": 55.95139791855812,
+    "longitude": -3.2167694279448837,
+    "altitude_agl": 118.34149849562411,
+    "heading": 322.6977558165984,
+    "pitch": -15.626755023133816,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

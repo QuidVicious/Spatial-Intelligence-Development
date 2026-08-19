@@ -1,0 +1,163 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 377.2,
+          "pitch_deg": -61.5,
+          "heading_deg": 337.0,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Gullane Formation Sandstone and Siltstone",
+        "mineralogy": "Quartzose sedimentary bedrock with basaltic intrusions characteristic of the Lothian region",
+        "drainage": "Well-drained glacial till over porous carboniferous sedimentary layers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted buff gravel pathways, dressed sandstone ashlar retaining walls, manicured parterre turf, and modern asphalt peripheral driveways",
+        "wear_characteristics": "Pristine estate maintenance, subtle weathering along perimeter curb edges and terrace balustrades",
+        "micro_grading": "Terraced formal gardens stepping downward toward the southern parkland lawn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fagus sylvatica (European Beech)",
+          "Quercus robur (English Oak)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Buxus sempervirens (Boxwood parterres)",
+          "Taxus baccata (Yew topiary)",
+          "Prunus laurocerasus (Cherry Laurel)"
+        ],
+        "groundcover": "Fine-mown perennial ryegrass and meadow fescue turf with formal knot garden box hedging"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Jacobean Revival / Scottish Baronial Institutional Palace conversion (Donaldson's School)",
+        "structures": [
+          {
+            "name": "Donaldson's Main Quadrangle (William Henry Playfair)",
+            "storeys": 3,
+            "height_m": 24.5,
+            "roof_geometry": "Complex pitched roofs with slate coverings, corner bartizans, octagonal corner turrets, decorative dormers, and weathered copper cupolas",
+            "facade_material": "Fine Craigleith ashlar sandstone with intricate strapwork carvings and mullioned windows",
+            "weathering_patina": "Subtle historic coal-smoke soot deposits nestled within strapwork reliefs, oxidized copper verdigris on corner turrets, and clean rain-washed vertical facades"
+          },
+          {
+            "name": "The Crescent at Donaldson's (Contemporary Residential Pavilion)",
+            "storeys": 4,
+            "height_m": 14.8,
+            "roof_geometry": "Curved barrel-vaulted zinc and standing-seam metal roofs with discrete solar/service penetrations",
+            "facade_material": "Floor-to-ceiling structural glazing, blonde reconstituted stone cladding, and aluminium paneling",
+            "weathering_patina": "Pristine contemporary finishes, anodized metallic luster, and clean reflective glass surfaces"
+          },
+          {
+            "name": "Terraced Victorian Tenements (Wester Coates / Haymarket Fringe)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched Scottish slate roofs with prominent masonry chimney stacks and clay pots",
+            "facade_material": "Dressed blonde and grey sandstone ashlar",
+            "weathering_patina": "Pronounced carbon crusting in sheltered cornices and lintels, weathered mortar joints"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Parked modern executive saloon and SUV vehicles along the crescent perimeter road"
+        ],
+        "street_furniture": [
+          "Bollard pathway lighting",
+          "Dressed stone balustrades",
+          "Low architectural retaining curbs"
+        ],
+        "pedestrian_profiles": [
+          "Sparse residents traversing landscaped gravel promenades"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.224663,
+          55.946609
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.2,
+        "solar_azimuth_deg": 268.0,
+        "kelvin_temperature": 3400,
+        "lighting_condition": "Low-angle golden hour solar wash with warm amber raking light across southern and western facades and cool ambient skylight fills in the central courtyard"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260817_171524",
+  "resolved_address": "56MF+2F Aviemore, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 57.18254314483082,
+    "longitude": -3.7762573711367162,
+    "altitude_agl": 383.60355157208016,
+    "heading": 255.1459863009325,
+    "pitch": -28.317020461449495,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

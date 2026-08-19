@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260818_104921",
+  "resolved_address": "WXP4+HM Kingussie, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 56.93647240918495,
+    "longitude": -4.04330276859982,
+    "altitude_agl": 525.3691115437125,
+    "heading": 1.5257463640641813,
+    "pitch": -10.038350858516885,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

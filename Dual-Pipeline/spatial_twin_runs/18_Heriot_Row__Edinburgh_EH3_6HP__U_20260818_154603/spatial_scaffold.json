@@ -1,0 +1,146 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 111.1,
+          "pitch_deg": -10.9,
+          "heading_deg": 62.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Gullane Formation / Craigleith Sandstone bedrock)",
+        "mineralogy": "Fine-to-medium grained quartz arenite with carbonaceous siltstone interbeds",
+        "drainage": "Well-draining north-sloping glacial till terrace grading toward the Water of Leith basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Historic whinstone sett drainage gutters alongside modern asphalt carriageway and York/Hailes stone slab pedestrian pavements",
+        "wear_characteristics": "Surface polished by vehicular traffic, dark bitumen patching, delineated parallel white road markings",
+        "micro_grading": "Consistent gentle northeast downward slope along the northern boundary of the New Town"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia cordata (Small-leaved Lime)",
+          "Fagus sylvatica (European Beech)"
+        ],
+        "understory_flora": [
+          "Taxus baccata (Yew)",
+          "Hedera helix (English Ivy)",
+          "Prunus spinosa"
+        ],
+        "groundcover": "Queen Street Gardens northern boundary lawn, mature woodland perimeter planting with rich organic leafy canopies directly flanking the right side of the street"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Georgian Neoclassical Palace-Fronted Terraced Townhouses (designed by Robert Reid and William Sibbald, c. 1802\u20131808)",
+        "structures": [
+          {
+            "name": "Heriot Row North Terrace (including 18 Heriot Row - former home of R.L. Stevenson)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Dual-pitched Scottish Ballachulish slate roof with copper-clad dormer windows, stone chimneys, and ashlar blocking courses",
+            "facade_material": "Finely dressed Craigleith blonde ashlar sandstone, rusticated ground floors with sunken basement lightwells bridged by stone plinths and cast-iron balustrades",
+            "weathering_patina": "Historical industrial coal-smoke and soot crusting deep in window architrave reveals, under cornices, and string courses, contrasted against rain-washed honey-toned sandstone faces"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern passenger sedans and estate cars parked parallel along both curbs"
+        ],
+        "street_furniture": [
+          "Cast-iron Georgian lamp posts",
+          "Black spearhead wrought-iron railings enclosing basement areas",
+          "Period street signage"
+        ],
+        "pedestrian_profiles": [
+          "Occasional pedestrians walking on wide flagstone footpaths"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201317,
+          55.955458
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.5,
+        "kelvin_temperature": 3400,
+        "lighting_condition": "Low-angle Golden Hour illumination casting long raking warm amber light along the neoclassical sandstone facades with deep, soft elongated shadows"
+      }
+    }
+  ]
+}

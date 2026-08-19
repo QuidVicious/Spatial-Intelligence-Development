@@ -1,0 +1,140 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208061,
+          55.957619
+        ]
+      },
+      "properties": {
+        "stratum": "spatial_anchor",
+        "address": "1 Gloucester St, Edinburgh EH3 6TQ, UK",
+        "camera_metadata": {
+          "heading_deg": 322.3,
+          "pitch_deg": -17.4,
+          "altitude_agl_m": 106.8,
+          "field_of_view_deg": 32.8,
+          "mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2105,
+              55.9565
+            ],
+            [
+              -3.2055,
+              55.9565
+            ],
+            [
+              -3.2055,
+              55.9595
+            ],
+            [
+              -3.2105,
+              55.9595
+            ],
+            [
+              -3.2105,
+              55.9565
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock": "Gullane Formation (Carboniferous sedimentary sandstone, siltstone, and mudstone sequence)",
+        "superficial_deposits": "Glacial Till (Devensian diamicton) overlying carved post-glacial incised valley of the Water of Leith",
+        "topography": "Steep north-northwest descending terrace dropping towards the Stockbridge gorge basin; pronounced topographical relief along Kerr Street and Gloucester Lane",
+        "hydrology": "Water of Leith riparian corridor drainage catchment, high permeability in fractured sandstone beneath dense urban macadam and historic sett paving"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2092,
+              55.957
+            ],
+            [
+              -3.207,
+              55.957
+            ],
+            [
+              -3.207,
+              55.9585
+            ],
+            [
+              -3.2092,
+              55.9585
+            ],
+            [
+              -3.2092,
+              55.957
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "neighborhood_context": "Stockbridge / New Town Western Extension transition, characterized by Georgian neoclassical tenement blocks, Victorian institutional infill, and Scots Baronial detailing",
+        "structures": [
+          {
+            "name": "Gloucester Street / Kerr Street Corner Baronial Villa & Clock Tower (Forefront)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "materials": {
+              "facade": "Cream-buff Craigleith/Hailes ashlar sandstone with pronounced rustication, corbelled corner turret (tourelle) with conical slate spire",
+              "roof": "Scottish Ballachulish grey-blue slate, lead flashing, decorative parapet",
+              "fenestration": "Timber sash-and-case windows with ashlar surrounds, oriel bay projection"
+            }
+          },
+          {
+            "name": "Stockbridge Parish Church (St Stephen's Comely Bank Church) Spire",
+            "storeys": 3,
+            "height_m": 38.0,
+            "materials": {
+              "facade": "Dressed polished sandstone masonry, lancet louvres, buttressed belfry",
+              "roof": "Broach stone spire terminating in weather vane"
+            }
+          },
+          {
+            "name": "Kerr Street / North West Circus Place Georgian Tenement Terraces (Flanking Left & Right)",
+            "storeys": 4,
+            "height_m": 15.0,
+            "materials": {
+              "facade": "Smooth ashlar Craigleith sandstone, cast-iron balconettes, platbands, rusticated ground floors with timber shopfronts",
+              "roof": "Mansard and pitched slate roofs with substantial stone chimney stacks and terracotta pots"
+            }
+          },
+          {
+            "name": "Gloucester Lane Mews & Low-Rise Modern Infill (Midground Right)",
+            "storeys": 2,
+            "height_m": 7.5,
+            "materials": {
+              "facade": "Rubble sandstone with painted harling and modern buff brick accents",
+              "roof": "Pitched slate and standing-seam zinc profiles"
+            }
+          }
+        ],
+        "ground_plane": {
+          "roadway": "Asphalt carriageway over historic whinstone setts, thermoplastic yellow box junction and cycling lane markings",
+          "pavements": "Caithness stone flagstones and granite kerb stones"
+        }
+      }
+    }
+  ]
+}

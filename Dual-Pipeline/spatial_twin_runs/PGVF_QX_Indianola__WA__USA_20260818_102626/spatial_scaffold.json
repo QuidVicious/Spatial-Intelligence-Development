@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.475013,
+          47.744492
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_geomorphological",
+        "formation": "Vashon Drift / Fraser Glaciation deposit",
+        "lithology": "Unconsolidated glacial outwash sand, gravelly sand, interbedded silt, and clay prone to coastal feeder bluff erosion",
+        "coastal_morphology": "Active marine bluff with sandy scree aprons and vegetated slump terraces dropping ~20-25m to intertidal gravel beach",
+        "hydrogeology": "Seepage face along impermeable silt lenses feeding slope runoff directly into Port Madison / Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.478,
+              47.7435
+            ],
+            [
+              -122.472,
+              47.7435
+            ],
+            [
+              -122.472,
+              47.7455
+            ],
+            [
+              -122.478,
+              47.7455
+            ],
+            [
+              -122.478,
+              47.7435
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "settlement_type": "Coastal clifftop residential rim",
+        "structures": [
+          {
+            "id": "residence_central_bluff",
+            "type": "Single-family coastal vernacular residence",
+            "storeys": 2,
+            "height_m": 7.8,
+            "cladding": "Horizontal cedar weatherboard and stained shake siding",
+            "roof_profile": "Gabled asphalt shingle and seam-metal combination",
+            "fenestration": "Wide seaward viewing windows and canted glass timber deck over the cliff crest"
+          },
+          {
+            "id": "residence_east_bluff",
+            "type": "Modernist shed-roof bluff home",
+            "storeys": 2,
+            "height_m": 8.2,
+            "cladding": "Bleached cedar shingle and dark architectural trim",
+            "roof_profile": "Monopitch shed roof sloping back from the bluff line",
+            "fenestration": "Full-height vertical glass curtain and timber balcony railing"
+          },
+          {
+            "id": "ancillary_timber_structures",
+            "type": "Garden sheds and seaward windbreaks",
+            "storeys": 1,
+            "height_m": 3.4,
+            "cladding": "Vertical batten and weathered plywood"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.478,
+                47.7448
+              ],
+              [
+                -122.472,
+                47.7448
+              ],
+              [
+                -122.472,
+                47.746
+              ],
+              [
+                -122.478,
+                47.746
+              ],
+              [
+                -122.478,
+                47.7448
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "botanical_and_ecological",
+        "canopy_composition": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western redcedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Arbutus menziesii (Pacific madrone)"
+        ],
+        "understory_and_bluff_cover": [
+          "Polystichum munitum (Western swordfern)",
+          "Gaultheria shallon (Salal)",
+          "Rubus spectabilis (Salmonberry)",
+          "Coastal pioneer grasses stabilizing talus scarp"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.478,
+            47.7442
+          ],
+          [
+            -122.475,
+            47.7443
+          ],
+          [
+            -122.472,
+            47.7441
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "marine_shoreline",
+        "body_of_water": "Port Madison / Puget Sound basin",
+        "foreshore": "Cobble-gravel tidal shelf with drift logs, wrack line, and shallow sand bars"
+      }
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472276,
+          47.748405
+        ]
+      },
+      "properties": {
+        "stratum": "geological_and_subterranean",
+        "bedrock_formation": "Vashon Glacial Drift & Puget Group Glaciofluvial Deposits",
+        "stratigraphy": "Unconsolidated glacial outwash gravels, Vashon till, interbedded sand lenses over compact silt",
+        "topsoil": "Alderwood gravelly sandy loam, coastal bluff colluvium",
+        "aquifers_hydrology": "Puget Sound coastal water table, Puget Lowland shallow aquifer discharge zones, coastal bluff seepage",
+        "coastal_geomorphology": "Steep littoral feeder bluff, pebble-cobble foreshore, drift log strandline, marine tideflats"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4735,
+              47.7478
+            ],
+            [
+              -122.4715,
+              47.7478
+            ],
+            [
+              -122.4715,
+              47.749
+            ],
+            [
+              -122.4735,
+              47.749
+            ],
+            [
+              -122.4735,
+              47.7478
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "primary_residence",
+            "type": "residential_waterfront_estate",
+            "storeys": 2,
+            "height_m": 8.5,
+            "footprint_shape": "irregular_multi_gabled",
+            "facade_material": "cedar_shake_and_horizontal_lap_siding",
+            "roof_material": "architectural_asphalt_shingle_with_turret_hip_geometry",
+            "fenestration": "expansive_marine_view_glazing_with_deck_cantilevers"
+          },
+          {
+            "id": "guest_annex_garage",
+            "type": "residential_outbuilding",
+            "storeys": 2,
+            "height_m": 6.8,
+            "footprint_shape": "rectangular",
+            "facade_material": "painted_timber_lap_siding",
+            "roof_material": "gabled_asphalt_shingle"
+          },
+          {
+            "id": "ancillary_carriage_house",
+            "type": "outbuilding_workshop",
+            "storeys": 1.5,
+            "height_m": 5.4,
+            "footprint_shape": "compact_rectangular",
+            "facade_material": "weathered_cedar_siding",
+            "roof_material": "pitched_shingle"
+          },
+          {
+            "id": "north_bluff_retreat",
+            "type": "secondary_residence",
+            "storeys": 2,
+            "height_m": 7.2,
+            "footprint_shape": "geometric_retreat",
+            "facade_material": "horizontal_wood_siding",
+            "roof_material": "pitched_shingle"
+          }
+        ],
+        "civil_infrastructure": {
+          "access": "unpaved_gravel_driveway_and_blufftop_track",
+          "shoreline_protection": "timber_cribbing_drift_retention_bulkhead_and_vegetated_slope",
+          "drainage": "gravity-fed_bluff_outflows_and_culverted_surface_runoff"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472276,
+          47.748405
+        ]
+      },
+      "properties": {
+        "stratum": "ecological_envelope",
+        "canopy_composition": "Pseudotsuga menziesii (Douglas-fir), Thuja plicata (Western red cedar), Acer macrophyllum (Bigleaf maple), Arbutus menziesii (Pacific madrone)",
+        "understory": "Polystichum munitum (Sword fern), Gaultheria shallon (Salal), Rubus spectabilis (Salmonberry)",
+        "littoral_fauna": "Ardea herodias (Great blue heron), Haliaeetus leucocephalus (Bald eagle), Megaceryle alcyon (Belted kingfisher)",
+        "marine_context": "Puget Sound intertidal zone, gravel drift line, kelp beds, salt-spray littoral margins"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472276,
+          47.748405
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_and_temporal",
+        "temporal_anchor": "Present Day",
+        "solar_elevation_deg": 46.2,
+        "solar_azimuth_deg": 198.5,
+        "lighting_condition": "Late-morning coastal sunlight with soft maritime atmospheric haze, deep pine shadow interpenetration",
+        "color_temperature_k": 5400,
+        "marine_atmosphere": "Brine-scented humid maritime air, slight sea breeze rippling the Puget Sound surface"
+      }
+    }
+  ]
+}

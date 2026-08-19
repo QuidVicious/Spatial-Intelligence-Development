@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 13.7,
+          "pitch_deg": 2.4,
+          "heading_deg": 300.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till over Lawton Clay and Advance Outwash Sand",
+        "mineralogy": "Dense compacted silty sand, gravel, and lacustrine clay",
+        "drainage": "Engineered urban storm runoff channelled towards Elliott Bay basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Scored concrete sidewalk slabs and asphalt carriageway along Wall Street",
+        "wear_characteristics": "Tar-sealed expansion joints, crosswalk thermoplastic line wear, curb gutter silt deposition",
+        "micro_grading": "Gradual northwest descent towards Belltown waterfront"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer rubrum (Red Maple)",
+          "Platanus occidentalis (American Sycamore)",
+          "Carpinus caroliniana (American Hornbeam)"
+        ],
+        "understory_flora": [
+          "Cornus sericea",
+          "Polystichum munitum (Western Sword Fern)"
+        ],
+        "groundcover": "Mulched urban tree wells with cast-iron tree grates"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Dense high-rise residential and landmark observation tower corridor",
+        "structures": [
+          {
+            "name": "Skye at Belltown (Midground Left)",
+            "storeys": 18,
+            "height_m": 58.0,
+            "roof_geometry": "Flat parapet roof with mechanical penthouse",
+            "facade_material": "Curtain-wall glazing and blue-tinted spandrel panels",
+            "weathering_patina": "Atmospheric dust film on high-level glass, rain-track mineral leaching on lower concrete base"
+          },
+          {
+            "name": "Space Needle (Distal Focal Anchor)",
+            "storeys": 6,
+            "height_m": 184.4,
+            "roof_geometry": "Saucer-shaped observation halo and steel spire mast",
+            "facade_material": "Welded structural steel truss framework with off-white and orbital gold finish",
+            "weathering_patina": "Marine air oxidation, industrial soot settling on underside of disc, weathered paint seams"
+          },
+          {
+            "name": "Flanking Belltown Mixed-Use Blocks (Left/Right Foreground-Midground)",
+            "storeys": 6,
+            "height_m": 21.5,
+            "roof_geometry": "Flat commercial roof with gravel ballast",
+            "facade_material": "Clad architectural metal paneling, brick veneer, and ground-floor storefront glazing",
+            "weathering_patina": "Street-level road grime, efflorescence along mortar lines, fine particulate buildup in window mullions"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern hybrid sedans",
+          "Metropolitan delivery vans"
+        ],
+        "street_furniture": [
+          "Cobra-head streetlamps",
+          "Seattle City Light utility infrastructure",
+          "Steel bollards",
+          "Municipal waste receptacles"
+        ],
+        "pedestrian_profiles": [
+          "Urban commuters in outerwear"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343639,
+          47.617593
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 11.8,
+        "kelvin_temperature": 3300,
+        "lighting_condition": "Late afternoon Golden Hour raking light with warm amber highlights and long cool-toned shadows"
+      }
+    }
+  ]
+}

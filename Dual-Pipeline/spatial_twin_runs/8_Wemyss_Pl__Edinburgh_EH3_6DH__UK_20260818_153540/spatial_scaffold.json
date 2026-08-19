@@ -1,0 +1,160 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 111.1,
+          "pitch_deg": -5.4,
+          "heading_deg": 342.4,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Gullane Formation / Craigleith Sandstone)",
+        "mineralogy": "Quartz arenite with subordinate siltstone, mudstone, and volcanic intrusion tuff",
+        "drainage": "Well-drained glacial till over fissured bedrock sloping northward toward the Water of Leith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Historical whinstone and granite setts, cast asphalt carriageways, and Caithness flagstone pavements",
+        "wear_characteristics": "Polished stone crowns, tar infills in historic gutters, kerb drop wear, iron coal-hole covers",
+        "micro_grading": "Pronounced downhill gradient falling northwards down Wemyss Place Mews and Darnaway Street"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Hedera helix",
+          "Ligustrum vulgare",
+          "Taxus baccata"
+        ],
+        "groundcover": "Cultivated private gardens with ornamental shrubs and lawn in Queen Street Gardens West"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Neoclassical / Georgian Edinburgh New Town Ashlar Townhouses and Tenements (Reid and Sibbald design)",
+        "structures": [
+          {
+            "name": "Wemyss Place Corner Pavilion (West Flank)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched Scottish slate with lead ridges, parapet gutters, and tall stone ashlar chimney stacks",
+            "facade_material": "Craigleith blonde sandstone ashlar with rusticated ground floor and giant Corinthian/Ionic pilasters",
+            "weathering_patina": "Deep charcoal-black historical coal-smoke soot crusting in window reveals, under fluted pilasters, and beneath projecting cornices; rain-washed golden-blonde upper ashlar"
+          },
+          {
+            "name": "Albyn Place / Wemyss Place Corner Block (East Flank)",
+            "storeys": 4,
+            "height_m": 16.2,
+            "roof_geometry": "Pitched slate roof behind balustraded and solid parapet, projecting stone chimney stalks with terracotta pots",
+            "facade_material": "Smooth-dressed sandstone ashlar with channeled rustication to base and molded entablature",
+            "weathering_patina": "Moderate soot deposition, lime runoff beneath sills, damp shadow staining on north-facing returns"
+          },
+          {
+            "name": "Wemyss Place Mews Lane Dwellings",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "Steeply pitched Ballachulish slate roofs with zinc flashing",
+            "facade_material": "Random rubble sandstone with dressed margins and lintels",
+            "weathering_patina": "Surface lichen, weathered lime repointing, carbon staining around carriage arches"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern executive saloons and hatchbacks parked along kerbside"
+        ],
+        "street_furniture": [
+          "Cast-iron fluted lampposts with Victorian lantern heads",
+          "Wrought-iron railings and urn-topped standards bounding the basement lightwells"
+        ],
+        "pedestrian_profiles": [
+          "Pedestrians in temperate urban commuter attire traversing flagstone walkways"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.205889,
+          55.954297
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp temperate midday sun with delicate northern skylight fill and sharp raking shadow relief"
+      }
+    }
+  ]
+}

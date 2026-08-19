@@ -1,0 +1,158 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472491,
+          47.74667,
+          1.5
+        ]
+      },
+      "properties": {
+        "stratum": "optical_telemetry",
+        "heading_degrees": 288.9,
+        "pitch_degrees": 2.2,
+        "fov_degrees": 32.8,
+        "tile_rendering_mode": "3D_TILES",
+        "temporal_anchor": "Golden Hour",
+        "elevation_agl_m": 1.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.475,
+            47.748
+          ],
+          [
+            -122.472491,
+            47.74667
+          ],
+          [
+            -122.47,
+            47.7455
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "geology_and_hydrology",
+        "formation": "Vashon Glacial Till & Esperance Sand Bluffs",
+        "substrate": "Unconsolidated glaciomarine outwash, sand, gravel, and silt prone to bluff retreat",
+        "littoral_zone": "Puget Sound intertidal pebble and cobble strand with drift logs",
+        "slope_gradient_degrees": 65.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4745,
+              47.7478
+            ],
+            [
+              -122.4715,
+              47.7465
+            ],
+            [
+              -122.472,
+              47.746
+            ],
+            [
+              -122.475,
+              47.7472
+            ],
+            [
+              -122.4745,
+              47.7478
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ecology_and_canopy",
+        "primary_canopy": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western Red Cedar)",
+          "Arbutus menziesii (Pacific Madrone)"
+        ],
+        "understory": [
+          "Gaultheria shallon (Salal)",
+          "Polystichum munitum (Sword Fern)",
+          "Rubus spectabilis (Salmonberry)"
+        ],
+        "canopy_height_m": 35.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -122.4735,
+                47.7472
+              ],
+              [
+                -122.4733,
+                47.7472
+              ],
+              [
+                -122.4733,
+                47.7471
+              ],
+              [
+                -122.4735,
+                47.7471
+              ],
+              [
+                -122.4735,
+                47.7472
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "structures": [
+          {
+            "id": "cliffside_residence_01",
+            "type": "residential",
+            "storeys": 2,
+            "height_m": 7.8,
+            "cladding": "weathered cedar shingle and horizontal lap siding",
+            "roof_material": "architectural asphalt shingles"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472491,
+          47.74667
+        ]
+      },
+      "properties": {
+        "stratum": "atmosphere_and_illumination",
+        "solar_azimuth_degrees": 255.0,
+        "solar_elevation_degrees": 12.0,
+        "color_temperature_k": 3300,
+        "lighting_character": "Low-angle golden hour raking sunlight catching sheer sandy bluff faces and crest foliage, soft cyan fill in marine shadow recesses"
+      }
+    }
+  ]
+}
