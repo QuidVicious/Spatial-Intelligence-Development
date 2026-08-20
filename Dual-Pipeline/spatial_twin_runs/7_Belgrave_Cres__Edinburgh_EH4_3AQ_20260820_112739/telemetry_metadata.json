@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_112739",
+  "resolved_address": "7 Belgrave Cres, Edinburgh EH4 3AQ, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 55.95413655995344,
+    "longitude": -3.217078422281938,
+    "altitude_agl": 137.64963080820607,
+    "heading": 120.8687700634379,
+    "pitch": -10.035785692051931,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

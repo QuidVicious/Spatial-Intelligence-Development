@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 79.5,
+          "pitch_deg": 2.0,
+          "heading_deg": 307.8,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Hollywood Fault sedimentary deposits",
+        "mineralogy": "Siltstone, unconsolidated sand, and clayey gravel",
+        "drainage": "Urban subsurface storm network draining south toward Ballona Creek watershed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadways, concrete curbs, and elevated flat gravel roofs",
+        "wear_characteristics": "Urban micro-cracking and sun-faded pavement markings",
+        "micro_grading": "Steep upward northern slope toward the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Washingtonia robusta",
+          "Eucalyptus cladocalyx",
+          "Ficus microcarpa",
+          "Pinus canariensis"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave attenuata",
+          "Chaparral scrub"
+        ],
+        "groundcover": "Ornamental turf and terraced hillside brush"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Mid-century to contemporary multi-family residential mid-rises and commercial blocks",
+        "structures": [
+          {
+            "name": "Central High-Rise Complex (Empire West)",
+            "storeys": 16,
+            "height_m": 52.0,
+            "roof_geometry": "Flat membrane roof with mechanical penthouses",
+            "facade_material": "White painted reinforced concrete, continuous cantilevered balconies, anodized aluminum-framed glass railings",
+            "weathering_patina": "Subtle coastal-urban atmospheric dirt banding and UV-faded white coatings"
+          },
+          {
+            "name": "Left Mid-Rise Tower",
+            "storeys": 11,
+            "height_m": 36.0,
+            "roof_geometry": "Flat parapet roof",
+            "facade_material": "Brutalist-influenced white stucco and vertical window recesses",
+            "weathering_patina": "Rain-streaked window reveals and hairline stucco crazing"
+          },
+          {
+            "name": "Foreground Low-Rise Condominiums",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "Multi-tier flat roof with mansard-style architectural eaves",
+            "facade_material": "White elastomeric-painted stucco and glazed balcony partitions",
+            "weathering_patina": "Surface dust settling along flat ledges and coping edges"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375084,
+          34.090506
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.5,
+        "kelvin_temperature": 3400,
+        "lighting_condition": "Golden Hour low-angle warm solar wash across western facades"
+      }
+    }
+  ]
+}

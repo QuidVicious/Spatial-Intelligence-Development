@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 74.2,
+          "pitch_deg": -7.0,
+          "heading_deg": 322.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Unconsolidated Piedmont Sediments",
+        "mineralogy": "Quartz sand, silt, decomposed granitic gravels from the Hollywood Hills / Santa Monica Mountains uplift",
+        "drainage": "Moderately well-drained alluvial slope sloping southward toward the Los Angeles Basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Multi-lane asphalt boulevard (Santa Monica Blvd) with scored concrete sidewalks and curbs",
+        "wear_characteristics": "Standard urban vehicular tire wear patterns, painted white lane markings, clean dry concrete surfaces",
+        "micro_grading": "Gentle upward slope heading northwest toward the base of the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Washingtonia robusta (Mexican fan palm)",
+          "Eucalyptus globulus",
+          "Ficus microcarpa (Indian laurel)",
+          "Jacaranda mimosifolia",
+          "Pinus canariensis"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Strelitzia nicolai",
+          "Agave americana"
+        ],
+        "groundcover": "Chaparral scrub along ascending hillside backdrop, landscaped street tree planters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Dense urban commercial corridor, multi-family residential complexes, and mid-to-high-rise residential towers",
+        "structures": [
+          {
+            "name": "Granville Towers / Sunset Towers complex in midground",
+            "storeys": 14,
+            "height_m": 48.0,
+            "roof_geometry": "flat parapet roof with elevator mechanical penthouses",
+            "facade_material": "white painted concrete and stucco with cantilevered private balconies and dark bronze-framed glass fenestration",
+            "weathering_patina": "light atmospheric dust settling on upper horizontal ledges, crisp painted finish"
+          },
+          {
+            "name": "Modern multi-unit apartment complex (foreground left)",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "terraced mansard-style stepped rooflines with standing seam metal details",
+            "facade_material": "white stucco facade with arched fenestration, recessed private balconies, and glass railings",
+            "weathering_patina": "clean commercial finish with faint rain streaks along parapet edge trims"
+          },
+          {
+            "name": "Commercial strip & mid-rise multi-family infill (foreground right)",
+            "storeys": 3,
+            "height_m": 10.5,
+            "roof_geometry": "flat bitumen flat roof with rooftop HVAC equipment, ducting, and gravel ballast",
+            "facade_material": "off-white architectural stucco, storefront glazing, and aluminum spandrel panels",
+            "weathering_patina": "minor sun fading on upper parapets, oxidized metallic HVAC housings"
+          },
+          {
+            "name": "Modern hillside and Sunset Strip high-rises (background right)",
+            "storeys": 10,
+            "height_m": 35.0,
+            "roof_geometry": "flat architectural roof with parapets",
+            "facade_material": "contemporary geometric charcoal-tinted glass curtain wall and articulated metal panels",
+            "weathering_patina": "pristine reflective architectural glass surfaces"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375352,
+          34.090479
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.5,
+        "azimuth_deg": 268.0,
+        "kelvin_temperature": 3350,
+        "lighting_condition": "Golden Hour warm raking sunlight across stucco facades, deep warm shadows stretching east-southeast"
+      }
+    }
+  ]
+}

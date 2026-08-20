@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 103.6,
+          "pitch_deg": -7.0,
+          "heading_deg": 305.4,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvium over sedimentary bedrock",
+        "mineralogy": "Silt, sand, and gravel derived from the Santa Monica Mountains",
+        "drainage": "Moderately well-drained alluvial basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadways and concrete sidewalks",
+        "wear_characteristics": "Standard urban asphalt aggregate wear and marked crosswalk striping",
+        "micro_grading": "Gradual northward slope ascending toward the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa",
+          "Washingtonia robusta",
+          "Jacaranda mimosifolia"
+        ],
+        "understory_flora": [
+          "Chaparral hillside scrub",
+          "Ornamental subtropical shrubs"
+        ],
+        "groundcover": "Maintained urban turf and landscaped planters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Mid-to-high-rise multi-family residential and mixed-use commercial",
+        "structures": [
+          {
+            "name": "Mid-Rise Residential Tower (Right)",
+            "storeys": 12,
+            "height_m": 38.5,
+            "roof_geometry": "Flat parapet roof with mechanical housings",
+            "facade_material": "White painted reinforced concrete and cantilevered balconies",
+            "weathering_patina": "Subtle atmospheric grime on balcony ledges"
+          },
+          {
+            "name": "Foreground Residential Complex (Center-Bottom)",
+            "storeys": 4,
+            "height_m": 14.0,
+            "roof_geometry": "Flat roof with mansard-style perimeter eaves",
+            "facade_material": "White stucco with composite eave paneling",
+            "weathering_patina": "Minor surface streaking on stucco walls"
+          },
+          {
+            "name": "Tower Complex (Far Left)",
+            "storeys": 10,
+            "height_m": 32.0,
+            "roof_geometry": "Flat roof",
+            "facade_material": "White rendered concrete with recessed vertical window bays",
+            "weathering_patina": "Clean modern architectural finish"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375389,
+          34.090681
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted clear midday sunlight"
+      }
+    }
+  ]
+}

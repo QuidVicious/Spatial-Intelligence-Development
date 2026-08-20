@@ -1,0 +1,172 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 81.4,
+          "pitch_deg": -0.8,
+          "heading_deg": 313.7,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvial fan deposits overlying Miocene marine sandstone (Modelo Formation)",
+        "mineralogy": "Interbedded siltstone, sandstone, and gravelly alluvium from the Santa Monica Mountains",
+        "drainage": "Urban subsurface storm drains directing runoff toward Ballona Creek watershed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Multi-lane asphalt arterial (Santa Monica Blvd), concrete sidewalks, and graded access aprons",
+        "wear_characteristics": "Sun-bleached bitumen, crack sealing tar lines, painted lane demarcations, weathered curb edges",
+        "micro_grading": "Gradual northward upward incline terminating against the steep ascending foothills of the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Washingtonia robusta (Mexican fan palm)",
+          "Jacaranda mimosifolia",
+          "Eucalyptus globulus",
+          "Ficus microcarpa (Indian laurel fig)"
+        ],
+        "understory_flora": [
+          "Agave attenuata",
+          "Bougainvillea spectabilis",
+          "Xeriscape ornamental shrubbery"
+        ],
+        "groundcover": "Chaparral scrub on distant hillside gradients, manicured urban turf and mulch beds"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Mid-century to contemporary high-density multi-family residential and commercial corridor",
+        "structures": [
+          {
+            "name": "Central High-Rise Residential Tower (8500 Sunset / Sunset Tower vicinity)",
+            "storeys": 14,
+            "height_m": 48.5,
+            "roof_geometry": "flat parapet with mechanical penthouse and cooling towers",
+            "facade_material": "painted white reinforced architectural concrete, recessed glass balconies with metal railings",
+            "weathering_patina": "light urban particulate accumulation along horizontal ledge reveals and balcony undersides"
+          },
+          {
+            "name": "Left High-Rise Residential Building",
+            "storeys": 12,
+            "height_m": 42.0,
+            "roof_geometry": "flat built-up roof with parapet edge",
+            "facade_material": "white stucco render and repetitive vertical window bays",
+            "weathering_patina": "minor sun-fading on western elevation, clean paint line transitions"
+          },
+          {
+            "name": "Right Contemporary Apartment Block (Modernist Dark Facade)",
+            "storeys": 8,
+            "height_m": 28.0,
+            "roof_geometry": "flat membrane roof with perimeter parapet",
+            "facade_material": "charcoal-toned composite architectural panels and deep-set fenestration grid",
+            "weathering_patina": "crisp factory powder-coated finishes with subtle airborne dust settling"
+          },
+          {
+            "name": "Foreground Mid-Rise Multi-Family Complexes",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "articulated flat roofs with mansard-style decorative metal and tile eaves",
+            "facade_material": "white and off-white exterior stucco, stepped terraces, and dark tinted glazing",
+            "weathering_patina": "rain-wash streaking along stucco parapet caps and terrace drainage points"
+          },
+          {
+            "name": "Commercial Strip & Low-Rise Foreground Footprints",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "flat gravel-ballasted roofs with HVAC condenser units and ducting",
+            "facade_material": "painted concrete masonry unit (CMU), commercial storefront aluminum framing",
+            "weathering_patina": "weathered gravel tar surfaces, slight oxidation on rooftop sheet metal flues"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375046,
+          34.090355
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 14.2,
+        "azimuth_deg": 268.5,
+        "kelvin_temperature": 3400,
+        "lighting_condition": "Golden Hour direct low-angle solar wash raking the western facades, creating elongated eastward shadows"
+      }
+    }
+  ]
+}

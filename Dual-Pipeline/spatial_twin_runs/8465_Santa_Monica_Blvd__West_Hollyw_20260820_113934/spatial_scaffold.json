@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 87.2,
+          "pitch_deg": -10.3,
+          "heading_deg": 318.6,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvium and sedimentary strata",
+        "mineralogy": "Siltstone, shale, and alluvial gravel/sand matrix",
+        "drainage": "Urban stormwater runoff system toward Ballona Creek watershed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadway (Santa Monica Blvd) and poured concrete sidewalks",
+        "wear_characteristics": "Sealed fissures, faded thermoplastic lane demarcations",
+        "micro_grading": "Gentle upward regional incline toward the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Platanus racemosa",
+          "Washingtonia robusta",
+          "Ficus microcarpa"
+        ],
+        "understory_flora": [
+          "Strelitzia reginae",
+          "Agave attenuata"
+        ],
+        "groundcover": "Cultivated urban planter turf and decorative gravel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Multi-family residential and mid-to-high-rise modernist urban towers",
+        "structures": [
+          {
+            "name": "High-Rise Residential Towers (Background Center)",
+            "storeys": 14,
+            "height_m": 46.0,
+            "roof_geometry": "flat with mechanical penthouses",
+            "facade_material": "white painted concrete balconies and floor slabs",
+            "weathering_patina": "light urban dust deposition and sun bleaching"
+          },
+          {
+            "name": "Multi-Family Residential Complex (Foreground Left)",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "flat with mansard-style standing seam metal eaves",
+            "facade_material": "white-painted stucco with recessed balconies",
+            "weathering_patina": "minor atmospheric road grime along base levels"
+          },
+          {
+            "name": "Commercial/Mixed-Use Buildings (Right Flank)",
+            "storeys": 3,
+            "height_m": 11.0,
+            "roof_geometry": "flat built-up roofing",
+            "facade_material": "modern white stucco and plate glass curtain walling",
+            "weathering_patina": "clean modern commercial finish"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375619,
+          34.090692
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Sun"
+      }
+    }
+  ]
+}

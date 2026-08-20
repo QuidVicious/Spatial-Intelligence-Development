@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_112548",
+  "resolved_address": "Sal Guarriello Veterans' Memorial, 8441 Santa Monica Blvd, West Hollywood, CA 90069, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour",
+  "telemetry": {
+    "latitude": 34.090354947237,
+    "longitude": -118.37504601417344,
+    "altitude_agl": 81.391566628667,
+    "heading": 313.6909375916607,
+    "pitch": -0.7547001750212305,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

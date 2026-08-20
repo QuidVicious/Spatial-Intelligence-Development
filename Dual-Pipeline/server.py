@@ -40,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # -----------------------------------------------------------------------------
 # 2. FastAPI & Model Initialization
 # -----------------------------------------------------------------------------
-app = FastAPI(title="Spatial Twin Intelligence Pipeline", version="3.1.0")
+app = FastAPI(title="Spatial Twin Intelligence Pipeline", version="3.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -50,7 +50,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize Depth Engine (Perception Layer loaded once into RTX 4070 VRAM)
+# Initialize Depth Engine (Perception Layer resident on RTX 4070)
 depth_engine = DepthEngine()
 
 # -----------------------------------------------------------------------------
@@ -90,7 +90,7 @@ def process_view(req: SynthesisRequest):
     address = reverse_geocode(req.telemetry.latitude, req.telemetry.longitude, GOOGLE_MAPS_API_KEY)
     print(f"[Resolved Address]: {address}")
 
-    # 2. PERCEPTION: Run Depth Anything V2 on the Viewport Capture
+    # 2. PERCEPTION: Run Depth Anything V2 on Viewport
     raw_b64 = req.screenshot.split(",")[-1] if "," in req.screenshot else req.screenshot
     viewport_pil = Image.open(io.BytesIO(base64.b64decode(raw_b64))).convert("RGB")
     depth_result = depth_engine.estimate(viewport_pil)
@@ -106,7 +106,7 @@ def process_view(req: SynthesisRequest):
     )
     print(f"[The Eye Complete] Mode: {spatial_mode}")
 
-    # 4. SYNTHESIS: Generative Twin Image Synthesis
+    # 4. SYNTHESIS: Visual Twin Image Synthesis
     twin_image_b64 = synthesize_twin_image(
         prompt=prompt,
         screenshot_b64=req.screenshot,
@@ -127,7 +127,7 @@ def process_view(req: SynthesisRequest):
         synthesized_b64=twin_image_b64,
         geojson_data=geojson_data,
         prompt=prompt,
-        depth_image=depth_result.depth_image  # <-- Artifact #6
+        depth_image=depth_result.depth_image
     )
 
     return {
@@ -141,7 +141,7 @@ def process_view(req: SynthesisRequest):
     }
 
 # -----------------------------------------------------------------------------
-# 5. Static File Serving (HUD Viewport)
+# 5. Static File Serving
 # -----------------------------------------------------------------------------
 if (BASE_DIR / "viewfinder.html").exists():
     @app.get("/")

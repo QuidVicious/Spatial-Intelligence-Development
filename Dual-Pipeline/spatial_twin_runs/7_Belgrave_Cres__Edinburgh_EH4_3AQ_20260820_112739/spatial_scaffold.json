@@ -1,0 +1,173 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 137.6,
+          "pitch_deg": -10.0,
+          "heading_deg": 120.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous sedimentary sandstone (Craigleith and Hailes Formations) intruded by volcanic basaltic sills and volcanic plugs",
+        "mineralogy": "Quartz arenite, feldspathic sandstone, carbonaceous mudstone, and olivine-basalt",
+        "drainage": "Steep dendritic drainage channeled into the incised Water of Leith river valley"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Dressed whinstone and granite kerbs, Scotch slate roof pitches, asphalt roadway surfacing across Dean Bridge, and packed loamy woodland soils along the valley slopes",
+        "wear_characteristics": "Polished stone edges, weathered bitumen roadways, and wet humic leaf litter along the Water of Leith gorge",
+        "micro_grading": "Steep valley gorge descending precipitously from Belgrave Crescent down to the Water of Leith beneath Dean Bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fagus sylvatica (European Beech)",
+          "Ulmus glabra (Wych Elm)",
+          "Fraxinus excelsior (European Ash)",
+          "Quercus petraea (Sessile Oak)"
+        ],
+        "understory_flora": [
+          "Hedera helix (Common Ivy)",
+          "Taxus baccata (Yew)",
+          "Ilex aquifolium (Holly)"
+        ],
+        "groundcover": "Riparian woodland understory, damp bryophyte moss mats, and naturalized perennial ferns along sandstone gorge cuttings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian and Georgian classical residential stone tenements, ecclesiastical Gothic revival, and civil bridge engineering",
+        "structures": [
+          {
+            "name": "Belgrave Crescent Foreground Tenement Blocks",
+            "storeys": 4,
+            "height_m": 18.5,
+            "roof_geometry": "Mansard and pitched Scotch slate roof with prominent chimney stacks and ashlar dormers",
+            "facade_material": "Craigleith fine-grained blonde ashlar sandstone",
+            "weathering_patina": "Historical industrial coal-smoke soot staining in sheltered reveals, damp stone base coursing, and lime mortar repointing"
+          },
+          {
+            "name": "Holy Trinity Church (Dean Bridge)",
+            "storeys": 3,
+            "height_m": 24.0,
+            "roof_geometry": "Steep Gothic gabled slate nave with crenellated square stone bell tower and corner pinnacles",
+            "facade_material": "Tooled ashlar and droved sandstone masonry",
+            "weathering_patina": "Pronounced dark soot crusting across wind-sheltered north-eastern moldings and weathered parapet coping"
+          },
+          {
+            "name": "Dean Bridge (Thomas Telford Structure)",
+            "storeys": 1,
+            "height_m": 32.0,
+            "roof_geometry": "Four monumental hollow-spandrel masonry arches with dressed stone parapets",
+            "facade_material": "Massive dressed Craigleith sandstone ashlar piers and arch rings",
+            "weathering_patina": "Rain-washed pier faces with mineral efflorescence and dark bio-crusts along deep arch undercuts"
+          },
+          {
+            "name": "Moray Estate & New Town Crescent Background Tenements",
+            "storeys": 4,
+            "height_m": 19.0,
+            "roof_geometry": "Curved continuous mansard roofs with paired ashlar chimneys and grey slate tiling",
+            "facade_material": "Smooth Craigleith blonde sandstone ashlar",
+            "weathering_patina": "Even atmospheric soot-patina on upper cornices and rusticated ground floors"
+          },
+          {
+            "name": "Edinburgh Castle & Old Town Ridge (Distant Horizon)",
+            "storeys": 6,
+            "height_m": 45.0,
+            "roof_geometry": "Irregular fortified battlements, copper-domed rotundas, and steep gables atop volcanic crag",
+            "facade_material": "Rubble whinstone, volcanic basalt crag, and dressed buff sandstone",
+            "weathering_patina": "Centuries of maritime weathering and coal-smoke crusting"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217078,
+          55.954137
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 12.5,
+        "solar_azimuth_deg": 258.0,
+        "kelvin_temperature": 3400,
+        "lighting_condition": "Delighted Golden Hour with raking low-angle amber sunlight catching south-west facades and deep cool ambient skylight in the gorge"
+      }
+    }
+  ]
+}

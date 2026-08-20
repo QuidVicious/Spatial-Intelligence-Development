@@ -1,6 +1,6 @@
 """
 Synthesis Engine: Handles generative twin synthesis, compound structure massing extraction,
-and dynamic mode parameter switching with Gemini 3.1 Flash Image.
+and architectural wireframe rectification with Gemini 3.1 Flash Image.
 """
 import os
 from typing import Dict, Any
@@ -23,7 +23,6 @@ def extract_compound_massing(geojson_data: Dict[str, Any]) -> Dict[str, Any]:
             continue
         props = feat.get("properties", {})
         
-        # Check if this feature has a 'structures' array (compound site / farmstead)
         structures = props.get("structures", [])
         if isinstance(structures, list) and len(structures) > 0:
             massing_info["has_compound_structures"] = True
@@ -38,7 +37,6 @@ def extract_compound_massing(geojson_data: Dict[str, Any]) -> Dict[str, Any]:
                             f"{name} ({s_storeys or 2} storeys, {s_height or 7.0}m elevation)"
                         )
                     
-                    # Lock primary residence if detected
                     if massing_info["primary_storeys"] is None and s_storeys:
                         try:
                             massing_info["primary_storeys"] = int(s_storeys)
@@ -50,7 +48,6 @@ def extract_compound_massing(geojson_data: Dict[str, Any]) -> Dict[str, Any]:
                         except (ValueError, TypeError):
                             pass
 
-        # Also check direct feature properties
         if massing_info["primary_storeys"] is None and "storeys" in props:
             try:
                 massing_info["primary_storeys"] = int(props["storeys"])
@@ -62,7 +59,6 @@ def extract_compound_massing(geojson_data: Dict[str, Any]) -> Dict[str, Any]:
             except (ValueError, TypeError):
                 pass
 
-    # Top-level properties fallback
     top_props = geojson_data.get("properties", {}) if isinstance(geojson_data.get("properties"), dict) else {}
     if massing_info["primary_storeys"] is None and "storeys" in top_props:
         try:
@@ -75,7 +71,6 @@ def extract_compound_massing(geojson_data: Dict[str, Any]) -> Dict[str, Any]:
         except (ValueError, TypeError):
             pass
 
-    # Enforce authoritative safety floors (prevent 1.5-storey prior collapse)
     massing_info["primary_storeys"] = massing_info["primary_storeys"] if massing_info["primary_storeys"] is not None else 2
     massing_info["primary_height_m"] = massing_info["primary_height_m"] if massing_info["primary_height_m"] is not None else 7.5
 
@@ -90,7 +85,7 @@ def synthesize_twin_image(
     geojson_data: Dict[str, Any],
     gemini_api_key: str
 ) -> str:
-    """Dispatches prompt and viewport image to gemini-3.1-flash-image with massing constraints."""
+    """Dispatches prompt and viewport image to gemini-3.1-flash-image with architectural rectification."""
     if not gemini_api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
 
@@ -100,7 +95,6 @@ def synthesize_twin_image(
     pitch = getattr(telemetry, "pitch", -45.0)
     heading = getattr(telemetry, "heading", 0.0)
 
-    # Build the massing constraint text
     if massing["structures_summary"]:
         compound_details = " Distinct compound heights: " + ", ".join(massing["structures_summary"]) + "."
     else:
@@ -119,15 +113,16 @@ def synthesize_twin_image(
             f"SCENE DESCRIPTION:\n{prompt}"
         )
     else:
-        # Mode A: 3D Rectification with Hybrid Massing Safeguard
-        temp = 0.25
-        top_p = 0.4
+        # Mode A: 3D Rectification with Strict Planar Wireframe Override
+        temp = 0.35
+        top_p = 0.65
         wrapper = (
-            f"DIRECTIVE: UNIVERSAL GEOMETRIC RECTIFICATION & FACADE MASSING.\n"
-            f"Treat the attached image as a true 3D geometric wireframe. Plumb all vertical walls to gravity vertical, "
-            f"establish continuous planar surfaces, sharpen corner intersections, and rectify photogrammetry noise. "
-            f"Preserve distinct vertical facade elevation ({massing['primary_storeys']} storeys / {massing['primary_height_m']}m ridge height for primary structures). "
-            f"Do not allow building roofs to flatten into the terrain plane.\n\n"
+            f"DIRECTIVE: ARCHITECTURAL WIREFRAME RECTIFICATION & DOCUMENTARY TWIN SYNTHESIS.\n"
+            f"IMPORTANT EXECUTION RULES:\n"
+            f"1. WIREFRAME PERSPECTIVE ONLY: Treat the attached viewport capture ONLY as a 3D wireframe camera guide for perspective, horizons, and building massing.\n"
+            f"2. DO NOT COPY MESH ARTIFACTS: The capture contains melted, wavy, and crumpled photogrammetry meshes. DO NOT render crumpled, folded, or warped architecture.\n"
+            f"3. RECTILINEAR PERFECTION: Reconstruct all building facades, balconies, windows, and canopies as plumb vertical and laser-straight horizontal rectilinear planes.\n"
+            f"4. SATELLITE DE-CLUTTER: Strip all vehicles, pedestrians, dumpsters, and trash.\n\n"
             f"SCENE DESCRIPTION:\n{prompt}"
         )
 

@@ -1,5 +1,5 @@
 """
-Archiver Module: Handles the isolated recording and persistence of all 6 spatial twin artifacts.
+Archiver Module: Handles the isolated recording and persistence of all spatial twin artifacts.
 """
 import os
 import re
@@ -25,8 +25,10 @@ def archive_run(
     geojson_data: Dict[str, Any],
     prompt: str,
     depth_image: Optional[Union[Image.Image, str]] = None,
+    draft_b64: Optional[str] = None,
+    rectified_depth_image: Optional[Union[Image.Image, str]] = None,
 ) -> str:
-    """Saves all 6 pipeline artifacts into an isolated timestamped folder."""
+    """Saves pipeline artifacts including 2-pass refinement stages into an isolated timestamped folder."""
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     clean_addr = re.sub(r'[^a-zA-Z0-9_-]', '_', address)[:35].strip('_')
     folder_name = f"{clean_addr}_{timestamp}"
@@ -37,34 +39,48 @@ def archive_run(
     raw_viewport = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
     (run_path / "viewport_capture.jpg").write_bytes(base64.b64decode(raw_viewport))
 
-    # 2. Depth Map PNG (Artifact #6)
+    # 2. Raw Depth Map (Pass 1)
     if depth_image is not None:
         if isinstance(depth_image, Image.Image):
-            depth_image.save(run_path / "depth_map.png")
+            depth_image.save(run_path / "depth_map_pass1_raw.png")
         elif isinstance(depth_image, str):
             raw_depth = depth_image.split(",")[-1] if "," in depth_image else depth_image
-            (run_path / "depth_map.png").write_bytes(base64.b64decode(raw_depth))
+            (run_path / "depth_map_pass1_raw.png").write_bytes(base64.b64decode(raw_depth))
 
-    # 3. Synthesized Twin Image PNG
+    # 3. Intermediate Draft Twin (Pass 1 Output)
+    if draft_b64 is not None:
+        raw_draft = draft_b64.split(",")[-1] if "," in draft_b64 else draft_b64
+        (run_path / "draft_twin_pass1.png").write_bytes(base64.b64decode(raw_draft))
+
+    # 4. Rectified Depth Map (Pass 2 Stencil)
+    if rectified_depth_image is not None:
+        if isinstance(rectified_depth_image, Image.Image):
+            rectified_depth_image.save(run_path / "depth_map_pass2_rectified.png")
+        elif isinstance(rectified_depth_image, str):
+            raw_rect_depth = rectified_depth_image.split(",")[-1] if "," in rectified_depth_image else rectified_depth_image
+            (run_path / "depth_map_pass2_rectified.png").write_bytes(base64.b64decode(raw_rect_depth))
+
+    # 5. Final Synthesized Visual Twin PNG
     raw_synth = synthesized_b64.split(",")[-1] if "," in synthesized_b64 else synthesized_b64
     (run_path / "synthesized_twin.png").write_bytes(base64.b64decode(raw_synth))
 
-    # 4. GeoJSON Spatial Scaffold
+    # 6. GeoJSON Spatial Scaffold
     (run_path / "spatial_scaffold.json").write_text(json.dumps(geojson_data, indent=2), encoding="utf-8")
 
-    # 5. Documentary Synthesis Prompt
+    # 7. Documentary Synthesis Prompt
     (run_path / "prompt.txt").write_text(prompt, encoding="utf-8")
 
-    # 6. Telemetry & Run Metadata
+    # 8. Telemetry & Run Metadata
     telemetry_dict = telemetry.dict() if hasattr(telemetry, "dict") else telemetry
     meta = {
         "timestamp": timestamp,
         "resolved_address": address,
         "spatial_mode": spatial_mode,
         "temporal_anchor": temporal_anchor,
-        "telemetry": telemetry_dict
+        "telemetry": telemetry_dict,
+        "refinement_passes": 2 if draft_b64 is not None else 1
     }
     (run_path / "telemetry_metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
-    print(f"[Archiver] Successfully saved 6 artifacts to: {run_path}")
+    print(f"[Archiver] Successfully saved run artifacts to: {run_path}")
     return folder_name

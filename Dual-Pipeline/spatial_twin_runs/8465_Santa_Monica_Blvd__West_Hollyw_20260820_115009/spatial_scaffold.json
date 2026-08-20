@@ -1,0 +1,179 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 93.2,
+          "pitch_deg": -9.3,
+          "heading_deg": 320.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvial fan gravel, sand, and silt overlying Puente Formation bedrock",
+        "mineralogy": "Quartz, feldspathic sands, sedimentary shale and siltstone",
+        "drainage": "Well-draining urban subterranean drainage network sloped south from the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Dense graded asphaltic concrete roadway, cast-in-place concrete sidewalks and curbs",
+        "wear_characteristics": "Sun-bleached asphalt aggregate, longitudinal seal coats, crisp painted road striping",
+        "micro_grading": "Gentle upward grade toward the northwest intersecting the Santa Monica Boulevard corridor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian Laurel Fig)",
+          "Jacaranda mimosifolia",
+          "Washingtonia robusta (Mexican Fan Palm)",
+          "Pinus canariensis"
+        ],
+        "understory_flora": [
+          "Strelitzia nicolai",
+          "Agave attenuata",
+          "Rhaphiolepis indica"
+        ],
+        "groundcover": "Cultivated ornamental urban landscaping beds and hillside chaparral canopy in the distant background"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "High-density multi-family residential mid-rises, post-modern multi-unit complexes, and modern commercial blocks",
+        "structures": [
+          {
+            "name": "Central High-Rise Residential Tower (Empire West)",
+            "storeys": 16,
+            "height_m": 52.0,
+            "roof_geometry": "flat parapet with mechanical penthouses",
+            "facade_material": "off-white painted architectural concrete, planar vertical piers, cantilevered horizontal balcony slabs, clear glazing",
+            "weathering_patina": "clean sun-baked off-white paint with slight atmospheric particulate settling on top edges of balcony ledges"
+          },
+          {
+            "name": "Left Foreground Post-Modern Residential Complex",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "articulated flat roof with pitched mansard elements and gabled dormer projections",
+            "facade_material": "stucco finish, recessed balcony bays, fenestrated lintels",
+            "weathering_patina": "slight rain wash markings beneath window sills, crisp white painted render"
+          },
+          {
+            "name": "Right Midground Contemporary Multi-Tier Residential Block",
+            "storeys": 4,
+            "height_m": 15.0,
+            "roof_geometry": "flat stepped terraces with glass safety balustrades",
+            "facade_material": "smooth white plaster, deep rectilinear window reveals, clear glass balcony railings",
+            "weathering_patina": "pristine contemporary finish"
+          },
+          {
+            "name": "Right Background Modern Geometric Mid-Rise (8500 Sunset / AKA)",
+            "storeys": 10,
+            "height_m": 35.0,
+            "roof_geometry": "flat architectural parapet",
+            "facade_material": "modular dark metal rainscreen panels and large rectangular punched window openings",
+            "weathering_patina": "factory-finished matte composite panels"
+          },
+          {
+            "name": "Left Foreground Low-Rise Flat-Roofed Commercial Structure",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "flat gravel-topped roof with rooftop billboard structure",
+            "facade_material": "painted masonry and stucco commercial storefront",
+            "weathering_patina": "sun-faded painted finish with light weathering"
+          },
+          {
+            "name": "Right Foreground Multi-Family Residential Block",
+            "storeys": 3,
+            "height_m": 10.5,
+            "roof_geometry": "flat gravel roof with solar array and HVAC units",
+            "facade_material": "light grey stucco and rectangular ribbon glazing",
+            "weathering_patina": "mild coastal sun fade"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375493,
+          34.090455
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 56.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Direct California Midday Sunlight with crisp, high-contrast shadows and deep blue sky"
+      }
+    }
+  ]
+}
