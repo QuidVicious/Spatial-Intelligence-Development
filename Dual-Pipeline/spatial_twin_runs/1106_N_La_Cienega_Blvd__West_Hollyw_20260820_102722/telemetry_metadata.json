@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260820_102722",
+  "resolved_address": "1106 N La Cienega Blvd, West Hollywood, CA 90069, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 34.09104664442626,
+    "longitude": -118.37583240416471,
+    "altitude_agl": 97.85086135315031,
+    "heading": 300.01549410079184,
+    "pitch": -12.740880869211948,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

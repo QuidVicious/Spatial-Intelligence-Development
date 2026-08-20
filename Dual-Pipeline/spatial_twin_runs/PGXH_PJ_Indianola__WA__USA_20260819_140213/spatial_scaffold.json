@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 1.5,
+          "pitch_deg": 1.0,
+          "heading_deg": 252.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Drift & Alluvial Glaciomarine Deposits",
+        "mineralogy": "Compacted silt, gravelly sand, quartzitic marine cobbles, clay hardpan",
+        "drainage": "High-permeability coastal bluffs draining into Puget Sound / Port Madison"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Tidally washed pebble and mixed sand foreshore with driftwood debris driftline",
+        "wear_characteristics": "Marine erosion, intertidal sediment sorted by wave action, dried macroalgae wrack",
+        "micro_grading": "Gentle upward slope from open water across foreshore leading to earthen bluff embankment"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western red cedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Arbutus menziesii (Pacific madrone)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Rubus spectabilis (Salmonberry)"
+        ],
+        "groundcover": "Maritime dune grass and coastal scrub anchoring bluff soils"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Coastal Vernacular Residences",
+        "structures": [
+          {
+            "name": "Northwestern Multi-Level Waterfront Residence",
+            "storeys": 3,
+            "height_m": 10.5,
+            "roof_geometry": "Multi-gabled cedar shake and architectural asphalt shingle pitch",
+            "facade_material": "Painted horizontal lap siding and exposed post-and-beam timber substructure",
+            "weathering_patina": "Salt spray weathering, oxidized marine hardware, slight algae sheen on low pilings"
+          },
+          {
+            "name": "Central Waterfront Bluff Residence",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "Hipped low-slope metal seam roof",
+            "facade_material": "Light-painted weatherboard and wide cantilevered coastal deck railings",
+            "weathering_patina": "Maritime wind erosion, sun-bleached timber deck planks"
+          },
+          {
+            "name": "Southeastern Shoreline Boathouse/Outbuilding",
+            "storeys": 1,
+            "height_m": 4.2,
+            "roof_geometry": "Shallow pitched gable",
+            "facade_material": "Dark stained cedar cladding",
+            "weathering_patina": "Driftline salt deposition, wet-dry watermarks"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.470897,
+          47.74929
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Clear Maritime Daylight"
+      }
+    }
+  ]
+}

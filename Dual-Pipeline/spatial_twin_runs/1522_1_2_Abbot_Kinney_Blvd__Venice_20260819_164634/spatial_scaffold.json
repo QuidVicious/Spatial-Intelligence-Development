@@ -1,0 +1,154 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 1.5,
+          "pitch_deg": -29.3,
+          "heading_deg": 13.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Coastal Dune Sand Deposits",
+        "mineralogy": "Fine to medium-grained quartz, feldspathic sand, silt, and unconsolidated marine clays",
+        "drainage": "High-permeability coastal sand subbase with engineered urban storm drain interfaces"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Scored concrete sidewalks, asphalt street pavement, and stabilized gravel open lot",
+        "wear_characteristics": "Sun-bleached aggregate, fine seismic pavement hairline fractures, tire track oil patinas",
+        "micro_grading": "Slight southwesterly coastal plain drop (<1% grade) with engineered curb runnels"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Washingtonia robusta (Mexican Fan Palm)",
+          "Eucalyptus globulus",
+          "Ficus microcarpa (Indian Laurel)"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave attenuata",
+          "Strelitzia nicolai"
+        ],
+        "groundcover": "Low xeriscape succulents and coastal urban volunteer grasses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Venice Contemporary Mixed-Use Commercial & Open Retail Courtyard",
+        "structures": [
+          {
+            "name": "1522 Abbot Kinney Commercial Building",
+            "storeys": 2,
+            "height_m": 8.2,
+            "roof_geometry": "Flat parapet roof with dual rooftop photovoltaic solar panel arrays",
+            "facade_material": "Charcoal-pigmented architectural stucco, board-formed concrete, and black anodized steel glazing frames",
+            "weathering_patina": "Marine air salt haze, subtle coastal UV bleaching, and fine airborne carbon deposition on ledges"
+          },
+          {
+            "name": "Rear Alley Outbuildings & Modular Units",
+            "storeys": 1,
+            "height_m": 3.4,
+            "roof_geometry": "Flat corrugated metal roof",
+            "facade_material": "Corrugated steel shipping container conversions and off-white painted timber siding",
+            "weathering_patina": "Mild oxidation along lower seams and weathered white enamel paint"
+          },
+          {
+            "name": "Northeast Property Wall & Border Structure",
+            "storeys": 1,
+            "height_m": 2.8,
+            "roof_geometry": "Flat boundary parapet",
+            "facade_material": "Smooth-troweled stucco boundary wall with vibrant artistic painted mural",
+            "weathering_patina": "Sun-exposed pigment fade and clean vertical water tracking lines"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.464144,
+          33.989919
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.4,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Southern California Coastal Midday Sunlight with Soft Maritime Skylight Fill"
+      }
+    }
+  ]
+}

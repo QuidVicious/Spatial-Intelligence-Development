@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_133244",
+  "resolved_address": "276 York Pl, Edinburgh EH1 3JD, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.95667376328142,
+    "longitude": -3.188422495846009,
+    "altitude_agl": 170.99617812136646,
+    "heading": 31.115605633344515,
+    "pitch": -42.97541434959187,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

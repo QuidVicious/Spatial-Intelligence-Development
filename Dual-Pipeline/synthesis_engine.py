@@ -120,8 +120,8 @@ def synthesize_twin_image(
         )
     else:
         # Mode A: 3D Rectification with Hybrid Massing Safeguard
-        temp = 0.2
-        top_p = 0.35
+        temp = 0.25
+        top_p = 0.4
         wrapper = (
             f"DIRECTIVE: UNIVERSAL GEOMETRIC RECTIFICATION & FACADE MASSING.\n"
             f"Treat the attached image as a true 3D geometric wireframe. Plumb all vertical walls to gravity vertical, "

@@ -40,7 +40,7 @@ class DepthEngine:
         self,
         model_id: str = "depth-anything/Depth-Anything-V2-Large-hf",
         device: Optional[str] = None,
-        torch_dtype: torch.dtype = torch.float16,
+        dtype: torch.dtype = torch.float16,
     ):
         if getattr(self, "_initialized", False):
             return
@@ -51,13 +51,13 @@ class DepthEngine:
         else:
             self.device = device
 
-        self.dtype = torch_dtype if self.device == "cuda" else torch.float32
+        self.dtype = dtype if self.device == "cuda" else torch.float32
 
         print(f"[DepthEngine] Initializing {self.model_id} on {self.device} ({self.dtype})...")
         self.processor = AutoImageProcessor.from_pretrained(self.model_id)
         self.model = AutoModelForDepthEstimation.from_pretrained(
             self.model_id,
-            torch_dtype=self.dtype,
+            dtype=self.dtype,
         ).to(self.device)
         self.model.eval()
         self._initialized = True

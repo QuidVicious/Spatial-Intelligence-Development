@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 97.9,
+          "pitch_deg": -12.7,
+          "heading_deg": 300.0,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Alluvial fan deposits over sedimentary bedrock",
+        "mineralogy": "Silt, sand, and gravel mix",
+        "drainage": "Urban stormwater runoff system"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadways, concrete sidewalks, and pool deck tile",
+        "wear_characteristics": "Sun-bleached asphalt and standard urban surface wear",
+        "micro_grading": "Gentle upward slope toward the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa",
+          "Washingtonia robusta",
+          "Eucalyptus"
+        ],
+        "understory_flora": [
+          "Ornamental shrubs",
+          "Hedges"
+        ],
+        "groundcover": "Turf and urban planters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Multi-family residential and high-rise condominiums",
+        "structures": [
+          {
+            "name": "Foreground Courtyard Complex",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "Flat with mansard parapet accents",
+            "facade_material": "White painted stucco with recessed balconies",
+            "weathering_patina": "Light environmental dust on upper ledges"
+          },
+          {
+            "name": "Mid-ground Multi-family Block",
+            "storeys": 4,
+            "height_m": 13.0,
+            "roof_geometry": "Flat with gravel surfacing",
+            "facade_material": "Beige painted stucco",
+            "weathering_patina": "Subtle sun-fading"
+          },
+          {
+            "name": "Right High-rise Residential Tower",
+            "storeys": 14,
+            "height_m": 46.0,
+            "roof_geometry": "Flat with mechanical penthouses",
+            "facade_material": "White painted concrete and glass balcony railings",
+            "weathering_patina": "Clean exterior with faint atmospheric soot on vertical ribs"
+          },
+          {
+            "name": "Left Residential Tower",
+            "storeys": 12,
+            "height_m": 39.0,
+            "roof_geometry": "Flat",
+            "facade_material": "White stucco and concrete balconies",
+            "weathering_patina": "Even urban patina"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375832,
+          34.091047
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Direct midday Southern California sunlight"
+      }
+    }
+  ]
+}

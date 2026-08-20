@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_164634",
+  "resolved_address": "1522 1/2 Abbot Kinney Blvd, Venice, CA 90291, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 33.989919423933486,
+    "longitude": -118.46414369089979,
+    "altitude_agl": 1.5,
+    "heading": 13.058528698441242,
+    "pitch": -29.271537497255228,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

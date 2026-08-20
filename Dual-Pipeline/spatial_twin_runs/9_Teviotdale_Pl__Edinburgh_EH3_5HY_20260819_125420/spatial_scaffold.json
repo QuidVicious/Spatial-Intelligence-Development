@@ -1,0 +1,167 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 100.5,
+          "pitch_deg": -25.9,
+          "heading_deg": 181.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Gullane Formation Sandstone, Siltstone, and Mudstone",
+        "mineralogy": "Fine-to-medium grained quartz arenite with carbonaceous bands",
+        "drainage": "Water of Leith basin catchment, moderate-to-high natural slope run-off"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt carriageway with whinstone/granite kerbstones and sandstone flagged pavements",
+        "wear_characteristics": "Tarmac patching, faint road markings, settled stone kerbs with mineral staining",
+        "micro_grading": "South-descending slope towards the Water of Leith valley"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fraxinus excelsior (European Ash)",
+          "Ulmus glabra (Wych Elm)"
+        ],
+        "understory_flora": [
+          "Hedera helix (Common Ivy)",
+          "Prunus spinosa (Blackthorn)",
+          "Ligustrum vulgare (Wild Privet)"
+        ],
+        "groundcover": "Domestic garden turf, mossy boundary walls, and riparian embankment scrub"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian / Georgian Scottish Tenement and Terraced Housing",
+        "structures": [
+          {
+            "name": "Foreground Tenement Range (Teviotdale Place)",
+            "storeys": 3,
+            "height_m": 12.5,
+            "roof_geometry": "Steeply pitched dual-pitched roof with Scottish slate and projecting gabled dormers",
+            "facade_material": "Honey-buff Craigleith/Hailes ashlar sandstone with dressed quoins",
+            "weathering_patina": "Historical coal soot accumulation in cornice reveals, window lintels, and downpipe runoff staining"
+          },
+          {
+            "name": "Right Flanking Tenement Block",
+            "storeys": 3,
+            "height_m": 12.0,
+            "roof_geometry": "Mansard/pitched slate roof with distinctive timber and zinc-clad dormer windows",
+            "facade_material": "Coursed sandstone ashlar with painted sash-and-case frames",
+            "weathering_patina": "Carbonaceous crusting along water tables, chimney stacks, and parapet edges"
+          },
+          {
+            "name": "Background Tenement Block (Deep South)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched Scottish slate with prominent stone chimney stacks and clay pots",
+            "facade_material": "Weathered grey-buff sandstone ashlar",
+            "weathering_patina": "Subtle atmospheric soot gradation darkening upper storeys and window surrounds"
+          },
+          {
+            "name": "Industrial/Distillery Brick Chimney & Ancillary Wings",
+            "storeys": 2,
+            "height_m": 18.0,
+            "roof_geometry": "Tapered cylindrical masonry stack with low gabled brick/slate outbuildings",
+            "facade_material": "Red Scottish engineering brick and rustic rubble masonry",
+            "weathering_patina": "Heavy flue soot deposition and iron oxidation on metal bracing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern white commercial utility van parked curbside"
+        ],
+        "street_furniture": [
+          "Victorian-style cast iron lampposts",
+          "Municipal waste bins",
+          "Low boundary dwarf walls with iron railings"
+        ],
+        "pedestrian_profiles": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208454,
+          55.961766
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.2,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Daylight with clear atmospheric transparency"
+      }
+    }
+  ]
+}

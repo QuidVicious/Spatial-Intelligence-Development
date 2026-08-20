@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_164457",
+  "resolved_address": "635 Venice Blvd., Venice, CA 90291, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 33.99065343181758,
+    "longitude": -118.45964276309213,
+    "altitude_agl": 1.5,
+    "heading": 172.5116729145264,
+    "pitch": 6.861049878638351,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

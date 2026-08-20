@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 21.9,
+          "pitch_deg": -8.8,
+          "heading_deg": 260.8,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till and Advance Outwash Sands/Gravels",
+        "mineralogy": "Unconsolidated silts, sands, rounded glacial cobbles, and dense hardpan clay",
+        "drainage": "High-porosity cliffside seepage draining eastward toward Puget Sound / Admiralty Inlet"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Coarse pebble-and-sand tideline beach, steep bluff erosion face, and cleared upland grassy lawn with unpaved compacted gravel driveway",
+        "wear_characteristics": "Marine tidal wash lines, natural driftwood accretion, weathered coastal topsoil",
+        "micro_grading": "Abrupt transition from sea-level intertidal gravel flat to a 12-meter sheer coastal bluff rising to the terraced residential clearing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Acer macrophyllum (Bigleaf maple)",
+          "Alnus rubra (Red alder)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Rubus spectabilis (Salmonberry)"
+        ],
+        "groundcover": "Temperate maritime dry-summer perennial grasses and coastal moss patches"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Coastal Timber Residential Complex",
+        "structures": [
+          {
+            "name": "Main Coastal Residence (Complex Octagonal/Gabled Pavilions)",
+            "storeys": 2,
+            "height_m": 8.8,
+            "roof_geometry": "Multi-hipped, gabled, and octagonal turreted asphalt shingle roof",
+            "facade_material": "Horizontal cedar lap siding, painted white trim, glass-paneled sunrooms, and wrap-around cantilevered timber decks",
+            "weathering_patina": "Maritime salt-air silvering on exposed timber, light biological lichen on northern roof seams"
+          },
+          {
+            "name": "Secondary Gabled Guest Cottage / Garage (South/Fore-Right)",
+            "storeys": 2,
+            "height_m": 6.8,
+            "roof_geometry": "Pitched gable metal/asphalt roof",
+            "facade_material": "Painted white vertical board-and-batten siding with white-trimmed fenestration",
+            "weathering_patina": "Mild coastal moisture streaking along drip edges"
+          },
+          {
+            "name": "Mid-Ground Flat-Roofed Workshop / Annex (Adjacent to Main House)",
+            "storeys": 2,
+            "height_m": 6.2,
+            "roof_geometry": "Low-slope flat membrane roof with parapet edge",
+            "facade_material": "White painted timber paneling and concrete foundation piers",
+            "weathering_patina": "Even clean maritime paint coat"
+          },
+          {
+            "name": "North Outbuilding / Workshop (Rear-Left Clearing)",
+            "storeys": 2,
+            "height_m": 6.5,
+            "roof_geometry": "Pitched shed/gable composite roof",
+            "facade_material": "Neutral gray painted siding and corrugated utility cladding",
+            "weathering_patina": "Damp moss shading from adjacent tall fir canopy"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472286,
+          47.748282
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Crisp Midday Coastal Sunlight",
+        "visibility_km": 35.0
+      }
+    }
+  ]
+}

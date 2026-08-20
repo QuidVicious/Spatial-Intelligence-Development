@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_135151",
+  "resolved_address": "2125 Leonidas St, New Orleans, LA 70118, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 29.95738106444188,
+    "longitude": -90.12645086234659,
+    "altitude_agl": 88.45886861905224,
+    "heading": 359.38438063564894,
+    "pitch": -18.45586734463674,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 121.7,
+          "pitch_deg": -61.1,
+          "heading_deg": 306.7,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Drift / Advance Outwash",
+        "mineralogy": "Unconsolidated sands, gravels, silts, and lodgement till over sedimentary coastal bluff deposits",
+        "drainage": "Rapid seaside slope percolation into Puget Sound marine boundary"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Narrow asphalt residential lane, crushed gravel driveways, coastal bluff sandy loam, dry meadow grasses",
+        "wear_characteristics": "Faded asphalt with edge deterioration, patch repairs, sun-cured dry summer grasses and soil exposed along driveway spurs",
+        "micro_grading": "Eastward-sloping topography dropping toward the steep Puget Sound shoreline bluff at bottom left"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western red cedar)",
+          "Arbutus menziesii (Pacific madrone)",
+          "Acer macrophyllum (Bigleaf maple)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Vaccinium ovatum (Evergreen huckleberry)"
+        ],
+        "groundcover": "Coastal forest duff, cured summer prairie turf, evergreen needle litter"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Vernacular Coastal Residential",
+        "structures": [
+          {
+            "name": "Mid-Ground Right Residence (20790 President Point Rd)",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "Multi-gabled dark asphalt shingle roof with clean ridge vents",
+            "facade_material": "Horizontal cedar lap siding and painted architectural wood trim",
+            "weathering_patina": "Subtle coastal salt air fading, damp moss accumulation on shaded lower eaves"
+          },
+          {
+            "name": "Mid-Ground Left Residence (Wooded Bluff House)",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_geometry": "Low-pitch flat/shed roof with light grey reflective membrane cap",
+            "facade_material": "Light-painted wood cladding, modern seaside architectural glazing",
+            "weathering_patina": "Sun-bleached exterior surfaces and atmospheric coastal salt patina"
+          },
+          {
+            "name": "Northwest Ancillary Sheds & Outbuildings",
+            "storeys": 1,
+            "height_m": 3.6,
+            "roof_geometry": "Pitched corrugated metal and asphalt shingle roofs",
+            "facade_material": "Weathered timber board-and-batten and utility framing",
+            "weathering_patina": "Lichen and pine needle accumulation"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474105,
+          47.74741
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.4,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Midday Maritime Sun with deep organic forest canopy shading"
+      }
+    }
+  ]
+}

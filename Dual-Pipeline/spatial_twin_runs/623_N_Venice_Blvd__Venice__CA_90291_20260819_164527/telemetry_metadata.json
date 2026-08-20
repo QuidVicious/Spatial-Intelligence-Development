@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_164527",
+  "resolved_address": "623 N Venice Blvd, Venice, CA 90291, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 33.99058190422004,
+    "longitude": -118.45986173936468,
+    "altitude_agl": 2.3672980498201217,
+    "heading": 128.2812553292337,
+    "pitch": -40.01370442647441,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

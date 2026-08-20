@@ -1,0 +1,146 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 1.5,
+          "pitch_deg": -41.3,
+          "heading_deg": 165.0,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Coastal Dune Sand Deposits",
+        "mineralogy": "Fine quartz sand, silt, unconsolidated coastal gravels",
+        "drainage": "High permeability, coastal water table influence"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Standard municipal concrete sidewalk with poured curb alongside multi-lane aggregate asphalt roadway",
+        "wear_characteristics": "Sun-bleached concrete panels, expansion joints, fine asphalt micro-fissuring",
+        "micro_grading": "Gentle south-facing coastal plain grading towards Venice Canals"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Eucalyptus globulus",
+          "Ficus microcarpa",
+          "Washingtonia robusta"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave attenuata",
+          "Nerium oleander"
+        ],
+        "groundcover": "Low coastal turf and drought-tolerant perimeter privacy hedges"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Multi-unit modern residential complex and modernist stucco townhomes",
+        "structures": [
+          {
+            "name": "Foreground Multi-Unit Modern Residential Complex",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_geometry": "Flat low-slope gravel and membrane parapet roof with multiple skylights and saw-tooth setback articulation",
+            "facade_material": "Smooth-troweled pale stucco, painted wood siding accents, and recessed aluminum-framed glazing",
+            "weathering_patina": "Marine layer salt mist oxidation on metal flashing, sun-bleached upper parapet edges, subtle rainwater streaks along drain spouts"
+          },
+          {
+            "name": "Rear Adjoining Stucco Residential Volumes",
+            "storeys": 2,
+            "height_m": 7.0,
+            "roof_geometry": "Flat built-up tar-and-gravel roofs with low perimeter parapets",
+            "facade_material": "Warm ochre and beige textured exterior stucco",
+            "weathering_patina": "Mild UV fading, localized coastal atmospheric patina along rooflines"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459661,
+          33.990695
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Southern California coastal midday sun with gentle marine haze"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_125319",
+  "resolved_address": "2 Dunrobin Pl, Edinburgh EH3 5JA, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.96133749651275,
+    "longitude": -3.2086219838514887,
+    "altitude_agl": 68.1774295528847,
+    "heading": 155.1941479950107,
+    "pitch": 5.465694048058206,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

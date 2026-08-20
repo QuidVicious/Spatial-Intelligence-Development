@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 65.5,
+          "pitch_deg": -5.4,
+          "heading_deg": 280.3,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till over Lawton Clay and Esperance Sand",
+        "mineralogy": "Dense silty sand, gravel, and compacted glacial lacustrine clay",
+        "drainage": "Urban engineered storm drainage draining westward towards Elliott Bay"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered concrete sidewalk slabs, asphalt arterial road surfaces, concrete curbs",
+        "wear_characteristics": "Standard urban weathering, bituminous patching, concrete joint sealant oxidation",
+        "micro_grading": "Gradual westward downslope towards Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer rubrum (Red Maple)",
+          "Platanus occidentalis (American Sycamore)",
+          "Prunus cerasifera (Cherry Plum)"
+        ],
+        "understory_flora": [
+          "Cornus sericea",
+          "Polystichum munitum (Western Sword Fern)"
+        ],
+        "groundcover": "Maintained urban street tree turf rings and ornamental mulched planting beds"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Mid-century to late-20th-century high-rise residential concrete tower with surrounding contemporary mixed-use urban blocks and iconic observation tower in background",
+        "structures": [
+          {
+            "name": "Skye at Belltown High-Rise (521 Wall St)",
+            "storeys": 18,
+            "height_m": 58.0,
+            "roof_geometry": "Flat concrete roof with multi-level mechanical penthouse elevator overrun",
+            "facade_material": "Precast concrete paneling painted in alternating muted slate blue, cream, and warm ochre vertical accent bays with recessed punched fenestration and vertical hanging architectural banner",
+            "weathering_patina": "Subtle atmospheric particulate accumulation on horizontal window ledges and panel reveal seams"
+          },
+          {
+            "name": "Space Needle (Background Far-Right)",
+            "storeys": 5,
+            "height_m": 184.0,
+            "roof_geometry": "Saucer observation deck with pinnacle spire",
+            "facade_material": "Structural painted steel tripod legs, glass-encased observation pod, steel spire",
+            "weathering_patina": "Pristine industrial architectural enamel coating"
+          },
+          {
+            "name": "Belltown Mid-Rise Residential & Commercial Blocks (Midground Left)",
+            "storeys": 6,
+            "height_m": 22.0,
+            "roof_geometry": "Flat membrane parapet roofs with HVAC mechanical enclosures",
+            "facade_material": "Engineered composite paneling, red masonry brick veneer base, and dark aluminum window wall systems",
+            "weathering_patina": "Light urban rain-streak weathering along masonry copings"
+          },
+          {
+            "name": "Seattle Center Monorail Guideway (Foreground Left)",
+            "storeys": 1,
+            "height_m": 7.5,
+            "roof_geometry": "Dual elevated prestressed concrete guideway beams",
+            "facade_material": "Prestressed reinforced concrete piers and running beams",
+            "weathering_patina": "Surface concrete carbonation and atmospheric wash along vertical pier columns"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.343566,
+          47.617639
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.2,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted clear afternoon Pacific Northwest daylight with soft maritime atmospheric clarity"
+      }
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 188.6,
+          "pitch_deg": -24.9,
+          "heading_deg": 116.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous sedimentary strata and volcanic intrusions (Gullane Formation / Arthur's Seat Volcanic Formation)",
+        "mineralogy": "Craigleith and Hailes sandstone, basaltic dolerite, glaciated alluvial deposits of the former Nor' Loch basin",
+        "drainage": "Engineered subsurface railway culverts and drainage network underlying Waverley Valley"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadbed along Waverley Bridge, sandstone kerbstones, reinforced concrete balustrades, steel railway tracks, ballast bed",
+        "wear_characteristics": "Rail ballast oil-staining, polished steel rails, textured vehicular asphalt with painted white road lines",
+        "micro_grading": "Elevated bridge span crossing the excavated glacial valley cutting of Waverley Station"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia cordata (Small-leaved Lime)"
+        ],
+        "understory_flora": [
+          "Hedera helix (Common Ivy)",
+          "Prunus spinosa (Blackthorn)",
+          "Crataegus monogyna (Common Hawthorn)"
+        ],
+        "groundcover": "Steep landscaped valley embankment grasses and dense herbaceous border of East Princes Street Gardens"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian railway terminal infrastructure and Old Town / New Town stone tenements",
+        "structures": [
+          {
+            "name": "Waverley Station Glazed Canopy Roof",
+            "storeys": 1,
+            "height_m": 12.5,
+            "roof_geometry": "Multi-span ridge-and-furrow glazed roof with wrought iron trusses",
+            "facade_material": "Painted structural iron framing, translucent industrial wired glass panels, lead flashing",
+            "weathering_patina": "Industrial particulate deposition, rain streaking across glass ridges, minor corrosion on structural truss seams"
+          },
+          {
+            "name": "Waverley Bridge Parcel Office / Station Building",
+            "storeys": 2,
+            "height_m": 8.5,
+            "roof_geometry": "Flat bituminous felt roof with parapet perimeter",
+            "facade_material": "Craigleith ashlar sandstone with rusticated basement arches and dressed architraves",
+            "weathering_patina": "Pronounced historical atmospheric coal-smoke crusting and dark soot staining in reveals and undercuts"
+          },
+          {
+            "name": "Market Street North Tenement Block (Former Gas Showrooms / Offices)",
+            "storeys": 4,
+            "height_m": 18.0,
+            "roof_geometry": "Low-pitch slate and lead-capped roof",
+            "facade_material": "Pale ashlar sandstone facade with concrete rear structural framing and brick infill",
+            "weathering_patina": "Mineral efflorescence, light airborne grime, uniform grey-buff tone"
+          },
+          {
+            "name": "Market Street & Cockburn Street Historic Tenements",
+            "storeys": 6,
+            "height_m": 24.5,
+            "roof_geometry": "Steep Scottish vernacular pitched roofs with stepped crowstep gables, dormers, and multiple ashlar chimney stacks",
+            "facade_material": "Dark Craigleith and Hailes coursed rubble and ashlar sandstone, Ballachulish slate roofs",
+            "weathering_patina": "Heavy, centuries-old carbon crusting, deep black soot deposits in stone recesses, natural differential weathering of sandstone blocks"
+          },
+          {
+            "name": "Waverley Bridge Span",
+            "storeys": 1,
+            "height_m": 9.0,
+            "roof_geometry": "Open road deck",
+            "facade_material": "Riveted steel plate girders, cast-iron parapets, ashlar stone bridge abutments",
+            "weathering_patina": "Atmospheric grime, mineral leaching down abutment joints"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193564,
+          55.951985
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp temperate daylight with subtle North Sea coastal clarity, casting sharp structural shadows"
+      }
+    }
+  ]
+}

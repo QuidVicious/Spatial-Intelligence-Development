@@ -1,0 +1,151 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 68.2,
+          "pitch_deg": 5.5,
+          "heading_deg": 155.2,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Gullane & Wardie Formations)",
+        "mineralogy": "Fine to medium-grained quartzose sandstone, siltstone, and mudstone with interbedded coal seams",
+        "drainage": "Well-drained urban glacial till overlying permeable sedimentary bedrock sloping towards the Water of Leith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Traditional whinstone and granite sett paved mews lane flanked by dressed sandstone kerbs and asphalt carriageway",
+        "wear_characteristics": "Polished crowning, light oil weathering along centerlines, damp interstitial moss within mortar joints",
+        "micro_grading": "Gentle south-southeast slope through the residential lane"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Hedera helix (English Ivy)",
+          "Prunus laurocerasus (Cherry Laurel)",
+          "Taxus baccata (Yew)"
+        ],
+        "groundcover": "Cultivated residential garden borders and damp mosses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Victorian / Georgian Residential Tenements and Mews Lanes (Stockbridge / Inverleith peripheral)",
+        "structures": [
+          {
+            "name": "Background Residential Tenement Crescent",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Multi-pitch Scottish slate roof with dressed ashlar chimney stacks and clay chimney pots",
+            "facade_material": "Craigleith and Hailes quarry blonde/grey carboniferous ashlar sandstone with fine droved margins",
+            "weathering_patina": "Historical industrial coal-smoke soot crusting in window reveals, undercornice shadow zones, and rain-washed upper ashlar bands"
+          },
+          {
+            "name": "Flanking Mews & Coach House Outbuildings",
+            "storeys": 2,
+            "height_m": 6.8,
+            "roof_geometry": "Gabled and hipped dark Ballachulish slate roofs with lead flashings",
+            "facade_material": "Random rubble sandstone masonry with lime-pointed joints and painted timber garage doors",
+            "weathering_patina": "Superficial damp staining, lichen growth along northern masonry faces, and weathered lime mortar"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern compact estate vehicle parked along lane margin",
+          "Resident bicycle chained to iron balustrade"
+        ],
+        "street_furniture": [
+          "Victorian-style cast-iron column streetlamp",
+          "Black painted cast-iron rainwater downpipes and guttering"
+        ],
+        "pedestrian_profiles": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208622,
+          55.961337
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 42.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Daylight with crisp directional fill and clear Scottish sky"
+      }
+    }
+  ]
+}

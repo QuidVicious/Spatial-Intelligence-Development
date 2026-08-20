@@ -1,0 +1,146 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 1.5,
+          "pitch_deg": 6.9,
+          "heading_deg": 172.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Coastal Dune Sand Deposits",
+        "mineralogy": "Fine to medium quartz sand, silt, unconsolidated coastal gravels",
+        "drainage": "High permeability coastal plain drainage, tidally influenced groundwater table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt concrete multi-lane roadway and poured Portland cement sidewalks",
+        "wear_characteristics": "Sun-bleached aggregate wear, minor tar sealed fissures, faint lane striping remnants",
+        "micro_grading": "Near-level coastal alluvial gradient with slight crowned street runoff slope"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian Laurel Fig)",
+          "Washingtonia robusta (Mexican Fan Palm)",
+          "Eucalyptus globulus"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave attenuata",
+          "Drought-tolerant coastal shrubs"
+        ],
+        "groundcover": "Mulched perimeter planting strips and hardscaped parkway turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Southern California Vernacular Commercial and Residential Mixed-Use",
+        "structures": [
+          {
+            "name": "Commercial Frontage Structure",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "Flat parapet roofline with subtle capping",
+            "facade_material": "Smooth troweled off-white stucco with recessed aluminum-framed glazing",
+            "weathering_patina": "Marine air oxidation, mild sun bleaching, and subtle carbon staining along lower base"
+          },
+          {
+            "name": "Adjacent Low-Rise Commercial Wing",
+            "storeys": 1,
+            "height_m": 4.2,
+            "roof_geometry": "Flat roof with parapet fascia",
+            "facade_material": "Painted masonry block and timber framing elements",
+            "weathering_patina": "Salt spray deposition, hairline surface craze cracking in outer paint coat"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459643,
+          33.990653
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Sun with Coastal Marine Haze"
+      }
+    }
+  ]
+}

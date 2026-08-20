@@ -1,0 +1,146 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 2.4,
+          "pitch_deg": -40.0,
+          "heading_deg": 128.3,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Coastal Dune Sand",
+        "mineralogy": "Fine to medium quartz sand, marine silt, unconsolidated sediment",
+        "drainage": "High permeability coastal drainage with shallow coastal plain water table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadbed and scored light-gray concrete sidewalk",
+        "wear_characteristics": "Sun-bleached aggregate, hairline expansion cracks, sand dusting near curbs",
+        "micro_grading": "Near-level coastal terrace grading with minor storm runoff crown"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian Laurel)",
+          "Eucalyptus globulus",
+          "Washingtonia robusta (Mexican Fan Palm)"
+        ],
+        "understory_flora": [
+          "Pittosporum tobira",
+          "Bougainvillea spectabilis",
+          "Agave attenuata"
+        ],
+        "groundcover": "Dense manicured privet hedging, perimeter coastal shrubs, mulch beds"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Multi-unit coastal residential compound / modernist stepped apartment complex",
+        "structures": [
+          {
+            "name": "Venice Blvd Multi-Unit Residential Complex (Northwest Wing)",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_geometry": "Flat built-up membrane roof with parapet edging and discrete HVAC/skylight curb wells",
+            "facade_material": "Stucco render in warm sand-buff tone, smooth-troweled finish, wood-framed fenestration",
+            "weathering_patina": "Marine salt haze chalking, minor rainwater streaking under parapet copings, sun-faded paint on southern exposures"
+          },
+          {
+            "name": "Venice Blvd Multi-Unit Residential Complex (Southeast Stepped Units)",
+            "storeys": 2,
+            "height_m": 7.0,
+            "roof_geometry": "Flat low-slope gravel and torch-down membrane roofs with parapets",
+            "facade_material": "Warm tan stucco render, recessed window frames, painted timber fascia trim",
+            "weathering_patina": "Fine coastal dust deposition on roof membranes, slight thermal expansion hairline lines in stucco"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.459862,
+          33.990582
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Southern California coastal midday sunlight with slight marine haze diffusion"
+      }
+    }
+  ]
+}

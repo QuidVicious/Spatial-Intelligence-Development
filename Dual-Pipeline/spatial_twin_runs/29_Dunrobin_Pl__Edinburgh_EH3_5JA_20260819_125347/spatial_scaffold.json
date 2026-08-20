@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 73.4,
+          "pitch_deg": -9.4,
+          "heading_deg": 154.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous Sandstone and Siltstone (Gullane Formation / Edinburgh Calciferous Sandstone Group)",
+        "mineralogy": "Fine-to-medium grained quartz arenite with intercalated mudstones and doleritic volcanic sills",
+        "drainage": "Urbanized shallow till over bedrock with moderate subterranean percolation towards the Water of Leith basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Coarse-graded asphalt roadbed framed by whinstone and granite kerbing with Scottish sandstone slab and concrete modular pedestrian paving",
+        "wear_characteristics": "Bitumen seam patching, fine gravel aggregate wear along traffic channels, and iron drain grating seated in stone gullies",
+        "micro_grading": "Gentle southward gradient descending toward the Water of Leith valley"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore Maple)",
+          "Ulmus glabra (Wych Elm)",
+          "Betula pendula (Silver Birch)"
+        ],
+        "understory_flora": [
+          "Hedera helix (Common Ivy)",
+          "Prunus spinosa (Blackthorn)",
+          "Ligustrum vulgare (Privet)"
+        ],
+        "groundcover": "Domestic garden turf, moss patches (Rhytidiadelphus squarrosus), and perennial border plantings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Late-Victorian / Edwardian Stockbridge Tenement and Terrace Enclave",
+        "structures": [
+          {
+            "name": "Dunrobin Place Tenement Flank",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "steeply pitched Scottish slate roof with dressed stone chimney stacks and ceramic chimney pots",
+            "facade_material": "coursed blond and grey Craigleith/Hailes carboniferous sandstone ashlar with lime mortar joints",
+            "weathering_patina": "pronounced historical coal-smoke soot staining and carbon crusting along window reveals, lintels, and overhanging eaves"
+          },
+          {
+            "name": "Adjoining Residential Terraced Block",
+            "storeys": 3,
+            "height_m": 11.2,
+            "roof_geometry": "dual-pitch Ballachulish slate roof with lead valley gutters and stone parapet upstands",
+            "facade_material": "tooled sandstone ashlar frontage with contrasting smooth-rubbed window surrounds and painted sash timber frames",
+            "weathering_patina": "rain-washed upper ashlar courses with dark damp run-off and mineral crusting across ground-floor courses"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "period_vehicles": [
+          "Modern compact and estate passenger cars parked parallel along the kerbside"
+        ],
+        "street_furniture": [
+          "Cast-iron municipal lighting columns",
+          "Black steel bollards",
+          "Curbside green wheelie bins"
+        ],
+        "pedestrian_profiles": [
+          "Occasional local residents in contemporary casual outerwear walking along stone footpaths"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208594,
+          55.96132
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted diffuse northern daylight with high-altitude Scottish cloud cover and soft directional sunlight"
+      }
+    }
+  ]
+}

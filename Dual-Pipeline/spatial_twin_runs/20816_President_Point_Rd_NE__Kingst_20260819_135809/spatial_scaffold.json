@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 37.1,
+          "pitch_deg": -20.6,
+          "heading_deg": 252.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till and Outwash Sand/Gravel",
+        "mineralogy": "Unconsolidated Quaternary sediments, silt, gravelly sand, clay lenses",
+        "drainage": "High-permeability littoral bluff runoff draining eastward toward Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted earth, gravel access driveway, and cobble/sand shoreline",
+        "wear_characteristics": "Tire track compression in dry loamy dirt, organic forest floor detritus, salt-drift edge erosion",
+        "micro_grading": "Terraced coastal bluff sloping eastward down to the gravel-sand tideflats"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Arbutus menziesii (Pacific madrone)",
+          "Alnus rubra (Red alder)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Vaccinium ovatum (Evergreen huckleberry)"
+        ],
+        "groundcover": "Coniferous needle duff, coastal mosses, marine shoreline grasses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Vernacular Coastal Residential Compound",
+        "structures": [
+          {
+            "name": "Main Waterfront Residence with Observational Turret",
+            "storeys": 3,
+            "height_m": 10.2,
+            "roof_geometry": "Multi-gabled and hipped dark composite shingle roof with an elevated octagonal lookout cupola/turret",
+            "facade_material": "Weathered cedar shake siding, dark painted horizontal timber trim, and broad ocean-facing glazing",
+            "weathering_patina": "Marine salt weathering, silvered wood grain exposure, subtle algae patina along lower damp shingle courses"
+          },
+          {
+            "name": "Secondary Waterfront Outbuilding / Guest Suite",
+            "storeys": 2,
+            "height_m": 6.8,
+            "roof_geometry": "Gabled standing seam metal and composite shingle roof",
+            "facade_material": "Light-toned horizontal timber clapboard and cedar siding",
+            "weathering_patina": "Mild coastal wind wear, faint mineral oxidation near flashing"
+          },
+          {
+            "name": "North Detached Workshop / Outbuilding",
+            "storeys": 2,
+            "height_m": 7.0,
+            "roof_geometry": "Asymmetrical pitched standing seam metal roof",
+            "facade_material": "Board-and-batten vertical cedar siding and light gray paint",
+            "weathering_patina": "Sun-bleached timber on south exposure, forest dust on eave returns"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472982,
+          47.748434
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.5,
+        "kelvin_temperature": 5400,
+        "lighting_condition": "Delighted Crisp Coastal Sunlight with soft ambient marine fill"
+      }
+    }
+  ]
+}

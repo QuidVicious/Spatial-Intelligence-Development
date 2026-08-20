@@ -1,0 +1,171 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 88.5,
+          "pitch_deg": -18.5,
+          "heading_deg": 359.4,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Deep Holocene deltaic alluvium and Mississippi River natural levee deposits",
+        "mineralogy": "Fine silts, heavy clays, saturated organic muds, unconsolidated alluvial sands",
+        "drainage": "Engineered municipal stormwater canals and subterranean pumping systems, high water table"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Asphalt roadways, poured concrete industrial aprons, compacted gravel lots, synthetic turf athletic field",
+        "wear_characteristics": "Sun-bleached asphalt with aggregate exposure, surface oil patina on parking pads, weathered red rubberized running track perimeter",
+        "micro_grading": "Engineered flat deltaic plain with shallow curb drainage channels and low embankment borders"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Quercus virginiana (Southern Live Oak)",
+          "Taxodium distichum (Bald Cypress)",
+          "Celtis laevigata (Sugarberry)",
+          "Liquidambar styraciflua (Sweetgum)"
+        ],
+        "understory_flora": [
+          "Sabal minor",
+          "Lagerstroemia indica (Crape Myrtle)",
+          "Ligustrum sinense"
+        ],
+        "groundcover": "St. Augustine grass, Bermuda turf mix, and clover along residential verges and industrial easements"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Municipal water purification complex, civil infrastructure, and dense single-story vernacular residential grid",
+        "structures": [
+          {
+            "name": "Carrollton Water Plant Elevated Tower",
+            "storeys": 1,
+            "height_m": 48.0,
+            "roof_geometry": "conical red-capped reservoir crown",
+            "facade_material": "reinforced poured concrete cylindrical pylon with painted white steel tank",
+            "weathering_patina": "atmospheric dust settling, subtle vertical water streaks on white painted steel"
+          },
+          {
+            "name": "Circular Clarifier Basin",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "open-top circular concrete rim",
+            "facade_material": "reinforced concrete perimeter retaining wall with suspended steel walkway bridges",
+            "weathering_patina": "mineral sediment line on inner concrete wall, turbid clay-rich untreated river water surface"
+          },
+          {
+            "name": "Historic Carrollton Water Purification Building",
+            "storeys": 3,
+            "height_m": 14.5,
+            "roof_geometry": "hipped green standing-seam copper roof",
+            "facade_material": "cast stone and painted masonry facade with rhythmic rectangular fenestration",
+            "weathering_patina": "copper verdigris oxidation, subtle atmospheric soot and biological shading on northern returns"
+          },
+          {
+            "name": "Leonidas / Hollygrove Residential Grid",
+            "storeys": 1,
+            "height_m": 5.2,
+            "roof_geometry": "gabled and hipped asphalt shingle and corrugated metal roofs",
+            "facade_material": "painted wood lap siding, vinyl cladding, brick veneer foundations on raised masonry piers",
+            "weathering_patina": "subtropical humidity weathering, faded paint on sun-exposed gables, moss accumulation on north roof slopes"
+          },
+          {
+            "name": "Water Works Operation Outbuildings",
+            "storeys": 1,
+            "height_m": 3.8,
+            "roof_geometry": "low-pitch gabled metal roofing",
+            "facade_material": "painted concrete masonry units (CMU) and prefabricated steel paneling",
+            "weathering_patina": "rust staining along base panels and galvanized flashing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.126451,
+          29.957381
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 56.5,
+        "kelvin_temperature": 5500,
+        "lighting_condition": "Direct midday sunlight with crisp directional shadows under high gulf coastal sky"
+      }
+    }
+  ]
+}

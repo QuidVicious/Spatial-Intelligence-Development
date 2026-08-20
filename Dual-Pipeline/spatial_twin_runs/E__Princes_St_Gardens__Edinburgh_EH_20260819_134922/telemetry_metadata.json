@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_134922",
+  "resolved_address": "E. Princes St Gardens, Edinburgh EH2 2EJ, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.951984921689174,
+    "longitude": -3.1935641242365227,
+    "altitude_agl": 188.5944772139414,
+    "heading": 116.4649939372058,
+    "pitch": -24.876075125442306,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

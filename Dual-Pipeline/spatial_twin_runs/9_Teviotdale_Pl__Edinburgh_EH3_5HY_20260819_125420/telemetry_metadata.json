@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260819_125420",
+  "resolved_address": "9 Teviotdale Pl, Edinburgh EH3 5HY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.961765873457175,
+    "longitude": -3.2084543270356685,
+    "altitude_agl": 100.46281173266163,
+    "heading": 181.50116372052543,
+    "pitch": -25.901090115102622,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  }
+}

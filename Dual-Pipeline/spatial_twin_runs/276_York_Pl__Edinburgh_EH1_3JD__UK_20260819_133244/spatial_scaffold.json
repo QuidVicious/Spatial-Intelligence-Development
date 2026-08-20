@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 171.0,
+          "pitch_deg": -43.0,
+          "heading_deg": 31.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Craigleith and Hailes Formations) and sedimentary siltstones interbedded with volcanic dolerite sills",
+        "mineralogy": "Quartz arenite with iron-oxide and silica cementation",
+        "drainage": "Urban subterranean drainage channeled along historic glacial drumlin slope toward the Firth of Forth basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Tarmacadam multi-lane carriageway with cast asphalt, dressed whinstone and granite kerbing, and Yorkstone / Caithness flagstone pedestrian pavements",
+        "wear_characteristics": "Crisp painted road markings ('KEEP CLEAR', center divider dashed lines), surface micro-aggregate exposure, damp gutter channels",
+        "micro_grading": "Gentle northeast descent along York Place alignment"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [],
+        "understory_flora": [],
+        "groundcover": "Urban paved environment with occasional courtyard moss colonization along shaded sandstone plinths and masonry reveals"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Georgian New Town Ashlar Sandstone Terraces & Rear Infill Masonry Blocks",
+        "structures": [
+          {
+            "name": "York Place Georgian Terraced Tenements (Foreground/Primary Row)",
+            "storeys": 4,
+            "height_m": 16.8,
+            "roof_geometry": "Mansard and pitched roofs clad in Scottish Ballachulish slate with regular gabled dormer windows, stone chimney stacks, and clay chimney pots",
+            "facade_material": "Fine-grained Craigleith blonde ashlar sandstone with rusticated basement/ground levels and channelled ashlar joints",
+            "weathering_patina": "Pronounced dark carbon soot crusting and historical industrial coal smoke patina across cornice undercuts, window reveals, and pedimented architraves"
+          },
+          {
+            "name": "Corner Return Pavilion / East Block",
+            "storeys": 4,
+            "height_m": 17.5,
+            "roof_geometry": "Mansard slate roof with dual-pitch slate hips and parapet coping",
+            "facade_material": "Blonde ashlar sandstone with painted timber ground-floor pilasters and timber sash-and-case windows",
+            "weathering_patina": "Moderate atmospheric grime, rain-washed facade panels contrasting with soot-stained stringcourses"
+          },
+          {
+            "name": "Rear Infill Courtyard Structure (Terracotta/Red Harled Block)",
+            "storeys": 3,
+            "height_m": 10.2,
+            "roof_geometry": "Flat felt/bitumen membrane roof with low parapets",
+            "facade_material": "Terracotta-red painted lime harling / rendered brickwork with white painted window frames",
+            "weathering_patina": "Faded pigmented wash with biological rain streaks and minor edge efflorescence"
+          },
+          {
+            "name": "Rear Industrial/Commercial Workshops & Outbuildings",
+            "storeys": 2,
+            "height_m": 8.0,
+            "roof_geometry": "Shallow gabled standing-seam zinc and corrugated composite roofs with large central skylights",
+            "facade_material": "Rubble sandstone and red engineering brick rear elevations",
+            "weathering_patina": "Oxidized metallic verdigris along flashings, weathered bituminous felt coatings"
+          },
+          {
+            "name": "Opposing South York Place Tenements (Partial Foreground)",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched slate roof with stone dormers and substantial shared ashlar chimney stacks",
+            "facade_material": "Craigleith ashlar sandstone",
+            "weathering_patina": "Deep historic coal-smoke darkening and stone erosion along coping stones"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188422,
+          55.956674
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Neutral Midday Daylight with crisp architectural shadows across slate dormers and ashlar cornices"
+      }
+    }
+  ]
+}
