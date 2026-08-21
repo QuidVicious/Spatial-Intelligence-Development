@@ -1,0 +1,219 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.204885,
+          55.952034,
+          173.6
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "heading_deg": 262.0,
+          "pitch_deg": -12.3,
+          "fov_deg": 60.0,
+          "altitude_agl_m": 173.6,
+          "spatial_mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.212,
+              55.949
+            ],
+            [
+              -3.198,
+              55.949
+            ],
+            [
+              -3.198,
+              55.955
+            ],
+            [
+              -3.212,
+              55.955
+            ],
+            [
+              -3.212,
+              55.949
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous Lower Oil-Shale Sandstone / Craigleith and Hailes Sandstone formations",
+        "stratigraphy": "Glacial till over interbedded sandstone, siltstone, and mudstone",
+        "drainage": "Well-drained southward and northward sloping terrain towards Water of Leith and Firth of Forth",
+        "indigenous_quarry_lithics": "Craigleith fine-grained carboniferous sandstone with high quartz content"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.207,
+              55.9515
+            ],
+            [
+              -3.203,
+              55.9515
+            ],
+            [
+              -3.203,
+              55.9535
+            ],
+            [
+              -3.207,
+              55.9535
+            ],
+            [
+              -3.207,
+              55.9515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Mown manicured central lawn turf surrounded by asphalt carriageways, whinstone kerbs, and Yorkstone / Caithness flagged perimeter pavements",
+        "micro_grading": "Slightly undulating formal square garden bounded by decorative cast-iron railings",
+        "wear_patina": "Even municipal maintenance with clear road markings and worn stone kerbing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.2055,
+            55.9523
+          ],
+          [
+            -3.2045,
+            55.9523
+          ],
+          [
+            -3.2052,
+            55.9518
+          ],
+          [
+            -3.2042,
+            55.9518
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory": "Ornamental mixed civic shrubs and hedgerows",
+        "groundcover": "Dense perennial rye-grass lawn surrounding the central Prince Albert equestrian monument"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2075,
+              55.951
+            ],
+            [
+              -3.2025,
+              55.951
+            ],
+            [
+              -3.2025,
+              55.954
+            ],
+            [
+              -3.2075,
+              55.954
+            ],
+            [
+              -3.2075,
+              55.951
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Georgian Neoclassical Planned Square (Charlotte Square / New Town)",
+        "structures": [
+          {
+            "name": "West Register House (former St George's Church)",
+            "storeys": 3,
+            "height_m": 46.0,
+            "roof_geometry": "Large copper dome and drum over classical tetrastyle Ionic portico",
+            "facade_material": "Ashlar Craigleith sandstone",
+            "weathering_patina": "Oxidized copper verdigris on dome, historic carbon soot patination on ashlar joints"
+          },
+          {
+            "name": "Charlotte Square Residential / Institutional Terraces",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched Scottish slate roofs with continuous ashlar chimney stacks and dormers",
+            "facade_material": "Robert Adam designed Classical ashlar sandstone elevations, rusticated ground floors",
+            "weathering_patina": "Honey-buff weathered stone with uniform sash fenestration reveals"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.204885,
+          55.952034
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Permanent cast-iron lamp posts, perimeter garden railings, and central stone monument"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.77,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-left (90\u00b0)",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    }
+  ]
+}

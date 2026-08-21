@@ -1,0 +1,182 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209035,
+          55.951027,
+          157.9
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "heading": 323.2,
+        "pitch": -23.6,
+        "fov": 60.0,
+        "spatial_mode": "3D_TILES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2105,
+              55.9502
+            ],
+            [
+              -3.2075,
+              55.9502
+            ],
+            [
+              -3.2075,
+              55.9518
+            ],
+            [
+              -3.2105,
+              55.9518
+            ],
+            [
+              -3.2105,
+              55.9502
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous sedimentary strata, sandstone and siltstone bedrock",
+        "quarried_materials": "Craigleith and Hailes pale buff sandstone ashlar, Scottish slate",
+        "groundwater_drainage": "Sloping urban glacial till over bedrock, moderate natural runoff"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2098,
+              55.9505
+            ],
+            [
+              -3.2082,
+              55.9505
+            ],
+            [
+              -3.2082,
+              55.9515
+            ],
+            [
+              -3.2098,
+              55.9515
+            ],
+            [
+              -3.2098,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Traditional whinstone and granite mews setts, sandstone kerbstones, paved flagstones",
+        "micro_grading": "Gradual downward slope along Charlotte Lane and Hope Street Lane toward the northwest",
+        "wear_patina": "Historic cart and tire smoothing along central lanes, weathered drainage gullies"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus",
+          "Tilia cordata"
+        ],
+        "understory": "Occasional domestic courtyard climbing shrubs and potted perennials",
+        "foliage_density": "Sparse urban foliage restricted to private rear tenement garden courts"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Edinburgh New Town Georgian townhouses, curved circus terraces, and utilitarian mews lanes with vernacular revival corner structures",
+        "structures": [
+          {
+            "name": "Corner Arts & Crafts / Vernacular Structure (19 Charlotte Lane)",
+            "storeys": 3,
+            "height_m": 12.5,
+            "roof_geometry": "Steeply pitched red tile roof with prominent red brick/terracotta chimneys and gabled dormers",
+            "facade_material": "Exposed timber framing with white infill over ashlar stone ground floor",
+            "weathering_patina": "Subtle urban soot accumulation along timber joints and chimney stacks"
+          },
+          {
+            "name": "Charlotte Square and West End Georgian Terraces",
+            "storeys": 4,
+            "height_m": 16.0,
+            "roof_geometry": "Pitched Scottish slate roofs with continuous dormer windows and stone chimneystacks",
+            "facade_material": "Fine Craigleith pale buff ashlar sandstone with rusticated lower levels",
+            "weathering_patina": "Historic urban soot patina and clean Georgian masonry lines"
+          },
+          {
+            "name": "Charlotte Lane Mews Range",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "Pitched slate roofs with flush rooflights and stone coped gables",
+            "facade_material": "Rubble sandstone with dressed ashlar quoins and timber coachhouse openings",
+            "weathering_patina": "Moderate surface mineral staining and authentic mortar repointing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209035,
+          55.951027
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "solar_azimuth_deg": 289.57,
+        "solar_elevation_deg": 27.3,
+        "shadow_azimuth_deg": 109.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Quarter-front lighting from camera-left",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209373,
+          55.951282
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 147.7,
+        "heading_deg": 318.1,
+        "pitch_deg": -32.6,
+        "fov_deg": 60.0,
+        "spatial_mode": "3D_TILES",
+        "temporal_anchor": "Georgian Era (1820)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2105,
+              55.9505
+            ],
+            [
+              -3.2085,
+              55.9505
+            ],
+            [
+              -3.2085,
+              55.952
+            ],
+            [
+              -3.2105,
+              55.952
+            ],
+            [
+              -3.2105,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Craigleith / Hailes Beds)",
+        "stratigraphy": "Glacial till overlying interbedded sandstone and siltstone",
+        "drainage": "Well-drained urban bedrock slope towards Water of Leith",
+        "local_quarry_lithics": "Craigleith fine-grained pale buff-grey quartzose sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2102,
+              55.9508
+            ],
+            [
+              -3.2088,
+              55.9508
+            ],
+            [
+              -3.2088,
+              55.9518
+            ],
+            [
+              -3.2102,
+              55.9518
+            ],
+            [
+              -3.2102,
+              55.9508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Whinstone (basalt) sett paving and broad Craigleith sandstone slab pavements",
+        "micro_grading": "Slight north-west downward gradient along Charlotte Lane",
+        "wear_patina": "Evenly worn stone flags, carved kerb edges, damp drainage gutters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": "Mature Ulmus procera (English Elm) and Tilia x europaea (Common Lime) foliage visible beyond rear boundary walls",
+        "understory": "Sparse private garden shrubbery behind stone boundary walls",
+        "groundcover": "Zero street verge vegetation; fully paved civil hardscape"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.21,
+              55.951
+            ],
+            [
+              -3.209,
+              55.951
+            ],
+            [
+              -3.209,
+              55.9516
+            ],
+            [
+              -3.21,
+              55.9516
+            ],
+            [
+              -3.21,
+              55.951
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Edinburgh New Town Georgian Urban Block and Corner Pavilion",
+        "structures": [
+          {
+            "role": "Center Corner Structure",
+            "storeys": 3,
+            "height_m": 12.5,
+            "roof_geometry": "Steep pitched slate mansard and gables with massive central chimney stack and dormers",
+            "facade_material": "Fine ashlar Craigleith sandstone ground floor with upper timber-framed / painted bay detailing and rusticated quoins",
+            "weathering_patina": "Historical coal soot weathering, crisp ashlar coursing"
+          },
+          {
+            "role": "Left Flank (Charlotte Square Terrace)",
+            "storeys": 3,
+            "height_m": 14.0,
+            "roof_geometry": "Slate mansard roof with regular pedimented dormers",
+            "facade_material": "Polished Craigleith sandstone ashlar, Georgian sash windows with fine glazing bars, rusticated basement area",
+            "weathering_patina": "Uniform golden-buff patina with subtle rain streaking"
+          },
+          {
+            "role": "Right Flank (Mews and Secondary Lane)",
+            "storeys": 2,
+            "height_m": 8.0,
+            "roof_geometry": "Pitched Scottish slate roof with pitched dormers",
+            "facade_material": "Random rubble sandstone with ashlar dressings",
+            "weathering_patina": "Historic urban soot deposits and mortar jointing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209373,
+          55.951282
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Fixed cast-iron railings, sandstone kerbs, historical stone boundary walls"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 318.1,
+          "pitch_deg": -32.6
+        },
+        "optical_profile": "Inverse-square distance falloff, coaxial zero-shadow alignment"
+      },
+      "geometry": null
+    }
+  ]
+}

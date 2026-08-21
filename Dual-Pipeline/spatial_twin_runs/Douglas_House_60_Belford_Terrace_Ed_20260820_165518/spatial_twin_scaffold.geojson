@@ -1,0 +1,167 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 1,
+        "feature_type": "observer_frame",
+        "altitude_agl_m": 166.3,
+        "pitch_deg": -27.2,
+        "heading_deg": 39.6,
+        "fov_deg": 60.0,
+        "spatial_mode": "3D_TILES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 2,
+        "feature_type": "subterranean_geology",
+        "bedrock": "Carboniferous sandstone and basaltic volcanic sill intrusions of the Midland Valley",
+        "stratigraphy": "Alluvial deposits over dense boulder clay and glacial till carved by the Water of Leith",
+        "drainage": "High-capacity natural gravity drainage directed toward the Water of Leith ravine",
+        "indigenous_quarried_lithics": "Craigleith and Hailes pale blonde-buff sandstone masonry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 3,
+        "feature_type": "ground_surface",
+        "surfacing": "Tarmacadam interior courtyard access roads with whinstone curbs and flagstone pedestrian pathways",
+        "micro_grading": "Terraced stepped contours descending northeast into the Dean Gorge riverbed",
+        "wear_patina": "Damp weathered stone retaining walls with localized lichen and river basin humidity staining"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 4,
+        "feature_type": "landscape_ecology",
+        "canopy_flora": "Sycamore (Acer pseudoplatanus), European beech (Fagus sylvatica), and mixed riparian riverbank hardwoods",
+        "understory": "Dense riparian shrubbery, ivy groundcover, and perennial riverside undergrowth along the gorge slopes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": 5,
+        "feature_type": "built_environment",
+        "urban_typology": "Enclosed residential courtyard enclave integrated alongside traditional Scottish Baronial and Victorian stone tenements",
+        "structures": [
+          {
+            "name": "Belford Mews / Courtyard Townhouses",
+            "storeys": 3,
+            "height_m": 10.5,
+            "facade_material": "Smooth cream render and dressed buff sandstone accents",
+            "roof_geometry": "Pitched red-clay pantile and terracotta-toned roofs with dormer fenestration",
+            "weathering_patina": "Clean modern architectural finish with subtle atmospheric runoff lines"
+          },
+          {
+            "name": "Upper Belford Terrace Tenements",
+            "storeys": 5,
+            "height_m": 17.0,
+            "facade_material": "Heavy pale-yellow ashlar masonry and coursed rubble stone",
+            "roof_geometry": "Pitched Scottish grey slate roofs with masonry chimneys and stepped gables",
+            "weathering_patina": "Historical coal-smoke patina and mineral leaching"
+          },
+          {
+            "name": "Well Court / Dean Village Victorian Tenements",
+            "storeys": 5,
+            "height_m": 18.5,
+            "facade_material": "Red/buff ashlar and coursed sandstone with prominent turrets and crow-stepped gables",
+            "roof_geometry": "High-pitch Scottish slate with clock-tower accents and dormers",
+            "weathering_patina": "Historical ferric and atmospheric patina on Victorian stonework"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 6,
+        "feature_type": "dynamic_elements",
+        "decluttering_status": "FULL_STATIC_RECTIFICATION",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.220387,
+          55.951234
+        ]
+      },
+      "properties": {
+        "stratum": 7,
+        "feature_type": "atmospheric_state",
+        "kelvin_temperature": 2000,
+        "solar_elevation_deg": -21.4,
+        "solar_azimuth_deg": 185.8,
+        "lighting_condition": "Deep nocturnal sky with high-contrast warm 2000K rim-lighting and ambient lunar fill",
+        "shadow_vector_deg": 5.8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.78,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Rear-right rim lighting / backlight",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    }
+  ]
+}

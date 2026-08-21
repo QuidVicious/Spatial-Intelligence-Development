@@ -1,0 +1,163 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 84.7,
+          "pitch_deg": -1.7,
+          "heading_deg": 58.8,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Puente Formation and Topanga Formation sedimentary marine sandstone and siltstone",
+        "mineralogy": "Quartz, feldspar, interbedded marine shale, and Quaternary alluvium deposits along base of Hollywood Hills",
+        "drainage": "Engineered municipal subterranean stormwater conduit network draining southward toward Ballona Creek watershed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Dense graded asphaltic concrete roadway (Sunset Boulevard) with integrated aggregate concrete curbs and sidewalks",
+        "wear_characteristics": "Thermoplastic painted crosswalk striping, turn lane arrows, 'KEEP CLEAR' road stencils, subtle longitudinal seam patching, and fine asphalt micro-fissuring",
+        "micro_grading": "Curvilinear east-northeast ascending road corridor conforming to the toe of the Santa Monica Mountain foothills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian laurel fig)",
+          "Washingtonia robusta (Mexican fan palm)",
+          "Pinus canariensis (Canary Island pine)",
+          "Jacaranda mimosifolia"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave attenuata",
+          "Strelitzia nicolai"
+        ],
+        "groundcover": "Cultivated hillside landscaping, drought-tolerant low shrubbery, and terraced residential ornamental plantings on the ascending left slopes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Commercial Sunset Strip corridor comprising high-rise hospitality towers, mid-rise commercial retail buildings, and large-scale structural steel cantilevered billboard superstructures",
+        "structures": [
+          {
+            "name": "Central High-Rise Hotel / Commercial Tower (Sunset Tower / 8490 Sunset corridor)",
+            "storeys": 15,
+            "height_m": 52.0,
+            "roof_geometry": "flat parapet with integrated mechanical penthouse",
+            "facade_material": "rectilinear glass curtain wall with precast concrete panels and giant integrated advertising display wrap",
+            "weathering_patina": "pristine architectural glazing with subtle urban dust on horizontal mullions"
+          },
+          {
+            "name": "Left Low-Rise Commercial Strip (Sunset Plaza North retail/restaurant)",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "flat built-up roof with parapets and canvas dining canopies",
+            "facade_material": "smooth white painted stucco, architectural timber framing, plate glass retail storefronts",
+            "weathering_patina": "clean sun-bleached coastal California stucco finish with crisp shadow reveals"
+          },
+          {
+            "name": "Right Commercial Complex and Billboard Array",
+            "storeys": 2,
+            "height_m": 8.5,
+            "roof_geometry": "flat commercial roof with heavy structural steel I-beam billboard pylons",
+            "facade_material": "painted architectural plaster, commercial fascia panels, and large-format printed vinyl / LED billboard displays",
+            "weathering_patina": "mild sun-exposure fading on structural steel mounts, razor-sharp clean signboards"
+          },
+          {
+            "name": "Ascending Hollywood Hills Residential Backdrop (Upper Left)",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_geometry": "multi-level flat and low-pitched Spanish clay tile",
+            "facade_material": "white stucco, glass architectural railings, terraced concrete retaining foundations",
+            "weathering_patina": "crisp modern coastal residential finishes"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.380017,
+          34.092202
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 58.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Brilliant Southern California midday sunlight with crisp directional shadows under canopies and billboard overhangs against a deep azure sky"
+      }
+    }
+  ]
+}

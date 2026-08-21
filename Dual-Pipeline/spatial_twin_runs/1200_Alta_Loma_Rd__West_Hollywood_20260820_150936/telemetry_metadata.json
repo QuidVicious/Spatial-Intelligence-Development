@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_150936",
+  "resolved_address": "1200 Alta Loma Rd, West Hollywood, CA 90069, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 34.09175577590225,
+    "longitude": -118.37776709580183,
+    "altitude_agl": 66.74803221743343,
+    "heading": 0.23017298874443226,
+    "pitch": 11.567922547771406,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

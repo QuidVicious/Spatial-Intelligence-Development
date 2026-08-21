@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_153756",
+  "resolved_address": "44 Frederick St, Edinburgh EH2 1EX, UK",
+  "spatial_mode": "2D_EXTRUSION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.953443407182306,
+    "longitude": -3.2007222357346463,
+    "altitude_agl": 121.66084251442435,
+    "heading": 342.1301803591895,
+    "pitch": 2.17139054065074,
+    "fov": 32.79971690006522,
+    "tile_mode": "2D_SATELLITE"
+  },
+  "refinement_passes": 2
+}

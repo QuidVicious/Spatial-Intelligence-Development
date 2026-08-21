@@ -1,0 +1,189 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20868,
+          55.951025,
+          163.5
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "heading_deg": 318.5,
+          "pitch_deg": -23.7,
+          "fov_deg": 60.0,
+          "altitude_agl_m": 163.5,
+          "spatial_mode": "3D_TILES",
+          "temporal_anchor": "Georgian Era (1820)"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.212,
+              55.949
+            ],
+            [
+              -3.205,
+              55.949
+            ],
+            [
+              -3.205,
+              55.954
+            ],
+            [
+              -3.212,
+              55.954
+            ],
+            [
+              -3.212,
+              55.949
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Craigleith and Hailes strata) interbedded with basaltic volcanic intrusions",
+        "stratigraphy": "Glacial till boulder clay mantle over consolidated sedimentary sandstone bedrock",
+        "drainage": "Well-drained sloped northern descent towards the Water of Leith basin",
+        "regional_quarry_lithics": "Craigleith fine-grained quartz-arenite ashlar freestone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2105,
+              55.9505
+            ],
+            [
+              -3.2075,
+              55.9505
+            ],
+            [
+              -3.2075,
+              55.9525
+            ],
+            [
+              -3.2105,
+              55.9525
+            ],
+            [
+              -3.2105,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite whinstone cobbles, hand-dressed Craigleith sandstone kerbs, and stone sett paving",
+        "micro_grading": "Gentle downward gradient traversing northwest towards Charlotte Square and Queen Street Gardens",
+        "wear_patina": "Historic cart-wheel polishing on central setts, soot-blackened curbs, damp perimeter gutters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus",
+          "Tilia cordata",
+          "Ulmus glabra"
+        ],
+        "understory": "Occasional private mews garden shrubbery and courtyard ivy",
+        "groundcover": "Urban paved masonry with minimal grass tufts along rear mews stone joints"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Edinburgh New Town Georgian Classical Urban Masterplan (James Craig / Robert Adam)",
+        "structures": [
+          {
+            "name": "St George's Church (West Register House) Dome & Portico",
+            "quadrant": "Foreground Right",
+            "storeys": 3,
+            "height_m": 46.0,
+            "facade_material": "Smooth-dressed Craigleith ashlar sandstone with oxidized verdigris copper dome and lead cupola",
+            "roof_geometry": "Stepped square attic plinth supporting circular peristyle drum, hemispherical copper dome, and lantern",
+            "fenestration": "Round-arched louvred belfry apertures and monumental classical pilasters"
+          },
+          {
+            "name": "Hope Street & Charlotte Square Western Flank Terraces",
+            "quadrant": "Left and Center Background",
+            "storeys": 4,
+            "height_m": 15.5,
+            "facade_material": "Polished buff Craigleith sandstone ashlar with rusticated ground-floor arcading and droved stone basements",
+            "roof_geometry": "Mansard and pitched Scotch slate roofs with rhythmic dressed-stone chimney stacks and lead flashings",
+            "fenestration": "Six-over-six timber sash-and-case windows with crisp orthogonal stone lintels and reveals"
+          },
+          {
+            "name": "Corner Pavilions & Hope Lane Mews",
+            "quadrant": "Center Midground",
+            "storeys": 2,
+            "height_m": 8.0,
+            "facade_material": "Random rubble masonry with polished stone quoins, red clay pantiles, and rosemary roof tiles",
+            "roof_geometry": "Dual-pitched gable roofs punctuated by dormers and industrial-glazed skylights",
+            "fenestration": "Segmental-arched carriage entrances and small square upper-floor sash windows"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE_PURGE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "temporary_fixtures": "NONE",
+        "fixed_civil_infrastructure": "Cast iron Georgian gas lantern posts, stone hitching posts, cast iron basement lightwell railings"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.77,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Rear-left rim lighting / backlight",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    }
+  ]
+}

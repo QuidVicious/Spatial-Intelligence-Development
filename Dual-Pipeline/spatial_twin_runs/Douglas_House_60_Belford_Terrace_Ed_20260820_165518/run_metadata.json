@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260820_165518",
+  "address": "Douglas House, 60 Belford Terrace, Edinburgh EH4 3UQ, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.9512342401821,
+    "longitude": -3.2203866557331673,
+    "altitude_agl": 166.34192835285037,
+    "heading": 39.559981277471266,
+    "pitch": -27.1960955998539,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-20T23:54:30.1860000000015134Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Rear-right rim lighting / backlight. Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.78,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Rear-right rim lighting / backlight",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+      "solar_azimuth": 185.78,
+      "solar_elevation": -21.35,
+      "color_temperature_k": 2000,
+      "lux": 5
+    }
+  },
+  "distilled_prompt": "High-angle medium-telephoto view overlooking the terraced Belford residential enclave descending toward the Water of Leith gorge, framed by three-storey cream-rendered courtyard townhouses with red dormered roofs in the foreground, stepped five-storey blonde ashlar tenement blocks on the upper left terrace, and intricate five-storey Scottish Baronial sandstone complexes flanking the right. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film: every building is resolved with plumb vertical planar facades, rectangular multi-pane fenestration, level floor plates, crisp Scottish slate and clay pantile rooflines, and surrounding mature riparian sycamore and beech tree canopies rendered as lush, authentic organic foliage. Relit under a dark celestial night dome with a calibrated 2000K warm rear-right rim lighting vector casting delicate highlights along roof ridges and deep planar shadow lines, presenting a pristine, static architectural tableau completely devoid of vehicles, pedestrians, or transient clutter.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Rear-right rim lighting / backlight. Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: High-angle medium-telephoto view overlooking the terraced Belford residential enclave descending toward the Water of Leith gorge, framed by three-storey cream-rendered courtyard townhouses with red dormered roofs in the foreground, stepped five-storey blonde ashlar tenement blocks on the upper left terrace, and intricate five-storey Scottish Baronial sandstone complexes flanking the right. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film: every building is resolved with plumb vertical planar facades, rectangular multi-pane fenestration, level floor plates, crisp Scottish slate and clay pantile rooflines, and surrounding mature riparian sycamore and beech tree canopies rendered as lush, authentic organic foliage. Relit under a dark celestial night dome with a calibrated 2000K warm rear-right rim lighting vector casting delicate highlights along roof ridges and deep planar shadow lines, presenting a pristine, static architectural tableau completely devoid of vehicles, pedestrians, or transient clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 8899.46
+  }
+}

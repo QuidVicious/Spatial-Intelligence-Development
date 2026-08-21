@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 68.7,
+          "pitch_deg": -1.4,
+          "heading_deg": 327.6,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary Alluvium and Hollywood Fault alluvial fan deposits",
+        "mineralogy": "Interbedded unconsolidated sand, silt, and gravel overlying Miocene sedimentary bedrock of the Santa Monica Mountains",
+        "drainage": "Southern hillside runoff to urban subterranean storm drainage network"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Multi-lane graded asphalt roadway, poured concrete sidewalks, and curb returns",
+        "wear_characteristics": "Sun-bleached aggregate, painted pedestrian crosswalk striping, expansion joint tar lines",
+        "micro_grading": "Slight southern slope rising north toward the base of the Hollywood Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian Laurel)",
+          "Washingtonia robusta (Mexican Fan Palm)",
+          "Jacaranda mimosifolia"
+        ],
+        "understory_flora": [
+          "Bougainvillea spectabilis",
+          "Agave americana",
+          "Pittosporum tobira"
+        ],
+        "groundcover": "Trimmed turf grass and mulched planting beds along property perimeters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Late Mid-Century Modern High-Rise Residential and Low-Rise Commercial Corridor",
+        "structures": [
+          {
+            "name": "Westmount Towers (Left Tower)",
+            "storeys": 14,
+            "height_m": 44.0,
+            "roof_geometry": "flat rooftop with mechanical penthouse parapet",
+            "facade_material": "white painted reinforced concrete, continuous horizontal cantilevered balcony slabs, floor-to-ceiling glass fenestration",
+            "weathering_patina": "crisp vertical reveals, subtle environmental atmospheric patina under overhangs"
+          },
+          {
+            "name": "Westmount Towers (Right Tower)",
+            "storeys": 14,
+            "height_m": 44.0,
+            "roof_geometry": "flat rooftop with mechanical bulkhead",
+            "facade_material": "white painted cast concrete with rhythmic stepped balcony tiers and tinted glazing",
+            "weathering_patina": "pristine white elastomeric coating with sharp architectural shadow lines"
+          },
+          {
+            "name": "Intersection Commercial Low-Rise & Service Canopy",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "flat horizontal service station canopy with sharp fascia",
+            "facade_material": "structural steel columns, composite aluminum paneling, clear plate glass",
+            "weathering_patina": "clean industrial finish, zero photogrammetry mesh warping"
+          },
+          {
+            "name": "Mid-Rise Residential Complex (Center-Midground)",
+            "storeys": 5,
+            "height_m": 16.5,
+            "roof_geometry": "flat parapet with decorative cornice modules",
+            "facade_material": "stucco exterior finish, recessed punched window openings, individual balcony bays",
+            "weathering_patina": "warm Southern California sun exposure with light dust accumulation on horizontal surfaces"
+          },
+          {
+            "name": "Background Sunset Strip Commercial Towers",
+            "storeys": 12,
+            "height_m": 42.0,
+            "roof_geometry": "flat commercial roof decks",
+            "facade_material": "dark glass curtain walls and geometric perforated metal architectural cladding",
+            "weathering_patina": "reflective modern glazing mirroring the northern hills"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375701,
+          34.089797
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 58.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Direct Midday Sun with subtle Pacific marine haze fill"
+      }
+    }
+  ]
+}

@@ -3,357 +3,344 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spatial Intelligence HUD — Viewfinder</title>
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <title>Spatial Intelligence Pipeline // 6-DoF Viewfinder HUD</title>
+
+  <!-- CesiumJS CSS & JS -->
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css" />
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Cesium.js"></script>
+
   <style>
     :root {
       --bg-dark: #0a0c10;
-      --panel-bg: rgba(14, 18, 25, 0.88);
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --text-main: #f1f5f9;
-      --text-dim: #94a3b8;
-      --border: rgba(56, 189, 248, 0.25);
+      --panel-bg: rgba(14, 18, 26, 0.88);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --accent-cyan: #00e5ff;
+      --accent-amber: #ffb300;
+      --text-main: #f0f4f8;
+      --text-muted: #8a99a8;
+      --font-mono: "SF Mono", "Consolas", "Courier New", monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color: var(--text-main); }
-    #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-    
-    /* Top HUD */
-    .hud-panel {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: var(--panel-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 18px;
-      z-index: 10;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      max-width: 420px;
+    body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: var(--font-sans); color: var(--text-main); }
+    #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+    /* Reticle */
+    .viewport-reticle {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 32px; height: 32px; pointer-events: none; z-index: 5;
     }
-    .hud-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-    .hud-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 16px; font-size: 13px; }
-    .hud-label { color: var(--text-dim); }
-    .hud-value { font-family: monospace; font-weight: 600; color: #fff; text-align: right; }
-    
-    .temporal-box {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .viewport-reticle::before, .viewport-reticle::after { content: ''; position: absolute; background: rgba(0, 229, 255, 0.4); }
+    .viewport-reticle::before { top: 15px; left: 0; width: 32px; height: 2px; }
+    .viewport-reticle::after { top: 0; left: 15px; width: 2px; height: 32px; }
+
+    /* Header */
+    .hud-header {
+      position: absolute; top: 16px; left: 20px; z-index: 10;
+      display: flex; align-items: center; gap: 12px;
+      background: var(--panel-bg); backdrop-filter: blur(12px);
+      border: 1px solid var(--panel-border); padding: 8px 16px; border-radius: 8px;
     }
-    .temporal-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-    .temporal-input {
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 4px;
-      color: #fff;
-      padding: 6px 10px;
-      font-size: 13px;
-      outline: none;
+    .hud-logo { font-weight: 800; letter-spacing: 1.5px; font-size: 13px; color: var(--accent-cyan); }
+    .hud-sep { color: var(--panel-border); }
+    .hud-location { font-size: 13px; color: var(--text-main); font-weight: 500; }
+
+    /* Sidebar */
+    .hud-sidebar {
+      position: absolute; top: 72px; left: 20px; width: 340px;
+      max-height: calc(100% - 90px); overflow-y: auto; z-index: 10;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .temporal-input:focus { border-color: var(--accent); }
-    
+    .hud-card { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 8px; padding: 14px; }
+    .hud-card-header { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; }
+
+    /* Telemetry Grid */
+    .telemetry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: var(--font-mono); font-size: 11px; }
+    .telemetry-item { display: flex; flex-direction: column; gap: 2px; }
+    .telemetry-label { color: var(--text-muted); font-size: 10px; }
+    .telemetry-val { color: var(--accent-cyan); font-weight: 600; }
+
+    /* Controls */
+    .hud-input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+    .hud-label { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    select, button { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); padding: 8px 10px; border-radius: 6px; font-size: 12px; outline: none; }
+
+    .lighting-mode-toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+    .toggle-btn { flex: 1; cursor: pointer; font-weight: 600; font-size: 11px; padding: 8px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); border-radius: 6px; color: var(--text-muted); text-align: center; }
+    .toggle-btn.active { background: rgba(0, 229, 255, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .toggle-btn.floodlight.active { background: rgba(255, 179, 0, 0.15); border-color: var(--accent-amber); color: var(--accent-amber); }
+
+    .lighting-status-row { display: flex; justify-content: space-between; font-size: 11px; padding: 6px 8px; background: rgba(0, 0, 0, 0.3); border-radius: 4px; }
+    .font-mono { font-family: var(--font-mono); }
+    .text-cyan { color: var(--accent-cyan); }
+    .hidden { display: none !important; }
+
     .btn-synthesize {
-      margin-top: 12px;
-      width: 100%;
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-      color: white;
-      border: 1px solid var(--accent);
-      border-radius: 6px;
-      padding: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 0 16px var(--accent-glow);
-      transition: all 0.2s;
+      width: 100%; background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      color: #fff; border: none; padding: 12px; font-weight: 700; font-size: 13px;
+      letter-spacing: 0.8px; cursor: pointer; border-radius: 6px;
     }
-    .btn-synthesize:hover { background: linear-gradient(135deg, #0ea5e9, #0284c7); transform: translateY(-1px); }
-    .btn-synthesize:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-synthesize:hover { background: linear-gradient(135deg, #00c6eb 0%, #0088cc 100%); }
 
     /* Results Drawer */
-    #drawer {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      bottom: 16px;
-      width: 500px;
-      background: var(--panel-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      transform: translateX(540px);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+    .results-drawer {
+      position: absolute; top: 16px; right: 20px; width: 440px;
+      max-height: calc(100% - 32px); background: var(--panel-bg);
+      backdrop-filter: blur(16px); border: 1px solid var(--panel-border);
+      border-radius: 10px; z-index: 20; display: flex; flex-direction: column;
+      transform: translateX(480px); transition: transform 0.35s ease;
     }
-    #drawer.open { transform: translateX(0); }
-    .drawer-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .results-drawer.open { transform: translateX(0); }
+    .drawer-header { padding: 14px 16px; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; }
+    .drawer-title { font-size: 13px; font-weight: 700; color: var(--accent-cyan); }
+    .btn-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; }
+    .drawer-body { padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    .image-preview-card { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--panel-border); }
+    .image-preview-card img { width: 100%; display: block; }
+    .metadata-box { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 10px; font-size: 11px; }
+    .metadata-title { font-weight: 700; color: var(--accent-amber); margin-bottom: 4px; font-size: 10px; text-transform: uppercase; }
+
+    .loading-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 12, 16, 0.75); backdrop-filter: blur(4px);
+      z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
     }
-    .drawer-title { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; }
-    .btn-close { background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
-    .drawer-content { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-    
-    .address-card { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px 14px; border-left: 3px solid var(--accent); font-size: 13px; line-height: 1.4; }
-    .preview-img { width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover; }
-    .section-title { font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; font-weight: 700; }
-    .prompt-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 12px; font-size: 12px; line-height: 1.5; color: #cbd5e1; max-height: 160px; overflow-y: auto; }
-    .json-box { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; font-family: monospace; font-size: 11px; color: #a5f3fc; max-height: 160px; overflow-y: auto; white-space: pre-wrap; }
-    
-    .loader { display: none; text-align: center; padding: 30px 0; color: var(--accent); font-size: 13px; }
-    .loader.active { display: block; }
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
+
   <div id="cesiumContainer"></div>
+  <div class="viewport-reticle"></div>
 
-  <!-- Telemetry HUD -->
-  <div class="hud-panel">
-    <div class="hud-title">6-DoF Viewport Telemetry</div>
-    <div class="hud-grid">
-      <span class="hud-label">Latitude</span><span class="hud-value" id="hud-lat">--</span>
-      <span class="hud-label">Longitude</span><span class="hud-value" id="hud-lon">--</span>
-      <span class="hud-label">Altitude (AGL)</span><span class="hud-value" id="hud-agl">-- m</span>
-      <span class="hud-label">Heading</span><span class="hud-value" id="hud-heading">--°</span>
-      <span class="hud-label">Pitch</span><span class="hud-value" id="hud-pitch">--°</span>
-      <span class="hud-label">FOV</span><span class="hud-value" id="hud-fov">--°</span>
-    </div>
-
-    <div class="temporal-box">
-      <span class="temporal-label">Temporal Anchor</span>
-      <input type="text" id="temporal-input" class="temporal-input" value="Present Day" placeholder="e.g. October 1966 or Present Day" />
-    </div>
-
-    <button id="btn-synthesize" class="btn-synthesize">✨ Synthesize Spatial Twin</button>
+  <div class="hud-header">
+    <span class="hud-logo">SPATIAL INTELLIGENCE</span>
+    <span class="hud-sep">/</span>
+    <span id="current-location-text" class="hud-location">Edinburgh New Town, Scotland</span>
   </div>
 
-  <!-- Results Drawer -->
-  <div id="drawer">
+  <div class="hud-sidebar">
+    <div class="hud-card">
+      <div class="hud-card-header">📡 6-DoF Telemetry</div>
+      <div class="telemetry-grid">
+        <div class="telemetry-item"><span class="telemetry-label">LAT / LON</span><span id="telemetry-coords" class="telemetry-val">--</span></div>
+        <div class="telemetry-item"><span class="telemetry-label">ALTITUDE</span><span id="telemetry-alt" class="telemetry-val">--</span></div>
+        <div class="telemetry-item"><span class="telemetry-label">HEADING / PITCH</span><span id="telemetry-heading-pitch" class="telemetry-val">--</span></div>
+        <div class="telemetry-item"><span class="telemetry-label">FOV</span><span id="telemetry-fov" class="telemetry-val">--</span></div>
+      </div>
+    </div>
+
+    <div class="hud-card">
+      <div class="hud-card-header">💡 Dynamic Relighting Rig</div>
+      <div class="lighting-mode-toggle">
+        <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')">☀️ Solar Ephemeris</button>
+        <button id="btn-mode-floodlight" class="toggle-btn floodlight" onclick="setLightingMode('FLOODLIGHT')">🔦 Floodlight</button>
+      </div>
+      <div id="solar-time-status" class="lighting-status-row">
+        <span class="telemetry-label">SCENE UTC:</span>
+        <span id="cesium-time-display" class="font-mono text-cyan">--:--:-- UTC</span>
+      </div>
+      <div id="floodlight-status" class="lighting-status-row hidden">
+        <span class="telemetry-label">OPTICAL AXIS:</span>
+        <span class="font-mono" style="color: var(--accent-amber);">Coaxial 1/(d²) • 0-Lux Night</span>
+      </div>
+    </div>
+
+    <div class="hud-card">
+      <div class="hud-input-group">
+        <label class="hud-label">TEMPORAL ANCHOR</label>
+        <select id="temporal-anchor-select">
+          <option value="Present Day" selected>Present Day</option>
+          <option value="Georgian Era (1820)">Georgian Era (1820)</option>
+          <option value="Victorian Era (1880)">Victorian Era (1880)</option>
+        </select>
+      </div>
+      <button id="btn-synthesize-action" class="btn-synthesize" onclick="captureAndSynthesizeTwin()">⚡ SYNTHESIZE LIVING TWIN</button>
+    </div>
+  </div>
+
+  <div id="resultsDrawer" class="results-drawer">
     <div class="drawer-header">
-      <span class="drawer-title">Spatial Twin Result</span>
-      <button class="btn-close" id="btn-close">&times;</button>
+      <span class="drawer-title">DOCUMENTARY TWIN INSPECTOR</span>
+      <button class="btn-close" onclick="closeDrawer()">✕</button>
     </div>
-    <div class="drawer-content">
-      <div id="loader" class="loader">
-        <div id="loader-title">Synthesizing Spatial Twin...</div>
-        <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Visual Frustum Ingestion ➔ GeoJSON ➔ Nano Banana 2</div>
-      </div>
-      
-      <div id="results-view" style="display:none; flex-direction: column; gap: 16px;">
-        <div class="address-card" id="res-address">--</div>
-        
-        <div>
-          <div class="section-title">Generative Twin Simulation</div>
-          <img id="res-image" class="preview-img" src="" alt="Synthesized Twin" />
-        </div>
-
-        <div>
-          <div class="section-title">Multimodal Prompt ("The Eye")</div>
-          <div class="prompt-box" id="res-prompt">--</div>
-        </div>
-
-        <div>
-          <div class="section-title">GeoJSON Cognitive Scaffold</div>
-          <pre class="json-box" id="res-geojson">--</pre>
-        </div>
-      </div>
+    <div class="drawer-body">
+      <div class="image-preview-card"><img id="result-twin-img" src="" alt="Twin" /></div>
+      <div class="metadata-box"><div class="metadata-title">Illumination Rig</div><div id="result-lighting-summary">--</div></div>
+      <div class="metadata-box"><div class="metadata-title">Essence Prompt</div><div id="result-distilled-prompt" class="font-mono" style="font-size: 10px;">--</div></div>
+      <div class="metadata-box"><div class="metadata-title">Stratum 7 GeoJSON</div><pre id="result-geojson-stratum" class="font-mono" style="font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan);"></pre></div>
     </div>
+  </div>
+
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+    <div class="loading-text">Synthesizing Documentary Twin...</div>
   </div>
 
   <script>
     let viewer = null;
-    let tileset = null;
+    let currentTileMode = '3D_TILES';
+    let currentLightingMode = 'SOLAR';
 
-    async function init() {
-      // 1. Fetch Config
-      const configRes = await fetch("/api/config");
-      const config = await configRes.json();
-      
-      if (config.cesium_ion_token) {
-        Cesium.Ion.defaultAccessToken = config.cesium_ion_token;
-      }
-      if (config.google_maps_api_key) {
-        Cesium.GoogleMaps.defaultApiKey = config.google_maps_api_key;
-      }
-
-      // 2. Initialize Cesium Viewport with preserveDrawingBuffer enabled for screenshot captures
-      viewer = new Cesium.Viewer("cesiumContainer", {
-        globe: false,
-        animation: false,
-        timeline: false,
-        geocoder: false,
-        homeButton: false,
-        baseLayerPicker: false,
-        navigationHelpButton: false,
-        sceneModePicker: false,
-        contextOptions: {
-          webgl: {
-            preserveDrawingBuffer: true
+    // =========================================================================
+    // INITIALIZATION: Fetch token first, THEN boot Cesium
+    // =========================================================================
+    async function initApp() {
+      // 1. Get Cesium Ion Token from server .env dynamically
+      try {
+        const configResp = await fetch('/api/config');
+        if (configResp.ok) {
+          const cfg = await configResp.json();
+          if (cfg.cesium_ion_token) {
+            Cesium.Ion.defaultAccessToken = cfg.cesium_ion_token;
+            console.log('[Cesium] Ion Access Token configured from .env');
           }
+        }
+      } catch (err) {
+        console.warn('[Cesium] Could not reach /api/config', err);
+      }
+
+      // 2. Initialize Cesium Viewer with OpenStreetMap base layer fallback
+      viewer = new Cesium.Viewer('cesiumContainer', {
+        contextOptions: { webgl: { preserveDrawingBuffer: true } },
+        baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({ url: 'https://tile.openstreetmap.org/' })),
+        baseLayerPicker: false,
+        geocoder: false,
+        animation: true,
+        timeline: true,
+        fullscreenButton: false,
+        vrButton: false,
+        infoBox: false,
+        selectionIndicator: false,
+        navigationHelpButton: false
+      });
+
+      // 3. Set Starting Camera (Edinburgh New Town at 250m)
+      viewer.camera.setView({
+        destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 250.0),
+        orientation: {
+          heading: Cesium.Math.toRadians(315.0),
+          pitch: Cesium.Math.toRadians(-25.0),
+          roll: 0.0
         }
       });
 
-      // Add Google Photorealistic 3D Tiles
+      // 4. Load Google Photorealistic 3D Tiles if token is present
       try {
-        tileset = await Cesium.createGooglePhotorealistic3DTileset();
-        viewer.scene.primitives.add(tileset);
+        if (Cesium.createGooglePhotorealistic3DTileset) {
+          const tileset = await Cesium.createGooglePhotorealistic3DTileset();
+          viewer.scene.primitives.add(tileset);
+          console.log('[Cesium] Google 3D Tiles active.');
+        }
       } catch (e) {
-        console.error("Failed to load 3D Tiles:", e);
+        console.warn('[Cesium] 3D Tiles error. OpenStreetMap baseline active.', e);
       }
 
-      // Position Camera at Ainslie Place, Edinburgh
-      viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 75.0),
-        orientation: {
-          heading: Cesium.Math.toRadians(315.0),
-          pitch: Cesium.Math.toRadians(-12.0),
-          roll: 0.0
-        },
-        duration: 0
+      // 5. Telemetry & Clock sync
+      viewer.clock.onTick.addEventListener((clock) => {
+        const isoTime = Cesium.JulianDate.toIso8601(clock.currentTime);
+        const timeElem = document.getElementById('cesium-time-display');
+        if (timeElem) timeElem.textContent = isoTime.replace('T', ' ').substring(0, 19) + ' UTC';
       });
 
-      // 3. Live HUD Updates
-      viewer.camera.changed.addEventListener(updateHUD);
-      updateHUD();
-
-      // UI Listeners
-      document.getElementById("btn-synthesize").addEventListener("click", triggerSynthesis);
-      document.getElementById("btn-close").addEventListener("click", () => {
-        document.getElementById("drawer").classList.remove("open");
-      });
+      viewer.camera.changed.addEventListener(updateTelemetryHUD);
+      updateTelemetryHUD();
     }
 
-    function getTelemetry() {
-      if (!viewer || !viewer.camera) return { lat: 0, lon: 0, heading: 0, pitch: 0, altitude_agl: 4.5, altitude_amsl: 50.0, fov: 75.0 };
-
+    function updateTelemetryHUD() {
+      if (!viewer) return;
       const camera = viewer.camera;
-      const carto = Cesium.Cartographic.fromCartesian(camera.position);
-      if (!carto) return { lat: 0, lon: 0, heading: 0, pitch: 0, altitude_agl: 4.5, altitude_amsl: 50.0, fov: 75.0 };
-
-      const lat = Cesium.Math.toDegrees(carto.latitude);
-      const lon = Cesium.Math.toDegrees(carto.longitude);
-      const heading = Cesium.Math.toDegrees(camera.heading);
-      const pitch = Cesium.Math.toDegrees(camera.pitch);
-      
-      let fov = 75.0;
-      if (camera.frustum && camera.frustum.fovy) {
-        fov = Cesium.Math.toDegrees(camera.frustum.fovy);
-      }
-
-      const amsl = carto.height || 0;
-      const globeHeight = viewer.scene.globe ? (viewer.scene.globe.getHeight(carto) || 0) : 0;
-      const agl = Math.max(1.5, amsl - globeHeight);
-
-      return { lat, lon, heading, pitch, altitude_agl: agl, altitude_amsl: amsl, fov };
+      const cart = Cesium.Cartographic.fromCartesian(camera.position);
+      document.getElementById('telemetry-coords').textContent = `${Cesium.Math.toDegrees(cart.latitude).toFixed(5)}, ${Cesium.Math.toDegrees(cart.longitude).toFixed(5)}`;
+      document.getElementById('telemetry-alt').textContent = `${cart.height.toFixed(1)} m`;
+      document.getElementById('telemetry-heading-pitch').textContent = `${Cesium.Math.toDegrees(camera.heading).toFixed(1)}° / ${Cesium.Math.toDegrees(camera.pitch).toFixed(1)}°`;
+      document.getElementById('telemetry-fov').textContent = `${Cesium.Math.toDegrees(camera.frustum.fov || 0.785).toFixed(1)}°`;
     }
 
-    function updateHUD() {
-      const t = getTelemetry();
-      document.getElementById("hud-lat").innerText = t.lat.toFixed(6);
-      document.getElementById("hud-lon").innerText = t.lon.toFixed(6);
-      document.getElementById("hud-agl").innerText = t.altitude_agl.toFixed(1) + " m";
-      document.getElementById("hud-heading").innerText = t.heading.toFixed(1) + "°";
-      document.getElementById("hud-pitch").innerText = t.pitch.toFixed(1) + "°";
-      document.getElementById("hud-fov").innerText = t.fov.toFixed(1) + "°";
+    function setLightingMode(mode) {
+      currentLightingMode = mode;
+      document.getElementById('btn-mode-solar').classList.toggle('active', mode === 'SOLAR');
+      document.getElementById('btn-mode-floodlight').classList.toggle('active', mode === 'FLOODLIGHT');
+      document.getElementById('solar-time-status').classList.toggle('hidden', mode !== 'SOLAR');
+      document.getElementById('floodlight-status').classList.toggle('hidden', mode !== 'FLOODLIGHT');
     }
 
-    async function triggerSynthesis() {
-      const btn = document.getElementById("btn-synthesize");
-      const drawer = document.getElementById("drawer");
-      const loader = document.getElementById("loader");
-      const loaderTitle = document.getElementById("loader-title");
-      const resultsView = document.getElementById("results-view");
-
+    async function captureAndSynthesizeTwin() {
+      if (!viewer) return;
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const actionBtn = document.getElementById('btn-synthesize-action');
       try {
-        // 1. Open drawer & show loader
-        btn.disabled = true;
-        drawer.classList.add("open");
-        loader.classList.add("active");
-        resultsView.style.display = "none";
-        loaderTitle.innerText = "Analyzing Viewport Geometry...";
+        loadingOverlay.classList.remove('hidden');
+        actionBtn.disabled = true;
 
-        // 2. Force fresh render and capture frame
-        viewer.scene.render();
-        const canvas = viewer.scene.canvas;
-        const screenshot = canvas.toDataURL("image/jpeg", 0.95);
+        viewer.render();
+        const screenshotB64 = viewer.scene.canvas.toDataURL('image/jpeg', 0.85);
 
-        // 3. Extract Telemetry
-        const t = getTelemetry();
+        const camera = viewer.camera;
+        const cart = Cesium.Cartographic.fromCartesian(camera.position);
 
-        // 4. Zero-Cost 3D Tiles vs 2D Satellite Check
-        const isTilesetActive = (typeof tileset !== 'undefined' && tileset && tileset.show);
-        const centerPixel = new Cesium.Cartesian2(canvas.clientWidth / 2, canvas.clientHeight / 2);
-        const pickedFeature = isTilesetActive ? viewer.scene.pick(centerPixel) : null;
-        
-        const tile_mode = (
-          pickedFeature instanceof Cesium.Cesium3DTileFeature || 
-          (pickedFeature && pickedFeature.primitive === tileset)
-        ) ? "3D_TILES" : "2D_SATELLITE";
-
-        console.log(`[Telemetry] Camera Lat: ${t.lat.toFixed(5)}, Lon: ${t.lon.toFixed(5)} | Tile Mode: ${tile_mode}`);
-
-        loaderTitle.innerText = `Synthesizing Spatial Twin (${tile_mode})...`;
-
-        // 5. Build Payload
-        const payload = {
-          screenshot: screenshot,
-          temporal_anchor: document.getElementById("temporal-input").value || "Present Day",
-          telemetry: {
-            latitude: t.lat,
-            longitude: t.lon,
-            altitude_agl: t.altitude_agl,
-            heading: t.heading,
-            pitch: t.pitch,
-            fov: t.fov,
-            tile_mode: tile_mode
-          }
+        const telemetryPayload = {
+          latitude: Cesium.Math.toDegrees(cart.latitude),
+          longitude: Cesium.Math.toDegrees(cart.longitude),
+          altitude_agl: cart.height,
+          heading: Cesium.Math.toDegrees(camera.heading),
+          pitch: Cesium.Math.toDegrees(camera.pitch),
+          fov: Cesium.Math.toDegrees(camera.frustum.fov || 0.785),
+          tile_mode: currentTileMode,
+          temporal_anchor: document.getElementById('temporal-anchor-select').value,
+          timestamp_utc: Cesium.JulianDate.toIso8601(viewer.clock.currentTime),
+          lighting_mode: currentLightingMode
         };
 
-        // 6. POST to FastAPI Backend
-        const response = await fetch("/api/process_view", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+        const response = await fetch('/api/process_view', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ screenshot_b64: screenshotB64, telemetry: telemetryPayload })
         });
 
         if (!response.ok) {
-          throw new Error(`Server returned HTTP ${response.status}: ${await response.text()}`);
+          const err = await response.json();
+          throw new Error(err.detail || `Server Error ${response.status}`);
         }
 
         const data = await response.json();
-
-        // 7. Populate Results UI
-        document.getElementById("res-address").innerText = data.address || "Unknown Location";
-        document.getElementById("res-image").src = data.synthesized_image_url || "";
-        document.getElementById("res-prompt").innerText = data.prompt || "";
-        document.getElementById("res-geojson").innerText = JSON.stringify(data.geojson, null, 2);
-
-        // 8. Hide Loader & Reveal Results
-        loader.classList.remove("active");
-        resultsView.style.display = "flex";
-
+        displayResults(data);
       } catch (err) {
-        console.error("[Synthesis Error]:", err);
-        loaderTitle.innerText = `Synthesis Failed: ${err.message}`;
-        alert(`Synthesis failed: ${err.message}`);
+        alert('Synthesis Error: ' + err.message);
       } finally {
-        btn.disabled = false;
+        loadingOverlay.classList.add('hidden');
+        actionBtn.disabled = false;
       }
     }
 
-    window.onload = init;
+    function displayResults(data) {
+      document.getElementById('result-twin-img').src = data.twin_image_b64;
+      document.getElementById('result-distilled-prompt').textContent = data.distilled_prompt || 'N/A';
+      
+      const lighting = data.lighting_state || {};
+      const mode = data.lighting_mode || 'SOLAR';
+      if (mode === 'FLOODLIGHT') {
+        document.getElementById('result-lighting-summary').textContent = 'Optical Floodlight (Coaxial 1/(d²), 0-Lux Night)';
+      } else {
+        const meta = lighting.metadata || {};
+        document.getElementById('result-lighting-summary').textContent = 
+          `Solar Ephemeris: Azimuth ${meta.solar_azimuth || '--'}°, Elevation ${meta.solar_elevation || '--'}° (${meta.color_temperature_k || '--'}K)`;
+      }
+
+      const stratum7 = (data.geojson?.features || []).find(f => f.id === 'stratum_7_atmospheric_state' || f.properties?.stratum === 'atmospheric_state');
+      document.getElementById('result-geojson-stratum').textContent = JSON.stringify(stratum7 || {}, null, 2);
+
+      document.getElementById('resultsDrawer').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('resultsDrawer').classList.remove('open');
+    }
+
+    // Run Startup
+    window.addEventListener('DOMContentLoaded', initApp);
   </script>
 </body>
 </html>

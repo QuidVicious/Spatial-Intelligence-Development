@@ -1,0 +1,228 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "coordinates": [
+            -77.037554,
+            38.900339
+          ],
+          "altitude_agl_m": 255.2,
+          "heading_deg": 42.1,
+          "pitch_deg": -60.3,
+          "fov_deg": 60.0,
+          "spatial_mode": "3D_TILES",
+          "temporal_anchor": "Present Day"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.037554,
+          38.900339,
+          255.2
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Piedmont crystalline complex overlain by Atlantic Coastal Plain terrace gravels and Potomac Formation silts",
+        "lithic_character": "Metamorphic schist, gneiss, and fluvial unconsolidated deposits",
+        "quarried_materials": "Indiana limestone, Potomac blue stone, regional buff sandstone, architectural granite"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -77.04,
+              38.898
+            ],
+            [
+              -77.035,
+              38.898
+            ],
+            [
+              -77.035,
+              38.903
+            ],
+            [
+              -77.04,
+              38.903
+            ],
+            [
+              -77.04,
+              38.898
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "surface_types": [
+          "Standard dense asphalt roadways with thermoplastic crosswalks and yellow street mural markings (Black Lives Matter Plaza / 16th St NW corridor)",
+          "Saw-cut granite and concrete pedestrian sidewalks with tree wells",
+          "Engineered extensive green roofs with sedum and structural gravel ballast"
+        ],
+        "drainage_infrastructure": "Urban storm-sewer curb catch basins with subterranean stormwater management"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -77.039,
+              38.899
+            ],
+            [
+              -77.036,
+              38.899
+            ],
+            [
+              -77.036,
+              38.902
+            ],
+            [
+              -77.039,
+              38.902
+            ],
+            [
+              -77.039,
+              38.899
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_vegetation": [
+          "Quercus phellos (Willow Oak)",
+          "Ulmus americana (American Elm)",
+          "Ginkgo biloba",
+          "Acer rubrum (Red Maple)"
+        ],
+        "vegetation_architecture": "Geometric curbside tree grates, linear sidewalk planters, and mature urban street canopies"
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -77.0375,
+            38.9005
+          ],
+          [
+            -77.0378,
+            38.901
+          ],
+          [
+            -77.0368,
+            38.9002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "urban_morphology": "Rigid high-density monumental commercial and institutional grid defined by the L'Enfant Plan and the Height of Buildings Act of 1910",
+        "structures": [
+          {
+            "name": "US Chamber of Commerce / Commercial Office Blocks (H St NW / 16th St NW)",
+            "storeys": 12,
+            "height_m": 40.0,
+            "facade_material": "Indiana limestone, structural precast concrete panels, bronze mullions, and high-performance low-E glass curtain wall",
+            "roof_geometry": "Flat planar roof slabs with integrated mechanical penthouses and extensive sedum green roof terraces"
+          },
+          {
+            "name": "Hay-Adams / Historic Mid-Rise Commercial Blocks",
+            "storeys": 8,
+            "height_m": 32.0,
+            "facade_material": "Buff brick masonry, carved limestone rustication, classical entablatures, punched rectangular fenestration",
+            "roof_geometry": "Flat membrane roof with balustrades and HVAC equipment housings"
+          },
+          {
+            "name": "St. John's Episcopal Church (Corner Flank)",
+            "storeys": 2,
+            "height_m": 18.0,
+            "facade_material": "Stucco over brick, classical portico with Doric columns, gilded cupola",
+            "roof_geometry": "Gabled slate roof with central cupola and lantern"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -77.0395,
+              38.899
+            ],
+            [
+              -77.0355,
+              38.899
+            ],
+            [
+              -77.0355,
+              38.9025
+            ],
+            [
+              -77.0395,
+              38.9025
+            ],
+            [
+              -77.0395,
+              38.899
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "pedestrians": "NONE (Static spatial decluttering enforced)",
+        "vehicles": "NONE (All transient vehicular traffic removed)",
+        "civil_furniture": "Permanent cast-iron lampposts, granite curbs, regulatory traffic signals, fixed bollards"
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -77.037554,
+            38.900339
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 42.1,
+          "pitch_deg": -60.3
+        },
+        "optical_profile": "Inverse-square distance falloff, coaxial zero-shadow alignment"
+      },
+      "geometry": null
+    }
+  ]
+}

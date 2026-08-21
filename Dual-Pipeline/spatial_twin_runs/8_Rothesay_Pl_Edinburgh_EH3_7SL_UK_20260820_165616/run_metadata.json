@@ -1,0 +1,51 @@
+{
+  "timestamp": "20260820_165616",
+  "address": "8 Rothesay Pl, Edinburgh EH3 7SL, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95057723869773,
+    "longitude": -3.2168021422324005,
+    "altitude_agl": 154.5607821196983,
+    "heading": 349.3929969071042,
+    "pitch": -34.54311284691958,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-20T23:54:30.1860000000015134Z",
+    "lighting_mode": "FLOODLIGHT"
+  },
+  "lighting_state": {
+    "mode": "FLOODLIGHT",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (ON-CAMERA FLOODLIGHT): Pitch-black night environment (0 lux ambient sky). Scene is illuminated exclusively by a high-intensity directional spotlight mounted coaxial on the camera facing 349.4\u00b0 heading at -34.5\u00b0 pitch. Calibrated 5600K clean white beam with steep 1/(d^2) inverse-square falloff\u2014immediate foreground facades and pavement are brightly illuminated while background drops into deep black void; zero visible cast ground shadows along optical axis with razor-thin silhouette rim outlines.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 349.4,
+          "pitch_deg": -34.5
+        },
+        "optical_profile": "Inverse-square distance falloff, coaxial zero-shadow alignment"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "FLOODLIGHT",
+      "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+      "color_temperature_k": 5600,
+      "heading": 349.3929969071042,
+      "pitch": -34.54311284691958
+    }
+  },
+  "distilled_prompt": "From an elevated oblique aerial perspective looking north-northwest across Rothesay Place, the grand Victorian residential terrace spans the frame with plumb vertical facades, featuring a lower three-storey hipped-roof corner pavilion on the left flank that steps up into a continuous four-storey blonde sandstone terrace with multi-faceted canted bay projections, rhythmic sash fenestration, level floor plates, and prominent slate roofs topped by massive ashlar chimney stacks. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic finely dressed Craigleith blonde ashlar stonework with channelled rustication at the base, slate-tiled mansard pitches, crisp stone lintels, and deep window reveals alongside fully resolved mature leafy tree crowns lining the lower perimeter. Dynamic coaxial floodlight illumination at 5600K projects directly along the optical axis through a pitch-black 0-lux night void, casting brilliant neutral white light across the immediate foreground sandstone facades and road surface with steep inverse-square falloff that leaves zero ground shadow displacement and plunges the surrounding distant background into absolute blackness.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (ON-CAMERA FLOODLIGHT): Pitch-black night environment (0 lux ambient sky). Scene is illuminated exclusively by a high-intensity directional spotlight mounted coaxial on the camera facing 349.4\u00b0 heading at -34.5\u00b0 pitch. Calibrated 5600K clean white beam with steep 1/(d^2) inverse-square falloff\u2014immediate foreground facades and pavement are brightly illuminated while background drops into deep black void; zero visible cast ground shadows along optical axis with razor-thin silhouette rim outlines. ARCHITECTURAL SCENE ESSENCE: From an elevated oblique aerial perspective looking north-northwest across Rothesay Place, the grand Victorian residential terrace spans the frame with plumb vertical facades, featuring a lower three-storey hipped-roof corner pavilion on the left flank that steps up into a continuous four-storey blonde sandstone terrace with multi-faceted canted bay projections, rhythmic sash fenestration, level floor plates, and prominent slate roofs topped by massive ashlar chimney stacks. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic finely dressed Craigleith blonde ashlar stonework with channelled rustication at the base, slate-tiled mansard pitches, crisp stone lintels, and deep window reveals alongside fully resolved mature leafy tree crowns lining the lower perimeter. Dynamic coaxial floodlight illumination at 5600K projects directly along the optical axis through a pitch-black 0-lux night void, casting brilliant neutral white light across the immediate foreground sandstone facades and road surface with steep inverse-square falloff that leaves zero ground shadow displacement and plunges the surrounding distant background into absolute blackness.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 8053.46
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "timestamp": "20260821_105746",
+  "address": "1615 H St NW, Washington, DC 20062, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 38.90033874954829,
+    "longitude": -77.03755363180149,
+    "altitude_agl": 255.19957206130957,
+    "heading": 42.119449382586694,
+    "pitch": -60.28601164991355,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-21T16:12:17.5889999999999418Z",
+    "lighting_mode": "FLOODLIGHT"
+  },
+  "lighting_state": {
+    "mode": "FLOODLIGHT",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (ON-CAMERA FLOODLIGHT): Pitch-black night environment (0 lux ambient sky). Scene is illuminated exclusively by a high-intensity directional spotlight mounted coaxial on the camera facing 42.1\u00b0 heading at -60.3\u00b0 pitch. Calibrated 5600K clean white beam with steep 1/(d^2) inverse-square falloff\u2014immediate foreground facades and pavement are brightly illuminated while background drops into deep black void; zero visible cast ground shadows along optical axis with razor-thin silhouette rim outlines.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 42.1,
+          "pitch_deg": -60.3
+        },
+        "optical_profile": "Inverse-square distance falloff, coaxial zero-shadow alignment"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "FLOODLIGHT",
+      "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+      "color_temperature_k": 5600,
+      "heading": 42.119449382586694,
+      "pitch": -60.28601164991355
+    }
+  },
+  "distilled_prompt": "Captured from a high-angle aerial perspective at 255 meters elevation looking northeast across the intersection of 16th and H Streets NW, the urban frame is anchored by monumental twelve-storey commercial limestone blocks on the left flank, the rectilinear sedum-topped office structures and yellow-painted pedestrian corridor along the center axis, and the classical masonry masses and historic church cupola on the right flank, all resolved with plumb vertical walls, flat planar facades, and crisp rectangular floorplates. Recorded on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the architecture displays finely dressed Indiana limestone ashlar, modular low-E curtain wall glazing, textured buff brickwork, deep punched window reveals, and lush organic leafy tree crowns rooted along the granite curbs. Illuminated strictly by an on-camera 5600K directional floodlight coaxial to the optical axis, the scene emerges vividly from an absolute pitch-black night void with steep inverse-square brightness falloff from the brilliantly lit foreground intersections to the dark receding background, entirely free of visible cast ground shadows, pedestrians, and vehicular traffic.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (ON-CAMERA FLOODLIGHT): Pitch-black night environment (0 lux ambient sky). Scene is illuminated exclusively by a high-intensity directional spotlight mounted coaxial on the camera facing 42.1\u00b0 heading at -60.3\u00b0 pitch. Calibrated 5600K clean white beam with steep 1/(d^2) inverse-square falloff\u2014immediate foreground facades and pavement are brightly illuminated while background drops into deep black void; zero visible cast ground shadows along optical axis with razor-thin silhouette rim outlines. ARCHITECTURAL SCENE ESSENCE: Captured from a high-angle aerial perspective at 255 meters elevation looking northeast across the intersection of 16th and H Streets NW, the urban frame is anchored by monumental twelve-storey commercial limestone blocks on the left flank, the rectilinear sedum-topped office structures and yellow-painted pedestrian corridor along the center axis, and the classical masonry masses and historic church cupola on the right flank, all resolved with plumb vertical walls, flat planar facades, and crisp rectangular floorplates. Recorded on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the architecture displays finely dressed Indiana limestone ashlar, modular low-E curtain wall glazing, textured buff brickwork, deep punched window reveals, and lush organic leafy tree crowns rooted along the granite curbs. Illuminated strictly by an on-camera 5600K directional floodlight coaxial to the optical axis, the scene emerges vividly from an absolute pitch-black night void with steep inverse-square brightness falloff from the brilliantly lit foreground intersections to the dark receding background, entirely free of visible cast ground shadows, pedestrians, and vehicular traffic.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 10865.94
+  }
+}

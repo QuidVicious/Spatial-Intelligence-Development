@@ -1,0 +1,227 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211498,
+          55.951361,
+          159.0
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "heading_deg": 344.2,
+        "pitch_deg": -20.7,
+        "fov_deg": 60.0,
+        "spatial_mode": "3D_TILES",
+        "rectification_state": "PLANAR_ALIGNED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2135,
+              55.9505
+            ],
+            [
+              -3.2095,
+              55.9505
+            ],
+            [
+              -3.2095,
+              55.9535
+            ],
+            [
+              -3.2135,
+              55.9535
+            ],
+            [
+              -3.2135,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Lower Carboniferous Sandstone (Craigleith and Hailes Sandstone formations)",
+        "superficial_deposits": "Glacial till with deeply carved Dean Valley glaciofluvial incisement",
+        "drainage": "High natural gradient down towards the Water of Leith",
+        "quarry_provenance": "Craigleith Sandstone quarry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.213,
+              55.9508
+            ],
+            [
+              -3.21,
+              55.9508
+            ],
+            [
+              -3.21,
+              55.953
+            ],
+            [
+              -3.213,
+              55.953
+            ],
+            [
+              -3.213,
+              55.9508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Traditional whinstone/granite street setts and Caithness flagstone pavements",
+        "grading": "Gentle northern downslope transitioning toward the Dean Gorge",
+        "wear_patina": "Historic urban wear, polished stone kerbs, clean paved carriageways"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.212,
+                55.9512
+              ],
+              [
+                -3.2108,
+                55.9512
+              ],
+              [
+                -3.2108,
+                55.9518
+              ],
+              [
+                -3.212,
+                55.9518
+              ],
+              [
+                -3.212,
+                55.9512
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fraxinus excelsior (Ash)",
+          "Ulmus glabra (Wych Elm)",
+          "Fagus sylvatica (European Beech)"
+        ],
+        "understory": "Ornamental private garden shrubs, dense deciduous woodland of Dean Valley in the deep background",
+        "groundcover": "Manicured communal lawn, manicured hedgerows"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.213,
+                55.952
+              ],
+              [
+                -3.21,
+                55.952
+              ],
+              [
+                -3.21,
+                55.9528
+              ],
+              [
+                -3.213,
+                55.9528
+              ],
+              [
+                -3.213,
+                55.952
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "urban_typology": "Georgian / Early Victorian Neo-Classical Crescent & Circus Terraces (Edinburgh New Town)",
+        "structures": [
+          {
+            "name": "Moray Estate Crescent / Randolph Crescent Terrace Array",
+            "storeys": 4,
+            "height_m": 16.5,
+            "facade_material": "Fine ashlar Craigleith blonde sandstone with rusticated ground floors and ashlar upper tiers",
+            "roof_geometry": "Mansard and pitched Scottish blue-gray slate roofs with substantial ashlar chimney stacks and clay pots",
+            "weathering_patina": "Authentic subtle urban soot weathering within classical mouldings and sandstone grain"
+          },
+          {
+            "name": "Ainslie Place / Dean Bridge Distant Background Blocks",
+            "storeys": 4,
+            "height_m": 16.0,
+            "facade_material": "Homogeneous blonde Edinburgh sandstone ashlar",
+            "roof_geometry": "Multi-pitch slate roofs, dormer fenestration"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211498,
+          55.951361
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Permanent historic cast-iron railings, stone balustrades, period gas-lamp style lanterns"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "solar_azimuth_deg": 289.57,
+        "solar_elevation_deg": 27.3,
+        "shadow_azimuth_deg": 109.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Quarter-front lighting from camera-left",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    }
+  ]
+}

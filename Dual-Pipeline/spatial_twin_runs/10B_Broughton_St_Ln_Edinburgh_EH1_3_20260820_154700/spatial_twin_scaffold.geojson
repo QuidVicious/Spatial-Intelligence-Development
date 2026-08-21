@@ -1,0 +1,204 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187476,
+          55.957437
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "altitude_agl_m": 138.4,
+        "heading_deg": 235.7,
+        "pitch_deg": -49.3,
+        "fov_deg": 32.8,
+        "spatial_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187476,
+          55.957437
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous sedimentary strata (sandstone, siltstone, oil-shale groups) overlain by glacial till",
+        "stratigraphy": "Quaternary diamicton over Calders Member calciferous sandstone",
+        "drainage": "Well-drained sloped urban terracing towards the Water of Leith basin",
+        "indigenous_quarry_lithics": "Craigleith and Hailes carboniferous sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1878,
+              55.9572
+            ],
+            [
+              -3.1871,
+              55.9572
+            ],
+            [
+              -3.1871,
+              55.9576
+            ],
+            [
+              -3.1878,
+              55.9576
+            ],
+            [
+              -3.1878,
+              55.9572
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "primary_surfacing": "Historic whinstone sett cobbles, granite curbs, and asphalt lane paving",
+        "micro_grading": "Rear mews courtyard and service lane sloping gently south-west",
+        "wear_patina": "Weathered damp stone paving with moss infill between stone setts"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1875,
+              55.9573
+            ],
+            [
+              -3.1872,
+              55.9573
+            ],
+            [
+              -3.1872,
+              55.9575
+            ],
+            [
+              -3.1875,
+              55.9575
+            ],
+            [
+              -3.1875,
+              55.9573
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Hedera helix (English Ivy)"
+        ],
+        "understory": "Dense urban garden rear boundary shrubbery and climbing ivy across stone boundary walls",
+        "groundcover": "Enclosed rear tenement private green plots"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1878,
+                55.9573
+              ],
+              [
+                -3.1873,
+                55.9573
+              ],
+              [
+                -3.1873,
+                55.9576
+              ],
+              [
+                -3.1878,
+                55.9576
+              ],
+              [
+                -3.1878,
+                55.9573
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Georgian and early Victorian New Town residential tenements and secondary mews lane conversions",
+        "structures": [
+          {
+            "id": "background_tenement_terrace",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Pitched Scottish slate roof with regularly spaced dormers, stone skewputts, and multi-flue ashlar chimney stacks",
+            "facade_material": "Tooled ashlar and coursed Craigleith sandstone with white painted timber sash-and-case windows",
+            "weathering_patina": "Soot-stained gray sandstone with atmospheric carbon crusting and damp-run leaching"
+          },
+          {
+            "id": "foreground_mews_structures",
+            "storeys": 2,
+            "height_m": 7.0,
+            "roof_geometry": "Gabled slate roofs and flat lead-capped additions with pitched dormers and metal coping",
+            "facade_material": "Rubble sandstone masonry and painted roughcast render",
+            "weathering_patina": "Lichen-spotted slate tiles and weathered zinc flashings"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187476,
+          55.957437
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "Eliminated wheelie bins, temporary signage, and transient street items"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187476,
+          55.957437
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "kelvin_temperature": 5600,
+        "solar_elevation_deg": 41.5,
+        "lighting_condition": "Diffused north-temperate daylight with subtle raking shadows across coursed ashlar masonry",
+        "visibility": "Clear"
+      }
+    }
+  ]
+}

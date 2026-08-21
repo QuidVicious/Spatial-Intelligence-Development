@@ -1,0 +1,152 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216802,
+          55.950577,
+          154.6
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "heading_deg": 349.4,
+        "pitch_deg": -34.5,
+        "fov_deg": 60.0,
+        "spatial_mode": "3D_TILES",
+        "rectification_method": "orthogonal_planar_reconstruction"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216802,
+          55.950577
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous sandstone (Craigleith and Hailes strata) interbedded with siltstone and basalt intrusions",
+        "stratigraphy": "Glacial till mantle over dense sedimentary sandstone bedrock",
+        "drainage": "Well-drained sloping topography toward the Water of Leith valley",
+        "local_lithics": "Craigleith blonde sandstone ashlar, Scottish slate roofing tiles"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2173,
+              55.9503
+            ],
+            [
+              -3.2163,
+              55.9503
+            ],
+            [
+              -3.2163,
+              55.9508
+            ],
+            [
+              -3.2173,
+              55.9508
+            ],
+            [
+              -3.2173,
+              55.9503
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Fine-grained macadam roadway with dressed granite kerbstones and sandstone flagstone pavements",
+        "micro_grading": "Gentle northwest downward slope toward Water of Leith",
+        "wear_patina": "Historic urban weathering with subtle mineral leaching along flagstone joints"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory": "Pruned domestic hedging and ivy clinging to boundary retaining walls",
+        "groundcover": "Clean masonry perimeter borders"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Victorian / Late Georgian residential terraced townhouses (Edinburgh New Town West End)",
+        "structures": [
+          {
+            "id": "rothesay_place_terrace",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Mansard and pitched slate roofs with prominent dressed stone chimney stacks and party parapet walls",
+            "facade_material": "Finely dressed blonde Craigleith sandstone ashlar with channelled rustication at ground level and canted bay window projections",
+            "weathering_patina": "Historic atmospheric soot toning with crisp dressed stone stringcourses and stone balustrades"
+          },
+          {
+            "id": "corner_pavilion_flank",
+            "storeys": 3,
+            "height_m": 12.0,
+            "roof_geometry": "Hipped slate roof with lead capping and dormer projections",
+            "facade_material": "Rusticated sandstone basement/ground with ashlar upper storeys"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "temporary_signage": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 349.4,
+          "pitch_deg": -34.5
+        },
+        "optical_profile": "Inverse-square distance falloff, coaxial zero-shadow alignment"
+      },
+      "geometry": null
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260821_091023",
+  "address": "27 Moray Pl, Edinburgh EH3 6DA, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.954829005099825,
+    "longitude": -3.2110323554778524,
+    "altitude_agl": 130.47755797718315,
+    "heading": 181.97030111384603,
+    "pitch": -16.624404818641167,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-21T16:09:31.26300000000082946Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 290.2\u00b0, Elevation 27.7\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Hard raking side-lighting from camera-right (90\u00b0). Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 110.2\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:09:31.263000+00:00",
+        "solar_azimuth_deg": 290.22,
+        "solar_elevation_deg": 27.67,
+        "shadow_azimuth_deg": 110.2,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-right (90\u00b0)",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-21T16:09:31.263000+00:00",
+      "solar_azimuth": 290.22,
+      "solar_elevation": 27.67,
+      "color_temperature_k": 5400,
+      "lux": 60000
+    }
+  },
+  "distilled_prompt": "From an elevated perspective looking south over the wooded slope of the Water of Leith gorge toward Moray Place, the composition is anchored on the left and center-left by the monumental curved sweep of a four-storey Georgian terrace rising with plumb vertical ashlar facades, regular rectangular multi-pane sash windows, and level slate rooflines bristling with solid masonry chimney stacks, while the center and right foreground are occupied by the descending canopy of mature trees. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the buildings display authentic honey-buff Craigleith sandstone ashlar with subtle historical soot patina and crisp stone stringcourses, counterbalanced by the intricate, organic leafy foliage of sycamores, beeches, and elms filling the valley gardens. The scene is illuminated under a calibrated 5400K solar daylight with the sun positioned at 290.2\u00b0 azimuth and 27.7\u00b0 elevation, casting sharp, geometrically defined raking shadows toward 110.2\u00b0 across the stone facades and tree canopy in a pristinely decluttered architectural environment completely devoid of vehicles, pedestrians, and transient objects.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 290.2\u00b0, Elevation 27.7\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Hard raking side-lighting from camera-right (90\u00b0). Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 110.2\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: From an elevated perspective looking south over the wooded slope of the Water of Leith gorge toward Moray Place, the composition is anchored on the left and center-left by the monumental curved sweep of a four-storey Georgian terrace rising with plumb vertical ashlar facades, regular rectangular multi-pane sash windows, and level slate rooflines bristling with solid masonry chimney stacks, while the center and right foreground are occupied by the descending canopy of mature trees. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the buildings display authentic honey-buff Craigleith sandstone ashlar with subtle historical soot patina and crisp stone stringcourses, counterbalanced by the intricate, organic leafy foliage of sycamores, beeches, and elms filling the valley gardens. The scene is illuminated under a calibrated 5400K solar daylight with the sun positioned at 290.2\u00b0 azimuth and 27.7\u00b0 elevation, casting sharp, geometrically defined raking shadows toward 110.2\u00b0 across the stone facades and tree canopy in a pristinely decluttered architectural environment completely devoid of vehicles, pedestrians, and transient objects.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 12189.1
+  }
+}

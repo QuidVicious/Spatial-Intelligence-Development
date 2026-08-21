@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 121.7,
+          "pitch_deg": 2.2,
+          "heading_deg": 342.1,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone and Siltstone (Inverclyde and Strathclyde Groups)",
+        "mineralogy": "Quartz arenite, feldspathic sandstone, carbonaceous shale, and glacial till overburden",
+        "drainage": "Northward subterranean fall towards the Water of Leith basin and Firth of Forth"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Coarsely textured bituminous asphalt carriage roadway bordered by dressed Scottish whinstone and Craigleith sandstone kerbs",
+        "wear_characteristics": "Polished pedestrian flagstone pavements with faint longitudinal rain-channeling and sunken service access covers",
+        "micro_grading": "Steep steady northward downward gradient plunging through the New Town street grid towards Stockbridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Ulmus glabra (Wych Elm)",
+          "Tilia x europaea (Common Lime)"
+        ],
+        "understory_flora": [
+          "Prunus laurocerasus",
+          "Hedera helix"
+        ],
+        "groundcover": "Cultivated private basement area planters and lower valley woodland canopies framing St Stephen's Church"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Late 18th-century Georgian New Town classical terraced tenements and neoclassical civic church terminus",
+        "structures": [
+          {
+            "name": "West Terrace (Frederick Street Even Nos, including 44-46 Frederick St)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched Scottish slate with canted lead-clad dormers and substantial mutual stone chimney stacks with terracotta pots",
+            "facade_material": "Droved and polished Craigleith cream ashlar sandstone with ground-floor built-out shopfronts and rusticated basements",
+            "weathering_patina": "Pronounced atmospheric carbon crusting and soot darkening across cornice reveals, string courses, and sandstone ashlar quoins"
+          },
+          {
+            "name": "East Terrace (Frederick Street Odd Nos)",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched slate roof with regular dormer windows and rectilinear stone coped skews",
+            "facade_material": "Blonde ashlar sandstone with timber sash-and-case fenestration and cast-iron basement lightwell railings",
+            "weathering_patina": "Differential grey-buff weathering, iron-stain wash under sills, and historic soot deposition"
+          },
+          {
+            "name": "St Stephen's Church (Stockbridge Vista Terminus)",
+            "storeys": 3,
+            "height_m": 49.4,
+            "roof_geometry": "Monumental square neoclassical clock tower terminating in a balustraded stone crown",
+            "facade_material": "Massive dressed blonde freestone ashlar with deep arched portals and classical pilasters",
+            "weathering_patina": "Subtle silvery-grey atmospheric weathering across elevated ashlar balustrades and rusticated plinths"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200722,
+          55.953443
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Scottish Northern Daylight with crisp raking shadows delineating classical cornices and distant Firth of Forth horizon"
+      }
+    }
+  ]
+}

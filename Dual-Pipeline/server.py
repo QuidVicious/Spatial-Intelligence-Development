@@ -1,47 +1,44 @@
 """
-Main Server Application: Streamlined FastAPI transport coordinator.
-Routes requests across depth_engine, cognitive_engine, synthesis_engine, and archiver modules.
+Server: FastAPI Orchestration Endpoint for the Spatial Intelligence Pipeline.
+Linear execution: Viewport Ingest -> Cognitive Engine (The 4 Mothers) -> Prompt Compiler (Delighting) -> Synthesis Engine -> Archiver.
 """
-import io
-import os
-import base64
-from pathlib import Path
-from typing import Optional
-from PIL import Image
 
-from dotenv import load_dotenv
-from fastapi import FastAPI
+import os
+import time
+from typing import Dict, Any, Optional
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
-# Internal Pipeline Modules (Perception, Reasoning, Synthesis, Archive)
-from depth_engine import DepthEngine
+# -------------------------------------------------------------------------
+# Environment Configuration (.env Loader)
+# -------------------------------------------------------------------------
+env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+    print(f"[Server] Loaded environment from: {env_path}")
+else:
+    load_dotenv()
+    print("[Server] Loaded environment from local directory .env")
+
+# Internal modules
 from cognitive_engine import query_the_eye, reverse_geocode
+from prompt_compiler import compile_conditioning
 from synthesis_engine import synthesize_twin_image
 from archiver import archive_run
 
-# -----------------------------------------------------------------------------
-# 1. Environment Configuration
-# -----------------------------------------------------------------------------
-ENV_PATH = Path(r"C:\DEV\Squid\SquidBlack\.env")
-if ENV_PATH.exists():
-    load_dotenv(dotenv_path=ENV_PATH)
-else:
-    load_dotenv()
+app = FastAPI(
+    title="Spatial Intelligence Pipeline API",
+    description="Multimodal spatial cognition, delighting, and dynamic documentary twin synthesis.",
+    version="4.0.0"
+)
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
-CESIUM_ION_TOKEN = os.getenv("CESIUM_ION_TOKEN")
-
-BASE_DIR = Path(__file__).resolve().parent
-
-# -----------------------------------------------------------------------------
-# 2. FastAPI & Model Initialization
-# -----------------------------------------------------------------------------
-app = FastAPI(title="Spatial Twin Intelligence Pipeline", version="3.2.0")
-
+# CORS middleware for Cesium client HUD
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -50,102 +47,153 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize Depth Engine (Perception Layer resident on RTX 4070)
-depth_engine = DepthEngine()
 
-# -----------------------------------------------------------------------------
-# 3. Request Schemas
-# -----------------------------------------------------------------------------
-class TelemetryData(BaseModel):
-    latitude: float
-    longitude: float
-    altitude_agl: float
-    heading: float
-    pitch: float
-    fov: float
-    tile_mode: Optional[str] = "3D_TILES"
-
-class SynthesisRequest(BaseModel):
-    screenshot: str  # Base64 data URL
-    temporal_anchor: Optional[str] = "Present Day"
-    telemetry: TelemetryData
-
-# -----------------------------------------------------------------------------
-# 4. API Endpoints
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Dynamic Client Config Endpoint (Reads Cesium Token from .env)
+# -------------------------------------------------------------------------
 @app.get("/api/config")
-def get_config():
-    """Provides client tokens securely to the Cesium HUD."""
+async def get_client_config():
+    """Dynamically serves non-secret client tokens from .env to the frontend."""
+    cesium_token = (
+        os.getenv("CESIUM_ION_TOKEN")
+        or os.getenv("CESIUM_TOKEN")
+        or os.getenv("CESIUM_ION_ACCESS_TOKEN")
+        or ""
+    )
     return {
-        "cesium_ion_token": CESIUM_ION_TOKEN or "",
-        "google_maps_api_key": GOOGLE_MAPS_API_KEY or ""
+        "cesium_ion_token": cesium_token
     }
 
+
+# -------------------------------------------------------------------------
+# Telemetry and Request Schemas
+# -------------------------------------------------------------------------
+class TelemetryPayload(BaseModel):
+    latitude: float = Field(..., description="WGS84 Latitude")
+    longitude: float = Field(..., description="WGS84 Longitude")
+    altitude_agl: float = Field(0.0, description="Altitude Above Ground Level (meters)")
+    heading: float = Field(0.0, description="Camera Heading (degrees, 0=North)")
+    pitch: float = Field(-45.0, description="Camera Pitch (degrees, -90=Down)")
+    fov: float = Field(45.0, description="Camera Horizontal Field of View (degrees)")
+    tile_mode: str = Field("3D_TILES", description="Rendering mode: 3D_TILES or 2D_SATELLITE")
+    temporal_anchor: str = Field("Present Day", description="Historical epoch or temporal target")
+    timestamp_utc: Optional[str] = Field(None, description="ISO 8601 UTC timestamp for solar ephemeris")
+    lighting_mode: str = Field("SOLAR", description="Lighting rig mode: SOLAR or FLOODLIGHT")
+
+
+class ProcessViewRequest(BaseModel):
+    screenshot_b64: str = Field(..., description="Base64 encoded JPEG viewport capture")
+    telemetry: TelemetryPayload
+    address: Optional[str] = Field(None, description="Optional pre-resolved address")
+
+
+# -------------------------------------------------------------------------
+# Main Pipeline Endpoint (/api/process_view)
+# -------------------------------------------------------------------------
 @app.post("/api/process_view")
-def process_view(req: SynthesisRequest):
-    """Main pipeline execution endpoint."""
-    print(f"\n[Pipeline Triggered] Mode: {req.telemetry.tile_mode} | Pitch: {req.telemetry.pitch:.1f}° | Time: {req.temporal_anchor}")
+async def process_view(request: ProcessViewRequest):
+    """
+    Executes the 4-stage pipeline linearly:
+    1. Reverse Geocode (if needed)
+    2. Cognitive Engine (The 4 Mothers + Deterministic Lighting + GeoJSON)
+    3. Prompt Compiler (Delighting Barrier + Dynamic Lighting Directive)
+    4. Synthesis Engine (Gemini 3.1 Flash Image)
+    5. Archiver & Persistence
+    """
+    pipeline_start = time.perf_counter()
+    telemetry = request.telemetry
+    google_maps_key = os.getenv("GOOGLE_MAPS_API_KEY")
+    gemini_key = os.getenv("GEMINI_API_KEY")
 
-    # 1. Reverse Geocode Coordinates
-    address = reverse_geocode(req.telemetry.latitude, req.telemetry.longitude, GOOGLE_MAPS_API_KEY)
-    print(f"[Resolved Address]: {address}")
+    if not gemini_key:
+        raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured in .env.")
 
-    # 2. PERCEPTION: Run Depth Anything V2 on Viewport
-    raw_b64 = req.screenshot.split(",")[-1] if "," in req.screenshot else req.screenshot
-    viewport_pil = Image.open(io.BytesIO(base64.b64decode(raw_b64))).convert("RGB")
-    depth_result = depth_engine.estimate(viewport_pil)
-    print(f"[Depth Perception Complete] Latency: {depth_result.latency_ms:.1f}ms on {depth_result.device}")
+    # Step 1: Address Resolution
+    address = request.address
+    if not address:
+        address = reverse_geocode(telemetry.latitude, telemetry.longitude, google_maps_key)
 
-    # 3. REASONING: Cognitive Reasoning & 4D GeoJSON Scaffold
-    geojson_data, prompt, spatial_mode = query_the_eye(
+    # Step 2: Stage 1 - Cognitive Engine (The 4 Mothers + Lighting Rig)
+    cog_result = query_the_eye(
         address=address,
-        telemetry=req.telemetry,
-        screenshot_b64=req.screenshot,
-        temporal_anchor=req.temporal_anchor,
-        gemini_api_key=GEMINI_API_KEY
+        telemetry=telemetry,
+        screenshot_b64=request.screenshot_b64,
+        temporal_anchor=telemetry.temporal_anchor,
+        gemini_api_key=gemini_key
     )
-    print(f"[The Eye Complete] Mode: {spatial_mode}")
 
-    # 4. SYNTHESIS: Visual Twin Image Synthesis
-    twin_image_b64 = synthesize_twin_image(
-        prompt=prompt,
-        screenshot_b64=req.screenshot,
-        spatial_mode=spatial_mode,
-        telemetry=req.telemetry,
-        geojson_data=geojson_data,
-        gemini_api_key=GEMINI_API_KEY
+    # Step 3: Stage 2 - Prompt Compiler (Delighting & Dynamic Relighting Assembly)
+    compiled = compile_conditioning(
+        cognitive_result=cog_result,
+        telemetry=telemetry,
+        target_model="gemini-3.1-flash-image"
     )
-    print("[Synthesis Complete] Image generated.")
 
-    # 5. ARCHIVE: Save All 6 Run Artifacts
-    archive_folder = archive_run(
-        address=address,
-        telemetry=req.telemetry,
-        spatial_mode=spatial_mode,
-        temporal_anchor=req.temporal_anchor,
-        screenshot_b64=req.screenshot,
-        synthesized_b64=twin_image_b64,
-        geojson_data=geojson_data,
-        prompt=prompt,
-        depth_image=depth_result.depth_image
+    # Step 4: Stage 3 - Multimodal Synthesis Engine
+    synthesis = synthesize_twin_image(
+        conditioning=compiled,
+        screenshot_b64=request.screenshot_b64,
+        gemini_api_key=gemini_key
     )
+
+    total_latency_ms = (time.perf_counter() - pipeline_start) * 1000.0
+
+    # Step 5: Stage 4 - Archiver & Spatial Graph Persistence
+    try:
+        run_folder_path = archive_run(
+            telemetry=telemetry,
+            cognitive_result=cog_result,
+            conditioning=compiled,
+            synthesis_result=synthesis,
+            screenshot_b64=request.screenshot_b64
+        )
+        run_record = {
+            "status": "persisted",
+            "path": run_folder_path,
+            "total_latency_ms": round(total_latency_ms, 1)
+        }
+    except Exception as e:
+        print(f"[Archiver Warning]: Failed to persist run: {e}")
+        run_record = {"status": "unarchived", "error": str(e)}
 
     return {
         "status": "success",
+        "spatial_mode": cog_result.spatial_mode,
         "address": address,
-        "spatial_mode": spatial_mode,
-        "prompt": prompt,
-        "geojson": geojson_data,
-        "synthesized_image_url": twin_image_b64,
-        "archive_folder": archive_folder
+        "lighting_mode": telemetry.lighting_mode,
+        "lighting_state": cog_result.lighting_state,
+        "distilled_prompt": cog_result.distilled_prompt,
+        "compiled_prompt": compiled.prompt,
+        "twin_image_b64": synthesis.image_b64,
+        "geojson": cog_result.geojson,
+        "latency_ms": round(total_latency_ms, 1),
+        "run_record": run_record
     }
 
-# -----------------------------------------------------------------------------
-# 5. Static File Serving
-# -----------------------------------------------------------------------------
-if (BASE_DIR / "viewfinder.html").exists():
-    @app.get("/")
-    def serve_index():
-        return FileResponse(BASE_DIR / "viewfinder.html")
 
-app.mount("/", StaticFiles(directory=str(BASE_DIR)), name="static")
+# -------------------------------------------------------------------------
+# Viewfinder Frontend Route & Static Assets
+# -------------------------------------------------------------------------
+@app.get("/")
+@app.get("/viewfinder.html")
+async def serve_viewfinder():
+    candidates = [
+        Path(__file__).parent / "static" / "viewfinder.html",
+        Path(__file__).parent / "static" / "index.html",
+        Path(__file__).parent / "viewfinder.html",
+        Path(__file__).parent / "index.html",
+    ]
+    for path in candidates:
+        if path.exists():
+            return FileResponse(path)
+    raise HTTPException(status_code=404, detail="viewfinder.html could not be located on disk.")
+
+
+static_dir = Path(__file__).parent / "static"
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)

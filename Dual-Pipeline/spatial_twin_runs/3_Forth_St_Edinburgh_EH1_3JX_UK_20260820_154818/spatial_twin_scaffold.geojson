@@ -1,0 +1,226 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188087,
+          55.957625
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "telemetry": {
+          "altitude_agl_m": 136.9,
+          "camera_heading_deg": 164.8,
+          "camera_pitch_deg": -45.9,
+          "camera_fov_deg": 32.8,
+          "spatial_mode": "3D_TILES"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.189,
+              55.957
+            ],
+            [
+              -3.187,
+              55.957
+            ],
+            [
+              -3.187,
+              55.958
+            ],
+            [
+              -3.189,
+              55.958
+            ],
+            [
+              -3.189,
+              55.957
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock_type": "Lower Carboniferous Sandstone and Siltstone (Inverclyde and Strathclyde Groups)",
+        "stratigraphy": "Glacial till over sedimentary bedrock",
+        "drainage": "Well-drained northward slope towards the Firth of Forth",
+        "local_quarry_lithics": "Craigleith and Hailes carboniferous blonde/grey sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1885,
+              55.9573
+            ],
+            [
+              -3.1875,
+              55.9573
+            ],
+            [
+              -3.1875,
+              55.9579
+            ],
+            [
+              -3.1885,
+              55.9579
+            ],
+            [
+              -3.1885,
+              55.9573
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "primary_surfacing": "Granite setts, Caithness flagstone paving, and asphalt carriageways",
+        "micro_grading": "Gentle southern incline ascending from Forth Street toward York Place",
+        "wear_patina": "Historic urban carbon staining, dampened stone jointing, weathered sandstone copings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1883,
+                55.9575
+              ],
+              [
+                -3.1881,
+                55.9575
+              ],
+              [
+                -3.1881,
+                55.9577
+              ],
+              [
+                -3.1883,
+                55.9577
+              ],
+              [
+                -3.1883,
+                55.9575
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Betula pendula (Silver Birch)"
+        ],
+        "understory": "Urban garden shrubs, ivy (Hedera helix) on rear boundary retaining walls",
+        "groundcover": "Enclosed rear courtyard turf and mossy gravel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1886,
+              55.9572
+            ],
+            [
+              -3.1874,
+              55.9572
+            ],
+            [
+              -3.1874,
+              55.958
+            ],
+            [
+              -3.1886,
+              55.958
+            ],
+            [
+              -3.1886,
+              55.9572
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Georgian New Town residential tenements and terraced townhouses with rear mews extensions",
+        "structures": [
+          {
+            "name": "Forth Street Georgian Terraces",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched double-slated roofs with lead valleys, dormers, and substantial ashlar chimney stacks with terracotta pots",
+            "facade_material": "Blonde Craigleith ashlar sandstone to principal elevations, squared rubble with lime mortar to rear returns",
+            "weathering_patina": "Historical soot darkening, oxidized sandstone surface patina, lead flashing oxidation"
+          },
+          {
+            "name": "Rear Offshoots and Courtyard Buildings",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "Flat felt/lead roofs and monopitch slate roofs with parapet copings",
+            "facade_material": "Coursed sandstone rubble with lime mortar wash",
+            "weathering_patina": "Lichen growth on damp mortar lines, weathered stone lintels"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188087,
+          55.957625
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "transient_decluttering": "ACTIVE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_street_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.188087,
+          55.957625
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "temporal_anchor": "Noon",
+        "kelvin_temperature": 5600,
+        "solar_elevation_deg": 48.5,
+        "solar_azimuth_deg": 180.0,
+        "lighting_condition": "Crisp high-angle midday sunlight with tight, defined structural shadows in courtyards"
+      }
+    }
+  ]
+}

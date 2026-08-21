@@ -1,0 +1,223 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187873,
+          55.957396,
+          148.2
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "heading_degrees": 342.4,
+        "pitch_degrees": -85.0,
+        "fov_degrees": 32.8,
+        "temporal_anchor": "Noon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1885,
+              55.957
+            ],
+            [
+              -3.1872,
+              55.957
+            ],
+            [
+              -3.1872,
+              55.9578
+            ],
+            [
+              -3.1885,
+              55.9578
+            ],
+            [
+              -3.1885,
+              55.957
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock_formation": "Gullane Formation / Carboniferous Sandstone & Siltstone",
+        "quarry_provenance": "Craigleith / Hailes Blonde and Grey Carboniferous Sandstone",
+        "soil_profile": "Dense glacial till over sedimentary siltstone bedrock",
+        "drainage_regime": "Urban storm subterranean culverts towards the Water of Leith basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1882,
+              55.9572
+            ],
+            [
+              -3.1875,
+              55.9572
+            ],
+            [
+              -3.1875,
+              55.9576
+            ],
+            [
+              -3.1882,
+              55.9576
+            ],
+            [
+              -3.1882,
+              55.9572
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "rear_courtyard_surfacing": "Mixed whinstone setts, coursed stone boundary walling, paved lightwells",
+        "grade_slope": "Moderate northward downward urban gradient (New Town eastern flank)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.188,
+                55.9574
+              ],
+              [
+                -3.1878,
+                55.9574
+              ],
+              [
+                -3.1878,
+                55.9575
+              ],
+              [
+                -3.188,
+                55.9575
+              ],
+              [
+                -3.188,
+                55.9574
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Betula pendula (Silver Birch)"
+        ],
+        "understory": "Temperate urban rear-garden shrubs, ivy-clad stone retaining walls, lush green private courtyard lawns"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1883,
+              55.9571
+            ],
+            [
+              -3.1874,
+              55.9571
+            ],
+            [
+              -3.1874,
+              55.9577
+            ],
+            [
+              -3.1883,
+              55.9577
+            ],
+            [
+              -3.1883,
+              55.9571
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Georgian and Victorian Edinburgh Tenement Enclosure / Broughton Periphery",
+        "structures": [
+          {
+            "quadrant": "North / Top Flank",
+            "name": "Broughton St Tenement Terrace",
+            "storeys": 4,
+            "height_m": 15.5,
+            "roof_geometry": "Pitched Scottish slate with chimney stacks and zinc flashing",
+            "facade_material": "Craigleith Blonde ashlar sandstone with historic soot patina",
+            "fenestration": "Symmetrical twelve-pane sash windows"
+          },
+          {
+            "quadrant": "East / Right Flank & South / Bottom Flank",
+            "name": "Courtyard Tenement Wings and Returns",
+            "storeys": 3.5,
+            "height_m": 13.0,
+            "roof_geometry": "Gabled and mansard slate roofs with stone skew copes",
+            "facade_material": "Random coursed sandstone rubble with dressed quoins",
+            "fenestration": "Vertical timber-framed sash fenestration"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187873,
+          55.957396
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "temporary_street_furniture": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187873,
+          55.957396
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "kelvin_temperature": 5600,
+        "solar_elevation_deg": 52.0,
+        "lighting_condition": "Direct midday solar illumination casting clean, steep shadows across deep courtyard wells"
+      }
+    }
+  ]
+}

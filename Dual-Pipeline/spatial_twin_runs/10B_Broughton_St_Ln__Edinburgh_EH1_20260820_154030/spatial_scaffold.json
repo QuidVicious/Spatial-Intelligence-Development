@@ -1,0 +1,144 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 128.9,
+          "pitch_deg": -44.4,
+          "heading_deg": 212.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous sandstone and volcanic intrusive dolerite sill",
+        "mineralogy": "Quartz arenite with calciferous interbeds and glacial till overburden",
+        "drainage": "Subterranean urban storm conduits integrated into historical culverts leading toward the Water of Leith basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Historic whinstone sett lane and asphalt paving within service courtyard",
+        "wear_characteristics": "Patinated stone surfaces with bituminous patching and weathered stone kerbs",
+        "micro_grading": "Steep rear courtyard terracing stepping downward toward the eastern lane"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Betula pendula (Silver Birch)"
+        ],
+        "understory_flora": [
+          "Hedera helix (English Ivy) adhering to boundary rubble walls",
+          "Sambucus nigra"
+        ],
+        "groundcover": "Enclosed rear tenement garden plots with mossy turf and low perimeter shrubbery"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Georgian and Victorian Scottish tenement blocks with low-rise rear mews outbuildings",
+        "structures": [
+          {
+            "name": "Background Broughton Street Tenement Block",
+            "storeys": 4,
+            "height_m": 15.2,
+            "roof_geometry": "steep double-pitched Scottish slate with timber dormers and dressed stone chimney stacks",
+            "facade_material": "quarried Craigleith buff-grey sandstone ashlar and squared rubble masonry",
+            "weathering_patina": "historical carbon smoke deposition, damp staining beneath sill lines, and weathered lime mortar repointing"
+          },
+          {
+            "name": "Foreground Broughton Street Lane Mews and Workshop Outbuildings",
+            "storeys": 2,
+            "height_m": 6.8,
+            "roof_geometry": "pitched slate roof with zinc parapet cappings, flat lead-dressed skylight platforms, and triangular rooflights",
+            "facade_material": "coursed random sandstone rubble with lime-washed render remnants",
+            "weathering_patina": "dark wet soot patination, lichen colonization on slate edges, and oxidized zinc flashing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187622,
+          55.957488
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp northern maritime daylight with high directional clarity and cool ambient shadows"
+      }
+    }
+  ]
+}

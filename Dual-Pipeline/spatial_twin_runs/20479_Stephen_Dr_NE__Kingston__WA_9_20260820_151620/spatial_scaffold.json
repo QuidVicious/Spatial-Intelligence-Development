@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 37.0,
+          "pitch_deg": -6.5,
+          "heading_deg": 354.9,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till and Outwash Gravels",
+        "mineralogy": "Compacted silt, sand, quartzose-feldspathic gravels, and glacial clay",
+        "drainage": "Moderately well-drained upland coastal forest substrate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Rich organic forest duff, moss-covered understory soil, and concealed residential driveways",
+        "wear_characteristics": "Natural decomposition, needle-litter accumulation",
+        "micro_grading": "Rolling undulating Puget Lowland glacial moraine topography"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas-fir)",
+          "Thuja plicata (Western redcedar)",
+          "Tsuga heterophylla (Western hemlock)",
+          "Acer macrophyllum (Bigleaf maple)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Vaccinium ovatum (Evergreen huckleberry)"
+        ],
+        "groundcover": "Dense coniferous needle bed and native woodland mosses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Woodland Residential Enclave (Canopy-Concealed)",
+        "structures": [
+          {
+            "name": "Single-Family Woodland Residence (Concealed beneath canopy)",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "pitched composite shingle gable roof",
+            "facade_material": "horizontal cedar weatherboard siding and stained timber posts",
+            "weathering_patina": "mild woodland moss accretion on north-facing eaves, rain-washed natural cedar tone"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.488381,
+          47.747003
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Midday Sun with subtle coastal Pacific Northwest sea haze"
+      }
+    }
+  ]
+}

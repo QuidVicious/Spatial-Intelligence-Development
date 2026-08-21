@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260821_105607",
+  "address": "1615 H St NW, Washington, DC 20062, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 38.90030591124267,
+    "longitude": -77.03742974138387,
+    "altitude_agl": 255.18761386843178,
+    "heading": 42.11944943815175,
+    "pitch": -60.286011684985624,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-21T16:12:17.5889999999999418Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 30.4\u00b0, Elevation 60.3\u00b0 (High noon harsh clear daylight with short vertical shadows). Illumination Vector: Direct front-lighting (Sun behind camera illuminating facades directly). Color Temperature: Calibrated 5800K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 210.4\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "solar_azimuth_deg": 30.39,
+        "solar_elevation_deg": 60.34,
+        "shadow_azimuth_deg": 210.4,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000,
+        "relative_camera_lighting": "Direct front-lighting (Sun behind camera illuminating facades directly)",
+        "sky_condition": "High noon harsh clear daylight with short vertical shadows"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+      "solar_azimuth": 30.39,
+      "solar_elevation": 60.34,
+      "color_temperature_k": 5800,
+      "lux": 85000
+    }
+  },
+  "distilled_prompt": "From a steep high-angle aerial perspective looking northeast across the urban intersection of H Street and 16th Street NW, the composition frames a dense corridor of monumental corporate headquarters and institutional edifices: on the left and center rise rectangular eight-to-ten-storey office blocks with plumb limestone facades, crisp flat rooflines featuring integrated green roof terraces, and inset rectangular ribbon windows, while the historic portico and cupola of St. John's Church anchor the lower right quadrant. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic, highly tactile materialities across smooth-cut Indiana limestone, honed granite foundations, dark-tinted low-E glass curtain walls, asphalt roadways detailed with vibrant yellow street mural lettering, and mature, deep-green leafy deciduous street trees. Under high-noon 5800K direct solar irradiance from an azimuth of 30.4\u00b0 and elevation of 60.3\u00b0, harsh clear sunlight illuminates the architectural facades head-on, casting crisp, short, geometrically precise shadows aligned strictly to a 210.4\u00b0 vector across a completely still, decluttered urban landscape devoid of vehicles, pedestrians, and transient artifacts.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 30.4\u00b0, Elevation 60.3\u00b0 (High noon harsh clear daylight with short vertical shadows). Illumination Vector: Direct front-lighting (Sun behind camera illuminating facades directly). Color Temperature: Calibrated 5800K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 210.4\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: From a steep high-angle aerial perspective looking northeast across the urban intersection of H Street and 16th Street NW, the composition frames a dense corridor of monumental corporate headquarters and institutional edifices: on the left and center rise rectangular eight-to-ten-storey office blocks with plumb limestone facades, crisp flat rooflines featuring integrated green roof terraces, and inset rectangular ribbon windows, while the historic portico and cupola of St. John's Church anchor the lower right quadrant. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic, highly tactile materialities across smooth-cut Indiana limestone, honed granite foundations, dark-tinted low-E glass curtain walls, asphalt roadways detailed with vibrant yellow street mural lettering, and mature, deep-green leafy deciduous street trees. Under high-noon 5800K direct solar irradiance from an azimuth of 30.4\u00b0 and elevation of 60.3\u00b0, harsh clear sunlight illuminates the architectural facades head-on, casting crisp, short, geometrically precise shadows aligned strictly to a 210.4\u00b0 vector across a completely still, decluttered urban landscape devoid of vehicles, pedestrians, and transient artifacts.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 11782.19
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186873,
+          55.952597,
+          156.5
+        ]
+      },
+      "properties": {
+        "feature_type": "observer_frame",
+        "heading_degrees": 5.3,
+        "pitch_degrees": -19.6,
+        "field_of_view_deg": 32.8,
+        "spatial_mode": "3D_TILES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.19,
+              55.951
+            ],
+            [
+              -3.183,
+              55.951
+            ],
+            [
+              -3.183,
+              55.956
+            ],
+            [
+              -3.19,
+              55.956
+            ],
+            [
+              -3.19,
+              55.951
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous basaltic volcanic rocks (Calton Hill lava sequence) and intrusive dolerite sill overlying Dinantian sandstones and siltstones",
+        "drainage_profile": "Steep fracture-controlled bedrock run-off down the Calton crag into the Waverley valley trough",
+        "local_quarry_lithics": "Craigleith and Hailes pale buff-to-blonde quartzose sandstone, dressed volcanic whinstone rubble"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.188,
+              55.952
+            ],
+            [
+              -3.185,
+              55.952
+            ],
+            [
+              -3.185,
+              55.954
+            ],
+            [
+              -3.188,
+              55.954
+            ],
+            [
+              -3.188,
+              55.952
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "ground_surface",
+        "primary_surfacing": "Granite setts along Calton Road, high dressed sandstone retaining walls, weathered asphalt surfaces, stone copings",
+        "micro_grading": "Extreme elevation gradient dropping sharply from Waterloo Place down to Calton Road gorge",
+        "wear_patina": "Industrial atmospheric carbon soot crusting, damp moss growth along vertical bedrock cuts"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1855,
+                55.953
+              ],
+              [
+                -3.184,
+                55.953
+              ],
+              [
+                -3.184,
+                55.9545
+              ],
+              [
+                -3.1855,
+                55.9545
+              ],
+              [
+                -3.1855,
+                55.953
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Betula pendula (Silver Birch)",
+          "Fraxinus excelsior (Ash)"
+        ],
+        "understory": "Clinging ivy (Hedera helix), hardy cliffside grasses, and herbaceous burial ground turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1885,
+                55.9525
+              ],
+              [
+                -3.185,
+                55.9525
+              ],
+              [
+                -3.185,
+                55.9555
+              ],
+              [
+                -3.1885,
+                55.9555
+              ],
+              [
+                -3.1885,
+                55.9525
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_type": "built_environment",
+        "typology": "Georgian Neoclassical monumental civic architecture and stone infrastructure",
+        "structures": [
+          {
+            "name": "Regent Bridge & Waterloo Place Viaduct",
+            "storeys": 4,
+            "height_m": 15.2,
+            "roof_geometry": "Flat road deck with Neoclassical triumphal arch screen colonnades",
+            "facade_material": "Ashlar Craigleith sandstone with rusticated basement piers and Corinthian order screens",
+            "weathering_patina": "Two-century soot staining in recessed mouldings and arch undersides"
+          },
+          {
+            "name": "Calton Old Burial Ground & Hume Mausoleum",
+            "storeys": 2,
+            "height_m": 8.5,
+            "roof_geometry": "Cylindrical battlemented stone tower (David Hume Mausoleum) and gabled stone monuments",
+            "facade_material": "Dressed ashlar sandstone and carved headstones",
+            "weathering_patina": "Lichen-encrusted, deep oxidation and historic weathering"
+          },
+          {
+            "name": "Calton Road Perimeter Buildings",
+            "storeys": 6,
+            "height_m": 22.0,
+            "roof_geometry": "Mansard slate and flat membrane roofs",
+            "facade_material": "Blonde ashlar sandstone facade panels with vertical glazing inserts",
+            "weathering_patina": "Clean modern stone with subtle urban precipitation streaking"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186873,
+          55.952597
+        ]
+      },
+      "properties": {
+        "feature_type": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186873,
+          55.952597
+        ]
+      },
+      "properties": {
+        "feature_type": "atmospheric_state",
+        "kelvin_temperature": 3300,
+        "solar_elevation_deg": 8.5,
+        "lighting_condition": "Golden hour raking sunlight piercing low-altitude urban mist and haar",
+        "visibility": "Atmospheric haze with high local contrast in direct sunlight"
+      }
+    }
+  ]
+}

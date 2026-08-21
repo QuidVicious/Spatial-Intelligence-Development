@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 8.4,
+          "pitch_deg": -14.6,
+          "heading_deg": 94.3,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till and Outwash Deposits",
+        "mineralogy": "Compacted gravelly sand, silt, and glacial clay over sedimentary bedrock",
+        "drainage": "Rapid seaside slope runoff into Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted dirt/gravel private drive transitioning to sandy/pebble marine shoreline",
+        "wear_characteristics": "Erosion-prone bluff margin, fine marine silt, and salt-bleached gravel",
+        "micro_grading": "Steep downward slope toward the eastern shoreline bluff"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Arbutus menziesii (Pacific madrone)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Rubus spectabilis (Salmonberry)"
+        ],
+        "groundcover": "Coastal grasses, moss, and pine needle litter"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest coastal waterfront residence",
+        "structures": [
+          {
+            "name": "Waterfront Residence",
+            "storeys": 2,
+            "height_m": 7.8,
+            "roof_geometry": "Multi-gabled pitched standing-seam metal and cedar shake roof",
+            "facade_material": "Horizontal cedar lap siding and painted wood trim",
+            "weathering_patina": "Salt spray oxidation, sun-bleached timber, and light coastal moisture streaking"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.474638,
+          47.747944
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 38.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Crisp Coastal Daylight with distant maritime atmospheric haze"
+      }
+    }
+  ]
+}

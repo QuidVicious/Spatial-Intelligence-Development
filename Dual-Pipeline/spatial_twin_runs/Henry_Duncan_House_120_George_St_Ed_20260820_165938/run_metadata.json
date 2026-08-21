@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260820_165938",
+  "address": "Henry Duncan House, 120 George St, Edinburgh EH2 4LH, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.952033955449245,
+    "longitude": -3.2048846699019693,
+    "altitude_agl": 173.63671598666093,
+    "heading": 262.02119684327624,
+    "pitch": -12.267710194951633,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-20T23:54:30.1860000000015134Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Hard raking side-lighting from camera-left (90\u00b0). Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.77,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-left (90\u00b0)",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+      "solar_azimuth": 185.77,
+      "solar_elevation": -21.35,
+      "color_temperature_k": 2000,
+      "lux": 5
+    }
+  },
+  "distilled_prompt": "Elevated high-angle documentary view looking west across Charlotte Square, anchored by the central green garden and the monumental domed facade of West Register House flanked by uniform four-storey Georgian ashlar townhouses with level horizontal cornices, plumb vertical facades, and Scottish slate pitched roofs. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film: showing authentic Craigleith buff sandstone with rusticated lower storeys, crisp multi-pane sash fenestration set into deep structural reveals, the oxidized verdigris copper dome, and full, leafy organic deciduous tree canopies bordering the central lawn and bronze equestrian monument. The scene is illuminated under a dark nocturnal celestial dome relit by an intense 2000K warm raking side-light from camera-left, casting sharp, geometrically precise directional shadows along a 5.8\u00b0 vector across pristine, empty roadways completely devoid of pedestrians and vehicles.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Hard raking side-lighting from camera-left (90\u00b0). Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: Elevated high-angle documentary view looking west across Charlotte Square, anchored by the central green garden and the monumental domed facade of West Register House flanked by uniform four-storey Georgian ashlar townhouses with level horizontal cornices, plumb vertical facades, and Scottish slate pitched roofs. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film: showing authentic Craigleith buff sandstone with rusticated lower storeys, crisp multi-pane sash fenestration set into deep structural reveals, the oxidized verdigris copper dome, and full, leafy organic deciduous tree canopies bordering the central lawn and bronze equestrian monument. The scene is illuminated under a dark nocturnal celestial dome relit by an intense 2000K warm raking side-light from camera-left, casting sharp, geometrically precise directional shadows along a 5.8\u00b0 vector across pristine, empty roadways completely devoid of pedestrians and vehicles.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 7444.27
+  }
+}

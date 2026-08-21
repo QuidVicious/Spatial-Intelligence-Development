@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_151756",
+  "resolved_address": "14630 N Madison Ave NE, Bainbridge Island, WA 98110, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Golden Hour Fog",
+  "telemetry": {
+    "latitude": 47.69641331349208,
+    "longitude": -122.52113300764502,
+    "altitude_agl": 129.0544101750852,
+    "heading": 311.5277242486415,
+    "pitch": -18.950017602626154,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

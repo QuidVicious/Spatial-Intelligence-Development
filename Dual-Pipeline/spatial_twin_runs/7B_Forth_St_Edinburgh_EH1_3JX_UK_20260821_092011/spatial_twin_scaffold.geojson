@@ -1,0 +1,226 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.18776,
+          55.957558,
+          134.6
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "heading_deg": 203.6,
+        "pitch_deg": -50.8,
+        "fov_deg": 60.0,
+        "spatial_mode": "3D_TILES",
+        "temporal_anchor": "Present Day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1882,
+              55.9572
+            ],
+            [
+              -3.1873,
+              55.9572
+            ],
+            [
+              -3.1873,
+              55.9578
+            ],
+            [
+              -3.1882,
+              55.9578
+            ],
+            [
+              -3.1882,
+              55.9572
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Lower Carboniferous sedimentary sandstone and siltstone (Gullane Formation)",
+        "superficial_deposits": "Glacial till with anthropogenic urban ground",
+        "structural_stability": "High-bearing sandstone strata, naturally drained northward toward the Firth of Forth",
+        "indigenous_quarry_source": "Craigleith and Hailes sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1881,
+              55.9573
+            ],
+            [
+              -3.1874,
+              55.9573
+            ],
+            [
+              -3.1874,
+              55.95775
+            ],
+            [
+              -3.1881,
+              55.95775
+            ],
+            [
+              -3.1881,
+              55.9573
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Enclosed rear courtyard with stone paving setts, private gravel pathways, and boundary masonry walls",
+        "drainage_grading": "Rear terraced grading dropping gently northwards",
+        "wear_patina": "Aged Scottish sandstone flags, damp moss at foundation perimeters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1877,
+                55.95745
+              ],
+              [
+                -3.1875,
+                55.95745
+              ],
+              [
+                -3.1875,
+                55.9576
+              ],
+              [
+                -3.1877,
+                55.9576
+              ],
+              [
+                -3.1877,
+                55.95745
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": "Mature deciduous courtyard trees (Sycamore, Birch) with lush green foliage",
+        "understory": "Perennial shrub borders, climbing ivy on masonry party walls",
+        "groundcover": "Temperate turf and stone-crevice mosses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.188,
+                55.95735
+              ],
+              [
+                -3.18745,
+                55.95735
+              ],
+              [
+                -3.18745,
+                55.95775
+              ],
+              [
+                -3.188,
+                55.95775
+              ],
+              [
+                -3.188,
+                55.95735
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Georgian and Victorian Edinburgh New Town residential tenements and mews extensions",
+        "structures": [
+          {
+            "id": "forth_st_tenement_terrace",
+            "position": "Right quadrant and background",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Steeply pitched Scottish slate roof with dormers, chimney stacks, and stone skews",
+            "facade_material": "Aged Craigleith ashlar and coursed rubble sandstone masonry",
+            "fenestration": "Recessed timber-framed multi-pane Georgian sash-and-case windows",
+            "weathering_patina": "Historic urban soot staining, mineral leaching along string courses"
+          },
+          {
+            "id": "rear_mews_annex",
+            "position": "Foreground and left quadrant",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "Pitched slate roof transitioning to flat lead/felt section",
+            "facade_material": "Random rubble sandstone with lime mortar pointing",
+            "fenestration": "Square-headed casement and sash apertures with dressed stone surrounds"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.18776,
+          55.957558
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "pedestrians": "NONE",
+        "vehicles": "NONE",
+        "transient_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "solar_azimuth_deg": 289.55,
+        "solar_elevation_deg": 27.29,
+        "shadow_azimuth_deg": 109.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-right (90\u00b0)",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    }
+  ]
+}

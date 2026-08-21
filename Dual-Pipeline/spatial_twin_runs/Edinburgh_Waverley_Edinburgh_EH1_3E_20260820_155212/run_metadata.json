@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260820_155212",
+  "address": "Edinburgh Waverley, Edinburgh EH1 3EG, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95259677279922,
+    "longitude": -3.186872551981094,
+    "altitude_agl": 156.50487610952095,
+    "heading": 5.294903857034401,
+    "pitch": -19.567236444595597,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "distilled_prompt": "High-angle architectural documentary view looking north over the Calton Road chasm in Edinburgh, framed on the left by the monumental sandstone arch of Regent Bridge and the multi-storey Georgian facades of Waterloo Place, in the center by a tall modern sandstone-and-glass commercial block with plumb vertical curtain walls, and on the right by the craggy rock outcrop supporting the Calton Old Burial Ground and the cylindrical stone David Hume Mausoleum. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing soot-patinated Craigleith ashlar masonry, deep window reveals, rusticated bridge abutments, dark volcanic whinstone bedrock, and organic leafy sycamore canopies dotting the terraced cliffside. The composition is illuminated by 3300K low-angle golden hour sunlight cutting through soft river-valley fog, casting long directional shadows across clean, vehicle-free stone roadway surfaces and historic stonework entirely void of pedestrians or transient clutter.",
+  "compiled_prompt": "Using the attached image as the strict visual reference for camera angle, perspective, horizon line, and building placement, generate a clean, photorealistic architectural documentary photograph: High-angle architectural documentary view looking north over the Calton Road chasm in Edinburgh, framed on the left by the monumental sandstone arch of Regent Bridge and the multi-storey Georgian facades of Waterloo Place, in the center by a tall modern sandstone-and-glass commercial block with plumb vertical curtain walls, and on the right by the craggy rock outcrop supporting the Calton Old Burial Ground and the cylindrical stone David Hume Mausoleum. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing soot-patinated Craigleith ashlar masonry, deep window reveals, rusticated bridge abutments, dark volcanic whinstone bedrock, and organic leafy sycamore canopies dotting the terraced cliffside. The composition is illuminated by 3300K low-angle golden hour sunlight cutting through soft river-valley fog, casting long directional shadows across clean, vehicle-free stone roadway surfaces and historic stonework entirely void of pedestrians or transient clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 7866.53
+  }
+}

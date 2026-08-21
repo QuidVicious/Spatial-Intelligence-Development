@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_154030",
+  "resolved_address": "10B Broughton St Ln, Edinburgh EH1 3LY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 55.95748798805914,
+    "longitude": -3.1876222154144385,
+    "altitude_agl": 128.90322694738074,
+    "heading": 212.94381778551957,
+    "pitch": -44.3757270618562,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

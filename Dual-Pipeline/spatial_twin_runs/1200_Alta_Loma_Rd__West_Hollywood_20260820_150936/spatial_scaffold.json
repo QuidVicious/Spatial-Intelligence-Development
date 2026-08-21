@@ -1,0 +1,154 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 66.7,
+          "pitch_deg": 11.6,
+          "heading_deg": 0.2,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Puente Formation siltstone and sandstone overlain by alluvial fan sediments",
+        "mineralogy": "Quartz-rich arkosic sandstone, siliceous shale, consolidated clays",
+        "drainage": "Steep south-facing hillside runoff towards the Los Angeles coastal basin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Medium-aggregate asphalt roadway with poured concrete curbs and sidewalks",
+        "wear_characteristics": "Sun-bleached asphalt aggregate, transverse utility reseal lines, light oil staining along center lane",
+        "micro_grading": "Consistent upward incline ascending northward toward Sunset Boulevard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Ficus microcarpa (Indian Laurel Fig)",
+          "Jacaranda mimosifolia",
+          "Washingtonia robusta (Mexican Fan Palm)"
+        ],
+        "understory_flora": [
+          "Agave attenuata",
+          "Strelitzia nicolai (Giant Bird of Paradise)",
+          "Pittosporum tobira"
+        ],
+        "groundcover": "Cultivated turfgrass berms and mulched terraced planter beds"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Modern Commercial High-Rise, Mid-Rise Modular Hospitality, and Terraced Hillside Residential",
+        "structures": [
+          {
+            "name": "Sunset Strip Commercial Tower (Left-Center)",
+            "storeys": 14,
+            "height_m": 52.0,
+            "roof_geometry": "flat rooftop with recessed mechanical penthouse",
+            "facade_material": "anodized aluminum mullions, reflective blue-gray vision glass curtain wall, and high-tension architectural billboard banner on south elevation",
+            "weathering_patina": "minor coastal marine haze on upper glazing, clean maintenance on metallic framing"
+          },
+          {
+            "name": "Mid-Rise Geometric Hotel (Right-Center)",
+            "storeys": 8,
+            "height_m": 29.0,
+            "roof_geometry": "flat parapet roof",
+            "facade_material": "smooth white architectural precast concrete panels with deeply recessed square window apertures",
+            "weathering_patina": "crisp geometric shadow reveals, subtle environmental atmospheric deposition on upper ledges"
+          },
+          {
+            "name": "Terraced Hollywood Hills Residences (Distant Background)",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "flat and low-pitch asphalt shingle roofs",
+            "facade_material": "stucco render and painted timber framing",
+            "weathering_patina": "sun-bleached off-white and earth-toned plaster"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.377767,
+          34.091756
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 52.0,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Delighted Midday Sun with crisp architectural self-shadowing"
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260820_170107",
+  "address": "8465 Santa Monica Blvd, West Hollywood, CA 90069, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 34.09027698273813,
+    "longitude": -118.37551062655481,
+    "altitude_agl": 108.10094581898271,
+    "heading": 321.84652373237896,
+    "pitch": -14.313977742785303,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-20T23:54:30.1860000000015134Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 276.7\u00b0, Elevation 32.3\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Quarter-front lighting from camera-left. Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 96.7\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 276.74,
+        "solar_elevation_deg": 32.29,
+        "shadow_azimuth_deg": 96.7,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Quarter-front lighting from camera-left",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+      "solar_azimuth": 276.74,
+      "solar_elevation": 32.29,
+      "color_temperature_k": 5400,
+      "lux": 60000
+    }
+  },
+  "distilled_prompt": "An elevated aerial documentary view looking northwest over Santa Monica Boulevard in West Hollywood captures a structured urban corridor, featuring a prominent four-storey white courtyard apartment complex in the center foreground, framed by twin twelve-storey white residential towers in the background, a two-storey commercial structure on the lower left flank, and contemporary four-storey tiered residential blocks on the right flank, all defined by strictly plumb planar facades, level floor plates, and crisp horizontal parapets. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic physical textures including clean white sand-finish stucco, deep rectangular window reveals with dark-anodized metal framing, continuous concrete balcony ledges, fine asphalt street surfaces, and mature organic leafy fan palms and jacaranda canopies. Calibrated 5400K Kelvin solar irradiance delivers direct quarter-front illumination from camera-left at a 32.3\u00b0 solar elevation, casting geometrically precise, sharp directional shadows aligned strictly along a 96.7\u00b0 vector across a completely static architectural boulevard devoid of all pedestrians, vehicles, and transient clutter.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 276.7\u00b0, Elevation 32.3\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Quarter-front lighting from camera-left. Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 96.7\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: An elevated aerial documentary view looking northwest over Santa Monica Boulevard in West Hollywood captures a structured urban corridor, featuring a prominent four-storey white courtyard apartment complex in the center foreground, framed by twin twelve-storey white residential towers in the background, a two-storey commercial structure on the lower left flank, and contemporary four-storey tiered residential blocks on the right flank, all defined by strictly plumb planar facades, level floor plates, and crisp horizontal parapets. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic physical textures including clean white sand-finish stucco, deep rectangular window reveals with dark-anodized metal framing, continuous concrete balcony ledges, fine asphalt street surfaces, and mature organic leafy fan palms and jacaranda canopies. Calibrated 5400K Kelvin solar irradiance delivers direct quarter-front illumination from camera-left at a 32.3\u00b0 solar elevation, casting geometrically precise, sharp directional shadows aligned strictly along a 96.7\u00b0 vector across a completely static architectural boulevard devoid of all pedestrians, vehicles, and transient clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 8026.67
+  }
+}

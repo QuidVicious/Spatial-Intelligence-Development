@@ -1,0 +1,163 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 29.7,
+          "pitch_deg": -13.2,
+          "heading_deg": 274.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till and Outwash Sand/Gravel",
+        "mineralogy": "Quartz, feldspar, lithic gravels, compacted clayey silt",
+        "drainage": "High-permeability coastal bluff runoff into Puget Sound"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted asphalt driveway, coarse crushed gravel aprons, exposed sandy bluff soil",
+        "wear_characteristics": "Marine air oxidation, seasonal rain wash channels, fine pine needle accumulation",
+        "micro_grading": "Terraced bluff clearing grading downward west-to-east towards the Puget Sound coastline"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western red cedar)",
+          "Tsuga heterophylla (Western hemlock)",
+          "Arbutus menziesii (Pacific madrone)"
+        ],
+        "understory_flora": [
+          "Gaultheria shallon (Salal)",
+          "Polystichum munitum (Western sword fern)",
+          "Vaccinium ovatum (Evergreen huckleberry)"
+        ],
+        "groundcover": "Coastal turf grass, coastal bluff scrub, needle litter duff"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Coastal Contemporary Residential Compound",
+        "structures": [
+          {
+            "name": "Main Coastal Residence (Center-Foreground)",
+            "storeys": 3,
+            "height_m": 10.5,
+            "roof_geometry": "Multi-faceted pitched composite shingle roof with conical turret cupola",
+            "facade_material": "Horizontal cedar lap siding, painted timber trim, structural wrap-around decking",
+            "weathering_patina": "Salt-air silvering on cedar accents, crisp shadow lines under wide overhangs"
+          },
+          {
+            "name": "Attached Wing / Secondary Pavilion (Immediate Right)",
+            "storeys": 2,
+            "height_m": 7.2,
+            "roof_geometry": "Low-pitch hipped architectural composite roof",
+            "facade_material": "Painted cedar shingle siding and rectilinear glazed fenestration",
+            "weathering_patina": "Even coastal UV exposure, subtle moisture staining on lower plinth"
+          },
+          {
+            "name": "Carriage House / Outbuilding (Far Right)",
+            "storeys": 2,
+            "height_m": 6.8,
+            "roof_geometry": "Gabled standing seam metal and composite shingle roof",
+            "facade_material": "Vertical board-and-batten siding and double-hung windows",
+            "weathering_patina": "Clean painted white finish with mild rainwater wash lines"
+          },
+          {
+            "name": "Secondary Outbuilding / Workshop (Midground Left)",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "Gabled composite asphalt shingle roof",
+            "facade_material": "Engineered timber cladding and painted utility door",
+            "weathering_patina": "Sheltered forest shade mossing on north-facing eave"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.472512,
+          47.748049
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 48.5,
+        "kelvin_temperature": 5600,
+        "lighting_condition": "Neutral Midday Sunlight with crisp Maritime Clarity"
+      }
+    }
+  ]
+}

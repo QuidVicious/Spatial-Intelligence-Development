@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260820_154818",
+  "address": "3 Forth St, Edinburgh EH1 3JX, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.957625032567535,
+    "longitude": -3.18808663579337,
+    "altitude_agl": 136.8640366672388,
+    "heading": 164.79439026853268,
+    "pitch": -45.897545886941444,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "distilled_prompt": "High-angle aerial documentary perspective looking south-southeast over the tight rear courtyards and roofscapes of Forth Street in Edinburgh's New Town, where three- to four-storey Georgian tenement blocks on the right flank frame deep rear courtyards, lower two-storey mews offshoots in the center, and multi-storey ashlar facades on the left, all rendered with plumb vertical structural planes, straight slate rooflines, and disciplined rectangular fenestration. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing historic blonde Craigleith sandstone facades, soot-patinated coursed rubble rear elevations, Scottish slate roofing with chimney stacks and terracotta pots, and lush organic green deciduous foliage growing within enclosed interior plots. The scene is illuminated by crisp 5600K high-noon sunlight casting tight, geometrically defined shadows into the lightwells and courtyard depths, completely static and decluttered of all pedestrians, vehicles, and temporary urban noise.",
+  "compiled_prompt": "Using the attached image as the strict visual reference for camera angle, perspective, horizon line, and building placement, generate a clean, photorealistic architectural documentary photograph: High-angle aerial documentary perspective looking south-southeast over the tight rear courtyards and roofscapes of Forth Street in Edinburgh's New Town, where three- to four-storey Georgian tenement blocks on the right flank frame deep rear courtyards, lower two-storey mews offshoots in the center, and multi-storey ashlar facades on the left, all rendered with plumb vertical structural planes, straight slate rooflines, and disciplined rectangular fenestration. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing historic blonde Craigleith sandstone facades, soot-patinated coursed rubble rear elevations, Scottish slate roofing with chimney stacks and terracotta pots, and lush organic green deciduous foliage growing within enclosed interior plots. The scene is illuminated by crisp 5600K high-noon sunlight casting tight, geometrically defined shadows into the lightwells and courtyard depths, completely static and decluttered of all pedestrians, vehicles, and temporary urban noise.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 10147.33
+  }
+}

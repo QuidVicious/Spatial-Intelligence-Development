@@ -1,0 +1,212 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "coordinates": [
+            -3.211032,
+            55.954829
+          ],
+          "altitude_agl_m": 130.5,
+          "heading_deg": 182.0,
+          "pitch_deg": -16.6,
+          "fov_deg": 60.0,
+          "spatial_mode": "3D_TILES"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211032,
+          55.954829,
+          130.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous Sandstone (Gullane Formation / Craigleith Sandstone)",
+        "stratigraphy": "Glacial till over stratified sedimentary quartz-arenite sandstone and mudstone",
+        "drainage": "Steep north-facing hydrological runoff descending toward the Water of Leith valley",
+        "local_quarry_lithics": "Craigleith and Hailes pale blonde to grey-buff sandstone ashlar"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2135,
+              55.9535
+            ],
+            [
+              -3.2085,
+              55.9535
+            ],
+            [
+              -3.2085,
+              55.956
+            ],
+            [
+              -3.2135,
+              55.956
+            ],
+            [
+              -3.2135,
+              55.9535
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite setts, Caithness flagstone walkways, and heavily sloped wooded valley loam",
+        "micro_grading": "Steep topographical drop from the south-facing Moray Estate crescent terraces down into the Water of Leith gorge",
+        "wear_patina": "Historic urban weathering, moss accumulation on lower stone boundary walls"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.213,
+              55.954
+            ],
+            [
+              -3.209,
+              55.954
+            ],
+            [
+              -3.209,
+              55.9555
+            ],
+            [
+              -3.213,
+              55.9555
+            ],
+            [
+              -3.213,
+              55.954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus (Sycamore)",
+          "Fagus sylvatica (Common Beech)",
+          "Ulmus glabra (Wych Elm)",
+          "Fraxinus excelsior (European Ash)"
+        ],
+        "understory": "Dense mature decurrent broadleaf deciduous canopy within the Dean Valley / Moray Place private pleasure gardens",
+        "groundcover": "Hedera helix, woodland perennial ground flora, naturalized mosses"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2125,
+                55.9542
+              ],
+              [
+                -3.2095,
+                55.9542
+              ],
+              [
+                -3.2095,
+                55.9552
+              ],
+              [
+                -3.2125,
+                55.9552
+              ],
+              [
+                -3.2125,
+                55.9542
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Georgian Neoclassical / Regency Palace-Fronted Terraced Crescent (Moray Estate)",
+        "structures": [
+          {
+            "name": "Moray Place Rear Terrace & Darnaway/Doune Terraces",
+            "storeys": 4,
+            "height_m": 17.5,
+            "roof_geometry": "Pitched Scottish slate with lead hips, stone-coped parapets, and massive ashlar chimney stacks with clay pots",
+            "facade_material": "Finely dressed Craigleith blonde sandstone ashlar with rusticated lower basements and droved ashlar rear elevations",
+            "fenestration": "Recessed timber sash and case windows (12-pane and 6-pane configurations) with clean geometric stone architraves",
+            "weathering_patina": "Atmospheric soot staining and natural grey mineral patina on historic exposed sandstone"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.213,
+            55.9545
+          ],
+          [
+            -3.211,
+            55.9546
+          ],
+          [
+            -3.209,
+            55.9548
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE_STATIC_PURGE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Fixed cast-iron railings, stone retaining balustrades, period gas-bracket standard fixtures"
+      },
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:09:31.263000+00:00",
+        "solar_azimuth_deg": 290.22,
+        "solar_elevation_deg": 27.67,
+        "shadow_azimuth_deg": 110.2,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-right (90\u00b0)",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    }
+  ]
+}

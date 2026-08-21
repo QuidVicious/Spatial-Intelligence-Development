@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260820_154700",
+  "address": "10B Broughton St Ln, Edinburgh EH1 3LY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95743665627638,
+    "longitude": -3.1874761835259515,
+    "altitude_agl": 138.4233653555325,
+    "heading": 235.68505653227672,
+    "pitch": -49.34214501477349,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "distilled_prompt": "High-angle aerial documentary perspective looking southwest down across Broughton Street Lane, where a massive four-storey Georgian tenement terrace forms a continuous plumb vertical wall in the background while two-storey pitched-roof mews workshops and stone outbuildings occupy the foreground and midground with strict rectilinear geometry. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, rendering the authentic soot-patinated Craigleith sandstone ashlar, Scottish Ballachulish slate roof tiles with lead flashings, crisp twelve-pane sash windows, and rich green climbing ivy spilling over rustic stone courtyard walls. The scene is illuminated by 5600K neutral diffused daylight casting delicate structural shadows across the coursed stonework and historic whinstone cobbles, completely devoid of pedestrians, vehicles, and modern street clutter.",
+  "compiled_prompt": "Using the attached image as the strict visual reference for camera angle, perspective, horizon line, and building placement, generate a clean, photorealistic architectural documentary photograph: High-angle aerial documentary perspective looking southwest down across Broughton Street Lane, where a massive four-storey Georgian tenement terrace forms a continuous plumb vertical wall in the background while two-storey pitched-roof mews workshops and stone outbuildings occupy the foreground and midground with strict rectilinear geometry. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, rendering the authentic soot-patinated Craigleith sandstone ashlar, Scottish Ballachulish slate roof tiles with lead flashings, crisp twelve-pane sash windows, and rich green climbing ivy spilling over rustic stone courtyard walls. The scene is illuminated by 5600K neutral diffused daylight casting delicate structural shadows across the coursed stonework and historic whinstone cobbles, completely devoid of pedestrians, vehicles, and modern street clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9277.21
+  }
+}

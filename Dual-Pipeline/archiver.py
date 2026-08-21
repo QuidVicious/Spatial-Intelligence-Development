@@ -1,86 +1,103 @@
 """
-Archiver Module: Handles the isolated recording and persistence of all spatial twin artifacts.
+Archiver Module: Persists all spatial twin pipeline run artifacts.
+Writes timestamped folders with viewport captures, synthesized twins, GeoJSON scaffolds, and run metadata.
 """
+
 import os
 import re
 import json
 import base64
-import datetime
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, Optional, Union
-from PIL import Image
+from typing import Dict, Any, Optional
+
+from cognitive_engine import CognitiveResult
+from prompt_compiler import CompiledConditioning
+from synthesis_engine import SynthesisResult
 
 BASE_DIR = Path(__file__).resolve().parent
-RUNS_DIR = BASE_DIR / "spatial_twin_runs"
-RUNS_DIR.mkdir(parents=True, exist_ok=True)
+DEFAULT_RUNS_DIR = BASE_DIR / "spatial_twin_runs"
+
+
+def slugify_address(address: str, max_len: int = 35) -> str:
+    """Creates a clean, filesystem-safe folder name from an address."""
+    clean = re.sub(r"[^\w\s-]", "", address).strip()
+    clean = re.sub(r"[\s-]+", "_", clean)
+    return clean[:max_len].strip("_") or "spatial_twin"
 
 
 def archive_run(
-    address: str,
     telemetry: Any,
-    spatial_mode: str,
-    temporal_anchor: str,
+    cognitive_result: CognitiveResult,
+    conditioning: CompiledConditioning,
+    synthesis_result: SynthesisResult,
     screenshot_b64: str,
-    synthesized_b64: str,
-    geojson_data: Dict[str, Any],
-    prompt: str,
-    depth_image: Optional[Union[Image.Image, str]] = None,
-    draft_b64: Optional[str] = None,
-    rectified_depth_image: Optional[Union[Image.Image, str]] = None,
+    runs_dir: Optional[Path] = None
 ) -> str:
-    """Saves pipeline artifacts including 2-pass refinement stages into an isolated timestamped folder."""
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    clean_addr = re.sub(r'[^a-zA-Z0-9_-]', '_', address)[:35].strip('_')
-    folder_name = f"{clean_addr}_{timestamp}"
-    run_path = RUNS_DIR / folder_name
-    run_path.mkdir(parents=True, exist_ok=True)
+    """
+    Saves the 4 core artifacts:
+    1. viewport_capture.jpg
+    2. spatial_twin.png
+    3. spatial_twin_scaffold.geojson
+    4. run_metadata.json
+    """
+    target_dir = runs_dir or DEFAULT_RUNS_DIR
+    target_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Viewport Capture JPG
-    raw_viewport = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
-    (run_path / "viewport_capture.jpg").write_bytes(base64.b64decode(raw_viewport))
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    addr_slug = slugify_address(cognitive_result.address)
+    run_folder = target_dir / f"{addr_slug}_{timestamp}"
+    run_folder.mkdir(parents=True, exist_ok=True)
 
-    # 2. Raw Depth Map (Pass 1)
-    if depth_image is not None:
-        if isinstance(depth_image, Image.Image):
-            depth_image.save(run_path / "depth_map_pass1_raw.png")
-        elif isinstance(depth_image, str):
-            raw_depth = depth_image.split(",")[-1] if "," in depth_image else depth_image
-            (run_path / "depth_map_pass1_raw.png").write_bytes(base64.b64decode(raw_depth))
+    # 1. Save Raw Viewport Capture (JPG)
+    raw_viewport_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
+    viewport_path = run_folder / "viewport_capture.jpg"
+    with open(viewport_path, "wb") as f:
+        f.write(base64.b64decode(raw_viewport_b64))
 
-    # 3. Intermediate Draft Twin (Pass 1 Output)
-    if draft_b64 is not None:
-        raw_draft = draft_b64.split(",")[-1] if "," in draft_b64 else draft_b64
-        (run_path / "draft_twin_pass1.png").write_bytes(base64.b64decode(raw_draft))
+    # 2. Save Synthesized Spatial Twin (PNG)
+    raw_synth_b64 = synthesis_result.image_b64.split(",")[-1] if "," in synthesis_result.image_b64 else synthesis_result.image_b64
+    twin_path = run_folder / "spatial_twin.png"
+    with open(twin_path, "wb") as f:
+        f.write(base64.b64decode(raw_synth_b64))
 
-    # 4. Rectified Depth Map (Pass 2 Stencil)
-    if rectified_depth_image is not None:
-        if isinstance(rectified_depth_image, Image.Image):
-            rectified_depth_image.save(run_path / "depth_map_pass2_rectified.png")
-        elif isinstance(rectified_depth_image, str):
-            raw_rect_depth = rectified_depth_image.split(",")[-1] if "," in rectified_depth_image else rectified_depth_image
-            (run_path / "depth_map_pass2_rectified.png").write_bytes(base64.b64decode(raw_rect_depth))
+    # 3. Save RFC 7946 GeoJSON Database
+    geojson_path = run_folder / "spatial_twin_scaffold.geojson"
+    with open(geojson_path, "w", encoding="utf-8") as f:
+        json.dump(cognitive_result.geojson, f, indent=2)
 
-    # 5. Final Synthesized Visual Twin PNG
-    raw_synth = synthesized_b64.split(",")[-1] if "," in synthesized_b64 else synthesized_b64
-    (run_path / "synthesized_twin.png").write_bytes(base64.b64decode(raw_synth))
-
-    # 6. GeoJSON Spatial Scaffold
-    (run_path / "spatial_scaffold.json").write_text(json.dumps(geojson_data, indent=2), encoding="utf-8")
-
-    # 7. Documentary Synthesis Prompt
-    (run_path / "prompt.txt").write_text(prompt, encoding="utf-8")
-
-    # 8. Telemetry & Run Metadata
-    telemetry_dict = telemetry.dict() if hasattr(telemetry, "dict") else telemetry
-    meta = {
+    # 4. Save Run Metadata (JSON)
+    metadata = {
         "timestamp": timestamp,
-        "resolved_address": address,
-        "spatial_mode": spatial_mode,
-        "temporal_anchor": temporal_anchor,
-        "telemetry": telemetry_dict,
-        "refinement_passes": 2 if draft_b64 is not None else 1
+        "address": cognitive_result.address,
+        "spatial_mode": cognitive_result.spatial_mode,
+        "telemetry": {
+            "latitude": getattr(telemetry, "latitude", 0.0),
+            "longitude": getattr(telemetry, "longitude", 0.0),
+            "altitude_agl": getattr(telemetry, "altitude_agl", 0.0),
+            "heading": getattr(telemetry, "heading", 0.0),
+            "pitch": getattr(telemetry, "pitch", 0.0),
+            "fov": getattr(telemetry, "fov", 0.0),
+            "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES"),
+            "timestamp_utc": getattr(telemetry, "timestamp_utc", None),
+            "lighting_mode": getattr(telemetry, "lighting_mode", "SOLAR")
+        },
+        "lighting_state": getattr(cognitive_result, "lighting_state", None),
+        "distilled_prompt": cognitive_result.distilled_prompt,
+        "compiled_prompt": conditioning.prompt,
+        "synthesis": {
+            "model_name": synthesis_result.model_name,
+            "latency_ms": round(synthesis_result.latency_ms, 2)
+        }
     }
-    (run_path / "telemetry_metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
-    print(f"[Archiver] Successfully saved run artifacts to: {run_path}")
-    return folder_name
+    meta_path = run_folder / "run_metadata.json"
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2)
+
+    print(f"[Archiver] Run persisted to: {run_folder.resolve()}")
+    return str(run_folder.resolve())
+
+
+# Backward-compatibility alias
+persist_run = archive_run

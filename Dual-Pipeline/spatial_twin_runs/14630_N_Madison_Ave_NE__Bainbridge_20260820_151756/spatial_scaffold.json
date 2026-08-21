@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m": 129.1,
+          "pitch_deg": -19.0,
+          "heading_deg": 311.5,
+          "fov_deg": 32.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Vashon Glacial Till over Pre-Olympia Sand and Silt",
+        "mineralogy": "Unsorted gravelly silt, sandy glacial outwash, and coastal marine sedimentary deposits",
+        "drainage": "High infiltration along forested upland slopes transitioning to coastal marine discharge into Port Madison bay"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Forested humus and conifer litter, asphalt residential access drives, and tidal mudflat/gravel beach shoreline",
+        "wear_characteristics": "Moisture-darkened aggregate surfaces and salt-washed shoreline sandbars",
+        "micro_grading": "Steeply sloping terrain descending north-northwest toward sheltered marine inlets and wooden piers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Pseudotsuga menziesii (Douglas fir)",
+          "Thuja plicata (Western redcedar)",
+          "Tsuga heterophylla (Western hemlock)",
+          "Acer macrophyllum (Bigleaf maple)"
+        ],
+        "understory_flora": [
+          "Polystichum munitum (Western sword fern)",
+          "Gaultheria shallon (Salal)",
+          "Vaccinium ovatum (Evergreen huckleberry)"
+        ],
+        "groundcover": "Dense coniferous needle carpet, mosses, and coastal sedges"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "primary_building_typology": "Pacific Northwest Vernacular Coastal Residential",
+        "structures": [
+          {
+            "name": "Mid-Left Primary Coastal Residence",
+            "storeys": 2,
+            "height_m": 8.5,
+            "roof_geometry": "Multi-gabled architectural asphalt shingle with crisp plumb ridges",
+            "facade_material": "Horizontal cedar lap siding with painted wood trim",
+            "weathering_patina": "Maritime atmospheric weathering and salt-spray oxidation on trim"
+          },
+          {
+            "name": "Adjacent Secondary Residences & Guest Outbuildings",
+            "storeys": 2,
+            "height_m": 7.0,
+            "roof_geometry": "Gabled standing seam metal and composite shingle",
+            "facade_material": "Cedar shingle cladding and smooth timber paneling",
+            "weathering_patina": "Even rain wash and natural timber silvering along exposed gables"
+          },
+          {
+            "name": "Marine Pier Network & Dock Houses",
+            "storeys": 1,
+            "height_m": 3.5,
+            "roof_geometry": "Flat and low-pitch gabled sheds",
+            "facade_material": "Creosote-treated timber piles and weathered plank decking",
+            "weathering_patina": "Tidal barnacle incrustation and wet algae line along base pilings"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter": "STRIPPED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.521133,
+          47.696413
+        ]
+      },
+      "properties": {
+        "stratum": "atmospheric_state",
+        "solar_elevation_deg": 12.5,
+        "kelvin_temperature": 3300,
+        "lighting_condition": "Golden Hour Fog"
+      }
+    }
+  ]
+}

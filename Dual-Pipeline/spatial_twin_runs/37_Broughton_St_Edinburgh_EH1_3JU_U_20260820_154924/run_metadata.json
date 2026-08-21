@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260820_154924",
+  "address": "37 Broughton St, Edinburgh EH1 3JU, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95739568997849,
+    "longitude": -3.1878731065169137,
+    "altitude_agl": 148.21753944917216,
+    "heading": 342.4481777546583,
+    "pitch": -84.95674454605229,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "distilled_prompt": "A high-angle bird's-eye architectural perspective directly above Broughton Street in Edinburgh reveals a dense urban perimeter block featuring four-storey blonde sandstone tenements to the north and three-to-four storey coursed rubble rear facades enclosing an interior courtyard with straight plumb walls, level slate rooflines, and geometric chimneys. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene showcases authentic Craigleith stone ashlar, dark Scottish slate roofs, crisp multi-pane sash windows, and leafy, organic green tree canopies rooted in private rear plots. Neutral 5600K high-noon sunlight casts crisp, compact vertical shadows down into the secluded lightwells and stone-walled yards across an entirely static, pristine scene completely free of pedestrians, vehicles, or transient urban clutter.",
+  "compiled_prompt": "Using the attached image as the strict visual reference for camera angle, perspective, horizon line, and building placement, generate a clean, photorealistic architectural documentary photograph: A high-angle bird's-eye architectural perspective directly above Broughton Street in Edinburgh reveals a dense urban perimeter block featuring four-storey blonde sandstone tenements to the north and three-to-four storey coursed rubble rear facades enclosing an interior courtyard with straight plumb walls, level slate rooflines, and geometric chimneys. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene showcases authentic Craigleith stone ashlar, dark Scottish slate roofs, crisp multi-pane sash windows, and leafy, organic green tree canopies rooted in private rear plots. Neutral 5600K high-noon sunlight casts crisp, compact vertical shadows down into the secluded lightwells and stone-walled yards across an entirely static, pristine scene completely free of pedestrians, vehicles, or transient urban clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9009.99
+  }
+}

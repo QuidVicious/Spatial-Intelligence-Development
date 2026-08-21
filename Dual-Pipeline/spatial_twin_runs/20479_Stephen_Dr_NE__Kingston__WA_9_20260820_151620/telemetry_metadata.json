@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_151620",
+  "resolved_address": "20479 Stephen Dr NE, Kingston, WA 98346, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 47.74700331193397,
+    "longitude": -122.4883807295151,
+    "altitude_agl": 37.02014045817882,
+    "heading": 354.86064944647643,
+    "pitch": -6.503209499431644,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

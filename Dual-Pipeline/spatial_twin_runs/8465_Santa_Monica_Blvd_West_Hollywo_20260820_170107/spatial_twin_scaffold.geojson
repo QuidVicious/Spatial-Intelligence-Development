@@ -1,0 +1,255 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "coordinates": [
+            -118.375511,
+            34.090277
+          ],
+          "altitude_agl_m": 108.1,
+          "heading_deg": 321.8,
+          "pitch_deg": -14.3,
+          "fov_deg": 60.0,
+          "spatial_mode": "3D_TILES"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375511,
+          34.090277,
+          108.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "lithology": {
+          "bedrock_formation": "Quaternary Alluvial Gravel, Sand, and Silt Deposits over Puente/Topanga Siltstone",
+          "stratigraphy": "Deep unconsolidated piedmont alluvial fans originating from the southern base of the Santa Monica Mountains",
+          "drainage_profile": "High permeability with south-trending surface runoff toward the Ballona Creek watershed",
+          "local_quarry_lithics": "Crushed alluvial aggregates, volcanic ballast, regional engineered lime and Portland cements"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -118.378,
+              34.0885
+            ],
+            [
+              -118.373,
+              34.0885
+            ],
+            [
+              -118.373,
+              34.092
+            ],
+            [
+              -118.378,
+              34.092
+            ],
+            [
+              -118.378,
+              34.0885
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "surfacing": {
+          "primary_thoroughfare": "Dense graded asphalt concrete along Santa Monica Boulevard with standard painted traffic markings",
+          "sidewalks_and_curbs": "Poured-in-place Portland cement concrete slabs with standard aggregate relief and granite aggregate curbing",
+          "commercial_lots": "Sealed asphalt parking surfaces with crisp painted stall lines"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -118.3775,
+              34.089
+            ],
+            [
+              -118.3735,
+              34.089
+            ],
+            [
+              -118.3735,
+              34.0915
+            ],
+            [
+              -118.3775,
+              34.0915
+            ],
+            [
+              -118.3775,
+              34.089
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "flora": {
+          "canopy_trees": [
+            "Washingtonia robusta (Mexican Fan Palm)",
+            "Ficus microcarpa",
+            "Jacaranda mimosifolia",
+            "Corymbia ficifolia"
+          ],
+          "understory": "Drought-tolerant ornamental Mediterranean and Californian coastal chaparral shrubs",
+          "canopy_density": "Urban street corridor with intermittent dense mature foliage patches on hillside base"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -118.3768,
+                34.0905
+              ],
+              [
+                -118.3762,
+                34.0905
+              ],
+              [
+                -118.3762,
+                34.0912
+              ],
+              [
+                -118.3768,
+                34.0912
+              ],
+              [
+                -118.3768,
+                34.0905
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "High-density mixed-use urban arterial corridor with mid-rise and high-rise multi-family residential towers",
+        "structures": [
+          {
+            "id": "center_courtyard_residential",
+            "storeys": 4,
+            "height_m": 15.0,
+            "roof_geometry": "Flat built-up roof with mansard-style architectural parapets and dormer accents",
+            "facade_material": "White painted sand-finish stucco with recessed private cantilevered balconies",
+            "fenestration": "Recessed dark-anodized aluminum frame glazing with clean rectangular profiles",
+            "weathering_patina": "Pristine painted exterior with subtle coastal solar bleaching"
+          },
+          {
+            "id": "background_highrise_towers",
+            "storeys": 12,
+            "height_m": 42.0,
+            "roof_geometry": "Flat reinforced concrete slab with elevator penthouse and mechanical screen enclosures",
+            "facade_material": "Brilliant white reinforced concrete framing and painted paneling with continuous horizontal ribbon balconies",
+            "fenestration": "Full-height sliding glass terrace doors and architectural safety glass railings"
+          },
+          {
+            "id": "foreground_commercial_strip",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "Flat commercial roof with flat service canopy overhangs",
+            "facade_material": "Commercial plate glass glazing, smooth stucco, and ribbed metal fascia elements"
+          },
+          {
+            "id": "right_midrise_apartments",
+            "storeys": 4,
+            "height_m": 14.5,
+            "roof_geometry": "Flat composite membrane roof with integrated mechanical wells",
+            "facade_material": "Contemporary white and off-white modular stucco with wood-veneer accent panels and black metal fenestration"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -118.3765,
+                34.09
+              ],
+              [
+                -118.375,
+                34.09
+              ],
+              [
+                -118.375,
+                34.0915
+              ],
+              [
+                -118.3765,
+                34.0915
+              ],
+              [
+                -118.3765,
+                34.09
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "NONE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.375511,
+          34.090277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 276.74,
+        "solar_elevation_deg": 32.29,
+        "shadow_azimuth_deg": 96.7,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Quarter-front lighting from camera-left",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    }
+  ]
+}

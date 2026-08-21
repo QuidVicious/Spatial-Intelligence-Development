@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260820_150649",
+  "resolved_address": "8462 Santa Monica Blvd, West Hollywood, CA 90069, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "temporal_anchor": "Present Day",
+  "telemetry": {
+    "latitude": 34.08979748016396,
+    "longitude": -118.37570088608206,
+    "altitude_agl": 68.70731318216595,
+    "heading": 327.635426585882,
+    "pitch": -1.405621102632341,
+    "fov": 32.79971690006522,
+    "tile_mode": "3D_TILES"
+  },
+  "refinement_passes": 2
+}

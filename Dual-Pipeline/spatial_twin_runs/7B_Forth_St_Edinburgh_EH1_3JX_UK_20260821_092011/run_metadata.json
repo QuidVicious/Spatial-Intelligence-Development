@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260821_092011",
+  "address": "7B Forth St, Edinburgh EH1 3JX, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95755773039874,
+    "longitude": -3.1877599587714074,
+    "altitude_agl": 134.62812349668053,
+    "heading": 203.57068346011113,
+    "pitch": -50.80566295155964,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-21T16:12:17.5889999999999418Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 289.6\u00b0, Elevation 27.3\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Hard raking side-lighting from camera-right (90\u00b0). Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 109.6\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+        "solar_azimuth_deg": 289.55,
+        "solar_elevation_deg": 27.29,
+        "shadow_azimuth_deg": 109.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000,
+        "relative_camera_lighting": "Hard raking side-lighting from camera-right (90\u00b0)",
+        "sky_condition": "Clean standard midday daylight with distinct directional shadows"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-21T16:12:17.588999+00:00",
+      "solar_azimuth": 289.55,
+      "solar_elevation": 27.29,
+      "color_temperature_k": 5400,
+      "lux": 60000
+    }
+  },
+  "distilled_prompt": "High-angle aerial documentary perspective looking south-southwest over the rear tenements of Edinburgh's New Town, capturing a four-storey Georgian sandstone tenement block with plumb planar facades, dormered slate rooflines, and straight horizontal floor bands rising on the right, opposed by a two-storey rubble masonry mews annex in the left foreground. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing authentic weathered Craigleith ashlar sandstone, soot-patinated rubble party walls, deeply recessed multi-pane sash windows, and an enclosed rear courtyard sheltered by the organic, lush leafy canopies of mature deciduous trees. Calibrated 5400K midday solar illumination rakes strongly from camera-right at a 27.3-degree solar elevation, casting sharp, geometrically defined 109.6-degree directional shadows across coursed masonry and slate rooftops within a completely static architectural scene free of pedestrians and vehicles.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 289.6\u00b0, Elevation 27.3\u00b0 (Clean standard midday daylight with distinct directional shadows). Illumination Vector: Hard raking side-lighting from camera-right (90\u00b0). Color Temperature: Calibrated 5400K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 109.6\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: High-angle aerial documentary perspective looking south-southwest over the rear tenements of Edinburgh's New Town, capturing a four-storey Georgian sandstone tenement block with plumb planar facades, dormered slate rooflines, and straight horizontal floor bands rising on the right, opposed by a two-storey rubble masonry mews annex in the left foreground. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, detailing authentic weathered Craigleith ashlar sandstone, soot-patinated rubble party walls, deeply recessed multi-pane sash windows, and an enclosed rear courtyard sheltered by the organic, lush leafy canopies of mature deciduous trees. Calibrated 5400K midday solar illumination rakes strongly from camera-right at a 27.3-degree solar elevation, casting sharp, geometrically defined 109.6-degree directional shadows across coursed masonry and slate rooftops within a completely static architectural scene free of pedestrians and vehicles.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 10032.46
+  }
+}

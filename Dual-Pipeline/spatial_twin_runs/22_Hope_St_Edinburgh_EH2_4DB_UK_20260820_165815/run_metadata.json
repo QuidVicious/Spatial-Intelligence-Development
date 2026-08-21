@@ -1,0 +1,52 @@
+{
+  "timestamp": "20260820_165815",
+  "address": "22 Hope St, Edinburgh EH2 4DB, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95102500428987,
+    "longitude": -3.2086796322040234,
+    "altitude_agl": 163.4931701683596,
+    "heading": 318.4893113471744,
+    "pitch": -23.67178035534968,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "timestamp_utc": "2026-08-20T23:54:30.1860000000015134Z",
+    "lighting_mode": "SOLAR"
+  },
+  "lighting_state": {
+    "mode": "SOLAR",
+    "prompt_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Rear-left rim lighting / backlight. Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector.",
+    "delighting_directive": "DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture.",
+    "geojson_stratum": {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+        "solar_azimuth_deg": 185.77,
+        "solar_elevation_deg": -21.35,
+        "shadow_azimuth_deg": 5.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5,
+        "relative_camera_lighting": "Rear-left rim lighting / backlight",
+        "sky_condition": "Night scene with near-zero solar lux and dark celestial ambient dome"
+      },
+      "geometry": null
+    },
+    "metadata": {
+      "mode": "SOLAR",
+      "timestamp_utc": "2026-08-20T23:54:30.186000+00:00",
+      "solar_azimuth": 185.77,
+      "solar_elevation": -21.35,
+      "color_temperature_k": 2000,
+      "lux": 5
+    }
+  },
+  "distilled_prompt": "From an elevated perspective looking northwest over Edinburgh's New Town, the monumental verdigris copper dome and dressed ashlar drum of Robert Reid's classical church dominate the right foreground, while continuous four-storey Georgian sandstone residential terraces with plumb vertical facades and slate rooflines curve gracefully across the midground and far background. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic, soot-tinged Craigleith ashlar masonry, crisp six-over-six timber sash windows with deep reveals, and pitched Scotch slate roofs punctuated by clean stone chimney stacks, alongside historic low-rise mews structures with red clay pantiles and mature leafy crowns in private rear courtyards. The nocturnal environment is relit with an astronomical night dome and calibrated 2000K warm rear-left rim illumination, casting razor-sharp directional shadows along a 5.8\u00b0 vector across damp, glistening whinstone sett street surfaces entirely devoid of pedestrians, vehicles, and modern clutter.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle, perspective, horizon line, and building placement. DELIGHTING DIRECTIVE: Treat the attached image strictly as an unlit 3D structural skeleton (geometry, perspective, massing, and placement). Completely strip, discard, and cancel all baked photogrammetric sunlight, source shadow maps, ambient occlusion, and specular highlights from the capture. DYNAMIC RELIGHTING (SOLAR EPHEMERIS): Scene relit with physically grounded astronomical solar vectors. Sun Position: Azimuth 185.8\u00b0, Elevation -21.4\u00b0 (Night scene with near-zero solar lux and dark celestial ambient dome). Illumination Vector: Rear-left rim lighting / backlight. Color Temperature: Calibrated 2000K Kelvin solar irradiance casting sharp, geometrically authentic directional shadows aligned strictly to 5.8\u00b0 shadow vector. ARCHITECTURAL SCENE ESSENCE: From an elevated perspective looking northwest over Edinburgh's New Town, the monumental verdigris copper dome and dressed ashlar drum of Robert Reid's classical church dominate the right foreground, while continuous four-storey Georgian sandstone residential terraces with plumb vertical facades and slate rooflines curve gracefully across the midground and far background. Captured on a Mamiya 7 medium format rangefinder with a 45mm lens on ISO 100 film, the scene resolves authentic, soot-tinged Craigleith ashlar masonry, crisp six-over-six timber sash windows with deep reveals, and pitched Scotch slate roofs punctuated by clean stone chimney stacks, alongside historic low-rise mews structures with red clay pantiles and mature leafy crowns in private rear courtyards. The nocturnal environment is relit with an astronomical night dome and calibrated 2000K warm rear-left rim illumination, casting razor-sharp directional shadows along a 5.8\u00b0 vector across damp, glistening whinstone sett street surfaces entirely devoid of pedestrians, vehicles, and modern clutter.",
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9201.87
+  }
+}
