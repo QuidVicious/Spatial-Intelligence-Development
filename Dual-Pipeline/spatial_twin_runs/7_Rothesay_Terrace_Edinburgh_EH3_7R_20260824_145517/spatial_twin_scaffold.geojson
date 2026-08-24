@@ -1,0 +1,120 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "camera_telemetry": {
+          "resolved_address": "7 Rothesay Terrace, Edinburgh EH3 7RY, UK",
+          "coordinates": [
+            -3.217633,
+            55.950838
+          ],
+          "altitude_agl_m": 114.7,
+          "heading_deg": 97.1,
+          "pitch_deg": 3.1,
+          "fov_deg": 60.0,
+          "spatial_mode": "STREET_LEVEL_PERSPECTIVE"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217633,
+          55.950838
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone and Siltstone",
+        "stratigraphy": "Lower Carboniferous Strathclyde Group sedimentary strata",
+        "quarry_lithics": "Fine-grained, pale buff-grey Craigleith and Hailes sandstone ashlar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Milled asphalt roadway with traditional Scottish whinstone kerbstones and flagstone pavements",
+        "curbs_and_runnels": "Tooled whinstone curbs bordering cast-iron basement lightwell railings",
+        "wear_patina": "Moderate weathering, wet-stone staining, and bituminous road seam infill"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Ulmus glabra (Wych Elm)",
+          "Acer pseudoplatanus (Sycamore)",
+          "Tilia cordata (Small-leaved Lime)"
+        ],
+        "foliage_density": "Mature leafy canopies framing the residential streetscape and private terrace gardens",
+        "organic_morphology": "Natural branch branching with dense deciduous summer leaf clusters"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Victorian / Late Georgian Classical Residential Terrace",
+        "structures": [
+          {
+            "quadrant": "center_and_right",
+            "name": "Rothesay Terrace North Crescent",
+            "storeys": 4,
+            "height_m": 16.5,
+            "roof_geometry": "Slate mansard and pitched roof with coped stone chimney stacks and decorative chimney pots",
+            "facade_material": "Tooled pale Craigleith sandstone ashlar with classical string courses and rusticated ground floor",
+            "fenestration": "Plumb rectangular sash-and-case windows set in deep stone architraves"
+          },
+          {
+            "quadrant": "left_background",
+            "name": "Walker Estate Residential Facade",
+            "storeys": 4,
+            "height_m": 15.8,
+            "roof_geometry": "Pitched Scottish slate roof with regular ashlar chimneys",
+            "facade_material": "Honey-buff sandstone ashlar with continuous molded cornice lines",
+            "fenestration": "Vertical timber-framed multi-pane sash windows"
+          }
+        ]
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "pedestrians": "NONE",
+        "vehicles": "NONE",
+        "street_clutter": "NONE"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T21:53:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 14.9,
+        "solar_azimuth_deg": 216.6,
+        "solar_elevation_deg": -16.55,
+        "shadow_azimuth_deg": 36.6,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      },
+      "geometry": null
+    }
+  ]
+}

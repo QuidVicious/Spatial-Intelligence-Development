@@ -1,0 +1,217 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.34653,
+          35.037824
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 2437.3,
+        "heading_deg": 281.4,
+        "pitch_deg": -24.7,
+        "fov_deg": 60.0,
+        "spatial_mode": "high_altitude_oblique_aerial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -108.36,
+              35.03
+            ],
+            [
+              -108.33,
+              35.03
+            ],
+            [
+              -108.33,
+              35.045
+            ],
+            [
+              -108.36,
+              35.045
+            ],
+            [
+              -108.36,
+              35.03
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Zuni Sandstone / Dakota Sandstone over Chinle Formation",
+        "stratigraphic_units": "Jurassic-Cretaceous eolian cross-bedded sandstone cliffs",
+        "indigenous_lithics": "Pale buff to cream-colored quartzose sandstone, fractured cliff talus, arid alluvium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -108.355,
+              35.032
+            ],
+            [
+              -108.335,
+              35.032
+            ],
+            [
+              -108.335,
+              35.042
+            ],
+            [
+              -108.355,
+              35.042
+            ],
+            [
+              -108.355,
+              35.032
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Exposed sandstone slickrock, compacted sandy loam desert soil, decomposed sandstone trail paths",
+        "curbs_and_edges": "Natural sheer cliff escarpments, eroded joints, desert wash borders",
+        "wear_patina": "Iron oxide staining, biological desert crust, weathered rock varnish"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -108.358,
+                35.031
+              ],
+              [
+                -108.332,
+                35.031
+              ],
+              [
+                -108.332,
+                35.044
+              ],
+              [
+                -108.358,
+                35.044
+              ],
+              [
+                -108.358,
+                35.031
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Pinus edulis (Pi\u00f1on Pine)",
+          "Juniperus monosperma (One-seed Juniper)",
+          "Artemisia tridentata (Big Sagebrush)",
+          "Bouteloua gracilis (Blue Grama)"
+        ],
+        "vegetation_distribution": "Sparse pi\u00f1on-juniper woodland across alluvial plains and concentrated microclimatic growth along cliff bases and canyon fracture lines"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -108.352,
+                35.037
+              ],
+              [
+                -108.35,
+                35.037
+              ],
+              [
+                -108.35,
+                35.039
+              ],
+              [
+                -108.352,
+                35.039
+              ],
+              [
+                -108.352,
+                35.037
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Ancestral Puebloan unexcavated and consolidated masonry ruin complex (Atsinna Pueblo footprint)",
+        "structures": [
+          {
+            "name": "Atsinna Pueblo Ruins",
+            "storeys": 1,
+            "height_m": 1.2,
+            "roof_geometry": "Open unroofed excavated rectilinear masonry foundation cells",
+            "facade_material": "Dry-laid and mud-mortared tabular sandstone rubble masonry",
+            "window_reveals": "Rectangular cell apertures and ground foundation stone alignments"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.34653,
+          35.037824
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "complete",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "clutter_status": "pristine_archaeological_and_natural_reserve"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-22T20:41:00+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 26.4,
+        "solar_azimuth_deg": 315.22,
+        "solar_elevation_deg": 60.0,
+        "shadow_azimuth_deg": 135.2,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      },
+      "geometry": null
+    }
+  ]
+}

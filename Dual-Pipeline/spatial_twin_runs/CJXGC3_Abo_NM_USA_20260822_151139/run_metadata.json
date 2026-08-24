@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260822_151139",
+  "address": "CJXG+C3 Abo, NM, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 34.448573897340935,
+    "longitude": -106.3748649214997,
+    "altitude_agl": 1941.0190590979496,
+    "heading": 352.28566917386235,
+    "pitch": -39.45876587578671,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-22",
+    "time_of_day": 20.7,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-22T20:41:00+00:00",
+    "solar_azimuth": 311.46,
+    "solar_elevation": 59.23,
+    "color_temperature_k": 5800,
+    "lux": 85000
+  },
+  "distilled_structural_prompt": "An elevated documentary aerial perspective overlooks the archaeological ruins of Ab\u00f3, featuring the rectilinear sandstone walls of the mission church and convento in the upper center, flanked by linear unexcavated pueblo roomblocks across the southern quadrant and a flat-roofed territorial contact station to the right. The stabilized plumb vertical red sandstone masonry and rectangular stone foundations stand sharply defined amid native pi\u00f1on and juniper scrub over an entirely static, vehicle-free and pedestrian-free desert landscape.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 311.5\u00b0, Elevation 59.2\u00b0 (High clear sun with short vertical shadows). Quarter-front light from camera-left, calibrated 5800K solar irradiance casting crisp shadows along 131.5\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: An elevated documentary aerial perspective overlooks the archaeological ruins of Ab\u00f3, featuring the rectilinear sandstone walls of the mission church and convento in the upper center, flanked by linear unexcavated pueblo roomblocks across the southern quadrant and a flat-roofed territorial contact station to the right. The stabilized plumb vertical red sandstone masonry and rectangular stone foundations stand sharply defined amid native pi\u00f1on and juniper scrub over an entirely static, vehicle-free and pedestrian-free desert landscape.",
+  "word_count": 151,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9474.68
+  }
+}

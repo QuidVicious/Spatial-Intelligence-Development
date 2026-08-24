@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260824_145517",
+  "address": "7 Rothesay Terrace, Edinburgh EH3 7RY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95083789439501,
+    "longitude": -3.217632868176019,
+    "altitude_agl": 114.65855313436582,
+    "heading": 97.14539066012698,
+    "pitch": 3.130967319181604,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-24",
+    "time_of_day": 21.9,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-24T21:53:00+00:00",
+    "solar_azimuth": 216.6,
+    "solar_elevation": -16.55,
+    "color_temperature_k": 2000,
+    "lux": 5
+  },
+  "distilled_structural_prompt": "Eye-level medium-format capture from Rothesay Terrace looking eastward, resolving the sweeping curved terrace into plumb four-storey ashlar facades with strictly vertical load-bearing lines, rectilinear sash windows, and continuous cornices beneath pitched slate roofs with substantial chimney stacks. The weathered buff Craigleith sandstone masonry reveals deep architectural window embrasures and cast-iron basement lightwell railings, framed by mature leafy tree foliage along a pristine, fully decluttered roadway free of vehicles and pedestrians.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 216.6\u00b0, Elevation -16.6\u00b0 (Night scene with celestial ambient dome). Rear-right backlight, calibrated 2000K solar irradiance casting crisp shadows along 36.6\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: Eye-level medium-format capture from Rothesay Terrace looking eastward, resolving the sweeping curved terrace into plumb four-storey ashlar facades with strictly vertical load-bearing lines, rectilinear sash windows, and continuous cornices beneath pitched slate roofs with substantial chimney stacks. The weathered buff Craigleith sandstone masonry reveals deep architectural window embrasures and cast-iron basement lightwell railings, framed by mature leafy tree foliage along a pristine, fully decluttered roadway free of vehicles and pedestrians.",
+  "word_count": 144,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9475.04
+  }
+}

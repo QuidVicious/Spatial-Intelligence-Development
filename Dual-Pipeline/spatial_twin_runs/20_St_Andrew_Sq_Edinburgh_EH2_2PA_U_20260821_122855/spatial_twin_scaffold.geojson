@@ -1,0 +1,231 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "observer_latitude": 55.954436,
+        "observer_longitude": -3.194362,
+        "observer_altitude_agl_m": 128.7,
+        "heading_degrees": 147.7,
+        "pitch_degrees": 5.7,
+        "field_of_view_horizontal_deg": 60.0,
+        "spatial_mode": "ELEVATED_SOUTH_SOUTHEAST_AXIAL_VIEW"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.194362,
+          55.954436,
+          128.7
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Edinburgh Castle Subvolcanic & Gullane Formation",
+        "lithology": "Carboniferous sandstone, siltstone, basaltic volcanic necks",
+        "regional_quarry_materials": [
+          "Craigleith quartzitic sandstone",
+          "Hailes sandstone",
+          "polished grey granite"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.194362,
+          55.954436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "roadway_material": "Dense graded asphalt paving with painted road markings",
+        "pedestrian_curbs": "Hewn Scottish granite kerbstones and flagstone pavements",
+        "public_realm": "St Andrew Square garden border, stone retention walls, cast-iron perimeter railings"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.194362,
+            55.954436
+          ],
+          [
+            -3.1936,
+            55.9532
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": [
+          "Acer pseudoplatanus (Sycamore maple)",
+          "Tilia europaea (Common lime)",
+          "Ulmus glabra (Wych elm)"
+        ],
+        "vegetation_form": "Mature broadleaf trees with full organic canopies within St Andrew Square garden"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1947,
+              55.9542
+            ],
+            [
+              -3.1942,
+              55.954
+            ],
+            [
+              -3.1945,
+              55.9536
+            ],
+            [
+              -3.195,
+              55.9538
+            ],
+            [
+              -3.1947,
+              55.9542
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_typology": "Edinburgh New Town Neoclassical, Brutalist and Modern Commercial Civic Fabric",
+        "structures": [
+          {
+            "name": "St Andrew Square South-East Commercial Blocks",
+            "position": "center_frame",
+            "storeys": 6,
+            "height_m": 24.0,
+            "facade_material": "Precast fluted concrete ribs, dressed Portland limestone and Craigleith ashlar sandstone",
+            "fenestration": "Recessed vertical ribbon windows with dark bronze-anodized framing",
+            "roof_geometry": "Flat parapet roofline with set-back plant housing"
+          },
+          {
+            "name": "East Square Neoclassical Terrace & Commercial Block",
+            "position": "right_frame",
+            "storeys": 5,
+            "height_m": 22.0,
+            "facade_material": "Evenly coursed cream-colored Craigleith sandstone ashlar",
+            "fenestration": "Regular grid of tall rectangular sash-and-case windows with projecting molded architraves",
+            "roof_geometry": "Mansard roof clad in Scottish slate with pedimented dormers"
+          },
+          {
+            "name": "Scott Monument (Background Landmark)",
+            "position": "distant_right_aperture",
+            "storeys": null,
+            "height_m": 61.1,
+            "facade_material": "Intricately carved Binny sandstone with rich dark carbon patina",
+            "fenestration": "Open Gothic crocketed spire with flying buttresses and pinnacles",
+            "roof_geometry": "Steep Gothic spire"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1938,
+                55.9535
+              ],
+              [
+                -3.1932,
+                55.9533
+              ],
+              [
+                -3.1935,
+                55.9529
+              ],
+              [
+                -3.1941,
+                55.9531
+              ],
+              [
+                -3.1938,
+                55.9535
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.193,
+                55.9537
+              ],
+              [
+                -3.1925,
+                55.9535
+              ],
+              [
+                -3.1928,
+                55.9528
+              ],
+              [
+                -3.1933,
+                55.953
+              ],
+              [
+                -3.193,
+                55.9537
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "pedestrians": "NONE",
+        "vehicles": "NONE",
+        "temporary_clutter": "NONE",
+        "permanent_fixtures": "Granite curbs, road markings, iron perimeter fencing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.194362,
+          55.954436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T07:05:00+00:00",
+        "weather_state": "FOG",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 87.02,
+        "solar_elevation_deg": 17.08,
+        "shadow_azimuth_deg": 267.0,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      },
+      "geometry": null
+    }
+  ]
+}

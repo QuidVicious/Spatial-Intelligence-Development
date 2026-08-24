@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260821_121510",
+  "address": "35A George St, Edinburgh EH2 2HN, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.953525263387384,
+    "longitude": -3.1978189238866177,
+    "altitude_agl": 134.7312052692274,
+    "heading": 87.2824963745289,
+    "pitch": -2.6087254444952896,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-21",
+    "time_of_day": 20.25,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-08-21T20:15:00+00:00",
+    "solar_azimuth": 238.52,
+    "solar_elevation": -5.44,
+    "color_temperature_k": 2400,
+    "lux": 800
+  },
+  "distilled_structural_prompt": "An elevated documentary wide view looks directly east along the broad canyon of Edinburgh's George Street, where the left quadrant features the tall octagonal spire and four-storey Classical sandstone church frontage, while the right quadrant is anchored by an imposing four-storey Edwardian ashlar bank crowned with an oxidized copper dome, framing the Melville Monument on the distant central axis. Both flanking rows exhibit plumb vertical walls, horizontal cornices, and recessed multi-pane sash windows along an immaculately static streetscape with crisp granite curbs, mature green trees around the distant square, and completely vacant roadways entirely free of vehicles and pedestrians.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 238.5\u00b0, Elevation -5.4\u00b0 (Civil twilight blue hour with deep ambient glow). Rear-right backlight, calibrated 2400K solar irradiance casting crisp shadows along 58.5\u00b0 vector. Weather: Active rain. Wet, mirror-reflective asphalt and pavement with crisp surface puddles; soft diffuse skylight. ARCHITECTURAL SCENE ESSENCE: An elevated documentary wide view looks directly east along the broad canyon of Edinburgh's George Street, where the left quadrant features the tall octagonal spire and four-storey Classical sandstone church frontage, while the right quadrant is anchored by an imposing four-storey Edwardian ashlar bank crowned with an oxidized copper dome, framing the Melville Monument on the distant central axis. Both flanking rows exhibit plumb vertical walls, horizontal cornices, and recessed multi-pane sash windows along an immaculately static streetscape with crisp granite curbs, mature green trees around the distant square, and completely vacant roadways entirely free of vehicles and pedestrians.",
+  "word_count": 182,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 80285.21
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216608,
+          55.951026
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 116.0,
+        "heading_deg": 203.1,
+        "pitch_deg": 0.3,
+        "fov_deg": 60.0,
+        "spatial_mode": "ground_level_perspective"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2175,
+              55.9505
+            ],
+            [
+              -3.2155,
+              55.9505
+            ],
+            [
+              -3.2155,
+              55.9515
+            ],
+            [
+              -3.2175,
+              55.9515
+            ],
+            [
+              -3.2175,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Sedimentary sandstone and shale sequence",
+        "lithic_formation": "Gullane Formation / Carboniferous Strathclyde Group",
+        "quarry_provenance": "Craigleith / Hailes Blonde Sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2172,
+              55.9507
+            ],
+            [
+              -3.216,
+              55.9507
+            ],
+            [
+              -3.216,
+              55.9513
+            ],
+            [
+              -3.2172,
+              55.9513
+            ],
+            [
+              -3.2172,
+              55.9507
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Fine asphalt road surface and Caithness stone flag pedestrian sidewalks",
+        "curb_lithology": "Dressed whinstone and granite kerbing",
+        "wear_characteristics": "Evenly graded urban tarmac with historic stone gutters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.2163,
+            55.9508
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus",
+          "Tilia europaea"
+        ],
+        "foliage_density": "Mature leafy canopies on private crescent gardens to the right flank"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2171,
+                55.9508
+              ],
+              [
+                -3.2164,
+                55.9513
+              ],
+              [
+                -3.2166,
+                55.9514
+              ],
+              [
+                -3.2173,
+                55.9509
+              ],
+              [
+                -3.2171,
+                55.9508
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Victorian / Late Georgian neoclassical residential terrace",
+        "structures": [
+          {
+            "quadrant": "left_to_center",
+            "address": "Rothesay Place Crescent Terrace",
+            "storeys": 4,
+            "height_m": 15.5,
+            "facade_material": "Dressed Craigleith ashlar sandstone with channelled rustication at ground floor",
+            "fenestration": "Vertical rectangular timber-framed sliding sash windows with projecting molded architraves",
+            "roof_geometry": "Slate mansard and pitched roof with continuous parapet and uniform chimneystacks"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216608,
+          55.951026
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T11:54:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 7.55,
+        "solar_elevation_deg": 45.23,
+        "shadow_azimuth_deg": 187.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      },
+      "geometry": null
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.374865,
+          34.448574
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 1941.0,
+        "heading_deg": 352.3,
+        "pitch_deg": -39.5,
+        "fov_deg": 60.0,
+        "spatial_mode": "aerial_oblique"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.374865,
+          34.448574
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Permian Abo Formation Sandstone and Mudstone",
+        "stratigraphy": "Continental red beds, alluvial siltstone, and mudstone strata",
+        "local_quarry_lithics": "Dark red Abo sandstone uncoursed fieldstone, caliche mortar, and compacted mud plaster"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.377,
+              34.446
+            ],
+            [
+              -106.372,
+              34.446
+            ],
+            [
+              -106.372,
+              34.451
+            ],
+            [
+              -106.377,
+              34.451
+            ],
+            [
+              -106.377,
+              34.446
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted arid red clay soil, weathered gravel trails, and chip-seal asphalt access loop",
+        "curbs": "Unedged natural trail borders and uncurbed roadway edges",
+        "wear_patina": "Arid aeolian sand drift and mineral surface desiccation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -106.3755,
+            34.4495
+          ],
+          [
+            -106.3735,
+            34.4475
+          ],
+          [
+            -106.376,
+            34.447
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Pinus edulis (Pi\u00f1on Pine)",
+          "Juniperus monosperma (One-seed Juniper)",
+          "Bouteloua gracilis (Blue Grama Grass)"
+        ],
+        "mature_leafy_trees": "Scattered low-canopy semi-arid scrub evergreen woodlands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -106.3752,
+                34.4496
+              ],
+              [
+                -106.3745,
+                34.4496
+              ],
+              [
+                -106.3745,
+                34.4491
+              ],
+              [
+                -106.3752,
+                34.4491
+              ],
+              [
+                -106.3752,
+                34.4496
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Unexcavated and stabilized Pueblo and 17th-century Spanish Colonial Mission ruins",
+        "structures": [
+          {
+            "name": "San Gregorio de Ab\u00f3 Mission & Convento Compound",
+            "quadrant": "center_north",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "Ruined / open roofless parapet",
+            "facade_material": "Dry-laid red Permian sandstone masonry walls",
+            "window_reveals": "Square and rectangular beam lintel apertures"
+          },
+          {
+            "name": "Unexcavated Pueblo Mounds and Outlying Roomblocks",
+            "quadrant": "south_and_east",
+            "storeys": 1,
+            "height_m": 1.2,
+            "roof_geometry": "Low rectilinear foundation earthworks",
+            "facade_material": "Exposed red sandstone rubble and packed earth",
+            "window_reveals": "None"
+          },
+          {
+            "name": "Park Facilities & Contact Station",
+            "quadrant": "east_center",
+            "storeys": 1,
+            "height_m": 3.8,
+            "roof_geometry": "Flat territorial parapet",
+            "facade_material": "Earth-toned adobe-style stucco",
+            "window_reveals": "Deeply recessed rectangular timber-framed apertures"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.374865,
+          34.448574
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "complete",
+        "vehicles": "NONE",
+        "pedestrians": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-22T20:41:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 33.0,
+        "solar_azimuth_deg": 311.46,
+        "solar_elevation_deg": 59.23,
+        "shadow_azimuth_deg": 131.5,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      },
+      "geometry": null
+    }
+  ]
+}

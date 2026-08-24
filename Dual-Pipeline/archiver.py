@@ -61,10 +61,10 @@ def archive_run(
     with open(twin_path, "wb") as f:
         f.write(base64.b64decode(raw_synth_b64))
 
-    # 3. Save RFC 7946 GeoJSON Database
+    # 3. Save RFC 7946 GeoJSON Database (including Stratum 7)
     geojson_path = run_folder / "spatial_twin_scaffold.geojson"
     with open(geojson_path, "w", encoding="utf-8") as f:
-        json.dump(cognitive_result.geojson, f, indent=2)
+        json.dump(conditioning.full_geojson, f, indent=2)
 
     # 4. Save Run Metadata (JSON)
     metadata = {
@@ -79,12 +79,15 @@ def archive_run(
             "pitch": getattr(telemetry, "pitch", 0.0),
             "fov": getattr(telemetry, "fov", 0.0),
             "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES"),
-            "timestamp_utc": getattr(telemetry, "timestamp_utc", None),
-            "lighting_mode": getattr(telemetry, "lighting_mode", "SOLAR")
+            "date": getattr(telemetry, "date", None),
+            "time_of_day": getattr(telemetry, "time_of_day", None),
+            "lighting_mode": getattr(telemetry, "lighting_mode", "SOLAR"),
+            "weather_mode": getattr(telemetry, "weather_mode", "AUTO")
         },
-        "lighting_state": getattr(cognitive_result, "lighting_state", None),
-        "distilled_prompt": cognitive_result.distilled_prompt,
+        "lighting_and_weather_summary": conditioning.metadata.get("lighting_summary"),
+        "distilled_structural_prompt": cognitive_result.distilled_prompt,
         "compiled_prompt": conditioning.prompt,
+        "word_count": conditioning.metadata.get("word_count", 0),
         "synthesis": {
             "model_name": synthesis_result.model_name,
             "latency_ms": round(synthesis_result.latency_ms, 2)

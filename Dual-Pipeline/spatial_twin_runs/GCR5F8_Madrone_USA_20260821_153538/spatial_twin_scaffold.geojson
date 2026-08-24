@@ -1,0 +1,211 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "observer_frame",
+        "camera_telemetry": {
+          "coordinates": [
+            -106.591685,
+            34.541225
+          ],
+          "altitude_agl_m": 4670.5,
+          "heading_deg": 357.8,
+          "pitch_deg": -48.0,
+          "fov_deg": 60.0,
+          "spatial_mode": "high_altitude_oblique_aerial"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.591685,
+          34.541225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Santa Fe Group basin-fill alluvium and sedimentary strata",
+        "stratigraphy": "Quaternary-Tertiary unconsolidated sand, silt, gravel, and caliche over Paleozoic limestone",
+        "quarry_lithics": "Adobe clay, regional caliche aggregate, crushed limestone gravel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.62,
+              34.52
+            ],
+            [
+              -106.56,
+              34.52
+            ],
+            [
+              -106.56,
+              34.565
+            ],
+            [
+              -106.62,
+              34.565
+            ],
+            [
+              -106.62,
+              34.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Compacted caliche dirt roads, unpaved graded access tracks, arid desert topsoil",
+        "curbs": "Uncurbed graded earthen shoulders",
+        "wear_patina": "Wind-scoured arid erosion, drainage rills, and sparse dry wash pathways"
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -106.615,
+              34.538
+            ],
+            [
+              -106.565,
+              34.539
+            ]
+          ],
+          [
+            [
+              -106.595,
+              34.539
+            ],
+            [
+              -106.594,
+              34.555
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Bouteloua gracilis (Blue grama grass)",
+          "Gutierrezia sarothrae (Broom snakeweed)",
+          "Larrea tridentata (Creosote bush)",
+          "Juniperus monosperma (One-seed juniper)"
+        ],
+        "vegetation_density": "Sparse semi-arid Chihuahuan-Great Plains ecotone scrub"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.62,
+              34.52
+            ],
+            [
+              -106.56,
+              34.52
+            ],
+            [
+              -106.56,
+              34.565
+            ],
+            [
+              -106.62,
+              34.565
+            ],
+            [
+              -106.62,
+              34.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Rural low-density homesteads and agricultural outbuildings",
+        "structures": [
+          {
+            "id": "central_homestead",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "Gabled metal roof",
+            "facade_material": "Earth-toned stucco and corrugated sheet steel",
+            "window_reveals": "Rectangular casements with plain trims"
+          },
+          {
+            "id": "ancillary_outbuildings",
+            "storeys": 1,
+            "height_m": 3.8,
+            "roof_geometry": "Flat shed and low-pitch gabled",
+            "facade_material": "Prefabricated metal and utilitarian wood framing",
+            "window_reveals": "Minimal recessed industrial utility apertures"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -106.5942,
+            34.5448
+          ],
+          [
+            -106.5958,
+            34.5421
+          ],
+          [
+            -106.5925,
+            34.5398
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "complete",
+        "vehicles": "NONE",
+        "pedestrians": "NONE"
+      },
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T22:30:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 34.8,
+        "solar_azimuth_deg": 283.6,
+        "solar_elevation_deg": 39.58,
+        "shadow_azimuth_deg": 103.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      },
+      "geometry": null
+    }
+  ]
+}

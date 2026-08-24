@@ -1,0 +1,180 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.582623,
+          35.031137
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 1611.6,
+        "pitch_deg": -5.3,
+        "heading_deg": 25.1,
+        "fov_deg": 60.0,
+        "spatial_mode": "elevated_oblique_range_view"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.6,
+              35.02
+            ],
+            [
+              -106.56,
+              35.02
+            ],
+            [
+              -106.56,
+              35.05
+            ],
+            [
+              -106.6,
+              35.05
+            ],
+            [
+              -106.6,
+              35.02
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Albuquerque Basin alluvial fan deposits over Sandia granite and limestone basement",
+        "soil_profile": "Aridisols, caliche-bearing gravelly sandy loam",
+        "stratigraphic_context": "Quaternary basin fill overlying Proterozoic plutonic and Paleozoic sedimentary units"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.59,
+              35.025
+            ],
+            [
+              -106.57,
+              35.025
+            ],
+            [
+              -106.57,
+              35.045
+            ],
+            [
+              -106.59,
+              35.045
+            ],
+            [
+              -106.59,
+              35.025
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Coarse desert gravel, graded caliche access roads, sealed asphalt aprons",
+        "patina_wear": "Wind-scoured arid weathering, sun-bleached aggregate, thermal-crack asphalt sealing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Gutierrezia sarothrae (Snakeweed)",
+          "Atriplex canescens (Fourwing saltbush)",
+          "Larrea tridentata (Creosote bush)",
+          "Sporobolus cryptandrus (Sand dropseed)"
+        ],
+        "vegetation_distribution": "Sparse, low-profile arid basin scrubland with exposed mineral earth"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "facility_typology": "Military test range and reinforced storage revetments",
+        "structures": [
+          {
+            "name": "Earth-bermed protective igloo bunkers",
+            "count": 6,
+            "storeys": 1,
+            "height_m": 4.5,
+            "facade_material": "Reinforced concrete headwalls, membrane-covered compacted earth revetments",
+            "roof_geometry": "Conical/truncated pyramid earth mounds with synthetic geotextile covers"
+          },
+          {
+            "name": "Support and instrumentation buildings",
+            "storeys": 1,
+            "height_m": 3.8,
+            "facade_material": "Pre-cast concrete panels, corrugated metal siding",
+            "roof_geometry": "Flat low-pitch industrial membrane"
+          },
+          {
+            "name": "Distant high-bay facility",
+            "storeys": 2,
+            "height_m": 14.0,
+            "facade_material": "Corrugated insulated steel panels",
+            "roof_geometry": "Pitched metal truss"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.582623,
+          35.031137
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "equipment": "STATIC_PERMANENT_ONLY"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T07:05:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 34.0,
+        "solar_azimuth_deg": 181.64,
+        "solar_elevation_deg": -42.51,
+        "shadow_azimuth_deg": 1.6,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      },
+      "geometry": null
+    }
+  ]
+}

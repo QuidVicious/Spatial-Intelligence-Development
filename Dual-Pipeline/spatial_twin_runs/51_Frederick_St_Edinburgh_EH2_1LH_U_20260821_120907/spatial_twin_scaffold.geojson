@@ -1,0 +1,226 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200542,
+          55.953844
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "altitude_agl_m": 156.1,
+          "camera_pitch_deg": -27.0,
+          "camera_heading_deg": 137.1,
+          "fov_deg": 60.0
+        },
+        "spatial_mode": "Oblique elevated architectural survey"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2015,
+              55.953
+            ],
+            [
+              -3.1995,
+              55.953
+            ],
+            [
+              -3.1995,
+              55.9545
+            ],
+            [
+              -3.2015,
+              55.9545
+            ],
+            [
+              -3.2015,
+              55.953
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock": "Gullane Formation Sandstone and Carboniferous volcanic basalt/dolerite intrusion",
+        "quarry_provenance": "Craigleith and Hailes pale blonde to carbon-grey Carboniferous sandstone",
+        "stratigraphy": "Glacial till over dense sedimentary bedrock"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2012,
+              55.9532
+            ],
+            [
+              -3.1998,
+              55.9532
+            ],
+            [
+              -3.1998,
+              55.9542
+            ],
+            [
+              -3.2012,
+              55.9542
+            ],
+            [
+              -3.2012,
+              55.9532
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite setts, Caithness stone flags, and bituminous carriageway",
+        "curbs": "Hewn granite kerbstones with cast-iron rainwater channels",
+        "wear_patina": "Soot-stained masonry basement wells with wrought-iron lightwell railings"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": "Rear courtyard deciduous planting, minimal urban street tree presence",
+        "vegetation_status": "Potted courtyards and private rear tenement gardens"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.201,
+              55.9533
+            ],
+            [
+              -3.2,
+              55.9533
+            ],
+            [
+              -3.2,
+              55.954
+            ],
+            [
+              -3.201,
+              55.954
+            ],
+            [
+              -3.201,
+              55.9533
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Edinburgh New Town Georgian and Victorian rear tenement blocks and return wings",
+        "structures": [
+          {
+            "quadrant": "center",
+            "typology": "Projecting staircase outshot and tenement rear elevation",
+            "storeys": 6,
+            "height_m": 21.5,
+            "facade_material": "Squared Craigleith sandstone rubble with droved ashlar dressings",
+            "roof_geometry": "Steeply pitched Scottish slate roof with lead flashings and dressed stone chimney stacks",
+            "fenestration": "Vertical timber sash-and-case multi-pane windows set in clean rectangular stone reveals"
+          },
+          {
+            "quadrant": "left",
+            "typology": "Georgian residential tenement range",
+            "storeys": 4,
+            "height_m": 16.0,
+            "facade_material": "Coursed sandstone masonry with stone quoins and chimney gables",
+            "roof_geometry": "Slate mansard and gable pitches with aligned dormers",
+            "fenestration": "Regular multi-pane sash windows with recessed stone lintels"
+          },
+          {
+            "quadrant": "right",
+            "typology": "Perpendicular street-facing perimeter block",
+            "storeys": 4,
+            "height_m": 15.5,
+            "facade_material": "Polished and broached ashlar sandstone",
+            "roof_geometry": "Pitched Welsh and Scottish slate roofscapes with ashlar coping",
+            "fenestration": "Symmetrical rectangular sash windows"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2015,
+              55.953
+            ],
+            [
+              -3.1995,
+              55.953
+            ],
+            [
+              -3.1995,
+              55.9545
+            ],
+            [
+              -3.2015,
+              55.9545
+            ],
+            [
+              -3.2015,
+              55.953
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "temporary_fixtures": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T18:21:00+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 262.09,
+        "solar_elevation_deg": 9.51,
+        "shadow_azimuth_deg": 82.1,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 10000
+      },
+      "geometry": null
+    }
+  ]
+}

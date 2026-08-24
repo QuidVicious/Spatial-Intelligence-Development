@@ -1,0 +1,201 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.582623,
+          35.031137
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 1611.6,
+        "heading_deg": 25.1,
+        "pitch_deg": -5.3,
+        "fov_deg": 60.0,
+        "spatial_mode": "elevated_aerial_oblique"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.6,
+              35.02
+            ],
+            [
+              -106.55,
+              35.02
+            ],
+            [
+              -106.55,
+              35.05
+            ],
+            [
+              -106.6,
+              35.05
+            ],
+            [
+              -106.6,
+              35.02
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvial gravel and sand over Santa Fe Group basin fill",
+        "stratigraphy": "Unconsolidated pediment alluvium underlain by Sandia granite and metamorphic basement lithics",
+        "regional_materials": "Reinforced concrete, engineered compacted earth berms, asphaltic concrete, gravel aggregate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.59,
+              35.025
+            ],
+            [
+              -106.57,
+              35.025
+            ],
+            [
+              -106.57,
+              35.045
+            ],
+            [
+              -106.59,
+              35.045
+            ],
+            [
+              -106.59,
+              35.025
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Desert caliche earth, scrubland aggregate, and asphalt access ribbons",
+        "curbs_edges": "Graded earthen shoulders, compacted perimeter aprons, and level service access turnouts",
+        "wear_patina": "Arid wind-scoured soil patina, faint service vehicle track compressions, sun-bleached asphalt aggregate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -106.582,
+            35.035
+          ],
+          [
+            -106.578,
+            35.038
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": "Sparse Chihuahuan desert scrub, Atriplex canescens (fourwing saltbush), Gutierrezia sarothrae (snakeweed), Larrea tridentata",
+        "tree_canopies": "Dispersed arid shrubs and low-profile xerophytic brush along alluvial washes; no mature deciduous trees"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -106.585,
+                35.03
+              ],
+              [
+                -106.58,
+                35.03
+              ],
+              [
+                -106.58,
+                35.035
+              ],
+              [
+                -106.585,
+                35.035
+              ],
+              [
+                -106.585,
+                35.03
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Military test installation, earth-sheltered revetments, and reinforced bunker complexes",
+        "structures": [
+          {
+            "name": "Earth-Covered Magazine and Protective Revetments",
+            "storeys": 1,
+            "height_m": 4.5,
+            "roof_geometry": "Conical and bermed earth mounds with coated protective membranes",
+            "facade_material": "Reinforced cast-in-place blast concrete with geotextile membrane capping",
+            "window_reveals": "Windowless blast-containment massing with recessed heavy steel blast portals"
+          },
+          {
+            "name": "Support Facility and Hangar Structures",
+            "storeys": 1,
+            "height_m": 6.0,
+            "roof_geometry": "Flat planar and low-pitch gabled steel roofs",
+            "facade_material": "Corrugated industrial metal cladding and utilitarian concrete masonry units",
+            "window_reveals": "Minimal recessed industrial glazing bands"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": []
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "complete",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_clutter": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T14:15:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 34.0,
+        "solar_azimuth_deg": 91.09,
+        "solar_elevation_deg": 20.31,
+        "shadow_azimuth_deg": 271.1,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      },
+      "geometry": null
+    }
+  ]
+}

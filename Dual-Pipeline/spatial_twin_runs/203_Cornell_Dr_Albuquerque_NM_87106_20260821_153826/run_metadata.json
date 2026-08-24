@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260821_153826",
+  "address": "203 Cornell Dr, Albuquerque, NM 87106, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 35.08246943429436,
+    "longitude": -106.61945823907544,
+    "altitude_agl": 1612.0590912446273,
+    "heading": 311.5477420498256,
+    "pitch": -19.064972300196338,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-21",
+    "time_of_day": 10.5,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-21T10:30:00+00:00",
+    "solar_azimuth": 125.66,
+    "solar_elevation": -22.98,
+    "color_temperature_k": 2000,
+    "lux": 5
+  },
+  "distilled_structural_prompt": "From an elevated oblique perspective looking northwest across the university campus, three- and four-storey Pueblo Revival and Modernist academic buildings anchor the scene with stepped volumes, straight flat rooflines, and plumb vertical walls. The earth-toned stucco facades and deep-set rectangular windows contrast with dense green deciduous tree canopies across entirely empty, vehicle-free courtyards and service plazas.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 125.7\u00b0, Elevation -23.0\u00b0 (Night scene with celestial ambient dome). Direct backlighting / silhouetting, calibrated 2000K solar irradiance casting crisp shadows along 305.7\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: From an elevated oblique perspective looking northwest across the university campus, three- and four-storey Pueblo Revival and Modernist academic buildings anchor the scene with stepped volumes, straight flat rooflines, and plumb vertical walls. The earth-toned stucco facades and deep-set rectangular windows contrast with dense green deciduous tree canopies across entirely empty, vehicle-free courtyards and service plazas.",
+  "word_count": 132,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 10322.42
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260824_145623",
+  "address": "4 Rothesay Pl, Edinburgh EH3 7SL, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.9510261337366,
+    "longitude": -3.216608278942982,
+    "altitude_agl": 116.00898920307634,
+    "heading": 203.12126895381553,
+    "pitch": 0.30763462332405234,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-24",
+    "time_of_day": 11.9,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-24T11:54:00+00:00",
+    "solar_azimuth": 7.55,
+    "solar_elevation": 45.23,
+    "color_temperature_k": 5400,
+    "lux": 60000
+  },
+  "distilled_structural_prompt": "Captured from a ground-level eye-line looking southwest along Rothesay Place, the left and center quadrants feature a continuous four-storey neoclassical ashlar sandstone terrace with strictly plumb vertical planar facades, level string courses, rectangular timber sash windows, and an unbroken parapet line. The street is anchored by Craigleith stone masonry, authentic wrought-iron area railings, and leafy tree canopies on the right, completely decluttered of all vehicles and pedestrians.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 7.5\u00b0, Elevation 45.2\u00b0 (Clean standard daylight with directional shadows). Direct backlighting / silhouetting, calibrated 5400K solar irradiance casting crisp shadows along 187.6\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: Captured from a ground-level eye-line looking southwest along Rothesay Place, the left and center quadrants feature a continuous four-storey neoclassical ashlar sandstone terrace with strictly plumb vertical planar facades, level string courses, rectangular timber sash windows, and an unbroken parapet line. The street is anchored by Craigleith stone masonry, authentic wrought-iron area railings, and leafy tree canopies on the right, completely decluttered of all vehicles and pedestrians.",
+  "word_count": 143,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9803.03
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spatial Intelligence Pipeline // 6-DoF Viewfinder HUD</title>
+  <title>Spatial Intelligence Pipeline // Viewfinder HUD</title>
 
   <!-- CesiumJS CSS & JS -->
   <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css" />
@@ -12,10 +12,11 @@
   <style>
     :root {
       --bg-dark: #0a0c10;
-      --panel-bg: rgba(14, 18, 26, 0.88);
+      --panel-bg: rgba(14, 18, 26, 0.90);
       --panel-border: rgba(255, 255, 255, 0.12);
       --accent-cyan: #00e5ff;
       --accent-amber: #ffb300;
+      --accent-green: #00e676;
       --text-main: #f0f4f8;
       --text-muted: #8a99a8;
       --font-mono: "SF Mono", "Consolas", "Courier New", monospace;
@@ -25,6 +26,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: var(--font-sans); color: var(--text-main); }
     #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+    /* Visibility helper */
+    .hidden { display: none !important; }
 
     /* Reticle */
     .viewport-reticle {
@@ -50,36 +54,46 @@
     .hud-sidebar {
       position: absolute; top: 72px; left: 20px; width: 340px;
       max-height: calc(100% - 90px); overflow-y: auto; z-index: 10;
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .hud-card { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 8px; padding: 14px; }
-    .hud-card-header { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; }
+    .hud-card { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 8px; padding: 12px; }
+    .hud-card-header { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
 
     /* Telemetry Grid */
-    .telemetry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: var(--font-mono); font-size: 11px; }
+    .telemetry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: var(--font-mono); font-size: 11px; }
     .telemetry-item { display: flex; flex-direction: column; gap: 2px; }
-    .telemetry-label { color: var(--text-muted); font-size: 10px; }
+    .telemetry-label { color: var(--text-muted); font-size: 9.5px; }
     .telemetry-val { color: var(--accent-cyan); font-weight: 600; }
 
     /* Controls */
-    .hud-input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
-    .hud-label { font-size: 11px; color: var(--text-muted); font-weight: 600; }
-    select, button { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); padding: 8px 10px; border-radius: 6px; font-size: 12px; outline: none; }
+    .hud-input-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
+    .hud-label-row { display: flex; justify-content: space-between; align-items: center; }
+    .hud-label { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
+    .hud-val-badge { font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan); font-weight: 600; }
 
-    .lighting-mode-toggle { display: flex; gap: 6px; margin-bottom: 10px; }
-    .toggle-btn { flex: 1; cursor: pointer; font-weight: 600; font-size: 11px; padding: 8px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); border-radius: 6px; color: var(--text-muted); text-align: center; }
+    input[type="date"], input[type="range"], select, button {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border);
+      color: var(--text-main); padding: 6px 8px; border-radius: 6px; font-size: 11.5px; outline: none;
+    }
+    input[type="range"] { padding: 0; height: 6px; cursor: pointer; accent-color: var(--accent-cyan); }
+
+    /* Lighting Mode Toggle */
+    .mode-toggle { display: flex; gap: 6px; margin-bottom: 8px; }
+    .toggle-btn { flex: 1; cursor: pointer; font-weight: 600; font-size: 10.5px; padding: 6px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); border-radius: 6px; color: var(--text-muted); text-align: center; }
     .toggle-btn.active { background: rgba(0, 229, 255, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
     .toggle-btn.floodlight.active { background: rgba(255, 179, 0, 0.15); border-color: var(--accent-amber); color: var(--accent-amber); }
 
-    .lighting-status-row { display: flex; justify-content: space-between; font-size: 11px; padding: 6px 8px; background: rgba(0, 0, 0, 0.3); border-radius: 4px; }
-    .font-mono { font-family: var(--font-mono); }
-    .text-cyan { color: var(--accent-cyan); }
-    .hidden { display: none !important; }
+    /* Weather Presets Grid */
+    .weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 4px; }
+    .weather-btn { padding: 6px 2px; font-size: 10px; text-align: center; cursor: pointer; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--panel-border); border-radius: 4px; color: var(--text-muted); }
+    .weather-btn.active { background: rgba(0, 230, 118, 0.15); border-color: var(--accent-green); color: var(--accent-green); font-weight: 700; }
+
+    .live-weather-badge { display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--panel-border); padding: 5px 8px; border-radius: 4px; font-size: 10.5px; margin-top: 6px; font-family: var(--font-mono); }
 
     .btn-synthesize {
       width: 100%; background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      color: #fff; border: none; padding: 12px; font-weight: 700; font-size: 13px;
-      letter-spacing: 0.8px; cursor: pointer; border-radius: 6px;
+      color: #fff; border: none; padding: 11px; font-weight: 700; font-size: 12.5px;
+      letter-spacing: 0.8px; cursor: pointer; border-radius: 6px; margin-top: 6px;
     }
     .btn-synthesize:hover { background: linear-gradient(135deg, #00c6eb 0%, #0088cc 100%); }
 
@@ -92,21 +106,21 @@
       transform: translateX(480px); transition: transform 0.35s ease;
     }
     .results-drawer.open { transform: translateX(0); }
-    .drawer-header { padding: 14px 16px; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-title { font-size: 13px; font-weight: 700; color: var(--accent-cyan); }
+    .drawer-header { padding: 12px 14px; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; }
+    .drawer-title { font-size: 12.5px; font-weight: 700; color: var(--accent-cyan); }
     .btn-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; }
-    .drawer-body { padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    .drawer-body { padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
     .image-preview-card { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--panel-border); }
     .image-preview-card img { width: 100%; display: block; }
-    .metadata-box { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 10px; font-size: 11px; }
-    .metadata-title { font-weight: 700; color: var(--accent-amber); margin-bottom: 4px; font-size: 10px; text-transform: uppercase; }
+    .metadata-box { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; font-size: 10.5px; }
+    .metadata-title { font-weight: 700; color: var(--accent-amber); margin-bottom: 3px; font-size: 9.5px; text-transform: uppercase; }
 
     .loading-overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(10, 12, 16, 0.75); backdrop-filter: blur(4px);
-      z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+      background: rgba(10, 12, 16, 0.80); backdrop-filter: blur(4px);
+      z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
     }
-    .spinner { width: 40px; height: 40px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .spinner { width: 36px; height: 36px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
@@ -118,10 +132,11 @@
   <div class="hud-header">
     <span class="hud-logo">SPATIAL INTELLIGENCE</span>
     <span class="hud-sep">/</span>
-    <span id="current-location-text" class="hud-location">Edinburgh New Town, Scotland</span>
+    <span id="current-location-text" class="hud-location">Resolving location...</span>
   </div>
 
   <div class="hud-sidebar">
+    <!-- Telemetry -->
     <div class="hud-card">
       <div class="hud-card-header">📡 6-DoF Telemetry</div>
       <div class="telemetry-grid">
@@ -132,35 +147,50 @@
       </div>
     </div>
 
+    <!-- Illumination & Time Engine -->
     <div class="hud-card">
-      <div class="hud-card-header">💡 Dynamic Relighting Rig</div>
-      <div class="lighting-mode-toggle">
-        <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')">☀️ Solar Ephemeris</button>
-        <button id="btn-mode-floodlight" class="toggle-btn floodlight" onclick="setLightingMode('FLOODLIGHT')">🔦 Floodlight</button>
+      <div class="hud-card-header">☀️ Solar Ephemeris & Time</div>
+      <div class="mode-toggle">
+        <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')">Solar Ephemeris</button>
+        <button id="btn-mode-floodlight" class="toggle-btn floodlight" onclick="setLightingMode('FLOODLIGHT')">Floodlight</button>
       </div>
-      <div id="solar-time-status" class="lighting-status-row">
-        <span class="telemetry-label">SCENE UTC:</span>
-        <span id="cesium-time-display" class="font-mono text-cyan">--:--:-- UTC</span>
+
+      <div class="hud-input-group">
+        <label class="hud-label">CALENDAR DATE</label>
+        <input type="date" id="input-date" onchange="syncCesiumTime()" />
       </div>
-      <div id="floodlight-status" class="lighting-status-row hidden">
-        <span class="telemetry-label">OPTICAL AXIS:</span>
-        <span class="font-mono" style="color: var(--accent-amber);">Coaxial 1/(d²) • 0-Lux Night</span>
+
+      <div class="hud-input-group">
+        <div class="hud-label-row">
+          <label class="hud-label">24-HOUR TIME SLIDER</label>
+          <span id="slider-time-display" class="hud-val-badge">12:00 UTC</span>
+        </div>
+        <input type="range" id="input-time-slider" min="0" max="23.95" step="0.05" value="12.0" oninput="onTimeSliderChange(this.value)" />
       </div>
     </div>
 
+    <!-- Atmospheric & Weather Engine -->
     <div class="hud-card">
-      <div class="hud-input-group">
-        <label class="hud-label">TEMPORAL ANCHOR</label>
-        <select id="temporal-anchor-select">
-          <option value="Present Day" selected>Present Day</option>
-          <option value="Georgian Era (1820)">Georgian Era (1820)</option>
-          <option value="Victorian Era (1880)">Victorian Era (1880)</option>
-        </select>
+      <div class="hud-card-header">🌦️ Atmosphere & Weather</div>
+      <div class="weather-grid">
+        <button class="weather-btn active" onclick="setWeatherMode('AUTO', this)">⚡ Auto (Live)</button>
+        <button class="weather-btn" onclick="setWeatherMode('SUNNY', this)">☀️ Sunny</button>
+        <button class="weather-btn" onclick="setWeatherMode('RAIN', this)">🌧️ Rain</button>
+        <button class="weather-btn" onclick="setWeatherMode('FOG', this)">🌫️ Fog</button>
+        <button class="weather-btn" onclick="setWeatherMode('SNOW', this)">❄️ Snow</button>
+        <button class="weather-btn" onclick="setWeatherMode('OVERCAST', this)">☁️ Overcast</button>
       </div>
+
+      <div class="live-weather-badge">
+        <span style="color: var(--text-muted);">LIVE WEATHER:</span>
+        <span id="hud-live-weather-text" style="color: var(--accent-green); font-weight: 600;">Detecting...</span>
+      </div>
+
       <button id="btn-synthesize-action" class="btn-synthesize" onclick="captureAndSynthesizeTwin()">⚡ SYNTHESIZE LIVING TWIN</button>
     </div>
   </div>
 
+  <!-- Results Drawer -->
   <div id="resultsDrawer" class="results-drawer">
     <div class="drawer-header">
       <span class="drawer-title">DOCUMENTARY TWIN INSPECTOR</span>
@@ -168,48 +198,52 @@
     </div>
     <div class="drawer-body">
       <div class="image-preview-card"><img id="result-twin-img" src="" alt="Twin" /></div>
-      <div class="metadata-box"><div class="metadata-title">Illumination Rig</div><div id="result-lighting-summary">--</div></div>
-      <div class="metadata-box"><div class="metadata-title">Essence Prompt</div><div id="result-distilled-prompt" class="font-mono" style="font-size: 10px;">--</div></div>
-      <div class="metadata-box"><div class="metadata-title">Stratum 7 GeoJSON</div><pre id="result-geojson-stratum" class="font-mono" style="font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan);"></pre></div>
+      <div class="metadata-box"><div class="metadata-title">Illumination & Atmosphere</div><div id="result-lighting-summary">--</div></div>
+      <div class="metadata-box"><div class="metadata-title">Distilled Structural Prompt</div><div id="result-distilled-prompt" style="font-family: var(--font-mono); font-size: 10px;">--</div></div>
+      <div class="metadata-box"><div class="metadata-title">Stratum 7 (Atmospheric State)</div><pre id="result-geojson-stratum" style="font-family: var(--font-mono); font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan);"></pre></div>
     </div>
   </div>
 
+  <!-- Loading Overlay -->
   <div id="loadingOverlay" class="loading-overlay hidden">
     <div class="spinner"></div>
-    <div class="loading-text">Synthesizing Documentary Twin...</div>
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px;">Synthesizing Living Twin...</div>
   </div>
 
   <script>
     let viewer = null;
-    let currentTileMode = '3D_TILES';
     let currentLightingMode = 'SOLAR';
+    let currentWeatherMode = 'AUTO';
 
-    // =========================================================================
-    // INITIALIZATION: Fetch token first, THEN boot Cesium
-    // =========================================================================
     async function initApp() {
-      // 1. Get Cesium Ion Token from server .env dynamically
+      // 1. Set current date & real-time hour
+      const now = new Date();
+      document.getElementById('input-date').value = now.toISOString().split('T')[0];
+      const currentHourDecimal = now.getUTCHours() + now.getUTCMinutes() / 60.0;
+      document.getElementById('input-time-slider').value = currentHourDecimal.toFixed(2);
+      updateSliderDisplay(currentHourDecimal);
+
+      // 2. Fetch Cesium Ion Token from server
       try {
         const configResp = await fetch('/api/config');
         if (configResp.ok) {
           const cfg = await configResp.json();
           if (cfg.cesium_ion_token) {
             Cesium.Ion.defaultAccessToken = cfg.cesium_ion_token;
-            console.log('[Cesium] Ion Access Token configured from .env');
           }
         }
       } catch (err) {
         console.warn('[Cesium] Could not reach /api/config', err);
       }
 
-      // 2. Initialize Cesium Viewer with OpenStreetMap base layer fallback
+      // 3. Initialize Cesium Viewer
       viewer = new Cesium.Viewer('cesiumContainer', {
         contextOptions: { webgl: { preserveDrawingBuffer: true } },
         baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({ url: 'https://tile.openstreetmap.org/' })),
         baseLayerPicker: false,
         geocoder: false,
-        animation: true,
-        timeline: true,
+        animation: false,
+        timeline: false,
         fullscreenButton: false,
         vrButton: false,
         infoBox: false,
@@ -217,7 +251,7 @@
         navigationHelpButton: false
       });
 
-      // 3. Set Starting Camera (Edinburgh New Town at 250m)
+      // Starting Camera (Edinburgh New Town at 250m)
       viewer.camera.setView({
         destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 250.0),
         orientation: {
@@ -227,44 +261,135 @@
         }
       });
 
-      // 4. Load Google Photorealistic 3D Tiles if token is present
+      // Load 3D Tiles if token is present
       try {
         if (Cesium.createGooglePhotorealistic3DTileset) {
           const tileset = await Cesium.createGooglePhotorealistic3DTileset();
           viewer.scene.primitives.add(tileset);
-          console.log('[Cesium] Google 3D Tiles active.');
         }
       } catch (e) {
-        console.warn('[Cesium] 3D Tiles error. OpenStreetMap baseline active.', e);
+        console.warn('[Cesium] 3D Tiles error fallback to OSM.', e);
       }
 
-      // 5. Telemetry & Clock sync
-      viewer.clock.onTick.addEventListener((clock) => {
-        const isoTime = Cesium.JulianDate.toIso8601(clock.currentTime);
-        const timeElem = document.getElementById('cesium-time-display');
-        if (timeElem) timeElem.textContent = isoTime.replace('T', ' ').substring(0, 19) + ' UTC';
-      });
-
       viewer.camera.changed.addEventListener(updateTelemetryHUD);
+      viewer.camera.moveEnd.addEventListener(onCameraSettle);
+
       updateTelemetryHUD();
+      syncCesiumTime();
+      onCameraSettle(); // Initial fetch for starting location
+    }
+
+    function onTimeSliderChange(val) {
+      updateSliderDisplay(parseFloat(val));
+      syncCesiumTime();
+    }
+
+    function updateSliderDisplay(val) {
+      const h = Math.floor(val);
+      const m = Math.floor((val - h) * 60);
+      const strH = String(h).padStart(2, '0');
+      const strM = String(m).padStart(2, '0');
+      document.getElementById('slider-time-display').textContent = `${strH}:${strM} UTC`;
+    }
+
+    function syncCesiumTime() {
+      if (!viewer) return;
+      const dateStr = document.getElementById('input-date').value;
+      const hourDecimal = parseFloat(document.getElementById('input-time-slider').value);
+      const h = Math.floor(hourDecimal);
+      const m = Math.floor((hourDecimal - h) * 60);
+      const iso = `${dateStr}T${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00Z`;
+      viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(iso);
     }
 
     function updateTelemetryHUD() {
       if (!viewer) return;
       const camera = viewer.camera;
       const cart = Cesium.Cartographic.fromCartesian(camera.position);
-      document.getElementById('telemetry-coords').textContent = `${Cesium.Math.toDegrees(cart.latitude).toFixed(5)}, ${Cesium.Math.toDegrees(cart.longitude).toFixed(5)}`;
+      const lat = Cesium.Math.toDegrees(cart.latitude);
+      const lon = Cesium.Math.toDegrees(cart.longitude);
+
+      document.getElementById('telemetry-coords').textContent = `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
       document.getElementById('telemetry-alt').textContent = `${cart.height.toFixed(1)} m`;
       document.getElementById('telemetry-heading-pitch').textContent = `${Cesium.Math.toDegrees(camera.heading).toFixed(1)}° / ${Cesium.Math.toDegrees(camera.pitch).toFixed(1)}°`;
       document.getElementById('telemetry-fov').textContent = `${Cesium.Math.toDegrees(camera.frustum.fov || 0.785).toFixed(1)}°`;
+    }
+
+    let settleTimeout = null;
+
+    function onCameraSettle() {
+      if (!viewer) return;
+      
+      clearTimeout(settleTimeout);
+      settleTimeout = setTimeout(async () => {
+        // 1. Raycast to find the ground point at the screen center (reticle)
+        const windowPosition = new Cesium.Cartesian2(
+          viewer.container.clientWidth / 2,
+          viewer.container.clientHeight / 2
+        );
+        
+        let lat, lon;
+        const ray = viewer.camera.getPickRay(windowPosition);
+        const groundPosition = viewer.scene.globe.pick(ray, viewer.scene);
+
+        if (groundPosition) {
+          const cart = Cesium.Cartographic.fromCartesian(groundPosition);
+          lat = Cesium.Math.toDegrees(cart.latitude);
+          lon = Cesium.Math.toDegrees(cart.longitude);
+        } else {
+          // Fallback to camera position if looking into the sky
+          const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+          lat = Cesium.Math.toDegrees(cart.latitude);
+          lon = Cesium.Math.toDegrees(cart.longitude);
+        }
+
+        // 2. Fetch both location and weather
+        fetchLocationHUD(lat, lon);
+        fetchLiveWeatherHUD(lat, lon);
+      }, 400);
+    }
+
+    async function fetchLocationHUD(lat, lon) {
+      const locElem = document.getElementById('current-location-text');
+      try {
+        const resp = await fetch(`/api/geocode?lat=${lat}&lon=${lon}`);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.address) {
+            locElem.textContent = data.address;
+            return;
+          }
+        }
+        // Fallback if API returned without address
+        locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
+      } catch (err) {
+        console.warn('[Geocode Error]:', err);
+        locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
+      }
+}
+
+    async function fetchLiveWeatherHUD(lat, lon) {
+      try {
+        const resp = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
+        if (resp.ok) {
+          const w = await resp.json();
+          document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${w.temperature_c.toFixed(1)}°C`;
+        }
+      } catch (e) {
+        document.getElementById('hud-live-weather-text').textContent = 'Clear • 18°C';
+      }
     }
 
     function setLightingMode(mode) {
       currentLightingMode = mode;
       document.getElementById('btn-mode-solar').classList.toggle('active', mode === 'SOLAR');
       document.getElementById('btn-mode-floodlight').classList.toggle('active', mode === 'FLOODLIGHT');
-      document.getElementById('solar-time-status').classList.toggle('hidden', mode !== 'SOLAR');
-      document.getElementById('floodlight-status').classList.toggle('hidden', mode !== 'FLOODLIGHT');
+    }
+
+    function setWeatherMode(mode, elem) {
+      currentWeatherMode = mode;
+      document.querySelectorAll('.weather-btn').forEach(b => b.classList.remove('active'));
+      if (elem) elem.classList.add('active');
     }
 
     async function captureAndSynthesizeTwin() {
@@ -288,10 +413,12 @@
           heading: Cesium.Math.toDegrees(camera.heading),
           pitch: Cesium.Math.toDegrees(camera.pitch),
           fov: Cesium.Math.toDegrees(camera.frustum.fov || 0.785),
-          tile_mode: currentTileMode,
-          temporal_anchor: document.getElementById('temporal-anchor-select').value,
+          tile_mode: '3D_TILES',
+          date: document.getElementById('input-date').value,
+          time_of_day: parseFloat(document.getElementById('input-time-slider').value),
           timestamp_utc: Cesium.JulianDate.toIso8601(viewer.clock.currentTime),
-          lighting_mode: currentLightingMode
+          lighting_mode: currentLightingMode,
+          weather_mode: currentWeatherMode
         };
 
         const response = await fetch('/api/process_view', {
@@ -316,17 +443,21 @@
     }
 
     function displayResults(data) {
+      if (data.address) {
+      document.getElementById('current-location-text').textContent = data.address;
+      }
       document.getElementById('result-twin-img').src = data.twin_image_b64;
       document.getElementById('result-distilled-prompt').textContent = data.distilled_prompt || 'N/A';
       
       const lighting = data.lighting_state || {};
       const mode = data.lighting_mode || 'SOLAR';
+      const weather = data.weather_mode || 'AUTO';
       if (mode === 'FLOODLIGHT') {
-        document.getElementById('result-lighting-summary').textContent = 'Optical Floodlight (Coaxial 1/(d²), 0-Lux Night)';
+        document.getElementById('result-lighting-summary').textContent = `Optical Floodlight (Coaxial 1/(d²)) | Weather: ${weather}`;
       } else {
         const meta = lighting.metadata || {};
         document.getElementById('result-lighting-summary').textContent = 
-          `Solar Ephemeris: Azimuth ${meta.solar_azimuth || '--'}°, Elevation ${meta.solar_elevation || '--'}° (${meta.color_temperature_k || '--'}K)`;
+          `Solar: Az ${meta.solar_azimuth || '--'}°, El ${meta.solar_elevation || '--'}° (${meta.color_temperature_k || '--'}K) | Weather: ${weather}`;
       }
 
       const stratum7 = (data.geojson?.features || []).find(f => f.id === 'stratum_7_atmospheric_state' || f.properties?.stratum === 'atmospheric_state');
@@ -339,7 +470,6 @@
       document.getElementById('resultsDrawer').classList.remove('open');
     }
 
-    // Run Startup
     window.addEventListener('DOMContentLoaded', initApp);
   </script>
 </body>

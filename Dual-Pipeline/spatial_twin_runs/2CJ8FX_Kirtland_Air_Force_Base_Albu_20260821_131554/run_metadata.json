@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260821_131554",
+  "address": "2CJ8+FX Kirtland Air Force Base, Albuquerque, NM, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 35.03113668483156,
+    "longitude": -106.58262334943677,
+    "altitude_agl": 1611.6036663284904,
+    "heading": 25.08236234749839,
+    "pitch": -5.261703250069325,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-21",
+    "time_of_day": 14.25,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-21T14:15:00+00:00",
+    "solar_azimuth": 91.09,
+    "solar_elevation": 20.31,
+    "color_temperature_k": 4500,
+    "lux": 35000
+  },
+  "distilled_structural_prompt": "Captured from an elevated medium format vantage looking northeast toward the Sandia Mountains, the landscape is organized across the desert basin with low-slung utilitarian concrete support buildings on the far left, multiple membrane-capped conical earth revetments spanning the center apron, and distant industrial hangar volumes aligned on the right. The scene exhibits wind-scoured alluvial gravel surfaces, crisp asphalt access tracks, recessed steel portal bulkheads, and sparse Chihuahuan desert scrub, completely devoid of transient vehicles and personnel.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 91.1\u00b0, Elevation 20.3\u00b0 (Late afternoon / mid-morning raking sunlight). Quarter-front light from camera-right, calibrated 4500K solar irradiance casting crisp shadows along 271.1\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: Captured from an elevated medium format vantage looking northeast toward the Sandia Mountains, the landscape is organized across the desert basin with low-slung utilitarian concrete support buildings on the far left, multiple membrane-capped conical earth revetments spanning the center apron, and distant industrial hangar volumes aligned on the right. The scene exhibits wind-scoured alluvial gravel surfaces, crisp asphalt access tracks, recessed steel portal bulkheads, and sparse Chihuahuan desert scrub, completely devoid of transient vehicles and personnel.",
+  "word_count": 152,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9981.63
+  }
+}

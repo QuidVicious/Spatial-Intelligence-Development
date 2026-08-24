@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260821_122855",
+  "address": "20 St Andrew Sq, Edinburgh EH2 2PA, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95443638051042,
+    "longitude": -3.1943617777098146,
+    "altitude_agl": 128.69403457712824,
+    "heading": 147.7177424172932,
+    "pitch": 5.662022711592633,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-21",
+    "time_of_day": 7.1,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "FOG"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "FOG",
+    "timestamp_utc": "2026-08-21T07:05:00+00:00",
+    "solar_azimuth": 87.02,
+    "solar_elevation": 17.08,
+    "color_temperature_k": 4500,
+    "lux": 35000
+  },
+  "distilled_structural_prompt": "Eye-level documentary view looking south-southeast across the perimeter of St Andrew Square, framing the garden foliage on the left against the rectilinear fluted concrete and sandstone facades of the six-storey central commercial buildings, anchored on the right by a five-storey Georgian ashlar stone block with the distant Gothic spire of the Scott Monument rising beyond the street canyon. The buildings exhibit crisp vertical load-bearing lines, deep rectangular window reveals, authentic Craigleith sandstone and patinated masonry, accompanied by organic leafy sycamore canopies, granite curbstones, and a completely static, decluttered streetscape with zero vehicles and zero pedestrians.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 87.0\u00b0, Elevation 17.1\u00b0 (Late afternoon / mid-morning raking sunlight). Quarter-front light from camera-left, calibrated 4500K solar irradiance casting crisp shadows along 267.0\u00b0 vector. Weather: Dense ground fog and mist with light-scattering depth haze and low horizon visibility. ARCHITECTURAL SCENE ESSENCE: Eye-level documentary view looking south-southeast across the perimeter of St Andrew Square, framing the garden foliage on the left against the rectilinear fluted concrete and sandstone facades of the six-storey central commercial buildings, anchored on the right by a five-storey Georgian ashlar stone block with the distant Gothic spire of the Scott Monument rising beyond the street canyon. The buildings exhibit crisp vertical load-bearing lines, deep rectangular window reveals, authentic Craigleith sandstone and patinated masonry, accompanied by organic leafy sycamore canopies, granite curbstones, and a completely static, decluttered streetscape with zero vehicles and zero pedestrians.",
+  "word_count": 177,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 10343.59
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.197819,
+          55.953525
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "altitude_agl_m": 134.7,
+          "heading_deg": 87.3,
+          "pitch_deg": -2.6,
+          "fov_deg": 60.0,
+          "spatial_mode": "elevated_corridor_perspective"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.199,
+              55.953
+            ],
+            [
+              -3.194,
+              55.953
+            ],
+            [
+              -3.194,
+              55.954
+            ],
+            [
+              -3.199,
+              55.954
+            ],
+            [
+              -3.199,
+              55.953
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Gullane Formation / Lower Carboniferous Sandstone and Siltstone",
+        "indigenous_quarry_lithics": "Craigleith Sandstone and Hailes Sandstone (fine-to-medium grained quartz arenite)",
+        "weathering_crust": "Atmospheric coal-soot patina with oxidized iron staining"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.1985,
+              55.9532
+            ],
+            [
+              -3.1945,
+              55.9532
+            ],
+            [
+              -3.1945,
+              55.9538
+            ],
+            [
+              -3.1985,
+              55.9538
+            ],
+            [
+              -3.1985,
+              55.9532
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Milled asphalt roadway with historic whinstone cobble sub-base",
+        "curb_and_pavement": "Dressed Scottish granite curbs, fine-grained sandstone paving slabs",
+        "wear_characteristics": "Uniform linear road grading, zero transient surface debris"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.1945,
+            55.9535
+          ],
+          [
+            -3.1938,
+            55.9534
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus",
+          "Tilia cordata",
+          "Ulmus procera"
+        ],
+        "foliage_density": "Mature deciduous canopies anchoring St Andrew Square terminus in background"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.1982,
+                55.9536
+              ],
+              [
+                -3.195,
+                55.9536
+              ],
+              [
+                -3.195,
+                55.95385
+              ],
+              [
+                -3.1982,
+                55.95385
+              ],
+              [
+                -3.1982,
+                55.9536
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -3.1982,
+                55.9532
+              ],
+              [
+                -3.195,
+                55.9532
+              ],
+              [
+                -3.195,
+                55.95345
+              ],
+              [
+                -3.1982,
+                55.95345
+              ],
+              [
+                -3.1982,
+                55.9532
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "urban_typology": "Edinburgh New Town Georgian and Victorian Institutional Corridor",
+        "structures": [
+          {
+            "quadrant": "left_foreground_to_midground",
+            "typology": "St Andrew's and St George's West Church and Neoclassical Townhouses",
+            "storeys": 4,
+            "height_m": 18.5,
+            "spire_height_m": 51.0,
+            "roof_geometry": "Octagonal steeple spire over pedimented portico and pitched Scottish slate roofs",
+            "facade_material": "Ashlar Craigleith sandstone with crisp entablatures",
+            "fenestration": "Multi-pane timber sash windows set in deeply recessed stone architraves"
+          },
+          {
+            "quadrant": "right_foreground",
+            "typology": "Edwardian Baroque and Classical Bank Premises (Domed Corner Pavilion)",
+            "storeys": 4,
+            "height_m": 22.0,
+            "roof_geometry": "Oxidized copper dome with lead ribbing, stone balustrades, straight parapets",
+            "facade_material": "Smooth Craigleith ashlar, rusticated ground floor, giant order engaged columns",
+            "fenestration": "Rectangular casements and arched pedimented windows with clean reveals"
+          },
+          {
+            "quadrant": "center_background_axis",
+            "typology": "Melville Monument (St Andrew Square)",
+            "height_m": 45.7,
+            "roof_geometry": "Fluted stone colossal column terminating in standing statue atop square pedestal"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.197819,
+          55.953525
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "temporary_street_elements": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T20:15:00+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 238.52,
+        "solar_elevation_deg": -5.44,
+        "shadow_azimuth_deg": 58.5,
+        "color_temperature_k": 2400,
+        "ambient_illuminance_lux": 800
+      },
+      "geometry": null
+    }
+  ]
+}

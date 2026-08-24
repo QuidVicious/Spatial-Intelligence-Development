@@ -1,0 +1,223 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.201083,
+          55.952818,
+          128.1
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "heading_degrees": 55.9,
+        "pitch_degrees": -0.8,
+        "fov_degrees": 60.0,
+        "spatial_mode": "documentary_medium_format"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.203,
+              55.9515
+            ],
+            [
+              -3.198,
+              55.9515
+            ],
+            [
+              -3.198,
+              55.9545
+            ],
+            [
+              -3.203,
+              55.9545
+            ],
+            [
+              -3.203,
+              55.9515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_lithology": "Carboniferous Lower Oil-Shale Sandstone / Volcanic Tuff Base",
+        "stratigraphy": "Glacial till over bedrock ridge (Edinburgh New Town formation)",
+        "indigenous_quarry_lithics": "Craigleith and Hailes pale blonde-to-grey carboniferous sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2015,
+              55.9525
+            ],
+            [
+              -3.2005,
+              55.9525
+            ],
+            [
+              -3.2005,
+              55.9535
+            ],
+            [
+              -3.2015,
+              55.9535
+            ],
+            [
+              -3.2015,
+              55.9525
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Fine aggregate asphalt carriage road with dressed granite sett crossings",
+        "curbs": "Dressed whinstone and granite kerbing",
+        "wear_patina": "Even bituminous wear with historic sett delineation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            -3.2008,
+            55.9529
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": "Tilia europaea (Common Lime) and Acer pseudoplatanus",
+        "leafy_density": "Urban avenue specimens with manicured vertical crown clearance"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.202,
+              55.952
+            ],
+            [
+              -3.199,
+              55.952
+            ],
+            [
+              -3.199,
+              55.954
+            ],
+            [
+              -3.202,
+              55.954
+            ],
+            [
+              -3.202,
+              55.952
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Georgian / Victorian Neoclassical Urban Streetscape",
+        "structures": [
+          {
+            "quadrant": "left_flank",
+            "storeys": 4,
+            "height_m": 18.5,
+            "roof_geometry": "Mansard and slate-pitched dormered roof",
+            "facade_material": "Craigleith ashlar sandstone with pronounced stringcourses",
+            "fenestration": "Recessed timber sash-and-case rectangular windows"
+          },
+          {
+            "quadrant": "center_vista",
+            "monument": "Thomas Chalmers bronze statue on dressed granite pedestal in axial roundabout",
+            "background_monument": "St Andrew and St George's West Church spire and Melville Monument terminal vista"
+          },
+          {
+            "quadrant": "right_flank",
+            "storeys": 4,
+            "height_m": 19.0,
+            "roof_geometry": "Pitched Scottish slate with lead ridges and stone dormers",
+            "facade_material": "Blonde ashlar sandstone with rusticated ground-floor arcading",
+            "fenestration": "Deeply recessed rectangular timber double-hung sash windows"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2015,
+              55.9525
+            ],
+            [
+              -3.2005,
+              55.9525
+            ],
+            [
+              -3.2005,
+              55.9535
+            ],
+            [
+              -3.2015,
+              55.9535
+            ],
+            [
+              -3.2015,
+              55.9525
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Permanent cast-iron lamp standards and historic bronze monuments preserved"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T18:21:00+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 262.09,
+        "solar_elevation_deg": 9.51,
+        "shadow_azimuth_deg": 82.1,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 10000
+      },
+      "geometry": null
+    }
+  ]
+}

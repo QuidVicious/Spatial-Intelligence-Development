@@ -1,0 +1,124 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 1612.1,
+        "heading_deg": 311.5,
+        "pitch_deg": -19.1,
+        "fov_deg": 60.0,
+        "spatial_mode": "aerial_oblique"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Quaternary alluvium and Santa Fe Group sediments",
+        "lithic_sources": "Sandia granite aggregate, local adobe and stucco cladding"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Cast concrete pathways and asphalt access lanes",
+        "paving_condition": "Level, semi-arid weathered concrete"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora": "Fraxinus velutina (Arizona Ash), Pinus edulis (Pi\u00f1on), and Ulmus pumila (Siberian Elm)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Pueblo Revival / Regional Modernist Academic Campus (UNM)",
+        "structures": [
+          {
+            "name": "Center for the Arts complex and adjacent campus blocks",
+            "storeys": "2 to 4",
+            "height_m": 16.0,
+            "roof_geometry": "Flat parapet roofs with stepped Pueblo massing",
+            "facade_material": "Earthy tan Pueblo Revival stucco and architectural concrete",
+            "window_reveals": "Deep-set punched rectangular fenestration"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.619458,
+          35.082469
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "complete",
+        "vehicles": "NONE",
+        "pedestrians": "NONE"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-21T10:30:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 34.8,
+        "solar_azimuth_deg": 125.66,
+        "solar_elevation_deg": -22.98,
+        "shadow_azimuth_deg": 305.7,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      },
+      "geometry": null
+    }
+  ]
+}

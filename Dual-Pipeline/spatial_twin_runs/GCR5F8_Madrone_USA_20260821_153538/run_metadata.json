@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260821_153538",
+  "address": "GCR5+F8 Madrone, USA",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 34.541225426270685,
+    "longitude": -106.59168491600309,
+    "altitude_agl": 4670.46811346699,
+    "heading": 357.7947747983408,
+    "pitch": -48.037247905745275,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-21",
+    "time_of_day": 22.5,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-21T22:30:00+00:00",
+    "solar_azimuth": 283.6,
+    "solar_elevation": 39.58,
+    "color_temperature_k": 5400,
+    "lux": 60000
+  },
+  "distilled_structural_prompt": "High-angle medium format aerial perspective overlooking an expansive semi-arid basin, featuring a grid of straight, graded dirt roads and isolated single-storey rural homesteads across the left, center, and right sectors, each defined by plumb vertical walls, level rooflines, and disciplined rectilinear footprints. The terrain reveals authentic reddish-brown alluvial soil and sparse desert scrub, with structures clad in earth-toned stucco and utilitarian corrugated metal, completely devoid of vehicles, pedestrians, or transient clutter.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 283.6\u00b0, Elevation 39.6\u00b0 (Clean standard daylight with directional shadows). Hard raking side-light from camera-left, calibrated 5400K solar irradiance casting crisp shadows along 103.6\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: High-angle medium format aerial perspective overlooking an expansive semi-arid basin, featuring a grid of straight, graded dirt roads and isolated single-storey rural homesteads across the left, center, and right sectors, each defined by plumb vertical walls, level rooflines, and disciplined rectilinear footprints. The terrain reveals authentic reddish-brown alluvial soil and sparse desert scrub, with structures clad in earth-toned stucco and utilitarian corrugated metal, completely devoid of vehicles, pedestrians, or transient clutter.",
+  "word_count": 148,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 8937.3
+  }
+}
