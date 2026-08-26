@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "27 Moray Pl, Edinburgh EH3 6DA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 149.8,
+          "pitch_deg": -27.6,
+          "heading_deg": 148.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean terrain consists of Early Carboniferous sedimentary bedrock (Gullane Formation / Strathclyde Group) interbedded with sandstone, siltstone, and mudstone strata falling steeply toward the incised Dean Gorge and the Water of Leith. The superstructures are constructed predominantly of indigenous pale-buff to blonde Carboniferous sandstone quarried from the historic Craigleith and Hailes quarries of Edinburgh. Masonry elements are bound with traditional non-hydraulic to weakly hydraulic lime mortar (slaked quicklime with sharp silica sand aggregate), allowing vapor permeability through the thick mass-masonry perimeter walls. Subterranean hydrology is defined by natural subterranean runoff descending the northern slope of the New Town ridge, retained by stepped rubble-stone revetments and terrace foundations."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The foreground and middle-ground steep ravine gardens (Bank Gardens descending toward the Dean Valley) are densely populated with mature temperate deciduous and riparian trees:\n- *Acer pseudoplatanus* (Sycamore / Scottish plane)\n- *Quercus petraea* (Sessile oak)\n- *Fagus sylvatica* (Common beech)\n- *Fraxinus excelsior* (European ash)\n- Understorey: *Hedera helix* (English ivy climbing boundary walls), native ferns (*Dryopteris filix-mas*), and manicured private lawn turf. Photogrammetric faceted mesh leaves are fully disambiguated into organic foliage with distinct leaf clusters, branching twigs, and natural translucent green canopies.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "A grand Georgian neoclassical sweep designed by James Gillespie Graham (1822\u20131825) forming the rear curved elevation of the Category A listed Moray Place palatial polygon. The massing comprises 4 principal storeys above substantial basement levels built on falling ground, culminating in continuous pitched roofs clad in Scottish and West Highland slates. The rear elevation features planar, plumb sandstone coursing, regularly spaced timber 12-pane (6-over-6) and 8-pane double-hung sash windows, projecting chimney stacks topped with clay cylindrical chimney pots, and stepped individual rear plot outshoots/terraces descending into private gardens. Photogrammetric angular planar collapse is rectified: all vertical party walls and window reveals stand true gravity-vertical (90.0\u00b0), while roof ridge lines and stone eaves gutters form unified continuous curves.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117923535398343,
+          55.9547077134686
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T12:00:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 5.45,
+        "solar_elevation_deg": 45.32,
+        "shadow_azimuth_deg": 185.4,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

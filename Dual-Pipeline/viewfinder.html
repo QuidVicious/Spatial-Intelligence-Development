@@ -12,11 +12,12 @@
   <style>
     :root {
       --bg-dark: #0a0c10;
-      --panel-bg: rgba(14, 18, 26, 0.90);
+      --panel-bg: rgba(14, 18, 26, 0.92);
       --panel-border: rgba(255, 255, 255, 0.12);
       --accent-cyan: #00e5ff;
       --accent-amber: #ffb300;
       --accent-green: #00e676;
+      --accent-magenta: #e040fb;
       --text-main: #f0f4f8;
       --text-muted: #8a99a8;
       --font-mono: "SF Mono", "Consolas", "Courier New", monospace;
@@ -27,7 +28,6 @@
     body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: var(--font-sans); color: var(--text-main); }
     #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
 
-    /* Visibility helper */
     .hidden { display: none !important; }
 
     /* Reticle */
@@ -77,10 +77,11 @@
     }
     input[type="range"] { padding: 0; height: 6px; cursor: pointer; accent-color: var(--accent-cyan); }
 
-    /* Lighting Mode Toggle */
+    /* Toggles */
     .mode-toggle { display: flex; gap: 6px; margin-bottom: 8px; }
     .toggle-btn { flex: 1; cursor: pointer; font-weight: 600; font-size: 10.5px; padding: 6px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); border-radius: 6px; color: var(--text-muted); text-align: center; }
     .toggle-btn.active { background: rgba(0, 229, 255, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .toggle-btn.marble.active { background: rgba(224, 64, 251, 0.15); border-color: var(--accent-magenta); color: var(--accent-magenta); }
     .toggle-btn.floodlight.active { background: rgba(255, 179, 0, 0.15); border-color: var(--accent-amber); color: var(--accent-amber); }
 
     /* Weather Presets Grid */
@@ -92,35 +93,45 @@
 
     .btn-synthesize {
       width: 100%; background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      color: #fff; border: none; padding: 11px; font-weight: 700; font-size: 12.5px;
+      color: #fff; border: none; padding: 11px; font-weight: 700; font-size: 12px;
       letter-spacing: 0.8px; cursor: pointer; border-radius: 6px; margin-top: 6px;
     }
     .btn-synthesize:hover { background: linear-gradient(135deg, #00c6eb 0%, #0088cc 100%); }
+    .btn-synthesize.marble-btn { background: linear-gradient(135deg, #ab47bc 0%, #7b1fa2 100%); }
+    .btn-synthesize.marble-btn:hover { background: linear-gradient(135deg, #ba68c8 0%, #8e24aa 100%); }
 
     /* Results Drawer */
     .results-drawer {
-      position: absolute; top: 16px; right: 20px; width: 440px;
+      position: absolute; top: 16px; right: 20px; width: 460px;
       max-height: calc(100% - 32px); background: var(--panel-bg);
       backdrop-filter: blur(16px); border: 1px solid var(--panel-border);
       border-radius: 10px; z-index: 20; display: flex; flex-direction: column;
-      transform: translateX(480px); transition: transform 0.35s ease;
+      transform: translateX(500px); transition: transform 0.35s ease;
     }
     .results-drawer.open { transform: translateX(0); }
     .drawer-header { padding: 12px 14px; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-title { font-size: 12.5px; font-weight: 700; color: var(--accent-cyan); }
+    .drawer-title { font-size: 12px; font-weight: 700; color: var(--accent-cyan); }
     .btn-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; }
     .drawer-body { padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
     .image-preview-card { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--panel-border); }
     .image-preview-card img { width: 100%; display: block; }
+    
+    .world-action-box { display: flex; flex-direction: column; gap: 8px; background: rgba(224, 64, 251, 0.08); border: 1px solid rgba(224, 64, 251, 0.3); border-radius: 6px; padding: 12px; }
+    .btn-world-viewer { display: block; text-align: center; text-decoration: none; background: #ab47bc; color: white; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 11.5px; }
+    .btn-world-viewer:hover { background: #ba68c8; }
+    .world-links-row { display: flex; gap: 6px; font-size: 10px; }
+    .world-link { flex: 1; text-align: center; background: rgba(255, 255, 255, 0.08); color: var(--accent-cyan); padding: 5px; border-radius: 4px; text-decoration: none; border: 1px solid var(--panel-border); }
+
     .metadata-box { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; font-size: 10.5px; }
     .metadata-title { font-weight: 700; color: var(--accent-amber); margin-bottom: 3px; font-size: 9.5px; text-transform: uppercase; }
 
     .loading-overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(10, 12, 16, 0.80); backdrop-filter: blur(4px);
+      background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(6px);
       z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
     }
-    .spinner { width: 36px; height: 36px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .spinner.marble-spinner { border-top-color: var(--accent-magenta); }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
@@ -144,6 +155,32 @@
         <div class="telemetry-item"><span class="telemetry-label">ALTITUDE</span><span id="telemetry-alt" class="telemetry-val">--</span></div>
         <div class="telemetry-item"><span class="telemetry-label">HEADING / PITCH</span><span id="telemetry-heading-pitch" class="telemetry-val">--</span></div>
         <div class="telemetry-item"><span class="telemetry-label">FOV</span><span id="telemetry-fov" class="telemetry-val">--</span></div>
+      </div>
+    </div>
+
+    <!-- Generative Engine Selection -->
+    <div class="hud-card">
+      <div class="hud-card-header">🧠 Generative Synthesis Engine</div>
+      <div class="mode-toggle">
+        <button id="btn-prov-gemini" class="toggle-btn active" onclick="setProvider('GEMINI')">Gemini 2D Twin</button>
+        <button id="btn-prov-marble" class="toggle-btn marble" onclick="setProvider('WORLD_LABS')">World Labs 3D</button>
+      </div>
+
+      <div class="hud-input-group">
+        <div class="hud-label-row">
+          <label class="hud-label">VIEW SCOPE</label>
+          <span id="view-scope-label" class="hud-val-badge">FRUSTUM (Directional)</span>
+        </div>
+        <select id="select-view-scope" onchange="onViewScopeChange(this.value)">
+          <option value="FRUSTUM">Frustum Viewport (Single Lens)</option>
+          <option value="OMNI_360">360° Omnidirectional Enclosure</option>
+          <option value="STANDALONE">Standalone (Pure Text Reasoning)</option>
+        </select>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+        <input type="checkbox" id="chk-disable-recaption" checked style="accent-color: var(--accent-magenta); cursor: pointer;" />
+        <label for="chk-disable-recaption" style="font-size: 10px; color: var(--text-muted); cursor: pointer;">Disable Recaption (Strict Prompt Lock)</label>
       </div>
     </div>
 
@@ -193,30 +230,61 @@
   <!-- Results Drawer -->
   <div id="resultsDrawer" class="results-drawer">
     <div class="drawer-header">
-      <span class="drawer-title">DOCUMENTARY TWIN INSPECTOR</span>
+      <span class="drawer-title" id="drawer-title-text">DOCUMENTARY TWIN INSPECTOR</span>
       <button class="btn-close" onclick="closeDrawer()">✕</button>
     </div>
     <div class="drawer-body">
-      <div class="image-preview-card"><img id="result-twin-img" src="" alt="Twin" /></div>
-      <div class="metadata-box"><div class="metadata-title">Illumination & Atmosphere</div><div id="result-lighting-summary">--</div></div>
-      <div class="metadata-box"><div class="metadata-title">Distilled Structural Prompt</div><div id="result-distilled-prompt" style="font-family: var(--font-mono); font-size: 10px;">--</div></div>
-      <div class="metadata-box"><div class="metadata-title">Stratum 7 (Atmospheric State)</div><pre id="result-geojson-stratum" style="font-family: var(--font-mono); font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan);"></pre></div>
+      <!-- 2D Image Viewport Preview -->
+      <div id="result-img-card" class="image-preview-card">
+        <img id="result-twin-img" src="" alt="Synthesized Output" />
+      </div>
+
+      <!-- 3D World Actions (World Labs Marble) -->
+      <div id="result-world-actions" class="world-action-box hidden">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent-magenta);">✨ 3D Spatial World Created (Marble)</div>
+        <a id="btn-open-viewer" class="btn-world-viewer" href="#" target="_blank">🌐 Open Interactive 3D World Viewer ↗</a>
+        <div class="world-links-row">
+          <a id="link-splat" class="world-link" href="#" target="_blank">Download Splat (.spz)</a>
+          <a id="link-mesh" class="world-link" href="#" target="_blank">Download Mesh (.glb)</a>
+        </div>
+      </div>
+
+      <div class="metadata-box">
+        <div class="metadata-title">Model & Latency</div>
+        <div id="result-model-meta" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">--</div>
+      </div>
+
+      <div class="metadata-box">
+        <div class="metadata-title">Illumination & Atmosphere</div>
+        <div id="result-lighting-summary">--</div>
+      </div>
+
+      <div class="metadata-box">
+        <div class="metadata-title">4 Mothers Documentary Prompt</div>
+        <div id="result-documentary-prompt" style="font-family: var(--font-mono); font-size: 10px; white-space: pre-wrap; line-height: 1.4;">--</div>
+      </div>
+
+      <div class="metadata-box">
+        <div class="metadata-title">7 Strata GeoJSON Model</div>
+        <pre id="result-geojson-stratum" style="font-family: var(--font-mono); font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan); max-height: 180px;"></pre>
+      </div>
     </div>
   </div>
 
   <!-- Loading Overlay -->
   <div id="loadingOverlay" class="loading-overlay hidden">
-    <div class="spinner"></div>
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px;">Synthesizing Living Twin...</div>
+    <div id="loading-spinner" class="spinner"></div>
+    <div id="loading-status-text" style="font-size: 12.5px; font-weight: 600; letter-spacing: 0.5px;">Executing 4 Mothers Causal Cognition...</div>
   </div>
 
   <script>
     let viewer = null;
+    let currentProvider = 'GEMINI';
     let currentLightingMode = 'SOLAR';
     let currentWeatherMode = 'AUTO';
 
     async function initApp() {
-      // 1. Set current date & real-time hour
+      // 1. Current date & real-time hour
       const now = new Date();
       document.getElementById('input-date').value = now.toISOString().split('T')[0];
       const currentHourDecimal = now.getUTCHours() + now.getUTCMinutes() / 60.0;
@@ -261,7 +329,6 @@
         }
       });
 
-      // Load 3D Tiles if token is present
       try {
         if (Cesium.createGooglePhotorealistic3DTileset) {
           const tileset = await Cesium.createGooglePhotorealistic3DTileset();
@@ -276,7 +343,33 @@
 
       updateTelemetryHUD();
       syncCesiumTime();
-      onCameraSettle(); // Initial fetch for starting location
+      onCameraSettle();
+    }
+
+    function setProvider(prov) {
+      currentProvider = prov;
+      const isMarble = (prov === 'WORLD_LABS');
+      document.getElementById('btn-prov-gemini').classList.toggle('active', !isMarble);
+      document.getElementById('btn-prov-marble').classList.toggle('active', isMarble);
+
+      const actionBtn = document.getElementById('btn-synthesize-action');
+      actionBtn.classList.toggle('marble-btn', isMarble);
+      actionBtn.textContent = isMarble ? '🌐 SYNTHESIZE 3D WORLD (MARBLE)' : '⚡ SYNTHESIZE 2D LIVING TWIN';
+
+      if (isMarble && document.getElementById('select-view-scope').value === 'FRUSTUM') {
+        // Automatically suggest 360 Omni for World Labs Marble
+        document.getElementById('select-view-scope').value = 'OMNI_360';
+        onViewScopeChange('OMNI_360');
+      }
+    }
+
+    function onViewScopeChange(val) {
+      const badges = {
+        'FRUSTUM': 'FRUSTUM (Directional)',
+        'OMNI_360': 'OMNI 360° (Spherical)',
+        'STANDALONE': 'STANDALONE (Pure Text)'
+      };
+      document.getElementById('view-scope-label').textContent = badges[val] || val;
     }
 
     function onTimeSliderChange(val) {
@@ -319,10 +412,8 @@
 
     function onCameraSettle() {
       if (!viewer) return;
-      
       clearTimeout(settleTimeout);
       settleTimeout = setTimeout(async () => {
-        // 1. Raycast to find the ground point at the screen center (reticle)
         const windowPosition = new Cesium.Cartesian2(
           viewer.container.clientWidth / 2,
           viewer.container.clientHeight / 2
@@ -337,13 +428,11 @@
           lat = Cesium.Math.toDegrees(cart.latitude);
           lon = Cesium.Math.toDegrees(cart.longitude);
         } else {
-          // Fallback to camera position if looking into the sky
           const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
           lat = Cesium.Math.toDegrees(cart.latitude);
           lon = Cesium.Math.toDegrees(cart.longitude);
         }
 
-        // 2. Fetch both location and weather
         fetchLocationHUD(lat, lon);
         fetchLiveWeatherHUD(lat, lon);
       }, 400);
@@ -360,13 +449,11 @@
             return;
           }
         }
-        // Fallback if API returned without address
         locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
       } catch (err) {
-        console.warn('[Geocode Error]:', err);
         locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
       }
-}
+    }
 
     async function fetchLiveWeatherHUD(lat, lon) {
       try {
@@ -395,7 +482,16 @@
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
       const loadingOverlay = document.getElementById('loadingOverlay');
+      const spinner = document.getElementById('loading-spinner');
+      const statusText = document.getElementById('loading-status-text');
       const actionBtn = document.getElementById('btn-synthesize-action');
+
+      const isMarble = (currentProvider === 'WORLD_LABS');
+      spinner.classList.toggle('marble-spinner', isMarble);
+      statusText.textContent = isMarble 
+        ? 'Generating 3D Spatial World (World Labs Marble)...' 
+        : 'Synthesizing 2D Documentary Twin (Gemini Image)...';
+
       try {
         loadingOverlay.classList.remove('hidden');
         actionBtn.disabled = true;
@@ -421,10 +517,22 @@
           weather_mode: currentWeatherMode
         };
 
+        const viewScopeVal = document.getElementById('select-view-scope').value;
+        const disableRecaptionVal = document.getElementById('chk-disable-recaption').checked;
+
+        const requestPayload = {
+          screenshot_b64: (viewScopeVal === 'STANDALONE') ? null : screenshotB64,
+          telemetry: telemetryPayload,
+          provider: currentProvider,
+          target_model: isMarble ? 'marble-1.1' : 'gemini-3.1-flash-image',
+          view_scope: viewScopeVal,
+          disable_recaption: disableRecaptionVal
+        };
+
         const response = await fetch('/api/process_view', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ screenshot_b64: screenshotB64, telemetry: telemetryPayload })
+          body: JSON.stringify(requestPayload)
         });
 
         if (!response.ok) {
@@ -444,25 +552,56 @@
 
     function displayResults(data) {
       if (data.address) {
-      document.getElementById('current-location-text').textContent = data.address;
+        document.getElementById('current-location-text').textContent = data.address;
       }
-      document.getElementById('result-twin-img').src = data.twin_image_b64;
-      document.getElementById('result-distilled-prompt').textContent = data.distilled_prompt || 'N/A';
-      
+
+      const isWorld = (data.provider === 'WORLD_LABS' || data.world_viewer_url);
+      const imgCard = document.getElementById('result-img-card');
+      const worldActions = document.getElementById('result-world-actions');
+
+      if (isWorld) {
+        worldActions.classList.remove('hidden');
+        if (data.world_viewer_url) {
+          document.getElementById('btn-open-viewer').href = data.world_viewer_url;
+        }
+        if (data.splat_url) {
+          document.getElementById('link-splat').href = data.splat_url;
+          document.getElementById('link-splat').classList.remove('hidden');
+        } else {
+          document.getElementById('link-splat').classList.add('hidden');
+        }
+        if (data.collider_mesh_url) {
+          document.getElementById('link-mesh').href = data.collider_mesh_url;
+          document.getElementById('link-mesh').classList.remove('hidden');
+        } else {
+          document.getElementById('link-mesh').classList.add('hidden');
+        }
+      } else {
+        worldActions.classList.add('hidden');
+      }
+
+      // Preview image
+      if (data.twin_image_b64) {
+        document.getElementById('result-twin-img').src = data.twin_image_b64;
+        imgCard.classList.remove('hidden');
+      } else if (!isWorld) {
+        imgCard.classList.add('hidden');
+      }
+
+      // Metadata
+      document.getElementById('result-model-meta').textContent = 
+        `Provider: ${data.provider} | Model: ${data.model_name} | Scope: ${data.view_scope} | Latency: ${data.latency_ms} ms`;
+
+      document.getElementById('result-documentary-prompt').textContent = 
+        data.documentary_prompt || data.compiled_prompt || 'N/A';
+
       const lighting = data.lighting_state || {};
       const mode = data.lighting_mode || 'SOLAR';
       const weather = data.weather_mode || 'AUTO';
-      if (mode === 'FLOODLIGHT') {
-        document.getElementById('result-lighting-summary').textContent = `Optical Floodlight (Coaxial 1/(d²)) | Weather: ${weather}`;
-      } else {
-        const meta = lighting.metadata || {};
-        document.getElementById('result-lighting-summary').textContent = 
-          `Solar: Az ${meta.solar_azimuth || '--'}°, El ${meta.solar_elevation || '--'}° (${meta.color_temperature_k || '--'}K) | Weather: ${weather}`;
-      }
+      document.getElementById('result-lighting-summary').textContent = 
+        `${mode} | Weather: ${weather}`;
 
-      const stratum7 = (data.geojson?.features || []).find(f => f.id === 'stratum_7_atmospheric_state' || f.properties?.stratum === 'atmospheric_state');
-      document.getElementById('result-geojson-stratum').textContent = JSON.stringify(stratum7 || {}, null, 2);
-
+      document.getElementById('result-geojson-stratum').textContent = JSON.stringify(data.geojson || {}, null, 2);
       document.getElementById('resultsDrawer').classList.add('open');
     }
 

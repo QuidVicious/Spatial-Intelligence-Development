@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_164730",
+  "address": "301 14th St SW, Washington, DC 20228, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8944.18,
+  "telemetry": {
+    "latitude": 38.885929304077415,
+    "longitude": -77.03430929678842,
+    "altitude_agl": 726.8109600537693,
+    "heading": 0.3274542582460674,
+    "pitch": -58.225383706504935,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-right backlight (Sun Azimuth 148.8\u00b0, Elevation -34.5\u00b0), casting crisp directional shadows along 328.8\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary-grade, high-altitude 6x7 medium format photograph captured on a Mamiya 7 with an ultra-sharp 45mm lens at f/8, fine grain ISO 100 emulsion, looking North in high-angle aerial view across the Washington Monument and the National Mall grounds toward Constitution Avenue and Federal Triangle. \n\nIn the center, the monumental Washington Monument obelisk rises with perfect structural verticality and sharp, planar marble facets, visibly demarcating the tonal transition between the lower 1850s Maryland marble and the 1880s upper marble shaft, casting a crisp, elongated directional shadow northwest across the rolling green lawn. The monument sits centered within sweeping concentric circular and serpentine crushed buff-gravel walking paths cut into vibrant, manicured turf. \n\nTo the upper right, the National Museum of African American History and Culture displays its distinct three-tiered inverted corona of dark bronze-coated perforated aluminum filigree panels, perfectly square and razor-straight against a deep glass skin and flat rooftop solar arrays. Flanking further right, the National Museum of American History presents its clean, rectilinear mid-century limestone facade and flat gravel roof. In the background across Constitution Avenue, the monumental Beaux-Arts classical facades of Federal Triangle feature orderly rows of fluted limestone columns, rusticated bases, and distinct hipped roofs laid in unglazed red-orange terra cotta tiles with subtle historical carbon weathering in sheltered friezes. \n\nScattered across the grounds are organic, leafy groves of mature American Elms and London Plane trees with distinct botanical branching and multi-tonal green foliage. The scene is completely stripped of all transient cars, buses, pedestrians, and temporary clutter, revealing an immaculate, quiet civic expanse with true vertical lines, deep spatial perspective, calibrated atmospheric clarity, and authentic stone, bronze, and vegetal material textures.",
+  "word_count": 325,
+  "includes_lighting": true
+}

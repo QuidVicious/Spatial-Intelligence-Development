@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 692.7,
+          "pitch_deg": -84.6,
+          "heading_deg": 358.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The site sits upon Jenkins Hill (Capitol Hill), an elevated plateau near the Atlantic Seaboard Fall Line transition between the crystalline bedrock of the Piedmont Province (schists and gneisses of the Potomac Terrane) and unconsolidated Cretaceous-Tertiary sedimentary strata (sand, gravel, and silt clay lenses of the Potomac Group). Subterranean drainage flows westward towards the historic Tiber Creek canal and the Potomac River basin. \n\nThe primary structural lithics include:\n1. **Original Central Core:** Lower Cretaceous Aquia Creek sandstone (arkosic freestone from Government Island, Stafford County, Virginia), characterized by high quartz-feldspar content and porous matrix.\n2. **Extensions & Wings (House & Senate):** High-density, fine-grained white Lee marble (Berkshire County, Massachusetts) on the exterior elevations, supported by monolithic fluted columns of coarse crystalline Cockeysville marble (Baltimore County, Maryland).\n3. **East Front Extension (1958\u20131962):** Georgia Cherokee white crystalline marble.\n4. **Olmsted Terraces (West Front):** Dover marble and granite foundations.\n5. **Plaza Hardscape:** Thermal-finished Rockville and Chelmsford granites paired with quartzite aggregate pavers. Mortar systems transition from historical slaked quicklime-sand mixes to contemporary breathable non-hydraulic lime and ASTM C270 Type N preservation mortars."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The grounds form the historic Capitol Arboretum (Olmsted landscape plan):\n- **Canopy Trees:** Mature American Elms (*Ulmus americana*), Northern Red Oaks (*Quercus rubra*), White Oaks (*Quercus alba*), London Plane Trees (*Platanus \u00d7 acerifolia*), and Ginkgo Biloba (*Ginkgo biloba*).\n- **Understory & Specimen Flora:** Saucer Magnolias (*Magnolia soulangeana*), American Hollies (*Ilex opaca*), Flowering Dogwoods (*Cornus florida*), and dense taxus/boxwood hedge borders framing formal lawns.\n- **Turfgrass:** High-traffic sports/monumental turf blend of Kentucky Bluegrass (*Poa pratensis*) and Perennial Ryegrass (*Lolium perenne*), exhibiting manicured mowed stripes and deep emerald-to-olive hydration variations.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology:** Neoclassical / American Palladian monumental civic architecture with Beaux-Arts urbanist landscape integration designed by Frederick Law Olmsted.\n- **Center Mass:** Symmetrical tripartite composition. Central rotunda surmounted by Thomas U. Walter's double-shelled cast-iron dome (completed 1866) terminating in the Tholos lantern and Thomas Crawford's bronze *Statue of Freedom*, rising 88 meters (288 ft) above the grade line.\n- **Wings:** Two major flanking 3-storey axial wings\u2014the Senate Wing (North/left in vertical axis) and the House of Representatives Wing (South/right in vertical axis)\u2014featuring Corinthian colonnaded porticos, deep-set pedimented fenestration, denticulated modillion cornices, and flat low-pitch copper roofs.\n- **West Front (Left of Frame):** Olmsted marble terraces with dual sweeping semicircular grand stairways and fountain basins stepping down toward the National Mall.\n- **East Front Plaza (Right of Frame):** Expansive planar paved esplanade concealing the subterranean 3-level, 54,000 m\u00b2 Capitol Visitor Center (CVC), punctuated by two flush rectangular glass skylights and perimeter ventilation lantern grilles.\n- **Flanking Monuments:** Supreme Court (northeast / top right) in Corinthian Classical white Vermont Imperial Danby marble; Library of Congress Thomas Jefferson Building (southeast / bottom right) in Italian Renaissance granite.\n- **Planar Rectification:** All vertical colonnades, pilasters, balustrades, and dome drums are plumbed strictly to gravity vertical; all rooftop parapets, balustrades, and terrace retaining walls are rectified into sharp horizontal planes.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-25T05:00:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 25.1,
+        "solar_azimuth_deg": 183.4,
+        "solar_elevation_deg": -39.92,
+        "shadow_azimuth_deg": 3.4,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

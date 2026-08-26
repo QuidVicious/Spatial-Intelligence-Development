@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 473.8,
+          "pitch_deg": -54.3,
+          "heading_deg": 23.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean stratigraphy beneath the National Mall consists of dense Quaternary alluvial sands, gravel, and high-plasticity clay over decomposed Paleozoic Wissahickon Formation crystalline schist and gneiss. To counter severe early differential settling across the historic floodplain/tidal marsh zone of Tiber Creek, the Washington Monument sits upon an underpinning subfoundation composed of massive Potomac bluestone gneiss (Sykesville Formation metagreywacke) bedded with dense hydraulic lime-cement mortar extending down 37 feet to compacted gravel layers. Masonry ashlar blocks for the obelisk derive from three distinct quarries: Texas marble from Baltimore County, Maryland (first 152 feet); a brief band of Sheffield marble from Massachusetts; and Cockeysville dolomitic calcitic marble (upper two-thirds). Surrounding pedestrian walkways feature decomposed crushed red-orange Piedmont granite/gravel over engineered drainage sub-bases."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Canopy Trees:** Specimen American elms (*Ulmus americana*), Pin oaks (*Quercus palustris*), London planetrees (*Platanus \u00d7 acerifolia*), and Sweetgums (*Liquidambar styraciflua*) framing the perimeter lawns, rendered with dense leafy crowns, natural bifurcated branch architecture, and distinct deep green summer canopies.\n- **Ground Cover & Turf:** Monolithic, crowned panels of engineered drought-tolerant turfgrass (*Festuca arundinacea* / Kentucky bluegrass blend) displaying parallel mower stripes and clean, defined granite-curbed edges. Zero foliage rendered as stone or polygon noise.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Centerpiece (The Washington Monument):** A monumental hollow stone obelisk standing 554 ft 7 in (169.05 m) with a 55 ft base tapering up to an 18-inch wall thickness below a 55-foot-tall pyramidal capstone (pyramidion). Verticals are plumbed strictly to true gravity alignment, resolving any photogrammetric lean or tapering artifacts. The circular surrounding base plaza is paved with radial granite slabs enclosed within a ring of fixed steel flagpoles.\n- **North Flank (National Museum of African American History and Culture - NMAAHC):** A five-storey above-grade tiered corona structure designed by Adjaye Associates, featuring three upward-sloping inverted-pyramidal tiers. All balcony levels, horizontal cantilevered soffits, and curtain wall glazing planes are rectified into rigid orthogonal geometries.\n- **Peripheral Civil Infrastructure:** Curved asphalt perimeter roadways (15th Street NW, Madison Dr NW, Constitution Ave), concentric concentric-loop walking paths, and small stone-faced federal park auxiliary facilities (survey lodges/comfort stations).",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-25T10:03:00+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 27.6,
+        "solar_azimuth_deg": 109.29,
+        "solar_elevation_deg": -5.85,
+        "shadow_azimuth_deg": 289.3,
+        "color_temperature_k": 2400,
+        "ambient_illuminance_lux": 800
+      }
+    }
+  ]
+}

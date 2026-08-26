@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_164453",
+  "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9256.72,
+  "telemetry": {
+    "latitude": 38.88917578204287,
+    "longitude": -77.00869441919399,
+    "altitude_agl": 692.6638167368362,
+    "heading": 358.3719341003586,
+    "pitch": -84.59674871641668,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct backlighting with silhouetted facade profiles (Sun Azimuth 183.4\u00b0, Elevation -39.9\u00b0), casting crisp directional shadows along 3.4\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 documentary architectural photograph taken from a direct high-altitude orthographic perspective directly above the United States Capitol in Washington, D.C. Perfectly centered, symmetrical tripartite composition showing the iconic white-painted cast-iron dome and lantern casting a crisp, elongated directional shadow northward across the complex. The North and South wings feature distinct standing-seam copper roofs oxidized into rich verdigris and turquoise patina. The pristine white Lee and Georgia marble facades, Corinthian porticos, and dentiled cornices exhibit laser-straight planar lines and authentic mineral preservation.\n\nTo the east, the vast patterned granite East Front Plaza is completely decluttered, flat and pristine, featuring two flush glass skylights of the subterranean visitor center. To the west, the sweeping semicircular marble Olmsted Terraces and grand steps descend toward the lush green Capitol grounds. The surrounding Olmsted landscape features curvilinear ochre-gravel paths, manicured emerald turf lawns, and lush, organic, leafy mature American elms, red oaks, and London plane trees with distinct volumetric branch architecture and botanical leaf textures.\n\nCompletely devoid of people, pedestrians, cars, and transient clutter. Static, silent, museum-grade civic permanence. Captured on a Mamiya 7 medium format camera, 45mm ultra-sharp architectural lens, ISO 100 fine-grain film, deep f/8 depth of field, corner-to-corner tack sharpness, authentic natural lighting, true material discrimination between copper, marble, cast iron, and granite.",
+  "word_count": 262,
+  "includes_lighting": true
+}

@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260824_163038",
+  "address": "7 Rothesay Terrace, Edinburgh EH3 7RY, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.9508946118965,
+    "longitude": -3.2173945188084976,
+    "altitude_agl": 121.33637882856603,
+    "heading": 122.93787588359388,
+    "pitch": -8.566412791295848,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-24",
+    "time_of_day": 23.5,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-08-24T23:30:00+00:00",
+    "solar_azimuth": 192.07,
+    "solar_elevation": -22.17,
+    "color_temperature_k": 2000,
+    "lux": 5
+  },
+  "distilled_structural_prompt": "From an eye-level medium format viewpoint, a monumental four-storey Victorian sandstone terrace spans the frame with perfectly plumb ashlar facades, continuous molded string courses, projecting canted bay windows, and steep slate mansard roofs punctuated by robust chimney stacks. The historic Craigleith pale sandstone displays subtle weathering patinas across deeply recessed sash windows and rusticated basement wells, set against a pristine, static Caithness flagstone sidewalk entirely decluttered of pedestrians and vehicles.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 192.1\u00b0, Elevation -22.2\u00b0 (Night scene with celestial ambient dome). Hard raking side-light from camera-right, calibrated 2000K solar irradiance casting crisp shadows along 12.1\u00b0 vector. Weather: Crisp clear sky with direct solar exposure. ARCHITECTURAL SCENE ESSENCE: From an eye-level medium format viewpoint, a monumental four-storey Victorian sandstone terrace spans the frame with perfectly plumb ashlar facades, continuous molded string courses, projecting canted bay windows, and steep slate mansard roofs punctuated by robust chimney stacks. The historic Craigleith pale sandstone displays subtle weathering patinas across deeply recessed sash windows and rusticated basement wells, set against a pristine, static Caithness flagstone sidewalk entirely decluttered of pedestrians and vehicles.",
+  "word_count": 147,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9538.66
+  }
+}

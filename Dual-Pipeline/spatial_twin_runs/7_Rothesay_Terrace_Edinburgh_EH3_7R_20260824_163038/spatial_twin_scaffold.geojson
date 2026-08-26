@@ -1,0 +1,188 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217395,
+          55.950895
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "altitude_agl_m": 121.3,
+        "camera_pitch_deg": -8.6,
+        "camera_heading_deg": 122.9,
+        "spatial_mode": "Multimodal Structural Rectification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2185,
+              55.9502
+            ],
+            [
+              -3.216,
+              55.9502
+            ],
+            [
+              -3.216,
+              55.9515
+            ],
+            [
+              -3.2185,
+              55.9515
+            ],
+            [
+              -3.2185,
+              55.9502
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_formation": "Carboniferous Lower Oil-Shale Sandstone / Volcanic Basalt Sill",
+        "quarry_provenance": "Craigleith and Hailes pale blonde Carboniferous sandstone",
+        "lithology_mechanics": "Fine-grained quartz arenite ashlar blocks, highly weather-resistant with historic atmospheric carbon patination"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.218,
+              55.9505
+            ],
+            [
+              -3.2165,
+              55.9505
+            ],
+            [
+              -3.2165,
+              55.9512
+            ],
+            [
+              -3.218,
+              55.9512
+            ],
+            [
+              -3.218,
+              55.9505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Granite setts and basalt road paving with Caithness flagstone pedestrian sidewalks",
+        "curb_details": "Hand-tooled sandstone and whinstone kerbstones with cast-iron drop-kerb gullies",
+        "patina_state": "Damp maritime mineral staining, slate grit accumulation along gutter channels"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "canopy_flora_species": [
+          "Acer pseudoplatanus",
+          "Tilia x europaea"
+        ],
+        "foliage_density": "Mature domestic deciduous garden backdrop with manicured privet hedging"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2178,
+              55.9506
+            ],
+            [
+              -3.2168,
+              55.9506
+            ],
+            [
+              -3.2168,
+              55.9511
+            ],
+            [
+              -3.2178,
+              55.9511
+            ],
+            [
+              -3.2178,
+              55.9506
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Victorian / Late Georgian New Town Terraced Townhouses",
+        "structures": [
+          {
+            "id": "rothesay_terrace_crescent",
+            "storeys_above_ground": 4,
+            "basement_present": true,
+            "height_m": 16.5,
+            "facade_material": "Finely dressed Craigleith sandstone ashlar with string courses, rusticated ground floor, and stone dormer pediments",
+            "roof_geometry": "Steeply pitched Ballachulish slate mansard roofs punctuated by massive sandstone chimney stacks and zinc-clad dormer windows",
+            "fenestration": "Timber four-pane and six-pane sash and case windows set within deeply recessed dressed stone reveals and mullioned bay projections"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217395,
+          55.950895
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Cast-iron area railings, classic Edinburgh pattern streetlamps, and stone gatepiers preserved in static alignment"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T23:30:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 13.9,
+        "solar_azimuth_deg": 192.07,
+        "solar_elevation_deg": -22.17,
+        "shadow_azimuth_deg": 12.1,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      },
+      "geometry": null
+    }
+  ]
+}

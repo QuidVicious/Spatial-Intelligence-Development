@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_164406",
+  "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10174.8,
+  "telemetry": {
+    "latitude": 38.88917578204287,
+    "longitude": -77.00869441919399,
+    "altitude_agl": 692.6638167368362,
+    "heading": 358.3719341003586,
+    "pitch": -84.59674871641668,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with direct front-lighting (Sun Azimuth 3.9\u00b0, Elevation 62.0\u00b0), casting crisp directional shadows along 183.9\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude medium format architectural documentary photograph of the United States Capitol and surrounding grounds, captured directly overhead in true plan/nadir perspective on a Mamiya 7 with a 45mm lens on ultra-fine grain color film at f/8. The central cast-iron dome and standing-seam copper roof wings show rich, authentic verdigris oxidation and subtle atmospheric patina. The symmetrical Neoclassical complex is precisely rectified, with crisp geometric lines on the white Lee marble and painted sandstone facades. Surrounding the building, the historic Frederick Law Olmsted grounds display sprawling emerald-green lawns cut by graceful, curved sandstone-colored gravel paths and thick, leafy canopies of mature American elms, oaks, and ginkgoes with authentic organic foliage texture. The expansive East Capitol Plaza consists of an immaculate orthogonal grid of cut pink and gray granite pavers with sunken skylight wells. Completely static and decluttered civil composition with zero vehicles, zero pedestrians, and zero temporary barriers, illuminated under high, crisp 5800K noon sunlight casting short, sharp directional shadows.",
+  "word_count": 208,
+  "includes_lighting": true
+}

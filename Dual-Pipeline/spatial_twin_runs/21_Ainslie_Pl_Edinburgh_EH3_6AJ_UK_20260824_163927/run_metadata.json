@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260824_163927",
+  "address": "21 Ainslie Pl, Edinburgh EH3 6AJ, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.95318186034278,
+    "longitude": -3.2097170416128935,
+    "altitude_agl": 121.94092834820157,
+    "heading": 304.6255919053414,
+    "pitch": -9.247636004059393,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-24",
+    "time_of_day": 13.75,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-08-24T13:45:00+00:00",
+    "solar_azimuth": 329.82,
+    "solar_elevation": 42.13,
+    "color_temperature_k": 5400,
+    "lux": 60000
+  },
+  "distilled_structural_prompt": "Elevated view overlooking the curved Georgian terrace of Ainslie Place, framed across the foreground by mature garden greenery and anchored by four-storey blonde sandstone facades with level entablatures, vertical sash fenestration, and slate mansard rooflines. The streetscape is completely static and decluttered, showcasing ashlar masonry, crisp cast-iron railings, and paved stone curbs without any pedestrians or parked vehicles.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 329.8\u00b0, Elevation 42.1\u00b0 (Clean standard daylight with directional shadows). Quarter-front light from camera-right, calibrated 5400K solar irradiance casting crisp shadows along 149.8\u00b0 vector. Weather: 100% overcast cloud cover. Soft omnidirectional diffuse skylight (6500K) with zero harsh cast shadow edges. ARCHITECTURAL SCENE ESSENCE: Elevated view overlooking the curved Georgian terrace of Ainslie Place, framed across the foreground by mature garden greenery and anchored by four-storey blonde sandstone facades with level entablatures, vertical sash fenestration, and slate mansard rooflines. The streetscape is completely static and decluttered, showcasing ashlar masonry, crisp cast-iron railings, and paved stone curbs without any pedestrians or parked vehicles.",
+  "word_count": 142,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9583.53
+  }
+}

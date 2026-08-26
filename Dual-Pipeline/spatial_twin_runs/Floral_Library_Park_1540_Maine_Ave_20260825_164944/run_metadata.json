@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_164944",
+  "address": "Floral Library Park, 1540 Maine Ave SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9867.08,
+  "telemetry": {
+    "latitude": 38.88584814664969,
+    "longitude": -77.03616525873205,
+    "altitude_agl": 42.80289571109971,
+    "heading": 15.252097092839872,
+    "pitch": -6.100224281021227,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-right backlight (Sun Azimuth 138.3\u00b0, Elevation -29.8\u00b0), casting crisp directional shadows along 318.3\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of the Washington Monument and the National Mall, captured on a Mamiya 7 with an ultra-sharp 45mm wide-angle lens, shot on ISO 100 fine-grain film at f/8 for deep, corner-to-corner planar focus. \n\nThe scene is set in deep nocturnal silence under calibrated 2000K celestial ambient illumination, with an atmospheric rear-right backlight (Sun Azimuth 138.3\u00b0, Elevation -29.8\u00b0) casting long, crisp directional shadows along 318.3\u00b0. Dense, luminous ground fog and low-lying Potomac mist drift across the vast green fescue knoll, softening the distant horizon contrast while maintaining absolute razor sharpness on the central monolithic obelisk.\n\nThe Washington Monument rises with perfect vertical rectitude, revealing its authentic three-stage material transition: weathered warm Maryland marble at the base, the distinct brownish-grey Massachusetts stone band at 150 feet, and the pristine, colder-toned Cockeysville dolomitic marble extending to the apex pyramidion. To the right, the three-tiered bronze-clad filigree corona of the National Museum of African American History and Culture emerges with architectural clarity against the monumental Beaux-Arts limestone massing and terracotta-tiled roofs of the Federal Triangle. Fully resolved, leafy canopies of mature American elms and London plane trees frame the expansive circular pathways. The entire scene is completely static and decluttered: no moving or parked vehicles, no pedestrians, no transient clutter\u2014only the pure, permanent stone, bronze, and landscape geometry of the nation's capital resting under mist and night sky.",
+  "word_count": 278,
+  "includes_lighting": true
+}

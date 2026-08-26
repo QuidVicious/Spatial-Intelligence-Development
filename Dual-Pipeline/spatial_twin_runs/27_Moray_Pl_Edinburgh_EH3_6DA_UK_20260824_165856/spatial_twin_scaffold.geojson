@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "27 Moray Pl, Edinburgh EH3 6DA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 132.5,
+          "pitch_deg": -20.0,
+          "heading_deg": 150.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean terrain rests upon the Lower Carboniferous Inverclyde and Strathclyde Group sedimentary strata (Gullane Formation), characterized by interbedded sandstones, siltstones, and mudstones with localized intrusive volcanic dolerites common to the Edinburgh Basin. Primary above-ground load-bearing masonry is extracted from the historic Craigleith Quarry\u2014an exceptionally dense, quartz-arenite pale buff/grey sandstone bound by siliceous and calcareous cements. Mortar consists of traditional Scottish hydraulic lime and sharp river sand aggregate, deliberately flexible to buffer thermal cycles and subterranean moisture capillary movement along the sloping gorge falling toward the Water of Leith."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The foreground and central interior circle feature the protected private Moray Place Gardens:\n- Mature, full-canopied deciduous trees including European Beech (*Fagus sylvatica*), Wych Elm (*Ulmus glabra*), Sycamore (*Acer pseudoplatanus*), Horse Chestnut (*Aesculus hippocastanum*), and English Oak (*Quercus robur*).\n- Understory dominated by evergreen Holly (*Ilex aquifolium*), *Skimmia japonica*, dense rhododendron thickets, and manicured native Scottish turf grass. Foliage is strictly disambiguated from solid geometry, rendered as dense organic leaf clusters, multi-layered branching, and dappled sunlit green tones.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "A grand Georgian / Regency neoclassical dodecagonal circus crescent designed by James Gillespie Graham in 1822. \n- **Planar Rectification & Verticality:** All continuous ashlar elevations are plumbed strictly vertical, rectifying photogrammetry faceting and polygon shearing. Facades form an unbroken, disciplined concave sweep.\n- **Storey Heights & Fenestration:** 3 primary storeys over a rusticated/channelled basement floor with a recessed attic storey behind an overarching stone parapet entablature and continuous band course. Rhythmically spaced vertical six-over-six and twelve-over-twelve timber sash-and-case windows set within crisp, sharp rectangular ashlar architraves.\n- **Roofline & Chimneystacks:** Pitched Scottish slate roofs interrupted by tall, dressed ashlar chimney stacks with terracotta chimney pots regularly spaced along the party walls, flanked by continuous cast-iron decorative balustrades and dormers.\n- **Basement Area Wells:** Sunken lightwells flanked by cast-iron spearhead railings and stone drop drops/steps leading to lower plinths.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211588590343075,
+          55.95480832767894
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T12:00:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 5.45,
+        "solar_elevation_deg": 45.32,
+        "shadow_azimuth_deg": 185.4,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

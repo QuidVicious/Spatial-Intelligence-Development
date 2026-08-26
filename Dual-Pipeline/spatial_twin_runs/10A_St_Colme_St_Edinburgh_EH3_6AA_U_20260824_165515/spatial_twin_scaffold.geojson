@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "10A St Colme St, Edinburgh EH3 6AA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 120.3,
+          "pitch_deg": -2.5,
+          "heading_deg": 302.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean bedrock beneath this western edge of Edinburgh\u2019s New Town (the Moray Estate / Drumsheugh ridge) consists of Lower Carboniferous sedimentary rock of the Strathclyde Group (specifically the Gullane Formation sandstones and mudstones), punctuated by intrusive basaltic dolerite sills and glacial boulder clay (till). The architectural superstructures of St Colme Street and the opening into Ainslie Place are built predominantly from locally quarried Carboniferous Craigleith and Hailes sandstones\u2014dense, fine-to-medium-grained siliceous quartz arenites renowned for structural endurance, bonded with traditional lime-sand mortars. Groundwater drainage cascades northwestward toward the deeply incised valley of the Water of Leith via historic terraced retaining systems and gravel subterranean drains."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The central crescent/communal garden (Ainslie Place Gardens) features mature, high-canopy temperate deciduous trees and ornamental shrubs typical of Edinburgh's historic pleasure grounds:\n- **Canopy:** Mature London Plane (*Platanus x acerifolia*), European Sycamore (*Acer pseudoplatanus*), Wych Elm (*Ulmus glabra*), and English Oak (*Quercus robur*), rendered with intricate branching structures, textured grey-green flaking bark, and dense, sunlit green leaf clusters.\n- **Understory:** Manicured perennial Scottish turf lawn bordered by evergreen Rhododendron, Laurel, and yew hedges (*Taxus baccata*).",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "A grand Neoclassical Georgian urban ensemble designed by architect James Gillespie Graham (begun 1822, completed c. 1830\u20131831) within the Category-A listed Moray Feu. \n- **Planar Rectification & Typologies:** The scene captures the transition from St Colme Street opening into the oval circus of Ainslie Place. All warped photogrammetric polygon noise is rectified to true gravity vertical. \n- **Center & Background Terraces:** Continuous 3-storey plus attic and raised basement Neoclassical ashlar townhouses. The facade features V-jointed rustication across the ground/principal floor, with smooth polished ashlar across the piano nobile and upper storeys. String courses, a continuous cill course, molded dentiled eaves cornices, and straight blocking courses define the horizontal planes. Windows are regularized into 12-pane and 6-pane timber sash-and-case configurations set in sharp, recessed architraves.\n- **Foreground Right Flank:** The prominent stone return corner/terminal pavilion of St Colme Street / Ainslie Place, exhibiting deep channel-grooved V-rustication at ground level, crisp quoins, and classical ashlar entablatures.\n- **Roof Geometry:** True double-pitched M-roofs and mansards clad in traditional Scottish and Welsh blue-grey roofing slates, punctuated by symmetrical ashlar chimney stacks with coped stone caps and terracotta chimney pots.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2090843282417074,
+          55.95298818804803
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T23:53:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 13.6,
+        "solar_azimuth_deg": 185.98,
+        "solar_elevation_deg": -22.68,
+        "shadow_azimuth_deg": 6.0,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

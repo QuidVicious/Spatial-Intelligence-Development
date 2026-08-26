@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_164533",
+  "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9975.2,
+  "telemetry": {
+    "latitude": 38.88917578204287,
+    "longitude": -77.00869441919399,
+    "altitude_agl": 692.6638167368362,
+    "heading": 358.3719341003586,
+    "pitch": -84.59674871641668,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct backlighting with silhouetted facade profiles (Sun Azimuth 156.3\u00b0, Elevation -36.9\u00b0), casting crisp directional shadows along 336.3\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude, crisp architectural documentary overhead photograph captured on a 6x7 medium format camera using a 45mm lens and ultra-fine grain film at f/8. The vertical frame is centered directly above the United States Capitol Building and its surrounding Olmsted landscape in Washington, D.C. The central cast-iron tiered dome rises proudly with sharp sculptural ribs and crisp lantern details painted in warm architectural white. The broad flanking wings feature vast standing-seam sheet copper roofs displaying rich, authentic variegated verdigris patina and turquoise-green oxidation seams. The grand East Plaza is paved in a clean, geometric grid of light-toned modular granite flagstones, perfectly plumbed and free of all cars, motor traffic, pedestrians, and clutter. Flanking the complex are the sweeping, lush green lawns and dense, organic canopies of mature American elms, red oaks, and ginkgo trees with detailed leafy textures and natural branching casting sharp directional shadows. Laser-straight planar geometry, pristine monumental Neoclassical marble facades, rectified steps and porticos, deep contrast, and documentary clarity with neutral tonal fidelity.",
+  "word_count": 214,
+  "includes_lighting": true
+}

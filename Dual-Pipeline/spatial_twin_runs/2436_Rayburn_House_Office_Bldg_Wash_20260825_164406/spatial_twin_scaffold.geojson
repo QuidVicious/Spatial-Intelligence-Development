@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 692.7,
+          "pitch_deg": -84.6,
+          "heading_deg": 358.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The site rests on the Atlantic Fall Zone transition, underlain by Potomac Formation Cretaceous sediments consisting of unconsolidated fluvial sands, clays, and gravels over crystalline Piedmont metamorphic basement rock (mica schists and gneisses). Structural foundations bear directly on consolidated gravel strata and deep historical masonry footings. \n\nMasonry lithology reflects historic mid-Atlantic quarries:\n- **Central Core:** Aquia Creek Cretaceous quartz-rich sandstone from Stafford County, Virginia, heavily painted and sealed.\n- **House and Senate Wings:** Crystalline Lee, Massachusetts dolomitic marble and Cockeysville/Beaver Dam marble from Baltimore County, Maryland for exterior colonnades.\n- **West Front Substructures & Terrace:** Cut Vermont marble and Mount Airy (North Carolina) biotite granite stylobates and steps.\n- **Mortar Systems:** Historic lime-sand mortar formulations on older wings, retrofitted with non-hydraulic hydraulic lime re-pointing; subterranean drainage utilizes integrated gravity channels to prevent hydrostatic head buildup beneath the East Front Plaza and Capitol Visitor Center substructure."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Part of the Level III accredited U.S. Capitol Grounds Arboretum designed by Frederick Law Olmsted:\n- **Canopy Trees:** Mature *Ulmus americana* (American Elm), *Quercus alba* (White Oak), *Quercus palustris* (Pin Oak), *Liriodendron tulipifera* (Tulip Poplar), *Ginkgo biloba*, and *Fagus grandifolia* (American Beech) forming dense, organic leafy canopies with natural crown branching and varied summer chlorophyllic tones.\n- **Turf & Understory:** Manicured cool-season turfgrass (*Festuca arundinacea* and *Poa pratensis*) framed by broad-curved gravel/crushed stone pedestrian paths, English ivy groundcovers, and boxwood perimeter hedges along terrace bases.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology:** Neoclassical civic monumentalism (Greek Revival and Roman Corinthian orders) designed progressively by William Thornton, Benjamin Henry Latrobe, Charles Bulfinch, Thomas U. Walter, and Frederick Law Olmsted (landscape and terraces).\n- **Massing & Vertical Dimensions:** Symmetrical tripartite composition. Central cast-iron double-shell dome culminates in the Statue of Freedom at 88 meters (288 ft) total height. Flanking 3-to-4 habitable-storey Senate (North) and House (South) wings with pedimented porticos and Corinthian colonnades.\n- **Roof Geometry:** Weathered verdigris standing-seam sheet copper roofs over low-pitch gable structural steel framing; cast-iron central dome and low flanking rotunda domes.\n- **Planar Rectification:** Strict nadir orthogonal alignment; all cornice returns, balustrade parapets, and East Plaza granite pavers rectified to exact planar axes. The subterranean Capitol Visitor Center roof slab creates a level, geometrically paved pedestrian plaza punctuated by flush skylights and dual rectangular sunken courtyards with granite fountain coping.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-25T17:03:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 25.1,
+        "solar_azimuth_deg": 3.92,
+        "solar_elevation_deg": 62.02,
+        "shadow_azimuth_deg": 183.9,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

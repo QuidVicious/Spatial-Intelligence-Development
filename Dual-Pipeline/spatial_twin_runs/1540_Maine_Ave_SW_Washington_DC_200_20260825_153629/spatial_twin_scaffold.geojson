@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 473.8,
+          "pitch_deg": -54.3,
+          "heading_deg": 23.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The Washington Monument grounds sit within the Atlantic Coastal Plain margin overlying the Piedmont crystalline basement (Sykesville and Kensington quartz diorite/gneiss terranes). The monumental obelisk's subterranean foundation rests on heavy blue gneiss rubble concrete underpinned by 19th-century buttressing over deep river silt and alluvial gravels along the former Tiber Creek marsh zone. Masonry lithics display a prominent historical quarry stratification: the lower 152 feet (constructed 1848\u20131854) is faced with calcitic/dolomitic marble from the Texas quarry in Baltimore County, Maryland; a transition zone of four courses is formed of Sheffield/Lee marble from Berkshire County, Massachusetts; and the upper two-thirds (completed 1884 by the U.S. Army Corps of Engineers) utilizes fine-grained Beaver Dam marble from Cockeysville, Maryland. The core consists of dense granite masonry backed with hydraulic lime and natural cement mortar. Surrounding plazas incorporate regional Potomac bluestone, polished St. Cloud/Mesabi black granites, and stabilized crushed Virginia red-ochre decomposed gravel walkways."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The Monument grounds feature mature, distinctively organic canopy trees. Species include:\n- *Quercus phellos* (Willow Oak) and *Quercus rubra* (Northern Red Oak) with broad, branching leafy canopies flanking the outer park circuits.\n- *Ulmus americana* (American Elm) lines along the distant National Mall panels, showing full arching vase-like branch structures.\n- *Tilia americana* (American Basswood) and *Acer rubrum* (Red Maple) clusters near the periphery.\nAll arboreal vegetation is rendered as authentic organic foliage with intricate branching, leafy density, and natural structural variance, entirely disambiguated from solid polygon mesh noise.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **A. Center Structure (Washington Monument):** Pure neoclassical Egyptian obelisk massing rising 554 ft 7 in (169.05 m) with a 10:1 height-to-base ratio. The hollow masonry shaft tapers uniformly upward to a 55-foot pyramidal apex capped with cast aluminum. At the base, a circular granite-paved plaza is ringed with 56 stainless steel flagpole stanchions set in concentric rings. Vertical lines are strictly plumbed to true gravity vertical, correcting wide-angle frustum keystoning and photogrammetric distortion.\n- **B. Upper Right Background (National Museum of African American History and Culture - NMAAHC):** 5-story above-grade, 350,000 sq ft cultural facility characterized by a three-tiered inverted-pyramid \"Corona\" screen wall cantilevering over an expansive glazed ground lobby. Rectified planar geometry features precision-sloped facade tiers at 17-degree angles (matching the monument\u2019s pyramidion angle).\n- **C. Lower Right / Periphery (Washington Monument Lodge & Mall Infrastructure):** 1-story historic ashlar stone gate lodge (rusticated brownstone/granite) with hipped slate roof; perimeter curved asphalt roadways (15th St SW / Constitution Ave approaches) and pedestrian concentric circulatory rings rectified to smooth, true geometric planar curves.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0366860129463,
+          38.88670746678647
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "CAMERA_FLOODLIGHT",
+        "timestamp_utc": "2026-08-25T23:56:00+00:00",
+        "weather_state": "OVERCAST",
+        "ambient_lux": 0,
+        "color_temperature_k": 5600,
+        "beam_vector": {
+          "heading_deg": 23.3,
+          "pitch_deg": -54.3
+        }
+      }
+    }
+  ]
+}

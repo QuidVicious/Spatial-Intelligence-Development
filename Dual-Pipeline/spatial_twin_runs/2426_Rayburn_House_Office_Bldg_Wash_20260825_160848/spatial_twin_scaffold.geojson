@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "2426 Rayburn House Office Bldg, Washington, DC 20515, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 133.2,
+          "pitch_deg": -25.6,
+          "heading_deg": 346.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The site sits upon Capitol Hill (Jenkins Hill) on the geological Atlantic Seaboard Fall Zone transition between the Piedmont metamorphic complex and the Atlantic Coastal Plain. The subterranean substrate consists of unconsolidated sedimentary deposits belonging to the Cretaceous Potomac Formation (interbedded quartzose gravels, sands, silts, and dense plastic clays) over deeply buried crystalline schist/gneiss bedrock. \nThe structural masonry fabric of the Capitol complex comprises distinct historical lithic stratifications:\n- Central Core (Original 1793\u20131820s block): Aquia Creek freestone (Cretaceous quartzose sandstone quarried in Stafford County, Virginia) with calcitic/lime-sand mortar beds.\n- East Front Colonnade & Central Extension (1958\u20131962 reproduction): White Cherokee crystalline marble from Tate, Georgia.\n- House (foreground) and Senate (background) Wings (1850s Thomas U. Walter expansion): Dolomitic Lee marble quarried in Massachusetts, supported by Cockeysville calcitic marble monolithic fluted columns.\n- Plinths and West Sub-structure: Renville Minnesota pink granite and Deer Isle/Quincy granitic basement ashlar courses.\nSubterranean hydrologic drainage flows westward down the topographic incline toward the Potomac paleochannel, managed through historic brick barrel vaults and contemporary subterranean storm cistern networks."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Surrounding Grounds: Frederick Law Olmsted-designed rolling Capitol Grounds arboretum.\n- Species Identified: Mature deciduous and coniferous canopies including American Elms (*Ulmus americana*), Northern Red Oaks (*Quercus rubra*), Willow Oaks (*Quercus phellos*), London Planetrees (*Platanus \u00d7 acerifolia*), and Sweetgums (*Liquidambar styraciflua*).\n- Botanical Structure: Deep, full leafy crowns rendered with distinct branching architecture, individual sub-canopy shadowing, and dense summer green foliage, completely disambiguated from adjacent granite balustrades and retaining walls.\n- Lawns: Impeccably manicured cool-season turfgrass (tall fescue/Kentucky bluegrass blend) filling Olmstedian curvilinear perimeter parterres and the crisp sunken rectangles of the East Plaza.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Neoclassical Civic Architecture (Federalist core integrated with American Renaissance/Beaux-Arts monumental expansions).\n- Master Massing & Axial Layout: Symmetrical tripartite E-W plan spanning 751 ft (229 m) along the north-south axis.\n- Foreground (Southern Sector): The House of Representatives Wing\u2014a 3-story monumental rectangular mass featuring a colossal two-story Corinthian colonnade over a rusticated ashlar podium basement, capped by a modillioned entablature and an expansive flat/low-hipped seam-metal copper roof with a central copper-clad clerestory/skylight monitor.\n- Central Core & Rotunda: A high-drum neoclassical rotunda rising to a monumental cast-iron double dome (designed by Thomas U. Walter, 1855\u20131866) topped by a peristyle tholos and the bronze *Statue of Freedom* at an absolute peak of 288 ft (88 m) above grade.\n- East Front Plaza (Foreground Right to Midground): The expansive, planar East Capitol Plaza, paved in modular granite and red-brown porphyry stone setts, featuring planar underground Capitol Visitor Center (CVC) skylights flush with the plaza plane, rectangular sunken grass panels, and a grand granite staircase leading to the central and wing porticos.\n- Rectification: All vertical colonnades, pilasters, tholos peristyle columns, drum ribs, and ashlar corners plumbed to true gravity vertical ($0.0^\\circ$). All horizontal entablatures, cornices, balustrades, and copper roof ridges rectified to true planar horizontality, eliminating photogrammetry tilt and polygon artifacts.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00829380896779,
+          38.88703477720817
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-25T18:03:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 26.2,
+        "solar_azimuth_deg": 333.76,
+        "solar_elevation_deg": 59.71,
+        "shadow_azimuth_deg": 153.8,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

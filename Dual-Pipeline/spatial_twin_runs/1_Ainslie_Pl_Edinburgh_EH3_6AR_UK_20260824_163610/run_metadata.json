@@ -1,0 +1,34 @@
+{
+  "timestamp": "20260824_163610",
+  "address": "1 Ainslie Pl, Edinburgh EH3 6AR, UK",
+  "spatial_mode": "3D_RECTIFICATION",
+  "telemetry": {
+    "latitude": 55.953657706057655,
+    "longitude": -3.2098777843158914,
+    "altitude_agl": 110.23712036430948,
+    "heading": 285.09927163457246,
+    "pitch": 1.0809927653679665,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "date": "2026-08-24",
+    "time_of_day": 12.3,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN"
+  },
+  "lighting_and_weather_summary": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-08-24T12:18:00+00:00",
+    "solar_azimuth": 359.17,
+    "solar_elevation": 45.41,
+    "color_temperature_k": 5400,
+    "lux": 60000
+  },
+  "distilled_structural_prompt": "Captured from a ground-level perspective facing the sweeping arc of Ainslie Place, the frame reveals a grand four-storey Georgian crescent of plumb, geometrically rectified townhouses spanning from the curving left perspective to the flanking right facade, unified by continuous horizontal stringcourses, channelled ashlar ground floors, and a level parapet skyline. The structural facade exhibits finely-tooled buff Craigleith sandstone, deeply recessed twelve-pane timber sash windows, cast-iron basement lightwell balustrades, whinstone street setts, and mature leafy elm trees in the central park, devoid of all vehicles and pedestrians.",
+  "compiled_prompt": "Using the attached image strictly as an unlit 3D structural skeleton for camera angle and building placement. DELIGHTING: Discard all baked photogrammetric sunlight, source shadow maps, and specular highlights. Treat input geometry strictly as an unlit structural reference. DYNAMIC RELIGHTING: Sun Azimuth 359.2\u00b0, Elevation 45.4\u00b0 (Clean standard daylight with directional shadows). Hard raking side-light from camera-right, calibrated 5400K solar irradiance casting crisp shadows along 179.2\u00b0 vector. Weather: Active rain. Wet, mirror-reflective asphalt and pavement with crisp surface puddles; soft diffuse skylight. ARCHITECTURAL SCENE ESSENCE: Captured from a ground-level perspective facing the sweeping arc of Ainslie Place, the frame reveals a grand four-storey Georgian crescent of plumb, geometrically rectified townhouses spanning from the curving left perspective to the flanking right facade, unified by continuous horizontal stringcourses, channelled ashlar ground floors, and a level parapet skyline. The structural facade exhibits finely-tooled buff Craigleith sandstone, deeply recessed twelve-pane timber sash windows, cast-iron basement lightwell balustrades, whinstone street setts, and mature leafy elm trees in the central park, devoid of all vehicles and pedestrians.",
+  "word_count": 170,
+  "synthesis": {
+    "model_name": "gemini-3.1-flash-image",
+    "latency_ms": 9474.37
+  }
+}

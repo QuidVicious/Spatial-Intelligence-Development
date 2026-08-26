@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260825_165038",
+  "address": "1500 Constitution Ave. NW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9573.73,
+  "telemetry": {
+    "latitude": 38.891664533597655,
+    "longitude": -77.03378647377143,
+    "altitude_agl": 62.116410065724345,
+    "heading": 208.46503262941906,
+    "pitch": -9.518170053601095,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with rear-right backlight (Sun Azimuth 326.0\u00b0, Elevation 58.0\u00b0), casting crisp directional shadows along 146.0\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary architectural photograph captured on a 6x7 medium-format rangefinder camera with a 45mm ultra-wide lens at f/8 on ISO 100 fine-grain color negative film. \n\nIn the center of the frame, the towering marble obelisk of the Washington Monument rises with absolute vertical precision from a manicured emerald lawn on the National Mall. The masonry displays its authentic historical tri-tone marble courses: the lower third composed of slightly weathered, warm-tinted coarse Texas marble, transitioning through a subtle four-course seam into the cooler, fine-grained Cockeysville dolomitic white marble that stretches to the apex pyramidion. The stonework reveals crisp ashlar jointing, subtle atmospheric mineral patina, and clean, plumb arrises. \n\nAt the base, the circular granite-paved terrace is surrounded by a perfect ring of stainless steel flagpoles, centered upon a minimalist, flat-roofed security pavilion clad in honed gray granite and low-iron structural glass. Radiant high-noon sunlight (5800K) from the rear-right casts short, sharp directional shadows to the southeast, while a delicate layer of summer atmospheric haze softens the distant horizon. \n\nBeyond the lush, rolling green lawns crisscrossed by precise reddish decomposed granite paths, the background opens to the deep blue expanse of the Tidal Basin, flanked by dense groves of mature American elm, willow oak, and leafy Yoshino cherry trees. In the far southwest background across the water, the domed Neoclassical rotunda and Ionic colonnade of the Thomas Jefferson Memorial sit beneath the sky. \n\nThe scene is completely devoid of pedestrians, vehicles, and transient clutter, presented as a pristine, static civil landscape of monumental scale, geometric purity, and tactile lithic realism.",
+  "word_count": 312,
+  "includes_lighting": true
+}

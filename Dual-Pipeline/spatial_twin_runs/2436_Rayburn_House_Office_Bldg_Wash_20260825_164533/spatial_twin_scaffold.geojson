@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "2436 Rayburn House Office Bldg, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 692.7,
+          "pitch_deg": -84.6,
+          "heading_deg": 358.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The site occupies the elevated plateau of Jenkins Hill (Capitol Hill), situated at the Fall Line transition between the crystalline Piedmont province and the Atlantic Coastal Plain unconsolidated sediments (Potomac Formation sands, silts, and clays). Subterranean load-bearing capacity is reinforced by deep gravel-sand strata. The structural lithics of the central complex encompass multiple historic American extraction phases: the original central core features Cretaceous Aquia Creek sandstone (a pale-tan to buff quartzose freestone from Stafford County, Virginia) bonded with historic lime-pozzolan mortar; the flanking House and Senate wings utilize crystalline Lee dolomitic marble from Massachusetts and Cockeysville marble from Maryland; the 20th-century East Front extension is faced with Georgio-Cherokee and Vermont white marble; and the expansive plaza sub-paving and plinths feature pink and gray biotite granite from Mount Airy (North Carolina) and Minnesota."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The surrounding 58-acre Capitol Square grounds\u2014designed by Frederick Law Olmsted Sr. and maintained as a Level III Arboretum\u2014feature a rich, dense canopy of mature, fully articulated organic deciduous and evergreen trees. Documented botanical species include towering American Elms (*Ulmus americana*), Northern Red Oaks (*Quercus rubra*), Ginkgo biloba, Sugar Maples (*Acer saccharum*), and native flowering Dogwoods (*Cornus florida*). Canopies present organic branch architecture, translucent green foliage, and natural leaf-mass shadowing over meticulously manicured turf lawns and curvilinear crushed-gravel pathways.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The scene captures a vertical nadir/high-angle oblique view centered on the United States Capitol complex (Neoclassical monumental style), flanked to the east by the Supreme Court Building (classical temple pavilion) and the Library of Congress Thomas Jefferson Building (Beaux-Arts Renaissance revival). The Capitol comprises 5 above-ground primary storeys flanking the central rotunda. In the center, the cast-iron double dome designed by Thomas U. Walter rises with a peristyle colonnade, ribbed cupola, and lantern. The Senate (north/left in top-down orientation) and House (south/right) wings present planar rectangular masses with hipped standing-seam copper roofs. All wobbly 3D photogrammetric noise across roof decks, pediments, steps, and balustrades is fully rectified into laser-straight planar parapets, plumb load-bearing exterior walls, true rectangular light wells, and crisp rectilinear East Front plaza paving.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00869441919399,
+          38.88917578204287
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-25T06:27:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 24.6,
+        "solar_azimuth_deg": 156.32,
+        "solar_elevation_deg": -36.92,
+        "shadow_azimuth_deg": 336.3,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

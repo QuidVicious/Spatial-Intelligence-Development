@@ -1,0 +1,190 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209878,
+          55.953658
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "telemetry": {
+          "altitude_agl_m": 110.2,
+          "heading_deg": 285.1,
+          "pitch_deg": 1.1,
+          "fov_deg": 60.0
+        },
+        "spatial_mode": "ground_level_curvilinear_crescent_rectification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2106,
+              55.9533
+            ],
+            [
+              -3.209,
+              55.9533
+            ],
+            [
+              -3.209,
+              55.954
+            ],
+            [
+              -3.2106,
+              55.954
+            ],
+            [
+              -3.2106,
+              55.9533
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "bedrock_type": "Carboniferous Sandstone (Gullane Formation / Craigleith Sandstone Member)",
+        "stratigraphy": "Glacial till over interbedded sedimentary sandstone, siltstone, and mudstone",
+        "lithic_notes": "Dense, fine-grained, pale-ochre Craigleith and Hailes quarry quartz-arenite ashlar with high resistance to atmospheric weathering"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.2104,
+              55.9534
+            ],
+            [
+              -3.2093,
+              55.9534
+            ],
+            [
+              -3.2093,
+              55.9539
+            ],
+            [
+              -3.2104,
+              55.9539
+            ],
+            [
+              -3.2104,
+              55.9534
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "surface_paving": "Whinstone (basaltic) sett carriageway with cut Craigleith sandstone flagstone walkways",
+        "curb_specifications": "Dressed granite and sandstone boundary curbs, drop kerbs, recessed basement lightwells with wrought-iron spearhead balustrades",
+        "wear_patina": "Historical micro-weathering, slate soot runoff patterns on horizontal string courses"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": []
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "vegetation": "Mature broadleaf trees in central private crescent gardens (Ulmus glabra, Tilia x europaea, Acer pseudoplatanus)",
+        "canopy_density": "Dense seasonal canopy adjacent to curvilinear carriageway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -3.2105,
+                55.9535
+              ],
+              [
+                -3.2092,
+                55.9537
+              ],
+              [
+                -3.2094,
+                55.954
+              ],
+              [
+                -3.2107,
+                55.9538
+              ],
+              [
+                -3.2105,
+                55.9535
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "typology": "Georgian Neoclassical Terraced Crescent (Lord Moray Estate / James Gillespie Graham, 1822-1824)",
+        "structures": [
+          {
+            "name": "Ainslie Place Crescent Quadrant",
+            "storeys": 4,
+            "height_m": 16.5,
+            "facade_material": "Finely dressed buff Craigleith sandstone ashlar with channelled rustication at ground floor",
+            "roof_geometry": "Pitched Scottish slate roofs with lead flashings, hidden gutters, and stone chimney stacks",
+            "fenestration": "Symmetric 12-pane and 6-pane timber sash-and-case windows set in deeply recessed, square-moulded surrounds with continuous horizontal cornices and band courses",
+            "plumb_rectification": "Rigid vertical ashlar piers, plumb facade planes following the circular plan arc, level string courses"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209878,
+          55.953658
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "COMPLETE",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "street_furniture": "Traditional cast-iron streetlamps and intact cast-iron area railings"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-24T12:18:00+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 359.17,
+        "solar_elevation_deg": 45.41,
+        "shadow_azimuth_deg": 179.2,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      },
+      "geometry": null
+    }
+  ]
+}
