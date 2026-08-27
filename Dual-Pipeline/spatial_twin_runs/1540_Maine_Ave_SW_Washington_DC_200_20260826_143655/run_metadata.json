@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_143655",
+  "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8393.07,
+  "telemetry": {
+    "latitude": 38.885926550116366,
+    "longitude": -77.03559071302307,
+    "altitude_agl": 418.3984685368287,
+    "heading": 4.88895878387493,
+    "pitch": -46.28949720288432,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with hard raking side-light from camera-right (Sun Azimuth 81.2\u00b0, Elevation 27.6\u00b0), casting crisp directional shadows along 261.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-sharp wide lens, fine-grain ISO 100 color negative film, stopped down to f/8 for absolute edge-to-edge optical fidelity. Elevated high-angle oblique aerial view looking north-northeast over the Washington Monument grounds on the National Mall in Washington, D.C.\n\nIn the center, the monumental 555-foot stone obelisk of the Washington Monument stands perfectly plumb, its sharp, four-sided tapered geometry and 17-degree capstone rendered with razor-sharp planar precision. The ashlar marble facade visibly reveals its authentic two-tone construction history: the lower third exhibits warm weathered creamy-white Texas marble, while the upper two-thirds transition sharply into cool, uniform dove-gray Cockeysville marble. The obelisk casts a crisp, long, dark diagonal shadow across the immaculate circular lawn of the grounds toward the west-southwest. Surrounding the base is a pristine concentric ring of granite pavers and a radial crown of fifty slender silver flagpoles.\n\nTo the right, the National Museum of African American History and Culture rises in stark geometric contrast, its three-tiered inverted corona clad in ornate filigree bronze-coated cast-aluminum panels and dark reflective glazing. Beyond, the Neoclassical limestone facade of the Herbert C. Hoover Building anchors the northern horizon across Constitution Avenue under clear sky.\n\nThe landscape features expansive, emerald-green turfgrass divided by curvilinear ochre-toned compacted gravel walking paths.",
+  "char_count": 1957,
+  "includes_lighting": true
+}

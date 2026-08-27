@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_150139",
+  "address": "Constitution Ave at 12th St, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 7994.86,
+  "telemetry": {
+    "latitude": 38.89183930686141,
+    "longitude": -77.02662840142094,
+    "altitude_agl": 163.49451717390613,
+    "heading": 247.94252264645786,
+    "pitch": -12.043017064464612,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with hard raking side-light from camera-left (Sun Azimuth 144.7\u00b0, Elevation -33.3\u00b0), casting crisp directional shadows along 324.7\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 architectural documentary photograph captured on a Mamiya 7 with an ultra-sharp 45mm lens at f/8, fine-grain ISO 100 emulsion. High-angle western aerial survey looking along Constitution Avenue across the National Mall toward the Washington Monument and the Potomac River basin. In the right midground, the National Museum of African American History and Culture features its distinct three-tiered bronze-coated cast-aluminum filigree corona, displaying intricate geometric openwork screens and crisp cantilevered angles. In the center, the monumental 555-foot stone obelisk of the Washington Monument rises with absolute vertical plumbness, clearly exhibiting its authentic two-tone marble color boundary between the lower weathered Maryland marble and the upper Cockeysville stone. To the left, the dark red Seneca sandstone towers of the historic Smithsonian Castle and the limestone facade of the American History Museum stand among lush, mature canopies of deep-green American elms and London plane trees. Ground plane reveals crisp crushed-gravel pathways intersecting manicured emerald fescue lawn panels. The scene is completely stripped of all motor vehicles, traffic, and pedestrians, preserving only permanent civil infrastructure, streetlamps, curbs, and stone plazas. Calibrated clear-sky lighting with clean raking directional shadows, razor-sharp edge micro-contrast, corner-to-corner optical rectilinearity, and true architectural grandeur.",
+  "char_count": 1843,
+  "includes_lighting": true
+}

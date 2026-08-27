@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133922",
+  "address": "x, Shandwick Pl, Edinburgh EH2 4RG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9353.36,
+  "telemetry": {
+    "latitude": 55.949833916796905,
+    "longitude": -3.208714998215679,
+    "altitude_agl": 136.7724618215075,
+    "heading": 256.7622356081241,
+    "pitch": 5.296174626901589,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with quarter-front light from camera-right (Sun Azimuth 302.5\u00b0, Elevation 32.0\u00b0), casting crisp directional shadows along 122.5\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-angle 6x7 medium format architectural documentary photograph capturing the historic urban panorama along Shandwick Place in Edinburgh's West End, looking west toward the towering spires of St Mary's Episcopal Cathedral and the distinct Italianate sandstone campanile tower of St George's West. \n\nIn the immediate foreground and right frame, the sharply delineated mansard roofs and pedimented stone dormers of Victorian ashlar tenements display authentic dark Ballachulish slate shingles and lead flashing details. Below, the long curving facade of 4-to-5-storey Craigleith buff and honey-toned sandstone buildings exhibits crisp gravity-plumb verticality, deep-set timber sash windows, moulded classical cornices, and historic carbon soot crusting sheltered beneath stone pediments. \n\nTo the left, the freestanding multi-tier sandstone clock campanile rises cleanly into the sky, crowned with a verdigris-oxidized pale green copper pyramidal spire. In the deep center background, the monumental Victorian Gothic triplet of spires of St Mary's Cathedral pierces a clear horizon under dense low-altitude maritime mist and soft atmospheric depth haze. \n\nThe broad street below is completely devoid of vehicles, cars, and pedestrians, featuring pristine granite kerbs, embedded dual tram rails, cast-iron streetlamps, and pockets of mature, lush green sycamore and elm foliage. Directional late-afternoon sunlight at 5400K enters from the right, casting sharp, elongated directional shadows across stone friezes and street geometry.",
+  "char_count": 1958,
+  "includes_lighting": true
+}

@@ -35,6 +35,7 @@ def archive_run(
     conditioning: CompiledPrompt,
     synthesis_result: SynthesisResult,
     screenshot_b64: Optional[str] = None,
+    delighted_b64: Optional[str] = None,    # <--- ADD THIS LINE
     runs_dir: Optional[Path] = None
 ) -> str:
     """
@@ -59,6 +60,13 @@ def archive_run(
         viewport_path = run_folder / "viewport_capture.jpg"
         with open(viewport_path, "wb") as f:
             f.write(base64.b64decode(raw_viewport_b64))
+
+    # 1.5 Save Delighted Preprocessor Output (if available)
+    if delighted_b64:
+        raw_delighted = delighted_b64.split(",")[-1] if "," in delighted_b64 else delighted_b64
+        delighted_path = run_folder / "delighted_reference.jpg"
+        with open(delighted_path, "wb") as f:
+            f.write(base64.b64decode(raw_delighted))
 
     # 2. Save Synthesized Visual Twin Artifact
     if synthesis_result.image_b64:
@@ -116,7 +124,7 @@ def archive_run(
             "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES")
         },
         "compiled_prompt": conditioning.prompt,
-        "word_count": conditioning.metadata.get("word_count", 0),
+        "char_count": conditioning.metadata.get("final_char_count", 0),
         "includes_lighting": conditioning.metadata.get("includes_lighting", False)
     }
 

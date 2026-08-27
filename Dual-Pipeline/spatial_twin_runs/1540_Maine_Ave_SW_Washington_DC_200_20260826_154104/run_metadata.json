@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_154104",
+  "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9385.89,
+  "telemetry": {
+    "latitude": 38.88476406391406,
+    "longitude": -77.03753081065379,
+    "altitude_agl": 109.19058200190483,
+    "heading": 19.05150402042077,
+    "pitch": -7.473825388946626,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with rear-left backlight (Sun Azimuth 266.3\u00b0, Elevation 12.3\u00b0), casting crisp directional shadows along 86.3\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 documentary architectural photograph taken from an elevated aerial frustum overlooking the Washington Monument grounds and the Washington D.C. monumental core. Center frame features the massive 555-foot marble obelisk of the Washington Monument, perfectly plumbed and vertically rectified, highlighting the distinct historical quarry shift at the 152-foot level where the patinated warmer lower Maryland marble transitions cleanly into the cooler-toned upper Cockeysville marble. Raking late-afternoon sunlight from the west-southwest illuminates the western and southern facets while casting long, crisp directional shadows eastward across the rolling green lawn.\n\nTo the immediate east sits the National Museum of African American History and Culture with its bronze-coated three-tiered filigree corona facade, flanked in the background by the Beaux-Arts Federal Triangle limestone complexes with their detailed classical porticos and red terracotta tile roofs. In the distance to the northwest, the White House South Lawn, Ellipse, and the multi-tiered Mansard slate roof of the Eisenhower Executive Office Building are clearly resolved across the urban grid.\n\nForeground and surrounding parklands consist of vast manicured turf crisscrossed by clean decomposed granite walking paths and dense, organic groves of mature American elm, London planetrees, and pin oaks with authentic leafy foliage. Completely static, serene, and decluttered scene with zero vehicles, zero pedestrians, and zero transient street clutter.",
+  "char_count": 1903,
+  "includes_lighting": true
+}

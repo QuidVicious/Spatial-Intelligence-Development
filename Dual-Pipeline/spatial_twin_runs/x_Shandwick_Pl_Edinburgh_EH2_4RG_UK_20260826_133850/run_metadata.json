@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133850",
+  "address": "x, Shandwick Pl, Edinburgh EH2 4RG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8808.25,
+  "telemetry": {
+    "latitude": 55.949833916796905,
+    "longitude": -3.208714998215679,
+    "altitude_agl": 136.7724618215075,
+    "heading": 256.7622356081241,
+    "pitch": 5.296174626901589,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with quarter-front light from camera-right (Sun Azimuth 302.5\u00b0, Elevation 32.0\u00b0), casting crisp directional shadows along 122.5\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA 6x7 medium-format documentary photograph captured on a Mamiya 7 with an ultra-sharp 45mm lens at f/8, fine-grain ISO 100 emulsion. An elevated wide-angle view looking west over the historic West End and Shandwick Place in Edinburgh, Scotland. In the near left foreground, an imposing Italianate sandstone clock tower rises vertically with crisp ashlar detailing and a weathered turquoise oxidized copper spire. In the distant center horizon, the majestic Gothic Revival tripartite spires of St Mary's Episcopal Cathedral pierce a clear sky with light ground mist softening the horizon. To the right, multi-storey Victorian sandstone tenements and Mansard-roofed commercial blocks feature rectified planar ashlar facades, sharp pedimented dormers, and dark historic soot patina in the stone recesses. Below, the wide, completely deserted street displays embedded steel tram rails, granite curbs, and Caithness stone pavements under clear 5400K daylight with sharp directional shadows. Zero vehicles, zero pedestrians, corner-to-corner optical clarity, and authentic material textures.",
+  "char_count": 1507,
+  "includes_lighting": true
+}

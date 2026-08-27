@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_141937",
+  "address": "15 Coates Cres, Edinburgh EH3 7AF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9840.82,
+  "telemetry": {
+    "latitude": 55.948390965668224,
+    "longitude": -3.2132938190667826,
+    "altitude_agl": 141.2907273070621,
+    "heading": 285.81805653535184,
+    "pitch": -1.0747249352380708,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with rear-right backlight (Sun Azimuth 51.5\u00b0, Elevation 3.6\u00b0), casting crisp directional shadows along 231.5\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary 6x7 medium format architectural photograph taken from an elevated vantage point in Edinburgh's West End, looking west-northwest directly toward the monumental Victorian Gothic Revival silhouette of St Mary's Episcopal Cathedral and the surrounding Georgian sandstone tenement rooftops. \n\nIn the center and midground, the cathedral\u2019s central spire rises 90 meters tall into a crisp sky, framed to the left by its twin western stone spires and below by its high-pitched slate nave roof, intricate stone tracery, deep lancet windows, and flying buttresses. The sandstone masonry exhibits an authentic century-old patina of weathered buff-gold stone with dark historic carbon crusting in sheltered mouldings and rainwater wash patterns across vertical ashlar courses. \n\nIn the foreground and flanking views, plumbed four-storey residential tenements and crescent terraces display straight planar ashlar walls, rhythmic sash-and-case fenestration, lead dormers, pitched Scottish slate roofs, and arrays of masonry chimney stacks with terracotta pots. Mature sycamore and plane trees with rich, detailed green leafy canopies rise naturally between the rear garden courtyards. \n\nThe entire scene is illuminated by low-angle 3200K golden hour sunlight from the rear-right, casting long, sharp directional amber highlights along east-facing architectural relief and deep, transparent blue-toned shadows across western roof planes and facade recesses.",
+  "char_count": 1818,
+  "includes_lighting": true
+}

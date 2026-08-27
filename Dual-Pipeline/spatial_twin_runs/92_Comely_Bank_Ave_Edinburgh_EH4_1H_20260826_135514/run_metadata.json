@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_135514",
+  "address": "92 Comely Bank Ave, Edinburgh EH4 1HE, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10750.01,
+  "telemetry": {
+    "latitude": 55.95726261509662,
+    "longitude": -3.217803863628813,
+    "altitude_agl": 121.03908952870295,
+    "heading": 314.99987734093935,
+    "pitch": -24.999930985590744,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with quarter-front light from camera-left (Sun Azimuth 253.9\u00b0, Elevation -18.8\u00b0), casting crisp directional shadows along 73.9\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph captured on a Mamiya 7 with a 45mm wide-angle lens, ISO 100 fine-grain film, stopped down to f/8 for razor-sharp edge-to-edge optical fidelity. An elevated high-angle perspective looking down across the intersection of late Victorian blonde sandstone tenements in Comely Bank, Edinburgh. The four-storey sandstone facades rise vertically with exact structural plumb lines, featuring polished ashlar droved stone, rhythmic stacks of multi-storey canted bay windows, decorative chimney stacks topped with terracotta pots, and steeply pitched slate roofs lined with lead flashing. Authentic 120-year environmental weathering displays historic carbon soot staining sheltered within window reveals and cornices, subtle rain wash striations on ashlar bands, and delicate moss patina at the basement plinths. In the center, a vibrant green manicured lawn bowling green is framed by dwarf stone walls and cast-iron railings. Mature sycamore and elm trees with leafy canopies dot the rear gardens. The scene is illuminated by crisp, low-angle natural daylight casting sharp, directional diagonal shadows across the empty asphalt streets and granite kerbs. Completely clear and static streetscape with zero cars, zero parked vehicles, zero pedestrians, and zero trash bins\u2014rendering a pristine, material-authentic civil portrait.",
+  "char_count": 1737,
+  "includes_lighting": true
+}

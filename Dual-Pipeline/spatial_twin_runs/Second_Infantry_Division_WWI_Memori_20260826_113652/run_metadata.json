@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_113652",
+  "address": "Second Infantry Division WWI Memorial, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9529.33,
+  "telemetry": {
+    "latitude": 38.89320859292548,
+    "longitude": -77.03704179310652,
+    "altitude_agl": 478.7535978752681,
+    "heading": 156.03526592712467,
+    "pitch": -45.27775254329757,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with rear-left backlight (Sun Azimuth 1.2\u00b0, Elevation 61.7\u00b0), casting crisp directional shadows along 181.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude, wide-angle 6x7 medium format architectural documentary photograph capturing the Washington Monument and the National Mall grounds in Washington, D.C., framed from an elevated aerial viewpoint looking south-southeast. In the center, the monumental 555-foot marble obelisk rises with perfect planar verticality and razor-sharp arrises, showcasing the subtle historical material boundary one-third up where the lower warm-creamy Maryland marble shifts to the cooler gray-white upper ashlar courses. Its elongated, crisp shadow stretches across the circular granite plaza and deep green manicured lawn towards the south. \n\nTo the lower left, the National Museum of African American History and Culture stands with pristine structural geometry, its three-tiered inverted corona clad in ornate, filigreed bronze-toned cast-aluminum lattice panels reflecting warm metallic highlights. Curving decomposed-granite pedestrian footpaths form elegant concentric arcs across the lush green turf. In the background, the grand Neoclassical limestone facades and terracotta roofs of Federal Triangle line the northern perimeter, while mature American elms, willow oaks, and sycamores form lush, leafy organic tree canopies with deep understory shadows. \n\nThe entire municipal landscape is completely devoid of vehicles, pedestrians, and clutter, presenting a serene, pure civil expanse.",
+  "char_count": 1749,
+  "includes_lighting": true
+}

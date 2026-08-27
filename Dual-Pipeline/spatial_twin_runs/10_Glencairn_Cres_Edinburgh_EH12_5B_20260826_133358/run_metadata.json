@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133358",
+  "address": "10 Glencairn Cres, Edinburgh EH12 5BS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13212.18,
+  "telemetry": {
+    "latitude": 55.94855248758411,
+    "longitude": -3.2194957957300425,
+    "altitude_agl": 146.08208768854004,
+    "heading": 92.90485977886718,
+    "pitch": -2.7165012165757645,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2400K natural solar illumination (Civil twilight blue hour with deep indigo ambient dome and soft shadows) with direct backlighting with silhouetted facade profiles (Sun Azimuth 252.2\u00b0, Elevation 0.8\u00b0), casting crisp directional shadows along 72.2\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a 6x7 rangefinder camera with a 45mm wide-angle lens at f/8, ISO 100 fine-grain film, perfectly planar, corner-to-corner tack sharp. High-angle perspective looking east over Glencairn Crescent toward the monumental tripartite spires of St Mary\u2019s Episcopal Cathedral in Edinburgh. The three Gothic sandstone spires rise with plumb vertical geometry, intricate octagonal masonry, lancet louvers, and delicate stone tracery. The surrounding urban fabric is composed of sweeping multi-storey Victorian and late-Georgian residential crescent tenements built from weathered buff-grey Craigleith sandstone, detailed with rusticated ground floors, multi-pane sash-and-case windows, regular ashlar masonry joints, slate-tiled pitched roofs, and tall stone chimney stacks topped with terracotta pots. Facades exhibit authentic temperate-climate weathering, softened ashlar edges, subtle historic carbon deposition in protected cornices, and natural rain-wash striations. Interspersed throughout the crescent gardens are mature Sycamore and European Lime trees with leafy, organic green foliage and natural branch architecture. In the distant background, the volcanic silhouette of Edinburgh Castle and the Old Town skyline rests under an overcast, soft, omnidirectional 6500K diffuse sky. The urban streetscape below is completely static and decluttered: no pedestrians, no vehicles, no traffic, revealing clean stone curbs, historic iron railings, and empty paved street corridors.",
+  "char_count": 1999,
+  "includes_lighting": true
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133756",
+  "address": "x, Shandwick Pl, Edinburgh EH2 4RG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8973.68,
+  "telemetry": {
+    "latitude": 55.949833916796905,
+    "longitude": -3.208714998215679,
+    "altitude_agl": 136.7724618215075,
+    "heading": 256.7622356081241,
+    "pitch": 5.296174626901589,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with quarter-front light from camera-right (Sun Azimuth 302.5\u00b0, Elevation 32.0\u00b0), casting crisp directional shadows along 122.5\u00b0. Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph captured on a Mamiya 7 with a 45mm ultra-wide lens on Kodak Ektar 100 at f/8, shot from an elevated vantage point above Shandwick Place in Edinburgh, looking west towards the West End skyline. To the mid-left stands the monumental Italianate/Roman Baroque sandstone clock tower of St George's West Church, rising with pristine vertical ashlar masonry, classical pilaster stages, and a verdigris copper pyramidal spire. In the far center horizon, the magnificent three spires of Sir George Gilbert Scott's Gothic Revival St Mary's Episcopal Cathedral pierce the overcast Scottish sky with intricate stone pinnacles and slate roofs. Flanking the street corridor are grand 4-to-5 storey Victorian ashlar tenements and commercial blocks built of Craigleith sandstone, detailed with clean pedimented dormers, continuous dentilled cornices, and timber-framed sash windows. \n\nThe street below features wet, mirror-reflective asphalt with embedded steel tram tracks and granite setts gleaming from recent rain, reflecting diffuse daylight. The lighting is calibrated natural 5400K daylight breaking softly through dynamic North Sea cloud cover from the right, casting subtle, elongated directional shadows. Authentic historic environmental patina is rendered with nuanced soot accumulation under eaves, rain wash streaks across stone fascias, and natural lime mortar joints.",
+  "char_count": 1859,
+  "includes_lighting": true
+}

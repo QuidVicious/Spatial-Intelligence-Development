@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_134109",
+  "address": "Edinburgh Shandwick Place Stop SD, Edinburgh EH2 4RG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9220.02,
+  "telemetry": {
+    "latitude": 55.94980881001517,
+    "longitude": -3.2089294954765326,
+    "altitude_agl": 118.68459769686474,
+    "heading": 250.29815545753604,
+    "pitch": 3.343124773432194,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct front-lighting (Sun Azimuth 233.4\u00b0, Elevation -10.1\u00b0), casting crisp directional shadows along 53.4\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of Shandwick Place in Edinburgh's West End, captured on a Mamiya 7 with 45mm ultra-wide lens, Kodak Portra 160 fine grain film, f/8 aperture for edge-to-edge optical sharpness. Deep perspective along the wide thoroughfare looking toward West Maitland Street, anchored on the right by the towering 56-meter Italianate sandstone campanile of St George's West Church (Charlotte Chapel). Pristine planar alignment: all tenement walls plumb to true vertical, straight horizontal cornice lines, and crisp multi-storey ashlar facades in warm buff Craigleith sandstone. Deep historic carbon soot patina nestled in cornices and window architraves, weathered by centuries of Scottish maritime drizzle. Ground level shows rectified Victorian storefronts, flush embedded steel tram tracks in damp asphalt, and granite kerbs. In the background, mature green London plane trees soften the crescent approach. Deep atmospheric dusk light with low-angle directional ambient fill and soft horizon haze. The street is completely empty and static: no cars, no pedestrians, no clutter\u2014only silent, enduring stone, iron, and classical Scottish civic architecture.",
+  "char_count": 1588,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "Edinburgh Shandwick Place Stop SD, Edinburgh EH2 4RG, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 118.7,
+          "pitch_deg": 3.3,
+          "heading_deg": 250.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean bedrock beneath Shandwick Place consists of the Lower Carboniferous Gullane and Wardie Shale Formations (interbedded sandstones, siltstones, and mudstones), overlain by stiff Devensian glacial till. Above ground, the architectural fabric is dominated by Scottish Carboniferous sandstones, predominantly pale honey-to-buff Craigleith and Hailes sandstones, celebrated for high quartz silica content and enduring compressive strength. Mortar chemistry comprises traditional non-hydraulic to weakly hydraulic hot-mixed lime mortars with sharp river sand aggregates, accommodating natural vapor permeability and cyclic subterranean moisture transmission along the Western New Town's sloping gradient."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Along the peripheries and neighboring crescents (Coates and Atholl Gardens), mature urban broadleaf trees include London Plane (*Platanus x acerifolia*), European Lime (*Tilia x europaea*), and Wych Elm (*Ulmus glabra*). Organic, open branching structures with dense summer-canopy foliage, fully disambiguated from built stonework.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Looking west-southwest (heading ~250\u00b0) along Shandwick Place toward West Maitland Street in Edinburgh's West End:\n- **A. Foreground & Street Level (Plumbing & Anti-Warp Rectification):** The roadway is rectilinear and level, embedded with steel Edinburgh Tram tracks set flush into granite sett and asphalt paving. Ground-floor commercial storefronts (formerly fragmented in 3D scan meshes) are reconstituted into crisp, load-bearing trabeated shopfront fascias, pilasters, and plate-glass display windows beneath uniform entablatures.\n- **B. Center & Focal Architecture:** The prominent vertical anchor on the north side is the Italianate campanile bell tower of the former St George\u2019s Free Church (now Charlotte Baptist Chapel), designed by David Bryce (1869) with its 56-meter tower completed by Sir Robert Rowand Anderson (1881) inspired by the campanile of San Giorgio Maggiore. Rectified to absolute 90\u00b0 gravity plumb, it features classical belfry arcades, corniced entablatures, and an open stone loggia crown.\n- **C. Flanking Streetfronts:** \n  - *North / Right Flank:* 3-to-4 storey Victorian Free Renaissance and late Georgian ashlar tenements (including John McLachlan\u2019s 1879 design at Nos. 52\u201356). Regular rhythmic bays, bracketed cill courses, canted upper-floor oriel bays, pedimented attic dormers, cast-iron parapet balustrades, and steep pitched slate roofs with corniced ashlar chimney stacks.\n  - *South / Left Flank:* Continuous 3-to-4 storey classical ashlar tenement facades transitioning toward the sweeping arc of Atholl Crescent, featuring disciplined Georgian sash fenestration (twelve-pane and single-pane plate glass timber sashes) and pronounced stringcourses.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089294954765326,
+          55.94980881001517
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T20:40:48.852000+00:00",
+        "weather_state": "FOG",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 233.42,
+        "solar_elevation_deg": -10.09,
+        "shadow_azimuth_deg": 53.4,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

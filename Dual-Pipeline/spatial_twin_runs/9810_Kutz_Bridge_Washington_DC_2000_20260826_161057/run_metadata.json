@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_161057",
+  "address": "9810 Kutz Bridge, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 7991.84,
+  "telemetry": {
+    "latitude": 38.886997925865145,
+    "longitude": -77.03947747171868,
+    "altitude_agl": 130.5683784551074,
+    "heading": 54.04504076168059,
+    "pitch": -12.756891837369112,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with rear-left backlight (Sun Azimuth 261.7\u00b0, Elevation 6.5\u00b0), casting crisp directional shadows along 81.7\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm f/8 wide-angle lens on Kodak Ektar 100 fine-grain film. High-altitude perspective (130m AGL, heading northeast toward the National Mall and Federal Triangle) centered upon the towering, laser-straight vertical form of the Washington Monument. The obelisk's massive stone masonry features its distinct historical demarcation line at 152 feet, separating the lower calcitic, gently weathered Maryland marble from the lighter, creamy upper marble tier. \n\nAt the base, the circular granite flagstone plaza is encircled by 56 polished stainless steel flagpoles, nested within the sweeping geometric turf curves and crushed gravel footpaths of the monument grounds. To the left, the expansive Neoclassical limestone facades of the Federal Triangle, including the massive Herbert Hoover Building, display colossal colonnades, rusticated bases, and red terra-cotta tile roofs. To the right, formal allees of mature, leafy green American Elm trees flank the National Mall's lawn axis stretching toward the distant Capitol dome. \n\nAtmospheric illumination is cast by a low-angle golden hour sun (3200K amber glow) from the west-southwest, throwing an immense, sharp, elongated obelisk shadow across the green knoll toward the east-northeast. The civil environment is completely static and decluttered\u2014free of all pedestrians, cars, and transient waste\u2014revealing pure architectural geometry, authentic atmospheric stone patina, and corner-to-corner optical sharpness.",
+  "char_count": 1904,
+  "includes_lighting": true
+}

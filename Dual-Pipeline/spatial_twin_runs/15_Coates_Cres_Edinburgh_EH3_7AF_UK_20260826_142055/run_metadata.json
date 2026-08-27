@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_142055",
+  "address": "15 Coates Cres, Edinburgh EH3 7AF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8934.33,
+  "telemetry": {
+    "latitude": 55.948390965668224,
+    "longitude": -3.2132938190667826,
+    "altitude_agl": 141.2907273070621,
+    "heading": 285.81805653535184,
+    "pitch": -1.0747249352380708,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct front-lighting (Sun Azimuth 288.8\u00b0, Elevation -8.2\u00b0), casting crisp directional shadows along 108.8\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens, stopped down to f/8 on fine-grain ISO 100 color film, producing corner-to-corner rectilinear sharpness with zero barrel distortion. The composition presents an elevated westward perspective across the historic West End of Edinburgh. In the midground rises the monumental High Victorian Gothic form of St Mary\u2019s Episcopal Cathedral, its towering 90-meter central spire and dual western spires rendered with razor-sharp masonry lines, intricate crocketed pinnacles, pointed lancet fenestration, and heavy buttressing constructed of weathered buff and charcoal-tinged Craigleith sandstone ashlar. Westmorland blue-gray slate roofs, lead ridge flashings, and deep carved stone reveals exhibit authentic historical carbon deposition and rainwater weathering pathways. In the foreground and surrounding grid, four-to-five-storey Georgian and Victorian tenement blocks display planar, perfectly plumb sandstone ashlar facades, regular grids of timber sash-and-case windows, projecting eaves cornices, pitched slate roofs, and rhythmic masonry chimney stacks with terracotta pots. Mature, leafy sycamore, elm, and lime trees with delicate branch structures nestle naturally between stone garden enclosures. The entire urban fabric is completely decluttered\u2014devoid of all vehicles, pedestrians, and transient trash\u2014leaving only pristine Caithness flagstone footpaths, whinstone kerbs, and ornate black cast-iron railings.",
+  "char_count": 1871,
+  "includes_lighting": true
+}

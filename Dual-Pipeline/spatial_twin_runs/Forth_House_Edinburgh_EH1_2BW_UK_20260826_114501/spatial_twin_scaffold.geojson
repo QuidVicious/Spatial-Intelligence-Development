@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "Forth House, Edinburgh EH1 2BW, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 162.7,
+          "pitch_deg": -11.8,
+          "heading_deg": 319.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Subterranean Bedrock**: Underlain by Lower Carboniferous sedimentary rock formations of the Midland Valley of Scotland, interspersed with igneous dolerite intrusions.\n- **Indigenous Lithics**: The primary building stone is Early Carboniferous Craigleith Sandstone\u2014a dense, fine-to-medium grained quartz arenite celebrated for its exceptional load-bearing durability, paired with beds of Hailes Sandstone (characterised by fine carbonaceous micaceous laminations) across the flanking Georgian terraces.\n- **Mortar & Foundation Dynamics**: Historic hot-mixed non-hydraulic to weakly hydraulic lime mortars with sharp aggregate sand; deep foundations anchored into consolidated glacial till over sandstone bedrock with gentle descending topography toward the Water of Leith basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Canopy & Vegetation**: Dense urban deciduous tree cover in churchyard margins, private back-gardens, and distant public parks.\n- **Botanical Species**: Dominated by mature *Acer pseudoplatanus* (Sycamore), *Ulmus glabra* (Wych elm), *Betula pendula* (Silver birch), and *Tilia x europaea* (Common lime), rendered with intricate organic branching and full leafy summer canopies, fully disambiguated from adjacent masonry.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology & Layout**: Elevated northwest-facing perspective over Edinburgh's West End and New Town conservation fabric.\n- **Dominant Landmark**: St George's West Church (Category A listed; David Bryce 1867\u20131869, with the striking 56m Italianate campanile added by Sir Robert Rowand Anderson in 1879\u20131881, modeled on the Campanile of San Giorgio Maggiore in Venice). Features a towering rectilinear ashlar shaft crowned with an open belfry, pedimented loggia arcade, and a patinated copper-clad pyramidal spire.\n- **Flanking Residential/Commercial Grid**: Uniform 3- to 4-storey Classical/Georgian New Town tenement terraces and mews with slate-clad mansard roofs, continuous ashlar stringcourses, dentilled eaves cornices, pedimented doorpieces, and regular vertical ranks of multi-pane sash-and-case windows.\n- **Planar Rectification & Anti-Warp Protocol**: The Italianate campanile is plumbed to precise gravity-vertical alignment. Distorted mesh polygons along adjacent roof gables, zinc parapets, and mansard dormers are planed into crisp 90-degree geometric lines, level horizontal roof ridges, and true structural verticals.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092917616902716,
+          55.94858189245399
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T22:45:00+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 17.7,
+        "solar_azimuth_deg": 203.74,
+        "solar_elevation_deg": -20.93,
+        "shadow_azimuth_deg": 23.7,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

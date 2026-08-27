@@ -1,11 +1,11 @@
 """
 Atmosphere & Lighting Engine: Deterministic physical illumination and weather physics.
 Calculates NOAA solar ephemeris (Azimuth, Elevation, CCT, Lux), queries real-time live weather
-via Open-Meteo, and produces both natural sensory atmospheric descriptions and structured 3D strata.
+via Open-Meteo, and produces screen-space relighting and shadow-inversion directives.
 """
 
 import math
-from datetime import datetime, timezone, time as dtime
+from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass, asdict
 from enum import Enum
 from typing import Dict, Any, Optional, Tuple
@@ -32,20 +32,17 @@ class LightingState:
     """Strongly typed output contract for lighting & atmospheric state."""
     mode: LightingMode
     weather_mode: str
-    natural_description: str     # Evocative natural language description for domain/synthesis engines
-    prompt_directive: str        # Direct conditioning directive
-    geojson_stratum: Dict[str, Any]  # Stratum 7 for the spatial scaffold
-    metadata: Dict[str, Any]     # Raw numerical ephemeris & weather metrics
+    natural_description: str
+    prompt_directive: str
+    geojson_stratum: Dict[str, Any]
+    metadata: Dict[str, Any]
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 
 
 def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
-    """
-    Fetches real-time weather from Open-Meteo (free, global).
-    Maps WMO standard weather codes to standardized condition states.
-    """
+    """Fetches real-time weather from Open-Meteo."""
     url = (
         f"https://api.open-meteo.com/v1/forecast?latitude={lat:.4f}&longitude={lon:.4f}"
         f"&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,cloud_cover,wind_speed_10m"
@@ -145,25 +142,77 @@ def _compute_solar_position(lat: float, lon: float, dt_utc: datetime) -> Tuple[f
     return round(azimuth_deg, 2), round(elevation_deg, 2)
 
 
-def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float) -> str:
-    """Calculates relative sun direction against the camera view heading."""
+def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float) -> Dict[str, str]:
+    """
+    Translates NOAA solar angles into explicit screen-space 2D rendering instructions
+    relative to the camera heading.
+    """
     rel = (solar_azimuth - camera_heading) % 360.0
+
     if rel <= 22.5 or rel > 337.5:
-        return "direct front-lighting"
+        return {
+            "summary": "direct front-lighting (Sun directly behind observer)",
+            "screen_sun": "behind the camera",
+            "facade_lighting": "all visible front-facing facades and structures are fully illuminated",
+            "shadow_trajectory": "cast shadows fall directly away into the background behind objects",
+            "shadow_erasure": "Overwrite all left- or right-angled side shadows with flat terrain albedo."
+        }
     elif 22.5 < rel <= 67.5:
-        return "quarter-front light from camera-right"
+        return {
+            "summary": "quarter-front light from camera-right",
+            "screen_sun": "upper-right quadrant of the frame",
+            "facade_lighting": "right-facing facades and the right side of monuments are brightly lit; left-facing facades are shaded",
+            "shadow_trajectory": "cast shadows project diagonally to the LEFT across the ground",
+            "shadow_erasure": "Erase any pre-existing shadows on the right; render newly lit surfaces on the right."
+        }
     elif 67.5 < rel <= 112.5:
-        return "hard raking side-light from camera-right"
+        return {
+            "summary": "hard raking side-light from camera-right (East)",
+            "screen_sun": "directly at the RIGHT edge of the frame",
+            "facade_lighting": "all right-facing walls and the right side of the obelisk are in bright direct sun; left-facing walls are in deep shadow",
+            "shadow_trajectory": "long horizontal cast shadows project across the terrain to the LEFT",
+            "shadow_erasure": "Overwrite any pre-existing shadows on the right lawn with sunlit grass."
+        }
     elif 112.5 < rel <= 157.5:
-        return "rear-right backlight"
+        return {
+            "summary": "rear-right backlight",
+            "screen_sun": "in the background to the upper-right",
+            "facade_lighting": "structures are backlit silhouettes with bright rim lighting along right edges; front facades are in soft skylight",
+            "shadow_trajectory": "long cast shadows project forward toward the lower-LEFT of the frame",
+            "shadow_erasure": "Erase any sideways or rearward shadows from contradictory sun angles."
+        }
     elif 157.5 < rel <= 202.5:
-        return "direct backlighting with silhouetted facade profiles"
+        return {
+            "summary": "direct backlighting (Sun directly ahead near horizon)",
+            "screen_sun": "directly ahead in the center background",
+            "facade_lighting": "structures are backlit silhouettes with glowing halo rim light; all camera-facing surfaces are in shadow",
+            "shadow_trajectory": "long cast shadows project directly forward toward the observer/bottom of the frame",
+            "shadow_erasure": "Erase all sideways shadows; project all shadows forward."
+        }
     elif 202.5 < rel <= 247.5:
-        return "rear-left backlight"
+        return {
+            "summary": "rear-left backlight",
+            "screen_sun": "in the background to the upper-left",
+            "facade_lighting": "structures are backlit silhouettes with bright rim lighting along left edges; front facades are in soft skylight",
+            "shadow_trajectory": "long cast shadows project forward toward the lower-RIGHT of the frame",
+            "shadow_erasure": "Erase all pre-existing morning shadows cast to the left; project shadows toward the lower-right."
+        }
     elif 247.5 < rel <= 292.5:
-        return "hard raking side-light from camera-left"
-    else:
-        return "quarter-front light from camera-left"
+        return {
+            "summary": "hard raking side-light from camera-left (West)",
+            "screen_sun": "directly at the LEFT edge of the frame",
+            "facade_lighting": "all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow",
+            "shadow_trajectory": "long directional cast shadows project across the terrain to the RIGHT",
+            "shadow_erasure": "MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT."
+        }
+    else:  # 292.5 to 337.5
+        return {
+            "summary": "quarter-front light from camera-left (West)",
+            "screen_sun": "upper-left quadrant of the frame",
+            "facade_lighting": "left-facing facades and the left side of monuments are brightly lit; right-facing facades are shaded",
+            "shadow_trajectory": "cast shadows project diagonally to the RIGHT across the ground",
+            "shadow_erasure": "MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow toward the RIGHT."
+        }
 
 
 def _estimate_solar_cct_and_lux(elevation_deg: float) -> Tuple[int, int, str]:
@@ -174,9 +223,9 @@ def _estimate_solar_cct_and_lux(elevation_deg: float) -> Tuple[int, int, str]:
     elif elevation_deg > 10.0:
         return 4500, 35000, "Late afternoon / mid-morning raking sunlight with warm highlights"
     elif elevation_deg > 1.0:
-        return 3200, 12000, "Golden hour warm low-angle amber illumination with long shadows"
+        return 3000, 12000, "Golden hour warm low-angle amber sunset illumination with long shadows"
     elif elevation_deg > -6.0:
-        return 2400, 800, "Civil twilight blue hour with deep indigo ambient dome and soft shadows"
+        return 2200, 800, "Civil twilight blue hour with deep indigo ambient dome and soft shadows"
     else:
         return 2000, 5, "Night scene with celestial ambient illumination"
 
@@ -193,20 +242,25 @@ def resolve_lighting_state(
     weather_mode: str = "AUTO"
 ) -> LightingState:
     """
-    Sole authority for deterministic illumination, ephemeris calculations, and weather states.
+    Authoritative physical illumination, NOAA ephemeris, and screen-space relighting engine.
     """
-    # 1. Resolve DateTime
-    if timestamp_utc:
+
+    # 1. Resolve DateTime & Timezone
+    if date_str and time_of_day_hours is not None:
         try:
-            dt = datetime.fromisoformat(timestamp_utc.replace("Z", "+00:00"))
-        except Exception:
-            dt = datetime.now(timezone.utc)
-    elif date_str and time_of_day_hours is not None:
-        try:
+            tz_offset_hours = lon / 15.0
             d = datetime.strptime(date_str, "%Y-%m-%d").date()
             h = int(time_of_day_hours)
             m = int((time_of_day_hours - h) * 60)
-            dt = datetime.combine(d, dtime(hour=h, minute=m), tzinfo=timezone.utc)
+            s = int((((time_of_day_hours - h) * 60) - m) * 60)
+            local_dt = datetime(d.year, d.month, d.day, h, m, s)
+            dt = (local_dt - timedelta(hours=tz_offset_hours)).replace(tzinfo=timezone.utc)
+        except Exception as e:
+            print(f"[Time Warning] {e}")
+            dt = datetime.now(timezone.utc)
+    elif timestamp_utc:
+        try:
+            dt = datetime.fromisoformat(timestamp_utc.replace("Z", "+00:00"))
         except Exception:
             dt = datetime.now(timezone.utc)
     else:
@@ -236,7 +290,7 @@ def resolve_lighting_state(
     }
     weather_text = weather_descriptions.get(active_weather, weather_descriptions["SUNNY"])
 
-    # 3. Handle FLOODLIGHT Mode
+    # 3. FLOODLIGHT Mode
     if mode.upper() == LightingMode.FLOODLIGHT.value:
         natural_desc = (
             f"Pitch-black 0-lux night illuminated solely by a coaxial 5600K spotlight mounted at the observer viewpoint "
@@ -276,18 +330,26 @@ def resolve_lighting_state(
             metadata=metadata
         )
 
-    # 4. Handle SOLAR Mode (Default)
+    # 4. SOLAR Mode (Default)
     solar_azimuth, solar_elevation = _compute_solar_position(lat, lon, dt)
     cct, lux, epoch_desc = _estimate_solar_cct_and_lux(solar_elevation)
-    rel_light = _classify_relative_light_vector(solar_azimuth, camera_heading)
+    rel_map = _classify_relative_light_vector(solar_azimuth, camera_heading)
     shadow_azimuth = round((solar_azimuth + 180.0) % 360.0, 1)
 
     natural_desc = (
-        f"Calibrated {cct}K natural solar illumination ({epoch_desc}) with {rel_light} "
-        f"(Sun Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°), casting crisp directional shadows "
-        f"along {shadow_azimuth}°. {weather_text}"
+        f"Calibrated {cct}K natural solar illumination ({epoch_desc}) with {rel_map['summary']} "
+        f"(Sun Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°), casting directional shadows along {shadow_azimuth}°. {weather_text}"
     )
-    prompt_directive = f"DELIGHTING & SOLAR RELIGHTING: {natural_desc}"
+
+    # Screen-space relighting master directive
+    prompt_directive = (
+        f"SOLAR RELIGHTING DIRECTIVE ({cct}K {epoch_desc}):\n"
+        f"- SUN POSITION IN SCREEN SPACE: Sun is located {rel_map['screen_sun']} (Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°).\n"
+        f"- FACADE ILLUMINATION: {rel_map['facade_lighting']}.\n"
+        f"- CAST SHADOW DIRECTION: {rel_map['shadow_trajectory']}.\n"
+        f"- SHADOW OVERWRITE RULE: {rel_map['shadow_erasure']}\n"
+        f"- WEATHER/SKY: {weather_text}"
+    )
 
     geojson_stratum = {
         "type": "Feature",

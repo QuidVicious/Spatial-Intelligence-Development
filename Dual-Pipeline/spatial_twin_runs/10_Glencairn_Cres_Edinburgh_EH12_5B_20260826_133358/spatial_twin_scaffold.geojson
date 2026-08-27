@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "10 Glencairn Cres, Edinburgh EH12 5BS, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 146.1,
+          "pitch_deg": -2.7,
+          "heading_deg": 92.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology belongs to the Carboniferous Lower Oil-Shale Group (Gullane and Wardie Formations) overlain by dense glacial till. The dominant architectural lithic across the view is regional Carboniferous sandstone: fine-to-medium grained quartz arenite primarily quarried from Craigleith, Barnton Park, and Hailes quarries. Mortar chemistry across the Victorian and late-Georgian fabric is traditional non-hydraulic to feebly hydraulic hot-mixed lime mortar with locally graded river sand and crushed sandstone aggregate. Subterranean drainage flows down the topographical glacial ramp towards the Water of Leith basin to the north. In the background rises the volcanic plug of Castle Rock (olivine-basalt) and the Dalmeny crag-and-tail formation."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Urban woodland and private communal crescent gardens featuring mature broadleaf canopy trees:\n- *Acer pseudoplatanus* (Sycamore / Scottish Plane)\n- *Ulmus glabra* (Wych Elm)\n- *Fraxinus excelsior* (European Ash)\n- *Tilia x europaea* (Common Lime)\nCanopies are rendered as distinct, organic leafy foliage with natural branching structures, fully disambiguated from adjacent masonry.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Foreground / Lower Midground (Glencairn Crescent & West End Terraces):** High-Victorian and late-Georgian residential crescent tenements standing 3 to 4 storeys over raised basements with continuous rusticated ashlar plinths, molded string courses, canted bay windows, and steep mansard/pitched slate roofs punctuated by regularly spaced chimney stacks and pedimented dormers. Facades are strictly rectified into true gravity verticals with plumb fenestration planes.\n- **Centerpiece (St Mary's Episcopal Cathedral, designed by Sir George Gilbert Scott):** High Victorian Gothic Revival cathedral featuring a monumental 90m central crossing spire and twin west spires (the \"Mary\" and \"Barbara\" towers). The architectural massing comprises a cruciform nave, ribbed flying buttresses, lancet window groupings, and large carved rose windows. All three stone spires are geometrically plumbed with sharply delineated octagonal broaches and lucarnes.\n- **Background Flanking Structures:** Densely arrayed classical Georgian and Victorian New Town tenements interspersed with 20th-century institutional blocks, terminating against the elevated silhouette of Edinburgh Castle and the volcanic ridge.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2194957957300425,
+          55.94855248758411
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T19:12:52.678991+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 16.4,
+        "solar_azimuth_deg": 252.16,
+        "solar_elevation_deg": 0.85,
+        "shadow_azimuth_deg": 72.2,
+        "color_temperature_k": 2400,
+        "ambient_illuminance_lux": 800
+      }
+    }
+  ]
+}

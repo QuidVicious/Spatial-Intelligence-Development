@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_113923",
+  "address": "VXM7+CJ Washington, DC, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16461.83,
+  "telemetry": {
+    "latitude": 38.883575305647504,
+    "longitude": -77.03599113312589,
+    "altitude_agl": 292.196945969662,
+    "heading": 7.136252572284484,
+    "pitch": -24.0701427115115,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with hard raking side-light from camera-right (Sun Azimuth 90.2\u00b0, Elevation 16.9\u00b0), casting crisp directional shadows along 270.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium-format aerial photograph of the National Mall and the Washington Monument in Washington, D.C., captured on a Mamiya 7 with a 45mm wide-angle lens on Kodak Ektar 100 fine-grain film at f/8, corner-to-corner tack sharpness, corrected for perspective tilt with razor-sharp vertical planar rectification. In the center, the monumental 169-meter-tall Washington Monument obelisk rises plumb to the sky from its circular stone plaza, displaying the distinct subtle horizontal color shift at the 46-meter line between the lower historic Cockeysville marble courses and the upper marble shaft, showing realistic rain-wash channels and soft atmospheric stone patina. To the right and northeast, the monumental Beaux-Arts Indiana limestone facades of the Federal Triangle complex extend along Constitution Avenue with their grand Doric colonnades, rusticated plinths, and terracotta-red barrel-tiled hipped roofs, contrasted by the dark bronze filigree corona tiers of the National Museum of African American History and Culture. In the distance to the north, the tree-fringed green lawn of the Ellipse leads toward the White House grounds. The wide-angle perspective reveals lush, mature American elm allees, grand sycamores, and textured manicured lawns laced with curving gravel and asphalt pedestrian paths. Hard, clear, early-morning raking sunlight casts a long, sharp, dark directional shadow of the obelisk extending westward across the bright green expanse.",
+  "char_count": 1863,
+  "includes_lighting": true
+}

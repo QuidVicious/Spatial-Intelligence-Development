@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_134222",
+  "address": "13 Walker St, Edinburgh EH3 7NE, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10115.88,
+  "telemetry": {
+    "latitude": 55.94940188898314,
+    "longitude": -3.2128347806731545,
+    "altitude_agl": 131.46977316208233,
+    "heading": 100.08570969146199,
+    "pitch": 5.531033149218522,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-right backlight (Sun Azimuth 233.2\u00b0, Elevation -10.2\u00b0), casting crisp directional shadows along 53.2\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens on ISO 100 fine-grain film at f/8, corner-to-corner tack sharp optical fidelity. An elevated high-angle vista over the West End of Edinburgh looking East towards the imposing skyline. In the center rises the monumental Venetian Campanile of St George's West Church, constructed from fine-tooled grey Craigleith ashlar sandstone with classical pilasters, clock face, open round-arched belfry with stone urns, and a slender copper-clad spire weathered into pale verdigris green. In the center-left distance, the ancient volcanic basalt crag and fortress walls of Edinburgh Castle loom majestically under an overcast Scottish sky. The foreground and midground are filled with an intricate labyrinth of Victorian and Georgian tenement rooftops with dark Ballachulish slate shingles, dressed lead flashings, heavy stone parapets, and massive ashlar chimney stacks crowned with weathered terracotta pots. Facades display authentic historical patina with soft atmospheric carbon wash in stone reveals and softened joint lines. Completely static civil environment, devoid of people, cars, and transient clutter. Atmospheric soft omnidirectional 6500K diffuse skylight with deep tonal contrast and immense spatial depth.",
+  "char_count": 1723,
+  "includes_lighting": true
+}

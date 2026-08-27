@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_134743",
+  "address": "5 Saxe Coburg Pl, Edinburgh EH3 5BR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11849.83,
+  "telemetry": {
+    "latitude": 55.96005243891727,
+    "longitude": -3.209240865269564,
+    "altitude_agl": 109.63757566670931,
+    "heading": 183.82696373422132,
+    "pitch": -3.0336547257425908,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with hard raking side-light from camera-right (Sun Azimuth 293.6\u00b0, Elevation 7.7\u00b0), casting crisp directional shadows along 113.6\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens on Kodak Portra 160 fine-grain film, stopped down to f/8 for tack-sharp corner-to-corner fidelity. Elevated 109-meter southward panorama overlooking Stockbridge and Edinburgh\u2019s New Town from Saxe Coburg Place toward the Castle Rock skyline. \n\nIn the foreground and center, authentic Scottish Georgian and Victorian tenements rise 3 to 4 storeys in dressed Craigleith sandstone ashlar, displaying authentic historic coal-smoke carbon patination nestled in ornate window pediments and deep reveals, contrasted against clean rain-washed buff-grey ashlar planes. A Gothic Revival stone church tower with a sharply defined slate spire anchors the midground alongside disciplined rows of chimneystacks and Scotch slate roofs laid in diminishing courses. A multi-storey modern whitewashed rendered infill building provides material contrast with clean, planar geometry. \n\nIn the background, the rolling topography ascends toward the classical terraces of the New Town, the prominent copper dome of Charlotte Square, the distant gothic spires of St Mary's Cathedral, and the craggy basaltic massif of Edinburgh Castle standing starkly against the southern horizon. Nestled throughout the midground valley are dense, mature organic canopies of Wych elm, European beech, and sycamore trees, with intricate leafy foliage and natural branching patterns.",
+  "char_count": 1888,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "4 Palmerston Pl Ln, Edinburgh EH12 5AE, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 162.5,
+          "pitch_deg": -12.3,
+          "heading_deg": 3.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology of Edinburgh's West End rests upon sedimentary strata of the Lower Carboniferous Inverclyde and Strathclyde Groups, primarily composed of interbedded sandstone, siltstone, and mudstone overlain by glacial till. \n- **Primary Lithics:** The cathedral (St Mary's Episcopal Cathedral) and surrounding Victorian terraces are constructed of indigenous, silica-cemented pale buff to honey-gray Carboniferous sandstone, principally sourced from the historic Craigleith and Dunmore quarries.\n- **Mortar & Foundation:** Dense hydraulic lime mortar pointing with well-graded river aggregate, deeply anchored on consolidated boulder clay and bedrock dolerite intrusions. Subterranean moisture management relies on traditional stone box drains and perimeter French drains directing groundwater away from stone plinths towards the Water of Leith drainage basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Mature urban deciduous flora characteristic of Edinburgh parklands and private gardens:\n  - Specimen *Ulmus glabra* (Wych Elm) and *Acer pseudoplatanus* (Sycamore maple) flanking the cathedral grounds.\n  - *Tilia x europaea* (Common Lime) and *Betula pendula* (Silver Birch) with full, deeply articulated organic green foliage and natural branched canopies, disambiguated from adjacent masonry.\n  - Well-maintained turf lawn panels surrounding the cathedral foundation with low *Taxus baccata* (Yew) hedges and perennial undergrowth.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Centerpiece (St Mary's Episcopal Cathedral):** High Victorian Gothic Revival cathedral designed by Sir George Gilbert Scott (consecrated 1879, twin western spires completed 1917). Features a cruciform plan with a soaring central crossing spire (90m) and twin western towers (\"Barbara\" and \"Mary\") terminating in octagonal broach spires. Clerestory windows with lancet traceries, flying buttresses along the nave aisles, pinnacled gables, and steeply pitched pitched slate roofs over timber trusses.\n- **Surrounding Urban Fabric (Palmerston Place / West End Terraces):** 3- to 4-storey plus basement Victorian Classical and Renaissance townhouses/tenements (designed by John Lessels and Alexander White, c. 1870\u20131885). Characteristic canted bays, deep channelled ashlar ground floors, oversailing entrance platts with cast-iron balustrades, bracketed cill courses, dentilled eaves cornices, dormered mansard roofs, and prominent ashlar chimney stacks with clay chimney cans.\n- **Planar Rectification:** Strict vertical plumb alignment across all three cathedral spires and flanking tenement facades; anti-warp restoration eliminating photogrammetry polygon melt along roof valleys, lead flashings, and cornices.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216502210743838,
+          55.94709346016368
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T21:28:01.617576+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 222.66,
+        "solar_elevation_deg": -15.01,
+        "shadow_azimuth_deg": 42.7,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

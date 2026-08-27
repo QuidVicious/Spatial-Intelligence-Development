@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15 Coates Cres, Edinburgh EH3 7AF, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 151.0,
+          "pitch_deg": -5.5,
+          "heading_deg": 280.6,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean substrate consists of Lower Carboniferous sedimentary bedrock belonging to the Strathclyde Group (specifically the Gullane Formation), overlain by dense glacial till. The indigenous masonry across the vista is dominated by local Carboniferous quartz-arenite sandstones\u2014predominantly buff-to-honey-toned Craigleith \"liver rock\" ashlar and laminated Hailes grey/pink sandstone used for rubble backing and boundary works. Mortar chemistry is traditional non-hydraulic to feebly hydraulic hot-mixed lime mortar with local river sand aggregate, allowing natural moisture transpiration across the dense masonry envelopes. Subterranean moisture is managed by historic gravity stone culverts and sub-pavement lightwells typical of the Edinburgh New Town drainage topography."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The urban vegetation within the cathedral precinct and street gardens consists of mature, leafy deciduous trees:\n- Sycamore (*Acer pseudoplatanus*) and Wych Elm (*Ulmus glabra*) with expansive, organic branch canopies.\n- Broadleaf Lime (*Tilia platyphyllos*) and London Plane (*Platanus \u00d7 acerifolia*) providing dense crown foliage in garden plots.\n- Disambiguated fully from the masonry fabric: rich green, translucent organic foliage layers distinct from the rigid sandstone surfaces, set over manicured cathedral turf and ornamental perimeter hedging.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Centerpiece (St Mary\u2019s Episcopal Cathedral):** High Victorian Gothic Revival cathedral designed by Sir George Gilbert Scott (consecrated 1879; western spires completed 1917). The cruciform plan features a soaring 90-meter central crossing spire flanked by two western spires. Geometrically rectified with plumb vertical buttresses, flying buttresses, lancet window groupings, deeply recessed rose windows, gabled transepts, and steep-pitched slate nave roofs. Photogrammetric distortions on the spire facets, pinnacles, and pierced belfry louvers are rectified into crisp, laser-straight geometric masonry planes.\n- **Foreground & Flanking Fabric (Western New Town / Coates Crescent & Manor Place):** 3- to 4-storey plus attic and raised basement Georgian and early Victorian neoclassical tenements and terraced townhouses. Structural elevations feature laser-level horizontal string courses, continuous entablatures, rusticated ground floors, vertical ashlar load-bearing walls, regular multi-pane timber sash-and-case fenestration patterns, and pitched roofs articulated with regular stone chimney stacks with clay chimney pots and pedimented dormers.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2134043035571653,
+          55.948422933771475
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T17:12:51.217033+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 288.76,
+        "solar_elevation_deg": -8.25,
+        "shadow_azimuth_deg": 108.8,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_150019",
+  "address": "12 St & CONSTITUTION AVE NW nb, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9491.44,
+  "telemetry": {
+    "latitude": 38.891816888190306,
+    "longitude": -77.0277281952085,
+    "altitude_agl": 153.5861289835251,
+    "heading": 251.1660629726385,
+    "pitch": -10.768973949172414,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with quarter-front light from camera-right (Sun Azimuth 277.8\u00b0, Elevation 26.2\u00b0), casting crisp directional shadows along 97.8\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude medium format documentary photograph captured on 6x7 fine-grain color negative film with a 45mm architectural lens at f/8, shot from 153 meters AGL facing 251 degrees west-southwest across the National Mall in Washington, DC. \n\nIn the immediate foreground right stands the National Museum of African American History and Culture, its three-tiered inverted corona clad in detailed bronze-finished cast aluminum filigree screens, anchored over a structural glass base and a wide cantilevered porch canopy, its flat roof crisply displaying symmetrical photovoltaic panels. \n\nRising commandingly in the center is the 555-foot Washington Monument, perfectly plumb, showing its smooth-hewn ashlar marble shaft with a subtle horizontal tonal demarcation at the 152-foot level where the Maryland marble transitions quarry types. Crisp, long afternoon shadows extend along a 97.8-degree azimuth across the manicured green lawn of the monument knoll and its circular concentric pathways. \n\nTo the right, the grand classical Indiana limestone facade and red terracotta roof of the Federal Triangle complex frame the avenue. In the deep background, the linear axis reveals the World War II Memorial, the long mirror-like surface of the Reflecting Pool, the gleaming white neoclassical colonnade of the Lincoln Memorial, the Potomac River, and the forested Arlington ridge under an unblemished, crystal-clear 5400K daylight sky. \n\nEvery tree\u2014mature American elms, pin oaks, and London plane trees\u2014is rendered with distinct leafy organic volume and branching.",
+  "char_count": 1936,
+  "includes_lighting": true
+}

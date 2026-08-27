@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133103",
+  "address": "3 Eglinton Cres, Edinburgh EH12 5DH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9580.19,
+  "telemetry": {
+    "latitude": 55.94901899365226,
+    "longitude": -3.219428609596238,
+    "altitude_agl": 199.17045349720175,
+    "heading": 116.71792117461456,
+    "pitch": -10.531842176665615,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with direct front-lighting (Sun Azimuth 96.5\u00b0, Elevation 8.6\u00b0), casting crisp directional shadows along 276.6\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens, ISO 100 fine-grain color film, stopped down to f/8 for deep, corner-to-corner planar focus. High-altitude angled aerial perspective looking east-southeast over the West End of Edinburgh, Scotland. \n\nIn the immediate left and midground rises St Mary's Episcopal Cathedral, displaying its massive 90-meter central Gothic spire and twin western spires constructed of weathered, soot-patinated Craigleith sandstone ashlar with deep relief lancet windows, crocketed pinnacles, and dark slate roof pitches. Below and radiating across the view are perfectly plumb, four-storey Victorian sandstone tenement terraces and curved residential crescents with repetitive sash windows, moulded lintels, and prominent chimney stacks crowned with red-clay pots. \n\nThe background opens up toward the Exchange commercial district and culminates in the dramatic dark volcanic basalt crag of Castle Rock crowned by the historic ramparts of Edinburgh Castle under a pristine, open sky. \n\nMature green sycamore, birch, and lime trees with dense organic leafy canopies populate the private cathedral grounds and crescent garden enclosures. The entire urban scene is completely static and decluttered\u2014void of all cars, buses, pedestrians, and street rubbish\u2014leaving pristine asphalt avenues, Caithness stone pavements, and black wrought-iron railings.",
+  "char_count": 1793,
+  "includes_lighting": true
+}

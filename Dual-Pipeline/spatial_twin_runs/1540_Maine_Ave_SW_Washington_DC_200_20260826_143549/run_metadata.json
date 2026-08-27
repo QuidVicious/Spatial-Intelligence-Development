@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_143549",
+  "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10948.37,
+  "telemetry": {
+    "latitude": 38.885926550116366,
+    "longitude": -77.03559071302307,
+    "altitude_agl": 418.3984685368287,
+    "heading": 4.88895878387493,
+    "pitch": -46.28949720288432,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2400K natural solar illumination (Civil twilight blue hour with deep indigo ambient dome and soft shadows) with hard raking side-light from camera-left (Sun Azimuth 255.1\u00b0, Elevation -1.6\u00b0), casting crisp directional shadows along 75.1\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary aerial architectural photograph captured on a 6x7 medium format camera using a 45mm ultra-sharp wide-angle lens, ISO 100 fine-grain film, at f/8 for absolute edge-to-edge structural fidelity. The camera is oriented on a high-angle oblique frustum looking North over the Washington Monument grounds in Washington, D.C. At the center of the frame, the 555-foot Washington Monument stands perfectly plumb, its crisp four-sided pyramidal obelisk constructed of finely dressed Maryland Cockeysville and Texas white marble, subtly revealing the authentic historical color shift at the 152-foot mark. The surface shows realistic Mid-Atlantic atmospheric weathering with delicate mineral wash lines along fine lime mortar joints.\n\nThe base of the obelisk is enclosed by the concentric circular granite plaza, ringed by 56 slender stainless-steel flagpoles standing above crisp granite curbs and intersecting crushed aggregate paths. The surrounding Monument grounds are rendered as rich, manicured green turf with sweeping geometric lawn borders and mature, organic American elms and red oaks exhibiting leafy canopies and real wood branch structure.\n\nTo the upper right, the National Museum of African American History and Culture displays its distinct three-tiered inverted bronze-coated cast-aluminum corona lattice over dark architectural glass, perfectly rectangular and aligned, set alongside the Neoclassical limestone facades along Constitution Avenue.",
+  "char_count": 1857,
+  "includes_lighting": true
+}

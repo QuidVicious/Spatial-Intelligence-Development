@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_142637",
+  "address": "17 Grosvenor Cres, Edinburgh EH12 5EL, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9569.72,
+  "telemetry": {
+    "latitude": 55.94767007533221,
+    "longitude": -3.2195652983824745,
+    "altitude_agl": 204.73297702412472,
+    "heading": 60.97876073984888,
+    "pitch": -14.177883978801464,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with rear-left backlight (Sun Azimuth 292.5\u00b0, Elevation 26.9\u00b0), casting crisp directional shadows along 112.5\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude medium format architectural documentary photograph of Edinburgh's West End and St Mary's Episcopal Cathedral, looking northeast from Grosvenor Crescent towards the Firth of Forth and Edinburgh Castle under a crisp 5400K direct late-afternoon sun (26.9\u00b0 elevation, casting sharp directional shadows toward the southeast). \n\nIn the center rises the monumental Victorian Gothic Revival St Mary's Cathedral, its 90-meter central octagonal stone spire and twin western spires constructed from honey-buff and grey Craigleith sandstone, displaying deep historic soot weathering in sheltered Gothic arcades and crisp rain-washed masonry buttresses. Flanking the cathedral are sweeping crescent terraces of four-storey Victorian polished sandstone ashlar townhouses designed by John Chesser, featuring continuous dentilled cornices, balustraded parapets, segmental dormers, and slate roofs studded with uniform ashlar chimney pots. \n\nLush, mature, broadleaf sycamores, beeches, and manicured green cathedral lawns fill the open urban courtyards with distinct leafy foliage. The streets and crescent avenues are completely static and decluttered\u2014free of all vehicles and pedestrians\u2014revealing clean asphalt roadways, Caithness flagstone pavements, granite curbs, and ornate black cast-iron spear railings. The distant cityscape recedes with perfect geometric planar lines toward the Old Town ridge, Castle Rock, and the deep blue expanse of the Firth of Forth on the horizon.",
+  "char_count": 1839,
+  "includes_lighting": true
+}

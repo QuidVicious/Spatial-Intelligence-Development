@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114234",
+  "address": "Forth House, Edinburgh EH1 2BW, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10083.67,
+  "telemetry": {
+    "latitude": 55.94858189245399,
+    "longitude": -3.2092917616902716,
+    "altitude_agl": 162.69880480768822,
+    "heading": 319.9447782228651,
+    "pitch": -11.816751211112045,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with quarter-front light from camera-left (Sun Azimuth 255.6\u00b0, Elevation 3.1\u00b0), casting crisp directional shadows along 75.6\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of the West End urban landscape of Edinburgh, Scotland, centered on the towering 56-meter Venetian campanile and Romanesque-Baroque body of St George's West Church (Charlotte Chapel) on Shandwick Place, captured from an elevated perspective looking northwest toward the Corstorphine ridge. \n\nThe soaring square-plan sandstone bell tower rises through crisp vertical stages, featuring classical pedimented clock dials, an open colonnaded belfry gallery, and a slender octagonal pyramidal spire clad in seafoam-green verdigris-oxidized copper. The entire urban fabric is rectified to perfect planar geometry: vertical load-bearing lines plumb to gravity, flat horizontal eaves, crisp roof cornices, and razor-sharp slate hipped gables.\n\nThe buildings are constructed from authentic Scottish Carboniferous Craigleith blonde and Hailes grey ashlar sandstone, displaying authentic historic patina with deep soot-blackened carbon deposits in deep moldings, gentle rainwater wash striations down stone faces, and weathered lime mortar joints. Flanking Georgian and Victorian tenements showcase dark Scottish slate roofs, rhythmic rows of stone chimney stacks with ceramic pots, lead-flashed dormers, and multi-pane sash windows. In the immediate foreground, a red-brick tenement gable wall with sandstone quoins and lead-trimmed flat parapets shows subtle freeze-thaw surface texture.",
+  "char_count": 1868,
+  "includes_lighting": true
+}

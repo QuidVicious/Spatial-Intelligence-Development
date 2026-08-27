@@ -21,6 +21,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+from vision_preprocessor import delight_image
 
 # Load Environment
 env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
@@ -155,7 +156,6 @@ async def process_view(request: ProcessViewRequest):
         view_scope=scope,
         telemetry=telemetry,
         screenshot_b64=request.screenshot_b64,
-        lighting_description=lighting_state.natural_description,
         gemini_api_key=gemini_key
     )
     print(f"[Pipeline Stage 1/4] Domain Analysis Complete in {(time.perf_counter() - t_domain):.2f}s")
@@ -177,7 +177,13 @@ async def process_view(request: ProcessViewRequest):
         target_provider=request.provider,
         target_model=request.target_model
     )
-    print(f"[Pipeline Stage 3/4] Compiled Conditioning ({compiled.metadata['word_count']} words, Model: {compiled.target_model})")
+    print(f"[Pipeline Stage 3/4] Compiled Conditioning ({compiled.metadata.get('final_char_count', 0)} chars, Model: {compiled.target_model})")
+
+    # 5.5 Vision Preprocessor (CUDA Albedo Extraction)
+    t_pre = time.perf_counter()
+    print(f"[Pipeline Preprocessor] Scrubbing baked-in shadows via CUDA...")
+    delighted_b64 = delight_image(request.screenshot_b64) if request.screenshot_b64 else None
+    print(f"[Pipeline Preprocessor] Delighting Complete in {(time.perf_counter() - t_pre):.2f}s")
 
     # 6. Synthesis Engine (Gemini 2D or World Labs Marble 3D)
     t_synth = time.perf_counter()
@@ -186,7 +192,7 @@ async def process_view(request: ProcessViewRequest):
         prompt=compiled.prompt,
         provider=compiled.target_provider,
         model_name=compiled.target_model,
-        screenshot_b64=request.screenshot_b64,
+        screenshot_b64=delighted_b64,  # <--- PASSING THE SCRUBBED IMAGE HERE
         multi_view_images=request.multi_view_images,
         disable_recaption=request.disable_recaption,
         gemini_api_key=gemini_key,
@@ -197,6 +203,7 @@ async def process_view(request: ProcessViewRequest):
     total_latency_ms = (time.perf_counter() - pipeline_start) * 1000.0
 
     # 7. Persistence & Archive
+    # 7. Persistence & Archive
     try:
         run_folder_path = archive_run(
             telemetry=telemetry,
@@ -204,8 +211,9 @@ async def process_view(request: ProcessViewRequest):
             scaffold=scaffold,
             conditioning=compiled,
             synthesis_result=synthesis,
-            screenshot_b64=request.screenshot_b64
-        )
+            screenshot_b64=request.screenshot_b64,
+            delighted_b64=delighted_b64
+        )  
         run_record = {
             "status": "persisted",
             "path": run_folder_path,

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_135031",
+  "address": "12 Marchmont Cres, Edinburgh EH9 1HN, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10353.13,
+  "telemetry": {
+    "latitude": 55.93895370071131,
+    "longitude": -3.193655412697171,
+    "altitude_agl": 224.05048758057185,
+    "heading": 164.20162156537575,
+    "pitch": -39.50669033461904,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with direct backlighting with silhouetted facade profiles (Sun Azimuth 347.2\u00b0, Elevation 12.4\u00b0), casting crisp directional shadows along 167.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with 45mm ultra-wide lens on Kodak Ektar 100 fine-grain film, stopped down to f/8 for deep, corner-to-corner tack sharpness. High-angle oblique perspective over the curving Victorian tenement streetscape of Marchmont Crescent, Edinburgh. The imposing four-storey Scots Baronial tenements display impeccably rectified, laser-plumb vertical load-bearing facades of honey-buff and grey Craigleith/Hailes snecked sandstone, adorned with full-height multi-faceted canted bay windows, conical-roofed corner turrets, crow-stepped gableheads, and robust corbelled bands. Weathered scotch slate roofs with lead flashing, flat mansard skylights, and tall ashlar mutual chimneys bristling with terracotta flue pots pierce the skyline. Authentic historic soot patina, rain-wash striations, and subtle gypsum deposits accent the sheltered masonry reveals. Mature sycamore and lime trees with lush, organic green leaves emerge from rear shared drying greens and the corner pavement. Crisp raking late afternoon sunlight strikes the facades at a low angle, casting elongated sharp shadows across the clean, empty asphalt carriageway and granite kerbed pavements. The scene is completely devoid of pedestrians and vehicles, presenting a pristine, silent, documentary record of Scottish historic urban fabric.",
+  "char_count": 1765,
+  "includes_lighting": true
+}

@@ -1,6 +1,7 @@
 """
 Synthesis Engine: Multi-Provider Generation Hub for 2D Visual Twins and 3D Worlds.
 Supports Google Gemini Image Models and World Labs Marble 3D World API (with disable_recaption).
+Includes strict frame-edge clipping invariance to prevent aesthetic landmark re-centering.
 """
 
 import os
@@ -45,18 +46,20 @@ def synthesize_gemini_image(
     prompt: str,
     screenshot_b64: Optional[str] = None,
     model_name: str = "gemini-3.1-flash-image",
-    temperature: float = 0.35,
-    top_p: float = 0.85,
+    temperature: float = 0.0,
     gemini_api_key: Optional[str] = None
 ) -> SynthesisResult:
-    """Dispatches prompt and optional reference image to Gemini Image Generation."""
+    """
+    Dispatches prompt and reference image to Gemini with strict camera and edge-boundary locking.
+    """
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
 
     start_time = time.perf_counter()
-    parts: List[Dict[str, Any]] = [{"text": prompt}]
+    parts: List[Dict[str, Any]] = []
 
+    # 1. Image FIRST: Anchors spatial geometry before text token parsing
     if screenshot_b64:
         raw_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
         parts.append({
@@ -65,13 +68,27 @@ def synthesize_gemini_image(
                 "data": raw_b64
             }
         })
+        # 2. Strict spatial invariance + frame-edge clipping lock
+        lockdown_prompt = (
+            "[TASK: STRICT CAMERA, PERSPECTIVE & FRAME-EDGE RELIGHTING]\n"
+            "The attached reference image is the IMMUTABLE ground truth for camera position, pitch, heading, field of view, and building silhouettes.\n"
+            "MANDATE:\n"
+            "1. DO NOT move, pan, tilt, zoom, rotate, or re-frame the camera perspective.\n"
+            "2. FRAME-EDGE CLIPPING LOCK: If any landmark, building, or background element is partially clipped, cropped, or situated at the edge of the frame in the reference image, it MUST remain clipped at the exact same pixel coordinates. DO NOT shift, complete, or re-center objects for aesthetic balance.\n"
+            "3. Retain all structural massing and horizons exactly as framed.\n"
+            "4. Apply only the following lighting, atmospheric, and material updates directly onto the existing geometry:\n\n"
+            f"{prompt}"
+        )
+        parts.append({"text": lockdown_prompt})
+    else:
+        parts.append({"text": prompt})
 
+    # 3. Deterministic sampling config (temp 0.0)
     payload = {
         "contents": [{"parts": parts}],
         "generationConfig": {
             "responseModalities": ["TEXT", "IMAGE"],
-            "temperature": temperature,
-            "topP": top_p
+            "temperature": temperature
         }
     }
 
@@ -118,8 +135,8 @@ def synthesize_worldlabs_marble(
     visual_input: Optional[Union[str, List[str]]] = None,
     input_type: str = "text",   # "text", "image", "pano", "multi_image"
     display_name: str = "Spatial Twin World",
-    model_name: str = "marble-1.1",
-    disable_recaption: bool = True,  # <-- ENFORCES ORIGINAL PROMPT INTEGRITY
+    model_name: str = "marble-1.1-plus",
+    disable_recaption: bool = True,
     poll_interval: float = 4.0,
     max_wait_sec: float = 300.0,
     world_labs_api_key: Optional[str] = None
@@ -142,7 +159,6 @@ def synthesize_worldlabs_marble(
         "Content-Type": "application/json"
     }
 
-    # Build world_prompt object with explicit disable_recaption flag
     world_prompt: Dict[str, Any] = {
         "disable_recaption": disable_recaption
     }
@@ -184,7 +200,6 @@ def synthesize_worldlabs_marble(
     operation_id = init_json.get("operation_id") or init_json.get("id")
     poll_url = init_json.get("operation_url") or f"{base_url}/operations/{operation_id}"
 
-    # Poll operation status
     elapsed = 0.0
     while elapsed < max_wait_sec:
         time.sleep(poll_interval)
@@ -236,13 +251,11 @@ def synthesize_twin(
     gemini_api_key: Optional[str] = None,
     world_labs_api_key: Optional[str] = None
 ) -> SynthesisResult:
-    """
-    Central dispatcher routing synthesis requests to the appropriate generative backend.
-    """
+    """Central dispatcher routing synthesis requests to the appropriate generative backend."""
     prov = ModelProvider(provider) if isinstance(provider, str) else provider
 
     if prov == ModelProvider.WORLD_LABS:
-        target_model = model_name or "marble-1.1"
+        target_model = model_name or "marble-1.1-plus"
         input_type = "multi_image" if multi_view_images else ("image" if screenshot_b64 else "text")
         visual_data = multi_view_images if multi_view_images else screenshot_b64
 

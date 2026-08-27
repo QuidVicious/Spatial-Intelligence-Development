@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_112427",
+  "address": "VXP5+5X Washington, DC, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10946.92,
+  "telemetry": {
+    "latitude": 38.88543858587802,
+    "longitude": -77.04007856363557,
+    "altitude_agl": 84.24419751160355,
+    "heading": 41.17182114332651,
+    "pitch": -4.277913591340818,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-right backlight (Sun Azimuth 154.7\u00b0, Elevation -36.8\u00b0), casting crisp directional shadows along 334.7\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens, Kodak Ektar 100 fine-grain film, stopped down to f/8 for absolute corner-to-corner planar sharpness. High-angle aerial perspective looking northeast across the National Mall toward the Washington Monument and the Federal Triangle in Washington, D.C. \n\nThe Washington Monument rises as a pristine, laser-plumbed 555-foot marble obelisk at the center of the frame, its four tapering faces displaying razor-sharp geometry against an expansive, haze-free azure sky. The lower 152 feet of coarse-grained Texas Maryland marble exhibit an authentic historic weathered patina with warm gray-cream undertones, precisely shifting at the horizontal construction line to the slightly lighter, fine-grained Cockeysville dolomitic marble above. A crisp, dramatic shadow cuts diagonally northwest across the manicured green lawn of the elliptical knoll. Surrounding the circular granite base, fifty steel flagpoles stand equidistant in static alignment.\n\nBeyond the greensward, the grand neoclassical limestone administrative massing of Federal Triangle spans the midground, featuring planar Indiana limestone facades with colonnaded porticos, deep-set punched windows, and pitched hipped roofs of weathered red terracotta barrel tiles. In the far left and background, the low, height-regulated urban grid of Washington extends to the horizon with rectified horizontal parapets and crisp building corners.",
+  "char_count": 1847,
+  "includes_lighting": true
+}
