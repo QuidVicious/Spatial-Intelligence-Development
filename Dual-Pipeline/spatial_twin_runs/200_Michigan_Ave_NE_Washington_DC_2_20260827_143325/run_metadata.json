@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_143325",
+  "address": "200 Michigan Ave NE, Washington, DC 20017, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8298.6,
+  "telemetry": {
+    "latitude": 38.930471620085044,
+    "longitude": -77.00345041433837,
+    "altitude_agl": 132.48308519093462,
+    "heading": 37.31829345515652,
+    "pitch": -12.483400943171668,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-left (Azimuth 270.2\u00b0, Elevation 16.6\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along left edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-RIGHT of the frame.\n- SHADOW OVERWRITE RULE: Erase all pre-existing morning shadows cast to the left; project shadows toward the lower-right.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural photograph, 6x7 documentary framing, 45mm wide-angle lens, sharp edge-to-edge optical resolution. An expansive high-angle view looking northeast across the campus of the Catholic University of America, centered on the imposing Byzantine-Romanesque Basilica of the National Shrine of the Immaculate Conception. The basilica is constructed from fine-tooled ashlar Indiana limestone and structural brick masonry, crowned by a massive 108-foot diameter polychrome glazed ceramic dome patterned in vibrant cobalt blue, gold, and white tiles, flanked by the 329-foot multi-tiered limestone campanile. Roofs are clad in traditional red terra-cotta barrel tiles with lead flashing and weathered copper downspouts showing faint verdigris patina. In the surrounding grounds, Collegiate Gothic and Romanesque academic halls feature coursed grey granite and red brick facades. The paved vehicular roundabouts, access roads, and wide limestone south plaza are entirely vacant and pristine, devoid of all cars, traffic, and people. Surrounding grounds and residential neighborhoods dissolve into a dense, mature urban canopy of white oaks, willow oaks, tulip poplars, and American sycamores with deep leafy green foliage and organic branch structures.",
+  "char_count": 1966,
+  "includes_lighting": true
+}

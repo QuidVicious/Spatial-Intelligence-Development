@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_120810",
+  "address": "26 London St, Edinburgh EH3 6NA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11523.24,
+  "telemetry": {
+    "latitude": 55.95908065973179,
+    "longitude": -3.192176846847062,
+    "altitude_agl": 101.36261824092824,
+    "heading": 254.88987275330055,
+    "pitch": -4.248292538926218,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (2200K Civil twilight blue hour with deep indigo ambient dome and soft shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-right quadrant of the frame (Azimuth 302.8\u00b0, Elevation 0.4\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of towers/spires are brightly lit; left-facing surfaces are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase any pre-existing shadows on the right; cast all new shadows toward the LEFT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 documentary architectural plate, looking west down London Street, Edinburgh New Town. Rectilinear wide-angle one-point perspective flanked by symmetrical 1820s Georgian residential terraces of three storeys over sunken basement lightwells. Facades constructed from finely dressed Craigleith buff ashlar sandstone, featuring deep horizontal channelled rustication at ground floor and smooth ashlar on upper storeys, subdivided by continuous moulded stringcourses, dentiled eaves cornices, and solid blocking courses.",
+  "char_count": 2107,
+  "includes_lighting": false
+}

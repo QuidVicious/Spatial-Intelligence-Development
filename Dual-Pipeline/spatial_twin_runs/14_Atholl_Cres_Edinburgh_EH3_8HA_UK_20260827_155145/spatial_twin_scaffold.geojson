@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "14 Atholl Cres, Edinburgh EH3 8HA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 154.0,
+          "pitch_deg": -5.0,
+          "heading_deg": 41.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The underlying terrain is anchored in the Lower Carboniferous Gullane and Wardie Formations of the Strathclyde Group, comprising interbedded pale sandstones, siltstones, and mudstones overlain by glacial till. The primary structural load-bearing lithology throughout the terraces and civic structures is indigenous Craigleith and Hailes quartzose sandstone (fine-to-medium-grained Carboniferous sandstone), alongside select West Lothian buff sandstone. Mortar composition is historic non-hydraulic to semi-hydraulic hot-mixed lime pointing (calcium carbonate matrices with sharp river sand aggregates). Natural subterranean drainage slopes northeastward toward the Water of Leith basin, regulated by subterranean stone culverts and gravity-fed Victorian storm drains."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Urban municipal and crescent park planting includes mature Broadleaf deciduous specimens:\n- European Sycamore (*Acer pseudoplatanus*)\n- Wych Elm (*Ulmus glabra*)\n- English Oak (*Quercus robur*)\n- Common Lime (*Tilia x europaea*)\nCanopies exhibit rich, naturalized leafy branching forms flanking Atholl Crescent gardens in the lower foreground corners, clearly articulated as organic biomass separate from adjacent stone facades.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "A high-angle urban corridor view facing northeast (azimuth ~41\u00b0) along the Shandwick Place / Atholl Place axis into Edinburgh's West End and New Town. \n- Foreground Left & Right: Classical Georgian and Victorian ashlar stone residential/commercial terraces (Atholl Crescent and Coates Crescent periphery), rising 3 to 4 storeys plus mansard/attic levels with dormers, rusticated basements, timber sash-and-case fenestration (twelve-pane and four-pane configurations), and prominent arrays of rectangular ashlar chimney stacks with terracotta pots.\n- Midground Focal Landmark: St George\u2019s West Church (David Bryce, 1867\u20131869) on Shandwick Place/Stafford Street, featuring a commanding 56-metre Venetian Romanesque/Baroque campanile tower (Sir Robert Rowand Anderson, 1879\u20131881) with a four-stage ashlar shaft, clock faces, open octagonal belfry, and a verdigris-oxidized copper pyramidal spire.\n- Deep Background: The Neoclassical oxidized copper dome and drum of West Register House (Robert Reid, former St George's Church, Charlotte Square) visible to the left background, leading across the dense slate-roofed planar urban grid toward the distant Firth of Forth horizon.\n- Geometry & Alignment: Vertical masonry walls, corner rustication, projecting belt courses, dentilled entablatures, and streetcar/tram track lines aligned in plumb vertical perspective and true horizontal planes.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2123554517181803,
+          55.94800515647073
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T20:06:49.965308+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 240.94,
+        "solar_elevation_deg": -6.42,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "Princes Street Gardens, Princes St., Edinburgh EH2 2HG, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 153.4,
+          "pitch_deg": -6.9,
+          "heading_deg": 6.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock & Subterranean Foundation: Lower Carboniferous (Tournaisian\u2013Visean) sedimentary strata of the Gullane Formation (calciferous sandstone measures) interspersed with Lower Carboniferous volcanic dolerite sills and basalt plugs (Castle Rock crag-and-tail system).\n- Site Lithology: Glacially gouged hollow of the former Nor' Loch filled with deep lacustrine silt, peat, and post-glacial till. Overlying artificial geotechnical embankment: The Mound, composed of over 1.5 million cubic yards of earth, shale, and quarried spoil excavated from New Town foundations between 1781 and 1830.\n- Masonry Lithics: Pale grey-to-buff fine-grained quartz-arenite Craigleith Sandstone (Lower Oil-Shale Group) with silica cement; auxiliary red Permo-Triassic sandstones (Locharbriggs/Corsehill) on late-Victorian commercial facades; dark quartz-dolerite setts on historic roadway pavements.\n- Mortar Chemistry: Traditional non-hydraulic high-calcium hot-mixed slaked lime (quicklime and river sand) in Georgian/Victorian masonry joints; modern Portland cement grouting in twentieth-century retaining structures.\n- Hydrology: Deep subsurface culverting draining the historical Tummel Burn and Nor' Loch basin toward the Firth of Forth."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Princes Street Gardens Flora:\n  - Canopy Dominants: *Ulmus glabra* (Wych Elm), *Acer pseudoplatanus* (Sycamore Maple), *Fagus sylvatica* (European Beech), *Tilia \u00d7 europaea* (Common Lime), and *Castanea sativa* (Sweet Chestnut).\n  - Sub-canopy/Ornamental: *Betula pendula* (Silver Birch), *Prunus serrulata*, and manicured rhododendron shrubberies.\n- Phenology (Late Summer / August): Dense, fully mature, deep-green canopy foliage with slight early chlorosis on sun-exposed sycamore leaf margins; robust, heavy foliage massing obscuring the lower terraced slopes of the Nor' Loch valley.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typologies & Stylistic Diversity:\n  - Fore/Mid-Ground (The Mound): Greek Revival institutional temples. William Henry Playfair's Royal Scottish Academy (RSA, 1826\u20131836; Doric octastyle peripteral temple with pedimented portico and seated statue of Queen Victoria) and Scottish National Gallery (1850\u20131859; flanking Ionic hexastyle colonnades).\n  - Princes Street (North Frontage): Linear commercial terrace displaying mixed Neo-Jacobean/Renaissance Revival (Jenners department store, 6 storeys with octagonal corner spires and stepped gables), late Georgian ashlar facades (4 storeys, classical entablatures), and mid-to-late 20th-century commercial infill (4\u20135 storeys, reinforced concrete post-and-lintel frames, brutalist ribbon windows, anodized aluminium mullions, flat slab roofs).\n  - Background Urban Grid: Georgian New Town 3-to-4-storey classical tenements, punctuated by the 168-foot neoclassical spire of St Andrew's and St George's West Church (George Street) and the Melville Monument fluted column in St Andrew Square.\n- Planar Rectification & Geometry: Fully plumbed vertical peristyle columns, rectified horizontal architraves, planar roof lanterns/skylights on the RSA, sharpened parapet lines, and rigid orthogonal fenestration grids across Princes Street.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.196807851347763,
+          55.95009638151887
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T18:41:34.842000+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.7,
+        "solar_azimuth_deg": 258.84,
+        "solar_elevation_deg": 4.42,
+        "shadow_azimuth_deg": 78.8,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

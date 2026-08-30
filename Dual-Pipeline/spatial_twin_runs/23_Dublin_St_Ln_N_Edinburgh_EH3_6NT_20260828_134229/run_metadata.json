@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_134229",
+  "address": "23 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13392.27,
+  "telemetry": {
+    "latitude": 55.957949805125686,
+    "longitude": -3.192823445069596,
+    "altitude_agl": 153.06013870711564,
+    "heading": 303.54888161174665,
+    "pitch": -25.48780859177739,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & STATIC RECTIFICATION CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar course must remain razor-sharp and structurally intact. Zero geometric melting or smoothing.\n- STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, wheelie bins, and temporary street clutter from the seed image. Repaint the carriageway with authentic road surfacing, whinstone kerbs, and clean flagstone pavements.\n- OPTICAL DEPTH: Pin-sharp infinite depth of field (f/11). Zero lens blur or tilt-shift across foreground and background.\n- ILLUMINATION REPAINT: Discard seed image luminance; repaint all shadows strictly from the solar vector below.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING (4500K Late afternoon raking sunlight with warm golden highlights): Sun in upper-right quadrant (Azimuth 351.8\u00b0, Elevation 16.5\u00b0). right-facing facades lit, left-facing shaded. shadows cast diagonally to LEFT. Erase right shadows; cast new shadows to LEFT. Weather: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nHigh-angle 6x7 medium format architectural documentary survey of Drummond Place, Edinburgh. Symmetrical curved Georgian residential terraces enclosing a central oval garden square. 3-to-4-storey classical facades constructed from pale buff Craigleith ashlar sandstone, featuring channelled rustication at ground floor, polished upper ashlar, molded stringcourses, projecting mutule cornices, and parapets. Vertical fenestration aligned in precise grids of white-painted timber sash-and-case windows (6-over-6 pane). Pitched roofs clad in dark grey Scotch slate with droved stone skews, prominent ashlar chimney stacks, and terracotta chimney pots. Perimeter enclosed by decorative cast-iron spearhead railings set into dressed sandstone dwarf walls. Roadways paved with authentic dark basalt and whinstone cobblestone setts bordered by Caithness flagstone pavements and granite kerbs.",
+  "char_count": 2175,
+  "includes_lighting": false
+}

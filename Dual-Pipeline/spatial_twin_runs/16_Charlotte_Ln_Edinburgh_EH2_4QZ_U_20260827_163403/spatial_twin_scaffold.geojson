@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "16 Charlotte Ln, Edinburgh EH2 4QZ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 171.3,
+          "pitch_deg": -41.9,
+          "heading_deg": 323.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology of Edinburgh's West End comprises Lower Carboniferous sedimentary formations of the Strathclyde and Inverclyde Groups, dominated by sandstones, siltstones, and mudstones overlain by dense glacial till (boulder clay). Primary structural load-bearing envelopes and ashlar elements are quarried from indigenous Craigleith and Hailes pale blonde-to-buff Carboniferous sandstones, bonded with traditional non-hydraulic to weakly hydraulic lime mortar (slaked quicklime and sharp siliceous sand aggregate). Ground carriage paths and lane setts are composed of durable Whinstone (quartz-dolerite/basalt) paving blocks, directing surface run-off along perimeter stone channels into municipal subsurface culverts."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Sparse, managed urban ecology featuring isolated mature broadleaf street trees (such as *Acer pseudoplatanus* / Sycamore and *Betula pendula* / Silver Birch) visible within rear courtyard enclosures and along lane margins, displaying rich, natural leafy canopies and fine organic branching patterns clearly differentiated from stone masonry.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "A high-density urban intersection situated within Edinburgh\u2019s New Town conservation area, showcasing late Georgian neoclassical terrace tenements seamlessly juxtaposed against late Victorian revivalist corner architecture.\n- Northwest Terraced Block (Charlotte Lane / Hope Street Lane): Unified 3-to-4 storey plus basement Georgian ashlar tenement facade; rigorously rectilinear floor plates; regular rhythm of 12-over-12 and 6-over-6 timber sash and case windows; rusticated/channelled ashlar ground storey with projecting string courses; mansard-style slate roof plane broken by regular gabled and lead-cheeked dormers.\n- Corner Structure (Centre): A 3-storey late 19th-century Old English / Tudor-revivalist pavilion corner block; masonry-framed ground floor public house frontage featuring pilasters and heavy lintels; upper storeys characterized by decorative exposed half-timbering with diagonal bracing and rendered infill panels; steeply pitched red clay pantile/terracotta multi-gabled roof punctuated by tall, rectilinear red-brick chimney stacks and decorative bargeboards.\n- Foreground and Adjacent Blocks: Straightened multi-storey ashlar New Town domestic and institutional tenements with prominent parapets, corniced eaves courses, dressed chimney heads with terracotta pots, and a circular lead-clad dome/cupola pavilion atop the rightmost roofscape.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209181106585179,
+          55.95107308404873
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T18:45:50.203466+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 257.84,
+        "solar_elevation_deg": 4.17,
+        "shadow_azimuth_deg": 77.8,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

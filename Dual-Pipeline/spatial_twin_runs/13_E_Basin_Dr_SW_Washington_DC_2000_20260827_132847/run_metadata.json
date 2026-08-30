@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_132847",
+  "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10940.44,
+  "telemetry": {
+    "latitude": 38.879370948020764,
+    "longitude": -77.03673268423398,
+    "altitude_agl": 43.66294066290241,
+    "heading": 9.491699947700052,
+    "pitch": -14.858153287314178,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 272.6\u00b0, Elevation 19.6\u00b0).\n- FACADE ILLUMINATION: all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary-grade 6x7 medium format architectural photograph capturing an elevated panoramic view of the Thomas Jefferson Memorial on the south shore of the Tidal Basin in Washington, D.C. In the center midground, the classical circular rotunda and north-facing portico stand plumb and pristine, constructed from bright Vermont Imperial Danby white marble with finely fluted Ionic columns, deep dentiled cornices, and a stepped circular marble dome. The monument rests on a multi-tiered circular plinth of axed Georgia granite with broad stone steps leading down to concentric pathways. Subtle atmospheric weathering and mineral patina highlight the marble fluting and cornice recesses. Enclosing the structure are lush green lawn berms, manicured evergreen boxwood hedges, and dense clusters of mature leafy cherry trees (*Prunus \u00d7 yedoensis*), willow oaks, and elms displaying natural branching and intricate foliage. Across the deep, calm dark water of the Tidal Basin in the background stretches the distant treeline of the National Mall, with the marble facade of the Federal Triangle buildings and the upright stone shaft of the Washington Monument visible in sharp, unwarped perspective.",
+  "char_count": 1995,
+  "includes_lighting": true
+}

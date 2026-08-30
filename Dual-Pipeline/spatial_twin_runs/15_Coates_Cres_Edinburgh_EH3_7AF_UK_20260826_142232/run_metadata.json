@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_142232",
+  "address": "15 Coates Cres, Edinburgh EH3 7AF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9904.26,
+  "telemetry": {
+    "latitude": 55.948422933771475,
+    "longitude": -3.2134043035571653,
+    "altitude_agl": 151.0391554436656,
+    "heading": 280.5893571950486,
+    "pitch": -5.47187256518766,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct front-lighting (Sun Azimuth 288.8\u00b0, Elevation -8.2\u00b0), casting crisp directional shadows along 108.8\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph captured on a Mamiya 7 with an ultra-sharp 45mm lens at f/8, fine grain ISO 100 film, deep focus from foreground to horizon. An elevated western vista over Edinburgh's West End, looking toward the magnificent Victorian Gothic Revival St Mary's Episcopal Cathedral. The cathedral's three monumental stone spires\u2014the towering 90m central crossing spire and twin western spires\u2014rise with plumb vertical perfection into a clear, crisp sky. The nave and transepts are constructed of weathered buff and grey Craigleith sandstone ashlar with steep grey-black Scottish slate roofs, punctuated by sharp lancet arches and intricate rose windows. In the foreground and surrounding blocks, Georgian and Victorian residential stone tenements and terraced townhouses display precise horizontal string courses, authentic multi-pane sash windows, intact stone chimney stacks with ceramic pots, and slate mansard roofs. Authentic historical environmental patina is evident: dark soot crusting settled in carved stone recesses and under cornices, vertical rain-wash paths on stone facades, and subtle biological moss along damp sandstone base courses. Mature green sycamore, lime, and elm trees with leafy canopies frame the churchyard. The scene is completely decluttered of all cars, vehicles, people, and modern street clutter, preserving only static stone curbs, cast-iron railings, and antique lampposts under directional, crisp, natural daylight.",
+  "char_count": 1837,
+  "includes_lighting": true
+}

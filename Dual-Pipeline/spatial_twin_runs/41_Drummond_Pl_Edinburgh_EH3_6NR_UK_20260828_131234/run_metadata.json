@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_131234",
+  "address": "41 Drummond Pl, Edinburgh EH3 6NR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12662.52,
+  "telemetry": {
+    "latitude": 55.958207887485244,
+    "longitude": -3.193407191979022,
+    "altitude_agl": 127.0372047300168,
+    "heading": 306.8849830817478,
+    "pitch": -19.207493184839283,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly behind the camera (Azimuth 313.0\u00b0, Elevation 5.7\u00b0).\n- FACADE ILLUMINATION: all visible front-facing facades, towers, and walls are in bright direct illumination.\n- CAST SHADOW DIRECTION: cast shadows fall directly away into the background behind structures.\n- SHADOW OVERWRITE RULE: MANDATORY: Overwrite all lateral and sideways shadows with illuminated terrain albedo.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nHigh-angle 6x7 medium format architectural documentary survey overlooking Drummond Place, Edinburgh. In foreground, dense interlocking broadleaf canopy of Drummond Place Gardens featuring mature Ulmus glabra, Fagus sylvatica, Acer pseudoplatanus, and Tilia europaea with full late-summer dark green foliage and heavy leaf volume. Beyond the tree line, rectified Georgian neoclassical residential terrace and pavilions designed by Reid and Sibbald, constructed from pale buff Craigleith quartzose sandstone ashlar.",
+  "char_count": 2055,
+  "includes_lighting": false
+}

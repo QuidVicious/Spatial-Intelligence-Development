@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155244",
+  "address": "14 Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11180.56,
+  "telemetry": {
+    "latitude": 55.94800515647073,
+    "longitude": -3.2123554517181803,
+    "altitude_agl": 154.01082258091873,
+    "heading": 41.19692555579497,
+    "pitch": -4.980557006051829,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-left (Azimuth 257.8\u00b0, Elevation 4.2\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along left edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-RIGHT of the frame.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase all pre-existing morning shadows cast to the left; project all elongated shadows toward the lower-RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 architectural documentary photograph captured at an elevated altitude of 154 meters looking northeast along Shandwick Place in the West End of Edinburgh. In the centre rises the tall, vertical 56-metre Venetian Romanesque campanile of St George's West Church (Charlotte Chapel), constructed from buff-grey Craigleith sandstone ashlar with an open columnar belfry and a verdigris-oxidized copper conical lantern spire. Flanking the broad roadway are the sweeping curved Georgian ashlar facades of Atholl Crescent on the left and Coates Crescent on the right, designed by Thomas Bonnar with rusticated ground floors, smooth upper ashlar, basement lightwells secured by black wrought-iron spearhead railings, and pitched slate roofs lined with dormers and tall masonry chimney stacks topped with red clay pots. \n\nThe foreground crescent gardens contain mature Sycamore, Wych Elm, and Lime trees with fully resolved, organic leafy green foliage over trimmed grass enclosures. Embedded dual steel tram tracks run down the centre of the wide asphalt roadway, flanked by granite kerbs and stone flagstone pavements.",
+  "char_count": 1858,
+  "includes_lighting": true
+}

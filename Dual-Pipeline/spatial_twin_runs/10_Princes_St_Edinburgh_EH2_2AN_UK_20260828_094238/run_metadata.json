@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_094238",
+  "address": "10 Princes St., Edinburgh EH2 2AN, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13241.19,
+  "telemetry": {
+    "latitude": 55.95337593515357,
+    "longitude": -3.1897154499717137,
+    "altitude_agl": 181.17699549018803,
+    "heading": 286.29048621144636,
+    "pitch": -32.12888740138955,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly behind the camera (Azimuth 283.9\u00b0, Elevation 21.0\u00b0).\n- FACADE ILLUMINATION: all visible front-facing facades, towers, and walls are in bright direct illumination.\n- CAST SHADOW DIRECTION: cast shadows fall directly away into the background behind structures.\n- SHADOW OVERWRITE RULE: MANDATORY: Overwrite all lateral and sideways shadows with illuminated terrain albedo.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-angle 6x7 medium format architectural documentary photograph capturing the dense historic and contemporary roofline and facades at 10 Princes Street, Edinburgh. The frame centers on the monumental junction building featuring a crisp five-storey Victorian French Renaissance sandstone corner block with ornate stringcourses, classical rustication, and a steeply pitched dark slate mansard roof punctuated by lead-cheeked dormers. Directly integrated is a contemporary six-storey commercial wing defined by a deep, rectilinear grid of pale honed blonde stone framing expansive floor-to-ceiling recessed glass windows. Above the roofline, multi-tiered stepped penthouse pavilions clad in vertical standing-seam zinc panels and crisp structural curtain glass rise with razor-sharp planar edges. Surrounding dense Victorian ashlar masonry commercial blocks show weathered slate roofs, historic chimney pots, cast-iron valley gutters, and lead flashings with subtle natural atmospheric soot patina and water-run staining. All structural verticals are perfectly plumb and planar. Static architectural purity with empty flagstone footpaths, granite curbs, and completely unpopulated streets devoid of pedestrians and vehicles.",
+  "char_count": 1878,
+  "includes_lighting": true
+}

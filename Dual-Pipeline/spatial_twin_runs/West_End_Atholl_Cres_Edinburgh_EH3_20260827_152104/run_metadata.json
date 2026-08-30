@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_152104",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10144.29,
+  "telemetry": {
+    "latitude": 55.94840046681126,
+    "longitude": -3.2117615343712074,
+    "altitude_agl": 151.12258998127248,
+    "heading": 43.63025814826757,
+    "pitch": -6.690078244876866,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (2000K Night scene with celestial ambient illumination):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly ahead in the center background (Azimuth 239.7\u00b0, Elevation -7.2\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with glowing halo rim light; all camera-facing surfaces are in shadow.\n- CAST SHADOW DIRECTION: long cast shadows project directly forward toward the observer/bottom of the frame.\n- SHADOW OVERWRITE RULE: Erase all sideways shadows; project all shadows forward.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 documentary architectural photograph capturing Shandwick Place and Atholl Crescent in Edinburgh's West End, looking northeast toward the New Town skyline. The dominant central-left focal point is the grand Roman Baroque facade and towering Venetian campanile of St George's West Church (Charlotte Chapel), constructed from honey-buff Craigleith ashlar sandstone with vermiculated banding, Corinthian pilasters, and a tall four-stage tower culminating in an octagonal belfry and a verdigris oxidized-copper pyramidal spire. \n\nFlanking the wide asphalt thoroughfare are continuous Georgian and Victorian ashlar sandstone tenements rising three to four storeys, crowned by multi-flue masonry chimney stacks, terracotta pots, lead-flashed slate mansards, and timber sash windows. In the far background left rises the peristyle drum and pale-green copper dome of West Register House on Charlotte Square. \n\nMasonry exhibits authentic centuries-old Scottish environmental weathering, subtle carbon-soot patina in carved relief mouldings, rain streaks, and crisp stone jointing. Courtyards feature mature leafy sycamore and lime trees with dense organic foliage and intricate branch structures.",
+  "char_count": 1922,
+  "includes_lighting": true
+}

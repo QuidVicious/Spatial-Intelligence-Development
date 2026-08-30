@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_152201",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9726.04,
+  "telemetry": {
+    "latitude": 55.94840046681126,
+    "longitude": -3.2117615343712074,
+    "altitude_agl": 151.12258998127248,
+    "heading": 43.63025814826757,
+    "pitch": -6.690078244876866,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (2000K Night scene with celestial ambient illumination):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-left (Azimuth 284.0\u00b0, Elevation -11.5\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along left edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-RIGHT of the frame.\n- SHADOW OVERWRITE RULE: Erase all pre-existing morning shadows cast to the left; project shadows toward the lower-right.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph of Shandwick Place in Edinburgh's West End, looking north-east towards Charlotte Square and the New Town. In the mid-ground stands the monumental 56-meter Italianate campanile of St George's West Church, constructed from fine-grained pale buff and weathered grey Craigleith sandstone with an octagonal upper belfry and a verdigris-oxidized copper pyramidal spire. The streetscape is flanked by continuous four-storey Georgian and Victorian tenement blocks with finely dressed ashlar facades, channelled rustication at ground level, rectangular sash-and-case timber windows, and heavy stone cornices. Dark Scottish highland slate mansard roofs with rows of chimney stacks and cylindrical clay pots line the thoroughfare. In the far background, the classical copper dome of West Register House rises above the dense historic roofline. The broad asphalt road features flush-laid steel tram tracks and dark whinstone curbs. Organic leafy green canopies of mature sycamore and lime trees emerge from behind perimeter walls and crescent gardens. The stone surfaces exhibit authentic historical weathering, light soot darkening under eaves, and natural mineral patination.",
+  "char_count": 1966,
+  "includes_lighting": true
+}

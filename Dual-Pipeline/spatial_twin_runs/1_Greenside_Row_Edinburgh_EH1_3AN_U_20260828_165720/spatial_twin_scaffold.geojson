@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1 Greenside Row, Edinburgh EH1 3AN, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 165.7,
+          "pitch_deg": -26.9,
+          "heading_deg": 199.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology belongs to the Lower Carboniferous Calton Hill Volcanic Formation, comprising interbedded basaltic lavas, tuffs, and volcanic agglomerates resting upon Lower Old Red and Carboniferous sedimentary strata. Structural foundations are anchored into competent basaltic bedrock and dense overconsolidated glacial till. Primary historic load-bearing masonry consists of Lower Carboniferous Craigleith and Hailes quartz-arenite sandstone\u2014dense, fine-grained, silica-cemented pale buff to carbon-grey sandstone bonded with historic non-hydraulic to weakly hydraulic slaked lime mortar (*Calx*)."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Urban dendrological specimens comprise mature *Acer pseudoplatanus* (Sycamore maple) and *Tilia cordata* (Small-leaved Lime) in street-level alignments, alongside planter-contained *Prunus laurocerasus* and ornamental shrubs on the upper terrace deck. Phenological state for November 11: late-autumn defoliation (~85\u201395% canopy loss), exposing stark, intricate dark branch architecture with sparse desiccated ochre-brown leaves adhering to terminal twigs.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The scene features a high-density, multi-tiered urban intersection characterized by steep topography and divergent architectural epochs:\n- **Central Wedge Tenement (Calton Road / Greenside Place Junction):** Acute-angle triangular \"flat-iron\" tenement block, 4 storeys plus attic mansard level. True plumbed vertical wall planes, rectilinear floor registers, 2-over-2 and 6-over-6 double-hung timber sash windows, ashlar sandstone lintels and continuous projecting string courses, terminating in pitched slate roofs with dressed masonry chimney stacks and cylindrical terracotta chimney pots.\n- **Background Monumental Infrastructure (Regent Bridge / Waterloo Place):** Archibald Elliot\u2019s 1816\u20131819 neoclassical bridge, featuring a monumental round arch spanning the Low Calton ravine surmounted by open Corinthian colonnades and classical entablatures.\n- **Right Midground / Foreground (Omni Centre & Rooftop Terrace):** Modern mixed-use complex (Alan Murray Architects, 2003) integrating structural glazed curtain walls, curved zinc standing-seam parapets, precast reconstituted stone spandrels, and a stepped 2-acre rooftop terrace deck.\n- **Left Foreground Commercial Massing:** 20th-century modular rectilinear office block defined by a rigid vertical grid of reconstituted sandstone/concrete piers, deeply recessed structural glazing, and flat roof decks.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186966383799132,
+          55.95507963989731
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T12:26:59+00:00",
+        "weather_state": "RAIN",
+        "solar_azimuth_deg": 187.47,
+        "solar_elevation_deg": 16.54,
+        "shadow_azimuth_deg": 7.5,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

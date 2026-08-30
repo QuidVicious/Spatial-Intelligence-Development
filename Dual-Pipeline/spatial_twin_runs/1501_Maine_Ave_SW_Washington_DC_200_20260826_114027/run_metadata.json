@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114027",
+  "address": "1501 Maine Ave SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11078.45,
+  "telemetry": {
+    "latitude": 38.88444714325694,
+    "longitude": -77.03545991512316,
+    "altitude_agl": 150.35061622887667,
+    "heading": 2.8932114456716094,
+    "pitch": -8.781995188143181,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with quarter-front light from camera-left (Sun Azimuth 330.4\u00b0, Elevation 58.6\u00b0), casting crisp directional shadows along 150.4\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-angle 6x7 medium format architectural documentary photograph of the Washington Monument and the National Mall, captured on fine-grain color film from an aerial perspective looking north toward Downtown Washington, D.C. At the absolute center rises the towering 555-foot marble obelisk, showing its distinct historical construction seam where the lower cream-toned weathered marble transitions at 152 feet into brighter upper stone, capped by a crisp aluminum pyramidion. Surrounding the base is a circular granite plaza ringed by precisely spaced vertical flagpoles on a raised green lawn. To the right, the three-tiered bronze-lattice corona of the National Museum of African American History and Culture displays rich perforated metallic texture and sharp angular geometry, set before the massive Indiana limestone colonnades and red clay-tiled hipped roofs of the Federal Triangle and Commerce Department buildings. To the left, the expansive green lawn of the Ellipse curves toward the White House and the gray granite mansard volumes of the Executive Office Building. Deep, organic canopies of mature American elms, pin oaks, and London plane trees provide lush botanical volume against pristine, plumb stone facades. Completely static and decluttered civil environment with zero pedestrians and zero moving or parked vehicles. Crisp midday 5800K directional sunlight casts defined diagonal shadows across the lawns, with crystal-clear optical rendering from corner to corner.",
+  "char_count": 1867,
+  "includes_lighting": true
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_134107",
+  "address": "23 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12562.03,
+  "telemetry": {
+    "latitude": 55.957949805125686,
+    "longitude": -3.192823445069596,
+    "altitude_agl": 153.06013870711564,
+    "heading": 303.54888161174665,
+    "pitch": -25.48780859177739,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & STATIC RECTIFICATION CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar course must remain razor-sharp and structurally intact. Zero geometric melting or smoothing.\n- STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, wheelie bins, and temporary street clutter from the seed image. Repaint the carriageway with authentic road surfacing, whinstone kerbs, and clean flagstone pavements.\n- OPTICAL DEPTH: Pin-sharp infinite depth of field (f/11). Zero lens blur or tilt-shift across foreground and background.\n- ILLUMINATION REPAINT: Discard seed image luminance; repaint all shadows strictly from the solar vector below.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING (5400K Clean afternoon daylight with distinct directional shadows): Sun in upper-right quadrant (Azimuth 351.6\u00b0, Elevation 43.8\u00b0). right-facing facades lit, left-facing shaded. shadows cast diagonally to LEFT. Erase right shadows; cast new shadows to LEFT. Weather: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nHigh-angle 6x7 medium format architectural documentary of Drummond Place, Edinburgh New Town. Continuous neoclassical Georgian residential terraces constructed from fine-tooled Craigleith and Hailes quartz-sandstone ashlar with rusticated ground floors, moulded cornices, and straight plumb vertical wall planes. Regular fenestration of 6-over-6 timber sash-and-case windows recessed into crisp stone reveals. Diminishing-course Ballachulish grey slate roofs punctuated by massive sandstone chimney stacks with ceramic pots. Central garden enclave enclosed by continuous black cast-iron spear-point railings on dwarf stone copings, filled with mature Ulmus glabra and Acer pseudoplatanus displaying dense late-August deep-green canopies. Ground tier characterized by whinstone sett carriageways, Caithness flagstone pavements, and sunken lightwell basements.",
+  "char_count": 2149,
+  "includes_lighting": false
+}

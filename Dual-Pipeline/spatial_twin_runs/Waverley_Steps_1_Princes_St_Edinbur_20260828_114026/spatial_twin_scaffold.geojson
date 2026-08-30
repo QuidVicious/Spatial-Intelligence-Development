@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "Waverley Steps, 1 Princes St., Edinburgh EH2 2EQ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 192.2,
+          "pitch_deg": -25.7,
+          "heading_deg": 289.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Subterranean Bedrock: Early Carboniferous sedimentary succession of the Strathclyde Group (sandstones, siltstones, and bituminous shales) overlain by stiff Devensian glacial till.\n- Lithics: Historic facades constructed from local Carboniferous buff-to-pale grey quartzitic Craigleith and Hailes sandstone; contemporary redevelopments incorporate matching buff sandstone rainscreen panels alongside Portland-stone-toned reconstituted architectural stone.\n- Mortar Chemistry: Traditional structures constructed with slaked lime and sharp sand mortars with pozzolanic additives; modern structural frameworks secured with Portland cement bedding and engineered elastomeric sealant joints.\n- Hydrogeology: Subsurface gradient drains southward toward the Waverley Valley / former Nor' Loch basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Urban Canopy: St Andrew Square municipal park visible in the background.\n- Tree Taxa: *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (sycamore), and *Tilia cordata* (small-leaved lime).\n- Phenology: Fully expanded, dense, dark green late-summer canopies forming a continuous rounded botanical boundary behind the stone skyline.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Dense historic New Town commercial block featuring a juxtaposition of 19th-century Victorian Venetian Gothic warehouse forms, mid-20th-century monumental Neo-Classical commercial palazzo massing, and contemporary 21st-century adaptive reuse insertions.\n- Facades & Massing:\n  * Central Sector (The Mint Building & West Register Street redevelopment): Multi-storey rectilinear volume framed in structured buff stone piers with deeply recessed fenestration grids, topped by a set-back multi-level structural glass and zinc-clad penthouse pavilion. Integrates the restored lower multi-bay mansard and Venetian Gothic arched fenestration.\n  * Background Right (The Edinburgh Grand / 42 St Andrew Square): 6-storey monumental Neo-Classical palazzo in channelled ashlar with stepped attic storey, heavy projecting stringcourses, and regular punched rectangular window grid.\n  * Far Background: St Andrew Square framing the vertical fluted shaft of the Melville Monument.\n  * Foreground & Left: Sloping roofscapes of Princes Street properties showing planar lead-sheathed flat decks, dormered slate mansards, brick chimney stacks, and skylight apertures.\n- Planar Rectification: All photogrammetry distortion removed; vertical load-bearing lines plumbed to true gravity vertical; planar flat roofs and rectilinear curtain walls straightened.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.189214688435595,
+          55.95325602643756
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T18:39:56.738000+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.5,
+        "solar_azimuth_deg": 259.17,
+        "solar_elevation_deg": 4.64,
+        "shadow_azimuth_deg": 79.2,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

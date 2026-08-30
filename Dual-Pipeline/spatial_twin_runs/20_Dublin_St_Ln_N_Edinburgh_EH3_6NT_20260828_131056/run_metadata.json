@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_131056",
+  "address": "20 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12281.71,
+  "telemetry": {
+    "latitude": 55.958514360081196,
+    "longitude": -3.192204411002546,
+    "altitude_agl": 204.94323384988618,
+    "heading": 281.9253582059926,
+    "pitch": -42.22639679663518,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-right quadrant of the frame (Azimuth 339.8\u00b0, Elevation 14.8\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of towers/spires are brightly lit; left-facing surfaces are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase any pre-existing shadows on the right; cast all new shadows toward the LEFT.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 architectural documentary perspective of the neoclassical Georgian crescent terraces at Drummond Place, Edinburgh. True plumb vertical load-bearing elevations constructed from pale buff Craigleith quartzitic sandstone ashlar and laminated Hailes sandstone. Ground storeys detailed with channelled rustication over sunken basement lightwells crossed by monolithic stone platt bridges. Upper storeys feature fine polished ashlar, continuous moulded string courses, dentiled eaves cornices, and ashlar blocking courses.",
+  "char_count": 2106,
+  "includes_lighting": false
+}

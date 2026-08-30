@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_142432",
+  "address": "15 William St S W Ln, Edinburgh EH3 7LL, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10360.66,
+  "telemetry": {
+    "latitude": 55.94856902459005,
+    "longitude": -3.2136139878957053,
+    "altitude_agl": 150.88855450139022,
+    "heading": 276.7809582374688,
+    "pitch": -8.477909266961444,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct front-lighting (Sun Azimuth 264.3\u00b0, Elevation -24.8\u00b0), casting crisp directional shadows along 84.3\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm lens on ISO 100 fine-grain film at f/8, elevated three-quarter view overlooking St Mary's Episcopal Cathedral and the West End of Edinburgh.\n\nIn the center ground rises Sir George Gilbert Scott's Victorian Gothic masterpiece: a grand cruciform cathedral of warm honey-buff and ashlar Craigleith sandstone, featuring three magnificent towering stone spires plumbed to crisp vertical precision. The massive 90-meter central crossing spire and twin western spires display deep-set belfry louvers, pinnacles, and carved lancets. Intricate rose windows, pointed arches, flying buttresses, and an octagonal chapter house are rendered with structural clarity, their pitched roofs clad in graded Welsh and Scotch slate with weathered lead valleys. The sandstone stonework displays authentic historic Edinburgh environmental patina, with dark industrial carbon crusting lingering within sheltered carvings, recessed mouldings, and under cornices, balanced by clean rain-washed ashlar faces.\n\nForeground and surrounding streets feature 4-to-5 storey 19th-century residential tenements built of coursed ashlar and squared sandstone rubble, with straight coped parapets, tall chimney stacks topped with terracotta pots, and sash windows. Mature leafy sycamores and elms with lush organic foliage fill the churchyard gardens, casting soft dappled shadows across green lawns and stone perimeter walls. \n\nThe entire urban landscape is completely devoid of vehicles, pedestrians, dumpsters, and transient clutter, preserved as a serene, static civic panorama.",
+  "char_count": 1979,
+  "includes_lighting": true
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_115510",
+  "address": "37 Broughton St, Edinburgh EH1 3JU, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11950.38,
+  "telemetry": {
+    "latitude": 55.957414970381045,
+    "longitude": -3.1879441688799313,
+    "altitude_agl": 133.20502626657424,
+    "heading": 105.67378590992348,
+    "pitch": -29.48289607817002,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 6.7\u00b0, Elevation 43.9\u00b0).\n- FACADE ILLUMINATION: all left-facing walls, facades, spires, and domes are in bright direct sunlight; right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left and render as sunlit surfaces. Cast all new shadows across the scene to the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\n6x7 medium format architectural documentary survey, high-angle aerial view of Edinburgh New Town rear tenements and mews roofs along Broughton Street and Broughton Street Lane. True gravity vertical alignment, planar facade rectification. Four-storey Georgian and Victorian tenements built from Craigleith blond quartzitic sandstone ashlar and coursed snecked rubble masonry, bearing historic coal-soot patina and selective rain-wash reveals.",
+  "char_count": 2077,
+  "includes_lighting": false
+}

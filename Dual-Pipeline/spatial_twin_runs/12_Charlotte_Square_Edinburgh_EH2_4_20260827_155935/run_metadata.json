@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155935",
+  "address": "12 Charlotte Square, Edinburgh EH2 4DJ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10390.86,
+  "telemetry": {
+    "latitude": 55.952232438765314,
+    "longitude": -3.209248241301926,
+    "altitude_agl": 151.5929948737482,
+    "heading": 167.8998881417007,
+    "pitch": -7.720568805634511,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the RIGHT edge of the frame (Azimuth 264.0\u00b0, Elevation 8.3\u00b0).\n- FACADE ILLUMINATION: all right-facing walls, facades, and spires are in bright direct sunlight; left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long horizontal cast shadows project across the terrain to the LEFT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing shadows on the right and render as sunlit terrain. Cast long shadows across the scene to the LEFT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph, 6x7 format, sharp edge-to-edge optical resolution. Elevated perspective overlooking the neoclassical civic architecture of Charlotte Square in Edinburgh, focusing on the imposing neoclassical stone monument of West Register House. In the center rises the monumental cylindrical ashlar drum and weathered verdigris-green ribbed copper dome with its crowned lantern cupola, rising above stepped pedimented sandstone pavilions and classical balustrades. Flanking streets and background show continuous, plumb-vertical Georgian sandstone terraced townhouses with rusticated basements, crisp rectangular sash windows, grey slate roofs, and rhythmic stone chimney stacks. Facades exhibit authentic historic patina with pale buff Craigleith sandstone, localized soot-darkened friezes, and fine lime mortar joints. To the left foreground, the lush canopy of mature Scottish sycamores and wych elms features distinct green foliage and natural branching over manicured lawn behind wrought iron railings. Pristine, completely empty paved streets with crisp granite curbs and stone flagging; zero vehicles, zero pedestrians, zero transient clutter.",
+  "char_count": 1937,
+  "includes_lighting": true
+}

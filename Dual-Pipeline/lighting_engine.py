@@ -1,11 +1,11 @@
 """
 Atmosphere & Lighting Engine: Deterministic physical illumination and weather physics.
 Calculates NOAA solar ephemeris (Azimuth, Elevation, CCT, Lux), queries real-time live weather
-via Open-Meteo, and produces both natural sensory atmospheric descriptions and structured 3D strata.
+and true coordinate timezone via Open-Meteo, and produces screen-space relighting directives.
 """
 
 import math
-from datetime import datetime, timezone, time as dtime
+from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass, asdict
 from enum import Enum
 from typing import Dict, Any, Optional, Tuple
@@ -32,32 +32,33 @@ class LightingState:
     """Strongly typed output contract for lighting & atmospheric state."""
     mode: LightingMode
     weather_mode: str
-    natural_description: str     # Evocative natural language description for domain/synthesis engines
-    prompt_directive: str        # Direct conditioning directive
-    geojson_stratum: Dict[str, Any]  # Stratum 7 for the spatial scaffold
-    metadata: Dict[str, Any]     # Raw numerical ephemeris & weather metrics
+    natural_description: str
+    prompt_directive: str
+    geojson_stratum: Dict[str, Any]
+    metadata: Dict[str, Any]
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 
 
 def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
-    """
-    Fetches real-time weather from Open-Meteo (free, global).
-    Maps WMO standard weather codes to standardized condition states.
-    """
+    """Fetches real-time weather and coordinate timezone from Open-Meteo."""
     url = (
         f"https://api.open-meteo.com/v1/forecast?latitude={lat:.4f}&longitude={lon:.4f}"
         f"&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,cloud_cover,wind_speed_10m"
+        f"&timezone=auto"
     )
     try:
         resp = requests.get(url, timeout=4)
         if resp.status_code == 200:
-            data = resp.json().get("current", {})
+            resp_json = resp.json()
+            data = resp_json.get("current", {})
             code = data.get("weather_code", 0)
             temp_c = data.get("temperature_2m", 15.0)
             precip = data.get("precipitation", 0.0)
             clouds = data.get("cloud_cover", 20)
+            utc_offset_sec = resp_json.get("utc_offset_seconds", 0)
+            tz_name = resp_json.get("timezone", "UTC")
 
             if code in [71, 73, 75, 77, 85, 86]:
                 condition = "SNOW"
@@ -81,7 +82,9 @@ def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
                 "temperature_c": temp_c,
                 "precipitation_mm": precip,
                 "cloud_cover_pct": clouds,
-                "weather_code": code
+                "weather_code": code,
+                "utc_offset_seconds": utc_offset_sec,
+                "timezone": tz_name
             }
     except Exception as e:
         print(f"[Weather API Warning]: {e}")
@@ -92,12 +95,14 @@ def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
         "temperature_c": 18.0,
         "precipitation_mm": 0.0,
         "cloud_cover_pct": 10,
-        "weather_code": 0
+        "weather_code": 0,
+        "utc_offset_seconds": int(lon / 15.0 * 3600),
+        "timezone": "UTC"
     }
 
 
 def _compute_solar_position(lat: float, lon: float, dt_utc: datetime) -> Tuple[float, float]:
-    """Computes deterministic Solar Elevation and Azimuth using standard NOAA equations."""
+    """Computes deterministic Solar Elevation and Azimuth (0° True North, clockwise) using standard NOAA equations."""
     day_of_year = dt_utc.timetuple().tm_yday
     hour_float = dt_utc.hour + dt_utc.minute / 60.0 + dt_utc.second / 3600.0
 
@@ -140,43 +145,95 @@ def _compute_solar_position(lat: float, lon: float, dt_utc: datetime) -> Tuple[f
         cos_azimuth = (math.sin(lat_rad) * math.cos(zenith_rad) - math.sin(decl)) / (math.cos(lat_rad) * sin_zenith)
         cos_azimuth = max(-1.0, min(1.0, cos_azimuth))
         raw_azimuth = math.degrees(math.acos(cos_azimuth))
-        azimuth_deg = (360.0 - raw_azimuth) % 360.0 if ha_deg > 0 else raw_azimuth % 360.0
+        
+        # NOAA piecewise quadrant correction (0° = True North, clockwise)
+        if ha_deg > 0:
+            azimuth_deg = (raw_azimuth + 180.0) % 360.0
+        else:
+            azimuth_deg = (540.0 - raw_azimuth) % 360.0
 
     return round(azimuth_deg, 2), round(elevation_deg, 2)
 
 
-def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float) -> str:
-    """Calculates relative sun direction against the camera view heading."""
+def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float) -> Dict[str, str]:
+    """High-density telegraphic spatial tokenization of lighting and shadow trajectories."""
     rel = (solar_azimuth - camera_heading) % 360.0
+
     if rel <= 22.5 or rel > 337.5:
-        return "direct front-lighting"
+        return {
+            "summary": "direct front-lighting",
+            "screen_sun": "behind camera",
+            "facade_lighting": "front facades directly illuminated",
+            "shadow_trajectory": "cast shadows project away behind structures"
+        }
     elif 22.5 < rel <= 67.5:
-        return "quarter-front light from camera-right"
+        return {
+            "summary": "quarter-front light from upper-right",
+            "screen_sun": "in upper-right quadrant",
+            "facade_lighting": "right facades lit, left facades shaded",
+            "shadow_trajectory": "cast shadows project diagonally to LEFT"
+        }
     elif 67.5 < rel <= 112.5:
-        return "hard raking side-light from camera-right"
+        return {
+            "summary": "hard raking side-light from camera-right",
+            "screen_sun": "at camera-right",
+            "facade_lighting": "right walls in direct sun, left walls in deep shadow",
+            "shadow_trajectory": "long lateral shadows project across ground to LEFT"
+        }
     elif 112.5 < rel <= 157.5:
-        return "rear-right backlight"
+        return {
+            "summary": "rear-right backlight",
+            "screen_sun": "background upper-right",
+            "facade_lighting": "backlit silhouettes with right rim lighting",
+            "shadow_trajectory": "shadows project forward toward lower-LEFT"
+        }
     elif 157.5 < rel <= 202.5:
-        return "direct backlighting with silhouetted facade profiles"
+        return {
+            "summary": "direct backlighting",
+            "screen_sun": "directly ahead in center background",
+            "facade_lighting": "backlit silhouettes with halo rim light; camera-facing facades in shadow",
+            "shadow_trajectory": "shadows project directly forward toward camera"
+        }
     elif 202.5 < rel <= 247.5:
-        return "rear-left backlight"
+        return {
+            "summary": "rear-left backlight",
+            "screen_sun": "background upper-left",
+            "facade_lighting": "backlit silhouettes with left rim lighting",
+            "shadow_trajectory": "shadows project forward toward lower-RIGHT"
+        }
     elif 247.5 < rel <= 292.5:
-        return "hard raking side-light from camera-left"
+        return {
+            "summary": "hard raking side-light from camera-left",
+            "screen_sun": "at camera-left",
+            "facade_lighting": "left walls in direct sun, right walls in deep shadow",
+            "shadow_trajectory": "long lateral shadows project across ground to RIGHT"
+        }
     else:
-        return "quarter-front light from camera-left"
+        return {
+            "summary": "quarter-front light from upper-left",
+            "screen_sun": "in upper-left quadrant",
+            "facade_lighting": "left facades lit, right facades shaded",
+            "shadow_trajectory": "cast shadows project diagonally to RIGHT"
+        }
 
 
-def _estimate_solar_cct_and_lux(elevation_deg: float) -> Tuple[int, int, str]:
+def _estimate_solar_cct_and_lux(elevation_deg: float, solar_azimuth: float) -> Tuple[int, int, str]:
+    """AM / PM ephemeris color temperature and lux estimation."""
+    is_morning = solar_azimuth < 180.0
+
     if elevation_deg > 50.0:
         return 5800, 85000, "High clear sun with short vertical shadows and neutral daylight"
     elif elevation_deg > 25.0:
-        return 5400, 60000, "Clean standard daylight with distinct directional shadows"
+        epoch = "Clean morning daylight" if is_morning else "Clean afternoon daylight"
+        return 5400, 60000, f"{epoch} with crisp directional shadows"
     elif elevation_deg > 10.0:
-        return 4500, 35000, "Late afternoon / mid-morning raking sunlight with warm highlights"
+        epoch = "Mid-morning raking sunlight" if is_morning else "Late afternoon raking sunlight with warm golden highlights"
+        return 4500, 35000, epoch
     elif elevation_deg > 1.0:
-        return 3200, 12000, "Golden hour warm low-angle amber illumination with long shadows"
+        epoch = "Dawn / early sunrise low-angle golden hour" if is_morning else "Dusk / late sunset low-angle amber golden hour"
+        return 3000, 12000, f"{epoch} with elongated cast shadows"
     elif elevation_deg > -6.0:
-        return 2400, 800, "Civil twilight blue hour with deep indigo ambient dome and soft shadows"
+        return 2200, 800, "Civil twilight blue hour with indigo sky dome and soft ambient contact shadows"
     else:
         return 2000, 5, "Night scene with celestial ambient illumination"
 
@@ -192,57 +249,36 @@ def resolve_lighting_state(
     mode: str = "SOLAR",
     weather_mode: str = "AUTO"
 ) -> LightingState:
-    """
-    Sole authority for deterministic illumination, ephemeris calculations, and weather states.
-    """
-    # 1. Resolve DateTime
-    if timestamp_utc:
-        try:
-            dt = datetime.fromisoformat(timestamp_utc.replace("Z", "+00:00"))
-        except Exception:
-            dt = datetime.now(timezone.utc)
-    elif date_str and time_of_day_hours is not None:
+    
+    # 1. Resolve Weather & True Timezone Offset
+    weather_info = get_live_weather(lat, lon)
+    active_weather = weather_info["condition"] if weather_mode.upper() == "AUTO" else weather_mode.upper()
+    utc_offset_sec = weather_info.get("utc_offset_seconds", 0)
+
+    # 2. Resolve DateTime
+    if date_str and time_of_day_hours is not None:
         try:
             d = datetime.strptime(date_str, "%Y-%m-%d").date()
             h = int(time_of_day_hours)
             m = int((time_of_day_hours - h) * 60)
-            dt = datetime.combine(d, dtime(hour=h, minute=m), tzinfo=timezone.utc)
+            s = int((((time_of_day_hours - h) * 60) - m) * 60)
+            local_dt = datetime(d.year, d.month, d.day, h, m, s)
+            dt = (local_dt - timedelta(seconds=utc_offset_sec)).replace(tzinfo=timezone.utc)
+        except Exception as e:
+            print(f"[Time Resolution Warning]: {e}")
+            dt = datetime.now(timezone.utc)
+    elif timestamp_utc:
+        try:
+            dt = datetime.fromisoformat(timestamp_utc.replace("Z", "+00:00"))
         except Exception:
             dt = datetime.now(timezone.utc)
     else:
         dt = datetime.now(timezone.utc)
 
-    # 2. Resolve Weather
-    if weather_mode.upper() == "AUTO":
-        weather_info = get_live_weather(lat, lon)
-        active_weather = weather_info["condition"]
-    else:
-        active_weather = weather_mode.upper()
-        weather_info = {
-            "condition": active_weather,
-            "label": active_weather,
-            "temperature_c": 15.0,
-            "precipitation_mm": 5.0 if active_weather == "RAIN" else 0.0,
-            "cloud_cover_pct": 100 if active_weather in ["RAIN", "OVERCAST"] else 10,
-            "weather_code": 0
-        }
-
-    weather_descriptions = {
-        "RAIN": "Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.",
-        "FOG": "Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.",
-        "SNOW": "Crisp winter snow accumulation on horizontal ledges, roofs, and pavement edges under cool diffuse daylight.",
-        "OVERCAST": "100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.",
-        "SUNNY": "Crisp clear sky with direct solar exposure."
-    }
-    weather_text = weather_descriptions.get(active_weather, weather_descriptions["SUNNY"])
-
-    # 3. Handle FLOODLIGHT Mode
+    # 3. FLOODLIGHT Mode
     if mode.upper() == LightingMode.FLOODLIGHT.value:
-        natural_desc = (
-            f"Pitch-black 0-lux night illuminated solely by a coaxial 5600K spotlight mounted at the observer viewpoint "
-            f"({camera_heading:.1f}° heading) with realistic inverse-square falloff into darkness. {weather_text}"
-        )
-        prompt_directive = f"DELIGHTING & FLOODLIGHT RELIGHTING: {natural_desc}"
+        natural_desc = f"Coaxial 5600K spotlight from observer ({camera_heading:.1f}° heading). Weather: {active_weather}."
+        prompt_directive = f"LIGHTING: Coaxial 5600K spotlight from camera heading {camera_heading:.1f}°. Pure forward illumination."
 
         geojson_stratum = {
             "type": "Feature",
@@ -259,35 +295,51 @@ def resolve_lighting_state(
             }
         }
 
-        metadata = {
-            "mode": LightingMode.FLOODLIGHT.value,
-            "weather": active_weather,
-            "timestamp_utc": dt.isoformat(),
-            "color_temperature_k": 5600,
-            "lux": 0
-        }
-
         return LightingState(
             mode=LightingMode.FLOODLIGHT,
             weather_mode=active_weather,
             natural_description=natural_desc,
             prompt_directive=prompt_directive,
             geojson_stratum=geojson_stratum,
-            metadata=metadata
+            metadata={"mode": "FLOODLIGHT", "weather": active_weather, "timestamp_utc": dt.isoformat()}
         )
 
-    # 4. Handle SOLAR Mode (Default)
+    # 4. SOLAR Mode (Deterministic Ephemeris)
     solar_azimuth, solar_elevation = _compute_solar_position(lat, lon, dt)
-    cct, lux, epoch_desc = _estimate_solar_cct_and_lux(solar_elevation)
-    rel_light = _classify_relative_light_vector(solar_azimuth, camera_heading)
+    cct, lux, epoch_desc = _estimate_solar_cct_and_lux(solar_elevation, solar_azimuth)
     shadow_azimuth = round((solar_azimuth + 180.0) % 360.0, 1)
 
-    natural_desc = (
-        f"Calibrated {cct}K natural solar illumination ({epoch_desc}) with {rel_light} "
-        f"(Sun Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°), casting crisp directional shadows "
-        f"along {shadow_azimuth}°. {weather_text}"
-    )
-    prompt_directive = f"DELIGHTING & SOLAR RELIGHTING: {natural_desc}"
+    is_explicit_overcast = (weather_mode.upper() == "OVERCAST")
+    is_custom_datetime = (date_str is not None)
+
+    if solar_elevation <= 0.0:
+        is_blue_hour = solar_elevation > -6.0
+        twilight_type = "Blue Hour Civil Twilight" if is_blue_hour else "Nocturnal Night Scene"
+        natural_desc = f"Calibrated {cct}K {twilight_type} (Elevation {solar_elevation:.1f}°). Weather: {active_weather}."
+        prompt_directive = (
+            f"LIGHTING: {cct}K {twilight_type}. Sun elevation {solar_elevation:.1f}°. "
+            f"Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion."
+        )
+    elif is_explicit_overcast or (active_weather in ["OVERCAST", "FOG"] and not is_custom_datetime):
+        weather_diffuse_directives = {
+            "OVERCAST": "100% overcast cloud cover. Soft omnidirectional 6500K diffuse skylight. Zero harsh directional cast shadows; render ambient contact occlusion under cornices and ledges only.",
+            "FOG": "Dense ground mist and atmospheric fog. Light-scattering depth haze, low horizon contrast, muted diffuse ambient illumination."
+        }
+        diffuse_rule = weather_diffuse_directives.get(active_weather, weather_diffuse_directives["OVERCAST"])
+        natural_desc = f"Calibrated {cct}K diffuse daylight under {active_weather} conditions (Sun Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°)."
+        prompt_directive = f"ATMOSPHERIC LIGHTING ({active_weather}): {diffuse_rule}"
+    else:
+        # Solar Ephemeris is authoritative for custom date/time and sunny/clear conditions
+        rel_map = _classify_relative_light_vector(solar_azimuth, camera_heading)
+        natural_desc = (
+            f"Calibrated {cct}K {epoch_desc} ({rel_map['summary']}, Sun Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°). Clear sky."
+        )
+        prompt_directive = (
+            f"SOLAR LIGHT VECTOR ({cct}K {epoch_desc}): Sun {rel_map['screen_sun']} (Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°). "
+            f"{rel_map['facade_lighting']}. {rel_map['shadow_trajectory']}."
+        )
+
+    is_diffuse_state = is_explicit_overcast or (active_weather in ["OVERCAST", "FOG"] and not is_custom_datetime)
 
     geojson_stratum = {
         "type": "Feature",
@@ -298,23 +350,12 @@ def resolve_lighting_state(
             "lighting_rig": "SOLAR_EPHEMERIS",
             "timestamp_utc": dt.isoformat(),
             "weather_state": active_weather,
-            "temperature_c": weather_info.get("temperature_c"),
             "solar_azimuth_deg": solar_azimuth,
             "solar_elevation_deg": solar_elevation,
-            "shadow_azimuth_deg": shadow_azimuth,
+            "shadow_azimuth_deg": shadow_azimuth if (solar_elevation > 0.0 and not is_diffuse_state) else None,
             "color_temperature_k": cct,
             "ambient_illuminance_lux": lux
         }
-    }
-
-    metadata = {
-        "mode": LightingMode.SOLAR.value,
-        "weather": active_weather,
-        "timestamp_utc": dt.isoformat(),
-        "solar_azimuth": solar_azimuth,
-        "solar_elevation": solar_elevation,
-        "color_temperature_k": cct,
-        "lux": lux
     }
 
     return LightingState(
@@ -323,5 +364,13 @@ def resolve_lighting_state(
         natural_description=natural_desc,
         prompt_directive=prompt_directive,
         geojson_stratum=geojson_stratum,
-        metadata=metadata
+        metadata={
+            "mode": "SOLAR",
+            "weather": active_weather,
+            "timestamp_utc": dt.isoformat(),
+            "solar_azimuth": solar_azimuth,
+            "solar_elevation": solar_elevation,
+            "color_temperature_k": cct,
+            "lux": lux
+        }
     )

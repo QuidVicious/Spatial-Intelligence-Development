@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "23 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 153.1,
+          "pitch_deg": -25.5,
+          "heading_deg": 303.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean geology comprises Lower Carboniferous (Mississippian) sedimentary strata of the Strathclyde Group (Gullane and West Lothian Oil-Shale Formations), overlying basaltic and doleritic volcanic intrusions. Superficially blanketed by dense Devensian glacial till (boulder clay). Primary structural lithics derive from local historic quarries: high-durability Craigleith sandstone (pale buff to silver-grey quartz-arenite bonded by siliceous-calcareous matrix) and fine-bedded Hailes sandstone. Pervasive bedding utilizes traditional non-hydraulic to weakly hydraulic slaked lime mortar (*Calx*) tempered with well-graded river sand. Groundwater table is maintained via subterranean natural gravity slopes falling northward toward the Water of Leith basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Enclosed communal parkland (Drummond Place Gardens) dominated by mature temperate broadleaf trees:\n- *Ulmus glabra* (Wych Elm), *Acer pseudoplatanus* (Sycamore), *Tilia cordata* (Small-leaved Lime), and *Aesculus hippocastanum* (Horse Chestnut).\n- Canopy Phenology (August 28): Climax late-summer vegetative state; heavy, fully expanded, deep-green leaf canopies with slight leaf-tip drying/chlorosis and early seed/samara maturation prior to autumn defoliation.\n- Understory: Dense domestic shrub layer including *Taxus baccata* (Yew), *Prunus laurocerasus*, and manicured lawn turf.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Georgian Second New Town urban composition arranged around a geometric residential circus/square (Drummond Place). Continuous classical terrace blocks rising 3 storeys plus raised basement and attic dormers over rusticated/channelled ground floors. Strict neoclassical rhythm characterized by:\n- Gravity-rectified vertical wall planes and continuous horizontal ashlar string courses, plat bands, and moulded eaves cornices.\n- Regular repetitive fenestration grids comprising 6-over-6 and 12-over-12 double-hung timber sash-and-case windows set in cleanly dressed, margin-drafted embrasures.\n- Symmetrical entrance bays featuring round-arched doorways with fanlights, rusticated voussoirs, and polished ashlar doorpieces.\n- Pitched rooflines clad in Scotch slate / Ballachulish slate with lead flashings, punctuated by heavy rectangular ashlar chimney stacks with clay flues/pots.\n- Lower perimeter protected by sunken basement areas with stone boundary retaining walls and wrought/cast-iron spear-head railings.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192823445069596,
+          55.957949805125686
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T12:39:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 351.6,
+        "solar_elevation_deg": 43.77,
+        "shadow_azimuth_deg": 171.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

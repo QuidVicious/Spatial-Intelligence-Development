@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_115617",
+  "address": "Playfair House, Broughton St Ln, Edinburgh EH1 3LY, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13769.95,
+  "telemetry": {
+    "latitude": 55.95751198466491,
+    "longitude": -3.187640274834207,
+    "altitude_agl": 141.9273650731131,
+    "heading": 216.7703282970262,
+    "pitch": -52.5419796115482,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nDELIGHTING & FLOODLIGHT RELIGHTING: Pitch-black 0-lux night illuminated solely by a coaxial 5600K spotlight mounted at the observer viewpoint (216.8\u00b0 heading) with realistic inverse-square falloff into darkness. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nDocumentary 6x7 medium format architectural photograph, high-angle downward survey of Broughton Street Lane, Edinburgh. Late Georgian 4-to-5 storey residential tenements flanking lower mews workshops and 20th-century flat-roofed commercial office structures. Primary facades constructed of coursed Craigleith and Hailes sandstone rubble with droved ashlar stone dressings, projected cills, and quoins; distinct modern intervention featuring flat bituminous felt roofs, painted smooth render, and steel coping. Slate roofs clad in diminishing-course Welsh and Scottish blue-grey slates with lead ridge flashings, piended dormers, and massive sandstone chimney stacks bearing terracotta flue pots. Timber-framed sash-and-case window grid strictly aligned with sharp vertical reveals. Surfaces show authentic Edinburgh industrial-era carbon soot patina, selective stone granular exfoliation, and damp algal biofilm at ground level.",
+  "char_count": 2131,
+  "includes_lighting": false
+}

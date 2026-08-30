@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Glenfinlas St, Edinburgh EH3 6AQ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 151.6,
+          "pitch_deg": -7.7,
+          "heading_deg": 167.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock Lithology & Stratigraphy:** Underlain by Carboniferous sedimentary successions of the Strathclyde Group (sandstones, siltstones, and mudstones) interleaved with localized volcanic dolerite/basalt intrusions of the Edinburgh Volcanic Complex.\n- **Masonry Lithics:** Primary construction executed in indigenous Scottish Carboniferous Lower Oil-Shale Group cream-to-blonde sandstones, predominantly fine-grained quartzitic Craigleith and Hailes sandstone, alongside secondary Binny freestone.\n- **Mortar Chemistry:** Traditional non-hydraulic and feebly hydraulic lime-sand bedding and pointing mortars, mixed with coarse river sand aggregate.\n- **Subterranean Drainage Dynamics:** Natural westward-sloping terraced topography shedding surface runoff toward the Water of Leith basin, regulated by subterranean flagstone drainage vaults beneath street basements."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Urban Canopy & Botanical Species:** Mature deciduous parkland specimens inside Charlotte Square Gardens and street borders, including Common Lime (*Tilia x europaea*), European Beech (*Fagus sylvatica*), Sycamore (*Acer pseudoplatanus*), and English Oak (*Quercus robur*).\n- **Foliage Characteristics:** Full, dense leafy canopies with natural botanical branch bifurcations, distinct crown volumes, and organic separation from adjacent stone parapets and paving.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typologies & Design:** Neoclassical civic and ecclesiastical architecture (Robert Reid, 1811\u20131814, adapting Robert Adam's master plan) centered around West Register House (former St George's Church), terminating the western axis of Charlotte Square. Flanked by symmetrical 3-to-4 storey classical Georgian residential terraces.\n- **Massing & Storey Counts:** Central monumental structure features a Greek cross plan on a square base, 5 internal floor plates, an Ionic portico, square corner pavilions with attic storeys, and a 160 ft (49 m) high peristyle drum surmounted by a ribbed dome and lantern cupola. Surrounding residential blocks maintain 3 principal storeys over sunken basement lightwells with rusticated ground floors.\n- **Roof Geometry:** Heavy stepped lead and slate hip roofs, segmented lead rolls, copper-clad central dome with standing seams, and robust stone ashlar chimneystacks with ceramic chimney cans.\n- **Fenestration & Planar Rectification:** Strict vertical wall alignments, plumb classical columns, crisp stone string courses, rectangular timber sash-and-case windows (six-over-six and twelve-over-twelve), Venetian and Diocletian upper apertures, and circular oculi within pavilion panels.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092345560658107,
+          55.95221611661714
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T18:15:50.216293+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 263.98,
+        "solar_elevation_deg": 8.32,
+        "shadow_azimuth_deg": 84.0,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

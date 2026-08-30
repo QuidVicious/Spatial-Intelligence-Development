@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_114206",
+  "address": "Princes Street Gardens, Princes St., Edinburgh EH2 2HG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11890.66,
+  "telemetry": {
+    "latitude": 55.95009638151887,
+    "longitude": -3.196807851347763,
+    "altitude_agl": 153.40189384106796,
+    "heading": 6.923945725502311,
+    "pitch": -6.920127047897152,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 258.8\u00b0, Elevation 4.4\u00b0).\n- FACADE ILLUMINATION: all left-facing walls, facades, spires, and domes are in bright direct sunlight; right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left and render as sunlit surfaces. Cast all new shadows across the scene to the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format architectural documentary survey looking north across The Mound from above Princes Street Gardens, Edinburgh. Foreground features the Greek Revival Royal Scottish Academy and National Gallery, built of fine Craigleith sandstone ashlar with fluted Doric and Ionic colonnades, pediments, and glass-and-lead roof lanterns. Flanking valley slopes feature dense mature canopies of Ulmus glabra, Acer pseudoplatanus, and Tilia europaea in full late-summer dark green foliage.",
+  "char_count": 2132,
+  "includes_lighting": false
+}

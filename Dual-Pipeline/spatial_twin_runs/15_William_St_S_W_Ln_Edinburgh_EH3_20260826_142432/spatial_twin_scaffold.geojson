@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15 William St S W Ln, Edinburgh EH3 7LL, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 150.9,
+          "pitch_deg": -8.5,
+          "heading_deg": 276.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock & Subterranean Matrix:** The subterranean stratum beneath Edinburgh's West End is rooted in Carboniferous sedimentary sequences of the Lower Oil-Shale Group (Gullane Formation), characterized by interbedded quartzose sandstones, siltstones, and mudstones with deep glacial till drift. \n- **Indigenous Masonry Lithics:**\n  - *Cathedral Complex:* St Mary's Episcopal Cathedral is constructed predominantly from pale buff to grey, fine-to-medium grained Carboniferous quartz arenite sandstone, primarily quarried from historic regional sources including the revered Craigleith and Binny quarries. Spire pinnacles, voussoirs, and traceried ashlar blocks feature dense siliceous sandstone.\n  - *Surrounding West End Tenements:* Four-to-five storey residential blocks are built of coursed ashlar and snecked/squared rubble Hailes and Craigleith sandstone, featuring subtle horizontal bedding laminae and varied honey-buff to cool silver-grey tones.\n- **Mortar Chemistry:** Traditional historic slaked non-hydraulic to feebly hydraulic hot-lime mortars with local sharp river sand aggregates, exhibiting lime leaching along older joints.\n- **Hydrogeology & Subterranean Drainage:** Moderate natural infiltration through sandstone fissures and glacial drift, draining north towards the Water of Leith basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Canopy Disambiguation:** Photogrammetric mesh distortions resolved into distinct, botanically accurate urban trees.\n- **Tree Species:** Mature deciduous specimens including Sycamore (*Acer pseudoplatanus*), London Plane (*Platanus \u00d7 acerifolia*), Wych Elm (*Ulmus glabra*), and European Ash (*Fraxinus excelsior*) situated within the cathedral precinct gardens and street verges.\n- **Vegetation Density:** Dense organic leafy canopies with natural branching structures, dappled green foliage, and understory manicured turf within the churchyard boundary.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Primary Monument (Center & Midground):** *St Mary's Episcopal Cathedral* (Category A Listed, designed by Sir George Gilbert Scott, consecrated 1879). High Victorian Gothic Revival style with an expansive Latin cross cruciform layout, aisled nave, transepts, and a soaring 90-meter (295 ft) central crossing spire fluted with multiple tiers of gabled louvers and lancet openings, flanked by two towering western spires (completed 1917). \n- **Planar Rectification & Geometric Orthogonality:**\n  - Flying buttresses, clerestory walls, vertical corner buttresses, and the trio of stone spires are strictly plumbed to true gravity vertical.\n  - Rectified steep dual-pitch nave roofs, crossing ridges, and dormered valley slopes to crisp, straight geometric lines.\n  - Octagonal chapter house to the northeast, punctuated by tall lancet windows and a steeply pointed stone roof.\n- **Flanking & Foreground Civil Fabric:**\n  - Classical 19th-century Georgian/Victorian West End residential tenements (4 storeys over raised basements with mansard/attic dormers).\n  - Distinctive tall stone chimney stacks (coped ashlar with terracotta chimney pots), horizontal stringcourses, rusticated ground floors, and disciplined timber-framed sash fenestration.\n  - Clean horizontal roof parapets and straight dormer gables.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2136139878957053,
+          55.94856902459005
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T19:12:51.267357+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 264.31,
+        "solar_elevation_deg": -24.83,
+        "shadow_azimuth_deg": 84.3,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

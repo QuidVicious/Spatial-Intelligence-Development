@@ -1,0 +1,27 @@
+# Spatial Domain Analysis: 13 E Basin Dr SW, Washington, DC 20004, USA
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+The subterranean stratum beneath the Thomas Jefferson Memorial consists of Potomac River alluvial floodplain deposits and late 19th-century hydraulic dredge fill (silt, fine sand, and organic mud) resting directly above weathered crystalline Piedmont metamorphic bedrock. The memorial’s superstructure is founded on reinforced concrete caissons driven through the unstable fill layers to anchor into solid bedrock. Exterior masonry consists of dense, crystalline Vermont Imperial Danby white marble set above a granite sub-base and terrace retaining wall system. Non-hydraulic, Portland-lime mortar forms tight ashlar joints. Surrounding hydrology is governed by the high water table and semi-diurnal tidal oscillations of the Potomac River via the adjacent Tidal Basin reservoir, which exerts hydrostatic pressure and promotes persistent moisture intrusion at the perimeter riprap and seawall interface.
+
+## 2. Architecture & Planar Rectification
+The central monument is a Neoclassical pantheon-style circular rotunda designed by John Russell Pope, dedicated in 1943. The circular structure features a single main level (equivalent to an open rotunda volume approximately 28 m / 92 ft high) surrounded by an exterior peristyle ring of circular fluted Ionic marble columns, topped by an entablature and a low stepped saucer dome. The northern entrance consists of a formal octastyle portico with a triangular pediment oriented northward across the Tidal Basin toward the White House and Washington Monument. The base comprises concentric stepped circular terraces and granite podiums. All cylindrical vertical columns, wall planes, and the distant obelisk (the 169-meter Washington Monument) are strictly plumbed along true gravitational verticals. The Federal Triangle and downtown D.C. administrative blocks in the far background form rectified horizontal roofline bands.
+
+## 3. Materials & Environmental Patina
+- Facade & Peristyle: Imperial Danby white marble blocks with clean-cut ashlar joints, displaying subtle atmospheric calcite dissolution, faint silicate vein tracing, and subtle micro-streaking beneath column capitals and cornice overhangs.
+- Dome: Segmental stepped exterior dome surfaced with fitted marble slabs and waterproof lead/copper flashing, displaying subtle surface oxidation.
+- Terrace & Plazas: Pink-gray granite paving stones, aggregate-washed concrete walkways, and natural earth margins.
+- Seawall: Dressed granite block revetment with exposed mortar joints showing tidal salt efflorescence, dark waterline bio-film, and minor surface spalling from brackish wave action.
+- Distant Urban Fabric: Buff Indiana limestone, Ohio sandstone, red pressed brick masonry, and bronze metal trims across the background Mall government complexes.
+
+## 4. Landscape Ecology & Botanical Canopy
+The perimeter landscape is dominated by mature Prunus serrulata (Yoshino cherry trees) with broad, branching leafy canopies and dark fissured bark lining the curvilinear shoreline of the Tidal Basin. The surrounding memorial grounds feature dense groves of Quercus alba (White oak), Acer rubrum (Red maple), Platanus occidentalis (American sycamore), and well-kept turf grass (Kentucky bluegrass and fescue blend) interrupted by low Taxus baccata (Yew) hedges and perimeter shrub beds. All tree canopies display individual branch structures and dense organic leaf clusters.
+
+## 5. Static Civil Fabric Decluttering
+All transient visual noise is completely eliminated: zero pedestrians, zero tourists, zero automobiles, zero delivery vans, zero temporary construction barricades/tarps, and zero dumpsters. The circular driveways, asphalt plazas, and granite terrace walkways remain entirely clear, preserving permanent civil infrastructure (fixed lampposts, stone curbs, circular retaining parapets, and perimeter drainage grates).
+
+## 6. Synthesized Documentary Prompt
+```text
+A documentary medium format architectural photograph captured on a 6x7 rangefinder camera with a 45mm ultra-wide lens at f/8, fine grain film. An elevated aerial view looking north from above East Basin Drive over the Thomas Jefferson Memorial, the calm deep waters of the Tidal Basin, and the distant National Mall terminating at the Washington Monument obelisk. In the foreground, the Thomas Jefferson Memorial stands as a monumental Neoclassical marble rotunda with perfectly plumb vertical fluted Ionic columns, an octastyle portico pediment, a stepped saucer dome, and concentric granite plaza terraces. The exterior Imperial Danby marble displays crisp ashlar seams, gentle organic weathering streaks along the cornices, and fine mineral grain texture. Encircling the circular monument grounds are manicured green lawns and mature, full-canopied Yoshino cherry trees, American sycamores, and oak trees with dense, organic green foliage and visible branching. In the midground, the dark, reflective surface of the Tidal Basin stretches across the frame, bounded by an engineered granite seawall. In the deep background, the expansive greenery of the National Mall leads to the vertical stone obelisk of the Washington Monument and the dense, orthogonal limestone and brick Beaux-Arts federal building blocks of Washington D.C. Perfectly rectilinear perspective with true planar vertical rectification, free of all motor vehicles, construction clutter, and pedestrians.
+```

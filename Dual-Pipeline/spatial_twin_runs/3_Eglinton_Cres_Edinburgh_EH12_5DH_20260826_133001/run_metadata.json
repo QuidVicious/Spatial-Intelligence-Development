@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133001",
+  "address": "3 Eglinton Cres, Edinburgh EH12 5DH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9992.39,
+  "telemetry": {
+    "latitude": 55.94901899365226,
+    "longitude": -3.219428609596238,
+    "altitude_agl": 199.17045349720175,
+    "heading": 116.71792117461456,
+    "pitch": -10.531842176665615,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with rear-right backlight (Sun Azimuth 263.2\u00b0, Elevation 8.2\u00b0), casting crisp directional shadows along 83.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary architectural photograph captured on a 6x7 medium-format rangefinder camera with a 45mm ultra-sharp wide-angle lens, stopped down to f/8 on fine-grain ISO 100 color film. The composition is an elevated high-angle aerial frustum view over the West End of Edinburgh looking east-southeast toward Castle Rock and the distant extinct volcanic ridge of Arthur's Seat. \n\nDominating the midground left is the monumental Victorian Gothic St Mary's Episcopal Cathedral designed by Sir George Gilbert Scott, its grand 84-meter central crossing spire and twin western towers soaring into the sky with crisp vertical masonry lines. The cathedral's Craigleith ashlar sandstone displays authentic historical coal-soot carbon patina nestled in deep undercuts and carved portals contrasting with rain-cleansed buff-grey stone faces. Surrounding the cathedral are sweeping crescents and straight avenues of 4-storey Victorian residential terraces built of pale blonde sandstone ashlar, featuring rhythmic chimney stacks, slate roofs, dormers, and black cast-iron railings. \n\nBelow, the street network is rendered entirely static and decluttered\u2014completely free of cars, motor vehicles, and pedestrians\u2014showcasing pristine granite curbs, Caithness flagstone sidewalks, and dark asphalt lanes. Mature organic sycamores, wych elms, and lime trees with dense leafy canopies fill churchyard grounds and private garden enclaves. \n\nThe scene is bathed in late-afternoon golden hour solar illumination at 3200K from a low-angle sun (elevation 8.",
+  "char_count": 1897,
+  "includes_lighting": true
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_143419",
+  "address": "9 Grosvenor St, Edinburgh EH12 5EF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10170.02,
+  "telemetry": {
+    "latitude": 55.94680566405801,
+    "longitude": -3.2167493502300397,
+    "altitude_agl": 187.05112029806082,
+    "heading": 9.01576497254873,
+    "pitch": -20.60569074677262,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with hard raking side-light from camera-left (Sun Azimuth 288.1\u00b0, Elevation -8.7\u00b0), casting crisp directional shadows along 108.1\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-angle 6x7 medium format architectural documentary photograph of St Mary's Episcopal Cathedral and the surrounding West End Victorian terraces in Edinburgh, captured from 187 meters altitude at a slightly depressed angle on ultra-fine grain film with extreme edge-to-edge optical resolution. Sir George Gilbert Scott\u2019s towering Gothic Revival cathedral anchors the center frame, showcasing its soaring 90-meter central spire and twin western octagonal stone spires meticulously plumbed against gravity. The weathered blonde-and-gray Scottish sandstone masonry reveals authentic historic carbon patina in recessed moldings and crisp stone relief under a dramatic late-evening raking side-light (2000K warm twilight spectrum) casting sharp, long directional shadows across the slate-tiled nave roof and manicured green lawns. Surrounding the cathedral are impeccably rectified, repetitive 4-storey Georgian and Victorian sandstone terrace townhouses with dark slate roofs, regular rows of stone chimneystacks, and wrought-iron lightwell railings. Mature European sycamores and London plane trees with lush, organic leafy canopies flank the cathedral precinct. The street plane is completely static and pristine\u2014devoid of all vehicles, pedestrians, and clutter\u2014preserving solely the historical stone curbs, dark asphalt roadways, and iron gas-lamp street standards under a clear, deep twilight sky.",
+  "char_count": 1767,
+  "includes_lighting": true
+}

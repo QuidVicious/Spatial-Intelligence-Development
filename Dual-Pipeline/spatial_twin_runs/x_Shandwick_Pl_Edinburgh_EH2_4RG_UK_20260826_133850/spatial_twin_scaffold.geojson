@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "x, Shandwick Pl, Edinburgh EH2 4RG, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 136.8,
+          "pitch_deg": 5.3,
+          "heading_deg": 256.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology of Edinburgh's West End is founded upon the Lower Carboniferous Gullane Formation and Strathclyde Group sedimentary strata, dominated by silica-cemented, fine-to-medium grained quartz arenite sandstones interleaved with siltstones and mudstones. The prominent architectural masonry throughout the view is cut from historic regional quarries\u2014principally pale buff-to-grey Craigleith sandstone, noted for its high quartz density (over 95% silica) and remarkable resistance to chemical degradation, with secondary elements utilizing softer blonde sandstone from Hailes and Dunfermline beds. The deep mortar matrix across the Victorian and Edwardian facades consists of traditional non-hydraulic to weakly hydraulic slaked quicklime and sharp crushed river sand, formulated to allow vapor permeability and prevent frost-induced moisture entrapment over centuries of Scottish maritime freeze-thaw cycles."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "In the pocket gardens and rear courtyard spaces below the roofline, urban deciduous greenery is disambiguated from stonework, characterized by mature Scots elm (*Ulmus glabra*), European sycamore (*Acer pseudoplatanus*), and English oak (*Quercus robur*) displaying full, leafy, organic canopies with natural branching structure and moss-dampened bark.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Looking west-southwest along the Shandwick Place / West End corridor:\n- **Left Flank & Mid-Ground Clock Tower**: The prominent Italianate/Baroque-revival clock tower and flanking institutional masonry rise to approximately 40\u201345 meters, terminating in a copper-clad pyramidal spire with pronounced verdigris oxidation. The vertical shafts are plumbed to absolute gravity vertical, correcting the polygon mesh shear.\n- **Center Distance**: The tripartite spires of Sir George Gilbert Scott's Category A listed St Mary\u2019s Episcopal Cathedral (Victorian Gothic Revival) pierce the skyline. The central soaring spire rises to 90 meters (295 ft) flanked by twin western towers ('Barbara' and 'Mary'), featuring lancet windows, crocketed pinnacles, flying buttresses, and open tracery belfries.\n- **Foreground Right Flank**: Massive 4-to-5-storey commercial/tenement ashlar blocks with Mansard roof profiles, dormer-capped attics, planarized pedimented window aedicules, and sharply delineated continuous stone string courses and entablatures. Melted 3D photogrammetry noise across the Mansard slate roofs is rectified into clean standing-seam lead capping and regular Scottish slate tiling.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.208714998215679,
+          55.949833916796905
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T15:21:50.091600+00:00",
+        "weather_state": "FOG",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 302.46,
+        "solar_elevation_deg": 32.03,
+        "shadow_azimuth_deg": 122.5,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

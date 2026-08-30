@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_133344",
+  "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9749.1,
+  "telemetry": {
+    "latitude": 38.879466231995735,
+    "longitude": -77.0364987547826,
+    "altitude_agl": 37.411924849510434,
+    "heading": 358.4822520208624,
+    "pitch": -11.347528619393778,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 271.6\u00b0, Elevation 18.4\u00b0).\n- FACADE ILLUMINATION: all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 documentary architectural photograph taken with a Mamiya 7 and 45mm wide-angle rectilinear lens on fine-grain film at f/8. An elevated wide-angle view overlooking the Thomas Jefferson Memorial on the southern shore of the Tidal Basin in Washington, D.C., aligned along the north-south monumental axis toward the Washington Monument obelisk in the background. The Jefferson Memorial displays a circular Classical rotunda composed of Vermont Imperial Danby white marble fluted Ionic columns, a concentric attic, and a stepped shallow hemispherical dome clad in Indiana oolitic limestone. All architectural lines are perfectly planarized and plumbed to true gravity vertical. Subtle, authentic micro-environmental weathering, faint calcite veining, and delicate rainwater patina mark the marble masonry and cornice joints. Surrounding the monument are lush, organic groves of mature Yoshino cherry trees and American elms with dense green leafy canopies, contrasting with manicured grass berms, asphalt curving access drives, and dressed pink granite seawalls along the smooth water of the Tidal Basin.",
+  "char_count": 1916,
+  "includes_lighting": true
+}

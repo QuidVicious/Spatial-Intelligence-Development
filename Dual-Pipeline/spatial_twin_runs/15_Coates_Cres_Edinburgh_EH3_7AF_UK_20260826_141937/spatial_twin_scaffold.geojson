@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15 Coates Cres, Edinburgh EH3 7AF, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 141.3,
+          "pitch_deg": -1.1,
+          "heading_deg": 285.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean geology of Edinburgh\u2019s West End sits atop the Carboniferous sedimentary sequence of the Strathclyde and Inverclyde Groups, featuring interbedded siltstones, mudstones, and dense quartz-arenite sandstones underlain by deep glacial till and basaltic intrusions. The primary masonry of the surrounding Georgian and Victorian urban fabric is composed of Carboniferous sandstones, predominantly blonde-to-buff Craigleith sandstone and pale golden-brown Hailes sandstone, extracted from historic local quarries. St Mary's Episcopal Cathedral is constructed from a mixture of durable buff-grey Carboniferous sandstone and Dunmore/Hailes stone set in traditional non-hydraulic to feebly hydraulic hot-mixed lime mortars (slaked quicklime and coarse river sand). Subterranean hydrology drains northward toward the Water of Leith basin, with permeable stone foundation footings protected by subterranean damp-proof courses and gravity-fed ashlar plinth drainage lines."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Disambiguated from masonry meshes, the urban foliage consists of mature deciduous canopy trees rooted in communal rear gardens, churchyard grounds, and private crescents:\n- *Platanus x acerifolia* (London Plane) and *Acer pseudoplatanus* (Sycamore), displaying full, dense crowns of broad, lobed green leaves.\n- Scattered *Betula pendula* (Silver Birch) and *Fraxinus excelsior* (Ash) with organic, branching woody limb structures, casting natural soft leafy shadow patterns against courtyard stone pavements.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Foreground / Street Level (Lower Third):** Multi-storey Victorian and late-Georgian residential tenement blocks and stone terraces (4 to 5 storeys plus attic mansards and basements). Planar vertical facades are plumbed true to gravity, rectifying all photogrammetry mesh warping. Straight-cut string courses, projecting moulded cornices, rusticated ground-floor ashlar, and uniform arrays of 2-over-2 and 1-over-1 timber sash-and-case windows set into recessed stone architraves. Roofscapes feature regular rhythmic arrays of stone-built chimney stacks with terracotta chimney pots, pitched slate gable roofs, and planar lead-dressed dormers.\n- **Center Structures (Midground to Sky):** The imposing silhouette of St Mary's Episcopal Cathedral (designed in Victorian Early Gothic Revival by Sir George Gilbert Scott). The central square tower rises through multi-tier louvred belfry stages and corner pinnacles to support an octagonal stone spire reaching 90 meters (295 ft) into the sky. Symmetrical nave, transept gables, high-pitched lead and slate roofs, flying buttresses, lancet window groupings, and a massive circular wheel/rose window in the transept facade.\n- **Left and Right Flanking Structures:** To the left (west front), the twin western spires (\"Barbara\" and \"Mary\") rise with matching octagonal stone profiles. Flanking to the far right is the polygonal pyramidal-roofed Chapter House and contiguous Victorian ashlar terraces stretching into the rolling topography of western Edinburgh.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2132938190667826,
+          55.948390965668224
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T08:17:51.190517+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 51.47,
+        "solar_elevation_deg": 3.65,
+        "shadow_azimuth_deg": 231.5,
+        "color_temperature_k": 3200,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "5 Saxe Coburg Pl, Edinburgh EH3 5BR, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 109.6,
+          "pitch_deg": -3.0,
+          "heading_deg": 183.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock Lithology & Geomorphology:** The subterranean foundation consists of the Lower Carboniferous Inverclyde and Strathclyde Groups (sedimentary sandstones, siltstones, and mudstones) cut by intrusive volcanic structures. The southward vista spans from the Water of Leith incision in Stockbridge across the glacial crag-and-tail topography of the New Town toward Castle Rock\u2014an eroded Early Carboniferous basaltic/doleritic volcanic plug (~350 Ma) looming on the horizon.\n- **Indigenous Masonry Lithics:** The predominant masonry across the Georgian and Victorian urban fabric is indigenous Craigleith sandstone (a highly siliceous, pale-grey to buff Carboniferous quartz arenite prized for exceptional compressive strength and weather resistance), supplemented by Hailes and Ravelston sandstones (laminated, clay-bearing, buff-grey). Ground-level sets and kerbstones feature intrusive quartz-dolerite and Whinstone.\n- **Mortar Chemistry & Subterranean Hydrology:** Historic load-bearing masonry utilizes non-hydraulic to feebly hydraulic hot-mixed slaked lime mortars with coarse river sand aggregate. Subterranean moisture moves naturally southward toward the Water of Leith drainage basin via deeply stratified glacial till and alluvial gravels over bedrock."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Disambiguated Organic Vegetation:** Disambiguated fully from stone geometry; represented with natural open-air branching and distinct foliage layers.\n- **Species Composition:** Mature urban deciduous canopy dominating the middle-ground valley (Dean Gardens, Water of Leith corridor, and private tenement back-greens) consisting of *Ulmus glabra* (Wych elm), *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European ash), *Fagus sylvatica* (Common beech), and *Tilia x europaea* (Common lime). Leaf clusters show dense, natural organic density with subtle cool-green tones.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typologies & Massing:** \n  - *Foreground/Lower Tier:* Mid-to-late Georgian and early Victorian residential tenements and mixed-use commercial blocks along Hamilton Place, St Stephen Place, and Saxe Coburg Place. Typologies range from 3- to 4-storey classical tenements with raised basements to mid-20th-century infill housing (3\u20134 storeys with horizontal fenestration and light-rendered exterior walls).\n  - *Center/Midground:* Prominent Gothic Revival church tower and spire of the Stockbridge Church / St Stephen's community fabric featuring ashlar belfries, lancet openings, and steeply pitched gables. Flanking blocks comprise continuous 4-storey Georgian ashlar tenements punctuated by rhythmic chimney stacks, heavy stone skews, and timber sash-and-case windows (typically twelve-pane 6-over-6 or four-pane 2-over-2 configurations).\n  - *Background Horizon:* Distant classical New Town skyline stepping uphill along Heriot Row and Queen Street, framed by the copper-patinated neoclassical dome of West Register House (Charlotte Square), the triple spires of St Mary\u2019s Cathedral to the right, and the fortified mass of Edinburgh Castle crowning Castle Rock on the left skyline.\n- **Planar Rectification & Anti-Warp Protocol:** All vertical tenement facades, church spires, and chimney stacks are strictly plumbed to 90\u00b0 gravity vertical. All horizontal string courses, blocking courses, eaves, and floor plates are rectified into laser-straight parallel planes, fully resolving any photogrammetric facet noise or synthetic bowing. Roof planes, dormers, and lead ridge flashings are crisply delineated.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.209240865269564,
+          55.96005243891727
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-10-10T16:23:50.217808+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 16.4,
+        "solar_azimuth_deg": 293.59,
+        "solar_elevation_deg": 7.66,
+        "shadow_azimuth_deg": 113.6,
+        "color_temperature_k": 3200,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

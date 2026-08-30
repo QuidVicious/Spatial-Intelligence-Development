@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_140108",
+  "address": "12 Randolph Cres, Edinburgh EH3 7TT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9908.05,
+  "telemetry": {
+    "latitude": 55.95251079491338,
+    "longitude": -3.212321740118162,
+    "altitude_agl": 136.88640773653913,
+    "heading": 307.16445348714404,
+    "pitch": -10.177575869750953,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2400K natural solar illumination (Civil twilight blue hour with deep indigo ambient dome and soft shadows) with rear-right backlight (Sun Azimuth 62.5\u00b0, Elevation -2.6\u00b0), casting crisp directional shadows along 242.5\u00b0. Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA 6x7 medium format architectural documentary photograph of Dean Bridge and the Water of Leith gorge in Edinburgh, viewed from an elevated vantage point looking northwest over Randolph Crescent. The grand four-span stone arch bridge designed by Thomas Telford dominates the midground, its tall Craigleith buff-sandstone ashlar piers and delicate projecting footway arches rising cleanly from the forested gorge floor. In the center-left distance, the Gothic Revival tower and pinnacles of Holy Trinity Episcopal Church rise above the tree line, flanked by the elegant, unified curved Georgian sandstone ashlar residential facades and dark slate mansard roofs of the New Town. The valley below is completely filled with a dense, leafy canopy of mature sycamore, European beech, and wych elm trees with organic branching and lush foliage. The entire bridge deck and surrounding roadways are utterly static, empty of all motor vehicles, cars, buses, and pedestrians, revealing clean granite curbstones, iron railings, and historic lamp standards. Captured during civil twilight blue hour with subtle 2400K directional rim-lighting, delicate low-altitude valley ground mist rising from the river, deep indigo ambient shadow tones, exceptionally sharp vertical planar rectification, and the authentic fine-grain clarity of a Mamiya 7 with a 45mm lens at f/8.",
+  "char_count": 1771,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "20 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 204.9,
+          "pitch_deg": -42.2,
+          "heading_deg": 281.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock: Carboniferous sedimentary sequences of the Strathclyde Group (Gullane Formation), interbedded sandstones, siltstones, and bituminous mudstones, overlain by dense Quaternary lodgement till.\n- Lithic Fabric: Primary dimensional masonry extracted from the historic Craigleith Quarry (pale blonde/buff quartz-arenite sandstone) with complementary secondary coursing from Hailes Quarry (grey laminated sandstone).\n- Mortar Chemistry: Traditional hot-mixed non-hydraulic lime mortar formulated from calcined limestone and coarse, sharp pit-sand aggregate, flush and neatly ribbon-pointed.\n- Hydrology & Subterranean Dynamics: Glacial till subsoil sloping north toward the Water of Leith basin; engineered subterranean interceptor cellars and lightwell dry areas providing gravity drainage away from foundation footings."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Botanical Composition: Drummond Place Gardens central park enclave dominated by mature specimens:\n  - *Ulmus glabra* (Wych Elm)\n  - *Acer pseudoplatanus* (Sycamore Maple)\n  - *Platanus \u00d7 acerifolia* (London Plane)\n  - *Tilia \u00d7 europaea* (Common Lime)\n  - Understory layer of *Taxus baccata* (English Yew), *Ilex aquifolium* (European Holly), and manicured fine fescue/ryegrass lawn (*Festuca rubra* / *Lolium perenne*).\n- Phenology: Full mid-to-late summer foliage; broad, dense, multi-tiered deciduous canopies with deep green pigment saturation, heavy branch framing, and mature trunk architectures.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Regency/late Georgian neoclassical residential circus and curved terrace quadrants (Drummond Place, Reid & Sibbald Second New Town plan, c. 1802\u20131823).\n- Massing & Verticality: 3-storey plus attic and sunken basement configurations. Plumb vertical load-bearing facades with fully planar ashlar frontages and rectilinear courtyard returns.\n- Ground Storey: Horizontal channelled ashlar rustication over sunken basement lightwells bridged by monolithic droved sandstone access platts.\n- Upper Storeys: Polished ashlar field with continuous moulded first-floor cill bands, projecting moulded eaves cornices, and plain ashlar blocking parapets.\n- Fenestration: Symmetrical grids of 6-over-6 and 2-over-2 double-hung timber sash-and-case windows recessed in droved stone reveals; arched timber fanlights above six-panel timber entrance doors.\n- Roofscape: Multi-pitched hipped roofs clad in Scottish Ballachulish blue-grey slate in diminishing courses; massive dressed ashlar chimney stacks with aligned cylindrical terracotta flue terminals and lead ridge flashings.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192204411002546,
+          55.958514360081196
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T13:18:45.129059+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 339.82,
+        "solar_elevation_deg": 14.8,
+        "shadow_azimuth_deg": 159.8,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

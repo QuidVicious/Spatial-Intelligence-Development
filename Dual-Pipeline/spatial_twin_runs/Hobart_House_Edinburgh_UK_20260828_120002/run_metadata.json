@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_120002",
+  "address": "Hobart House, Edinburgh, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12146.19,
+  "telemetry": {
+    "latitude": 55.95411623115617,
+    "longitude": -3.1976472825012556,
+    "altitude_agl": 159.93763394792074,
+    "heading": 283.33342217792125,
+    "pitch": -32.930814464989744,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-right (Azimuth 55.9\u00b0, Elevation 32.1\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along right edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-LEFT of the frame.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase all sideways/rearward shadows; project all elongated shadows forward toward the lower-LEFT.\n- WEATHER/SKY: Dense ground fog and mist with light-scattering depth haze and softened horizon contrast.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nHigh-angle architectural survey of Hanover Street and Rose Street junction, Edinburgh New Town. Center foreground features a Scots Baronial corner tenement of Dumfriesshire red sandstone ashlar and droved buff sandstone dressings, defined by a corbelled polygonal corner turret with conical slate cap, 4 storeys over commercial ground level, and a slate-clad mansard roof with zinc-cheeked pedimented dormers. Flanking terraces display Georgian Craigleith blonde sandstone ashlar facades, 3 to 4 storeys over rusticated basements with cast-iron spearhead railings.",
+  "char_count": 2134,
+  "includes_lighting": false
+}

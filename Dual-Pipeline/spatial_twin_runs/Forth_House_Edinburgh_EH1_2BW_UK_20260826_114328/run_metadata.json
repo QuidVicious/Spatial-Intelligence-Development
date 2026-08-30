@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114328",
+  "address": "Forth House, Edinburgh EH1 2BW, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10245.56,
+  "telemetry": {
+    "latitude": 55.94858189245399,
+    "longitude": -3.2092917616902716,
+    "altitude_agl": 162.69880480768822,
+    "heading": 319.9447782228651,
+    "pitch": -11.816751211112045,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with rear-right backlight (Sun Azimuth 88.1\u00b0, Elevation 14.3\u00b0), casting crisp directional shadows along 268.1\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph, captured on a Mamiya 7 with a 45mm ultra-wide lens, ISO 100 fine-grain film, stopped down to f/8 for deep corner-to-corner clarity and zero optical distortion. High-angle elevated viewpoint over the West End of Edinburgh, looking northwest toward the monumental Italianate campanile of St George's West Church (Charlotte Chapel) rising 56 meters high. The campanile features finely dressed blonde Craigleith sandstone, a pedimented clock stage with white clock face, a clean vertical shaft, an open columnar belfry loggia, and a steep pyramidal spire clad in oxidized verdigris-green copper sheets. \n\nSurrounding the tower is a dense, rhythmic expanse of 4-to-5 storey Georgian and Victorian blonde sandstone tenements with gray Ballachulish slate roofs, tall ashlar chimneystacks with terracotta pots, mansard dormers, and rectified vertical facades. Authentic Scottish environmental weathering displays soft atmospheric carbon patina under cornices and water-wash lines along stone sills. In the foreground, rooftops feature lead flashings, chimney banks, and a red brick tenement rear facade. Mature leafy green sycamore and plane tree crowns emerge organically from courtyards. \n\nCompletely decluttered civil urban scene: zero pedestrians, zero motor vehicles, zero temporary street clutter.",
+  "char_count": 1774,
+  "includes_lighting": true
+}

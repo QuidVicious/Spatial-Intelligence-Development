@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_121029",
+  "address": "26 London St, Edinburgh EH3 6NA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11215.83,
+  "telemetry": {
+    "latitude": 55.95908065973179,
+    "longitude": -3.192176846847062,
+    "altitude_agl": 101.36261824092824,
+    "heading": 254.88987275330055,
+    "pitch": -4.248292538926218,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nNOCTURNAL / TWILIGHT RELIGHTING DIRECTIVE (2200K Blue Hour Civil Twilight):\n- SUN POSITION: Sun is below the horizon (Elevation -2.5\u00b0). ZERO direct solar exposure.\n- FACADE ILLUMINATION: Complete absence of direct sunlight. All facades, spires, domes, and roofs must have ZERO harsh directional sun highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely extinguish all baked-in daytime sunlight and directional shadows. Render all stone surfaces in soft, flat, ambient nocturnal skylight with subtle contact occlusion.\n- CAST SHADOW DIRECTION: No solar cast shadows exist.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format architectural documentary photograph of London Street, Edinburgh New Town, looking west-southwest along the wide Georgian corridor toward Drummond Place Gardens. Continuous mirrored flanks of four-storey-and-basement late Georgian neoclassical ashlar tenements built from pale buff Craigleith quartz-arenite sandstone. Ground floors feature deeply recessed horizontal rustication, arched doorways, and molded stone platbands. Upper storeys display crisp, smooth droved ashlar blocks, aligned six-over-six timber sash windows in square reveals, molded stone eaves cornices, and parapet blocking courses.",
+  "char_count": 2199,
+  "includes_lighting": false
+}

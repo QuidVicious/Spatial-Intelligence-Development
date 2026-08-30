@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_154936",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10029.73,
+  "telemetry": {
+    "latitude": 55.948111640159915,
+    "longitude": -3.2121984641645454,
+    "altitude_agl": 151.40963293317103,
+    "heading": 40.70018545028274,
+    "pitch": -4.492284482269007,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 293.1\u00b0, Elevation 26.9\u00b0).\n- FACADE ILLUMINATION: all left-facing walls, facades, spires, and domes are in bright direct sunlight; right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left and render as sunlit surfaces. Cast all new shadows across the scene to the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph, eye-level perspective looking northeast along the broad axis of Shandwick Place in Edinburgh's West End, captured on fine-grain 6x7 film with a 45mm rectilinear lens at f/8. The foreground features the sweeping Neoclassical sandstone crescent facades of Atholl Crescent with ashlar banding, tall timber sash-and-case windows, slate mansard roofs, and wrought-iron basement railings. In the center midground rises the monumental 56-meter ashlar stone campanile clock tower of the former St George's West Church, showcasing fine vermiculated masonry, Venetian belfry openings, and a patinated green copper spire. In the far background, the green copper dome of West Register House at Charlotte Square anchors the skyline. Flanking the street are clean, empty asphalt roadways with embedded steel tram tracks, bordered by cut stone curbs, black cast-iron lamp posts, and the leafy green foliage of mature lime and maple trees within the crescent gardens. Rich historic soot patina, granular stone tooling, and authentic weather-staining are clearly visible across all historic sandstone surfaces.",
+  "char_count": 1963,
+  "includes_lighting": true
+}

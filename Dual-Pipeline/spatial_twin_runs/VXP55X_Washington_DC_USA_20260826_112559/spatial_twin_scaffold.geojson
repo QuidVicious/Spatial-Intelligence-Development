@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "VXP5+5X Washington, DC, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 84.2,
+          "pitch_deg": -4.3,
+          "heading_deg": 41.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The National Mall and the monument grounds sit precisely astride the Atlantic Seaboard Fall Line zone, marking the geomorphological transition where the crystalline Piedmont Province (Wissahickon schist, Laurel gneiss) plunges beneath the unconsolidated gravels, sands, silts, and clays of the Atlantic Coastal Plain. Originally situated over low river terraces and historically reclaimed tidal marshes bordering the Potomac River, the subterranean foundation of the Washington Monument consists of a stepped pyramid substructure built from local blue gneiss (quarried from Little Falls, Maryland) and granite, reinforced in the 1870s with an expansive concrete underpinning to stabilize the load-bearing mass over the alluvial subsoils. \n\nThe above-ground masonry reflects distinct geological provenances: the lower 152 feet (constructed 1848\u20131854) utilize dense, white calcite marble quarried in Cockeysville/Texas, Maryland; a narrow transitional zone utilizes Sheffield/Lee, Massachusetts marble; while the upper 400+ feet (completed 1879\u20131884) utilize a slightly darker, blue-tinted dolomitic marble from the Beaver Dam quarry in Cockeysville, backed internally with dark Maine and Massachusetts biotite granite. In the background, the Federal Triangle complex rests on thick beds of Salem/Indiana oolitic limestone (Mississippian calcarenite) with Deer Island and Rockville granite base courses."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The monument grounds and flanking National Mall gardens are populated by mature deciduous and evergreen canopies:\n- *Platanus \u00d7 acerifolia* (London plane trees) lining Constitution Avenue with mottled, exfoliating bark and broad, dense green leaf crowns.\n- *Quercus palustris* (Pin oak) and *Quercus phellos* (Willow oak) establishing broad shade clusters across the lawn margins.\n- *Ulmus americana* (American elm cultivars) arrayed in formal allees towards the National Mall axis.\n- *Prunus serrulata* (Yoshino cherry trees) clustered toward the Tidal Basin periphery.\n- Ground cover is maintained as broad, manicured Kentucky bluegrass (*Poa pratensis*) and tall fescue (*Festuca arundinacea*) turf, punctuated by compacted earthen/gravel footpaths.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Central Focus (Washington Monument):** A monumental hollow stone Egyptian-revival obelisk rising to an exact height of 554 feet 7+11/32 inches (169.046 m). The base measures 55 feet 1.5 inches square with walls 15 feet thick, tapering to 34 feet 5.5 inches square with 18-inch thick walls at the base of the 55-foot pyramidion, capped by a solid aluminum apex point. Surrounding the base is a paved circular granite plaza enclosed by a ring of 50 steel flagpoles.\n- **Background Flanking Structures (Federal Triangle & Constitution Avenue):** \n  - *Herbert C. Hoover Building (Department of Commerce):* Colossal 7-storey Neoclassical/Beaux-Arts civic palace featuring a rusticated, channeled limestone base, monumental 24-column Doric peristyle colonnades, and hipped roofs clad in variegated Spanish red-clay tiles.\n  - *Ronald Reagan Building & International Trade Center:* 10-storey Postmodern classical civic structure featuring curved Indiana limestone facades, segmented rotunda volumes, and polished granite fenestration bands.\n  - *Old Post Office Pavilion Tower:* Romaneque Revival rusticated granite and limestone clock tower puncturing the skyline at 315 feet.\n  - *Far Background (Downtown / Executive Enclave):* The White House North/South lawn perimeter and classical Treasury Building situated to the far left background, flanked by rectilinear mid-rise commercial/office facades adhering strictly to the 1910 Height of Buildings Act limit (130\u2013160 feet).\n- **Geometric Rectification:** All tapering corner arrises of the obelisk are rectified to razor-sharp, non-warping lines; vertical walls of the Federal Triangle and downtown urban grid are aligned to true gravitational plumb, eliminating barrel distortion and photogrammetry mesh melting.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04007856363557,
+          38.88543858587802
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T17:08:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 30.5,
+        "solar_azimuth_deg": 1.21,
+        "solar_elevation_deg": 61.73,
+        "shadow_azimuth_deg": 181.2,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

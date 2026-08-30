@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "26 London St, Edinburgh EH3 6NA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 101.4,
+          "pitch_deg": -4.2,
+          "heading_deg": 254.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation rests upon the Lower Carboniferous (Dinantian) sedimentary succession of the Strathclyde Group, comprising interbedded siltstones, mudstones, and thick quartzitic sandstones overlain by dense glacial till. Primary structural masonry consists of quarried Craigleith sandstone (pale grey to buff quartz arenite with siliceous and calcareous cementation, known for high structural compressive strength) with subsidiary rubble backing of Hailes sandstone. Bedding joints are laid in traditional non-hydraulic to weakly hydraulic slaked lime mortar (calcium hydroxide with local river sand aggregate). Subsurface drainage is managed via gravel-backfilled perimeter lightwells and cut-stone subterranean vaults beneath the pedestrian footways."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The western terminus of London Street opens axially toward Drummond Place Gardens, dominated by mature temperate broadleaf canopy cover. Predominant species include *Ulmus glabra* (Wych elm), *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (Sycamore), and *Tilia cordata* (Small-leaved lime). Botanical phenology corresponds to late-summer maturation: deep green, high-density leaf canopies forming an unbroken organic foliage wall across the street axis, showing fully expanded mature leaves with localized inner-canopy shade chlorosis and absence of defoliation.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Uniform early 19th-century Georgian New Town residential terrace typologies laid out on a strictly symmetrical cross-axial grid. Massing comprises mirrored northern and southern terraces: three storeys above ground over continuous sunken basement areas, topped with pitched slate attic levels. Facade geometry is rectified to true gravity vertical: ground floors feature deeply channelled horizontal ashlar rustication with flat-arched voussoir lintels; upper first and second storeys feature smooth-dressed polished ashlar with continuous projecting stringcourses and an overarching moulded eaves cornice capped by a solid ashlar blocking course. Fenestration is organized on a rigorous, unyielding grid of recessed timber 6-over-6 and 12-pane sash-and-case windows with thin glazing bars. Symmetrical ridge-line and wallhead chimney stacks with coped cornices support regular arrays of cylindrical buff and terracotta chimney pots. Roofs are rectilinear pitched gables featuring slate-hung dormers with lead cheek flashing. Stone access platts (flying bridges) span the basement wells to entrance doors crowned with geometric and semicircular fanlights.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T16:03:45.122443+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.4,
+        "solar_azimuth_deg": 302.79,
+        "solar_elevation_deg": 0.43,
+        "shadow_azimuth_deg": 122.8,
+        "color_temperature_k": 2200,
+        "ambient_illuminance_lux": 800
+      }
+    }
+  ]
+}

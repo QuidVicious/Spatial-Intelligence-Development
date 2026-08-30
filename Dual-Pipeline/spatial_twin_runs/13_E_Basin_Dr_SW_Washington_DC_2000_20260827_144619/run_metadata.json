@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_144619",
+  "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10183.86,
+  "telemetry": {
+    "latitude": 38.87922939826234,
+    "longitude": -77.03659943483613,
+    "altitude_agl": 46.479640774142425,
+    "heading": 1.9051125698358036,
+    "pitch": -14.88115578482935,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located upper-left quadrant of the frame (Azimuth 297.9\u00b0, Elevation 44.3\u00b0).\n- FACADE ILLUMINATION: left-facing facades and the left side of monuments are brightly lit; right-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the RIGHT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow toward the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a 6x7 rangefinder camera with an ultra-sharp 45mm wide-angle lens, ISO 100 fine-grain film, stopped down to f/8 for edge-to-edge optical resolution. An elevated frontal view centered on the Thomas Jefferson Memorial on the southern shore of the Tidal Basin in Washington, D.C. The monumental Classical Revival rotunda features a circular colonnade of fluted white Vermont Imperial Danby marble Ionic columns supporting a stepped circular entablature and a smooth hemispherical marble dome. The marble surfaces display authentic historical weathering with subtle surface veining, delicate mineral inclusion patinas, and natural calcite grain. True gravity-plumb vertical columns and pristine stepped terraces descend to broad curved granite plazas. Flanking the memorial and lining the curved water basin are mature leafy Yoshino cherry trees, massive American elms, and oaks with dense, organic green foliage and intricate branch structures over manicured open grass lawns.",
+  "char_count": 1820,
+  "includes_lighting": true
+}

@@ -1,0 +1,34 @@
+# Spatial Domain Analysis: 14 Atholl Cres, Edinburgh EH3 8HA, UK
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+The subterranean foundation consists of Lower Carboniferous sedimentary bedrock belonging to the Strathclyde and Inverclyde groups, characterized by interbedded sandstones, siltstones, and mudstones with nearby igneous intrusions associated with the volcanic origins of the Edinburgh basin. The predominant structural lithics are pale grey to buff-tinted Carboniferous sandstones quarried from the historical Craigleith, Hailes, and Binny beds. These quartz-rich, silica-cemented sandstones provide high structural durability and resistance to deep granular disaggregation. Masonry courses are bedded in traditional Scottish hot-mixed lime mortars utilizing locally sourced hydraulic and non-hydraulic limes with sharp fluvial aggregate. Subterranean drainage follows the natural northwestern gravitational gradient discharging toward the Water of Leith basin.
+
+## 2. Architecture & Planar Rectification
+- **Focal Tower & Ecclesiastical Massing (Center):** The campanile of St George's West Church (Charlotte Chapel) on Shandwick Place rises 56 metres, designed by Sir Robert Rowand Anderson (1879–1881) in the Venetian Romanesque style after San Giorgio Maggiore, surmounting the earlier 1866–1869 nave designed by David Bryce. The tower exhibits a massive rusticated ashlar base, planar shaft with vertical pilaster strips, clock chamber with circular dials, an open columnar belfry loggia with rounded Romanesque arches, and a pyramidal/conical lantern cap.
+- **Crescent Terraces (Left and Right Fore-to-Midground):** Atholl Crescent (left) and Coates Crescent (right), designed by Thomas Bonnar (c. 1825). These Georgian/Regency residential blocks feature 3 storeys plus continuous basement lightwells and slate-clad mansard attic levels with timber-framed sash dormer windows. Facades exhibit strict horizontal rustication at the ground level, smooth dressed ashlar upper storeys, continuous string courses, moulded architraves, terminal pavilions with shallow Ionic pilasters, and uniform parapet copings. 
+- **Street Axis & Planar Geometry:** Shandwick Place extends diagonally along heading 41.2°, anchored by embedded steel twin tram tracks flush with the tarmac. All structural vertical lines are plumbed perpendicular to the horizon; roof pitches, parapets, floor plates, and window mullions are rectified into planar alignment without photogrammetric deformation.
+- **Distant Background:** Dense low-rise Georgian New Town tenement grid, punctuated to the northeast by the neoclassical green copper dome of West Register House (formerly St George's Church, Charlotte Square), receding toward the distant Firth of Forth coastline.
+
+## 3. Materials & Environmental Patina
+- **Ashlar Facades:** High-silica Craigleith sandstone ashlar cut into uniform regular coursing, weathered with authentic environmental patinas, vertical rainwash streaks beneath sill dripstones, and historical coal-smoke carbon encrustation concentrated in recessed friezes and unwashed stone crevices.
+- **Roofing & Spire:** Dark grey-blue Scottish and Welsh metamorphic slate laid in diminishing courses, with lead valleys, copper ridge rolls, and prominent sandstone chimney stacks crowned with cylindrical terracotta chimney pots. The campanile spire lantern is clad in patinated verdigris copper sheeting.
+- **Joinery & Metalwork:** Multi-pane painted timber sash and case windows (typically 12-pane and 6-pane configurations), black-painted wrought and cast-iron spear-headed railings guarding the subterranean lightwells, and cast-iron decorative balcony railings.
+- **Pavement & Civil Infrastructure:** Dressed whinstone (basalt) and granite kerbstones, sandstone flagstone footpaths, embedded grooved steel tram rails, and macadam road surface.
+
+## 4. Landscape Ecology & Botanical Canopy
+Mature broadleaf deciduous parkland trees occupy the enclosed garden enclosures of Atholl Crescent and Coates Crescent. Discernible species include:
+- *Ulmus glabra* (Wych Elm) and *Acer pseudoplatanus* (Sycamore) exhibiting mature branching frameworks with full, irregular crown silhouettes and dense green foliage.
+- *Tilia cordata* (Small-leaved Lime) planted along perimeter curbs, displaying rounded, leafy crowns.
+- Understory consisting of manicured turf, clipped privet hedging (*Ligustrum ovalifolium*), and perimeter shrub beds. All botanical elements are resolved as organic, branching, leafy canopies, distinct from surrounding stonework.
+
+## 5. Static Civil Fabric Decluttering
+All transient vehicular traffic (automobiles, double-decker buses, delivery vans, moving trams) and human pedestrians have been purged from the scene. All temporary waste receptacles, promotional signage, construction barriers, and transient street debris have been eliminated. Permanent municipal infrastructure—including steel tram tracks, overhead wire gantries, cast-iron street lamps, stone curbs, pedestrian bollards, and boundary railings—remains fully intact.
+
+## 6. Synthesized Documentary Prompt
+```text
+A medium format 6x7 architectural documentary photograph captured at an elevated altitude of 154 meters looking northeast along Shandwick Place in the West End of Edinburgh. In the centre rises the tall, vertical 56-metre Venetian Romanesque campanile of St George's West Church (Charlotte Chapel), constructed from buff-grey Craigleith sandstone ashlar with an open columnar belfry and a verdigris-oxidized copper conical lantern spire. Flanking the broad roadway are the sweeping curved Georgian ashlar facades of Atholl Crescent on the left and Coates Crescent on the right, designed by Thomas Bonnar with rusticated ground floors, smooth upper ashlar, basement lightwells secured by black wrought-iron spearhead railings, and pitched slate roofs lined with dormers and tall masonry chimney stacks topped with red clay pots. 
+
+The foreground crescent gardens contain mature Sycamore, Wych Elm, and Lime trees with fully resolved, organic leafy green foliage over trimmed grass enclosures. Embedded dual steel tram tracks run down the centre of the wide asphalt roadway, flanked by granite kerbs and stone flagstone pavements. In the far background, the low-density neoclassical grid of the Edinburgh New Town stretches toward the copper dome of West Register House at Charlotte Square and the distant water horizon of the Firth of Forth. Facades exhibit authentic age-appropriate weathering, with soft grey carbon deposits in stone moldings and fine lime-mortar joints. Every architectural line is plumb and geometrically precise; the roadway and pavements are completely empty of all vehicles, cars, and pedestrians. Sharp edge-to-edge optical fidelity on fine-grain ISO 100 film, f/8 deep depth of field.
+```

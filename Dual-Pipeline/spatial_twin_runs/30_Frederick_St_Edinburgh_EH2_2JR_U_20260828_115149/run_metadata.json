@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_115149",
+  "address": "30 Frederick St, Edinburgh EH2 2JR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11883.71,
+  "telemetry": {
+    "latitude": 55.95262595133233,
+    "longitude": -3.200332738308277,
+    "altitude_agl": 126.43010518545854,
+    "heading": 5.244982415643012,
+    "pitch": -1.8121032984998244,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly behind the camera (Azimuth 6.7\u00b0, Elevation 43.9\u00b0).\n- FACADE ILLUMINATION: all visible front-facing facades, towers, and walls are in bright direct illumination.\n- CAST SHADOW DIRECTION: cast shadows fall directly away into the background behind structures.\n- SHADOW OVERWRITE RULE: MANDATORY: Overwrite all lateral and sideways shadows with illuminated terrain albedo.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 documentary architectural photograph. Intersection of George Street looking north down the Frederick Street gradient in Edinburgh New Town. In the foreground, the bronze monument of William Pitt the Younger stands on a tapered Peterhead granite plinth within a circular stone sett island. Flanking the corner, 80 George Street presents a four-storey ashlar sandstone facade of pale buff Craigleith arenite, defined by rusticated segmental ground-floor arches, classical window architraves, moulded cornice bands, and slate-clad dormered gables.",
+  "char_count": 2087,
+  "includes_lighting": false
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_135230",
+  "address": "15 Marchmont Cres, Edinburgh EH9 1HL, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11071.78,
+  "telemetry": {
+    "latitude": 55.93888194740474,
+    "longitude": -3.1934701218269765,
+    "altitude_agl": 223.2370815666365,
+    "heading": 165.85171973133365,
+    "pitch": -43.8730284733542,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with rear-left backlight (Sun Azimuth 46.5\u00b0, Elevation 2.1\u00b0), casting crisp directional shadows along 226.6\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph captured on 6x7 format (Mamiya 7, 45mm ultra-wide lens, ISO 100 fine-grain film, f/8, deep hyperfocal sharpness from foreground to infinity) looking south-southeast at the historic curving intersection of Marchmont Crescent, Edinburgh. \n\nThe street is completely devoid of all motor vehicles, cars, buses, bicycles, pedestrians, traffic cones, and mobile trash bins. The urban scene showcases pure, static late-19th-century Victorian Scots Baronial architecture. The flanking 4-to-5-storey tenement blocks stand perfectly plumb, constructed from coursed and snecked Carboniferous blonde sandstone with finely tooled ashlar dressings, pronounced canted bay windows, crow-stepped gables, corbelled corner turrets, and monumental ashlar chimney stacks with clay pots rising into the sky. Facades exhibit authentic 140-year microclimate weathering: deep black carbon patina nestled beneath cornices and decorative stone brackets, subtle biological moss/algae wash along the damp plinths, and natural rain-cleansed sandstone faces. Slate roofs feature authentic dark Ballachulish tiles, lead flashing, and clean rectangular skylights. \n\nAt street level, the curving Caithness stone and asphalt roadway is pristine, bordered by heavy whinstone/granite curbs, cast-iron basement railings, and classic cast-iron lampposts. Mature London plane trees and sycamores feature fully developed, leafy green canopies with organic branch geometry casting intricate, low-angled golden hour shadows (3200K low amber sunlight from the rear-left at 46.5\u00b0 azimuth, 2.",
+  "char_count": 1960,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "26 London St, Edinburgh EH3 6NA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 101.4,
+          "pitch_deg": -4.2,
+          "heading_deg": 254.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean geology comprises Lower Carboniferous (Tournaisian\u2013Vis\u00e9an) sedimentary sequences of the Gullane Formation and Strathclyde Group, consisting of interbedded quartzose sandstones, siltstones, carbonaceous mudstones, and underlying intrusive basaltic sill topography. Structural masonry is dominated by fine-grained, pale buff-to-grey quartz-arenite sandstone quarried locally from the Craigleith Quarry (Edinburgh) and Cullalo Quarry (Fife), laid in thick load-bearing ashlar blocks. Sub-street level retaining walls and basement area lightwells utilize coursed, laminated sandstone from Hailes Quarry bedded with hydraulic lime and sharp sand mortar. Natural drainage slopes gently west-northwest toward the Water of Leith drainage basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The western visual terminus terminates at Drummond Place Gardens. Mature urban woodland canopy is dominated by *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European Ash), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm). In late August, the canopy exhibits full, dense, dark-green foliar volume, with deep broad crowns forming an unbroken organic curtain wall across the street vista, showing early minor chlorosis on outer crown tips.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Linear urban corridor designed by Thomas Bonnar and William Sibbald (c. 1819\u20131823) framing the eastern approach to Drummond Place. The street wall consists of continuous four-storey-and-basement neoclassical Georgian residential tenements and townhouses. Basements sit within sunken area lightwells behind cast-iron perimeter spearhead railings. The principal ground floors exhibit horizontally channelled (rusticated) Craigleith ashlar, divided from upper storeys by molded stone string courses and platbands. First and second storeys feature smooth droved ashlar with vertically aligned fenestration grids housing regular timber sash-and-case windows (predominantly six-over-six and two-over-two patterns) with stone cills and architrave surrounds. Rooflines terminate in continuous molded eaves cornices and blocking courses, backed by pitched timber-framed roofs clad in Ballachulish slate, punctuated by lead-cheeked dormers and regularly spaced stone chimney stacks carrying cylindrical terracotta pots.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-01-01T16:03:45.122443+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.4,
+        "solar_azimuth_deg": 309.42,
+        "solar_elevation_deg": -2.51,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2200,
+        "ambient_illuminance_lux": 800
+      }
+    }
+  ]
+}

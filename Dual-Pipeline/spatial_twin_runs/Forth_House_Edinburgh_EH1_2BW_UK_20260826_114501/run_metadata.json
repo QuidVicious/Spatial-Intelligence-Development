@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114501",
+  "address": "Forth House, Edinburgh EH1 2BW, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9841.93,
+  "telemetry": {
+    "latitude": 55.94858189245399,
+    "longitude": -3.2092917616902716,
+    "altitude_agl": 162.69880480768822,
+    "heading": 319.9447782228651,
+    "pitch": -11.816751211112045,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-left backlight (Sun Azimuth 203.7\u00b0, Elevation -20.9\u00b0), casting crisp directional shadows along 23.7\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary-grade, medium format photograph captured on 6x7 fine-grain color film using a Mamiya 7 with an ultra-sharp 45mm architectural wide-angle lens at f/8, from an elevated 160-meter aerial perspective looking northwest across Edinburgh's West End. The composition is anchored in the midground by the soaring 56-meter Italianate ashlar campanile of St George's West Church, showcasing its crisp Classical rustication, open belfry loggia, and weathered seafoam-verdigris copper pyramidal spire standing perfectly plumb against the sky. Spreading outward is an intricate urban fabric of multi-storey 19th-century New Town tenement terraces built from Craigleith honey-grey sandstone, featuring rhythmic timber sash windows, projecting dormers, chimneypots, and dark slate-shingled mansard roofs. Authentic historical weathering is rendered across all masonry: coal-carbon crusting in sheltered mouldings, clean rainwater wash patterns on exposed ashlar, and subtle iron oxidations. In the deep background, the rolling topography of the Pentland hills and distant Firth coastline rests beneath a calm, completely overcast Scottish sky with smooth, omnidirectional 6500K diffuse daylight casting no harsh shadows. Pocket gardens and street lanes reveal fully resolved, organic leafy canopies of sycamores and wych elms. The streets, stone-flagged pavements, and whinstone curbs are completely static, devoid of all vehicular traffic, parked cars, pedestrians, and street debris, emphasizing the timeless, tectonic permanence and geometry of the Scottish stone city.",
+  "char_count": 1978,
+  "includes_lighting": true
+}

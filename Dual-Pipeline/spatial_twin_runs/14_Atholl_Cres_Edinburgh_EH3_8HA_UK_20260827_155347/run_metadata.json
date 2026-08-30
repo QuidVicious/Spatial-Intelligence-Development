@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155347",
+  "address": "14 Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10192.31,
+  "telemetry": {
+    "latitude": 55.94800515647073,
+    "longitude": -3.2123554517181803,
+    "altitude_agl": 154.01082258091873,
+    "heading": 41.19692555579497,
+    "pitch": -4.980557006051829,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-right quadrant of the frame (Azimuth 95.7\u00b0, Elevation 8.8\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of towers/spires are brightly lit; left-facing surfaces are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase any pre-existing shadows on the right; cast all new shadows toward the LEFT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium-format wide-angle architectural photograph captured on 6x7 medium format film with a 45mm rectilinear lens at f/8, positioned at an elevated perspective over Atholl Crescent looking northeast along Shandwick Place toward the city centre of Edinburgh. In the midground, the soaring 4-stage Venetian-Romanesque sandstone clock tower of St George's West Church rises with a copper-green patinated pyramidal spire, flanked by the sweeping, curved Georgian ashlar facades of Atholl Crescent and Coates Crescent. The neoclassical terraces feature plumb vertical load-bearing walls, crisp ashlar coursing of buff Craigleith sandstone, identical 12-pane sash-and-case timber windows, deep basement lightwells bounded by black wrought-iron railings, and pitched slate roofs lined with tall rectangular masonry chimney stacks. Surface textures exhibit authentic maritime climatic weathering: dark carbon soot patina in cornice recesses, damp mineral wash down stone relief, and pale verdigris oxidation on distant copper domes, including West Register House in Charlotte Square. In the crescent gardens, mature London Planes and European Lime trees display full, dense leafy canopies with natural branching over manicured lawn enclosures.",
+  "char_count": 1941,
+  "includes_lighting": true
+}

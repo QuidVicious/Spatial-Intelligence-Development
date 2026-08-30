@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_132638",
+  "address": "VXP6+69 Washington, DC, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9775.17,
+  "telemetry": {
+    "latitude": 38.88552668163355,
+    "longitude": -77.03910195986349,
+    "altitude_agl": 87.74695599042302,
+    "heading": 39.54087283029466,
+    "pitch": -4.887077339221317,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with quarter-front light from camera-right (Sun Azimuth 88.6\u00b0, Elevation 18.9\u00b0), casting crisp directional shadows along 268.6\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA 6x7 medium format architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide rectilinear lens at f/8, ISO 100 fine-grain color film, providing corner-to-corner optical sharpness and plumb vertical lines. \n\nThe scene presents an elevated bird's-eye perspective looking northeast across the Washington Monument Grounds toward the Federal Triangle and downtown Washington, D.C. Dominating the center of the frame is the soaring 555-foot Washington Monument obelisk, its geometry rendered with razor-sharp planar precision, showcasing the historically authentic three-phase stone division: warm Texas marble at the lower third, a distinct brownish Lee marble transitional belt at the 150-foot mark, and cool Cockeysville dolomitic marble extending to the pyramidion apex. Surrounding the monument's base is a crisp circular granite plaza encircled by fifty slender steel flagpoles flying American flags. \n\nDirect morning raking sunlight (4500K) from camera-right illuminates the eastern facades and casts a long, sharp directional shadow of the needle-like obelisk westward across the expansive green lawns of the knoll. To the mid-ground right, the bronze corona of the National Museum of African American History and Culture exhibits its detailed filigree lattice. In the background, the grand Indiana limestone colonnades of the Herbert C. Hoover Commerce Building and the Federal Triangle complex stretch horizontally under low-pitched red terracotta tile roofs. Mature American elms, pin oaks, and London plane trees form dense, organic leafy green canopies lining Constitution Avenue.",
+  "char_count": 1995,
+  "includes_lighting": true
+}

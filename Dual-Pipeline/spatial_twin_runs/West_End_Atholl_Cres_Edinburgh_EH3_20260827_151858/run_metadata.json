@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_151858",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 8827.75,
+  "telemetry": {
+    "latitude": 55.948293085529905,
+    "longitude": -3.211708035780551,
+    "altitude_agl": 154.82286901882424,
+    "heading": 37.06691486473022,
+    "pitch": -8.891563276566727,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located upper-right quadrant of the frame (Azimuth 103.7\u00b0, Elevation 3.4\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of monuments are brightly lit; left-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: Erase any pre-existing shadows on the right; render newly lit surfaces on the right.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of Shandwick Place in the West End of Edinburgh, looking northeast toward Princes Street. At the center stands the towering stone campanile of St George's West Church, showcasing Italian Romanesque ashlar sandstone masonry, arched belfry openings, and a patinated verdigris copper pyramidal spire. Flanking the street are Georgian and Victorian four-storey tenement blocks built from Craigleith buff sandstone with classical cornices, rusticated ashlar basements, timber sash windows, and dark grey slate mansard roofs with detailed dormers and heavy stone chimney stacks. In the distant left background, the neoclassical copper dome of West Register House at Charlotte Square anchors the horizon. Streets are paved in clean asphalt with embedded steel tram tracks and broad Caithness stone slab pavements lined with cast-iron street lamps and boundary railings. Mature sycamore and birch trees display organic leafy canopies in rear plots. Straight verticals, sharp rectilinear planes, and deep geological and material texture throughout. Captured on 6x7 medium format camera, 45mm wide-angle lens, architectural tilt-shift perspective, edge-to-edge optical resolution.",
+  "char_count": 1957,
+  "includes_lighting": true
+}

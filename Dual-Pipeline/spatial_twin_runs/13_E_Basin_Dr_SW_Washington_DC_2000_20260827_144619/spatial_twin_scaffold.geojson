@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 46.5,
+          "pitch_deg": -14.9,
+          "heading_deg": 1.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The Thomas Jefferson Memorial rests on engineered reclaimed alluvial fill and dredge material overlying the crystalline bedrock of the Atlantic Fall Zone (predominantly Precambrian-to-Early Paleozoic metamorphic Sykesville Formation schist and gneiss). Due to deep estuarine sediments and variable unconsolidated fill adjacent to the Potomac River and the man-made Tidal Basin, the central monument is anchored by concrete-filled steel caissons and grade beams driven up to 120 feet down into solid bedrock. \n\nThe primary exterior superstructure is built of dense, fine-grained Vermont Imperial Danby marble. The lower terrace, retaining perimeter, and primary plaza steps are assembled from coursed blocks of domestic granite and gray metamorphic stones, set with historical lime-portland mortar formulations engineered to resist high seasonal water tables and brackish ground moisture intrusion."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The memorial is embedded within the cultivated historic parkland of West Potomac Park and the Tidal Basin:\n- **Canopy Trees:** Specimen Yoshino Cherry trees (*Prunus \u00d7 yedoensis*) and Kwanzan Cherry trees (*Prunus serrulata*) forming dense, spreading, multi-branched crowns along the shoreline.\n- **Urban Forest & Overstory:** Mature American Elms (*Ulmus americana*), Red Oaks (*Quercus rubra*), Willow Oaks (*Quercus phellos*), and Sweetgums (*Liquidambar styraciflua*) with rich, organic, segmented deciduous canopies.\n- **Groundcover:** Manicured *Poa pratensis* (Kentucky bluegrass) turf lawns, low evergreen shrubs (*Taxus*, *Ilex glabra*), and perimeter hedge beds bordering radial flagstone paths.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Designed by John Russell Pope (completed by Eggers & Higgins, dedicated 1943), the structure is a masterwork of Classical Revival/Neoclassical architecture modeled after the Roman Pantheon. \n- **Rotunda & Colonnade:** A circular peripteral colonnade composed of 26 fluted Ionic columns supporting a clean entablature and stepped circular attic base.\n- **Dome:** A true hemispherical exterior dome constructed with stepped concentric rings culminating in a smooth marble capstone.\n- **Portico:** An open pedimented Ionic portico facing north toward the Tidal Basin and the National Mall axis, framed with deep marble entablatures and unglazed openings leading into the open-air rotunda.\n- **Planar Rectification:** All 26 perimeter columns, portico shafts, and stylobate walls are rectified to absolute plumb vertical, correcting photogrammetric raster distortions along the curved entablature, step tiers, and circular perimeter terraces.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03659943483613,
+          38.87922939826234
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T19:50:07.783864+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 31.0,
+        "solar_azimuth_deg": 297.87,
+        "solar_elevation_deg": 44.27,
+        "shadow_azimuth_deg": 117.9,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

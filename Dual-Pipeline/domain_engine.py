@@ -1,14 +1,14 @@
 """
 Domain Engine: Standalone Causal Spatial Cognition & Multimodal Archetype Engine.
 Executes deep architectural, geological, geographical, and optical reasoning across the 4 Mothers.
-Operates independently with or without viewport captures, supporting Frustum, 360° Omni, and Standalone modes.
-Features Climate-Adaptive Material Pathology (Location-Agnostic & Time-Grounded).
+Features Climate-Adaptive Material Pathology, Date-Grounded Botanical Phenology,
+and High-Density Telegraphic Synthesis for Downstream Generative Models.
 """
 
 import os
 import re
-import json
 import base64
+import traceback
 from enum import Enum
 from dataclasses import dataclass, asdict, field
 from typing import Dict, Any, Optional, List
@@ -20,9 +20,9 @@ from google.genai import types
 
 
 class ViewScope(str, Enum):
-    FRUSTUM = "FRUSTUM"        # Single directional viewport (e.g. Gemini 2D image)
-    OMNI_360 = "OMNI_360"      # 360-degree spherical environment (e.g. World Labs Marble)
-    STANDALONE = "STANDALONE"  # Pure text/coordinate historical & spatial synthesis
+    FRUSTUM = "FRUSTUM"        
+    OMNI_360 = "OMNI_360"      
+    STANDALONE = "STANDALONE"  
 
 
 @dataclass
@@ -62,63 +62,53 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
     "Building Conservator", 
     "Medium Format Architectural Photographer"
   ],
-  "cognitive_mode": "Location-Agnostic Causal Spatial Analysis & Documentary Synthesis",
-  "narrative_style": "6x7 Medium Format documentary-grade, geophysically grounded, structurally precise, sensory-rich, material-authentic",
+  "cognitive_mode": "Location-Agnostic Causal Spatial Analysis & Telegraphic Documentary Synthesis",
+  "narrative_style": "6x7 Medium Format documentary-grade, high-density telegraphic notation, geophysically grounded, structurally precise",
   "constraints": {
     "suppress": [
       "conversational filler", "AI pleasantries", "generic summaries", 
       "sterile CGI rendering", "smooth sandblasted textures", "material homogenization", 
-      "pedestrians", "vehicles", "cars", "traffic", "transient street clutter", "dumpsters", "temporary paper posters",
-      "misclassifying foliage as stone", "misinterpreting photogrammetry mesh noise as crumpled architecture"
+      "pedestrians", "vehicles", "cars", "traffic", "transient street clutter", "dumpsters", "temporary signage",
+      "misclassifying foliage as stone", "misinterpreting photogrammetry mesh noise as crumpled architecture",
+      "lighting descriptions", "sky colors", "shadow angles", "time of day assertions", "sun positions"
     ],
     "enforce": [
       "causal synthesis across the 4 Mothers (Geology, Geography, Architecture, Civil Records)",
-      "4-dimensional spatial depth and climate-adaptive environmental patina",
+      "heterogeneous per-structure material discrimination (distinguish modern glass/steel from historic masonry)",
       "strict visual geometry adherence and planar vertical load-bearing lines",
-      "per-structure material discrimination and indigenous lithics",
-      "organic leafy foliage disambiguation",
+      "specific lithic quarry names, bond patterns, and dressing terms",
+      "date-grounded botanical phenology (exact Latin tree genus/species and seasonal leaf/canopy state)",
       "static civil fabric decluttering",
-      "6x7 medium format optical clarity (Mamiya 7, 45mm lens, ultra-fine grain film)"
+      "high-density telegraphic prompt synthesis (<1600 characters, zero conversational fluff)"
     ]
   }
 }
 
 ## THE DIRECTIVES:
 
-1. **The Transparent Eyeball**: Relinquish conversational ego. You are a passive, highly sensitive lens—a silent eyeball through which the physical and historical reality of the world converges across space and time into a documentary representation.
-
-2. **The 4 Mothers Causal Domain Stack**:
-   - **Mother 1: GEOLOGY (Subterranean Foundation & Indigenous Lithics):**
-     Identify bedrock lithology, stratigraphy, local quarry masonry materials (e.g. regional sandstones, oolitic limestones, volcanic basalts, clay brick bonds), mortar chemistry, and subterranean drainage dynamics.
+1. **The 4 Mothers Causal Domain Stack**:
+   - **Mother 1: GEOLOGY (Subterranean Foundation & Lithics):**
+     Identify bedrock stratigraphy, regional quarry masonry materials (e.g. specific local sandstones, limestones, granites, volcanic basalts, clay brick bonds), mortar chemistry, and subterranean dynamics.
    - **Mother 2: GEOGRAPHY (Environmental Weathering & Climate-Adaptive Pathology):**
-     * NEVER render architecture as freshly constructed, pristine CGI, or sandblasted.
-     * Causally deduce authentic environmental weathering from the location's specific micro-climate, regional environment, and the structure's chronological age:
-       * *Humid / Subtropical / Coastal (e.g., Florida, Caribbean, Gulf Coast):* Dark biological algae/mildew striations (Gloeocapsa magma), salt-aerosol efflorescence, UV paint chalking, moisture oxidation, and humidity patina.
-       * *Historic / Post-Industrial Temperate (e.g., UK, Central Europe, Rust Belt):* Gypsum crusting, historic carbon deposition in sheltered reveals/cornices, rainwater wash patterns, and softened ashlar joint lines.
-       * *Arid / Desert (e.g., American Southwest, Middle East, Mediterranean):* Intense solar UV bleaching, windborne silicate grit micro-abrasion, fine dust accumulation in horizontal recesses, and thermal hairline expansion fissures.
-       * *Cold / Freeze-Thaw (e.g., Nordic, Canadian, Alpine):* Frost spalling, mortar expansion fractures, moisture leaching along lower plinths, and natural unpainted timber graying.
-   - **Mother 3: ARCHITECTURE (Physical Planar Rectification & Anti-Warp Protocol):**
-     * Photogrammetry 3D meshes frequently distort glass, balconies, and reflective facades into melted polygon noise. **NEVER** interpret melted polygon noise as deconstructivist architecture.
-     * Plumb all vertical walls to true gravity vertical. Planarize wobbly wall surfaces, sharpen roof ridges, rectify fenestration, and ensure all balcony slabs, canopies, and floor plates are laser-straight horizontal planes.
-     * Differentiate every structure in view independently—never blanket-apply a single material across all buildings.
+     Deduce authentic environmental weathering from the location's specific micro-climate, regional environment, and structural age (coal-smoke encrustations, salt efflorescence, biological greening, rain-wash reveals).
+   - **Mother 3: ARCHITECTURE (Planar Rectification & Material Heterogeneity):**
+     * NEVER interpret photogrammetry mesh noise as deconstructivist architecture. Plumb all vertical walls to true gravity vertical. Planarize wobbly wall surfaces, sharpen roof ridges, and align fenestration grids.
+     * MULTI-STRUCTURE HETEROGENEITY: Never homogenize the scene into one material. Evaluate each structure's construction era independently (e.g. 1820s ashlar townhouse vs. adjacent 1970s exposed concrete vs. 2010s curtain-wall glass).
    - **Mother 4: CIVIL RECORDS (Provenance, Massing & Height Truth):**
-     Ground building heights, exact storey counts, and structural typology in verified civil records and historical construction eras. Primary residential/commercial structures must never be collapsed into low ground decals; enforce true habitable heights (≥6.5m–8.0m floor-to-ridge floors).
+     Ground building heights, exact storey counts, window configurations (e.g. 6-over-6 timber sash-and-case, tripartite Venetian), and architectural orders in verified historical records.
 
-3. **Landscape Ecology & Foliage Disambiguation**:
-   Photogrammetry meshes render urban trees as crumpled geometric blocks. **NEVER** describe foliage as stone or masonry. Explicitly render all trees as mature organic vegetation with distinct botanical species (e.g. London plane trees, live oaks, palmettos, sycamores), leafy canopies, and natural branching.
+2. **Landscape Ecology & Date-Grounded Phenology**:
+   Urban trees are precise botanical anchors. Explicitly identify tree genus and species (e.g. Platanus × acerifolia, Acer pseudoplatanus, Tilia cordata, Quercus robur). Detail their canopy volume, branch structure, and exact seasonal state corresponding to the target date/month (e.g. early yellowing chlorosis, heavy autumn defoliation, bare winter branch silhouettes, or dense summer foliage).
 
-4. **Static Civil Fabric Decluttering (MANDATORY)**:
-   Render the scene as a pure static architectural documentary photograph.
-   - **Strip All Transient Noise:** ZERO pedestrians, ZERO motor vehicles (parked or moving), ZERO dumpsters, and ZERO temporary construction clutter.
-   - **Preserve Permanent Infrastructure:** Retain stone curbs, iron railings, fixed streetlamps, engraved signage, and mature street trees.
+3. **Static Civil Fabric Decluttering (MANDATORY)**:
+   Render as a pure static architectural survey: ZERO pedestrians, ZERO vehicles, ZERO dumpsters, ZERO temporary clutter. Retain stone kerbs, iron railings, fixed streetlamps, and mature trees.
 
-5. **Optical & Documentary Lens**:
-   Ground the visual description as captured on a 6x7 medium format camera (Mamiya 7 rangefinder, 45mm wide-angle lens, ISO 100 fine-grain film, f/8 aperture for deep corner-to-corner sharpness).
+4. **Atmospheric Blindness (CRITICAL)**:
+   DO NOT describe the sky, lighting, shadows, sun position, or time of day in ANY section. Lighting is managed strictly by an independent ephemeris engine.
 """
 
 
 def reverse_geocode(lat: float, lon: float, google_maps_api_key: Optional[str] = None) -> str:
-    """Converts GPS coordinates into a verified postal address or locality."""
     key = (
         google_maps_api_key
         or os.getenv("GOOGLE_MAPS_API_KEY")
@@ -137,7 +127,6 @@ def reverse_geocode(lat: float, lon: float, google_maps_api_key: Optional[str] =
         except Exception:
             pass
 
-    # Fallback to BigDataCloud client API
     try:
         bdc_url = f"https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en"
         resp = requests.get(bdc_url, timeout=3)
@@ -161,21 +150,16 @@ def analyze_spatial_domain(
     view_scope: ViewScope = ViewScope.FRUSTUM,
     telemetry: Optional[Any] = None,
     screenshot_b64: Optional[str] = None,
-    lighting_description: Optional[str] = None,
     temporal_epoch: Optional[str] = None,
     gemini_api_key: Optional[str] = None
 ) -> DomainAnalysisResult:
-    """
-    Executes pure causal spatial domain reasoning across the 4 Mothers.
-    Can run standalone (text/GPS only) or multimodally with a viewport capture.
-    """
+    
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
 
     client = genai.Client(api_key=api_key)
 
-    # 1. Build Location & Telemetry Context
     lat_str = f"{coordinates[0]:.6f}" if coordinates else (f"{getattr(telemetry, 'latitude', 0.0):.6f}" if telemetry else "Unknown")
     lon_str = f"{coordinates[1]:.6f}" if coordinates else (f"{getattr(telemetry, 'longitude', 0.0):.6f}" if telemetry else "Unknown")
     altitude_agl = getattr(telemetry, "altitude_agl", 0.0) if telemetry else 0.0
@@ -187,33 +171,27 @@ def analyze_spatial_domain(
     context_block = f"""TARGET LOCATION & SPATIAL CONTEXT:
 - Resolved Address: {address}
 - GPS Coordinates: ({lat_str}, {lon_str})
-- Temporal Epoch: {temporal_epoch or 'Present Day'}
+- Temporal Epoch / Date: {temporal_epoch or 'Present Day'}
 - View Scope Mode: {view_scope.value}
 - Camera Telemetry: Altitude {altitude_agl:.1f}m AGL, Heading {heading:.1f}°, Pitch {pitch:.1f}°, FOV {fov:.1f}°
 - Tile Mode: {tile_mode}
 """
-    if lighting_description:
-        context_block += f"- Atmospheric & Solar Context: {lighting_description}\n"
 
-    # 2. Configure View Scope Directives
     if view_scope == ViewScope.OMNI_360:
         scope_directive = (
             "SCOPE DIRECTIVE (360° OMNIDIRECTIONAL WORLD RECONSTRUCTION):\n"
             "Analyze and describe the entire 360-degree spatial environment enclosing the observer. "
-            "Detail the Northern, Southern, Eastern, and Western perimeter structures, overhead canopy, and ground terrain. "
-            "This description will be consumed by a 3D World Generation Model (World Labs Marble)."
+            "Detail the Northern, Southern, Eastern, and Western perimeter structures, overhead canopy, and ground terrain."
         )
     elif view_scope == ViewScope.STANDALONE:
         scope_directive = (
             "SCOPE DIRECTIVE (STANDALONE CAUSAL ANALYSIS):\n"
-            "No visual capture provided. Reconstruct the spatial reality from first principles using your deep knowledge "
-            "of local geology, historical civil records, architectural vernacular, and landscape ecology."
+            "No visual capture provided. Reconstruct the spatial reality from first principles using your deep knowledge."
         )
-    else:  # FRUSTUM
+    else:  
         scope_directive = (
             "SCOPE DIRECTIVE (DIRECTIONAL FRUSTUM RECTIFICATION):\n"
-            "Using the viewport capture as the absolute coordinate reference, break down the scene spatially across the frame: "
-            "(A) Foreground/street level; (B) Center structures; (C) Left and right flanking structures. "
+            "Using the viewport capture as the absolute coordinate reference, break down the scene spatially across the frame. "
             "Plumb all verticals, rectify planar facades, and disambiguate organic foliage from masonry."
         )
 
@@ -222,7 +200,7 @@ def analyze_spatial_domain(
 {scope_directive}
 
 SEARCH & GROUNDING DIRECTIVE:
-Use Google Search grounding to verify local geology (indigenous bedrock, local quarries), municipal civil records, architectural styles, climate-specific weathering patterns, and native flora.
+Use Google Search grounding to verify local geology, municipal civil records, architectural styles, and climate weathering.
 
 OUTPUT REQUIREMENTS:
 Provide your output structured into the following labeled sections:
@@ -231,36 +209,41 @@ Provide your output structured into the following labeled sections:
 [Subterranean bedrock, local stone/masonry lithics, mortar chemistry, and local groundwater/drainage]
 
 ---ARCHITECTURE---
-[Architectural typologies, verified storey counts, roof geometry, window fenestration, planar rectification, and anti-warp corrections]
+[Architectural typologies, verified storey counts, roof geometry, window fenestration, planar rectification]
 
 ---MATERIALS---
-[Per-structure facade materials, brick bonds, renders, and climate-adaptive weathering/patina derived from the site's micro-climate and historical age]
+[Per-structure facade materials, brick bonds, renders, and climate-adaptive weathering/patina]
 
 ---ECOLOGY---
-[Identified native/urban tree and plant species, mature leafy canopies, and botanical characteristics]
+[Identified native/urban tree genus and species, canopy volume, and date-grounded seasonal phenology]
 
 ---STATIC_DECLUTTERING---
-[Confirmation of complete removal of all transient vehicles, pedestrians, dumpsters, and clutter while retaining permanent civil infrastructure]
+[Confirmation of complete removal of all transient vehicles, pedestrians, dumpsters, and clutter]
 
 ---DOCUMENTARY_PROMPT---
-[The complete, sensory-rich, highly descriptive documentary synthesis prompt for the generative image/world engine. Explicitly detail authentic climate-adaptive environmental weathering, realistic material age, differentiated facade lithics, mature leafy trees, and a completely static decluttered civil environment under calibrated optical clarity.]
+[High-density, telegraphic documentary prompt synthesizing the 4 Mothers findings. Must explicitly include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, and botanical tree species with date-specific canopy state. TARGET LENGTH: 1200 to 1500 characters. CRITICAL: DO NOT mention lighting, sky, shadows, or time of day.]
 """
 
     contents: List[Any] = [user_prompt]
 
-    # Attach viewport capture if present
     if screenshot_b64 and view_scope != ViewScope.STANDALONE:
-        raw_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
+        if "," in screenshot_b64 and screenshot_b64.startswith("data:"):
+            header, raw_b64 = screenshot_b64.split(",", 1)
+            mime_type = header.split(";")[0].replace("data:", "").strip()
+        else:
+            mime_type = "image/png"
+            raw_b64 = screenshot_b64
+        
         image_bytes = base64.b64decode(raw_b64)
-        contents.insert(0, types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
+        contents.insert(0, types.Part.from_bytes(data=image_bytes, mime_type=mime_type))
 
-    # Execute Gemini inference with search grounding
+    # Configured with expanded 4096 thinking budget and Search Grounding
     config = types.GenerateContentConfig(
         system_instruction=DOMAIN_SYSTEM_INSTRUCTION,
-        temperature=0.35,
+        temperature=0.0,
         top_p=0.85,
-        thinking_config=types.ThinkingConfig(thinking_budget=1024),
-        tools=[{"google_search": {}}]
+        thinking_config=types.ThinkingConfig(thinking_budget=4096),
+        tools=[types.Tool(google_search=types.GoogleSearch())]
     )
 
     try:
@@ -270,13 +253,15 @@ Provide your output structured into the following labeled sections:
             config=config
         )
     except Exception as e:
+        print("\n[ERROR] Domain Engine generate_content failed:")
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Domain Engine Error: {str(e)}")
 
     response_text = response.text or ""
 
-    # Parse Sections Cleanly
     def _extract_section(tag: str, text: str) -> str:
-        pattern = rf"---{tag}---\s*(.*?)(?=---[A-Z_]+---|$)"
+        # Handles markdown headings or raw tags
+        pattern = rf"(?:###\s*)?---{tag}---\s*(.*?)(?=(?:###\s*)?---[A-Z_]+---|$)"
         match = re.search(pattern, text, re.DOTALL)
         return match.group(1).strip() if match else ""
 
@@ -287,7 +272,6 @@ Provide your output structured into the following labeled sections:
     decluttering = _extract_section("STATIC_DECLUTTERING", response_text)
     doc_prompt = _extract_section("DOCUMENTARY_PROMPT", response_text)
 
-    # Fallback if section delimiters were missed
     if not doc_prompt:
         doc_prompt = response_text.strip()
 

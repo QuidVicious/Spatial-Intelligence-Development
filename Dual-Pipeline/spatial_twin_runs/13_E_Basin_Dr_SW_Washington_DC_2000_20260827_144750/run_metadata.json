@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_144750",
+  "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13682.44,
+  "telemetry": {
+    "latitude": 38.87944814120298,
+    "longitude": -77.03653931436824,
+    "altitude_agl": 56.46310193269553,
+    "heading": 2.5240947634880304,
+    "pitch": -18.671824324611922,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (2200K Civil twilight blue hour with deep indigo ambient dome and soft shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 251.9\u00b0, Elevation -5.8\u00b0).\n- FACADE ILLUMINATION: all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of the Thomas Jefferson Memorial from an elevated aerial frustum perspective overlooking the Tidal Basin. John Russell Pope's symmetrical neoclassical circular open-air rotunda with an octastyle Ionic portico and stepped masonry dome, meticulously plumbed to vertical alignment. Exterior composed of white Vermont Imperial Danby marble with subtle natural mineral veining, resting upon concentric stepped granite terraces and circular lawns. The smooth curved dome exhibits authentic calcitic mineral weathering. Surrounding the memorial grounds are dense, mature canopies of Yoshino cherry trees, American elms, and manicured turf grass borders flanking paved curved pathways leading toward the Tidal Basin granite seawall. In the far background across the wide, calm expanse of water, the Washington Monument grounds and Federal Triangle neoclassical limestone facades line the distant horizon. Ultra-fine grain film clarity, edge-to-edge optical resolution, completely static civic fabric with zero pedestrians and zero vehicles.",
+  "char_count": 1888,
+  "includes_lighting": true
+}

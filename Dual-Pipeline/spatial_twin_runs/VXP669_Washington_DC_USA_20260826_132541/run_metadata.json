@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_132541",
+  "address": "VXP6+69 Washington, DC, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9748.99,
+  "telemetry": {
+    "latitude": 38.88552668163355,
+    "longitude": -77.03910195986349,
+    "altitude_agl": 87.74695599042302,
+    "heading": 39.54087283029466,
+    "pitch": -4.887077339221317,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2400K natural solar illumination (Civil twilight blue hour with deep indigo ambient dome and soft shadows) with rear-left backlight (Sun Azimuth 253.3\u00b0, Elevation -3.7\u00b0), casting crisp directional shadows along 73.4\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-resolution 6x7 medium format architectural documentary photograph of the Washington Monument and the Washington D.C. urban landscape, captured at an elevated low-angle oblique perspective using a 45mm wide-angle lens on ultra-fine grain film. At the center stands the towering 555-foot stone obelisk, perfectly vertical and geometrically plumb, clearly displaying the subtle historical two-tone horizontal transition line between the lower cream-gray Texas marble and the upper cooler Cockeysville dolomitic marble. The obelisk casts a long, sharp directional shadow across the expansive, immaculate green lawn of the Monument Grounds. In the middleground and background, the Neoclassical limestone facades and red-orange terra-cotta tile hip roofs of the Federal Triangle buildings and the bronze-toned lattice corona of the NMAAHC stretch toward the horizon with pin-sharp planar accuracy. Surrounding parkland features lush, organic canopies of mature American elms, pin oaks, and London plane trees. The scene is completely devoid of all people, vehicles, and transient clutter, leaving only the pristine static civil topography under clear, natural late-afternoon atmospheric light with corner-to-corner optical sharpness and deep spatial fidelity.",
+  "char_count": 1631,
+  "includes_lighting": true
+}

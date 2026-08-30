@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "26 London St, Edinburgh EH3 6NA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 101.4,
+          "pitch_deg": -4.2,
+          "heading_deg": 254.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation situated on Carboniferous sedimentary strata of the Strathclyde Group, comprising interbedded sandstones, siltstones, and mudstones capped by dense glacial till (boulder clay). Primary load-bearing lithic fabric consists of pale buff, fine-grained quartz arenite sourced from the local Craigleith and Hailes quarries. The building stone exhibits high silica content and uniform grain structure, set in historic non-hydraulic to weakly hydraulic lime mortar (slaked quicklime and sharp pit sand) with fine-jointed ashlar beds. Subterranean moisture dynamics are controlled by continuous excavated front lightwell dry areas cut into the glacial drift, preventing capillary rise into floor joists."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The western terminus framing the street vista terminates at Drummond Place Gardens. Mature urban canopy composed of *Acer pseudoplatanus* (Sycamore), *Ulmus glabra* (Wych Elm), *Tilia \u00d7 europaea* (Common Lime), and *Fraxinus excelsior* (European Ash). Late August phenological state features dense, heavy, deep-green foliage crowns, high leaf area density with subtle matte exhaustion, minor localized chlorotic yellowing on lower branches, and fully formed samaras on sycamore specimens.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Classic Edinburgh Second New Town continuous terrace typology designed in the late Georgian neoclassical manner (c. 1820s). Symmetrical axial street canyon defined by uniform three-storey-and-basement terraced blocks with pitched mansard/slate attic dormers. Planar-rectified facades feature channelled horizontal rustication across the raised ground floor, transitioning to smooth droved ashlar on the piano nobile and upper floors. Continuous moulded base courses, cill bands, and entablatures with moulded eaves cornices and parapet blocking courses unify the terrace wall plane. Stone platts with cast-iron balustrades oversail the sunken basement lightwells to reach timber-panelled entrance doorways. Regular fenestration grid populated by timber sash-and-case windows (predominantly 6-over-6 and 12-pane configurations) set into rebated stone reveals. Rooflines are defined by aligned ridge crests punctuated by ashlar mutual chimney stacks with cylindrical terracotta chimney cans.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192176846847062,
+          55.95908065973179
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T16:03:45.122443+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.4,
+        "solar_azimuth_deg": 292.52,
+        "solar_elevation_deg": 26.13,
+        "shadow_azimuth_deg": 112.5,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

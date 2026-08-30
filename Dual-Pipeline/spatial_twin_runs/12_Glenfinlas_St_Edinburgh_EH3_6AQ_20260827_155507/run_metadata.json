@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155507",
+  "address": "12 Glenfinlas St, Edinburgh EH3 6AQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10121.55,
+  "telemetry": {
+    "latitude": 55.95219829610292,
+    "longitude": -3.209170712124427,
+    "altitude_agl": 151.08712537582147,
+    "heading": 169.14675010047733,
+    "pitch": -2.0509355545515726,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 71.3\u00b0, Elevation 24.5\u00b0).\n- FACADE ILLUMINATION: all left-facing walls, facades, spires, and domes are in bright direct sunlight; right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left and render as sunlit surfaces. Cast all new shadows across the scene to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-level architectural documentary photograph captured on a 6x7 medium-format camera with a wide 45mm lens at f/8, focusing obliquely along the northern elevation and grand dome of West Register House on Charlotte Square in Edinburgh's New Town. In the immediate foreground and mid-ground, the massive cylindrical stone drum and classical peristyle colonnade rise from a monumental ashlar base, crowned by a ribbed verdigris-oxidized copper dome and a delicate open tempietto cupola with a gold-leaf finial. Every vertical column and wall is plumb and rectilinear, showcasing fine-grained Craigleith blonde sandstone marked by decades of atmospheric soot weathering, fine stone tooling, and rainwater wash tracks. Beyond the church dome, the sweeping Georgian streetscape stretches southward and eastward, lined with multi-storey Craigleith ashlar tenement blocks, rhythmically positioned sash windows, heavy masonry chimney stacks, and dark slate roofs. Across the adjacent square, lush green crowns of mature sycamore and lime trees reveal organic branch structures and dense leaf canopies.",
+  "char_count": 1860,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "10 Princes St., Edinburgh EH2 2AN, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 181.2,
+          "pitch_deg": -32.1,
+          "heading_deg": 286.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock Lithology: Devonian and Lower Carboniferous sedimentary formations of the Inverclyde and Strathclyde Groups, primarily Craigleith and Hailes Sandstone sequences interspersed with siltstones and mudstones, situated along the northern tectonic slope of the Princes Street Gardens / former Nor' Loch glacial trough.\n- Masonry Lithics: Craigleith and Cullalo blonde-to-buff Carboniferous sandstones across Victorian and neoclassical ashlar facades; modern reconstituted/precast Portland-composite stone panels on contemporary infills; Ballachulish metamorphic slate roof tiling.\n- Mortar Chemistry: Traditional hot-mixed hydraulic lime mortar (non-hydraulic calcium hydroxide with volcanic pozzolanic additives) on historic masonry; contemporary polymer-modified Portland cement and elastomeric structural silicone seals on modern curtain walling and zinc/lead flashing interfaces.\n- Hydrology & Subterranean Dynamics: Well-drained urban strata sloping southward into the Waverley Valley basin, managed via subterranean masonry culverts and modern cast-iron storm runoffs."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Surrounding Urban Flora: Mature urban broadleaf deciduous trees (Prunus padus, Tilia cordata, Acer pseudoplatanus) anchored in tree pits along adjacent thoroughfares, exhibiting dense, leafy canopies with natural botanical branching; absolute separation from rigid stone balustrades.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Dense urban commercial block at Princes Street and South St Andrew Street, representing a stratified collage of 19th-century Victorian/Edwardian French Renaissance Mansard corner architecture, contemporary 21st-century modular stone grid curtain facades, and integrated rooftop modernist glass-box/zinc plant pavilions.\n- Massing & Storey Heights: \n  - Corner Historic Mansard Block (10\u201314 Princes Street): 5 storeys above street level comprising 3 primary rusticated/channelled ashlar levels, an ornate classical cornice/frieze, topped with a dual-pitch slate mansard attic level punctuated by lead-cheeked dormers.\n  - Modern Eastern Wing: 6 to 7 storeys of crisp, deeply recessed rectilinear sandstone/precast grid fenestration with a clean horizontal parapet line.\n  - Rooftop Extensions: Stepped-back 2-storey modernist rectilinear glass-and-zinc vertical pavilions housing plant and high-spec office space.\n  - Surrounding Victorian Tenements / Commercial Palazzos (Background / Forefront): 4 to 6 storeys with chimney stacks, coped parapets, flat asphalt and pitched slate roofs.\n- Rectification Protocol: Complete planar alignment of all vertical sandstone piers to true plumb line (0\u00b0 tilt); roof planes, mansard curbs, and modern fenestration mullions straightened into laser-level orthogonal grids, stripping all mesh warping and distorted photogrammetry artifacts.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1897154499717137,
+          55.95337593515357
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T16:42:02.184000+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 20.1,
+        "solar_azimuth_deg": 283.85,
+        "solar_elevation_deg": 21.04,
+        "shadow_azimuth_deg": 103.9,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

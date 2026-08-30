@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "Second Infantry Division WWI Memorial, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 478.8,
+          "pitch_deg": -45.3,
+          "heading_deg": 156.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The underlying substrate is situated on the Atlantic Coastal Plain unconformably overlying the crystalline Piedmont basement complex (Piedmont metagreywackes of the Sykesville Formation and Potomac Bluestone gneiss). The surface terrain sits on deep quaternary alluvial river sediments, marsh fill, and historic Tiber Creek tidal deposits requiring heavy deep-pile and reinforced footing stabilisation. \n\nPrimary lithic fabric across the scene:\n- **Washington Monument**: Deep foundation underpinning composed of dense Potomac bluestone gneiss. The load-bearing masonry envelope is constructed of three distinct ashlar marbles: fine-grained lower Cockeysville/Texas white marble (Maryland), transitioning at the 152-foot construction hiatus line to a belt of Sheffield Massachusetts marble, completed with upper Cockeysville dolomite marble backed with Maine and Massachusetts granite. Dry-stacked and gravity-loaded with traditional hydraulic lime mortar backfilling.\n- **Hardscape & Plazas**: Flanking circular plaza retaining walls, paving bands, and curb steps are cut from coarse-grained *Mesabi Black* and *Barre* gray granites.\n- **Federal Triangle / Background Government Ensembles**: Fine-grained Indiana limestone (Salem Formation) and Georgia white marble classical facades over reinforced concrete substructures."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Fully articulated mature urban forest canopy and manicured parkland lawns:\n- **Canopy Trees**: Prominent groves of *Ulmus americana* (American elm) lining Constitution Avenue and the Mall paths, accompanied by *Platanus occidentalis* (American sycamore), *Quercus phellos* (willow oak), *Quercus alba* (white oak), and scattered ornamental *Prunus serrulata* (Yoshino cherry trees) along the water banks.\n- **Vegetation Structure**: Distinct, billowy leafy canopies with organic branching, individualized leaf cluster volumes, and deep shadows beneath the understory; fully disambiguated from hardscape.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Centerpiece (Washington Monument)**: A pure monumental Egyptian-style stone obelisk soaring to a precise civil elevation of 554 feet 7+11/32 inches (169.05 m) with a tapering shaft terminating in a solid 4-sided pyramidion (55-foot apex slope matching a 17-degree inward angle). Rectified to absolute gravity vertical; all corner arrises are crisp, razor-straight lines. Surrounding the base is a concentric circular paved granite apron featuring vertical aluminum flagpoles and subterranean visitor entry screening pavings.\n- **Bottom Left (National Museum of African American History and Culture - NMAAHC)**: Postmodern inverted three-tiered stepped ziggurat corona form rising 5 habitable storeys above grade. The 3-tier facade slopes outward at 17-degree angles (harmonised with the Washington Monument capstone). Rectified planar geometry; the complex cast metal lattice screens wrap the glass curtain wall cleanly without photogrammetry warping.\n- **Top / North-Northeast Background (Federal Triangle & Constitution Ave Ensembles)**: Monumental Neoclassical and Beaux-Arts administrative government structures (Commerce, IRS, and related federal buildings) spanning 6\u20138 storeys with strict columnar colonnades, rusticated basements, denticulated entablatures, and hipped terra cotta tile/copper mansard roofs.\n- **Top Right (Tidal Basin / Constitution Gardens Fringe)**: Curvilinear shorelines, engineered riprap embankments, and low-profile aggregate pedestrian bridges.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03704179310652,
+          38.89320859292548
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T17:08:00+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 30.5,
+        "solar_azimuth_deg": 1.2,
+        "solar_elevation_deg": 61.72,
+        "shadow_azimuth_deg": 181.2,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

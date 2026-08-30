@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_135822",
+  "address": "92 Comely Bank Ave, Edinburgh EH4 1HE, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10096.97,
+  "telemetry": {
+    "latitude": 55.9571511063632,
+    "longitude": -3.2175313348363903,
+    "altitude_agl": 129.02626474438856,
+    "heading": 315.00000118808236,
+    "pitch": -24.999997452151533,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with quarter-front light from camera-left (Sun Azimuth 261.6\u00b0, Elevation -13.8\u00b0), casting crisp directional shadows along 81.6\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-resolution 6x7 medium format architectural documentary photograph of Comely Bank Avenue in Edinburgh, captured from an elevated oblique frustum on a Mamiya 7 with a 45mm wide-angle lens at f/8, ultra-fine grain film. The frame encompasses dense 4-storey late-Victorian blonde Craigleith sandstone tenements with canted bay windows, ashlar lintels, steep Ballachulish slate roofs, and tall stone chimney stacks crowned with terracotta pots. Authentic Scottish temperate climate patina is present: subtle historic carbon wash on sheltered stone details, washed ashlar faces, faint mineral rainwater drip lines, and delicate moss in deep lime mortar joints. To the right, a pristine manicured private lawn and back-green garden bordered by black wrought-iron railings and mature leafy sycamore trees. The civil streetscape is completely decluttered\u2014devoid of all vehicles, cars, pedestrians, and plastic bins\u2014revealing clean dark asphalt roads, traditional whinstone kerbs, and Caithness stone walkways. The scene is illuminated by crisp, low-angle late-afternoon directional sunlight creating deep elongated raking shadows, razor-sharp architectural verticals, corner-to-corner clarity, and true tactile depth.",
+  "char_count": 1580,
+  "includes_lighting": true
+}

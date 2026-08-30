@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spatial Intelligence Pipeline // Viewfinder HUD</title>
-
-  <!-- CesiumJS CSS & JS -->
   <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css" />
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Cesium.js"></script>
 
@@ -23,91 +21,58 @@
       --font-mono: "SF Mono", "Consolas", "Courier New", monospace;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg-dark); font-family: var(--font-sans); color: var(--text-main); }
     #cesiumContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
-
     .hidden { display: none !important; }
+    .disabled-el { opacity: 0.4; pointer-events: none; }
 
-    /* Reticle */
-    .viewport-reticle {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 32px; height: 32px; pointer-events: none; z-index: 5;
-    }
+    .viewport-reticle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32px; height: 32px; pointer-events: none; z-index: 5; }
     .viewport-reticle::before, .viewport-reticle::after { content: ''; position: absolute; background: rgba(0, 229, 255, 0.4); }
     .viewport-reticle::before { top: 15px; left: 0; width: 32px; height: 2px; }
     .viewport-reticle::after { top: 0; left: 15px; width: 2px; height: 32px; }
 
-    /* Header */
-    .hud-header {
-      position: absolute; top: 16px; left: 20px; z-index: 10;
-      display: flex; align-items: center; gap: 12px;
-      background: var(--panel-bg); backdrop-filter: blur(12px);
-      border: 1px solid var(--panel-border); padding: 8px 16px; border-radius: 8px;
-    }
+    .hud-header { position: absolute; top: 16px; left: 20px; z-index: 10; display: flex; align-items: center; gap: 12px; background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); padding: 8px 16px; border-radius: 8px; }
     .hud-logo { font-weight: 800; letter-spacing: 1.5px; font-size: 13px; color: var(--accent-cyan); }
     .hud-sep { color: var(--panel-border); }
-    .hud-location { font-size: 13px; color: var(--text-main); font-weight: 500; }
+    .hud-location { font-size: 13px; font-weight: 500; }
 
-    /* Sidebar */
-    .hud-sidebar {
-      position: absolute; top: 72px; left: 20px; width: 340px;
-      max-height: calc(100% - 90px); overflow-y: auto; z-index: 10;
-      display: flex; flex-direction: column; gap: 10px;
-    }
+    .hud-sidebar { position: absolute; top: 72px; left: 20px; width: 340px; max-height: calc(100% - 90px); overflow-y: auto; z-index: 10; display: flex; flex-direction: column; gap: 10px; }
     .hud-card { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 8px; padding: 12px; }
     .hud-card-header { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
 
-    /* Telemetry Grid */
     .telemetry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: var(--font-mono); font-size: 11px; }
     .telemetry-item { display: flex; flex-direction: column; gap: 2px; }
     .telemetry-label { color: var(--text-muted); font-size: 9.5px; }
     .telemetry-val { color: var(--accent-cyan); font-weight: 600; }
 
-    /* Controls */
     .hud-input-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
     .hud-label-row { display: flex; justify-content: space-between; align-items: center; }
     .hud-label { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
     .hud-val-badge { font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan); font-weight: 600; }
 
-    input[type="date"], input[type="range"], select, button {
-      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border);
-      color: var(--text-main); padding: 6px 8px; border-radius: 6px; font-size: 11.5px; outline: none;
-    }
+    input[type="date"], input[type="range"], select, button { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); padding: 6px 8px; border-radius: 6px; font-size: 11.5px; outline: none; }
     input[type="range"] { padding: 0; height: 6px; cursor: pointer; accent-color: var(--accent-cyan); }
 
-    /* Toggles */
     .mode-toggle { display: flex; gap: 6px; margin-bottom: 8px; }
     .toggle-btn { flex: 1; cursor: pointer; font-weight: 600; font-size: 10.5px; padding: 6px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); border-radius: 6px; color: var(--text-muted); text-align: center; }
     .toggle-btn.active { background: rgba(0, 229, 255, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
     .toggle-btn.marble.active { background: rgba(224, 64, 251, 0.15); border-color: var(--accent-magenta); color: var(--accent-magenta); }
     .toggle-btn.floodlight.active { background: rgba(255, 179, 0, 0.15); border-color: var(--accent-amber); color: var(--accent-amber); }
+    
+    .live-toggle-wrapper { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 10px; color: var(--accent-cyan); font-weight: 700; }
+    .live-toggle-wrapper input { accent-color: var(--accent-cyan); cursor: pointer; }
 
-    /* Weather Presets Grid */
     .weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 4px; }
     .weather-btn { padding: 6px 2px; font-size: 10px; text-align: center; cursor: pointer; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--panel-border); border-radius: 4px; color: var(--text-muted); }
     .weather-btn.active { background: rgba(0, 230, 118, 0.15); border-color: var(--accent-green); color: var(--accent-green); font-weight: 700; }
-
     .live-weather-badge { display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--panel-border); padding: 5px 8px; border-radius: 4px; font-size: 10.5px; margin-top: 6px; font-family: var(--font-mono); }
 
-    .btn-synthesize {
-      width: 100%; background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      color: #fff; border: none; padding: 11px; font-weight: 700; font-size: 12px;
-      letter-spacing: 0.8px; cursor: pointer; border-radius: 6px; margin-top: 6px;
-    }
+    .btn-synthesize { width: 100%; background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%); color: #fff; border: none; padding: 11px; font-weight: 700; font-size: 12px; letter-spacing: 0.8px; cursor: pointer; border-radius: 6px; margin-top: 6px; }
     .btn-synthesize:hover { background: linear-gradient(135deg, #00c6eb 0%, #0088cc 100%); }
     .btn-synthesize.marble-btn { background: linear-gradient(135deg, #ab47bc 0%, #7b1fa2 100%); }
-    .btn-synthesize.marble-btn:hover { background: linear-gradient(135deg, #ba68c8 0%, #8e24aa 100%); }
 
-    /* Results Drawer */
-    .results-drawer {
-      position: absolute; top: 16px; right: 20px; width: 460px;
-      max-height: calc(100% - 32px); background: var(--panel-bg);
-      backdrop-filter: blur(16px); border: 1px solid var(--panel-border);
-      border-radius: 10px; z-index: 20; display: flex; flex-direction: column;
-      transform: translateX(500px); transition: transform 0.35s ease;
-    }
+    .results-drawer { position: absolute; top: 16px; right: 20px; width: 460px; max-height: calc(100% - 32px); background: var(--panel-bg); backdrop-filter: blur(16px); border: 1px solid var(--panel-border); border-radius: 10px; z-index: 20; display: flex; flex-direction: column; transform: translateX(500px); transition: transform 0.35s ease; }
     .results-drawer.open { transform: translateX(0); }
     .drawer-header { padding: 12px 14px; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; }
     .drawer-title { font-size: 12px; font-weight: 700; color: var(--accent-cyan); }
@@ -115,24 +80,41 @@
     .drawer-body { padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
     .image-preview-card { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--panel-border); }
     .image-preview-card img { width: 100%; display: block; }
-    
-    .world-action-box { display: flex; flex-direction: column; gap: 8px; background: rgba(224, 64, 251, 0.08); border: 1px solid rgba(224, 64, 251, 0.3); border-radius: 6px; padding: 12px; }
-    .btn-world-viewer { display: block; text-align: center; text-decoration: none; background: #ab47bc; color: white; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 11.5px; }
-    .btn-world-viewer:hover { background: #ba68c8; }
-    .world-links-row { display: flex; gap: 6px; font-size: 10px; }
-    .world-link { flex: 1; text-align: center; background: rgba(255, 255, 255, 0.08); color: var(--accent-cyan); padding: 5px; border-radius: 4px; text-decoration: none; border: 1px solid var(--panel-border); }
-
     .metadata-box { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; font-size: 10.5px; }
     .metadata-title { font-weight: 700; color: var(--accent-amber); margin-bottom: 3px; font-size: 9.5px; text-transform: uppercase; }
 
-    .loading-overlay {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(6px);
-      z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-    }
-    .spinner { width: 40px; height: 40px; border: 3px solid rgba(0, 229, 255, 0.2); border-top-color: var(--accent-cyan); border-radius: 50%; animation: spin 0.8s linear infinite; }
-    .spinner.marble-spinner { border-top-color: var(--accent-magenta); }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* =========================================================================
+       LIFECYCLE TELEMETRY HUD MODAL
+       ========================================================================= */
+    .loading-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 12, 16, 0.88); backdrop-filter: blur(8px); z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .hud-stepper-card { width: 440px; background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 16px 36px rgba(0,0,0,0.6); }
+    .stepper-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--panel-border); padding-bottom: 10px; }
+    .stepper-title { font-size: 11.5px; font-weight: 800; letter-spacing: 1.5px; color: var(--accent-cyan); text-transform: uppercase; }
+    .stepper-session { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+
+    .stage-rack { display: flex; flex-direction: column; gap: 7px; }
+    .stage-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-radius: 6px; background: rgba(255, 255, 255, 0.02); border: 1px solid transparent; font-size: 11.5px; font-family: var(--font-mono); transition: all 0.2s ease; }
+    
+    .stage-row.pending { color: var(--text-muted); opacity: 0.5; }
+    .stage-row.active { background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.4); color: #fff; }
+    .stage-row.done { background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.2); color: var(--text-main); }
+    .stage-row.fault { background: rgba(255, 23, 68, 0.1); border-color: rgba(255, 23, 68, 0.5); color: #ff5252; }
+
+    .stage-left { display: flex; align-items: center; gap: 10px; }
+    .stage-dot { width: 8px; height: 8px; border-radius: 50%; background: #444; }
+    .stage-row.active .stage-dot { background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); animation: pulseDot 1s infinite alternate; }
+    .stage-row.done .stage-dot { background: var(--accent-green); }
+    .stage-row.fault .stage-dot { background: #ff1744; }
+    @keyframes pulseDot { from { opacity: 0.4; } to { opacity: 1; } }
+
+    .stage-right { display: flex; align-items: center; gap: 6px; font-size: 10.5px; }
+    .stage-status-badge { padding: 2px 6px; border-radius: 3px; font-weight: 700; font-size: 9px; }
+    .stage-row.pending .stage-status-badge { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+    .stage-row.active .stage-status-badge { background: var(--accent-cyan); color: #000; }
+    .stage-row.done .stage-status-badge { background: rgba(0, 230, 118, 0.2); color: var(--accent-green); }
+    .stage-row.fault .stage-status-badge { background: #ff1744; color: #fff; }
+
+    .stepper-ticker { background: rgba(0,0,0,0.4); border: 1px solid var(--panel-border); border-radius: 6px; padding: 8px 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--accent-cyan); min-height: 34px; display: flex; align-items: center; }
   </style>
 </head>
 <body>
@@ -141,13 +123,11 @@
   <div class="viewport-reticle"></div>
 
   <div class="hud-header">
-    <span class="hud-logo">SPATIAL INTELLIGENCE</span>
-    <span class="hud-sep">/</span>
+    <span class="hud-logo">SPATIAL INTELLIGENCE</span><span class="hud-sep">/</span>
     <span id="current-location-text" class="hud-location">Resolving location...</span>
   </div>
 
   <div class="hud-sidebar">
-    <!-- Telemetry -->
     <div class="hud-card">
       <div class="hud-card-header">📡 6-DoF Telemetry</div>
       <div class="telemetry-grid">
@@ -158,55 +138,47 @@
       </div>
     </div>
 
-    <!-- Generative Engine Selection -->
     <div class="hud-card">
       <div class="hud-card-header">🧠 Generative Synthesis Engine</div>
       <div class="mode-toggle">
         <button id="btn-prov-gemini" class="toggle-btn active" onclick="setProvider('GEMINI')">Gemini 2D Twin</button>
         <button id="btn-prov-marble" class="toggle-btn marble" onclick="setProvider('WORLD_LABS')">World Labs 3D</button>
       </div>
-
       <div class="hud-input-group">
-        <div class="hud-label-row">
-          <label class="hud-label">VIEW SCOPE</label>
-          <span id="view-scope-label" class="hud-val-badge">FRUSTUM (Directional)</span>
-        </div>
+        <div class="hud-label-row"><label class="hud-label">VIEW SCOPE</label><span id="view-scope-label" class="hud-val-badge">FRUSTUM (Directional)</span></div>
         <select id="select-view-scope" onchange="onViewScopeChange(this.value)">
           <option value="FRUSTUM">Frustum Viewport (Single Lens)</option>
           <option value="OMNI_360">360° Omnidirectional Enclosure</option>
           <option value="STANDALONE">Standalone (Pure Text Reasoning)</option>
         </select>
       </div>
-
       <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
         <input type="checkbox" id="chk-disable-recaption" checked style="accent-color: var(--accent-magenta); cursor: pointer;" />
         <label for="chk-disable-recaption" style="font-size: 10px; color: var(--text-muted); cursor: pointer;">Disable Recaption (Strict Prompt Lock)</label>
       </div>
     </div>
 
-    <!-- Illumination & Time Engine -->
     <div class="hud-card">
       <div class="hud-card-header">☀️ Solar Ephemeris & Time</div>
       <div class="mode-toggle">
         <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')">Solar Ephemeris</button>
         <button id="btn-mode-floodlight" class="toggle-btn floodlight" onclick="setLightingMode('FLOODLIGHT')">Floodlight</button>
       </div>
-
+      
       <div class="hud-input-group">
-        <label class="hud-label">CALENDAR DATE</label>
+        <div class="hud-label-row">
+          <label class="hud-label">CALENDAR DATE</label>
+          <label class="live-toggle-wrapper"><input type="checkbox" id="chk-live-time" onchange="toggleLiveTime(this.checked)"> Live Clock</label>
+        </div>
         <input type="date" id="input-date" onchange="syncCesiumTime()" />
       </div>
 
       <div class="hud-input-group">
-        <div class="hud-label-row">
-          <label class="hud-label">24-HOUR TIME SLIDER</label>
-          <span id="slider-time-display" class="hud-val-badge">12:00 UTC</span>
-        </div>
+        <div class="hud-label-row"><label class="hud-label">24-HOUR TIME SLIDER</label><span id="slider-time-display" class="hud-val-badge">12:00</span></div>
         <input type="range" id="input-time-slider" min="0" max="23.95" step="0.05" value="12.0" oninput="onTimeSliderChange(this.value)" />
       </div>
     </div>
 
-    <!-- Atmospheric & Weather Engine -->
     <div class="hud-card">
       <div class="hud-card-header">🌦️ Atmosphere & Weather</div>
       <div class="weather-grid">
@@ -217,64 +189,67 @@
         <button class="weather-btn" onclick="setWeatherMode('SNOW', this)">❄️ Snow</button>
         <button class="weather-btn" onclick="setWeatherMode('OVERCAST', this)">☁️ Overcast</button>
       </div>
-
-      <div class="live-weather-badge">
-        <span style="color: var(--text-muted);">LIVE WEATHER:</span>
-        <span id="hud-live-weather-text" style="color: var(--accent-green); font-weight: 600;">Detecting...</span>
-      </div>
-
+      <div class="live-weather-badge"><span style="color: var(--text-muted);">LIVE WEATHER:</span><span id="hud-live-weather-text" style="color: var(--accent-green); font-weight: 600;">Detecting...</span></div>
       <button id="btn-synthesize-action" class="btn-synthesize" onclick="captureAndSynthesizeTwin()">⚡ SYNTHESIZE LIVING TWIN</button>
     </div>
   </div>
 
-  <!-- Results Drawer -->
   <div id="resultsDrawer" class="results-drawer">
-    <div class="drawer-header">
-      <span class="drawer-title" id="drawer-title-text">DOCUMENTARY TWIN INSPECTOR</span>
-      <button class="btn-close" onclick="closeDrawer()">✕</button>
-    </div>
+    <div class="drawer-header"><span class="drawer-title" id="drawer-title-text">DOCUMENTARY TWIN INSPECTOR</span><button class="btn-close" onclick="closeDrawer()">✕</button></div>
     <div class="drawer-body">
-      <!-- 2D Image Viewport Preview -->
-      <div id="result-img-card" class="image-preview-card">
-        <img id="result-twin-img" src="" alt="Synthesized Output" />
-      </div>
-
-      <!-- 3D World Actions (World Labs Marble) -->
-      <div id="result-world-actions" class="world-action-box hidden">
-        <div style="font-size: 11px; font-weight: 700; color: var(--accent-magenta);">✨ 3D Spatial World Created (Marble)</div>
-        <a id="btn-open-viewer" class="btn-world-viewer" href="#" target="_blank">🌐 Open Interactive 3D World Viewer ↗</a>
-        <div class="world-links-row">
-          <a id="link-splat" class="world-link" href="#" target="_blank">Download Splat (.spz)</a>
-          <a id="link-mesh" class="world-link" href="#" target="_blank">Download Mesh (.glb)</a>
-        </div>
-      </div>
-
-      <div class="metadata-box">
-        <div class="metadata-title">Model & Latency</div>
-        <div id="result-model-meta" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">--</div>
-      </div>
-
-      <div class="metadata-box">
-        <div class="metadata-title">Illumination & Atmosphere</div>
-        <div id="result-lighting-summary">--</div>
-      </div>
-
-      <div class="metadata-box">
-        <div class="metadata-title">4 Mothers Documentary Prompt</div>
-        <div id="result-documentary-prompt" style="font-family: var(--font-mono); font-size: 10px; white-space: pre-wrap; line-height: 1.4;">--</div>
-      </div>
-
-      <div class="metadata-box">
-        <div class="metadata-title">7 Strata GeoJSON Model</div>
-        <pre id="result-geojson-stratum" style="font-family: var(--font-mono); font-size: 9.5px; overflow-x: auto; color: var(--accent-cyan); max-height: 180px;"></pre>
-      </div>
+      <div id="result-img-card" class="image-preview-card"><img id="result-twin-img" src="" alt="Synthesized Output" /></div>
+      <div class="metadata-box"><div class="metadata-title">Model & Latency</div><div id="result-model-meta" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">--</div></div>
+      <div class="metadata-box"><div class="metadata-title">4 Mothers Documentary Prompt</div><div id="result-documentary-prompt" style="font-family: var(--font-mono); font-size: 10px; white-space: pre-wrap; line-height: 1.4;">--</div></div>
     </div>
   </div>
 
-  <!-- Loading Overlay -->
+  <!-- REAL-TIME PIPELINE HUD OVERLAY -->
   <div id="loadingOverlay" class="loading-overlay hidden">
-    <div id="loading-spinner" class="spinner"></div>
-    <div id="loading-status-text" style="font-size: 12.5px; font-weight: 600; letter-spacing: 0.5px;">Executing 4 Mothers Causal Cognition...</div>
+    <div class="hud-stepper-card">
+      <div class="stepper-header">
+        <span class="stepper-title">PIPELINE EXECUTION RACK</span>
+        <span class="stepper-session">STREAM ACTIVE</span>
+      </div>
+
+      <div class="stage-rack">
+        <div id="row-INGEST_LIGHTING" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>1. Atmosphere & Ephemeris</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-DOMAIN_ENGINE" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>2. Domain Engine (4 Mothers)</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-SPATIAL_SCAFFOLD" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>3. Spatial Scaffold (7 Strata)</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-PROMPT_ENGINE" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>4. Prompt Compiler</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-VISION_PREPROCESSOR" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>5. Vision Preprocessor (CUDA)</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-SYNTHESIS_ENGINE" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>6. Synthesis Engine</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+
+        <div id="row-ARCHIVER" class="stage-row pending">
+          <div class="stage-left"><div class="stage-dot"></div><span>7. Archiver & Persistence</span></div>
+          <div class="stage-right"><span class="stage-timer">--</span><span class="stage-status-badge">PENDING</span></div>
+        </div>
+      </div>
+
+      <div id="stepperTicker" class="stepper-ticker">Initializing spatial sensors...</div>
+    </div>
   </div>
 
   <script>
@@ -284,66 +259,50 @@
     let currentWeatherMode = 'AUTO';
 
     async function initApp() {
-      // 1. Current date & real-time hour
       const now = new Date();
       document.getElementById('input-date').value = now.toISOString().split('T')[0];
-      const currentHourDecimal = now.getUTCHours() + now.getUTCMinutes() / 60.0;
+      const currentHourDecimal = now.getHours() + now.getMinutes() / 60.0;
       document.getElementById('input-time-slider').value = currentHourDecimal.toFixed(2);
       updateSliderDisplay(currentHourDecimal);
 
-      // 2. Fetch Cesium Ion Token from server
       try {
         const configResp = await fetch('/api/config');
         if (configResp.ok) {
           const cfg = await configResp.json();
-          if (cfg.cesium_ion_token) {
-            Cesium.Ion.defaultAccessToken = cfg.cesium_ion_token;
-          }
+          if (cfg.cesium_ion_token) Cesium.Ion.defaultAccessToken = cfg.cesium_ion_token;
         }
-      } catch (err) {
-        console.warn('[Cesium] Could not reach /api/config', err);
-      }
+      } catch (err) {}
 
-      // 3. Initialize Cesium Viewer
       viewer = new Cesium.Viewer('cesiumContainer', {
         contextOptions: { webgl: { preserveDrawingBuffer: true } },
         baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({ url: 'https://tile.openstreetmap.org/' })),
-        baseLayerPicker: false,
-        geocoder: false,
-        animation: false,
-        timeline: false,
-        fullscreenButton: false,
-        vrButton: false,
-        infoBox: false,
-        selectionIndicator: false,
-        navigationHelpButton: false
+        baseLayerPicker: false, geocoder: false, animation: false, timeline: false, fullscreenButton: false, vrButton: false, infoBox: false, selectionIndicator: false, navigationHelpButton: false
       });
 
-      // Starting Camera (Edinburgh New Town at 250m)
-      viewer.camera.setView({
-        destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 250.0),
-        orientation: {
-          heading: Cesium.Math.toRadians(315.0),
-          pitch: Cesium.Math.toRadians(-25.0),
-          roll: 0.0
-        }
-      });
+      viewer.camera.setView({ destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 250.0), orientation: { heading: Cesium.Math.toRadians(315.0), pitch: Cesium.Math.toRadians(-25.0), roll: 0.0 } });
 
-      try {
-        if (Cesium.createGooglePhotorealistic3DTileset) {
-          const tileset = await Cesium.createGooglePhotorealistic3DTileset();
-          viewer.scene.primitives.add(tileset);
-        }
-      } catch (e) {
-        console.warn('[Cesium] 3D Tiles error fallback to OSM.', e);
-      }
+      try { if (Cesium.createGooglePhotorealistic3DTileset) { const tileset = await Cesium.createGooglePhotorealistic3DTileset(); viewer.scene.primitives.add(tileset); } } catch (e) {}
 
       viewer.camera.changed.addEventListener(updateTelemetryHUD);
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
-
       updateTelemetryHUD();
       syncCesiumTime();
       onCameraSettle();
+    }
+
+    function toggleLiveTime(isLive) {
+      const dateInput = document.getElementById('input-date');
+      const timeSlider = document.getElementById('input-time-slider');
+      if (isLive) {
+        dateInput.classList.add('disabled-el'); timeSlider.classList.add('disabled-el');
+        const now = new Date();
+        dateInput.value = now.toISOString().split('T')[0];
+        timeSlider.value = (now.getHours() + now.getMinutes() / 60.0).toFixed(2);
+        updateSliderDisplay(timeSlider.value);
+        syncCesiumTime();
+      } else {
+        dateInput.classList.remove('disabled-el'); timeSlider.classList.remove('disabled-el');
+      }
     }
 
     function setProvider(prov) {
@@ -351,262 +310,181 @@
       const isMarble = (prov === 'WORLD_LABS');
       document.getElementById('btn-prov-gemini').classList.toggle('active', !isMarble);
       document.getElementById('btn-prov-marble').classList.toggle('active', isMarble);
-
-      const actionBtn = document.getElementById('btn-synthesize-action');
-      actionBtn.classList.toggle('marble-btn', isMarble);
-      actionBtn.textContent = isMarble ? '🌐 SYNTHESIZE 3D WORLD (MARBLE)' : '⚡ SYNTHESIZE 2D LIVING TWIN';
-
-      if (isMarble && document.getElementById('select-view-scope').value === 'FRUSTUM') {
-        // Automatically suggest 360 Omni for World Labs Marble
-        document.getElementById('select-view-scope').value = 'OMNI_360';
-        onViewScopeChange('OMNI_360');
-      }
+      document.getElementById('btn-synthesize-action').textContent = isMarble ? '🌐 SYNTHESIZE 3D WORLD (MARBLE)' : '⚡ SYNTHESIZE 2D LIVING TWIN';
     }
 
-    function onViewScopeChange(val) {
-      const badges = {
-        'FRUSTUM': 'FRUSTUM (Directional)',
-        'OMNI_360': 'OMNI 360° (Spherical)',
-        'STANDALONE': 'STANDALONE (Pure Text)'
-      };
-      document.getElementById('view-scope-label').textContent = badges[val] || val;
-    }
-
-    function onTimeSliderChange(val) {
-      updateSliderDisplay(parseFloat(val));
-      syncCesiumTime();
-    }
-
+    function onViewScopeChange(val) { document.getElementById('view-scope-label').textContent = val; }
+    function onTimeSliderChange(val) { updateSliderDisplay(parseFloat(val)); syncCesiumTime(); }
+    
     function updateSliderDisplay(val) {
-      const h = Math.floor(val);
-      const m = Math.floor((val - h) * 60);
-      const strH = String(h).padStart(2, '0');
-      const strM = String(m).padStart(2, '0');
-      document.getElementById('slider-time-display').textContent = `${strH}:${strM} UTC`;
+      const h = Math.floor(val); const m = Math.floor((val - h) * 60);
+      document.getElementById('slider-time-display').textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     }
 
     function syncCesiumTime() {
       if (!viewer) return;
-      const dateStr = document.getElementById('input-date').value;
-      const hourDecimal = parseFloat(document.getElementById('input-time-slider').value);
-      const h = Math.floor(hourDecimal);
-      const m = Math.floor((hourDecimal - h) * 60);
-      const iso = `${dateStr}T${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00Z`;
+      const iso = `${document.getElementById('input-date').value}T${document.getElementById('slider-time-display').textContent}:00Z`;
       viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(iso);
     }
 
     function updateTelemetryHUD() {
       if (!viewer) return;
-      const camera = viewer.camera;
-      const cart = Cesium.Cartographic.fromCartesian(camera.position);
-      const lat = Cesium.Math.toDegrees(cart.latitude);
-      const lon = Cesium.Math.toDegrees(cart.longitude);
-
-      document.getElementById('telemetry-coords').textContent = `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+      const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+      document.getElementById('telemetry-coords').textContent = `${Cesium.Math.toDegrees(cart.latitude).toFixed(5)}, ${Cesium.Math.toDegrees(cart.longitude).toFixed(5)}`;
       document.getElementById('telemetry-alt').textContent = `${cart.height.toFixed(1)} m`;
-      document.getElementById('telemetry-heading-pitch').textContent = `${Cesium.Math.toDegrees(camera.heading).toFixed(1)}° / ${Cesium.Math.toDegrees(camera.pitch).toFixed(1)}°`;
-      document.getElementById('telemetry-fov').textContent = `${Cesium.Math.toDegrees(camera.frustum.fov || 0.785).toFixed(1)}°`;
     }
 
     let settleTimeout = null;
-
     function onCameraSettle() {
       if (!viewer) return;
       clearTimeout(settleTimeout);
       settleTimeout = setTimeout(async () => {
-        const windowPosition = new Cesium.Cartesian2(
-          viewer.container.clientWidth / 2,
-          viewer.container.clientHeight / 2
-        );
-        
-        let lat, lon;
-        const ray = viewer.camera.getPickRay(windowPosition);
-        const groundPosition = viewer.scene.globe.pick(ray, viewer.scene);
-
-        if (groundPosition) {
-          const cart = Cesium.Cartographic.fromCartesian(groundPosition);
-          lat = Cesium.Math.toDegrees(cart.latitude);
-          lon = Cesium.Math.toDegrees(cart.longitude);
-        } else {
-          const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
-          lat = Cesium.Math.toDegrees(cart.latitude);
-          lon = Cesium.Math.toDegrees(cart.longitude);
-        }
-
-        fetchLocationHUD(lat, lon);
-        fetchLiveWeatherHUD(lat, lon);
+        const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+        const lat = Cesium.Math.toDegrees(cart.latitude);
+        const lon = Cesium.Math.toDegrees(cart.longitude);
+        fetchLocationHUD(lat, lon); fetchLiveWeatherHUD(lat, lon);
       }, 400);
     }
 
     async function fetchLocationHUD(lat, lon) {
-      const locElem = document.getElementById('current-location-text');
-      try {
-        const resp = await fetch(`/api/geocode?lat=${lat}&lon=${lon}`);
-        if (resp.ok) {
-          const data = await resp.json();
-          if (data.address) {
-            locElem.textContent = data.address;
-            return;
-          }
-        }
-        locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
-      } catch (err) {
-        locElem.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
-      }
+      try { const resp = await fetch(`/api/geocode?lat=${lat}&lon=${lon}`); if (resp.ok) { const data = await resp.json(); document.getElementById('current-location-text').textContent = data.address || `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`; } } catch (err) {}
     }
 
     async function fetchLiveWeatherHUD(lat, lon) {
-      try {
-        const resp = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
-        if (resp.ok) {
-          const w = await resp.json();
-          document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${w.temperature_c.toFixed(1)}°C`;
+      try { const resp = await fetch(`/api/weather?lat=${lat}&lon=${lon}`); if (resp.ok) { const w = await resp.json(); document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${w.temperature_c.toFixed(1)}°C`; } } catch (e) {}
+    }
+
+    function setLightingMode(mode) { currentLightingMode = mode; document.getElementById('btn-mode-solar').classList.toggle('active', mode === 'SOLAR'); document.getElementById('btn-mode-floodlight').classList.toggle('active', mode === 'FLOODLIGHT'); }
+    function setWeatherMode(mode, elem) { currentWeatherMode = mode; document.querySelectorAll('.weather-btn').forEach(b => b.classList.remove('active')); if (elem) elem.classList.add('active'); }
+    function closeDrawer() { document.getElementById('resultsDrawer').classList.remove('open'); }
+
+    function resetStepperHUD() {
+      const stages = ['INGEST_LIGHTING', 'DOMAIN_ENGINE', 'SPATIAL_SCAFFOLD', 'PROMPT_ENGINE', 'VISION_PREPROCESSOR', 'SYNTHESIS_ENGINE', 'ARCHIVER'];
+      stages.forEach(s => {
+        const row = document.getElementById(`row-${s}`);
+        if (row) {
+          row.className = 'stage-row pending';
+          row.querySelector('.stage-timer').textContent = '--';
+          row.querySelector('.stage-status-badge').textContent = 'PENDING';
         }
-      } catch (e) {
-        document.getElementById('hud-live-weather-text').textContent = 'Clear • 18°C';
+      });
+      document.getElementById('stepperTicker').textContent = 'Booting spatial pipeline...';
+    }
+
+    function updateStageHUD(event) {
+      const row = document.getElementById(`row-${event.stage}`);
+      if (!row) return;
+
+      const timer = row.querySelector('.stage-timer');
+      const badge = row.querySelector('.stage-status-badge');
+      const ticker = document.getElementById('stepperTicker');
+
+      if (event.state === 'ACTIVATED') {
+        row.className = 'stage-row active';
+        badge.textContent = 'ACTIVE';
+        ticker.textContent = `▶ [${event.label}] ${event.message}`;
+      } else if (event.state === 'PROCESSING') {
+        ticker.textContent = `⚙ [${event.label}] ${event.message}`;
+      } else if (event.state === 'DISPATCHING') {
+        ticker.textContent = `▲ [${event.label}] ${event.message}`;
+      } else if (event.state === 'STANDBY') {
+        row.className = 'stage-row done';
+        badge.textContent = 'DONE';
+        if (event.duration_ms) timer.textContent = `${(event.duration_ms / 1000.0).toFixed(2)}s`;
+        ticker.textContent = `■ [${event.label}] ${event.message}`;
+      } else if (event.state === 'FAULT') {
+        row.className = 'stage-row fault';
+        badge.textContent = 'FAULT';
+        ticker.textContent = `✖ [${event.label}] ${event.message}`;
       }
-    }
-
-    function setLightingMode(mode) {
-      currentLightingMode = mode;
-      document.getElementById('btn-mode-solar').classList.toggle('active', mode === 'SOLAR');
-      document.getElementById('btn-mode-floodlight').classList.toggle('active', mode === 'FLOODLIGHT');
-    }
-
-    function setWeatherMode(mode, elem) {
-      currentWeatherMode = mode;
-      document.querySelectorAll('.weather-btn').forEach(b => b.classList.remove('active'));
-      if (elem) elem.classList.add('active');
     }
 
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
-      const loadingOverlay = document.getElementById('loadingOverlay');
-      const spinner = document.getElementById('loading-spinner');
-      const statusText = document.getElementById('loading-status-text');
-      const actionBtn = document.getElementById('btn-synthesize-action');
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      
+      // CRITICAL FIX: Force WebGL to render and flush the buffer before capture to prevent camera drift
+      viewer.render();
+      await new Promise(r => requestAnimationFrame(r));
+      const screenshotB64 = viewer.scene.canvas.toDataURL('image/jpeg', 0.85);
 
-      const isMarble = (currentProvider === 'WORLD_LABS');
-      spinner.classList.toggle('marble-spinner', isMarble);
-      statusText.textContent = isMarble 
-        ? 'Generating 3D Spatial World (World Labs Marble)...' 
-        : 'Synthesizing 2D Documentary Twin (Gemini Image)...';
+      const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+      const isLiveTime = document.getElementById('chk-live-time').checked;
 
-      try {
-        loadingOverlay.classList.remove('hidden');
-        actionBtn.disabled = true;
-
-        viewer.render();
-        const screenshotB64 = viewer.scene.canvas.toDataURL('image/jpeg', 0.85);
-
-        const camera = viewer.camera;
-        const cart = Cesium.Cartographic.fromCartesian(camera.position);
-
-        const telemetryPayload = {
+      const payload = {
+        screenshot_b64: document.getElementById('select-view-scope').value === 'STANDALONE' ? null : screenshotB64,
+        telemetry: {
           latitude: Cesium.Math.toDegrees(cart.latitude),
           longitude: Cesium.Math.toDegrees(cart.longitude),
           altitude_agl: cart.height,
-          heading: Cesium.Math.toDegrees(camera.heading),
-          pitch: Cesium.Math.toDegrees(camera.pitch),
-          fov: Cesium.Math.toDegrees(camera.frustum.fov || 0.785),
+          heading: Cesium.Math.toDegrees(viewer.camera.heading),
+          pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
+          fov: Cesium.Math.toDegrees(viewer.camera.frustum.fov || 0.785),
           tile_mode: '3D_TILES',
-          date: document.getElementById('input-date').value,
-          time_of_day: parseFloat(document.getElementById('input-time-slider').value),
-          timestamp_utc: Cesium.JulianDate.toIso8601(viewer.clock.currentTime),
+          date: isLiveTime ? null : document.getElementById('input-date').value,
+          time_of_day: isLiveTime ? null : parseFloat(document.getElementById('input-time-slider').value),
+          timestamp_utc: isLiveTime ? new Date().toISOString() : null,
           lighting_mode: currentLightingMode,
           weather_mode: currentWeatherMode
-        };
+        },
+        provider: currentProvider,
+        target_model: currentProvider === 'WORLD_LABS' ? 'marble-1.1' : 'gemini-3.1-flash-image',
+        view_scope: document.getElementById('select-view-scope').value,
+        disable_recaption: document.getElementById('chk-disable-recaption').checked
+      };
 
-        const viewScopeVal = document.getElementById('select-view-scope').value;
-        const disableRecaptionVal = document.getElementById('chk-disable-recaption').checked;
-
-        const requestPayload = {
-          screenshot_b64: (viewScopeVal === 'STANDALONE') ? null : screenshotB64,
-          telemetry: telemetryPayload,
-          provider: currentProvider,
-          target_model: isMarble ? 'marble-1.1' : 'gemini-3.1-flash-image',
-          view_scope: viewScopeVal,
-          disable_recaption: disableRecaptionVal
-        };
-
+      try {
         const response = await fetch('/api/process_view', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(requestPayload)
+          body: JSON.stringify(payload)
         });
 
-        if (!response.ok) {
-          const err = await response.json();
-          throw new Error(err.detail || `Server Error ${response.status}`);
-        }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let buffer = '';
 
-        const data = await response.json();
-        displayResults(data);
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop(); // Keep partial line in buffer
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+
+            const packet = JSON.parse(trimmed);
+
+            if (packet.type === 'LIFECYCLE') {
+              updateStageHUD(packet);
+            } else if (packet.type === 'RESULT') {
+              displayResults(packet.data);
+            } else if (packet.type === 'ERROR') {
+              alert('Pipeline Error: ' + packet.message);
+            }
+          }
+        }
       } catch (err) {
-        alert('Synthesis Error: ' + err.message);
+        alert('Synthesis Network Error: ' + err.message);
       } finally {
-        loadingOverlay.classList.add('hidden');
-        actionBtn.disabled = false;
+        setTimeout(() => {
+          document.getElementById('loadingOverlay').classList.add('hidden');
+        }, 600);
       }
     }
 
     function displayResults(data) {
-      if (data.address) {
-        document.getElementById('current-location-text').textContent = data.address;
-      }
-
-      const isWorld = (data.provider === 'WORLD_LABS' || data.world_viewer_url);
-      const imgCard = document.getElementById('result-img-card');
-      const worldActions = document.getElementById('result-world-actions');
-
-      if (isWorld) {
-        worldActions.classList.remove('hidden');
-        if (data.world_viewer_url) {
-          document.getElementById('btn-open-viewer').href = data.world_viewer_url;
-        }
-        if (data.splat_url) {
-          document.getElementById('link-splat').href = data.splat_url;
-          document.getElementById('link-splat').classList.remove('hidden');
-        } else {
-          document.getElementById('link-splat').classList.add('hidden');
-        }
-        if (data.collider_mesh_url) {
-          document.getElementById('link-mesh').href = data.collider_mesh_url;
-          document.getElementById('link-mesh').classList.remove('hidden');
-        } else {
-          document.getElementById('link-mesh').classList.add('hidden');
-        }
-      } else {
-        worldActions.classList.add('hidden');
-      }
-
-      // Preview image
       if (data.twin_image_b64) {
         document.getElementById('result-twin-img').src = data.twin_image_b64;
-        imgCard.classList.remove('hidden');
-      } else if (!isWorld) {
-        imgCard.classList.add('hidden');
+        document.getElementById('result-img-card').classList.remove('hidden');
       }
-
-      // Metadata
-      document.getElementById('result-model-meta').textContent = 
-        `Provider: ${data.provider} | Model: ${data.model_name} | Scope: ${data.view_scope} | Latency: ${data.latency_ms} ms`;
-
-      document.getElementById('result-documentary-prompt').textContent = 
-        data.documentary_prompt || data.compiled_prompt || 'N/A';
-
-      const lighting = data.lighting_state || {};
-      const mode = data.lighting_mode || 'SOLAR';
-      const weather = data.weather_mode || 'AUTO';
-      document.getElementById('result-lighting-summary').textContent = 
-        `${mode} | Weather: ${weather}`;
-
-      document.getElementById('result-geojson-stratum').textContent = JSON.stringify(data.geojson || {}, null, 2);
+      document.getElementById('result-model-meta').textContent = `Provider: ${data.provider} | Model: ${data.model_name} | Latency: ${data.latency_ms} ms`;
+      document.getElementById('result-documentary-prompt').textContent = data.compiled_prompt || 'N/A';
       document.getElementById('resultsDrawer').classList.add('open');
-    }
-
-    function closeDrawer() {
-      document.getElementById('resultsDrawer').classList.remove('open');
     }
 
     window.addEventListener('DOMContentLoaded', initApp);

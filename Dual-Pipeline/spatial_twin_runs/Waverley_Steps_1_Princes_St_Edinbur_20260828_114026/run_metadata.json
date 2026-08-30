@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_114026",
+  "address": "Waverley Steps, 1 Princes St., Edinburgh EH2 2EQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12650.74,
+  "telemetry": {
+    "latitude": 55.95325602643756,
+    "longitude": -3.189214688435595,
+    "altitude_agl": 192.23776304157414,
+    "heading": 289.75663867270816,
+    "pitch": -25.71822834449195,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-left quadrant of the frame (Azimuth 259.2\u00b0, Elevation 4.6\u00b0).\n- FACADE ILLUMINATION: left-facing facades and the left side of towers/domes are brightly lit; right-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the RIGHT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left. Cast all new shadows toward the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 architectural documentary survey, high-angle oblique frustum of the St Andrew Square and West Register Street urban block in Edinburgh. Planar rectified view centering on the multi-tiered modern insertion of The Mint Building, featuring structural buff sandstone piers, deep-set rectangular fenestration, and stacked multi-storey curtain-wall glass and zinc-clad rooftop pavilions set behind an authentic 19th-century Venetian Gothic mansard.",
+  "char_count": 2045,
+  "includes_lighting": false
+}

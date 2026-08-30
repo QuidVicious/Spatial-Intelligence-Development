@@ -1,6 +1,7 @@
 """
 Synthesis Engine: Multi-Provider Generation Hub for 2D Visual Twins and 3D Worlds.
-Supports Google Gemini Image Models and World Labs Marble 3D World API (with disable_recaption).
+Supports Google Gemini Flash Image Models and World Labs Marble 3D World API.
+Enforces standard 2560x1440 2K QHD 16:9 widescreen output via imageConfig.
 """
 
 import os
@@ -37,41 +38,51 @@ class SynthesisResult:
         return asdict(self)
 
 
-# =========================================================================
-# PROVIDER 1: GOOGLE GEMINI 2D IMAGE SYNTHESIS
-# =========================================================================
+def _extract_mime_and_data(b64_str: str) -> tuple[str, str]:
+    if "," in b64_str and b64_str.startswith("data:"):
+        header, raw_data = b64_str.split(",", 1)
+        mime_type = header.split(";")[0].replace("data:", "").strip()
+        return mime_type, raw_data
+    return "image/png", b64_str
+
 
 def synthesize_gemini_image(
     prompt: str,
     screenshot_b64: Optional[str] = None,
     model_name: str = "gemini-3.1-flash-image",
-    temperature: float = 0.35,
-    top_p: float = 0.85,
+    temperature: float = 0.0,
     gemini_api_key: Optional[str] = None
 ) -> SynthesisResult:
-    """Dispatches prompt and optional reference image to Gemini Image Generation."""
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
 
     start_time = time.perf_counter()
-    parts: List[Dict[str, Any]] = [{"text": prompt}]
+    parts: List[Dict[str, Any]] = []
 
+    # 1. Reference Albedo Tensor First
     if screenshot_b64:
-        raw_b64 = screenshot_b64.split(",")[-1] if "," in screenshot_b64 else screenshot_b64
+        mime_type, raw_b64 = _extract_mime_and_data(screenshot_b64)
         parts.append({
             "inlineData": {
-                "mimeType": "image/jpeg",
+                "mimeType": mime_type,
                 "data": raw_b64
             }
         })
+    
+    # 2. Master Prompt Payload
+    parts.append({"text": prompt})
 
-    payload = {
+    # 3. Payload with 2560x1440 2K QHD Lock
+    payload: Dict[str, Any] = {
         "contents": [{"parts": parts}],
         "generationConfig": {
             "responseModalities": ["TEXT", "IMAGE"],
             "temperature": temperature,
-            "topP": top_p
+            "imageConfig": {
+                "aspectRatio": "16:9",
+                "imageSize": "2K"
+            }
         }
     }
 
@@ -109,25 +120,17 @@ def synthesize_gemini_image(
     raise HTTPException(status_code=500, detail=f"Model returned text without image: {text_feedback}")
 
 
-# =========================================================================
-# PROVIDER 2: WORLD LABS MARBLE 3D WORLD API
-# =========================================================================
-
 def synthesize_worldlabs_marble(
     prompt: str,
     visual_input: Optional[Union[str, List[str]]] = None,
-    input_type: str = "text",   # "text", "image", "pano", "multi_image"
-    display_name: str = "Spatial Twin World",
-    model_name: str = "marble-1.1",
-    disable_recaption: bool = True,  # <-- ENFORCES ORIGINAL PROMPT INTEGRITY
+    input_type: str = "text",
+    display_name: str = "Spatial Twin World (2560x1440 16:9)",
+    model_name: str = "marble-1.1-plus",
+    disable_recaption: bool = True,
     poll_interval: float = 4.0,
     max_wait_sec: float = 300.0,
     world_labs_api_key: Optional[str] = None
 ) -> SynthesisResult:
-    """
-    Dispatches generation request to World Labs Marble (World API) and polls until ready.
-    Generates interactive 3D worlds, Gaussian splats (.spz), and collider meshes (.glb).
-    """
     api_key = (
         world_labs_api_key
         or os.getenv("WORLD_LABS_API_KEY")
@@ -142,7 +145,6 @@ def synthesize_worldlabs_marble(
         "Content-Type": "application/json"
     }
 
-    # Build world_prompt object with explicit disable_recaption flag
     world_prompt: Dict[str, Any] = {
         "disable_recaption": disable_recaption
     }
@@ -184,7 +186,6 @@ def synthesize_worldlabs_marble(
     operation_id = init_json.get("operation_id") or init_json.get("id")
     poll_url = init_json.get("operation_url") or f"{base_url}/operations/{operation_id}"
 
-    # Poll operation status
     elapsed = 0.0
     while elapsed < max_wait_sec:
         time.sleep(poll_interval)
@@ -222,32 +223,27 @@ def synthesize_worldlabs_marble(
     raise HTTPException(status_code=504, detail="World Labs Marble generation timed out.")
 
 
-# =========================================================================
-# UNIFIED SYNTHESIS DISPATCHER
-# =========================================================================
-
 def synthesize_twin(
-    prompt: str,
+    prompt: Any,
     provider: Union[ModelProvider, str] = ModelProvider.GEMINI,
     model_name: Optional[str] = None,
     screenshot_b64: Optional[str] = None,
     multi_view_images: Optional[List[str]] = None,
     disable_recaption: bool = True,
     gemini_api_key: Optional[str] = None,
-    world_labs_api_key: Optional[str] = None
+    world_labs_api_key: Optional[str] = None,
+    **kwargs
 ) -> SynthesisResult:
-    """
-    Central dispatcher routing synthesis requests to the appropriate generative backend.
-    """
     prov = ModelProvider(provider) if isinstance(provider, str) else provider
+    prompt_text = prompt.prompt if hasattr(prompt, "prompt") else str(prompt)
 
     if prov == ModelProvider.WORLD_LABS:
-        target_model = model_name or "marble-1.1"
+        target_model = model_name or "marble-1.1-plus"
         input_type = "multi_image" if multi_view_images else ("image" if screenshot_b64 else "text")
         visual_data = multi_view_images if multi_view_images else screenshot_b64
 
         return synthesize_worldlabs_marble(
-            prompt=prompt,
+            prompt=prompt_text,
             visual_input=visual_data,
             input_type=input_type,
             model_name=target_model,
@@ -257,7 +253,7 @@ def synthesize_twin(
     else:  # GEMINI
         target_model = model_name or "gemini-3.1-flash-image"
         return synthesize_gemini_image(
-            prompt=prompt,
+            prompt=prompt_text,
             screenshot_b64=screenshot_b64,
             model_name=target_model,
             gemini_api_key=gemini_api_key

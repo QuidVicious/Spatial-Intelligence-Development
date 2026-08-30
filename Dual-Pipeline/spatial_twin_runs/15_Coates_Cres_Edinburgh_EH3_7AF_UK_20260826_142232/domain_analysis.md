@@ -1,0 +1,29 @@
+# Spatial Domain Analysis: 15 Coates Cres, Edinburgh EH3 7AF, UK
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+The subterranean substrate consists of Lower Carboniferous sedimentary bedrock belonging to the Strathclyde Group (specifically the Gullane Formation), overlain by dense glacial till. The indigenous masonry across the vista is dominated by local Carboniferous quartz-arenite sandstones—predominantly buff-to-honey-toned Craigleith "liver rock" ashlar and laminated Hailes grey/pink sandstone used for rubble backing and boundary works. Mortar chemistry is traditional non-hydraulic to feebly hydraulic hot-mixed lime mortar with local river sand aggregate, allowing natural moisture transpiration across the dense masonry envelopes. Subterranean moisture is managed by historic gravity stone culverts and sub-pavement lightwells typical of the Edinburgh New Town drainage topography.
+
+## 2. Architecture & Planar Rectification
+- **Centerpiece (St Mary’s Episcopal Cathedral):** High Victorian Gothic Revival cathedral designed by Sir George Gilbert Scott (consecrated 1879; western spires completed 1917). The cruciform plan features a soaring 90-meter central crossing spire flanked by two western spires. Geometrically rectified with plumb vertical buttresses, flying buttresses, lancet window groupings, deeply recessed rose windows, gabled transepts, and steep-pitched slate nave roofs. Photogrammetric distortions on the spire facets, pinnacles, and pierced belfry louvers are rectified into crisp, laser-straight geometric masonry planes.
+- **Foreground & Flanking Fabric (Western New Town / Coates Crescent & Manor Place):** 3- to 4-storey plus attic and raised basement Georgian and early Victorian neoclassical tenements and terraced townhouses. Structural elevations feature laser-level horizontal string courses, continuous entablatures, rusticated ground floors, vertical ashlar load-bearing walls, regular multi-pane timber sash-and-case fenestration patterns, and pitched roofs articulated with regular stone chimney stacks with clay chimney pots and pedimented dormers.
+
+## 3. Materials & Environmental Patina
+- **Cathedral Facades:** Fine-to-medium-grained blonde and weathered grey-buff Carboniferous sandstone ashlar with dressed mouldings and carved gargoyles/pinnacles. Dressed Ballachulish grey-black roofing slates with lead ridge rolls and flashing.
+- **Residential Terraces:** Craigleith sandstone ashlar front facades with droved or polished finish; rear and flanking walls of coursed squared sandstone rubble. Dark Scotch slate roofs, cast-iron rain goods, and cast-iron boundary railings atop dressed stone plinths.
+- **Climate-Adaptive Weathering & Pathology:** Authentic Scottish temperate maritime patina. Noticeable historic carbonaceous soot staining deposited deep in sheltered undercut mouldings, cornices, and window reveals (vestiges of Edinburgh's historic "Auld Reekie" coal smoke). Gentle rainwater wash streaks on exposed ashlar faces, faint green micro-algal colonization along damp lower plinths and stone coping surfaces, and softened, weathered lime mortar joints.
+
+## 4. Landscape Ecology & Botanical Canopy
+The urban vegetation within the cathedral precinct and street gardens consists of mature, leafy deciduous trees:
+- Sycamore (*Acer pseudoplatanus*) and Wych Elm (*Ulmus glabra*) with expansive, organic branch canopies.
+- Broadleaf Lime (*Tilia platyphyllos*) and London Plane (*Platanus × acerifolia*) providing dense crown foliage in garden plots.
+- Disambiguated fully from the masonry fabric: rich green, translucent organic foliage layers distinct from the rigid sandstone surfaces, set over manicured cathedral turf and ornamental perimeter hedging.
+
+## 5. Static Civil Fabric Decluttering
+All transient urban distractions are completely eliminated: zero vehicular traffic, zero parked cars, zero pedestrians, zero waste receptacles, and zero temporary signage. Retained are permanent civil fixtures: historical cast-iron streetlamps, ashlar boundary walls, wrought-iron railings, dressed stone kerbstones, and traditional stone-flagged sidewalks.
+
+## 6. Synthesized Documentary Prompt
+```text
+A documentary medium format architectural photograph captured on a Mamiya 7 with an ultra-sharp 45mm lens at f/8, fine grain ISO 100 film, deep focus from foreground to horizon. An elevated western vista over Edinburgh's West End, looking toward the magnificent Victorian Gothic Revival St Mary's Episcopal Cathedral. The cathedral's three monumental stone spires—the towering 90m central crossing spire and twin western spires—rise with plumb vertical perfection into a clear, crisp sky. The nave and transepts are constructed of weathered buff and grey Craigleith sandstone ashlar with steep grey-black Scottish slate roofs, punctuated by sharp lancet arches and intricate rose windows. In the foreground and surrounding blocks, Georgian and Victorian residential stone tenements and terraced townhouses display precise horizontal string courses, authentic multi-pane sash windows, intact stone chimney stacks with ceramic pots, and slate mansard roofs. Authentic historical environmental patina is evident: dark soot crusting settled in carved stone recesses and under cornices, vertical rain-wash paths on stone facades, and subtle biological moss along damp sandstone base courses. Mature green sycamore, lime, and elm trees with leafy canopies frame the churchyard. The scene is completely decluttered of all cars, vehicles, people, and modern street clutter, preserving only static stone curbs, cast-iron railings, and antique lampposts under directional, crisp, natural daylight. Deep shadow definition along eastward planes, impeccably straight planar architecture, total material distinction between warm sandstone, dark slate, ironwork, and organic foliage.
+```

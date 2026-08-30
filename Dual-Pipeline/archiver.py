@@ -1,7 +1,7 @@
 """
 Archiver Module: Persists all spatial twin pipeline run artifacts.
 Writes timestamped folders with viewport captures, synthesized twins (2D PNG or 3D World Manifest),
-GeoJSON scaffolds (Strata 1-7), domain analysis, and run metadata.
+GeoJSON scaffolds (Strata 1-7), domain analysis, and separated prompt metadata.
 """
 
 import os
@@ -35,15 +35,17 @@ def archive_run(
     conditioning: CompiledPrompt,
     synthesis_result: SynthesisResult,
     screenshot_b64: Optional[str] = None,
+    delighted_b64: Optional[str] = None,
     runs_dir: Optional[Path] = None
 ) -> str:
     """
     Saves the core pipeline artifacts:
     1. viewport_capture.jpg (if present)
-    2. spatial_twin.png (or 3D World manifest / thumbnail)
-    3. spatial_twin_scaffold.geojson (RFC 7946 Strata 1-7)
-    4. domain_analysis.md (full causal analysis)
-    5. run_metadata.json
+    2. delighted_reference.jpg (if present)
+    3. spatial_twin.png (or 3D World manifest / thumbnail)
+    4. spatial_twin_scaffold.geojson (RFC 7946 Strata 1-7)
+    5. domain_analysis.md (full causal analysis)
+    6. run_metadata.json
     """
     target_dir = runs_dir or DEFAULT_RUNS_DIR
     target_dir.mkdir(parents=True, exist_ok=True)
@@ -59,6 +61,13 @@ def archive_run(
         viewport_path = run_folder / "viewport_capture.jpg"
         with open(viewport_path, "wb") as f:
             f.write(base64.b64decode(raw_viewport_b64))
+
+    # 1.5 Save Delighted Preprocessor Output (if available)
+    if delighted_b64:
+        raw_delighted = delighted_b64.split(",")[-1] if "," in delighted_b64 else delighted_b64
+        delighted_path = run_folder / "delighted_reference.jpg"
+        with open(delighted_path, "wb") as f:
+            f.write(base64.b64decode(raw_delighted))
 
     # 2. Save Synthesized Visual Twin Artifact
     if synthesis_result.image_b64:
@@ -98,7 +107,7 @@ def archive_run(
         f.write(f"## 5. Static Civil Fabric Decluttering\n{domain_result.static_decluttering_summary}\n\n")
         f.write(f"## 6. Synthesized Documentary Prompt\n```text\n{domain_result.documentary_prompt}\n```\n")
 
-    # 5. Save Run Metadata (JSON)
+    # 5. Save Run Metadata (JSON) with Separated Prompt Contracts
     metadata = {
         "timestamp": timestamp,
         "address": domain_result.address,
@@ -115,9 +124,10 @@ def archive_run(
             "fov": getattr(telemetry, "fov", 0.0),
             "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES")
         },
+        "system_instruction": getattr(conditioning, "system_instruction", None),
+        "user_prompt": getattr(conditioning, "user_prompt", None),
         "compiled_prompt": conditioning.prompt,
-        "word_count": conditioning.metadata.get("word_count", 0),
-        "includes_lighting": conditioning.metadata.get("includes_lighting", False)
+        "prompt_metadata": conditioning.metadata
     }
 
     meta_path = run_folder / "run_metadata.json"

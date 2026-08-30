@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "41 Drummond Pl, Edinburgh EH3 6NR, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 127.0,
+          "pitch_deg": -19.2,
+          "heading_deg": 306.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean strata comprise Carboniferous sedimentary bedrock of the Inverclyde and Strathclyde Groups, interbedded with sandstones, siltstones, and volcanic tuff, mantled by stiff glacial till [1, 2]. Primary superterranean lithic fabric consists of pale buff-to-grey quartzose Craigleith and Hailes sandstone, highly siliceous and micro-laminated, bound with non-hydraulic to weakly hydraulic hot-mixed slaked lime and local sharp river sand mortar [3, 4]. Subterranean drainage flows northward across the gentle declivity of the Broughton/New Town drumlin slope toward the Water of Leith basin [1, 5]."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Drummond Place Gardens private communal woodland park:\n- Canopy dominants: Mature *Ulmus glabra* (Wych Elm), *Acer pseudoplatanus* (Sycamore), *Fagus sylvatica* (Common Beech), *Tilia \u00d7 europaea* (Common Lime), and *Platanus \u00d7 acerifolia* (London Plane) [17].\n- Understory: *Taxus baccata* (English Yew), *Ilex aquifolium*, and mature rhododendron shrubs [18].\n- Phenology: Late-summer peak maturity; heavy, fully expanded dark-green foliage massing with incipient chlorosis and drought-bronzing on outer canopy margins of lime and beech; dense interlocking canopy partially screening the garden path networks.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Neoclassical Georgian residential ensemble designed under the Reid & Sibbald New Town Eastern Extension masterplan (c. 1802\u20131823) [6, 7]. Rigid symmetrical terrace and pavilion typology featuring:\n- Vertical massing: Sunken basement lightwells, rusticated channelled ground storeys, piano nobile first floors, upper attic storeys, and flanking terminal/centre pavilions articulated with giant-order Ionic pilasters [6, 8, 9].\n- Roof geometries: Rectified dual-pitch timber trusses clad in West Highland Ballachulish and Welsh slate, segmented dormers, stepped stone skews, and robust ashlar chimney stacks crowned with cylindrical terracotta chimney pots [10, 11].\n- Fenestration: Strictly plumbed structural grids with 6-over-6 and 2-over-2 timber sash-and-case windows set into droved stone reveals, embellished with cast-iron geometric balconettes at first-floor level [6, 12, 13].",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193407191979022,
+          55.958207887485244
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T15:15:46.417726+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 312.96,
+        "solar_elevation_deg": 5.74,
+        "shadow_azimuth_deg": 133.0,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

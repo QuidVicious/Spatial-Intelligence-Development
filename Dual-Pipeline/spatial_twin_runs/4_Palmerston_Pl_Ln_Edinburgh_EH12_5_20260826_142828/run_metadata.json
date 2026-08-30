@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_142828",
+  "address": "4 Palmerston Pl Ln, Edinburgh EH12 5AE, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9696.48,
+  "telemetry": {
+    "latitude": 55.94709346016368,
+    "longitude": -3.216502210743838,
+    "altitude_agl": 162.52440898885567,
+    "heading": 3.5227622551384634,
+    "pitch": -12.30502162451002,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with rear-left backlight (Sun Azimuth 222.7\u00b0, Elevation -15.0\u00b0), casting crisp directional shadows along 42.7\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm lens, ISO 100 fine-grain film, at f/8 for tack-sharp edge-to-edge resolution. High-angle perspective looking north-northeast over Edinburgh's West End, centered on Sir George Gilbert Scott\u2019s Victorian Gothic St Mary\u2019s Episcopal Cathedral with its towering central spire and twin western spires piercing the clear twilight sky. The cathedral's dressed Craigleith sandstone exhibits authentic carbon soot patina in deep reveals and crisp rain-washed pale buff ashlar along exposed buttresses. Surrounding the cathedral are uniform rows of four-storey Victorian sandstone tenements and classical townhouses featuring canted bays, ashlar chimney stacks with terracotta cans, and slate roofs. Ground level features empty Caithness flagstone sidewalks and cast-iron perimeter railings enclosing deep basement lightwells. Surrounding grounds contain organic mature sycamores, limes, and wych elms with dense leafy canopies casting long, crisp directional shadows along 42.7\u00b0 under a low-angle warm 2000K late sun. Zero pedestrians, zero vehicles, completely decluttered static civil architectural composition.",
+  "char_count": 1536,
+  "includes_lighting": true
+}

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "9810 Kutz Bridge, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 130.6,
+          "pitch_deg": -12.8,
+          "heading_deg": 54.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean bedrock beneath the National Mall and Monument Grounds sits upon the Atlantic Coastal Plain margin overlying the Piedmont crystalline basement (metamorphic gneiss and schist). The immediate surface stratum is low-lying Potomac alluvial silt, sand, and gravel, fortified beneath the Washington Monument by a massive late 19th-century concrete underpinning and granite buttress foundation. \n\nLithic composition is distinctly multi-phase:\n- **Washington Monument:** The lower 152-foot (46 m) tier is built with white fine-grained Texas/Cockeysville marble from Baltimore County, Maryland, bonded with natural hydraulic cement. At the 152-foot mark, a distinct horizontal line transitions through a thin band of Massachusetts Sheffield marble into the upper two-thirds (398 ft) faced with Cockeysville/Beaver Dam marble, backed with New England granite ashlar and Seneca red sandstone masonry.\n- **Federal Triangle & Surrounding Civic Fabric (Herbert C. Hoover Building, EPA / Clinton Building, IRS):** Heavy ashlar claddings of Mississippian Salem Oolitic Limestone (Indiana Limestone) resting over dark Deer Isle / Cold Spring crystalline granite plinths.\n- **National Museum of African American History and Culture (NMAAHC):** Corona structure engineered with architectural bronze-tinted cast aluminum latticework panels mounted on a structural steel frame."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Dominant Species:** Mature American Elms (*Ulmus americana*) lining the perimeter of the National Mall panels in formal double-row allees; London Plane Trees (*Platanus occidentalis \u00d7 acerifolia*), Pin Oaks (*Quercus palustris*), Willow Oaks (*Quercus phellos*), and American Sycamores scattered along Constitution Avenue and the monument knoll grounds.\n- **Canopy Structure:** Fully foliated, dense green summer/early autumn canopies with organic, multi-tiered branching structures, clear understories, and soft leafy shadows cast upon the grass turf.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Centerpiece (Washington Monument):** A pure 555 ft 5\u215b in (169.29 m) hollow Egyptian-style obelisk tapering at 1:48, capped with a 55-foot pyramidal apex (pyramidion) terminating in a cast aluminum capstone. Vertical plumb lines are absolute, terminating at a circular granite plaza surrounded by concentric flagstone rings and 56 commemorative flagpoles.\n- **Left/Mid-Ground North (Federal Triangle Complex):** Monumental Neoclassical and Beaux-Arts civic office blocks (Herbert C. Hoover Building / Department of Commerce, Ronald Reagan Building, EPA/Ariel Rios buildings). 6 to 8 habitable storeys (30m\u201338m cornice height) defined by colossal Tuscan and Ionic colonnades, deeply recessed fenestration bays, vermiculated rusticated bases, and hipped roofs clad in red semi-cylindrical terra-cotta mission barrel tiles.\n- **Mid-Ground East/Right (National Mall Axis):** Open planar turf panels (The Mall) flanked by Beaux-Arts neoclassical museum buildings (National Museum of Natural History with green copper dome, National Gallery of Art West Building with Tennessee pink marble massing), leading toward the US Capitol dome in the far eastern vanishing point.\n- **Rectification:** Vertical lines along all stone colonnades, obelisk corner ribs, and building corners are plumbed straight to true gravity vertical; curved walking loops and elliptical road rings conform to precise, planar landscape grades.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03947747171868,
+          38.886997925865145
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T23:10:37.139000+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 261.71,
+        "solar_elevation_deg": 6.52,
+        "shadow_azimuth_deg": 81.7,
+        "color_temperature_k": 3200,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

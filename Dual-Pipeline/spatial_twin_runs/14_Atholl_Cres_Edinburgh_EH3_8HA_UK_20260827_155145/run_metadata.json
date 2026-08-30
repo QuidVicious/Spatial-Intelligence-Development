@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155145",
+  "address": "14 Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10089.1,
+  "telemetry": {
+    "latitude": 55.94800515647073,
+    "longitude": -3.2123554517181803,
+    "altitude_agl": 154.01082258091873,
+    "heading": 41.19692555579497,
+    "pitch": -4.980557006051829,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nNOCTURNAL / TWILIGHT RELIGHTING DIRECTIVE (2000K Nocturnal / Night Scene):\n- SUN POSITION: Sun is below the horizon (Elevation -6.4\u00b0). ZERO direct solar exposure.\n- FACADE ILLUMINATION: Complete absence of direct sunlight. All facades, spires, domes, and roofs must have ZERO harsh directional sun highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely extinguish all baked-in daytime sunlight and directional shadows. Render all stone surfaces in soft, flat, ambient nocturnal skylight with subtle contact occlusion.\n- CAST SHADOW DIRECTION: No solar cast shadows exist.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format 6x7 architectural documentary photograph taken from an elevated vantage (154m AGL) looking northeast down Shandwick Place and Atholl Crescent in Edinburgh\u2019s West End. In the foreground, sweeping curved and straight Georgian ashlar sandstone terraces feature rusticated ground floors, multi-pane timber sash-and-case windows, uniform dentilled cornices, slate mansard roofs, and dense banks of stone chimneys with terracotta chimney pots. In the midground, the towering 56-metre ashlar campanile of St George\u2019s West Church rises prominently with its four-stage classical shaft, clock dial, open round-arched belfry, and oxidized turquoise-green copper pyramidal roof. Further in the background, the dense urban roofscape of slate and blonde sandstone gives way to the distant green copper dome of West Register House at Charlotte Square and the broad horizontal expanse of the Firth of Forth. The road surface below is wide, empty asphalt embedded with straight parallel steel tram tracks and flanked by crisp granite kerbstones and black cast-iron railings. Mature leafy sycamore and wych elm trees emerge organically from the crescent gardens in the lower frame.",
+  "char_count": 1879,
+  "includes_lighting": true
+}

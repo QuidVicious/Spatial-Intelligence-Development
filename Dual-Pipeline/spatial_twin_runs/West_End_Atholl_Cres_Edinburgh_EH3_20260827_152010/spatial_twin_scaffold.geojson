@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 154.8,
+          "pitch_deg": -8.9,
+          "heading_deg": 37.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Subterranean Bedrock**: Underlain by Lower Carboniferous sedimentary strata of the Strathclyde Group (sandstone, siltstone, and mudstone formations) mantled by glacial till (boulder clay).\n- **Local Stone & Lithics**: \n  - Primary structural masonry consists of blonde/honey-buff Carboniferous sandstones predominantly sourced from historic local quarries (Craigleith and Hailes sandstones), featuring fine-to-medium grain silica quartz matrix.\n  - Kerbs, street sets, and base footings utilize hard intrusive volcanic basalt/dolerite and Whin stone.\n- **Mortar Chemistry**: Historic non-hydraulic and feebly hydraulic lime-sand mortar (`Ca(OH)2` + coarse river sand/crushed sandstone aggregate), exhibiting historic re-pointing with non-expansive breathable lime joints.\n- **Drainage & Groundwater**: Subsurface flow gravitates north-westward toward the Water of Leith basin through deep, permeable sandy till layers beneath paved road prisms."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Foliage Disambiguation**: Dense 3D photogrammetry polygon clusters are disambiguated into mature living deciduous trees.\n- **Botanical Identifiers**: Mature European Sycamore (*Acer pseudoplatanus*), Wych Elm (*Ulmus glabra*), and European Ash (*Fraxinus excelsior*) situated within adjacent garden plots and Crescent enclosures, displaying natural branch scaffolding and detailed multi-tonal green leafy canopies.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typologies & Prominent Structures**:\n  - **St George's West Church (Charlotte Chapel)**: Roman Baroque/Venetian campanile revival church designed by David Bryce (1866\u20131869), terminating in a soaring 56-meter freestanding-style Italianate campanile bell tower added by Sir Robert Rowand Anderson (1879\u20131881). Features a classical pedimented lower facade, giant order Corinthian pilasters, rusticated base, clock tier, arched belfry with louvres, and a copper-clad pyramidal spire cap.\n  - **West End Georgian & Victorian Tenement Terraces (Atholl Crescent & Shandwick Place)**: 3-to-4-storey plus attic and raised basement Georgian/Neoclassical continuous terrace facades (Thomas Bonnar, c. 1825). Symmetrical ashlar frontages with channelled ground-floor rustication, projecting belt courses, continuous cill bands, modillion cornices, and slate-clad mansard rooflines with pitched lead-flashed dormers.\n  - **Distant Focal Point**: West Register House (Robert Reid / Robert Adam design, 1811\u20131814) featuring its monumental peristyle drum and verdigris copper-clad dome on Charlotte Square.\n- **Planar Rectification**: All photogrammetry polygonal melt and leaning lines are plumbed to true 90-degree vertical planes. Facade lines, entablatures, parapet balustrades, stringcourses, and street tramway grids are rectified to true planar linearity.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T20:15:50.809929+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 239.0,
+        "solar_elevation_deg": -7.52,
+        "shadow_azimuth_deg": 59.0,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

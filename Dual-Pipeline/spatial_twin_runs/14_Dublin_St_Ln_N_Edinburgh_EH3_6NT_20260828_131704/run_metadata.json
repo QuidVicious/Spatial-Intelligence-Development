@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_131704",
+  "address": "14 Dublin St Ln N, Edinburgh EH3 6NT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13077.78,
+  "telemetry": {
+    "latitude": 55.9578720849437,
+    "longitude": -3.1933138918979083,
+    "altitude_agl": 145.00895511304765,
+    "heading": 319.9708390220356,
+    "pitch": -23.777892737793824,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly behind the camera (Azimuth 309.7\u00b0, Elevation 4.2\u00b0).\n- FACADE ILLUMINATION: all visible front-facing facades, towers, and walls are in bright direct illumination.\n- CAST SHADOW DIRECTION: cast shadows fall directly away into the background behind structures.\n- SHADOW OVERWRITE RULE: MANDATORY: Overwrite all lateral and sideways shadows with illuminated terrain albedo.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 documentary architectural survey of Drummond Place, Edinburgh New Town. Central oval public park encircled by sweeping Georgian neoclassical residential terraces designed by Robert Reid and William Sibbald. Facades constructed from finely dressed, droved, and rusticated buff Craigleith ashlar sandstone, displaying horizontal string courses, blocking cornices, and projecting pilasters. Fenestration consists of rectilinear grids of 12-pane timber sash-and-case windows with ground-floor round-arched recesses and semicircular radial fanlights. Pitched Scottish grey slate roofs capped by broad ashlar ridge stacks and cylindrical terracotta chimney pots.",
+  "char_count": 2152,
+  "includes_lighting": false
+}

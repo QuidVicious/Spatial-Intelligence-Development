@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_143719",
+  "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10020.5,
+  "telemetry": {
+    "latitude": 38.879191611053294,
+    "longitude": -77.03684387523569,
+    "altitude_agl": 57.99952233397444,
+    "heading": 5.00527428413593,
+    "pitch": -12.134130445497563,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 271.6\u00b0, Elevation 18.4\u00b0).\n- FACADE ILLUMINATION: all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph captured on a 6x7 rangefinder camera with a 45mm ultra-wide lens at f/8, fine grain film. An elevated aerial view looking north from above East Basin Drive over the Thomas Jefferson Memorial, the calm deep waters of the Tidal Basin, and the distant National Mall terminating at the Washington Monument obelisk. In the foreground, the Thomas Jefferson Memorial stands as a monumental Neoclassical marble rotunda with perfectly plumb vertical fluted Ionic columns, an octastyle portico pediment, a stepped saucer dome, and concentric granite plaza terraces. The exterior Imperial Danby marble displays crisp ashlar seams, gentle organic weathering streaks along the cornices, and fine mineral grain texture. Encircling the circular monument grounds are manicured green lawns and mature, full-canopied Yoshino cherry trees, American sycamores, and oak trees with dense, organic green foliage and visible branching. In the midground, the dark, reflective surface of the Tidal Basin stretches across the frame, bounded by an engineered granite seawall.",
+  "char_count": 1899,
+  "includes_lighting": true
+}

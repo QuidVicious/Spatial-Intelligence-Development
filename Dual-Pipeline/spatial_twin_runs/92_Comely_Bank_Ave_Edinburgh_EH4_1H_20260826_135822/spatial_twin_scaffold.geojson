@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "92 Comely Bank Ave, Edinburgh EH4 1HE, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 129.0,
+          "pitch_deg": -25.0,
+          "heading_deg": 315.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The terrain sits upon the Lower Carboniferous Gullane and Wardie Formations of the Strathclyde Group, comprising interbedded sedimentary sandstone, siltstone, and mudstone overlain by Devensian glacial till. Above ground, the primary load-bearing material is indigenous blonde and honey-toned Scottish sandstone predominantly quarried from nearby Craigleith and Hailes quarries. The masonry is bonded with historic, vapor-permeable non-hydraulic slaked lime and coarse river sand mortars. Subterranean moisture is governed by gentle northern descent towards the Water of Leith basin, with subterranean stone perimeter gutters and basement lightwells managing local runoff."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Enclosed Urban Green Space (Right/Center Rear):** Bowling greens and communal rear drying greens (back-greens) featuring mown *Lolium perenne* (perennial ryegrass) turf bordered by low privet (*Ligustrum ovalifolium*) hedges.\n- **Canopy Trees:** Dispersed mature *Acer pseudoplatanus* (sycamore), *Ulmus glabra* (Wych elm), and *Tilia x europaea* (common lime) displaying fully articulated, dense organic green leaf canopies, disambiguated from adjacent masonry.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The scene features late-Victorian and Edwardian perimeter tenements designed primarily under the late 19th-century masterplans of Sir James Steel (1894\u20131910s), interspersed with earlier 19th-century classical Georgian-influenced block edges.\n- **Centre Structures (Foreground Block):** Four-storey Scottish baronial/classical tenement blocks with projecting ashlar bay windows (canted and square bays), prominent stone stringcourses, massive shared chimney stacks with clay chimney pots (cans), and steeped gable ends with coping stones.\n- **Flanking Terraces (Left & Right Backgrounds):** Continuous 4-storey residential tenement facades featuring repetitive vertical rhythms of double-hung sash-and-case timber windows, rusticated basement/ground plinths, and Mansard/slate pitched roofs punctuated with ashlar dormers and sky lanterns.\n- **Geometry Rectification:** All vertical facades plumbed to strict perpendicular axes, eliminating photogrammetric mesh slouch. Bay alignments, floor-level stone entablatures, parapet lines, and lead roof ridges are fully planarized.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2175313348363903,
+          55.9571511063632
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-10-11T18:57:52.207520+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 261.63,
+        "solar_elevation_deg": -13.82,
+        "shadow_azimuth_deg": 81.6,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

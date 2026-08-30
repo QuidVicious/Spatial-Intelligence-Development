@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_124458",
+  "address": "46 Charlotte Square, Edinburgh EH2 4HQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11495.94,
+  "telemetry": {
+    "latitude": 55.95195703581181,
+    "longitude": -3.207112004048108,
+    "altitude_agl": 119.89695242033487,
+    "heading": 251.14823987056573,
+    "pitch": 3.6710994249641855,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the RIGHT edge of the frame (Azimuth 346.3\u00b0, Elevation 43.4\u00b0).\n- FACADE ILLUMINATION: all right-facing walls, facades, and spires are in bright direct sunlight; left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long horizontal cast shadows project across the terrain to the LEFT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing shadows on the right and render as sunlit terrain. Cast long shadows across the scene to the LEFT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nDocumentary medium format architectural survey, wide-angle 65mm perspective of Charlotte Square facing west towards West Register House. Center composition framed by the Neoclassical dome and tetrastyle Ionic portico of West Register House, constructed from finely dressed, droved pale honey-grey Craigleith sandstone ashlar with subtle historic coal-smoke carbon patina in cornice recesses. The ribbed hemispherical copper dome displays a rich turquoise-verdigris oxidation, capped by a columnar cupola and gilt finial.",
+  "char_count": 2137,
+  "includes_lighting": false
+}

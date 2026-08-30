@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 418.4,
+          "pitch_deg": -46.3,
+          "heading_deg": 4.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock Lithology & Stratigraphy: The site sits atop the Atlantic Coastal Plain margin adjacent to the Piedmont Fall Line. Subsurface stratigraphy consists of unconsolidated Quaternary alluvium, river silt, and gravel terraces overlying the dense metamorphic crystalline basement of the Neoproterozoic\u2013Early Cambrian Sykesville Formation (metagreywacke / Potomac bluestone gneiss).\n- Subterranean Foundation Masonry: The Washington Monument rests on a stepped sub-foundation underpinning of massive Potomac bluestone gneiss blocks and Portland cement concrete stabilization.\n- Structural Lithics: The primary obelisk shaft is faced with three distinct historical stone courses:\n  1. Base to 152-foot level: Coarse crystalline white marble from Texas, Baltimore County, Maryland (Symington quarry).\n  2. Transition band: Sheffield/Lee Massachusetts white marble (four distinct courses laid in 1879).\n  3. Upper shaft (156 feet to the 555-foot pyramidion): Fine-to-medium grained white/gray Cockeysville dolomite marble from Maryland, backed with coarse Maine and Massachusetts biotite granite.\n- Hydrogeology & Mortar Chemistry: The groundwater table is elevated due to proximity to the reclaimed tidal flats of the Potomac River and Constitution Gardens. Hydraulic lime mortar was utilized in the lower phase, transitioning to early Portland cement-lime matrices in the post-1879 upper construction."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Turf & Lawn Carpet: High-density, aerated cool-season turfgrass (*Festuca arundinacea* and *Poa pratensis*) mapped in clean sweeping green swaths across Monument Grounds.\n- Canopy Disambiguation: Urban trees are distinct, leafy botanical organisms (not photogrammetry stone blocks). Dominant species include mature London plane trees (*Platanus \u00d7 acerifolia*), American elms (*Ulmus americana*), Pin oaks (*Quercus palustris*), and Littleleaf lindens (*Tilia cordata*) displaying rich green, layered, sun-dappled summer foliage.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Primary Landmark (Center): The Washington Monument, designed by Robert Mills (modified by Col. Thomas Lincoln Casey, USACE). A neoclassical monumental stone obelisk reaching 554 ft 7 in (169.05 m). Geometry features an unadorned hollow masonry shaft with a 10:1 ratio terminating in a four-sided pyramidal capstone (pyramidion) angled at 17 degrees. \n- Anti-Warp & Planar Rectification: The obelisk's four corner arrises are rectified to absolute linear plumb lines tapering symmetrically inward without photogrammetry bowing. The surrounding granite plaza ring and radial flagstone paths conform to crisp, planar concentric geometry.\n- Flanking Institutional Architecture (Northeast / Right): The National Museum of African American History and Culture (Adjaye Associates / Freelon Group / SmithGroup). A 5-story above-grade contemporary civic pavilion defined by an inverted, three-tiered corona profile. Symmetrical massing, crisp rectilinear cantilevered tiers, and laser-straight perimeter louvers.\n- Background Northwest: Department of Commerce (Herbert C. Hoover Building) displaying formal Neoclassical/Beaux-Arts order with horizontal entablatures, limestone pilasters, and a low red terra cotta hipped roof.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03559071302307,
+          38.885926550116366
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T12:58:08.541771+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 81.22,
+        "solar_elevation_deg": 27.57,
+        "shadow_azimuth_deg": 261.2,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

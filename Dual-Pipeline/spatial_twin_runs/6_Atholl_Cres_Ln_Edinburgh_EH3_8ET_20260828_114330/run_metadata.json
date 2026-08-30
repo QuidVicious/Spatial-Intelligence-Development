@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_114330",
+  "address": "6 Atholl Cres Ln, Edinburgh EH3 8ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12188.68,
+  "telemetry": {
+    "latitude": 55.948122595343726,
+    "longitude": -3.2106935131010848,
+    "altitude_agl": 143.4853462185037,
+    "heading": 287.0460220533061,
+    "pitch": 1.6106538881098469,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the RIGHT edge of the frame (Azimuth 6.7\u00b0, Elevation 43.9\u00b0).\n- FACADE ILLUMINATION: all right-facing walls, facades, and spires are in bright direct sunlight; left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long horizontal cast shadows project across the terrain to the LEFT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing shadows on the right and render as sunlit terrain. Cast long shadows across the scene to the LEFT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium-format architectural survey at 143m elevation, heading 287\u00b0 over Edinburgh West End. Foreground curved crescent terrace designed by Thomas Bonnar: three storeys with continuous rusticated basement and ground floors, polished pale blonde Craigleith sandstone ashlar, continuous horizontal stringcourses, timber sash-and-case 12-pane and 6-pane windows, slate mansards with gabled dormers, ashlar chimneys, cast-iron basement railings.",
+  "char_count": 2055,
+  "includes_lighting": false
+}

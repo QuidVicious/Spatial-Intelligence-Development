@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_151720",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10655.93,
+  "telemetry": {
+    "latitude": 55.948293085529905,
+    "longitude": -3.211708035780551,
+    "altitude_agl": 154.82286901882424,
+    "heading": 37.06691486473022,
+    "pitch": -8.891563276566727,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-left (Azimuth 276.4\u00b0, Elevation 16.7\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along left edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-RIGHT of the frame.\n- SHADOW OVERWRITE RULE: Erase all pre-existing morning shadows cast to the left; project shadows toward the lower-right.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-angle medium-format architectural documentary view looking northeast down Shandwick Place towards central Edinburgh, captured on an ultra-sharp 6x7 medium-format camera with a 45mm wide-angle lens at f/8, fine-grain film emulsion. The central composition is anchored by the imposing 56-meter Victorian Roman Baroque campanile of St George's West Church, showcasing fine Craigleith blonde and grey ashlar sandstone, vermiculated rustication at its base, carved Corinthian capitals, paired pilasters, clock dials, balustraded upper gallery, and a patinated green-verdigris copper pyramidal spire. Flanking the street are continuous 4-to-5-storey sandstone Georgian and Victorian tenements and commercial blocks with laser-straight vertical facades, ashlar cornices, dark slate mansard roofs, stone chimney pots, and timber multi-pane sash windows. In the far backdrop, the neoclassical copper dome of West Register House rises above the dense historic roofscape. Surfaces exhibit realistic environmental aging: atmospheric soot deposition in stone friezes, rain-washed sandstone water tables, and subtle lichen in shadowed joints.",
+  "char_count": 1898,
+  "includes_lighting": true
+}

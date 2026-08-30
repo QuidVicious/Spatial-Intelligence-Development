@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_115337",
+  "address": "80 George St, Edinburgh EH2 3BU, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11979.06,
+  "telemetry": {
+    "latitude": 55.95283497468759,
+    "longitude": -3.2011566030636307,
+    "altitude_agl": 124.82706400576708,
+    "heading": 73.00163955209557,
+    "pitch": 1.6057185590089005,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean standard daylight with distinct directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-left quadrant of the frame (Azimuth 6.7\u00b0, Elevation 43.9\u00b0).\n- FACADE ILLUMINATION: left-facing facades and the left side of towers/domes are brightly lit; right-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the RIGHT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left. Cast all new shadows toward the RIGHT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nDocumentary-grade 6x7 medium format architectural survey of George Street, Edinburgh, viewing east along the grand neoclassical axis toward the Frederick Street crossing. At the axial intersection stands the bronze statue of William Pitt the Younger on a monumental polished granite pedestal, leading the eye down the vista toward the distant fluted Melville Monument column and neo-classical domed rooflines.",
+  "char_count": 1980,
+  "includes_lighting": false
+}

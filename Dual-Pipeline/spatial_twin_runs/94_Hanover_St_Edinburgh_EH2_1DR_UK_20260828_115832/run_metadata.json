@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_115832",
+  "address": "94 Hanover St, Edinburgh EH2 1DR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 13789.3,
+  "telemetry": {
+    "latitude": 55.95432287738338,
+    "longitude": -3.1976777490308392,
+    "altitude_agl": 130.7000347304367,
+    "heading": 344.30351748770215,
+    "pitch": -14.132226822414074,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nNOCTURNAL / TWILIGHT RELIGHTING DIRECTIVE (2000K Nocturnal / Night Scene):\n- SUN POSITION: Sun is below the horizon (Elevation -7.5\u00b0). ZERO direct solar exposure.\n- FACADE ILLUMINATION: Complete absence of direct sunlight. All facades, spires, domes, and roofs must have ZERO harsh directional sun highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely extinguish all baked-in daytime sunlight and directional shadows. Render all stone surfaces in soft, flat, ambient nocturnal skylight with subtle contact occlusion.\n- CAST SHADOW DIRECTION: No solar cast shadows exist.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format architectural documentary survey, Hanover Street, Edinburgh New Town, looking north down the linear descending axis toward Queen Street Gardens and the distant Firth of Forth. Strict orthogonal perspective, plumb vertical alignment, hyper-rectified geometry. Flanking Georgian classical facades constructed of polished Craigleith sandstone ashlar with channelled V-joint rustication on ground floors and crisp moulded eaves cornices. Uniform timber sash-and-case windows in precise vertical modular arrays across 3- to 4-storey residential townhouses.",
+  "char_count": 2147,
+  "includes_lighting": false
+}

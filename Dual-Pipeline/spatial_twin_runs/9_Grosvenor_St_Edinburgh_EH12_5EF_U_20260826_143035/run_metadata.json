@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_143035",
+  "address": "9 Grosvenor St, Edinburgh EH12 5EF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10499.85,
+  "telemetry": {
+    "latitude": 55.94677087555805,
+    "longitude": -3.216801743694327,
+    "altitude_agl": 179.52921339473897,
+    "heading": 5.896686875868033,
+    "pitch": -16.211246529607784,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 4500K natural solar illumination (Late afternoon / mid-morning raking sunlight with warm highlights) with hard raking side-light from camera-left (Sun Azimuth 276.9\u00b0, Elevation 17.5\u00b0), casting crisp directional shadows along 96.9\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-angle, documentary-grade medium format photograph captured on a Mamiya 7 (45mm wide-angle lens, ISO 100, f/8, ultra-fine grain) of St Mary\u2019s Episcopal Cathedral and the surrounding Victorian West End of Edinburgh, Scotland, viewed looking northeast from an elevation of 180 meters. \n\nAt the center, the monumental Victorian Gothic Revival cathedral rises with tectonic precision, its soaring central crossing spire (84m) and twin western towers flanked by crisp flying buttresses, lancet fenestration, and steep Ballachulish grey slate roofs. The cathedral's Craigleith Carboniferous sandstone displays an authentic 19th-century patina: deep historic soot and carbonaceous wash nested beneath stone cornices and belfry reveals, balanced by pale honey-buff highlights on exposed wind-washed ashlar. \n\nSurrounding the cathedral are impeccably plumbed 4-to-5-storey classical Scottish residential tenements with rusticated base courses, dressed stone dormers, and rows of massive ashlar chimney stacks against slate roofs. The surrounding streets are lined with mature European sycamores and leafy green plane trees exhibiting natural branching and organic foliage, standing on lush emerald cathedral lawns. \n\nThe environment is rendered in pristine, decluttered architectural stillness\u2014completely devoid of all vehicles, cars, and pedestrians, leaving only permanent granite kerbs, iron railings, and historic lamp posts. Calibrated natural 4500K late-afternoon sunlight rakes low from the left (sun elevation 17.",
+  "char_count": 1903,
+  "includes_lighting": true
+}

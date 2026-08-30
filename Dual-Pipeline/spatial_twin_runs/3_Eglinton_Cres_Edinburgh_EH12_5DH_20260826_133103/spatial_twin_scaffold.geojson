@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "3 Eglinton Cres, Edinburgh EH12 5DH, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 199.2,
+          "pitch_deg": -10.5,
+          "heading_deg": 116.7,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The subterranean foundation rests upon the Carboniferous sedimentary strata of the Lothian region, underlain by Lower Carboniferous sandstones, siltstones, and mudstones of the Strathclyde and Inverclyde Groups. The prominent crag in the upper left background is Castle Rock, an early Carboniferous volcanic neck composed of microgabbro/dolerite and basalt plug intrusions. \n\nThe primary indigenous lithic fabric across the scene is Scottish Carboniferous sandstone:\n- **St Mary's Episcopal Cathedral:** Built primarily of fine-to-medium grained, silica-cemented pale buff-to-grey quartz sandstone from Dunmore and Craigleith quarries, with foundation courses of hard Hailes sandstone.\n- **West End Residential Tenements and Crescents (Palmerston Place, Manor Place, Lansdowne Crescent):** Fine-grained buff-ochre Craigleith and Binny quartz arenite ashlar masonry, bonded with historical non-hydraulic to feebly hydraulic hot-mixed slaked lime (calcium oxide) and graded pit-sand mortar.\n- Subterranean hydrology is regulated by the natural glacial meltwater drainage slope descending north-northwest toward the Water of Leith basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Mature urban deciduous trees situated within private garden enclosures, cathedral grounds, and crescent parks (Palmerston Place Gardens, Eglinton/Grosvenor Crescents).\n- **Tree Species:** *Acer pseudoplatanus* (Sycamore), *Ulmus glabra* (Wych Elm), *Tilia x europaea* (Common Lime), *Betula pendula* (Silver Birch), and *Sorbus aucuparia* (Rowan).\n- Foliage is fully disambiguated from stonework into organic, leafy branch architecture with golden-green leaf clusters catching direct low-angle solar highlights.\n- Sub-canopy ground vegetation consists of manicured fescue turf, hedgerow shrubs (*Ilex aquifolium*, *Taxus baccata*), and creeping ivy on rear rubble boundary walls.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Fore-to-Midground Left (Cathedral Church of St Mary the Virgin):** Designed by Sir George Gilbert Scott (consecrated 1879) in Victorian Gothic Revival (Early Pointed / Early English Gothic). Features a Latin cross plan with an imposing central crossing tower and octagonal stone spire reaching 90 meters (295 ft), flanked at the western facade by twin octagonal spires (\"Barbara\" and \"Mary\", added 1913\u20131917). Intricate lancet fenestration, clustered corner pinnacles, gabled transepts, flying buttresses, carved stone drip-moulds, and steep-pitched Welsh slate pitched roofs.\n- **Street-Level Urban Fabric (Palmerston Place, West End Crescents):** 3-to-4 storey plus basement lightwells and attic mansards Victorian/Late Georgian residential terraces and tenements. Repetitive vertical rhythm of timber double-hung sash windows (six-over-six and two-over-two glazing bars), rusticated ashlar ground-floor arcades, pronounced moulded stringcourses, continuous eaves cornices, canted bay windows, and prominent dressed stone chimney stacks with terracotta chimney pots.\n- **Mid-to-Background Transition:** 19th-century dense perimeter blocks transitioning eastward toward the Exchange financial district (Exchange Crescent curved modern glazed facades, Scottish Widows headquarters) and the historic Old Town skyline terminating against the sheer volcanic bastion of Edinburgh Castle atop Castle Rock.\n- **Planar Rectification:** Strict plumbing applied to all vertical spire axes, tenement party walls, and chimney stacks to absolute 90\u00b0 gravity plumb; complete removal of photogrammetry skew or rooftop polygon collapse.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219428609596238,
+          55.94901899365226
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-26T06:12:52.662866+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 96.55,
+        "solar_elevation_deg": 8.59,
+        "shadow_azimuth_deg": 276.6,
+        "color_temperature_k": 3200,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

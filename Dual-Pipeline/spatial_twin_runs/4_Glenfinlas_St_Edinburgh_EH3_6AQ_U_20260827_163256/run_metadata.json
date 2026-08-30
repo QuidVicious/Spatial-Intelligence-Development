@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_163256",
+  "address": "4 Glenfinlas St, Edinburgh EH3 6AQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 7441.3,
+  "telemetry": {
+    "latitude": 55.9524164186605,
+    "longitude": -3.209751244696227,
+    "altitude_agl": 146.62749023369997,
+    "heading": 161.7645623369427,
+    "pitch": -2.539323781586838,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nNOCTURNAL / TWILIGHT RELIGHTING DIRECTIVE (2200K Blue Hour Civil Twilight):\n- SUN POSITION: Sun is below the horizon (Elevation -3.4\u00b0). ZERO direct solar exposure.\n- FACADE ILLUMINATION: Complete absence of direct sunlight. All facades, spires, domes, and roofs must have ZERO harsh directional sun highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely extinguish all baked-in daytime sunlight and directional shadows. Render all stone surfaces in soft, flat, ambient nocturnal skylight with subtle contact occlusion.\n- CAST SHADOW DIRECTION: No solar cast shadows exist.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of West Register House (former St George\u2019s Church) and the western expanse of Charlotte Square in the New Town of Edinburgh. Captured on a 6x7 medium format camera using a 45mm wide-angle lens at f/8 with fine-grain film emulsion. The central composition focuses on the Neoclassical cream-colored Craigleith sandstone monument, centered around its grand copper-clad ribbed dome weathered to a distinctive pale green verdigris patina, set atop a cylindrical stone drum with colonnaded details and surmounted by an elegant lantern cupola with a gilt finial. Symmetrical ashlar pavilion wings flank the dome with plumb vertical walls, horizontal friezes, and fine-tooled ashlar stone joints. Below and extending into the surrounding city blocks, Georgian four-storey sandstone residential terraces display multi-pane sash windows, pitched slate roofs, and stone chimney stacks. Deep carbon patina and authentic centuries-old damp weathering mark the undercuts of the cornices and stone mouldings. In the adjacent Charlotte Square garden, mature European elm and sycamore trees stand with full, leafy organic foliage and rough natural trunks, completely distinct from the surrounding masonry.",
+  "char_count": 1942,
+  "includes_lighting": true
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_152824",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10721.81,
+  "telemetry": {
+    "latitude": 55.94867466728533,
+    "longitude": -3.211351855415459,
+    "altitude_agl": 147.34730676903146,
+    "heading": 43.63025814826762,
+    "pitch": -6.690078244877311,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 327.1\u00b0, Elevation 11.4\u00b0).\n- FACADE ILLUMINATION: all left-facing walls and the left side of the obelisk/monument are in bright direct sunlight; right-facing walls are in shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase the pre-existing morning shadow on the left lawn and render as sunlit green grass. Cast the new shadow of the monument across the lawn to the RIGHT.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary medium format architectural photograph taken from an elevated vantage point looking northeast along Shandwick Place in the West End of Edinburgh towards George Street, captured on a Mamiya 7 with an ultra-sharp 45mm lens on fine-grain film. In the midground left, the towering Italianate ashlar campanile of St George's West Church rises 56 meters high, showcasing crisp Corinthian corner pilasters, a rusticated base, clock faces, and an open belfry, with its adjacent stone sanctuary hall. Flanking both sides of the wide avenue are 4-to-5-storey classical Georgian and Victorian sandstone tenement terraces with plumb vertical facades, continuous moulded cornices, sash windows, and pitched roofs clad in dark grey slate with rows of massive sandstone chimney stacks. In the far distance, the oxidized green verdigris dome of West Register House terminates the urban vista. The pale buff and honey-toned Scottish sandstone exhibits authentic atmospheric soot patina, natural rain-wash striations, and subtle damp lichen along historic cornices.",
+  "char_count": 1924,
+  "includes_lighting": true
+}

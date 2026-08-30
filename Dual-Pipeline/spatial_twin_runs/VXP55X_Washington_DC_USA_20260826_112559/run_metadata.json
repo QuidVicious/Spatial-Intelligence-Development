@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_112559",
+  "address": "VXP5+5X Washington, DC, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9871.75,
+  "telemetry": {
+    "latitude": 38.88543858587802,
+    "longitude": -77.04007856363557,
+    "altitude_agl": 84.24419751160355,
+    "heading": 41.17182114332651,
+    "pitch": -4.277913591340818,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with quarter-front light from camera-left (Sun Azimuth 1.2\u00b0, Elevation 61.7\u00b0), casting crisp directional shadows along 181.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\n6x7 medium format architectural documentary photograph of the Washington Monument and the Federal Triangle skyline in Washington, D.C., captured on an ultra-sharp 45mm lens at f/8, fine-grain ISO 100 film, deep optical field depth.\n\nIn the center frame, the 555-foot marble obelisk stands with absolute planar rectification and plumb verticality, its sharp four-faceted pyramidion piercing a cloudless, pale-cyan mid-Atlantic sky. The masonry transitions noticeably at the 152-foot mark from warm ivory-buff Cockeysville marble below to cooler, gray-veined dolomitic marble above, showing authentic micro-climate weathering: light biological patina along rain tracks and faint mineral efflorescence within fine mortar lines. At its base, a circular granite-paved plaza is ringed by fifty slender, static steel flagpoles bearing crisp American flags.\n\nThe foreground and midground feature vast, undulating expanses of green manicured lawn dissected by geometric, pale orange crushed-gravel pathways and asphalt access lanes. Surrounding the monument grounds are mature, leafy groves of London plane trees, pin oaks, and American elms with intricate branching and organic canopy volume. \n\nIn the midground background, the monumental Neoclassical facades of the Federal Triangle stretch across the frame\u2014notably the Department of Commerce and Ronald Reagan Building\u2014showcasing rusticated Indiana limestone bases, grand Doric colonnades, and pitched roofs of variegated red clay Spanish tile.",
+  "char_count": 1867,
+  "includes_lighting": true
+}

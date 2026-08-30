@@ -3,3 +3,8 @@ Cesium/.env
 Cesium/.env
 Cesium/.env
 Cesium/.env
+__pycache__/
+*.pyc
+**/spatial_twin_runs/**/*.png
+**/spatial_twin_runs/**/*.jpg
+**/spatial_twin_runs/**/*.jpeg

@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15B London St, Edinburgh EH3 6LY, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 112.2,
+          "pitch_deg": -13.5,
+          "heading_deg": 255.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Subterranean Bedrock: Lower Carboniferous sedimentary strata of the Strathclyde Group (Gullane Formation), comprising interbedded sandstones, siltstones, and mudstones overlain by dense glacial till (boulder clay).\n- Lithic Provenance & Ashlar: Pale buff to weathered grey Craigleith and Hailes quartzose calciferous sandstone, fine-to-medium grained with subtle carbonaceous laminae. Secondary elements utilize West Lothian / Fife Carboniferous sandstone.\n- Dressing & Tooling: Polished fine-jointed ashlar on principal elevations, droved ashlar margins, broached/stugged rustication at basement levels, and coursed squared rubble along secondary/party elevations.\n- Mortar Chemistry: Traditional hot-mixed non-hydraulic to feebly hydraulic lime mortars blended with sharp river sand aggregate.\n- Hydrogeology: Free-draining terrace sloping northward toward the Water of Leith basin, bisected at depth by the mid-19th-century subterranean Scotland Street railway tunnel beneath Drummond Place."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Urban Forest Canopy: Drummond Place Gardens enclosed central woodland stand.\n- Genus & Species: Dominated by mature Wych Elm (*Ulmus glabra*), Sycamore (*Acer pseudoplatanus*), Common Lime (*Tilia \u00d7 europaea*), Copper Beech (*Fagus sylvatica* f. *purpurea*), and Horse Chestnut (*Aesculus hippocastanum*).\n- Phenology (August / Late Summer): Dense, fully expanded deep-green canopy volume; heavy foliage crowns interlocking across the garden perimeter; subtle early-season foliar dust accumulation and minor localized chlorosis.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Edinburgh Second New Town Neo-Classical / Georgian residential tenements and terraced townhouses (designed by Robert Reid and William Sibbald, c. 1808\u20131823).\n- Elevation & Massing: 3-storey and 4-storey elevations over raised rusticated basements, terminated with continuous stone cornices, blocking courses, and pitched rooflines with timber-framed dormers.\n- Fenestration Grid: Symmetrical rhythmic fenestration of 6-over-6 and 12-pane timber sash-and-case windows set in planar ashlar reveals, flanked by moulded architraves.\n- Planar Rectification: True vertical plumb-line rectification across all facade planes, continuous horizontal band courses, straight parapet copes, and regular party-wall chimney stacks crowned with terracotta pots.\n- Ground Transition: Droved stone steps and cantilevered ashlar platts spanning deep sunken area basements, enclosed by wrought and cast-iron spear-head balustrades.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925331553858087,
+          55.95898649745983
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-28T20:27:46.207957+00:00",
+        "weather_state": "OVERCAST",
+        "temperature_c": 19.4,
+        "solar_azimuth_deg": 236.48,
+        "solar_elevation_deg": -9.28,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114121",
+  "address": "45 Independence Ave SW, Washington, DC 20515, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10055.35,
+  "telemetry": {
+    "latitude": 38.88716206057707,
+    "longitude": -77.0111260940831,
+    "altitude_agl": 44.79644530064671,
+    "heading": 34.87957017757606,
+    "pitch": -2.960488490215766,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5800K natural solar illumination (High clear sun with short vertical shadows and neutral daylight) with quarter-front light from camera-left (Sun Azimuth 330.3\u00b0, Elevation 58.6\u00b0), casting crisp directional shadows along 150.3\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA documentary-grade, medium-format 6x7 architectural photograph of the United States Capitol Building in Washington, D.C., captured from an elevated oblique vantage over the southwest grounds with an ultra-sharp 45mm rectilinear perspective at f/8 on fine-grain ISO 100 film. \n\nThe monumental neoclassical structure stands in absolute geometric plumb and planar precision. In the center, the monumental ribbed cast-iron dome rises majestically with its tiered colonnaded tholos, lantern, and the bronze Statue of Freedom silhouetted against a crisp, cloudless cobalt-to-pale-blue mid-Atlantic sky. The gleaming white Cockeysville and Massachusetts marble facades of the House and Senate wings feature deep, laser-straight Corinthian colonnades, crisply articulated window aedicules, and dentiled cornices, showing faint historic carbon weathering in sheltered capital recesses. The lower levels reveal fine-tooled rusticated stonework and the stepped marble terraces designed by Olmsted, crowned by standing-seam roofs of matte verdigris copper. \n\nThe building is framed by the lush, sprawling canopy of the historic Capitol Grounds, composed of mature American sycamores, white oaks, and willow oaks with individual organic leafy textures and deep green summer foliage. The broad plazas, sandstone curbs, and red-granite pedestrian walks are completely static, devoid of all pedestrians, vehicles, and temporary street clutter. Clear, high-angle afternoon sunlight casts crisp, sharp directional shadows into the window reveals and porticos, creating immense four-dimensional spatial depth and structural permanence.",
+  "char_count": 1998,
+  "includes_lighting": true
+}

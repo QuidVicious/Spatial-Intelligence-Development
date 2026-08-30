@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_124708",
+  "address": "15B London St, Edinburgh EH3 6LY, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12084.73,
+  "telemetry": {
+    "latitude": 55.95900121516751,
+    "longitude": -3.1925199890509637,
+    "altitude_agl": 94.51902408723556,
+    "heading": 258.12214278954855,
+    "pitch": -0.23509225648898066,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nNOCTURNAL / TWILIGHT RELIGHTING DIRECTIVE (2000K Nocturnal / Night Scene):\n- SUN POSITION: Sun is below the horizon (Elevation -8.3\u00b0). ZERO direct solar exposure.\n- FACADE ILLUMINATION: Complete absence of direct sunlight. All facades, spires, domes, and roofs must have ZERO harsh directional sun highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely extinguish all baked-in daytime sunlight and directional shadows. Render all stone surfaces in soft, flat, ambient nocturnal skylight with subtle contact occlusion.\n- CAST SHADOW DIRECTION: No solar cast shadows exist.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 architectural survey of a classical Georgian residential street corridor on London Street, Edinburgh. Symmetrical perspective framed by continuous Category A listed terraces of three-storey plus attic and raised basement townhouses. Facades constructed from finely dressed, fine-grained pale buff Craigleith sandstone ashlar with rusticated ground floors, projecting moulded string courses, continuous eaves cornices, and slate-clad pitched roofs. Rhythmic fenestration of recessed 12-pane timber sash-and-case windows with thin astragals set into sharp rectangular stone apertures.",
+  "char_count": 2185,
+  "includes_lighting": false
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_155612",
+  "address": "12 Glenfinlas St, Edinburgh EH3 6AQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11115.4,
+  "telemetry": {
+    "latitude": 55.95221611661714,
+    "longitude": -3.2092345560658107,
+    "altitude_agl": 151.58732503191828,
+    "heading": 167.89988814054593,
+    "pitch": -7.720568845365325,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the RIGHT edge of the frame (Azimuth 264.0\u00b0, Elevation 8.3\u00b0).\n- FACADE ILLUMINATION: all right-facing walls, facades, and spires are in bright direct sunlight; left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long horizontal cast shadows project across the terrain to the LEFT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing shadows on the right and render as sunlit terrain. Cast long shadows across the scene to the LEFT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph captured on a Mamiya 7 with a 45mm ultra-wide lens at f/8, fine-grain color film. Elevated view looking south across the rooftops and open streetscape of Charlotte Square in Edinburgh, focusing on the imposing Neoclassical stone mass of West Register House. In the foreground and center, the monumental cream-gray Craigleith sandstone church structure rises with pristine planar lines, featuring a massive ashlar base, a fluted peristyle drum, and a high ribbed dome clad in heavily oxidized, seafoam-green verdigris copper crowned with a detailed cupola lantern. The surrounding Georgian terraces display crisp multi-storey ashlar facades with V-joint rustication on the ground level, deep rectangular timber sash-and-case windows, straight lead-coped parapets, slate roofs, and tall chimneystacks with terracotta pots. Across the street and garden perimeter, mature European beech, lime, and sycamore trees stand with rich, dense green organic foliage and intricate natural branching, separated cleanly from the stone architecture.",
+  "char_count": 1833,
+  "includes_lighting": true
+}

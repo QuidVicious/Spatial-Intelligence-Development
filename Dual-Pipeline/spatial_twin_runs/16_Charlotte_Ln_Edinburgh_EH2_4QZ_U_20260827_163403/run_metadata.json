@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_163403",
+  "address": "16 Charlotte Ln, Edinburgh EH2 4QZ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9761.21,
+  "telemetry": {
+    "latitude": 55.95107308404873,
+    "longitude": -3.209181106585179,
+    "altitude_agl": 171.32986063734805,
+    "heading": 323.48724569739426,
+    "pitch": -41.897300113135685,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the upper-left quadrant of the frame (Azimuth 257.8\u00b0, Elevation 4.2\u00b0).\n- FACADE ILLUMINATION: left-facing facades and the left side of towers/domes are brightly lit; right-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the RIGHT across the ground.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left. Cast all new shadows toward the RIGHT.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 architectural documentary photograph captured with a sharp wide-angle 45mm lens at f/8 on fine-grain film, presenting an elevated three-quarter bird's-eye perspective of the intersection at Charlotte Lane in Edinburgh. The urban fabric comprises plumb, rectilinear multi-storey Georgian terraces of dressed Craigleith blonde sandstone ashlar alongside a distinct 3-storey late-Victorian Tudor-revivalist corner building featuring decorative dark timber framing, off-white rendered infill panels, and a steeply pitched terracotta-tiled multi-gabled roof with tall brick chimneys. Symmetrical timber sash-and-case fenestration aligns across perfectly horizontal floor bands. Roofscapes display natural blue-grey Scottish slates, lead valleys with subtle white oxidation, and zinc flashing. The street surfaces consist of authentic, uneven whinstone cobblestone setts and broad sandstone kerbs, free of all motor traffic, pedestrians, and clutter, complemented by the organic foliage of a mature broadleaf leafy tree within an adjacent courtyard.",
+  "char_count": 1832,
+  "includes_lighting": true
+}

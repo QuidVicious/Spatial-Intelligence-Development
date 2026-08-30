@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_120100",
+  "address": "Hobart House, Edinburgh, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 11825.0,
+  "telemetry": {
+    "latitude": 55.95411623115617,
+    "longitude": -3.1976472825012556,
+    "altitude_agl": 159.93763394792074,
+    "heading": 283.3334221779274,
+    "pitch": -32.93081446500193,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located in the background to the upper-right (Azimuth 39.5\u00b0, Elevation 9.1\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with bright rim lighting along right edges; front facades are in soft skylight.\n- CAST SHADOW DIRECTION: long cast shadows project forward toward the lower-LEFT of the frame.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase all sideways/rearward shadows; project all elongated shadows forward toward the lower-LEFT.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format architectural documentary survey of the intersection of Hanover Street and Thistle Street at Hobart House, Edinburgh New Town. High-density multi-storey Georgian and Victorian urban tenement block; prominent corner building features a corner polygonal tourelle with a conical slate spire, mansard roof, and pedimented dormers. Flanking 4-storey classical facades constructed from pale cream-buff Craigleith and Hailes sandstone ashlar, characterized by droved masonry texturing, polished dressings, projecting eaves cornices, blocking courses, and coped ashlar skews.",
+  "char_count": 2181,
+  "includes_lighting": false
+}

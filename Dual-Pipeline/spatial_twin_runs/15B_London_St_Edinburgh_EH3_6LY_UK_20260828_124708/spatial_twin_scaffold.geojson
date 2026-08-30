@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15B London St, Edinburgh EH3 6LY, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 94.5,
+          "pitch_deg": -0.2,
+          "heading_deg": 258.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Subterranean Bedrock**: Carboniferous sedimentary sequence of the Gullane Formation (Strathclyde Group), characterized by interbedded sandstones, siltstones, and bituminous mudstones, overlain by dense Pleistocene glacial till (stiff clay and gravel boulder clay).\n- **Lithics & Quarry Sources**: Superstructure constructed from Carboniferous *Craigleith sandstone* (fine-grained quartz arenite \"liver rock\" ashlar for street-facing facades) and *Hailes sandstone* for foundations and rear walls. Pavements and roadways surfaced in Carboniferous olivine-basalt/whinstone setts and Scottish granite kerbstones. Roofs clad in Scottish *Ballachulish* and North Welsh metamorphic roofing slates.\n- **Mortar Chemistry**: Pure slaked non-hydraulic and feebly hydraulic lime (*calcium hydroxide*) mortar mixed with sharp sub-angular pit sand, finished with flush and ruled pencil pointing.\n- **Subterranean Drainage**: Gravity-fed groundwater draining northward toward the Water of Leith catchment; stone-vaulted cellar lightwells beneath street-level flagstone platts."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Terminal Vista Botanical Matrix**: Dense parkland canopy closing the western axial vista comprising *Ulmus glabra* (Wych Elm), *Acer pseudoplatanus* (Sycamore), *Platanus \u00d7 acerifolia* (London plane), and *Tilia \u00d7 europaea* (Common Lime).\n- **Phenology**: Late-summer mature peak canopy state; heavy foliage density with deep green to olive-drab leaf clusters, firm crown massing, and early micro-chlorosis on outermost exposed leaf margins.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology**: Category A listed Georgian New Town terraced tenements and townhouses (designed c. 1820\u20131823 by Robert Reid and William Sibbald).\n- **Storeys & Massing**: 3 storeys plus raised basement lightwells and attic mansards/dormers organized into a unified neoclassical terrace.\n- **Planar Rectification & Geometry**: True vertical load-bearing lines, planar ashlar facades, continuous molded eaves cornices, blocking courses, continuous string courses at first-floor level, and planar pitched slate roof lines.\n- **Fenestration**: Regular rhythmic grid of recessed timber double-hung sash-and-case windows (12-pane 6-over-6 configurations on upper levels, timber astragals, painted white/off-white), framed by dressed stone architraves with planar splayed reveals.\n- **Street-Level Articulation**: Droved and rusticated stone basement area walls, cantilevered stone access bridge platts over excavated lightwells, vertical cast-iron spearhead railings, and substantial stone chimney stacks with terracotta cylindrical chimney pots along party walls.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1925199890509637,
+          55.95900121516751
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T17:12:46.204797+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 288.75,
+        "solar_elevation_deg": -8.26,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

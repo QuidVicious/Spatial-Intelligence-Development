@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133511",
+  "address": "10 Glencairn Cres, Edinburgh EH12 5BS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9606.41,
+  "telemetry": {
+    "latitude": 55.94855248758411,
+    "longitude": -3.2194957957300425,
+    "altitude_agl": 146.08208768854004,
+    "heading": 92.90485977886718,
+    "pitch": -2.7165012165757645,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2400K natural solar illumination (Civil twilight blue hour with deep indigo ambient dome and soft shadows) with direct backlighting with silhouetted facade profiles (Sun Azimuth 252.2\u00b0, Elevation 0.8\u00b0), casting crisp directional shadows along 72.2\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph of St Mary's Episcopal Cathedral and the surrounding New Town West End in Edinburgh, captured from an elevated perspective on a Mamiya 7 camera with a 45mm lens at f/8 on fine-grain ISO 100 color film, deep corner-to-corner clarity. \n\nIn the center stands the towering Victorian Gothic stone cathedral with its colossal 90-meter central crossing spire and twin western spires piercing the sky, constructed from meticulously dressed Craigleith sandstone ashlar showing authentic historic carbon soot patina in the deep ornamental carvings, pointed lancet arches, flying buttresses, and Ballachulish slate roof ridges. Foreground and flanking streets feature continuous 4-to-5 storey Georgian and Victorian tenement terraces with sharp plumb vertical facades, rhythmic sash window fenestration, canted bay windows, heavy cornices, and regimented rooftop stone chimney stacks topped with terracotta pots. \n\nThe lighting is calibrated 2400K natural civil twilight blue hour with a deep indigo ambient dome, backlighting the silhouetted cathedral spires with a radiant golden-amber rim glow from the horizon (Sun Azimuth 252.2\u00b0, Elevation 0.8\u00b0), casting long, crisp directional shadows along 72.2\u00b0 across stone slate roofs and paved avenues. In private garden squares and tenement courts, mature sycamore and lime trees show lush organic leafy branching.",
+  "char_count": 1803,
+  "includes_lighting": true
+}

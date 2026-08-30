@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "13 E Basin Dr SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 43.7,
+          "pitch_deg": -14.9,
+          "heading_deg": 9.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The Thomas Jefferson Memorial is situated atop engineered hydraulic fill placed during the late 19th-century dredging of the Potomac River Flats. Beneath the artificial fill lie Quaternary alluvium deposits and the Cretaceous Potomac Formation (unconsolidated silts, sands, and gravels) resting over Piedmont crystalline schist and gneiss bedrock. Due to high groundwater saturation and tidal fluctuations from the adjacent Tidal Basin, the structural superstructure is supported by 637 steel-cased concrete cylinders driven down to solid bedrock. The exterior stepped terraces and foundation bulkheads are constructed of fine-grained Georgia granite, while the main colonnade, portico, and stepped dome exterior are carved from Vermont Imperial Danby white marble. The interior chamber integrates an Indiana limestone dome interior, Tennessee pink marble flooring, and an axial black Minnesota granite pedestal."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "The monument is encircled by mature urban parkland and riparian flora:\n- Canopy Trees: Dense stands of Japanese flowering cherries (*Prunus serrulata* / *Prunus \u00d7 yedoensis*) lining the shoreline path, complemented by American elms (*Ulmus americana*), willow oaks (*Quercus phellos*), and London planetrees (*Platanus occidentalis* / *acerifolia*) with distinct leafy branching structure and organic canopies.\n- Shrubbery & Lawn: Manicured Kentucky bluegrass (*Poa pratensis*) turf on the surrounding berms, bordered by low, dense evergreen boxwood hedges (*Buxus sempervirens*) and yew ground covers along the concentric stone retaining walls.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Designed in the Neoclassical / Classical Revival style by John Russell Pope (completed by Eggers & Higgins in 1943), the monument is modeled after the Roman Pantheon. It features a circular open-air rotunda enclosed by a colonnade of 26 fluted Ionic columns, fronted to the north by an octastyle portico with an additional 12 Ionic columns supporting a triangular sculptured pediment. The structure is capped by a shallow, stepped circular marble dome. All vertical column shafts, wall faces, and terrace retaining walls are rectified to absolute plumb vertical, correcting photogrammetric mesh shearing. The perimeter tiered plinths, granite stairways, and surrounding curved retaining parapets are straightened into pure geometric radii and planes.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03673268423398,
+          38.879370948020764
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T22:02:07.815844+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 272.58,
+        "solar_elevation_deg": 19.55,
+        "shadow_azimuth_deg": 92.6,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

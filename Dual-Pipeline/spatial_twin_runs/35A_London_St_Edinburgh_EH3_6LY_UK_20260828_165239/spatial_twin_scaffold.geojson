@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "35A London St, Edinburgh EH3 6LY, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 125.7,
+          "pitch_deg": -11.7,
+          "heading_deg": 255.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock: Carboniferous sedimentary strata of the Strathclyde and Inverclyde Groups, primarily Gullane Formation sandstone and siltstone, overlain by dense Devensian glacial till and boulder clay.\n- Building Lithics: High-quartz blonde and buff Craigleith and Hailes sandstones; medium-to-fine-grained carboniferous arenite exhibiting high compressive strength and low permeability. Paving composed of split Caithness flagstone footways and Scottish whinstone (quartz-dolerite) / Mountsorrel granite kerbstones and carriageway setts.\n- Mortar & Binding: Traditional non-hydraulic to weakly hydraulic slaked lime mortar (calcium hydroxide) mixed with sharp local river sand and crushed crushed sandstone aggregate.\n- Hydrology & Subterranean Drainage: Gradual westward subterranean hydraulic gradient descending toward the Water of Leith basin; engineered subterranean barrel-vaulted cellars beneath pedestrian pavements with dedicated sandstone drainage gullies."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Botanical Classification: Urban parkland canopy in Drummond Place Gardens dominated by *Acer pseudoplatanus* (Sycamore maple), *Ulmus glabra* (Wych elm), *Fagus sylvatica* (Common beech), *Platanus \u00d7 acerifolia* (London plane), and *Tilia \u00d7 europaea* (Common lime).\n- Phenology (November 11): Advanced late-autumn defoliation state (approximately 75\u201385% leaf loss); exposed dendritic branch architecture, sparse clinging russet, dull amber, and bronze foliage across inner crowns; dense understory carpets of fallen decaying leaf litter across lawn turf.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typology: Edinburgh New Town Northern Extension (Reid & Sibbald masterplan, c. 1802\u20131825) late Georgian / Regency neoclassical residential terraces and tenements.\n- Massing & Storeys: Uniform 3-storey to 4-storey plus attic and sunken basement continuous street walls terminating at Drummond Place circus.\n- Facade Organization: Strictly rectified planar ashlar facades; channelled rustication at ground level, droved ashlar at basement lightwells, and smooth-polished ashlar across upper piano nobile and attic levels; defined continuous horizontal belt courses, moulded stringcourses, and heavy eaves cornices.\n- Roofscape: Double-pitch slate roofs with lead ridges and flashing; symmetrical transverse stone chimney stacks surmounted by cylindrical terracotta chimney pots; dressed stone parapets and skew copes.\n- Fenestration: Rectilinear grid of vertical timber sash-and-case windows (predominantly 6-over-6 and 2-over-2 glazing bar configurations), deep ashlar reveals, moulded architraves, and cast-iron drop-down safety grilles/railing enclosures.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1916438339415487,
+          55.959146587755505
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T12:26:59+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 187.47,
+        "solar_elevation_deg": 16.54,
+        "shadow_azimuth_deg": 7.5,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

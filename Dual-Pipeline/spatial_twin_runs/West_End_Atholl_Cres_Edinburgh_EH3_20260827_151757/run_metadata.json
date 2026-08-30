@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_151757",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9294.98,
+  "telemetry": {
+    "latitude": 55.948293085529905,
+    "longitude": -3.211708035780551,
+    "altitude_agl": 154.82286901882424,
+    "heading": 37.06691486473022,
+    "pitch": -8.891563276566727,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located upper-right quadrant of the frame (Azimuth 102.4\u00b0, Elevation 4.2\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of monuments are brightly lit; left-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: Erase any pre-existing shadows on the right; render newly lit surfaces on the right.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 documentary architectural photograph taken from an elevated vantage point looking northeast down the urban corridor of Shandwick Place towards the West End of Edinburgh. Centered in the mid-ground stands the monumental blonde sandstone Roman Baroque facade and towering 56-meter Italianate campanile of St George's West Church (Charlotte Chapel), displaying intricate rusticated stone base tiers, an arched belfry loggia, and an oxidized verdigris-green copper spire cap. In the far background, the Neoclassical green copper dome of West Register House on Charlotte Square rises against the historic skyline. Flanking the broad roadway are continuous 4-storey Georgian and Victorian ashlar sandstone tenements featuring fine Craigleith stone facades, authentic carbon-soot patina beneath cornice projections, sharp stone entablatures, lead flashings, and steeply pitched roofs clad in dark Ballachulish slate with tall chimney stacks and terracotta pots. Laser-straight vertical load-bearing lines, planar rectangular sash-and-case windows, and geometric ashlar joints. In gardens to the side, mature deciduous Wych Elm and Sycamore trees with detailed organic leafy canopies and branching provide natural scale.",
+  "char_count": 1968,
+  "includes_lighting": true
+}

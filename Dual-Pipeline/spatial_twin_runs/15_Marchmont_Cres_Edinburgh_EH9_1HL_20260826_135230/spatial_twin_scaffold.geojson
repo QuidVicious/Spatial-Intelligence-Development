@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "15 Marchmont Cres, Edinburgh EH9 1HL, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 223.2,
+          "pitch_deg": -43.9,
+          "heading_deg": 165.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Subterranean Bedrock**: The site rests on the Lower Carboniferous Gullane Formation (part of the Strathclyde Group), characterized by interbedded siltstones, mudstones, and cyclic sandstone sequences overlain by glacial till.\n- **Indigenous Masonry Lithics**: The primary building envelope consists of Carboniferous blonde-to-buff sandstones, predominantly extracted from the Hailes and Craigleith quarries, with occasional fine-grained red sandstone accents from Dumfriesshire quarries (e.g., Locharbriggs) typical of late Victorian Scots Baronial tenement construction.\n- **Mortar Chemistry**: Structural masonry utilizes non-hydraulic to feebly hydraulic regional Scottish lime mortars (slaked quicklime paired with local quartz-rich aggregate), displaying traditional flush and slightly recessed lime-pointed joints.\n- **Subterranean Drainage**: Natural southward subsurface drainage gradients slope from the volcanic Arthur's Seat and Burgh Muir toward the historic former Boroughmuir basin, accommodated by deep perimeter stone drains and sub-pavement stone-lined vaults."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Urban Flora**: Mature specimen broadleaf street and garden trees, primarily London Planes (*Platanus x acerifolia*) and Sycamores (*Acer pseudoplatanus*), displaying dense, multi-lobed deciduous foliage canopies and mottled exfoliating bark.\n- **Understory Vegetation**: Well-established domestic tenement back-green privet hedging (*Ligustrum ovalifolium*), English ivy (*Hedera helix*) creeping on lower rear boundary rubblestone walls, and small ornamental rowan (*Sorbus aucuparia*) saplings.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology & Era**: High Victorian / Scots Baronial 4-to-5 storey flatted tenement blocks (developed c. 1878\u20131888 under the Warrender Estate feu charters).\n- **Massing & Structural Geometry**: Continuous vertical perimeter blocks flanking the intersection of Marchmont Crescent and Roseneath Street. Features canted multi-storey oriel bay projections, steep crow-stepped gables, conical-roofed corner turrets (bartizans), and heavy oversailing corbel tables at the upper storeys.\n- **Roofscape**: Complex multi-gabled roofs clad in Scottish Ballachulish slate (grey-black, heavy texture) and Westmorland green slate, interspersed with lead-clad flat roof plateaus, zinc-flashed skylights, decorative stone skews, and massive ashlar chimney stacks crowned with terracotta cylindrical pots.\n- **Fenestration**: Regular rhythmic bays of two-over-two and single-pane timber sliding sash windows set in deeply rebated stone reveals with chamfered polished ashlar surrounds.\n- **Planar Rectification**: All building lines are strictly plumbed to gravity vertical; all cantilevered oriels, string courses, eaves lines, and timber shopfront fascia lintels at street level are rectified into true planar geometries, eliminating all photogrammetric warping.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1934701218269765,
+          55.93888194740474
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-26T08:36:46.432829+00:00",
+        "weather_state": "SUNNY",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 46.55,
+        "solar_elevation_deg": 2.09,
+        "shadow_azimuth_deg": 226.6,
+        "color_temperature_k": 3200,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

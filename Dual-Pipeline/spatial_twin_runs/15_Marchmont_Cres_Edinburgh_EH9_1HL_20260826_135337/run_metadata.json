@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_135337",
+  "address": "15 Marchmont Cres, Edinburgh EH9 1HL, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9427.13,
+  "telemetry": {
+    "latitude": 55.938847388253635,
+    "longitude": -3.193550291213969,
+    "altitude_agl": 206.37610058598764,
+    "heading": 168.2758084481334,
+    "pitch": -40.13466541561928,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 3200K natural solar illumination (Golden hour warm low-angle amber illumination with long shadows) with rear-left backlight (Sun Azimuth 52.5\u00b0, Elevation 3.1\u00b0), casting crisp directional shadows along 232.5\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-angle architectural documentary view looking down Marchmont Crescent at the intersection of Roseneath Street, Edinburgh, captured on 6x7 medium format camera, 45mm lens, f/8 aperture, fine-grain film, edge-to-edge optical resolution. Imposing 4-to-5-storey late-Victorian Scottish Baronial tenements constructed of solid Hailes blonde-grey and Locharbriggs pink sandstone snecked masonry. Prominent corner conical tourelles with corbelled ashlar bases, steep Scottish slate pitched roofs, crow-stepped wallhead gables, and heavy stone chimney stacks crowned with terracotta flue pots. Authentic historic carbon soot patination and rainwater wash marks tracing the ashlar dressings and roll-moulded window reveals. A completely deserted, decluttered asphalt intersection bordered by granite and whinstone kerb lines and traditional cast-iron railings, flanked by an organic green sycamore tree. Low-angle 3200K golden hour solar illumination raking across the stone facades from the northeast, casting crisp, elongated shadows along the street plane beneath a pristine clear sky.",
+  "char_count": 1445,
+  "includes_lighting": true
+}

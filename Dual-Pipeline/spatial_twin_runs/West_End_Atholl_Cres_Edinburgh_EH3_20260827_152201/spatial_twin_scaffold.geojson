@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 151.1,
+          "pitch_deg": -6.7,
+          "heading_deg": 43.6,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock: Subterranean foundation set on Carboniferous sedimentary strata of the Lower Carboniferous Gullane and Wardie Formations, overlaid by glacial boulder clay (till) and sand/gravel deposits characteristic of the Edinburgh crag-and-tail glacial drift plain.\n- Facade Lithics: Predominantly indigenous Craigleith and Hailes pale buff to cool grey quartz-arenite Carboniferous sandstones, known for high silica content and structural durability.\n- Mortar Chemistry: Traditional hydraulic and non-hydraulic slaked lime mortars with coarse river sand aggregates, displaying variable micro-fissuring and secondary calcite deposits along joints.\n- Drainage & Subterranean Dynamics: Sub-surface water runoff directed along the north-easterly gradient towards the Water of Leith basin, with historic sandstone basements incorporating exterior lightwells and sunken areal vaults."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Urban Canopy: Mature broadleaf deciduous trees positioned within private gardens and adjacent crescent enclosures, primarily European Sycamore (*Acer pseudoplatanus*), Wych Elm (*Ulmus glabra*), Common Lime (*Tilia x europaea*), and London Plane (*Platanus x acerifolia*).\n- Foliage Structure: Fully resolved organic canopy masses with natural fractal branch structures, detailed leaf clumps, and distinct leafy textures clearly disambiguated from adjacent masonry walls.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typologies: Scottish Georgian, Late Georgian Neoclassical, and Victorian Ecclesiastical / Italianate Renaissance Revival.\n- Key Landmark: Former St George's West Church (Charlotte Chapel) featuring a 56-meter Italianate campanile bell tower designed by Sir Robert Rowand Anderson (1879\u201381) atop the church designed by David Bryce (1866\u201369), terminating in an octagonal belfry and copper-clad pyramidal spire.\n- Distant Skyline Anchor: West Register House (Robert Reid, 1811\u20131814) terminating Charlotte Square with its prominent classical dome and lantern.\n- Urban Geometry & Massing: Consistent 3- to 4-storey plus attic and basement Georgian/Victorian ashlar-faced perimeter blocks flanking Shandwick Place and Maitland Street, characterized by rusticated basements, continuous horizontal stringcourses, dentiled cornices, timber sash-and-case 6-over-6 and 2-over-2 fenestration, and steep slate mansard roofs with prominent stone chimney stacks and clay pots.\n- Rectification Protocol: Strict planar vertical rectification of the campanile and Georgian street facades; complete flattening of warped photogrammetric meshes into crisp ashlar planes, straight parapet copings, and rectilinear floor plates.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2117615343712074,
+          55.94840046681126
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-11T17:36:49.822768+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 283.96,
+        "solar_elevation_deg": -11.47,
+        "shadow_azimuth_deg": 104.0,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

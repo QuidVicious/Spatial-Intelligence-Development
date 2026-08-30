@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 154.8,
+          "pitch_deg": -8.9,
+          "heading_deg": 37.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The terrain rests on the Lower Carboniferous sedimentary formations of the Lothian region, specifically the Craigleith and Hailes Sandstone groups overlying volcanic tuff and basaltic sills. The primary construction lithology throughout the view consists of indigenous Scottish Carboniferous blonde-to-buff Craigleith and Clashach sandstones, noted for high quartz content, dense silica-matrix bonding, and exceptional load-bearing resilience. Mortar matrices are historically non-hydraulic and hydraulic hot-mixed slaked lime mortars with coarse river sand aggregate, facilitating breathability across deep masonry wall cores. Groundwater discharges down the northern regional tilt towards the Water of Leith via natural sub-surface drift deposits of dense boulder clay."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Deciduous Street Trees: Mature urban specimens of Ulmus glabra (Wych Elm), Tilia cordata (Small-leaved Lime), and Acer pseudoplatanus (Sycamore Maple) positioned within flanking perimeter gardens and rears, rendered with multi-tonal organic green foliage, natural branching structures, and distinct leaf clumps rather than solid geometric volumes.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Looking northeast along the axial vista of Shandwick Place into Edinburgh's West End and New Town:\n- Prominent Center-Left Tower & Nave: Charlotte Chapel (originally St George's West Church / Free St George's, designed 1866\u20131869 by David Bryce, Roman Baroque church with an imposing 56-meter Venetian campanile added 1879\u20131881 by Sir Robert Rowand Anderson, modeled after San Giorgio Maggiore). The campanile features rusticated and vermiculated banded ashlar base courses, an integrated clock tier, an open arched belfry loggia with polished stone columns, and an octagonal copper-clad spire cap.\n- Background Distant Center-Left Dome: West Register House on Charlotte Square (formerly St George's Parish Church, built 1811\u20131814 by Robert Reid), displaying a prominent Neoclassical green copper dome atop a cylindrical peristyle drum with oculi and balustrades.\n- Flanking Streetscapes: Unified 3- to 4-storey Classical and Georgian tenement terraces with commercial ground-floor shopfronts along Shandwick Place and Atholl Crescent. Mansard and pitched roofscapes feature uniform Scottish slate coverings, rhythmically aligned stone chimney stacks with ceramic chimney pots, dormer fenestration with rectified timber sash-and-case windows (typically twelve-pane configurations), and crisp horizontal string courses and parapets.\n- All vertical sightlines are plumbed to true gravity, correcting perspective barrel distortion and planarizing warped photogrammetry facets into clean ashlar planes.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211708035780551,
+          55.948293085529905
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-08-27T05:42:50.809929+00:00",
+        "weather_state": "RAIN",
+        "temperature_c": 15.0,
+        "solar_azimuth_deg": 102.44,
+        "solar_elevation_deg": 4.21,
+        "shadow_azimuth_deg": 282.4,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

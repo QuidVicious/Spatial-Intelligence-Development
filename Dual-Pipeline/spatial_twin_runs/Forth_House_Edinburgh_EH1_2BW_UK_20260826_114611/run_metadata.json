@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_114611",
+  "address": "Forth House, Edinburgh EH1 2BW, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10082.86,
+  "telemetry": {
+    "latitude": 55.94858189245399,
+    "longitude": -3.2092917616902716,
+    "altitude_agl": 162.69880480768822,
+    "heading": 319.9447782228651,
+    "pitch": -11.816751211112045,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with direct backlighting with silhouetted facade profiles (Sun Azimuth 121.7\u00b0, Elevation -7.2\u00b0), casting crisp directional shadows along 301.7\u00b0. 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-altitude, 6x7 medium format architectural documentary photograph capturing the West End of Edinburgh, Scotland, centered on the towering Romanesque campanile of St George's West Church rising over the dense sea of Georgian and Victorian tenements. \n\nThe campanile, designed by Robert Rowand Anderson, rises with laser-straight vertical ashlar stonework of buff Craigleith sandstone, terminating in a tall pyramidal spire clad in oxidized verdigris-green copper sheet. Surrounding the church, continuous rows of four- and five-storey sandstone tenements feature perfectly plumb vertical facades, rhythmic timber sash-and-case fenestration, projecting stone cornices, and pitched roofs clad in dark grey Scottish slate with uniform rows of stone chimney stacks and terracotta pots. \n\nThe foreground reveals detailed tenement rooftops, lead valley flashing, and a red-brick rear facade. In the far background, the historic urban fabric recedes toward distant green hills and the Firth of Forth under a broad, atmospheric Scottish sky.\n\nLighting is calibrated to a soft, diffuse 6500K overcast skylight with subtle, low-angled celestial illumination that gently sculpts the weathered stone cornices, historic soot depositions in the carved window reveals, and natural lime mortar lines. Mature green sycamores and plane trees emerge naturally from hidden courtyards with crisp, organic foliage. The scene is completely decluttered\u2014devoid of pedestrians, vehicles, and transient clutter\u2014preserving pristine granite kerbs and cast-iron railings.",
+  "char_count": 1988,
+  "includes_lighting": true
+}

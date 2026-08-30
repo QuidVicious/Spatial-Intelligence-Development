@@ -1,0 +1,26 @@
+# Spatial Domain Analysis: 94 Hanover St, Edinburgh EH2 1DR, UK
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+The subterranean stratigraphy rests upon Carboniferous sedimentary strata of the Gullane Formation (calciferous sandstone measures), mantled by compact Devensian glacial lodgement till. The architectural fabric is dominated by local Carboniferous quartzose sandstones, predominantly pale buff-to-grey Craigleith Sandstone (highly indurated, silica-cemented quartz arenite) supplemented by beds of Hailes and Ravelston stone. Bedding planes are laid on natural beds with hot-mixed non-hydraulic lime mortar composed of calcined Scottish limestone and graded quartz sand. Kerbs and foundational flagstones comprise microcrystalline volcanic basalt (whinstone) and fine-grained Scottish granite. Surface hydrology slopes steeply northward from the George Street ridge toward the Water of Leith basin.
+
+## 2. Architecture & Planar Rectification
+Sited along James Craig's orthogonal 1767 New Town plan, Hanover Street forms a linear north-descending axial corridor crossing Queen Street and extending into Dundas Street. Flanking structures comprise Category A and B listed late 18th-century Georgian ashlar townhouses and tenements rising 3 to 4 storeys above excavated basement lightwells, capped with slated mansards and pitched roofs with ashlar chimney stacks. The street-level elevations feature channelled V-joint rustication, planar polished ashlar upper storeys, continuous moulded stringcourses, and mutule eaves cornices. Fenestration is strictly ordered in modular bays of timber sash-and-case windows (6-over-6 and 2-over-2 configurations) framed by plain reveals. Heavy photogrammetry distortions along vertical lines are plumbed to true gravity-aligned verticality, rectifying sagging cornices, skewed dormers, and distorted fenestration grids.
+
+## 3. Materials & Environmental Patina
+- Primary Facades: Fine-grained Craigleith sandstone ashlar, displaying variable surface finishes from droved margins and broached rustication at ground levels to smooth polished ashlar above.
+- Patina & Weathering: Differential environmental encrustation characterized by historical carbonaceous coal-smoke soiling in protected friezes and sub-cornices, contrasted with rain-washed cream-grey stone on exposed ashlar faces.
+- Roofing & Metals: Dark grey Scottish Ballachulish and Welsh roofing slates laid in diminishing courses, cast lead valley flashings and ridge rolls, chimney copes, and black-painted cast/wrought-iron spearhead railings enclosing basement area drops.
+- Pavements: Dense bituminous asphalt road surfacing intersected by yellow thermoplastic junction box markings and painted directional lane arrows, flanked by dressed granite kerbstones and sandstone flagstone footways.
+
+## 4. Landscape Ecology & Botanical Canopy
+Middle-ground garden enclosures (Queen Street Gardens East and West) framing the corridor host a mature urban broadleaf canopy composed primarily of *Acer pseudoplatanus* (Sycamore), *Platanus × acerifolia* (London Plane), *Tilia × europaea* (Common Lime), and *Ulmus glabra* (Wych Elm). In late August phenology, the trees display heavy, dense mature canopy volumes in deep olive-green foliage, exhibiting minor early chlorotic tip-wear and foliar senescence without structural defoliation.
+
+## 5. Static Civil Fabric Decluttering
+All moving and stationary vehicles, vehicular traffic, blurred photogrammetric automotive artifacts, pedestrians, transit furniture, waste receptacles, and temporary municipal clutter have been eliminated. Static civil infrastructure—cast-iron railings, stone basement curbs, painted asphalt roadway indicators, and structural masonry—remains fully resolved.
+
+## 6. Synthesized Documentary Prompt
+```text
+Medium format architectural documentary survey, Hanover Street, Edinburgh New Town, looking north down the linear descending axis toward Queen Street Gardens and the distant Firth of Forth. Strict orthogonal perspective, plumb vertical alignment, hyper-rectified geometry. Flanking Georgian classical facades constructed of polished Craigleith sandstone ashlar with channelled V-joint rustication on ground floors and crisp moulded eaves cornices. Uniform timber sash-and-case windows in precise vertical modular arrays across 3- to 4-storey residential townhouses. Pitched roofs clad in Welsh and Ballachulish slate with massive ashlar chimney stacks and lead-dressed dormers. Subterranean basement lightwells protected by black-painted wrought-iron spearhead railings. Midground flanks densely bordered by mature broadleaf urban forest canopy of Acer pseudoplatanus, Platanus × acerifolia, and Tilia × europaea in dense late-summer foliage. Broad multi-lane asphalt street surface displaying crisp thermoplastic directional arrows and yellow box junction markings, edged with finely dressed granite kerbings and sandstone flagstone pavements. Distant northern vista revealing classical rooftops sloping downward to Canonmills and the coastal waters beyond. Surface pathology detailing authentic coal-smoke soot encrustation beneath horizontal cornices, rain-washed sandstone reveals, and lime-pointed ashlar joints. Pure static architectural focus with zero pedestrians, zero vehicles, zero ambient clutter.
+```

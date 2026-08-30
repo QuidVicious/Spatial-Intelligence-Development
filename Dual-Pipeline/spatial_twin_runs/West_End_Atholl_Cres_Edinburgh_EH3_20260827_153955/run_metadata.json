@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_153955",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10295.69,
+  "telemetry": {
+    "latitude": 55.94820396092943,
+    "longitude": -3.211873428690367,
+    "altitude_agl": 160.53449056371147,
+    "heading": 40.1666514059883,
+    "pitch": -8.398828193026562,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the LEFT edge of the frame (Azimuth 330.5\u00b0, Elevation 12.5\u00b0).\n- FACADE ILLUMINATION: all left-facing walls, facades, spires, and domes are in bright direct sunlight; right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long directional cast shadows project across the terrain to the RIGHT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing morning shadows on the left and render as sunlit surfaces. Cast all new shadows across the scene to the RIGHT.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA medium format 6x7 architectural documentary photograph taken from an elevated vantage point along Shandwick Place and Atholl Crescent in Edinburgh's West End. In the foreground and midground, the grand Victorian Roman Baroque facade of St George's West Church rises with its tall, square-cut Italianate stone campanile and verdigris oxidized copper pyramidal spire. Flanking the street are Georgian sandstone tenements and commercial buildings with crisp ashlar detailing, vermiculated quoins, dormered slate mansard roofs, and robust chimney stacks. In the far northeast background, the historic Neoclassical copper dome of West Register House at Charlotte Square stands above the rooftops. The road surface is clear asphalt marked with clean painted lane lines, bordered by straight granite curbstones and black cast-iron basement railings. In the adjacent courtyard gardens, mature sycamore and elm trees show natural, organic leafy foliage. Every vertical plane, facade, and window mullion is precisely plumbed and optically rectified, captured with the crystal-clear fidelity of a 45mm wide-angle lens on fine-grain film at f/8, with completely empty, vehicle-free and pedestrian-free streets.",
+  "char_count": 1965,
+  "includes_lighting": true
+}

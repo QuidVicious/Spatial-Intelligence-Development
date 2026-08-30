@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133655",
+  "address": "x, Shandwick Pl, Edinburgh EH2 4RG, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10461.02,
+  "telemetry": {
+    "latitude": 55.949833916796905,
+    "longitude": -3.208714998215679,
+    "altitude_agl": 136.7724618215075,
+    "heading": 256.7622356081241,
+    "pitch": 5.296174626901589,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 5400K natural solar illumination (Clean standard daylight with distinct directional shadows) with quarter-front light from camera-right (Sun Azimuth 302.5\u00b0, Elevation 32.0\u00b0), casting crisp directional shadows along 122.5\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-resolution 6x7 medium format architectural documentary photograph capturing the grand West End skyline along Shandwick Place in Edinburgh, looking toward the spires of St Mary's Cathedral. \n\nIn the immediate foreground and midground to the right, a row of ornate four-storey Victorian sandstone commercial buildings stands with laser-straight vertical ashlar masonry, precise molded string courses, and slate-clad mansard roofs featuring pedimented dormers. To the left rises the commanding campanile clock tower of St George's West, built from weathered buff Craigleith sandstone and crowned with an oxidized pale-green copper pyramid spire. In the background, piercing the clear, deep blue sky, are the soaring three Victorian Gothic stone spires of St Mary's Episcopal Cathedral, crisply delineated with fine tracery and flying buttresses. \n\nThe sandstone facades bear natural historical patina\u2014delicate dark carbon soot accumulation under sheltered cornices and lintels contrasted by clean, rain-washed stone faces. Below, the wide carriageway of Shandwick Place reveals recessed steel tram tracks set in clean, dark asphalt, lined with solid granite kerbs and classic cast-iron lampposts. Clusters of leafy green sycamore and elm trees appear in distant churchyards and urban gardens. \n\nThe scene is completely static and deserted of all people and vehicles, illuminated by calibrated 5400K natural directional daylight with crisp shadows cast along building reveals. Captured on fine-grain ISO 100 medium-format film with a 45mm lens, sharp corner-to-corner focus, and true gravity vertical alignment.",
+  "char_count": 1990,
+  "includes_lighting": true
+}

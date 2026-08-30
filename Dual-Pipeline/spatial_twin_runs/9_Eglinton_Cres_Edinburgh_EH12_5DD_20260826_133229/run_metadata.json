@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260826_133229",
+  "address": "9 Eglinton Cres, Edinburgh EH12 5DD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 9031.09,
+  "telemetry": {
+    "latitude": 55.94913958225753,
+    "longitude": -3.2193334934130013,
+    "altitude_agl": 199.57135709071036,
+    "heading": 117.2078101368425,
+    "pitch": -13.217325103022466,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nDELIGHTING & SOLAR RELIGHTING: Calibrated 2000K natural solar illumination (Night scene with celestial ambient illumination) with quarter-front light from camera-right (Sun Azimuth 181.6\u00b0, Elevation -23.5\u00b0), casting crisp directional shadows along 1.6\u00b0. Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nHigh-altitude, wide-angle 6x7 medium format architectural documentary photograph capturing Edinburgh's West End and St Mary's Episcopal Cathedral, looking east-southeast towards the volcanic profile of Castle Rock and Arthur's Seat under clear twilight/night conditions with subtle ambient celestial exposure. \n\nAt the center, the monumental Victorian Gothic Revival St Mary's Cathedral rises with three soaring, sharply delineated sandstone spires\u2014a massive 90m central crossing spire and twin western spires flanking the nave. The stone facade consists of weathered Craigleith buff-grey sandstone with authentic carbon soot patina tucked beneath lancet mouldings, string courses, and deep gables. Surrounding the cathedral, rectilinear 4-storey Victorian residential crescents and Georgian ashlar tenements extend in orderly, plumb terraces with dark slate roofs, regular chimney stacks, and stone dormers.\n\nThe streets below, including Palmerston Place and surrounding avenues, are entirely decluttered of vehicles, traffic, dumpsters, and pedestrians, exposing pristine asphalt carriageways, authentic Caithness flagstone footpaths, solid sandstone kerbs, and black wrought-iron lightwell railings. Mature green leafy sycamores and plane trees frame the cathedral grounds with natural organic branching. Captured on fine-grain color negative film with a 45mm architectural lens at f/8, corner-to-corner rectilinear sharpness, perfect planar vertical alignment, zero digital artifacts, and profound spatial depth.",
+  "char_count": 1881,
+  "includes_lighting": true
+}

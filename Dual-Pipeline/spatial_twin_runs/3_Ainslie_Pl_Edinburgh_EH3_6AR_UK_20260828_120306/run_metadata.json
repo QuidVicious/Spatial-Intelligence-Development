@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260828_120306",
+  "address": "3 Ainslie Pl, Edinburgh EH3 6AR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 12306.85,
+  "telemetry": {
+    "latitude": 55.9540661319504,
+    "longitude": -3.2106609045949335,
+    "altitude_agl": 149.79624305024325,
+    "heading": 156.95555588960116,
+    "pitch": -21.056694331895482,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[STRUCTURAL DECOUPLING & RIGIDITY CONTRACT]\n- GEOMETRY LOCK: Treat all architectural geometry from the seed image as an immutable physical frame. Every column, window recess, sash mullion, cornice, balustrade, and ashlar stone course must remain razor-sharp and structurally intact. DO NOT melt, smooth, smear, or erase building elements.\n- OPTICAL DEPTH: Render in pin-sharp deep focus / infinite depth of field (f/11 equivalent). Zero tilt-shift, zero lens blur across foreground and background.\n- ILLUMINATION REPAINT: Completely discard seed image baked-in luminance. Repaint all cast shadows, highlights, and ambient bounce strictly according to the solar vector below.\n- CANOPY RIGIDITY: Render foliage with distinct individual leaf clusters and crisp branch morphology, not smooth airbrushed masses.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Golden hour warm low-angle amber sunset illumination with long shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly at the RIGHT edge of the frame (Azimuth 263.5\u00b0, Elevation 7.6\u00b0).\n- FACADE ILLUMINATION: all right-facing walls, facades, and spires are in bright direct sunlight; left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long horizontal cast shadows project across the terrain to the LEFT.\n- SHADOW OVERWRITE RULE: MANDATORY: Completely erase pre-existing shadows on the right and render as sunlit terrain. Cast long shadows across the scene to the LEFT.\n- WEATHER/SKY: 100% overcast cloud cover with soft, omnidirectional 6500K diffuse skylight and zero harsh shadow lines.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nMedium format 6x7 architectural documentary survey of Ainslie Place, Edinburgh. Elevated oblique vantage looking south-southeast across the elliptical central garden circus toward concave Georgian neoclassical terraces designed by James Gillespie Graham. Facades constructed from Craigleith blonde quartzose sandstone ashlar over channelled rusticated ground floors, displaying authentic atmospheric coal-soot patina within molded architraves and rain-washed limestone friezes.",
+  "char_count": 2106,
+  "includes_lighting": false
+}

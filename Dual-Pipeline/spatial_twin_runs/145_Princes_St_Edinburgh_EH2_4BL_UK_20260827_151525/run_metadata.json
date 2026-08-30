@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_151525",
+  "address": "145 Princes St., Edinburgh EH2 4BL, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10483.01,
+  "telemetry": {
+    "latitude": 55.950257119269565,
+    "longitude": -3.207606814871762,
+    "altitude_agl": 154.2770176105223,
+    "heading": 247.13800714491097,
+    "pitch": -16.21571342847882,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon / mid-morning raking sunlight with warm highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is located upper-right quadrant of the frame (Azimuth 276.4\u00b0, Elevation 16.7\u00b0).\n- FACADE ILLUMINATION: right-facing facades and the right side of monuments are brightly lit; left-facing facades are shaded.\n- CAST SHADOW DIRECTION: cast shadows project diagonally to the LEFT across the ground.\n- SHADOW OVERWRITE RULE: Erase any pre-existing shadows on the right; render newly lit surfaces on the right.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nA high-angle, medium format documentary photograph captured on fine-grain 6x7 color film looking west-southwest down the continuous urban canyon of Princes Street in Edinburgh toward the West End. In the foreground and middle ground, the stately northern facade terrace\u2014anchored by the ornate stone massing, rusticated base, classical pilasters, and carved dormers of 145 Princes Street\u2014stretches along the wide roadway. The facing architecture features deeply detailed pale buff Craigleith sandstone ashlar facades, weathered naturally with dark historic soot accumulation along carved friezes, cornices, and upper pediments. \n\nAll vertical lines of the multi-storey buildings are precisely plumb and geometrically rectified, showcasing crisp rectangular fenestration, lead-clad mansards, slate roofs, and tall sandstone chimney pots. The broad asphalt avenue features embedded steel tram tracks and flush pedestrian curbs paved in grey flagstone. To the left, the stone boundary wall and mature, leafy green canopies of Sycamore, Elm, and Lime trees in West Princes Street Gardens rise along the road margin, with the distinct stone church towers of the West End and the tall triple Gothic spires of St Mary's Cathedral piercing the distant urban skyline.",
+  "char_count": 1989,
+  "includes_lighting": true
+}

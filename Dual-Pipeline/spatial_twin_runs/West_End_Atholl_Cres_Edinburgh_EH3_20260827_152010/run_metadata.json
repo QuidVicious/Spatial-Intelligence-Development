@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260827_152010",
+  "address": "West End, Atholl Cres, Edinburgh EH3 8HA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 10381.68,
+  "telemetry": {
+    "latitude": 55.948293085529905,
+    "longitude": -3.211708035780551,
+    "altitude_agl": 154.82286901882424,
+    "heading": 37.06691486473022,
+    "pitch": -8.891563276566727,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "compiled_prompt": "[LIGHTING & ATMOSPHERIC OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (2000K Night scene with celestial ambient illumination):\n- SUN POSITION IN SCREEN SPACE: Sun is located directly ahead in the center background (Azimuth 239.0\u00b0, Elevation -7.5\u00b0).\n- FACADE ILLUMINATION: structures are backlit silhouettes with glowing halo rim light; all camera-facing surfaces are in shadow.\n- CAST SHADOW DIRECTION: long cast shadows project directly forward toward the observer/bottom of the frame.\n- SHADOW OVERWRITE RULE: Erase all sideways shadows; project all shadows forward.\n- WEATHER/SKY: Active rain with wet, mirror-reflective asphalt, subtle puddles, and soft diffuse ambient sky illumination.\n\n[SCENE GEOMETRY & ARCHITECTURE]\nMedium format architectural documentary photograph taken on a Mamiya 7 with a 45mm lens, f/8 aperture, fine-grain film. Elevated wide oblique perspective of the West End of Edinburgh looking north-east down Shandwick Place towards Charlotte Square.\n\nIn the mid-ground stands the monumental blonde Craigleith sandstone campanile and facade of St George\u2019s West Church, featuring fine Roman Baroque detailing, giant pilasters, a rusticated ground level, clock faces, and an arched bell chamber topped with a weathered verdigris-green copper pyramidal roof. Flanking the broad roadway are unbroken, plumb Georgian and Victorian ashlar sandstone tenement terraces with channelled ground floors, classical cornices, sash windows, and pitched slate mansard roofs punctuated with stone chimney stacks and lead-clad dormers. In the far distance along the urban axis, the peristyle drum and pale green oxidized dome of West Register House punctuates the historic skyline. \n\nSandstone surfaces exhibit fine tool marks, authentic rain-washed textures, and subtle historic carbon soot patinas in carved relief recesses. Dispersed mature European sycamores and elm trees display organic branching structures and leafy foliage rising from nearby gardens.",
+  "char_count": 1955,
+  "includes_lighting": true
+}
