@@ -125,6 +125,8 @@
   <div class="hud-header">
     <span class="hud-logo">SPATIAL INTELLIGENCE</span><span class="hud-sep">/</span>
     <span id="current-location-text" class="hud-location">Resolving location...</span>
+    <span class="hud-sep">/</span>
+    <span id="tile-status" class="hud-location" style="font-family: var(--font-mono); font-size: 11px;">TILES: ...</span>
   </div>
 
   <div class="hud-sidebar">
@@ -256,6 +258,8 @@
     let viewer = null;
     let currentProvider = 'GEMINI';
     let currentLightingMode = 'SOLAR';
+    let tilesLoaded = false;
+    let lastGroundM = null;
     let currentWeatherMode = 'AUTO';
 
     async function initApp() {
@@ -281,7 +285,18 @@
 
       viewer.camera.setView({ destination: Cesium.Cartesian3.fromDegrees(-3.211036, 55.953492, 250.0), orientation: { heading: Cesium.Math.toRadians(315.0), pitch: Cesium.Math.toRadians(-25.0), roll: 0.0 } });
 
-      try { if (Cesium.createGooglePhotorealistic3DTileset) { const tileset = await Cesium.createGooglePhotorealistic3DTileset(); viewer.scene.primitives.add(tileset); } } catch (e) {}
+      try {
+        if (!Cesium.Ion.defaultAccessToken) {
+          console.error('[Tiles] No Cesium Ion token reached the client. Check /api/config and CESIUM_ION_TOKEN in .env');
+        }
+        const googleTileset = await Cesium.createGooglePhotorealistic3DTileset();
+        viewer.scene.primitives.add(googleTileset);
+        tilesLoaded = true;
+        console.log('[Tiles] Google Photorealistic 3D Tiles loaded.');
+      } catch (e) {
+        console.error('[Tiles] FAILED to load Google Photorealistic 3D Tiles:', e);
+      }
+      setTileStatusHUD(tilesLoaded);
 
       viewer.camera.changed.addEventListener(updateTelemetryHUD);
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
@@ -327,11 +342,42 @@
       viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(iso);
     }
 
+    function setTileStatusHUD(ok) {
+      const el = document.getElementById('tile-status');
+      if (!el) return;
+      el.textContent = ok ? 'TILES: 3D OK' : 'TILES: FAILED (2D IMAGERY ONLY)';
+      el.style.color = ok ? 'var(--accent-cyan)' : '#ff5252';
+    }
+
     function updateTelemetryHUD() {
       if (!viewer) return;
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
       document.getElementById('telemetry-coords').textContent = `${Cesium.Math.toDegrees(cart.latitude).toFixed(5)}, ${Cesium.Math.toDegrees(cart.longitude).toFixed(5)}`;
-      document.getElementById('telemetry-alt').textContent = `${cart.height.toFixed(1)} m`;
+      document.getElementById('telemetry-alt').textContent = lastGroundM === null
+        ? `${cart.height.toFixed(1)} m (ellip)`
+        : `${(cart.height - lastGroundM).toFixed(1)} m AGL`;
+      document.getElementById('telemetry-heading-pitch').textContent =
+        `${Cesium.Math.toDegrees(viewer.camera.heading).toFixed(1)}\u00b0 / ${Cesium.Math.toDegrees(viewer.camera.pitch).toFixed(1)}\u00b0`;
+      document.getElementById('telemetry-fov').textContent =
+        `${Cesium.Math.toDegrees(viewer.camera.frustum.fov || 0.785).toFixed(1)}\u00b0`;
+    }
+
+    async function computeAltitudeAGL(cart) {
+      const ellipsoidHeight = cart.height;
+      if (tilesLoaded && viewer.scene.sampleHeightSupported) {
+        try {
+          const probe = Cesium.Cartographic.fromRadians(cart.longitude, cart.latitude);
+          const results = await viewer.scene.sampleHeightMostDetailed([probe]);
+          const g = results && results[0] ? results[0].height : undefined;
+          if (Number.isFinite(g)) {
+            lastGroundM = g;
+            return { agl: ellipsoidHeight - g, ground_m: g, method: 'TILESET_SAMPLE' };
+          }
+        } catch (e) {
+          console.warn('[AGL] sampleHeightMostDetailed failed:', e);
+        }
+      }
+      return { agl: ellipsoidHeight, ground_m: null, method: 'ELLIPSOID_FALLBACK' };
     }
 
     let settleTimeout = null;
@@ -410,6 +456,7 @@
       const screenshotB64 = viewer.scene.canvas.toDataURL('image/jpeg', 0.85);
 
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+      const altInfo = await computeAltitudeAGL(cart);
       const isLiveTime = document.getElementById('chk-live-time').checked;
 
       const payload = {
@@ -417,11 +464,13 @@
         telemetry: {
           latitude: Cesium.Math.toDegrees(cart.latitude),
           longitude: Cesium.Math.toDegrees(cart.longitude),
-          altitude_agl: cart.height,
+          altitude_agl: altInfo.agl,
+          ground_elevation_m: altInfo.ground_m,
+          altitude_method: altInfo.method,
           heading: Cesium.Math.toDegrees(viewer.camera.heading),
           pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
           fov: Cesium.Math.toDegrees(viewer.camera.frustum.fov || 0.785),
-          tile_mode: '3D_TILES',
+          tile_mode: tilesLoaded ? '3D_TILES' : '2D_IMAGERY',
           date: isLiveTime ? null : document.getElementById('input-date').value,
           time_of_day: isLiveTime ? null : parseFloat(document.getElementById('input-time-slider').value),
           timestamp_utc: isLiveTime ? new Date().toISOString() : null,
