@@ -259,6 +259,8 @@
     let currentProvider = 'GEMINI';
     let currentLightingMode = 'SOLAR';
     let tilesLoaded = false;
+    let terrainLoaded = false;
+    let googleTileset = null;
     let lastGroundM = null;
     let currentWeatherMode = 'AUTO';
 
@@ -279,7 +281,7 @@
 
       viewer = new Cesium.Viewer('cesiumContainer', {
         contextOptions: { webgl: { preserveDrawingBuffer: true } },
-        baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({ url: 'https://tile.openstreetmap.org/' })),
+        baseLayer: false,
         baseLayerPicker: false, geocoder: false, animation: false, timeline: false, fullscreenButton: false, vrButton: false, infoBox: false, selectionIndicator: false, navigationHelpButton: false
       });
 
@@ -289,7 +291,7 @@
         if (!Cesium.Ion.defaultAccessToken) {
           console.error('[Tiles] No Cesium Ion token reached the client. Check /api/config and CESIUM_ION_TOKEN in .env');
         }
-        const googleTileset = await Cesium.createGooglePhotorealistic3DTileset();
+        googleTileset = await Cesium.createGooglePhotorealistic3DTileset();
         viewer.scene.primitives.add(googleTileset);
         tilesLoaded = true;
         console.log('[Tiles] Google Photorealistic 3D Tiles loaded.');
@@ -297,6 +299,19 @@
         console.error('[Tiles] FAILED to load Google Photorealistic 3D Tiles:', e);
       }
       setTileStatusHUD(tilesLoaded);
+
+      // Bare-earth terrain, loaded for HEIGHT SAMPLING ONLY.
+      // The globe is hidden so it cannot z-fight with the photogrammetry mesh;
+      // Cesium.sampleTerrainMostDetailed queries the provider directly and does
+      // not require the globe to be rendered. Toggle with setGlobe(true).
+      try {
+        viewer.terrainProvider = await Cesium.createWorldTerrainAsync();
+        terrainLoaded = true;
+        viewer.scene.globe.show = false;
+        console.log('[Terrain] Cesium World Terrain loaded (globe hidden, sampling only).');
+      } catch (e) {
+        console.error('[Terrain] FAILED to load Cesium World Terrain:', e);
+      }
 
       viewer.camera.changed.addEventListener(updateTelemetryHUD);
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
@@ -535,6 +550,11 @@
       document.getElementById('result-documentary-prompt').textContent = data.compiled_prompt || 'N/A';
       document.getElementById('resultsDrawer').classList.add('open');
     }
+
+    // ---- console helpers -----------------------------------------------
+    window.setGlobe = function (v) { viewer.scene.globe.show = !!v; return viewer.scene.globe.show; };
+    window.getTileset = function () { return googleTileset; };
+    window.terrainReady = function () { return terrainLoaded; };
 
     window.addEventListener('DOMContentLoaded', initApp);
   </script>
