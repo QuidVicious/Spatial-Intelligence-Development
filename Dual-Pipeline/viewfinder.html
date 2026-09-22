@@ -158,6 +158,21 @@
         <input type="checkbox" id="chk-disable-recaption" checked style="accent-color: var(--accent-magenta); cursor: pointer;" />
         <label for="chk-disable-recaption" style="font-size: 10px; color: var(--text-muted); cursor: pointer;">Disable Recaption (Strict Prompt Lock)</label>
       </div>
+      <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+        <input type="checkbox" id="chk-search-grounding" style="accent-color: var(--accent-magenta); cursor: pointer;" />
+        <label for="chk-search-grounding" style="font-size: 10px; color: var(--text-muted); cursor: pointer;">Domain Search Grounding</label>
+      </div>
+    </div>
+
+    <div class="hud-card">
+      <div class="hud-card-header">🔍 Go To Place</div>
+      <div style="display: flex; gap: 6px;">
+        <input type="text" id="input-place-search" placeholder="Address, place, or postcode"
+               style="flex: 1; min-width: 0;"
+               onkeydown="if (event.key === 'Enter') goToPlace();" />
+        <button onclick="goToPlace()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 14px;">GO</button>
+      </div>
+      <div id="search-status" style="font-size: 10px; color: var(--text-muted); margin-top: 5px; min-height: 12px;"></div>
     </div>
 
     <div class="hud-card">
@@ -192,6 +207,28 @@
         <button class="weather-btn" onclick="setWeatherMode('OVERCAST', this)">☁️ Overcast</button>
       </div>
       <div class="live-weather-badge"><span style="color: var(--text-muted);">LIVE WEATHER:</span><span id="hud-live-weather-text" style="color: var(--accent-green); font-weight: 600;">Detecting...</span></div>
+      <div id="gemini-options" class="hud-input-group">
+        <div class="hud-label-row">
+          <label class="hud-label">PROMPT BUDGET</label>
+          <span id="budget-readout" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">4400</span>
+        </div>
+        <input type="range" id="slider-gemini-budget" min="2600" max="6000" step="100" value="4400"
+               oninput="document.getElementById('budget-readout').textContent = this.value;">
+      </div>
+      <div id="marble-options" class="hud-input-group" style="display:none;">
+        <div class="hud-label-row"><label class="hud-label">MARBLE INPUT</label></div>
+        <select id="select-marble-input">
+          <option value="text">Text only (domain prompt)</option>
+          <option value="pano" selected>360 panorama (Cesium capture)</option>
+          <option value="image">Single viewport image</option>
+        </select>
+        <div class="hud-label-row" style="margin-top:8px;"><label class="hud-label">MARBLE MODEL</label></div>
+        <select id="select-marble-model">
+          <option value="marble-1.0-draft" selected>Draft (cheap, weak)</option>
+          <option value="marble-1.1">Standard</option>
+          <option value="marble-1.1-plus">Plus (best, priciest)</option>
+        </select>
+      </div>
       <button id="btn-synthesize-action" class="btn-synthesize" onclick="captureAndSynthesizeTwin()">⚡ SYNTHESIZE LIVING TWIN</button>
     </div>
   </div>
@@ -201,6 +238,7 @@
     <div class="drawer-body">
       <div id="result-img-card" class="image-preview-card"><img id="result-twin-img" src="" alt="Synthesized Output" /></div>
       <div class="metadata-box"><div class="metadata-title">Model & Latency</div><div id="result-model-meta" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">--</div></div>
+      <div id="result-world-card" class="metadata-box hidden"><div class="metadata-title">3D World</div><div id="result-world-links" style="font-family: var(--font-mono); font-size: 11px; line-height: 1.9;">--</div></div>
       <div class="metadata-box"><div class="metadata-title">4 Mothers Documentary Prompt</div><div id="result-documentary-prompt" style="font-family: var(--font-mono); font-size: 10px; white-space: pre-wrap; line-height: 1.4;">--</div></div>
     </div>
   </div>
@@ -341,6 +379,8 @@
       document.getElementById('btn-prov-gemini').classList.toggle('active', !isMarble);
       document.getElementById('btn-prov-marble').classList.toggle('active', isMarble);
       document.getElementById('btn-synthesize-action').textContent = isMarble ? '🌐 SYNTHESIZE 3D WORLD (MARBLE)' : '⚡ SYNTHESIZE 2D LIVING TWIN';
+      document.getElementById('marble-options').style.display = isMarble ? 'block' : 'none';
+      document.getElementById('gemini-options').style.display = isMarble ? 'none' : 'block';
     }
 
     function onViewScopeChange(val) { document.getElementById('view-scope-label').textContent = val; }
@@ -419,6 +459,33 @@
     function setWeatherMode(mode, elem) { currentWeatherMode = mode; document.querySelectorAll('.weather-btn').forEach(b => b.classList.remove('active')); if (elem) elem.classList.add('active'); }
     function closeDrawer() { document.getElementById('resultsDrawer').classList.remove('open'); }
 
+    async function goToPlace() {
+      const q = document.getElementById('input-place-search').value.trim();
+      const status = document.getElementById('search-status');
+      if (!q) return;
+      status.style.color = 'var(--text-muted)';
+      status.textContent = 'Searching...';
+      try {
+        const resp = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+        if (!resp.ok) {
+          status.style.color = '#ff5252';
+          status.textContent = 'No match found.';
+          return;
+        }
+        const d = await resp.json();
+        status.style.color = 'var(--accent-cyan)';
+        status.textContent = d.address || `${d.latitude.toFixed(5)}, ${d.longitude.toFixed(5)}`;
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(d.longitude, d.latitude, 400.0),
+          orientation: { heading: 0.0, pitch: Cesium.Math.toRadians(-35), roll: 0.0 },
+          duration: 2.5
+        });
+      } catch (e) {
+        status.style.color = '#ff5252';
+        status.textContent = 'Search failed.';
+      }
+    }
+
     function resetStepperHUD() {
       const stages = ['INGEST_LIGHTING', 'DOMAIN_ENGINE', 'SPATIAL_SCAFFOLD', 'PROMPT_ENGINE', 'VISION_PREPROCESSOR', 'SYNTHESIS_ENGINE', 'ARCHIVER'];
       stages.forEach(s => {
@@ -460,19 +527,185 @@
       }
     }
 
+    // Six 90-degree cube faces reprojected to a 2:1 equirectangular panorama.
+    // Bases are in local ENU (x=East, y=North, z=Up); right = cross(dir, up).
+    const PANO_FACES = [
+      { name:'north', heading:0,   pitch:0,   dir:[0,1,0],  up:[0,0,1],  right:[1,0,0] },
+      { name:'east',  heading:90,  pitch:0,   dir:[1,0,0],  up:[0,0,1],  right:[0,-1,0] },
+      { name:'south', heading:180, pitch:0,   dir:[0,-1,0], up:[0,0,1],  right:[-1,0,0] },
+      { name:'west',  heading:270, pitch:0,   dir:[-1,0,0], up:[0,0,1],  right:[0,1,0] },
+      { name:'up',    heading:0,   pitch:90,  dir:[0,0,1],  up:[0,-1,0], right:[1,0,0] },
+      { name:'down',  heading:0,   pitch:-90, dir:[0,0,-1], up:[0,1,0],  right:[1,0,0] }
+    ];
+
+    async function capturePanorama(opts) {
+      opts = opts || {};
+      const faceSize = opts.faceSize || 1024;
+      const outW = opts.width || 2560, outH = Math.round((opts.width || 2560) / 2);
+      const settleMs = opts.settleMs || 900, maxWaitMs = opts.maxWaitMs || 8000;
+      const scene = viewer.scene, canvas = viewer.canvas;
+      const container = document.getElementById('cesiumContainer');
+      const saved = {
+        position: viewer.camera.position.clone(),
+        heading: viewer.camera.heading, pitch: viewer.camera.pitch, roll: viewer.camera.roll,
+        fov: scene.camera.frustum.fov, cssW: container.style.width, cssH: container.style.height
+      };
+      const centerHeading = Cesium.Math.toDegrees(saved.heading);
+
+      function settled() {
+        let ok = true;
+        if (scene.globe && scene.globe.show) ok = ok && scene.globe.tilesLoaded;
+        for (let i = 0; i < scene.primitives.length; i++) {
+          const pr = scene.primitives.get(i);
+          if (pr instanceof Cesium.Cesium3DTileset && pr.show) ok = ok && pr.tilesLoaded;
+        }
+        return ok;
+      }
+      async function waitTiles() {
+        const t0 = performance.now();
+        while (performance.now() - t0 < maxWaitMs) {
+          scene.render();
+          await new Promise(r => requestAnimationFrame(r));
+          if (settled()) break;
+        }
+        await new Promise(r => setTimeout(r, settleMs));
+        scene.render();
+        await new Promise(r => requestAnimationFrame(r));
+      }
+
+      container.style.width = faceSize + 'px';
+      container.style.height = faceSize + 'px';
+      viewer.resize();
+      scene.camera.frustum.fov = Cesium.Math.toRadians(90);
+
+      const faces = [];
+      try {
+        for (const f of PANO_FACES) {
+          viewer.camera.setView({
+            destination: saved.position,
+            orientation: {
+              heading: Cesium.Math.toRadians(centerHeading + f.heading),
+              pitch: Cesium.Math.toRadians(f.pitch), roll: 0
+            }
+          });
+          await waitTiles();
+          const tmp = document.createElement('canvas');
+          tmp.width = faceSize; tmp.height = faceSize;
+          const c2 = tmp.getContext('2d');
+          c2.drawImage(canvas, 0, 0, faceSize, faceSize);
+          faces.push(Object.assign({}, f, { img: c2.getImageData(0, 0, faceSize, faceSize) }));
+        }
+      } finally {
+        container.style.width = saved.cssW;
+        container.style.height = saved.cssH;
+        viewer.resize();
+        scene.camera.frustum.fov = saved.fov;
+        viewer.camera.setView({
+          destination: saved.position,
+          orientation: { heading: saved.heading, pitch: saved.pitch, roll: saved.roll }
+        });
+        scene.render();
+      }
+
+      const out = document.createElement('canvas');
+      out.width = outW; out.height = outH;
+      const octx = out.getContext('2d');
+      const oimg = octx.createImageData(outW, outH);
+      const O = oimg.data;
+      const cH = centerHeading * Math.PI / 180;
+      for (let y = 0; y < outH; y++) {
+        const el = (0.5 - (y + 0.5) / outH) * Math.PI;
+        const ce = Math.cos(el), se = Math.sin(el);
+        for (let x = 0; x < outW; x++) {
+          const az = cH + ((x + 0.5) / outW - 0.5) * 2 * Math.PI;
+          const dE = Math.sin(az) * ce, dN = Math.cos(az) * ce, dU = se;
+          let r = 0, g = 0, b = 0;
+          for (const f of faces) {
+            const a = dE*f.dir[0] + dN*f.dir[1] + dU*f.dir[2];
+            if (a <= 1e-6) continue;
+            const sx = (dE*f.right[0] + dN*f.right[1] + dU*f.right[2]) / a;
+            if (sx < -1 || sx > 1) continue;
+            const sy = (dE*f.up[0] + dN*f.up[1] + dU*f.up[2]) / a;
+            if (sy < -1 || sy > 1) continue;
+            const px = Math.min(faceSize-1, Math.max(0, Math.floor((sx+1)*0.5*faceSize)));
+            const py = Math.min(faceSize-1, Math.max(0, Math.floor((1-sy)*0.5*faceSize)));
+            const i = (py*faceSize + px) * 4;
+            r = f.img.data[i]; g = f.img.data[i+1]; b = f.img.data[i+2];
+            break;
+          }
+          const o = (y*outW + x) * 4;
+          O[o]=r; O[o+1]=g; O[o+2]=b; O[o+3]=255;
+        }
+      }
+      octx.putImageData(oimg, 0, 0);
+      window.__pano = { dataUrl: out.toDataURL('image/jpeg', 0.92), centerAzimuth_deg: centerHeading };
+      return window.__pano.dataUrl;
+    }
+
+    // The synthesis API is asked for 16:9. If the seed is a different shape the
+    // model must crop it, and it picks a different crop each run. Capturing at a
+    // fixed 16:9 removes that decision and makes the seed reproducible across
+    // machines and window sizes.
+    const CAPTURE_W = 2560, CAPTURE_H = 1440;
+
+    async function captureFixedAspect(quality) {
+      const scene = viewer.scene;
+      const container = document.getElementById('cesiumContainer');
+      const saved = { cssW: container.style.width, cssH: container.style.height };
+      let dataUrl = null;
+      try {
+        container.style.width = CAPTURE_W + 'px';
+        container.style.height = CAPTURE_H + 'px';
+        viewer.resize();
+        const t0 = performance.now();
+        while (performance.now() - t0 < 6000) {
+          scene.render();
+          await new Promise(r => requestAnimationFrame(r));
+          let ok = true;
+          for (let i = 0; i < scene.primitives.length; i++) {
+            const pr = scene.primitives.get(i);
+            if (pr instanceof Cesium.Cesium3DTileset && pr.show) ok = ok && pr.tilesLoaded;
+          }
+          if (ok) break;
+        }
+        await new Promise(r => setTimeout(r, 400));
+        scene.render();
+        await new Promise(r => requestAnimationFrame(r));
+        dataUrl = viewer.canvas.toDataURL('image/jpeg', quality || 0.9);
+        console.log(`[Capture] ${viewer.canvas.width} x ${viewer.canvas.height}`);
+      } finally {
+        container.style.width = saved.cssW;
+        container.style.height = saved.cssH;
+        viewer.resize();
+        scene.render();
+      }
+      return dataUrl;
+    }
+
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       
-      // CRITICAL FIX: Force WebGL to render and flush the buffer before capture to prevent camera drift
-      viewer.render();
-      await new Promise(r => requestAnimationFrame(r));
-      const screenshotB64 = viewer.scene.canvas.toDataURL('image/jpeg', 0.85);
+      // Fixed 16:9 seed so the model never has to choose a crop.
+      const screenshotB64 = await captureFixedAspect(0.9);
 
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
       const altInfo = await computeAltitudeAGL(cart);
       const isLiveTime = document.getElementById('chk-live-time').checked;
+
+      const marbleMode = currentProvider === 'WORLD_LABS'
+        ? document.getElementById('select-marble-input').value : 'text';
+      let panoB64 = null;
+      if (currentProvider === 'WORLD_LABS' && marbleMode === 'pano') {
+        console.log('[Pano] capturing 360 panorama for Marble...');
+        try {
+          panoB64 = await capturePanorama();
+          console.log('[Pano] captured');
+        } catch (e) {
+          console.error('[Pano] capture failed, falling back to text:', e);
+        }
+      }
 
       const payload = {
         screenshot_b64: document.getElementById('select-view-scope').value === 'STANDALONE' ? null : screenshotB64,
@@ -492,10 +725,15 @@
           lighting_mode: currentLightingMode,
           weather_mode: currentWeatherMode
         },
+        pano_b64: panoB64,
+        marble_input_mode: panoB64 ? 'pano' : (marbleMode === 'pano' ? 'text' : marbleMode),
+        gemini_budget: parseInt(document.getElementById('slider-gemini-budget').value, 10),
         provider: currentProvider,
-        target_model: currentProvider === 'WORLD_LABS' ? 'marble-1.1' : 'gemini-3.1-flash-image',
+        target_model: currentProvider === 'WORLD_LABS'
+          ? document.getElementById('select-marble-model').value : 'gemini-3.1-flash-image',
         view_scope: document.getElementById('select-view-scope').value,
-        disable_recaption: document.getElementById('chk-disable-recaption').checked
+        disable_recaption: document.getElementById('chk-disable-recaption').checked,
+        use_search_grounding: document.getElementById('chk-search-grounding').checked
       };
 
       try {
@@ -546,7 +784,30 @@
         document.getElementById('result-twin-img').src = data.twin_image_b64;
         document.getElementById('result-img-card').classList.remove('hidden');
       }
-      document.getElementById('result-model-meta').textContent = `Provider: ${data.provider} | Model: ${data.model_name} | Latency: ${data.latency_ms} ms`;
+      const modeTxt = data.marble_input_mode ? ` | Input: ${data.marble_input_mode}` : '';
+      document.getElementById('result-model-meta').textContent = `Provider: ${data.provider} | Model: ${data.model_name} | Latency: ${data.latency_ms} ms${modeTxt}`;
+
+      const links = [
+        ['Open world in Marble', data.world_viewer_url],
+        ['Gaussian splat (.spz)', data.splat_url],
+        ['Collider mesh (.glb)', data.collider_mesh_url],
+        ['Source panorama', data.pano_url]
+      ].filter(function (l) { return !!l[1]; });
+
+      const worldCard = document.getElementById('result-world-card');
+      const worldLinks = document.getElementById('result-world-links');
+      if (links.length) {
+        worldLinks.innerHTML = links.map(function (l) {
+          return '<a href="' + l[1] + '" target="_blank" rel="noopener" style="color:var(--accent-cyan);">\u2197 ' + l[0] + '</a>';
+        }).join('<br>') + (data.world_id ? '<br><span style="color:var(--text-muted);">id: ' + data.world_id + '</span>' : '');
+        worldCard.classList.remove('hidden');
+        if (data.world_viewer_url) console.log('[Marble] world:', data.world_viewer_url);
+      } else if (data.provider === 'WORLD_LABS') {
+        worldLinks.innerHTML = '<span style="color:#ff5252;">No URLs returned. Full response is in the archived run_metadata.</span>';
+        worldCard.classList.remove('hidden');
+      } else {
+        worldCard.classList.add('hidden');
+      }
       document.getElementById('result-documentary-prompt').textContent = data.compiled_prompt || 'N/A';
       document.getElementById('resultsDrawer').classList.add('open');
     }

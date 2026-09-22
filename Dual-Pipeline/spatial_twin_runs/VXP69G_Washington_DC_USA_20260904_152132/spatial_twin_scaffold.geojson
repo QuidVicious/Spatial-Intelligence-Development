@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "VXP6+9G Washington, DC, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 314.6,
+          "pitch_deg": -28.4,
+          "heading_deg": 38.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean geology rests within the Atlantic Coastal Plain margin overlying the crystalline Piedmont basement complex (Sykesville Formation granitic gneiss and schist), blanketed by Quaternary alluvium, Potomac Formation silt-clay sequences, and engineered fill. Primary monument lithology comprises crystalline white Cockeysville dolomitic marble (Texas and Beaver Dam quarries, Baltimore County, Maryland) forming the lower 46-meter shaft and upper apex, interspaced by Sheffield calcitic marble (Berkshire County, Massachusetts) across the mid-tier construction seam. Backing masonry consists of Maine granite ashlar and Potomac blue gneiss bound by hydraulic lime mortar. Surrounding Federal Triangle complexes are founded on reinforced concrete footings over driven steel/concrete piles and cladded with dense Bedford Indiana oolitic limestone (Salem Limestone). Decomposed crushed granite and stabilized gravel compose the network of radial walkways."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Vegetation consists of mature urban parkland specimens:\n- *Ulmus americana* (American Elm) lining the primary avenues in broad vase-shaped habits.\n- *Quercus phellos* (Willow Oak), *Quercus alba* (White Oak), and *Platanus occidentalis* (American Sycamore) distributed across open lawn sectors.\n- *Acer rubrum* (Red Maple) and *Prunus serrulata* (Yoshino Cherry) occupying perimeter parklands.\n- Date-grounded phenology (Early September): Dense, fully expanded late-summer deep-green canopies displaying early localized leaf-margin chlorosis, drought-induced foliage bronzing, and intact mature branch architecture. Lawn surfaces show managed aeration lines and late-summer turf wear.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The Washington Monument stands as a 169.29-meter unreinforced load-bearing hollow stone obelisk with a 10:1 taper ratio, terminating in an aluminum-capped pointed pyramidion, encircled by a concentric granite flag plaza and 56 steel perimeter flagpoles. The National Museum of African American History and Culture features an inverted three-tiered stepped corona inspired by traditional Yoruban Caryatid columns over a structural steel superstructure. The National Museum of American History presents a rectilinear New Formalist / Neoclassical massing of clad limestone panels, recessed fenestration bays, and flat gravel-surfaced roofs with mechanical penthouses. The Federal Triangle complex (Herbert C. Hoover Building, Robert F. Kennedy Department of Justice, and Ronald Reagan Building) displays Classical Revival monumental palatial geometry with multi-storey perimeter colonnades, rusticated ashlar rustication, Doric and Corinthian orders, deep-set punched rectangular fenestration, and hipped terra-cotta mansards. The Sidney R. Yates Federal Building exhibits Richardsonian Romanesque load-bearing red brickwork with round-arched fenestration and hipped slate roofs.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03872842810634,
+          38.885927212313206
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T23:11:59+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 276.42,
+        "solar_elevation_deg": 3.69,
+        "shadow_azimuth_deg": 96.4,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

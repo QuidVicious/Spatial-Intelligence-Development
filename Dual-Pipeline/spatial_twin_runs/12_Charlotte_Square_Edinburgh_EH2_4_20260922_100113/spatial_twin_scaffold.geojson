@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 84.8,
+          "pitch_deg": -37.3,
+          "heading_deg": 242.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock: Carboniferous sedimentary strata of the Strathclyde Group (Gullane Formation and Calders Formation sandstones, siltstones, and oil-shales), interspersed with quartz-dolerite intrusions and underlying glacial till (boulder clay).\n- Lithic Provenance: Fine- to medium-grained Craigleith carboniferous quartzose sandstone (pale honey-buff to grey-ochre, high-silica matrix) ashlar blocks and Hailes sandstone rubblestone foundations.\n- Mortar Chemistry: Traditional non-hydraulic to weakly hydraulic slaked lime (quicklime) mortar with sharp river sand aggregate, lime pointing with historical coal-dust ash adulteration in re-pointing phases.\n- Hydrology & Subterranean Drainage: Sloping glacial drumlin terrain shedding groundwater northward toward the Water of Leith basin, mitigated by subsurface stone vaulting under pavements and subterranean cellar drainage voids."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Deciduous Canopy (Edge of Charlotte Square Garden): Mature *Acer pseudoplatanus* (Sycamore) and *Tilia \u00d7 europaea* (Common Lime) specimens at square periphery.\n- Phenological State (December 22): Full winter dormancy/complete defoliation; completely bare architectural branch silhouettes, exposed ramified crown twigs, grey-brown rugose bark with patches of dormant green corticolous lichens (*Lecanora*, *Xanthoria*). Zero persistent foliage.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Primary Structure (Center): St George\u2019s Church (West Register House), designed by Robert Reid (1811\u20131814) adapting Robert Adam's masterplan. Neoclassical Greek-cross/centralized plan featuring a monumental tetrastyle Ionic portico with pediment, rusticated basement/plinth, corner ashlar pavilions with round-headed blind niches and balustrades, rising to an octagonal drum, circular colonnaded peristyle drum, and a copper-clad ribbed dome crowned by a gilded stone lantern and cross.\n- Flanking Terraced Townhouses: Robert Adam\u2019s A-listed Georgian New Town terrace compositions (Charlotte Square West elevation). Strict symmetrical 3-storey plus attic mansard and sunken basement/area lightwells. Regular 3-bay modules, rusticated ground floors with segmental-arched or square-headed openings, v-jointed channelled masonry, smooth ashlar upper storeys with molded string courses, dentiled cornices, and blocking courses.\n- Secondary/Rear Infill: 20th-century institutional extensions along rear lanes featuring flat bituminous roofs, horizontal ribbon glazing, and precast concrete spandrel panels, abutting traditional 2- to 3-storey mews buildings with pitched slate roofs and rubble masonry.\n- Fenestration & Planar Rectification: 6-over-6 and 12-over-12 double-hung timber sash-and-case windows set in deep stone reveals; semicircular fanlights over panelled timber entrance doors. All vertical ashlar walls rectified to plumb vertical axes; roof planes flattened along authentic ridge and mansard hips.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T14:18:00+00:00",
+        "weather_state": "SNOW",
+        "solar_azimuth_deg": 209.02,
+        "solar_elevation_deg": 6.18,
+        "shadow_azimuth_deg": 29.0,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

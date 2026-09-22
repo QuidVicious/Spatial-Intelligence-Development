@@ -58,19 +58,19 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
     "Geographer", 
     "Civil Records Archivist", 
     "Botanist", 
-    "Optical Physics Specialist", 
-    "Building Conservator", 
-    "Medium Format Architectural Photographer"
+    "Building Conservator"
   ],
   "cognitive_mode": "Location-Agnostic Causal Spatial Analysis & Telegraphic Documentary Synthesis",
-  "narrative_style": "6x7 Medium Format documentary-grade, high-density telegraphic notation, geophysically grounded, structurally precise",
+  "narrative_style": "high-density telegraphic notation, geophysically grounded, structurally precise",
   "constraints": {
     "suppress": [
       "conversational filler", "AI pleasantries", "generic summaries", 
       "sterile CGI rendering", "smooth sandblasted textures", "material homogenization", 
       "pedestrians", "vehicles", "cars", "traffic", "transient street clutter", "dumpsters", "temporary signage",
       "misclassifying foliage as stone", "misinterpreting photogrammetry mesh noise as crumpled architecture",
-      "lighting descriptions", "sky colors", "shadow angles", "time of day assertions", "sun positions"
+      "lighting descriptions", "sky colors", "shadow angles", "time of day assertions", "sun positions",
+      "camera, lens, film format, aperture, resolution, or aspect ratio",
+      "screen position, compass placement, or view-type language"
     ],
     "enforce": [
       "causal synthesis across the 4 Mothers (Geology, Geography, Architecture, Civil Records)",
@@ -105,6 +105,10 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
 
 4. **Atmospheric Blindness (CRITICAL)**:
    DO NOT describe the sky, lighting, shadows, sun position, or time of day in ANY section. Lighting is managed strictly by an independent ephemeris engine.
+
+5. **The Frame Is Given**:
+   The reference capture is the survey. Report only the structures and ground surfaces actually present in it, in proportion to how much of it they occupy. Ground, turf, water, and paving that fill the capture are subjects in their own right and deserve the same specificity as buildings. A famous building at this address that is not in the capture is not part of this site. Say what each thing is made of; the capture already says where it is and how it is seen.
+
 """
 
 
@@ -151,7 +155,8 @@ def analyze_spatial_domain(
     telemetry: Optional[Any] = None,
     screenshot_b64: Optional[str] = None,
     temporal_epoch: Optional[str] = None,
-    gemini_api_key: Optional[str] = None
+    gemini_api_key: Optional[str] = None,
+    use_search_grounding: bool = False
 ) -> DomainAnalysisResult:
     
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
@@ -199,9 +204,6 @@ def analyze_spatial_domain(
 
 {scope_directive}
 
-SEARCH & GROUNDING DIRECTIVE:
-Use Google Search grounding to verify local geology, municipal civil records, architectural styles, and climate weathering.
-
 OUTPUT REQUIREMENTS:
 Provide your output structured into the following labeled sections:
 
@@ -221,7 +223,7 @@ Provide your output structured into the following labeled sections:
 [Confirmation of complete removal of all transient vehicles, pedestrians, dumpsters, and clutter]
 
 ---DOCUMENTARY_PROMPT---
-[High-density, telegraphic documentary prompt synthesizing the 4 Mothers findings. Must explicitly include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, and botanical tree species with date-specific canopy state. TARGET LENGTH: 1200 to 1500 characters. CRITICAL: DO NOT mention lighting, sky, shadows, or time of day.]
+[High-density, telegraphic documentary prompt covering only what is visible in the reference capture. Include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, ground surfacing, and botanical tree species with date-specific canopy state. TARGET LENGTH: 1200 to 1500 characters. Material and fabric only: no lighting, sky, shadows, or time of day; no camera, lens, or format; no frame or compass placement.]
 """
 
     contents: List[Any] = [user_prompt]
@@ -238,13 +240,16 @@ Provide your output structured into the following labeled sections:
         contents.insert(0, types.Part.from_bytes(data=image_bytes, mime_type=mime_type))
 
     # Configured with expanded 4096 thinking budget and Search Grounding
-    config = types.GenerateContentConfig(
+    config_kwargs = dict(
         system_instruction=DOMAIN_SYSTEM_INSTRUCTION,
         temperature=0.0,
         top_p=0.85,
         thinking_config=types.ThinkingConfig(thinking_budget=4096),
-        tools=[types.Tool(google_search=types.GoogleSearch())]
     )
+    if use_search_grounding:
+        config_kwargs["tools"] = [types.Tool(google_search=types.GoogleSearch())]
+    print(f"[Domain] search grounding: {'ON' if use_search_grounding else 'OFF'}")
+    config = types.GenerateContentConfig(**config_kwargs)
 
     try:
         response = client.models.generate_content(
@@ -289,6 +294,7 @@ Provide your output structured into the following labeled sections:
             "address": address,
             "coordinates": (lat_str, lon_str),
             "tile_mode": tile_mode,
-            "view_scope": view_scope.value
+            "view_scope": view_scope.value,
+            "search_grounding": use_search_grounding
         }
     )

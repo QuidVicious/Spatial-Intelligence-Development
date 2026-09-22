@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 84.8,
+          "pitch_deg": -37.3,
+          "heading_deg": 242.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean strata comprise Carboniferous sedimentary sandstone beds and siltstones overlying volcanic basalt and dolerite bedrock formations, mantled by dense Devensian glacial till. Primary structural masonry is Scottish Craigleith and Hailes sandstone (dense, fine-to-medium-grained quartz arenite bound with siliceous-calcareous cement, exhibiting high compressive strength and low porosity). Ground mortars consist of traditional non-hydraulic and feebly hydraulic lime-sand mixes (hot-mixed quicklime slaked with sharp river sands and crushed quartz aggregates)."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Perimeter mature urban hardwoods (*Platanus \u00d7 acerifolia* and *Acer pseudoplatanus*) display late June phenology: dense, fully expanded, dark-green foliar canopies with high leaf-area index, distinct five-lobed palmate leaves, mature crown volume with strong structural branching, and deep green turf zones within adjacent park enclosures.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Centerpiece civic monument (West Register House, formerly St George's Church) designed in the high Neoclassical style: monumental tetrastyle Ionic portico with pedimented projection, stepped attic base supporting a high cylindrical masonry drum surrounded by a Corinthian colonnade, topped by a hemispherical copper dome, crowned with an octagonal stone cupola lantern and terminal finial. Flanking residential fabric forms unified late Georgian (New Town) classical terraces: three to four storeys over rusticated sunken basement lightwells, regular bays of planar-rectified ashlar facades, V-jointed channelled rustication on ground floors, projecting moulded stringcourses, continuous eaves cornices with blocking courses, and pitched/hipped roofs clad in regional slate. Multi-pot rectangular masonry chimney stacks punctuate party walls. Fenestration strictly defined by timber sash-and-case assemblies (predominantly 6-over-6 and 2-over-2 grids) recessed within plain stone reveals.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207899552345438,
+          55.951927757140005
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-06-22T14:18:00+00:00",
+        "weather_state": "RAIN",
+        "solar_azimuth_deg": 227.65,
+        "solar_elevation_deg": 50.4,
+        "shadow_azimuth_deg": 47.6,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

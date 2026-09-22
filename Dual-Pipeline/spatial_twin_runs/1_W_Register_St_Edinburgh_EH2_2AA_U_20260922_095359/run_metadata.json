@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_095359",
+  "address": "1 W Register St, Edinburgh EH2 2AA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16135.72,
+  "telemetry": {
+    "latitude": 55.95413308385509,
+    "longitude": -3.1897379527696796,
+    "altitude_agl": 71.2308140804638,
+    "heading": 274.0762551020709,
+    "pitch": -17.229049599003762,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-22",
+    "time_of_day": 6.7,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "FOG",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 121.75816885190969,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 3200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "FOG",
+    "timestamp_utc": "2026-09-22T05:42:00+00:00",
+    "solar_azimuth": 84.7,
+    "solar_elevation": -2.68,
+    "color_temperature_k": 2200,
+    "lux": 800,
+    "natural_description": "Calibrated 2200K Blue Hour Civil Twilight (Elevation -2.7\u00b0). Weather: FOG."
+  },
+  "domain_metadata": {
+    "address": "1 W Register St, Edinburgh EH2 2AA, UK",
+    "coordinates": [
+      "55.954133",
+      "-3.189738"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T16:53:59.687988Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Mature urban broadleaf canopy within St Andrew Square Gardens. Species include *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (Sycamore), and *Tilia cordata* (Small-leaved lime). Late-September phenology: dense canopies exhibiting early chlorosis, yellow-brown margin discoloration, and light leaf shed over manicured *Lolium perenne* turf.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2200K Blue Hour Civil Twilight. Sun elevation -2.7\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nAerial survey of Edinburgh's St Andrew Square, centered on the fluted Craigleith sandstone Roman Doric column of the Melville Monument standing on a stepped square plinth. Surrounding perimeter presents four- to six-storey Georgian Neoclassical and Victorian commercial facades of ashlar sandstone, featuring channelled rustication, projecting string courses, dentiled modillion cornices, and timber six-over-six sash-and-case windows. Interspersed modern commercial structures integrate rectilinear cast-concrete structural frames, bush-hammered granite spandrels, and planar curtain-wall glazing. Roofscapes comprise multi-gabled profiles clad in dark blue-grey Scottish slate, lead-rolled hips, sandstone chimney stacks with terracotta pots, and standing-seam copper dormers exhibiting pale green verdigris patina. Ground plane features a circular fenced central garden bisected by curvilinear compacted gravel paths and manicured perennial ryegrass turf. Deciduous tree canopy of mature Platanus \u00d7 acerifolia, Acer pseudoplatanus, and Tilia cordata shows late-September phenology with yellowing chlorotic fringes, localized ochre foliage, and moderate canopy thinning.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3071,
+    "budget": 3200,
+    "over_budget": false,
+    "skeleton_chars": 1606,
+    "doc_chars": 1172,
+    "doc_trimmed": true,
+    "eco_chars": 355,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

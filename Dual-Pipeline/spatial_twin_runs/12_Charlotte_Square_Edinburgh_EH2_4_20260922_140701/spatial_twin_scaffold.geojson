@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 1.4,
+          "pitch_deg": 4.8,
+          "heading_deg": 245.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Subterranean Bedrock: Dinantian (Lower Carboniferous) Gullane Formation strata comprising sandstone, siltstone, and mudstone beds overlain by Quaternary glaciomarine till deposits.\n- Masonry Lithics: Pale cream-to-buff Carboniferous quartzose Craigleith Sandstone, finely dressed in ashlar blocks for structural elevations and classical dressings. Monument base composed of fine-grained pink Peterhead granite ashlar.\n- Mortar System: Traditional non-hydraulic to weakly hydraulic slaked lime mortar blended with sharp river sand.\n- Hydrogeology: Free-draining urban garden topsoil and gravelly subsoil over undulating bedrock sloping north-westward toward the Water of Leith catchment."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Urban Flora: Mature specimen broadleaf trees including *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (sycamore), and *Tilia \u00d7 europaea* (common lime).\n- Phenology (Late September): Early autumn canopy transition; thinning foliage showing chlorotic edge yellowing, pale ochre senescence, and early branch exposure through partial defoliation.\n- Turf Cover: Uniform, manicured urban park lawn consisting of *Lolium perenne* (perennial ryegrass) and *Festuca rubra* (red fescue).",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Monumental Anchor (West Register House / former St George's Church): Neoclassical temple-front church terminating the George Street axis. Features a giant tetrastyle Roman Ionic portico supporting a dentiled triangular pediment and blocking course. Above sits a square attic pedestal transitioning to a cylindrical drum with attached colonnade, round-arched apertures, an octagonal lead-and-copper hemispherical ribbed dome, and a crowning cupola lantern with gilt finial.\n- Flanking Pavilions & Terraces: Symmetrical 3-storey, basement, and attic Georgian residential townhouse ranges (Adam-designed scheme). Rusticated channel-jointed ground floor with round-arched entry doorways; smooth ashlar piano nobile with molded architraves and console cornices; regular 6-over-6 and 2-over-2 timber sliding sash windows; continuous molded eaves cornice and parapet.\n- Roof Geometry: Mansard and pitched timber roof trusses clad in graded Scottish slates with pitched dormers, lead flashings, and rectilinear ashlar chimney stacks with ceramic pots.\n- Albert Memorial: Multi-stage stepped pink granite pedestal supporting an over-life-sized bronze equestrian statue of Prince Albert in Field Marshal uniform, flanked by lower-tier corner bronze sculptural plinth groupings and bronze bas-relief panels.\n- Planar Rectification: True-gravity vertical alignment of columns, portico piers, drum pilasters, lantern uprights, and townhouse facade walls; horizontal rectification of cornices, stringcourses, and sash lines.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-22T17:45:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 266.06,
+        "solar_elevation_deg": 3.31,
+        "shadow_azimuth_deg": 86.1,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

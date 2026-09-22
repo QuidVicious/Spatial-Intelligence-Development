@@ -1,0 +1,73 @@
+{
+  "world_id": "3151fcad-58bb-4457-8503-b6e78713f3b2",
+  "viewer_url": null,
+  "splat_url": null,
+  "collider_mesh_url": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/0d6971f4.glb",
+  "pano_url": null,
+  "raw_response": {
+    "operation_id": "e5fed26d-bbb3-4e99-b5cb-16d838694f4d",
+    "created_at": "2026-09-03T20:11:36Z",
+    "updated_at": "2026-09-03T20:11:58Z",
+    "expires_at": "2026-09-03T23:11:36Z",
+    "done": true,
+    "error": null,
+    "metadata": {
+      "progress": {
+        "status": "SUCCEEDED",
+        "description": "World generation completed successfully"
+      },
+      "world_id": "3151fcad-58bb-4457-8503-b6e78713f3b2",
+      "operation_type": "world_generation",
+      "public_model_name": "marble-1.0-draft"
+    },
+    "response": {
+      "world_id": "3151fcad-58bb-4457-8503-b6e78713f3b2",
+      "display_name": "",
+      "tags": null,
+      "assets": {
+        "mesh": {
+          "collider_mesh_url": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/0d6971f4.glb",
+          "hq_mesh_url": null,
+          "full_res_mesh_url": null
+        },
+        "imagery": {
+          "pano_url": null
+        },
+        "splats": {
+          "spz_urls": {
+            "500k": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/63d82a74-bd98-4f74-826c-3d3f52bbf0cd_sand_500k.spz",
+            "100k": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/5145889b-5b93-4898-8414-e9804a95f2bc_sand_100k.spz",
+            "full_res": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/dc3c29d6-3f09-4a6a-bfaf-d9a3be21f3d1_sand.spz"
+          },
+          "semantics_metadata": null
+        },
+        "thumbnail_url": "https://cdn.marble.worldlabs.ai/3151fcad-58bb-4457-8503-b6e78713f3b2/c69b4d5c-353f-45cf-9f0a-be885e02b704_sand_mpi/thumbnail.webp",
+        "caption": "An outdoor world at street level in a real place: 13/2 Ainslie Pl, Edinburgh EH3 6AS, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nTHE PLACE\nTelegraphic architectural survey, documentary capture. Sweeping curved Georgian crescent terrace designed by James Gillespie Graham, Category A listed. Facades constructed of pale buff Craigleith sandstone ashlar with fine-tolerance lime joints.\n\nSTRUCTURE AND MASSING\nTypology & Era: Neoclassical / Greek Revival double-crescent urban palace-fronted terrace, designed by James Gillespie Graham in 1822 as part of the Moray Estate (Moray Feu). Vertical Hierarchy & Massing: 3 principal storeys over a continuous sunken basement lightwell, topped with an attic/mansard storey behind continuous stone parapets and deep classical cornices.\n\nSURFACES AND MATERIALS\nGround Floor: Droved and V-jointed channelled rusticated Craigleith ashlar, featuring pronounced horizontal striations and radial voussoirs over entrance fanlights. Upper Facades: Polished blonde Craigleith sandstone ashlar blocks with fine-dressed lime joints; projecting continuous stringcourses, architraves, and classical moulded eaves cornices.\n\nVEGETATION\nBotanical Taxa: Ainslie Place central private garden enclosure containing mature *Platanus \u00d7 acerifolia* (London plane),\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 253 degrees at 20.2 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees."
+      },
+      "created_at": null,
+      "updated_at": null,
+      "permission": {
+        "public": false,
+        "allowed_readers": [],
+        "allowed_writers": [],
+        "allow_id_access": false
+      },
+      "world_prompt": null,
+      "world_marble_url": "https://marble.worldlabs.ai/world/3151fcad-58bb-4457-8503-b6e78713f3b2",
+      "model": null
+    },
+    "cost": {
+      "total_credits": 230,
+      "line_items": [
+        {
+          "name": "Pano generation (text)",
+          "credits": 80
+        },
+        {
+          "name": "Draft world generation",
+          "credits": 150
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 240.1,
+          "pitch_deg": -17.6,
+          "heading_deg": 22.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean stratigraphy comprises Quaternary river alluvium and Potomac Formation unconsolidated gravelly sands and clays overlying crystalline metamorphic Piedmont bedrock (mica schist and gneiss). Washington Monument foundation rests on an enlarged mass-concrete underpinning footing set into compacted gravel strata. Lower 46 meters (152 feet) of the obelisk shaft is constructed from Cockeysville/Texas marble ashlar with Maine granite interior backing; upper shaft transitions abruptly to Lee and Sheffield marble ashlar, bound by historic lime mortar and twentieth-century Portland cement-repointed beds. Surrounding urban fabric utilizes Bedford Indiana oolitic limestone, Aquia Creek sandstone, and structural red clay brick cores."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Date-grounded phenology for September 4 (late summer transition):\n- *Ulmus americana* (American Elm): Mature high-arching vase canopies lining Mall flanks, deep forest-green foliage with localized crown-edge chlorosis and early dry-season leaf thinning.\n- *Quercus phellos* (Willow Oak) and *Quercus palustris* (Pin Oak): Dense globular crowns with glossy green leaves showing minimal senescent browning.\n- *Liriodendron tulipifera* (Tulip Tree) and *Platanus occidentalis* (American Sycamore): Broad-leafed upper canopies exhibiting sporadic pale yellowing along terminal branches.\n- Turf: Managed perennial ryegrass (*Lolium perenne*) and tall fescue (*Festuca arundinacea*) turf, showing high-traffic compaction patterns across desire-line pathways.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Washington Monument: 169.29-meter (555 ft 5 in) hollow load-bearing stone masonry obelisk tapering symmetrically to a 16.8-meter (55 ft) pyramidion capstone with an aluminum apex insert. Surrounding grounds: Monumental elliptical turf knoll encircled by concentric granite-paved plazas and radial crushed stone pathways. Surrounding urban ensemble:\n- National Museum of African American History and Culture: Three-tiered, inverted stepped corona structure clad in openwork ornamental cast-metal screens over an inner glazed curtain wall.\n- Federal Triangle Complex (Herbert C. Hoover Building, Ronald Reagan Building, IRS): Six-to-eight-storey Beaux-Arts and Classical Revival civic blocks featuring rusticated limestone bases, colossal order colonnades, pedimented porticos, and hipped roofs clad in red clay mission tiles.\n- Distant urban grid: Plumbed mid-rise masonry and steel-frame office blocks with continuous flat commercial parapets and recessed rooftop mechanical enclosures.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T17:15:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 183.59,
+        "solar_elevation_deg": 58.47,
+        "shadow_azimuth_deg": 3.6,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_151441",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15439.17,
+  "telemetry": {
+    "latitude": 55.951904957281435,
+    "longitude": -3.2072049700396352,
+    "altitude_agl": 2.2839422929885274,
+    "heading": 244.44414358716224,
+    "pitch": 3.7530876866102454,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 14.5,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744901795235,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-12-22T14:30:00+00:00",
+    "solar_azimuth": 211.65,
+    "solar_elevation": 5.33,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows (backlighting from ahead of the observer, Sun Azimuth 211.7\u00b0, Elevation 5.3\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951905",
+      "-3.207205"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T22:14:41.252826Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Urban parkland specimens of *Tilia \u00d7 europaea* (Common Lime) and *Acer pseudoplatanus* (Sycamore). Phenological state for late December (winter dormancy): 100% complete defoliation, totally bare branch architecture revealing intricate ramification networks, dark wet bark crusted with dormant nitrophytic lichens (*Xanthoria parietina*), and dormant winter bud clusters.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is ahead and to the LEFT, in the upper-left background (True Azimuth 211.7\u00b0, Elevation 5.3\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in shadow, reading as backlit silhouettes with a bright rim along their sunward edges; left-facing walls are brightly lit and right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: cast shadows project diagonally toward the camera and to the lower-RIGHT.\n- CAST SHADOW LENGTH: Every cast shadow is 10.7 times as long as the height of the object casting it. A 100 m tower casts a 1072 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project diagonally toward the camera and to the lower-RIGHT. Every shadow must be angled toward the RIGHT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nNeoclassical square centered on West Register House flanked by symmetrical Georgian ashlar townhouses and the Prince Albert equestrian monument. Center background features a tetrastyle Ionic portico beneath a massive cylindrical drum and ribbed copper dome oxidized to pale verdigris green, capped with an ashlar lantern. Symmetrical three-storey Georgian terraced wings execute Robert Adam facade designs in pale buff Craigleith sandstone ashlar, featuring rusticated ground-floor arcades, smooth upper storeys with giant-order pilasters, moulded entablatures, balustraded stone parapets, dressed chimney stacks, and timber 6-over-6 sash-and-case windows set in deep reveals. Historic coal-smoke patination and rain-washed mineral reveals accent the stone cornices and friezes. In the lawn foreground stands the Prince Albert Memorial, presenting a cast bronze equestrian statue atop a stepped, polished red-and-grey granite pedestal fitted with bronze bas-relief panels and bronze corner groups with green cupric weathering. Ground plane comprised of a broad expanse of dormant winter lawn turf, edged by squared whinstone kerbs and gravel paths.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4171,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2715,
+    "doc_chars": 1148,
+    "doc_trimmed": true,
+    "eco_chars": 370,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

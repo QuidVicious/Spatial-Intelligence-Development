@@ -1,0 +1,77 @@
+{
+  "world_id": "45bbf268-33c8-445f-a9e0-a564d8c9f6d2",
+  "viewer_url": "https://marble.worldlabs.ai/world/45bbf268-33c8-445f-a9e0-a564d8c9f6d2",
+  "splat_url": {
+    "500k": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/20c07e9a-6c61-416f-8bea-0d01b3f45854_sand_500k.spz",
+    "100k": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/a4e0e55d-bce1-438c-9746-877edd15a121_sand_100k.spz",
+    "full_res": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/d70a4ec8-6ef2-4a8e-a504-e660275e9d8b_sand.spz"
+  },
+  "collider_mesh_url": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/e2a3e7c5.glb",
+  "pano_url": null,
+  "raw_response": {
+    "operation_id": "aa18e553-e7f9-4b92-8b6d-a3836ef26963",
+    "created_at": "2026-09-03T22:10:45Z",
+    "updated_at": "2026-09-03T22:11:00Z",
+    "expires_at": "2026-09-04T01:10:45Z",
+    "done": true,
+    "error": null,
+    "metadata": {
+      "progress": {
+        "status": "SUCCEEDED",
+        "description": "World generation completed successfully"
+      },
+      "world_id": "45bbf268-33c8-445f-a9e0-a564d8c9f6d2",
+      "operation_type": "world_generation",
+      "public_model_name": "marble-1.0-draft"
+    },
+    "response": {
+      "world_id": "45bbf268-33c8-445f-a9e0-a564d8c9f6d2",
+      "display_name": "",
+      "tags": null,
+      "assets": {
+        "mesh": {
+          "collider_mesh_url": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/e2a3e7c5.glb",
+          "hq_mesh_url": null,
+          "full_res_mesh_url": null
+        },
+        "imagery": {
+          "pano_url": null
+        },
+        "splats": {
+          "spz_urls": {
+            "500k": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/20c07e9a-6c61-416f-8bea-0d01b3f45854_sand_500k.spz",
+            "100k": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/a4e0e55d-bce1-438c-9746-877edd15a121_sand_100k.spz",
+            "full_res": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/d70a4ec8-6ef2-4a8e-a504-e660275e9d8b_sand.spz"
+          },
+          "semantics_metadata": null
+        },
+        "thumbnail_url": "https://cdn.marble.worldlabs.ai/45bbf268-33c8-445f-a9e0-a564d8c9f6d2/738d3c94-88fe-48b4-96e8-afb6acc94189_sand_mpi/thumbnail.webp",
+        "caption": "An outdoor world at street level in a real place: 9 Ainslie Pl, Edinburgh EH3 6AT, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 4 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary survey of the Regency classical crescent facade at Ainslie Place, Edinburgh, designed by James Gillespie Graham. Concave curved sweep of 3-storey and basement terraced townhouses constructed from pale buff-grey Craigleith sandstone.\n\nSTRUCTURE AND MASSING\nCategory A listed Regency neoclassical concave circus terrace designed by James Gillespie Graham (1822) forming the Moray Estate crescent. Massing follows a 3-storey plus attic and submerged basement configuration, flanked by advanced 4-storey terminal pavilions.\n\nSURFACES AND MATERIALS\nPrimary facade: Craigleith quartzitic sandstone ashlar, displaying authentic urban sulfur-dioxide gypsum crusts in sheltered cornices and light surface micro-abrasions from North Sea maritime exposure. Area railings and ironwork: Wrought and cast iron spearhead balustrades, urn finials, and integral overthrow lantern brackets finished in semi-gloss black enamel.\n\nVEGETATION\nAinslie Place central pleasure gardens feature mature deciduous urban parkland canopy anchored by *Acer pseudoplatanus*\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 251 degrees at 21.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees."
+      },
+      "created_at": null,
+      "updated_at": null,
+      "permission": {
+        "public": false,
+        "allowed_readers": [],
+        "allowed_writers": [],
+        "allow_id_access": false
+      },
+      "world_prompt": null,
+      "world_marble_url": "https://marble.worldlabs.ai/world/45bbf268-33c8-445f-a9e0-a564d8c9f6d2",
+      "model": null
+    },
+    "cost": {
+      "total_credits": 150,
+      "line_items": [
+        {
+          "name": "Pano generation (image, pano)",
+          "credits": 0
+        },
+        {
+          "name": "Draft world generation",
+          "credits": 150
+        }
+      ]
+    }
+  }
+}

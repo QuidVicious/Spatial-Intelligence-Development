@@ -1,0 +1,27 @@
+{
+  "si_dir": "../si",
+  "model": "gemini-3.1-flash-image-preview",
+  "api_key_env_names": [
+    "GEMINI_API_KEY",
+    "GOOGLE_API_KEY",
+    "GOOGLE_GENAI_API_KEY"
+  ],
+  "defaults": {
+    "temperature": 0.2,
+    "top_p": 0.15,
+    "thinking_level": "high",
+    "include_thoughts": false,
+    "aspect_ratio": "16:9",
+    "image_size": "2K",
+    "repeats": 1
+  },
+  "error_tags": [
+    "Adjacent-cultural substitution",
+    "Composition syntax",
+    "Structural omission",
+    "Spatial inconsistency",
+    "View direction",
+    "Composite of stations",
+    "Postcard register"
+  ]
+}

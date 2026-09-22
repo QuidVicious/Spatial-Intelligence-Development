@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "16 Great Stuart St, Edinburgh EH3 7TN, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 2.1,
+          "pitch_deg": -2.3,
+          "heading_deg": 20.3,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock Stratigraphy**: Carboniferous sedimentary succession (Gullane Formation), comprising sandstone, siltstone, and mudstone strata underlying the Edinburgh New Town plateau, mantled by stiff lodgement till.\n- **Lithic Masonry**: Fine-to-medium grained quartzose blonde Craigleith and Hailes sandstone; non-hydraulic to weakly hydraulic lime mortar with graded river sand aggregate in tight 3\u20135mm ashlar bedding joints.\n- **Groundwater & Drainage**: Naturally sloping bedrock ridge shedding subterranean water northwest towards the Water of Leith basin; flagged subterranean area vaults with gravity-fed drainage channels."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Botanical Identifications**: *Acer pseudoplatanus* (Sycamore), *Tilia cordata* (Small-leaved Lime), *Ulmus glabra* (Wych Elm), and *Fagus sylvatica* (European Beech) situated within the enclosed Ainslie Place Gardens.\n- **Phenology (September 3)**: Late-summer to early-autumn transition; dense, high-volume canopies retaining primary chlorophyll green, with incipient apical chlorosis and marginal dull yellow/ochre tipping across upper branch peripheries; foliage fully intact without major abscission.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology & Provenance**: Early 19th-century Regency/Late Georgian neoclassical residential terraces and elliptical circus (Lord Moray Estate, designed by James Gillespie Graham, constructed c. 1822\u20131831).\n- **Massing & Elevation**: 3 storeys over rusticated/channelled basements with sunken area lightwells; attic storeys with slate-clad box and piended dormers.\n- **Fenestration & Detailing**: Regular vertical grid of 6-over-6 and 12-pane painted timber sash-and-case windows; piano nobile first-floor window bays fitted with cast-iron anthemion and palmette balconettes/window guards; continuous moulded string courses, projecting eaves cornice, and plain ashlar blocking course.\n- **Planar Rectification**: Photogrammetric surface collapse rectified to absolute plumb verticals; terrace planes rectified into continuous rectilinear (left) and sweeping concave elliptical (centre-distance) ashlar facades.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2110917187492176,
+          55.9525020865424
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-03T16:23:59+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 251.3,
+        "solar_elevation_deg": 21.41,
+        "shadow_azimuth_deg": 71.3,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "batch_id": "20260920-120135_calib-ainslie-oct",
+    "label": "calib-ainslie-oct",
+    "created": "2026-09-20T12:01:35",
+    "model": "gemini-3.1-flash-image-preview",
+    "si_file": "SI3.3.md",
+    "si_sha256": "c2e5f476bdc1fb8403b7973270ea623383d07dfb79701c498ab8036c70a86b86",
+    "prompt_template": "Ainslie Place gardens, Edinburgh. Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+    "sweep_values": [],
+    "repeats": 4,
+    "settings": {
+      "temperature": 0.2,
+      "top_p": 0.15,
+      "thinking_level": "high",
+      "include_thoughts": false,
+      "aspect_ratio": "16:9",
+      "image_size": "2K"
+    },
+    "base_seed": null,
+    "fixed_seed": false,
+    "planned_runs": 4,
+    "state": "done",
+    "finished": "2026-09-20T12:02:18"
+  },
+  "runs": [
+    {
+      "index": 1,
+      "sweep_value": null,
+      "repeat": 1,
+      "prompt": "Ainslie Place gardens, Edinburgh. Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:01:35",
+      "text": "**Excavation:**\n\nThe site is Ainslie Place gardens, a private, key-holder oval garden in the heart of Edinburgh's New Town, part of the Moray Estate development [recall]. The underlying geology is Carboniferous sedimentary rock, shaped by glacial action into the ridges and hollows that define the city's topography [recall]. The garden itself sits within a hollow, surrounded by the imposing Georgian terraces.\n\nThe viewpoint is established on the gravel path that circumnavigates the interior oval lawn, specifically on the southeast side [recall]. The camera is at eye level, approximately 1.6 meters above the ground plane (Level 0) [recall]. The sightline is oriented northwest, looking directly across the central lawn [recall].\n\nThe target is the facade of 7 Ainslie Place, which stands directly opposite on the northwest side of the oval [recall]. This building is a prime example of Edinburgh's Georgian architecture, constructed c. 1822 as part of the Moray Estate designed by James Gillespie Graham [recall]. It is a multi-story townhouse built of Craigleith sandstone ashlar, featuring a basement area protected by cast-iron railings, a ground floor with a prominent entrance and fanlight, and multiple upper floors with timber sash windows [recall]. The roof is slate with chimney stacks [recall]. The facade is part of a continuous, curved terrace, but 7 Ainslie Place is the central focus of this specific view [recall].\n\nThe time is 10am in late October [recall]. The weather is typical for the season in Edinburgh: cool, likely overcast with soft, diffused light, and a damp atmosphere [reach]. The mature deciduous trees within the garden, such as limes and chestnuts, are in full autumn color, with leaves in shades of gold, orange, and brown, many of which have fallen onto the lawn and path [reach]. The gravel path is damp from recent moisture [reach]. The scene is devoid of people and vehicles, emphasizing the quiet, residential character of the private garden and the surrounding architecture [recall].\n\n**JSON DNA:**\n\n```json\n{\n  \"location\": {\n    \"site\": \"Ainslie Place gardens\",\n    \"city\": \"Edinburgh\",\n    \"country\": \"Scotland\",\n    \"context\": \"Moray Estate, New Town\"\n  },\n  \"viewpoint\": {\n    \"position\": \"Gravel path, southeast side of interior oval\",\n    \"height\": \"Eye level (approx. 1.6m above grade)\",\n    \"orientation\": \"Northwest\"\n  },\n  \"target\": {\n    \"subject\": \"Facade of 7 Ainslie Place\",\n    \"type\": \"Georgian townhouse\",\n    \"material\": \"Craigleith sandstone ashlar\",\n    \"features\": [\n      \"Basement area with cast-iron railings\",\n      \"Ground floor entrance with fanlight\",\n      \"Timber sash windows\",\n      \"Slate roof with chimney stacks\"\n    ]\n  },\n  \"environment\": {\n    \"time\": \"10am\",\n    \"date\": \"Late October\",\n    \"weather\": \"Typical (cool, overcast, damp)\",\n    \"foliage\": \"Mature deciduous trees with autumn colors (gold, orange, brown)\",\n    \"ground\": \"Damp gravel path, lawn with fallen leaves\"\n  },\n  \"composition\": {\n    \"foreground\": \"Damp gravel path, fallen leaves, edge of lawn\",\n    \"midground\": \"Expansive lawn, mature trees, curving path\",\n    \"background\": \"Curved Georgian terrace, 7 Ainslie Place centered\"\n  },\n  \"confidence\": {\n    \"location\": \"[recall]\",\n    \"viewpoint\": \"[recall]\",\n    \"target_location\": \"[recall]\",\n    \"target_architecture\": \"[recall]\",\n    \"time_date\": \"[recall]\",\n    \"weather_foliage\": \"[reach]\",\n    \"ground_details\": \"[reach]\",\n    \"composition\": \"[recall]\"\n  }\n}\n```\n\n**Image Prompt:**\n\nA wide-angle, eye-level photograph taken at 10am in late October, looking northwest across the central lawn of Ainslie Place gardens in Edinburgh. The viewpoint is from the damp gravel path on the southeast side of the interior oval. The foreground is dominated by the texture of the wet gravel and scattered fallen autumn leaves in shades of gold, orange, and brown. The expansive green lawn stretches across the midground, dotted with mature deciduous trees displaying full autumn foliage. The background is the imposing, curved terrace of Georgian townhouses built of grey Craigleith sandstone ashlar. Centered directly in the line of sight is the facade of 7 Ainslie Place, a multi-story townhouse with its basement area and cast-iron railings, ground floor entrance with a fanlight, and rows of timber sash windows under a slate roof with chimney stacks. The light is soft and diffused under a typically overcast Edinburgh sky. The scene is quiet and completely empty of people and vehicles.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 1069,
+        "prompt_token_count": 1492,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1492
+          }
+        ],
+        "thoughts_token_count": 1081,
+        "total_token_count": 3642
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 10.9,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 2,
+      "sweep_value": null,
+      "repeat": 2,
+      "prompt": "Ainslie Place gardens, Edinburgh. Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:01:46",
+      "text": "**Excavation:**\n\nThe site is Ainslie Place gardens, a private, key-holder oval garden in the heart of Edinburgh's New Town, part of the Moray Estate development [recall]. The underlying geology is Carboniferous sedimentary rock, shaped by glacial action into the ridges and hollows that define the city's topography [recall]. The garden itself sits within a hollow, surrounded by the imposing Georgian terraces.\n\nThe viewpoint is established on the gravel path that circumnavigates the interior oval lawn, specifically on the southeast side [recall]. The camera is at eye level, approximately 1.6 meters above the ground plane (Level 0) [recall]. The sightline is oriented northwest, looking directly across the central lawn [recall].\n\nThe target is the facade of 7 Ainslie Place, which stands directly opposite on the northwest side of the oval [recall]. This building is a prime example of Edinburgh's Georgian architecture, constructed c. 1822 as part of the Moray Estate designed by James Gillespie Graham [recall]. It is a multi-story townhouse built of Craigleith sandstone ashlar, featuring a basement area protected by cast-iron railings, a ground floor with a prominent entrance and fanlight, and multiple upper floors with timber sash windows [recall]. The roof is slate with chimney stacks [recall]. The facade is part of a continuous, curved terrace, but 7 Ainslie Place is the central focus of this specific view [recall].\n\nThe time is 10am in late October [recall]. The weather is typical for the season in Edinburgh: cool, likely overcast with soft, diffused light, and a damp atmosphere [reach]. The mature deciduous trees within the garden, such as limes and chestnuts, are in full autumn color, with leaves in shades of gold, orange, and brown, many of which have fallen onto the lawn and path [reach]. The gravel path is damp from recent moisture [reach]. The scene is devoid of people and vehicles, emphasizing the quiet, residential character of the private garden and the surrounding architecture [recall].\n\n**JSON DNA:**\n\n```json\n{\n  \"location\": {\n    \"site\": \"Ainslie Place gardens\",\n    \"city\": \"Edinburgh\",\n    \"country\": \"Scotland\",\n    \"context\": \"Moray Estate, New Town\"\n  },\n  \"viewpoint\": {\n    \"position\": \"Gravel path, southeast side of interior oval\",\n    \"height\": \"Eye level (approx. 1.6m above grade)\",\n    \"orientation\": \"Northwest\"\n  },\n  \"target\": {\n    \"subject\": \"Facade of 7 Ainslie Place\",\n    \"type\": \"Georgian townhouse\",\n    \"material\": \"Craigleith sandstone ashlar\",\n    \"features\": [\n      \"Basement area with cast-iron railings\",\n      \"Ground floor entrance with fanlight\",\n      \"Timber sash windows\",\n      \"Slate roof with chimney stacks\"\n    ]\n  },\n  \"environment\": {\n    \"time\": \"10am\",\n    \"date\": \"Late October\",\n    \"weather\": \"Typical (cool, overcast, damp)\",\n    \"foliage\": \"Mature deciduous trees with autumn colors (gold, orange, brown)\",\n    \"ground\": \"Damp gravel path, lawn with fallen leaves\"\n  },\n  \"composition\": {\n    \"foreground\": \"Damp gravel path, fallen leaves, edge of lawn\",\n    \"midground\": \"Expansive lawn, mature trees, curving path\",\n    \"background\": \"Curved Georgian terrace, 7 Ainslie Place centered\"\n  },\n  \"confidence\": {\n    \"location\": \"[recall]\",\n    \"viewpoint\": \"[recall]\",\n    \"target_location\": \"[recall]\",\n    \"target_architecture\": \"[recall]\",\n    \"time_date\": \"[recall]\",\n    \"weather_foliage\": \"[reach]\",\n    \"ground_details\": \"[reach]\",\n    \"composition\": \"[recall]\"\n  }\n}\n```\n\n**Image Prompt:**\n\nA wide-angle, eye-level photograph taken at 10am in late October, looking northwest across the central lawn of Ainslie Place gardens in Edinburgh. The viewpoint is from the damp gravel path on the southeast side of the interior oval. The foreground is dominated by the texture of the wet gravel and scattered fallen autumn leaves in shades of gold, orange, and brown. The expansive green lawn stretches across the midground, dotted with mature deciduous trees displaying full autumn foliage. The background is the imposing, curved terrace of Georgian townhouses built of grey Craigleith sandstone ashlar. Centered directly in the line of sight is the facade of 7 Ainslie Place, a multi-story townhouse with its basement area and cast-iron railings, ground floor entrance with a fanlight, and rows of timber sash windows under a slate roof with chimney stacks. The light is soft and diffused under a typically overcast Edinburgh sky. The scene is quiet and completely empty of people and vehicles.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 1069,
+        "prompt_token_count": 1492,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1492
+          }
+        ],
+        "thoughts_token_count": 1081,
+        "total_token_count": 3642
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 10.9,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 3,
+      "sweep_value": null,
+      "repeat": 3,
+      "prompt": "Ainslie Place gardens, Edinburgh. Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:01:57",
+      "text": "**Excavation:**\n\nThe site is Ainslie Place gardens, a private, key-holder oval garden in the heart of Edinburgh's New Town, part of the Moray Estate development [recall]. The underlying geology is Carboniferous sedimentary rock, shaped by glacial action into the ridges and hollows that define the city's topography [recall]. The garden itself sits within a hollow, surrounded by the imposing Georgian terraces.\n\nThe viewpoint is established on the gravel path that circumnavigates the interior oval lawn, specifically on the southeast side [recall]. The camera is at eye level, approximately 1.6 meters above the ground plane (Level 0) [recall]. The sightline is oriented northwest, looking directly across the central lawn [recall].\n\nThe target is the facade of 7 Ainslie Place, which stands directly opposite on the northwest side of the oval [recall]. This building is a prime example of Edinburgh's Georgian architecture, constructed c. 1822 as part of the Moray Estate designed by James Gillespie Graham [recall]. It is a multi-story townhouse built of Craigleith sandstone ashlar, featuring a basement area protected by cast-iron railings, a ground floor with a prominent entrance and fanlight, and multiple upper floors with timber sash windows [recall]. The roof is slate with chimney stacks [recall]. The facade is part of a continuous, curved terrace, but 7 Ainslie Place is the central focus of this specific view [recall].\n\nThe time is 10am in late October [recall]. The weather is typical for the season in Edinburgh: cool, likely overcast with soft, diffused light, and a damp atmosphere [reach]. The mature deciduous trees within the garden, such as limes and chestnuts, are in full autumn color, with leaves in shades of gold, orange, and brown, many of which have fallen onto the lawn and path [reach]. The gravel path is damp from recent moisture [reach]. The scene is devoid of people and vehicles, emphasizing the quiet, residential character of the private garden and the surrounding architecture [recall].\n\n**JSON DNA:**\n\n```json\n{\n  \"location\": {\n    \"site\": \"Ainslie Place gardens\",\n    \"city\": \"Edinburgh\",\n    \"country\": \"Scotland\",\n    \"context\": \"Moray Estate, New Town\"\n  },\n  \"viewpoint\": {\n    \"position\": \"Gravel path, southeast side of interior oval\",\n    \"height\": \"Eye level (approx. 1.6m above grade)\",\n    \"orientation\": \"Northwest\"\n  },\n  \"target\": {\n    \"subject\": \"Facade of 7 Ainslie Place\",\n    \"type\": \"Georgian townhouse\",\n    \"material\": \"Craigleith sandstone ashlar\",\n    \"features\": [\n      \"Basement area with cast-iron railings\",\n      \"Ground floor entrance with fanlight\",\n      \"Timber sash windows\",\n      \"Slate roof with chimney stacks\"\n    ]\n  },\n  \"environment\": {\n    \"time\": \"10am\",\n    \"date\": \"Late October\",\n    \"weather\": \"Typical (cool, overcast, damp)\",\n    \"foliage\": \"Mature deciduous trees with autumn colors (gold, orange, brown)\",\n    \"ground\": \"Damp gravel path, lawn with fallen leaves\"\n  },\n  \"composition\": {\n    \"foreground\": \"Damp gravel path, fallen leaves, edge of lawn\",\n    \"midground\": \"Expansive lawn, mature trees, curving path\",\n    \"background\": \"Curved Georgian terrace, 7 Ainslie Place centered\"\n  },\n  \"confidence\": {\n    \"location\": \"[recall]\",\n    \"viewpoint\": \"[recall]\",\n    \"target_location\": \"[recall]\",\n    \"target_architecture\": \"[recall]\",\n    \"time_date\": \"[recall]\",\n    \"weather_foliage\": \"[reach]\",\n    \"ground_details\": \"[reach]\",\n    \"composition\": \"[recall]\"\n  }\n}\n```\n\n**Image Prompt:**\n\nA wide-angle, eye-level photograph taken at 10am in late October, looking northwest across the central lawn of Ainslie Place gardens in Edinburgh. The viewpoint is from the damp gravel path on the southeast side of the interior oval. The foreground is dominated by the texture of the wet gravel and scattered fallen autumn leaves in shades of gold, orange, and brown. The expansive green lawn stretches across the midground, dotted with mature deciduous trees displaying full autumn foliage. The background is the imposing, curved terrace of Georgian townhouses built of grey Craigleith sandstone ashlar. Centered directly in the line of sight is the facade of 7 Ainslie Place, a multi-story townhouse with its basement area and cast-iron railings, ground floor entrance with a fanlight, and rows of timber sash windows under a slate roof with chimney stacks. The light is soft and diffused under a typically overcast Edinburgh sky. The scene is quiet and completely empty of people and vehicles.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 1069,
+        "prompt_token_count": 1492,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1492
+          }
+        ],
+        "thoughts_token_count": 1081,
+        "total_token_count": 3642
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 10.7,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 4,
+      "sweep_value": null,
+      "repeat": 4,
+      "prompt": "Ainslie Place gardens, Edinburgh. Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:02:08",
+      "text": "**Excavation:**\n\nThe site is Ainslie Place gardens, a private, key-holder oval garden in the heart of Edinburgh's New Town, part of the Moray Estate development [recall]. The underlying geology is Carboniferous sedimentary rock, shaped by glacial action into the ridges and hollows that define the city's topography [recall]. The garden itself sits within a hollow, surrounded by the imposing Georgian terraces.\n\nThe viewpoint is established on the gravel path that circumnavigates the interior oval lawn, specifically on the southeast side [recall]. The camera is at eye level, approximately 1.6 meters above the ground plane (Level 0) [recall]. The sightline is oriented northwest, looking directly across the central lawn [recall].\n\nThe target is the facade of 7 Ainslie Place, which stands directly opposite on the northwest side of the oval [recall]. This building is a prime example of Edinburgh's Georgian architecture, constructed c. 1822 as part of the Moray Estate designed by James Gillespie Graham [recall]. It is a multi-story townhouse built of Craigleith sandstone ashlar, featuring a basement area protected by cast-iron railings, a ground floor with a prominent entrance and fanlight, and multiple upper floors with timber sash windows [recall]. The roof is slate with chimney stacks [recall]. The facade is part of a continuous, curved terrace, but 7 Ainslie Place is the central focus of this specific view [recall].\n\nThe time is 10am in late October [recall]. The weather is typical for the season in Edinburgh: cool, likely overcast with soft, diffused light, and a damp atmosphere [reach]. The mature deciduous trees within the garden, such as limes and chestnuts, are in full autumn color, with leaves in shades of gold, orange, and brown, many of which have fallen onto the lawn and path [reach]. The gravel path is damp from recent moisture [reach]. The scene is devoid of people and vehicles, emphasizing the quiet, residential character of the private garden and the surrounding architecture [recall].\n\n**JSON DNA:**\n\n```json\n{\n  \"location\": {\n    \"site\": \"Ainslie Place gardens\",\n    \"city\": \"Edinburgh\",\n    \"country\": \"Scotland\",\n    \"context\": \"Moray Estate, New Town\"\n  },\n  \"viewpoint\": {\n    \"position\": \"Gravel path, southeast side of interior oval\",\n    \"height\": \"Eye level (approx. 1.6m above grade)\",\n    \"orientation\": \"Northwest\"\n  },\n  \"target\": {\n    \"subject\": \"Facade of 7 Ainslie Place\",\n    \"type\": \"Georgian townhouse\",\n    \"material\": \"Craigleith sandstone ashlar\",\n    \"features\": [\n      \"Basement area with cast-iron railings\",\n      \"Ground floor entrance with fanlight\",\n      \"Timber sash windows\",\n      \"Slate roof with chimney stacks\"\n    ]\n  },\n  \"environment\": {\n    \"time\": \"10am\",\n    \"date\": \"Late October\",\n    \"weather\": \"Typical (cool, overcast, damp)\",\n    \"foliage\": \"Mature deciduous trees with autumn colors (gold, orange, brown)\",\n    \"ground\": \"Damp gravel path, lawn with fallen leaves\"\n  },\n  \"composition\": {\n    \"foreground\": \"Damp gravel path, fallen leaves, edge of lawn\",\n    \"midground\": \"Expansive lawn, mature trees, curving path\",\n    \"background\": \"Curved Georgian terrace, 7 Ainslie Place centered\"\n  },\n  \"confidence\": {\n    \"location\": \"[recall]\",\n    \"viewpoint\": \"[recall]\",\n    \"target_location\": \"[recall]\",\n    \"target_architecture\": \"[recall]\",\n    \"time_date\": \"[recall]\",\n    \"weather_foliage\": \"[reach]\",\n    \"ground_details\": \"[reach]\",\n    \"composition\": \"[recall]\"\n  }\n}\n```\n\n**Image Prompt:**\n\nA wide-angle, eye-level photograph taken at 10am in late October, looking northwest across the central lawn of Ainslie Place gardens in Edinburgh. The viewpoint is from the damp gravel path on the southeast side of the interior oval. The foreground is dominated by the texture of the wet gravel and scattered fallen autumn leaves in shades of gold, orange, and brown. The expansive green lawn stretches across the midground, dotted with mature deciduous trees displaying full autumn foliage. The background is the imposing, curved terrace of Georgian townhouses built of grey Craigleith sandstone ashlar. Centered directly in the line of sight is the facade of 7 Ainslie Place, a multi-story townhouse with its basement area and cast-iron railings, ground floor entrance with a fanlight, and rows of timber sash windows under a slate roof with chimney stacks. The light is soft and diffused under a typically overcast Edinburgh sky. The scene is quiet and completely empty of people and vehicles.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 1069,
+        "prompt_token_count": 1492,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1492
+          }
+        ],
+        "thoughts_token_count": 1081,
+        "total_token_count": 3642
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 10.8,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1500 Maine Ave SW, Washington, DC 20024, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 206.0,
+          "pitch_deg": -18.5,
+          "heading_deg": 1.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean geology comprises Pleistocene alluvial gravels, silts, and clays of the Atlantic Coastal Plain unconformably overlying Piedmont crystalline metamorphic bedrock (metagraywacke and mica schist of the Wissahickon Formation). Foundation underpinning beneath the monument utilizes a massive mass-concrete sub-footing collar encasing original blue gneiss and granitic rubble. Primary monumental masonry features fine-grained calcite and dolomite marble from Cockeysville, Maryland (lower 46 meters) transitioning above the 1854 construction hiatus line to white crystalline marble from Sheffield/Lee, Massachusetts and upper-tier Beaver Dam marble, backed with coursed Maine granite blocks. Surrounding civic architecture incorporates Salem Limestone (Indiana Oolitic limestone), Aquia Creek sandstone, and Georgia granite curbstones. Mortar systems vary from hydraulic lime-sand mixes at lower tiers to Portland cement-lime mortar throughout late-nineteenth-century upper courses."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Vegetation consists of mature urban parkland plantings dominated by *Ulmus americana* (American Elm), *Quercus phellos* (Willow Oak), *Quercus palustris* (Pin Oak), *Platanus occidentalis* (American Sycamore), and *Liriodendron tulipifera* (Tulip Poplar). In early September, canopies maintain full, dense late-summer leaf volume with deep green pigmentation; occasional localized chlorotic yellowing and edge necrosis appear on exposed upper crown leaves, with zero branch defoliation. Broad continuous lawns consist of deeply rooted, closely mown *Festuca arundinacea* (Tall Fescue) and *Poa pratensis* (Kentucky Bluegrass) turf displaying localized foot-traffic compaction along unpaved paths.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The central obelisk is a hollow unreinforced load-bearing masonry shaft rising 169.3 meters, tapering with a 1:55 batter to a 55-degree pyramidion capped with a cast aluminium apex. Planar load lines align vertically to true gravity without structural deflection. The adjacent museum building features an inverted three-tiered ziggurat corona clad in ornamental cast-aluminium lattice screens inspired by Yoruba Yoruban caryatid metalwork, surrounding a structurally glazed inner curtain wall envelope. Surrounding federal complexes represent monumental Beaux-Arts, Neoclassical, and French Second Empire typologies exhibiting strict horizontal entablatures, rusticated ground-floor arcades, colossal fluted Doric and Ionic colonnades, rhythmic rectangular 6-over-6 fenestration grids, and pitched hipped mansards with red Spanish barrel terra-cotta tiles.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03520321325105,
+          38.885239693956215
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T22:11:59+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 267.04,
+        "solar_elevation_deg": 15.35,
+        "shadow_azimuth_deg": 87.0,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

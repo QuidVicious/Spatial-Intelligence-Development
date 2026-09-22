@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "9 St Colme St, Edinburgh EH3 6AA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 27.4,
+          "pitch_deg": -20.1,
+          "heading_deg": 302.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock consists of Carboniferous calciferous sandstone and basaltic volcanic sill intrusions. Masonry comprises pale blonde-to-ochre Craigleith and Hailes carboniferous quartz-arenite sandstone. Mortar is traditional non-hydraulic to weakly hydraulic lime blended with sharp river sand. Ground slopes northwest toward the Water of Leith valley with subsurface glacial till over fractured rock drainage."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Central circular private garden containing mature *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (sycamore), and *Tilia \u00d7 europaea* (common lime). Date-grounded phenology (late December): 100% defoliated canopy, exposed intricate branching silhouettes, bare wet bark, and dense dormant turf understory with peripheral perennial beds.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Georgian Neoclassical circus and crescent plan (Moray Estate, James Gillespie Graham). Continuous curved sandstone facades: rusticated ground floor, polished ashlar on first and second floors, sunken lightwells/basements, and pitched mansard attics with lead-cheeked dormers. Planar facade alignment, true vertical fenestration grid with 6-over-6 and 2-over-2 timber sash-and-case windows. Symmetrical chimney stacks with cylindrical clay flue pots punctuate Scottish slate roofs.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2089071279675117,
+          55.95293152492543
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T07:35:59+00:00",
+        "weather_state": "SNOW",
+        "solar_azimuth_deg": 120.21,
+        "solar_elevation_deg": -8.24,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "20816 President Point Rd NE, Kingston, WA 98346, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 20.8,
+          "pitch_deg": 0.6,
+          "heading_deg": 263.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation situated within the Puget Lowland glacial drift sequence, dominated by dense Vashon lodgement till, advance outwash sand and gravel, and glaciolacustrine silt strata. Shoreline margin consists of mixed quaternary beach gravels, sub-rounded basaltic cobbles, and unsorted littoral sand deposits. Drainage is defined by high-permeability surficial slopes discharging toward the marine foreshore."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Dense Pacific Northwest coastal temperate maritime canopy. Dominant evergreen conifers include mature *Pseudotsuga menziesii* (Douglas-fir) and *Thuja plicata* (Western redcedar) with pyramidal crowns and pendulous foliage sprays, interspersed with *Tsuga heterophylla* (Western hemlock). Deciduous understory and forest fringe include *Acer macrophyllum* (Bigleaf maple) displaying early September foliar margin chlorosis, *Alnus rubra* (Red alder), *Gaultheria shallon* (Salal), and ground cover of *Polystichum munitum* (Western sword fern).",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Pacific Northwest coastal vernacular residential cluster anchored into the hillside contour. Primary dwelling is a two-storey multi-planar timber-frame structure featuring an intersecting gable-and-hipped composite roof system, extensive cantilevered wraparound timber observation decks, and wide multi-lite panoramic glazing facing the waterline. Flanking auxiliary structure comprises a two-storey gabled carriage house typology with ground-level vehicular bays and upper residential volume. Outlying hillside volumes feature stepped single- and multi-level rectilinear footprints. All vertical wall planes, deck posts, and fascia lines rectified to plumb and orthogonal alignments.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.47258792922247,
+          47.74826931895858
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-09T23:48:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 246.4,
+        "solar_elevation_deg": 26.9,
+        "shadow_azimuth_deg": 66.4,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

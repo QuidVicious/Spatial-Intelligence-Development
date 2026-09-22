@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "401 14th St SW #118, Washington, DC 20227, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 456.2,
+          "pitch_deg": -38.4,
+          "heading_deg": 346.7,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock & Subterranean Dynamics: Underlain by the Atlantic Coastal Plain unconsolidated alluvial gravels, sand, and clay resting above the crystalline metamorphic bedrock of the Piedmont fall line (gneiss and schist). Foundation stabilized by late 19th-century mass-poured Portland cement concrete underpinning beneath original blue gneiss rubble footing.\n- Primary Monument Lithics: Tri-partite marble envelope. Lower 46 meters constructed of calcitic marble from the Symington quarry in Texas, Maryland; transitional zone incorporates dolomitic marble from Sheffield, Massachusetts; upper shaft completed with dolomitic marble ashlar from the Beaver Dam quarry in Cockeysville, Maryland. Interior load-bearing backing composed of rough-dressed Maine and Massachusetts granite ashlar.\n- Surrounding Urban Lithics: Indiana Bedford calcarenite oolitic limestone across Federal Triangle classical facades; honed charcoal and light-gray granite pavers for Monument base concentric plaza rings; crushed Virginia bluestone and decomposed orange-buff gravel pathway matrices."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Canopy Composition: Specimen groves and flanking all\u00e9es dominated by *Ulmus americana* 'Jefferson' and 'Princeton' (American Elm), interspersed with *Quercus phellos* (Willow Oak), *Quercus rubra* (Northern Red Oak), and *Platanus \u00d7 acerifolia* (London Planetree).\n- Seasonal Phenology (September 4 / Late Summer): Dense, mature full-leaf canopy volumes; foliage displays deep, late-season chlorophyll saturation with subtle initial tip chlorosis and heat-induced desiccated leaf margins on exposed upper crowns; lawn turf shows uniform active green vegetative cover intersected by compacted buff-ochre pedestrian thoroughfares.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Washington Monument: Monolithic hollow stone obelisk, square plan tapering upward to a pyramidal apex (pyramidion capped with cast aluminum apex point). True gravity vertical plumb alignment with four planar battered facets, terminating at 169.29 meters. Circular base plaza features concentric granite retaining rings and circular radial perimeter paths.\n- National Museum of African American History and Culture (Adjaye Associates): Postmodern tiered corona massing composed of three inverted pyramidal stepped tiers with inverted angle geometry, supported by central concrete core and perimeter steel diagonals, resting on a recessed glazed podium base with an expansive low-profile flat roof incorporating photovoltaic arrays.\n- Herbert C. Hoover Building (Federal Triangle / Department of Commerce): Neoclassical / Beaux-Arts monumental federal office block; seven-story rectangular perimeter massing with repeating interior light courts, monumental rusticated Indiana limestone base, rhythmic Tuscan and Doric giant-order colonnades, and perimeter pitched hipped roof structures clad in red clay mission tiles.\n- Planar Rectification: Complete orthographic rectification of photogrammetric mesh distortion. Shaft faces planarized to absolute geometric taper; street alignments and rectilinear Federal Triangle grid fully squared to true engineering axes.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03371479628419,
+          38.88535350201629
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T19:18:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 231.58,
+        "solar_elevation_deg": 46.93,
+        "shadow_azimuth_deg": 51.6,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

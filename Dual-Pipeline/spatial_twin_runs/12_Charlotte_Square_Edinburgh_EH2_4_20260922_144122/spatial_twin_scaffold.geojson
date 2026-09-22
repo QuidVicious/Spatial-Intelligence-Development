@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 1.4,
+          "pitch_deg": 4.8,
+          "heading_deg": 245.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock foundation comprises Lower Carboniferous sedimentary strata of the Edinburgh Lothian succession, overlain by consolidated glacial till. Primary structural masonry is pale blonde-to-grey Craigleith and Hailes sandstone, characterized by high-silica quartzose cementation and fine-to-medium grain. Pedestal of the central equestrian monument constructed from polished red Peterhead granite blocks with grey granite footings. Traditional slaked lime (non-hydraulic) mortar joints throughout historic ashlar masonry."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Winter phenological state for late December. Deciduous urban parkland trees comprising mature *Tilia cordata* (small-leaved lime), *Acer pseudoplatanus* (sycamore), and *Ulmus glabra* (wych elm). All trees are fully dormant and completely defoliated, displaying bare, complex networks of dark grey-brown ramified branches, knobby trunks, and fine twig silhouettes. Turf is dormant cool-season lawn (*Lolium perenne* blended with *Festuca rubra*), trimmed and lightly moisture-retentive with fine moss infill in shaded areas.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Neoclassical urban ensemble centered on West Register House (formerly St. George's Church, designed by Robert Reid after Robert Adam, 1811\u20131814). Central edifice features a monumental Roman-Doric tetrastyle entrance portico, entablature, and pediment, surmounted by a stepped square plinth, circular peristyle drum with attached colonnettes, and a tall verdigris-clad copper dome topped by an octagonal lantern and gilded cross. Symmetrical flanking wings comprise Class A-listed Georgian terrace townhouses: three principal storeys over rusticated raised basements, ashlar stringcourses, dentiled eaves cornices, blocking courses, and pitched timber roofs clad in Ballachulish slate punctuated by regular dormers and stone ashlar chimney stacks with terracotta chimney pots. Fenestration is strictly aligned 6-over-6 and 12-over-12 double-hung timber sash-and-case windows recessed in moulded architraves. Foreground features the Prince Albert Memorial (Sir John Steell, inaugurated 1876): multi-tiered stepped red granite pedestal with sculpted bronze corner groups and relief panels supporting a life-size bronze equestrian statue.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T15:21:00+00:00",
+        "weather_state": "RAIN",
+        "solar_azimuth_deg": 222.54,
+        "solar_elevation_deg": 1.03,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

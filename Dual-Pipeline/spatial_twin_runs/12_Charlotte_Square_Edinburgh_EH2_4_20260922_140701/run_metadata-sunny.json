@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_140701",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16249.47,
+  "telemetry": {
+    "latitude": 55.95193940179104,
+    "longitude": -3.2071626013510146,
+    "altitude_agl": 1.4265570652769952,
+    "heading": 245.49748741600874,
+    "pitch": 4.81778340370248,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-22",
+    "time_of_day": 18.75,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744802638455,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": true,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-09-22T17:45:00+00:00",
+    "solar_azimuth": 266.06,
+    "solar_elevation": 3.31,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows (backlighting from ahead of the observer, Sun Azimuth 266.1\u00b0, Elevation 3.3\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951939",
+      "-3.207163"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": true
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T21:07:01.093158Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Urban Flora: Mature specimen broadleaf trees including *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (sycamore), and *Tilia \u00d7 europaea* (common lime).\n- Phenology (Late September): Early autumn canopy transition;\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is directly ahead of the camera in the centre background (True Azimuth 266.1\u00b0, Elevation 3.3\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in shadow, reading as backlit silhouettes with a bright rim along their sunward edges; left- and right-facing walls are lit roughly equally.\n- CAST SHADOW DIRECTION: cast shadows project directly toward the camera, down the frame.\n- CAST SHADOW LENGTH: Cast shadows are more than twelve times the height of the object casting them: extremely long, running off the edge of the frame.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project directly toward the camera, down the frame. Every shadow must be angled toward the LEFT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nA high-resolution static architectural record of Charlotte Square looking toward West Register House and the central gardens. Foreground dominated by a manicured green turf lawn of Lolium perenne, featuring the Albert Memorial: a multi-tiered pedestal of polished pink Peterhead granite carrying the patinated bronze equestrian statue of Prince Albert flanked by bronze corner figure groups. Mature urban trees (Platanus \u00d7 acerifolia and Tilia \u00d7 europaea) display early autumn phenology with yellowing, thinning foliage and visible dark branch structures. In the background, the West Register House facade is built of blonde Craigleith sandstone ashlar, featuring a monumental Roman Ionic portico, pediment, high circular drum with columned apertures, and a massive verdigris copper dome crowned with an octagonal stone lantern and gilt finial. Flanking the central civic dome are continuous 3-storey Georgian palace-front townhouses of pale Craigleith ashlar, displaying rusticated ground floors, regular 6-over-6 timber sash-and-case windows, molded stringcourses, continuous eaves cornices, grey Scots slate mansard roofs, dormer windows, and rectangular stone chimney stacks. Masonry displays authentic atmospheric coal-smoke staining in recessed friezes and crisp rain-washed sandstone entablatures.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4112,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2640,
+    "doc_chars": 1304,
+    "doc_trimmed": true,
+    "eco_chars": 230,
+    "eco_trimmed": true,
+    "has_botanical_phenology": true
+  }
+}

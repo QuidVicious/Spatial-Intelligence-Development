@@ -1,0 +1,36 @@
+{
+  "timestamp": "20260903_151105",
+  "address": "9 Ainslie Pl, Edinburgh EH3 6AT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "WORLD_LABS",
+  "model_name": "marble-1.0-draft",
+  "latency_ms": 20986.17,
+  "telemetry": {
+    "latitude": 55.95334282274637,
+    "longitude": -3.2103431123941983,
+    "altitude_agl": 3.9368321911530444,
+    "heading": 16.847160335983098,
+    "pitch": 4.0096932290004075,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "system_instruction": "",
+  "user_prompt": "An outdoor world at street level in a real place: 9 Ainslie Pl, Edinburgh EH3 6AT, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 4 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary survey of the Regency classical crescent facade at Ainslie Place, Edinburgh, designed by James Gillespie Graham. Concave curved sweep of 3-storey and basement terraced townhouses constructed from pale buff-grey Craigleith sandstone.\n\nSTRUCTURE AND MASSING\nCategory A listed Regency neoclassical concave circus terrace designed by James Gillespie Graham (1822) forming the Moray Estate crescent. Massing follows a 3-storey plus attic and submerged basement configuration, flanked by advanced 4-storey terminal pavilions.\n\nSURFACES AND MATERIALS\nPrimary facade: Craigleith quartzitic sandstone ashlar, displaying authentic urban sulfur-dioxide gypsum crusts in sheltered cornices and light surface micro-abrasions from North Sea maritime exposure. Area railings and ironwork: Wrought and cast iron spearhead balustrades, urn finials, and integral overthrow lantern brackets finished in semi-gloss black enamel.\n\nVEGETATION\nAinslie Place central pleasure gardens feature mature deciduous urban parkland canopy anchored by *Acer pseudoplatanus*\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 251 degrees at 21.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "compiled_prompt": "An outdoor world at street level in a real place: 9 Ainslie Pl, Edinburgh EH3 6AT, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 4 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary survey of the Regency classical crescent facade at Ainslie Place, Edinburgh, designed by James Gillespie Graham. Concave curved sweep of 3-storey and basement terraced townhouses constructed from pale buff-grey Craigleith sandstone.\n\nSTRUCTURE AND MASSING\nCategory A listed Regency neoclassical concave circus terrace designed by James Gillespie Graham (1822) forming the Moray Estate crescent. Massing follows a 3-storey plus attic and submerged basement configuration, flanked by advanced 4-storey terminal pavilions.\n\nSURFACES AND MATERIALS\nPrimary facade: Craigleith quartzitic sandstone ashlar, displaying authentic urban sulfur-dioxide gypsum crusts in sheltered cornices and light surface micro-abrasions from North Sea maritime exposure. Area railings and ironwork: Wrought and cast iron spearhead balustrades, urn finials, and integral overthrow lantern brackets finished in semi-gloss black enamel.\n\nVEGETATION\nAinslie Place central pleasure gardens feature mature deciduous urban parkland canopy anchored by *Acer pseudoplatanus*\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 251 degrees at 21.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "prompt_metadata": {
+    "renderer": "WORLD_LABS",
+    "final_char_count": 1774,
+    "budget": 2000,
+    "over_budget": false,
+    "fixed_cost": 698,
+    "sections_included": 8,
+    "sections_trimmed": [
+      "THE PLACE",
+      "STRUCTURE AND MASSING",
+      "SURFACES AND MATERIALS",
+      "VEGETATION"
+    ],
+    "scrubbed_photographic": true,
+    "screen_space_lighting_used": false
+  }
+}

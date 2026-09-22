@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_151256",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15419.62,
+  "telemetry": {
+    "latitude": 55.951904957281435,
+    "longitude": -3.2072049700396352,
+    "altitude_agl": 2.2839422929885274,
+    "heading": 244.44414358716224,
+    "pitch": 3.7530876866102454,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 16.6,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744901795235,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-12-22T16:36:00+00:00",
+    "solar_azimuth": 237.76,
+    "solar_elevation": -7.01,
+    "color_temperature_k": 2000,
+    "lux": 5,
+    "natural_description": "Calibrated 2000K Nocturnal Night Scene (Elevation -7.0\u00b0). Weather: SUNNY."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951905",
+      "-3.207205"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T22:12:56.105216Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Enclosed square parkland containing mature deciduous canopy trees: *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm). Botanical phenology for late December: 100% leaf senescence and complete winter defoliation, revealing bare, dark, moisture-darkened branch architecture, dense twig tracery, and lichen-crusted bark. Understory comprises dormant perennial turf grasses (*Lolium perenne*, *Festuca rubra*, *Poa pratensis*) with damp winter compaction and bare root-flare perimeters.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2000K Nocturnal Night Scene. Sun elevation -7.0\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nCharlotte Square West elevation featuring West Register House and the Prince Albert Memorial monument. Foreground manicured winter turf lawn of Lolium perenne and Festuca rubra surrounding the central monument: stepped pedestal of dressed, polished pink Peterhead granite supporting a dark patinated cast-bronze equestrian statue with bronze corner figural groups exhibiting verdigris run-off stains. Surrounding mature Acer pseudoplatanus and Tilia \u00d7 europaea trees in complete winter dormancy, showing bare leafless branch tracery and dark wet bark. Background terminal neoclassical palace front constructed from pale buff-grey Craigleith ashlar sandstone: central monumental church facade featuring a colossal tetrastyle Ionic portico, dentiled pediment, rusticated ground floor, circular Corinthian peristyle drum, and a high hemispherical standing-seam copper dome with heavy pale-green verdigris oxidation, topped by an ashlar lantern cupola. Flanking symmetrical three-storey Georgian residential terraces of droved sandstone ashlar, channeled rustication at base, molded entablatures, ashlar chimney stacks, grey slate pitched roofs with slated dormers, and plumb grids of 6-over-6 timber sash-and-case windows. Black cast-iron spearhead railings and Caithness flagstone boundary kerbs along basement lightwells. Weathered masonry displays historic carbon soot crusts in under-cornices and vertical rain-wash paths across ashlar joints. Straight plumb vertical alignments and rectified planar sandstone surfaces.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3590,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 1603,
+    "doc_chars": 1520,
+    "doc_trimmed": false,
+    "eco_chars": 529,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

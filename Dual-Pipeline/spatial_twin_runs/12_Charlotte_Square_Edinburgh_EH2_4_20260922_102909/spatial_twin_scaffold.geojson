@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 5.5,
+          "pitch_deg": 2.8,
+          "heading_deg": 247.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock & Stratigraphy**: Carboniferous sedimentary succession (calciferous sandstone measures and siltstone strata) overlying volcanic subterranean formations of the Midland Valley.\n- **Lithics**: \n  - Primary Structural Masonry: Craigleith Sandstone (buff/pale olive-grey, fine-grained quartz-arenite known for high silica content and durability).\n  - Backup & Rubble Core: Hailes Sandstone rubble with non-hydraulic lime bonding.\n  - Monument Pedestal: Polished intrusive igneous Peterhead pink granite with fine dressed margins.\n- **Mortar & Chemistry**: Traditional hot-mixed lime mortar (slaked calcium oxide with sharp river sand aggregate).\n- **Subterranean Hydrology**: Cohesive glacial till over sedimentary bedrock; engineered perimeter French drains and graded subsoil under urban garden turf."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Taxa**: *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), *Ulmus glabra* (Wych Elm).\n- **Phenology (Late December)**: Complete winter dormancy; 100% defoliated canopy; bare, dark, ramified branch silhouettes allowing unobstructed structural visibility through the crowns.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology**: Neoclassical Georgian civic and residential complex (Adam/Reid master plan).\n- **Central Monumental Structure**: West Register House (former St. George's Church, 1811\u20131814, Robert Reid). Features a monumental tetrastyle Ionic portico, triangular pediment, stepped attic, cylindrical colonnaded drum, and ribbed hemispherical copper dome terminating in a cupola lantern.\n- **Flanking Terraces**: 3-storey plus attic and sunken basement Georgian ashlar townhouses; channelled rustication at ground tier, smooth ashlar upper floors, continuous dentiled eaves cornice, and slate mansard roofs with regular dormers.\n- **Fenestration**: Rectilinear fenestration grid of 12-pane and 6-over-6 double-hung timber sash-and-case windows with fine astragals.\n- **Foreground Monument**: Prince Albert Memorial (Sir John Steell, 1876); bronze equestrian figure atop an architectural stepped granite plinth with subsidiary corner allegorical bronze groupings.\n- **Planar Rectification**: All facade lines, columns, and corners plumbed to true vertical; horizontal string courses and entablatures flattened to true planar alignment.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207133648782487,
+          55.951949893257485
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T10:09:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 152.03,
+        "solar_elevation_deg": 6.5,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

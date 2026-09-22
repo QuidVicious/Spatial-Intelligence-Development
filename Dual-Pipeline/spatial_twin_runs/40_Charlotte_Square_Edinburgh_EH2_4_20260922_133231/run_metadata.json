@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_133231",
+  "address": "40 Charlotte Square, Edinburgh EH2 4HQ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16274.22,
+  "telemetry": {
+    "latitude": 55.95191750686016,
+    "longitude": -3.206928039539391,
+    "altitude_agl": 6.469491405569812,
+    "heading": 253.67276092471923,
+    "pitch": 0.8186186881141818,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-22",
+    "time_of_day": 17.5,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "FOG",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 118.50388019798896,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 3200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": true,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "FOG",
+    "timestamp_utc": "2026-09-22T16:30:00+00:00",
+    "solar_azimuth": 250.17,
+    "solar_elevation": 13.58,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K Late afternoon raking sunlight with warm golden highlights (backlighting from ahead of the observer, Sun Azimuth 250.2\u00b0, Elevation 13.6\u00b0). Clear sky."
+  },
+  "domain_metadata": {
+    "address": "40 Charlotte Square, Edinburgh EH2 4HQ, UK",
+    "coordinates": [
+      "55.951918",
+      "-3.206928"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": true
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T20:32:31.928994Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Charlotte Square Gardens canopy is dominated by mature *Tilia \u00d7 europaea* (Common Lime) and *Acer pseudoplatanus* (Sycamore),\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon raking sunlight with warm golden highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is directly ahead of the camera in the centre background (True Azimuth 250.2\u00b0, Elevation 13.6\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in shadow, reading as backlit silhouettes with a bright rim along their sunward edges; left- and right-facing walls are lit roughly equally.\n- CAST SHADOW DIRECTION: cast shadows project directly toward the camera, down the frame.\n- CAST SHADOW LENGTH: Every cast shadow is 4.1 times as long as the height of the object casting it. A 100 m tower casts a 414 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project directly toward the camera, down the frame. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nCharlotte Square west elevation dominated by West Register House. Monumental Neoclassical sandstone church facade featuring a tetrastyle portico, circular colonnaded drum, and a massive verdigris oxidized copper dome crowned with a tiered cupola lantern.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 2863,
+    "budget": 3200,
+    "over_budget": false,
+    "skeleton_chars": 2546,
+    "doc_chars": 254,
+    "doc_trimmed": true,
+    "eco_chars": 125,
+    "eco_trimmed": true,
+    "has_botanical_phenology": true
+  }
+}

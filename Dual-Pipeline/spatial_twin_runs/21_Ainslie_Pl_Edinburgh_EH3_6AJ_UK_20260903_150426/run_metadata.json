@@ -1,0 +1,36 @@
+{
+  "timestamp": "20260903_150426",
+  "address": "21 Ainslie Pl, Edinburgh EH3 6AJ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "WORLD_LABS",
+  "model_name": "marble-1.0-draft",
+  "latency_ms": 16902.66,
+  "telemetry": {
+    "latitude": 55.9533760228848,
+    "longitude": -3.2101054751889797,
+    "altitude_agl": 2.9675976006921587,
+    "heading": 309.87518952054876,
+    "pitch": -2.6476965059373465,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "system_instruction": "",
+  "user_prompt": "An outdoor world at street level in a real place: 21 Ainslie Pl, Edinburgh EH3 6AJ, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 3 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary plate of the sweeping Neoclassical Georgian crescent at Ainslie Place, Edinburgh. Monumental curved facade designed by James Gillespie Graham, constructed from finely dressed pale buff Craigleith ashlar sandstone. Ground floor defined by horizontal channelling, round-arched doorways with radiating fanlights, and timber panelled doors.\n\nSTRUCTURE AND MASSING\nTypology: Late Georgian / Regency Neoclassical palatial crescent terrace, forming the south-western crescent of Ainslie Place (Moray Estate master plan by James Gillespie Graham, c. Massing & Storeys: Monumental 3-storey plus sunken basement and attic storey block with continuous horizontal continuity.\n\nSURFACES AND MATERIALS\nPrimary Facade: Dressed Craigleith ashlar sandstone blocks with finely stugged, rusticated ground courses and polished upper courses. Metalwork & Railings: Cast-iron spearhead railings, urn finials, and overthrow lamp arches along front basement drop areas; decorative anthemion-pattern cast-iron balconettes at first-floor sills.\n\nVEGETATION\nBotanical Classification: *Platanus \u00d7 acerifolia* (London plane) and *Acer pseudoplatanus* (Sycamore) dominating the\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 214 degrees at 37.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 5400K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "compiled_prompt": "An outdoor world at street level in a real place: 21 Ainslie Pl, Edinburgh EH3 6AJ, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 3 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary plate of the sweeping Neoclassical Georgian crescent at Ainslie Place, Edinburgh. Monumental curved facade designed by James Gillespie Graham, constructed from finely dressed pale buff Craigleith ashlar sandstone. Ground floor defined by horizontal channelling, round-arched doorways with radiating fanlights, and timber panelled doors.\n\nSTRUCTURE AND MASSING\nTypology: Late Georgian / Regency Neoclassical palatial crescent terrace, forming the south-western crescent of Ainslie Place (Moray Estate master plan by James Gillespie Graham, c. Massing & Storeys: Monumental 3-storey plus sunken basement and attic storey block with continuous horizontal continuity.\n\nSURFACES AND MATERIALS\nPrimary Facade: Dressed Craigleith ashlar sandstone blocks with finely stugged, rusticated ground courses and polished upper courses. Metalwork & Railings: Cast-iron spearhead railings, urn finials, and overthrow lamp arches along front basement drop areas; decorative anthemion-pattern cast-iron balconettes at first-floor sills.\n\nVEGETATION\nBotanical Classification: *Platanus \u00d7 acerifolia* (London plane) and *Acer pseudoplatanus* (Sycamore) dominating the\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 214 degrees at 37.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 5400K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "prompt_metadata": {
+    "renderer": "WORLD_LABS",
+    "final_char_count": 1882,
+    "budget": 2000,
+    "over_budget": false,
+    "fixed_cost": 699,
+    "sections_included": 8,
+    "sections_trimmed": [
+      "THE PLACE",
+      "STRUCTURE AND MASSING",
+      "SURFACES AND MATERIALS",
+      "VEGETATION"
+    ],
+    "scrubbed_photographic": true,
+    "screen_space_lighting_used": false
+  }
+}

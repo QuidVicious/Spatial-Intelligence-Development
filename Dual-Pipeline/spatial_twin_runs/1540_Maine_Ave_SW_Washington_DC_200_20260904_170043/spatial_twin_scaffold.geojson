@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 240.1,
+          "pitch_deg": -17.6,
+          "heading_deg": 22.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "The terrain occupies the transitional terrace between the Atlantic Coastal Plain and the crystalline Piedmont formation, underlain by alluvial silt, sand, and gravel deposits over deep metamorphic schist and gneiss bedrock. The central obelisk sits upon a massive concrete underpinning footing extending to dense gravel strata. Primary masonry lithics include fine-grained white Cockeysville calcitic marble (Baltimore County, MD) on the lower 46 meters and upper shaft, interrupted by a distinct stratum of Lee dolomite marble (Berkshire County, MA) backed with coarse grey Vinalhaven granite (Maine). Surrounding civic structures utilize Salem Formation Indiana oolitic limestone, Aquia Creek freestone sandstone, and Georgia red terra cotta clay roofing tiles. Crushed decomposed bluestone and granite aggregate form the pedestrian circulatory paths."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Vegetation reflects late-summer Mid-Atlantic phenology (September 4). Canopies are dense, heavy, and fully expanded:\n- American Elm (*Ulmus americana*): Formal alignments bordering adjacent avenues, featuring vase-shaped canopies of deep olive-green foliage displaying faint localized late-summer leaf scorch.\n- Willow Oak (*Quercus phellos*) and Pin Oak (*Quercus palustris*): Broad, conical canopies with narrow, dark green, glossy leaves.\n- London Planetree (*Platanus \u00d7 acerifolia*): Dense globose crowns with mottling exfoliating bark along primary boles.\n- Ground cover: Uniform, high-density green turfgrass showing subtle heat-stress variations along footpath margins.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "The central monument is a 169.3-meter load-bearing stone masonry obelisk tapering at a 1:48 slope, terminating in a 16.8-meter pyramidal capstone capped with cast aluminum. The base is enveloped by a circular paved granite plaza ringed by 56 vertical stainless steel flagpoles. To the northeast, the National Museum of African American History and Culture features a contemporary 5-story tripartite inverse-tier corona structure enveloped in ornamental bronze-finished architectural latticework over a curtain-wall glass core. The northern Federal Triangle perimeter consists of monumental Beaux-Arts and Classical Revival government edifices (Commerce, Reagan, EPA buildings) spanning 6 to 8 storeys, defined by continuous rusticated stone podiums, giant-order Ionic and Doric colonnades, projecting pedimented porticos, and hipped roofs clad in red clay barrel tiles.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03750459229336,
+          38.88527037487709
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T23:15:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 276.89,
+        "solar_elevation_deg": 3.1,
+        "shadow_azimuth_deg": 96.9,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

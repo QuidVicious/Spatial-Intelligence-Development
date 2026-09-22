@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260909_125404",
+  "address": "53 Old Santa Fe Trail, Santa Fe, NM 87501, USA",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17041.53,
+  "telemetry": {
+    "latitude": 35.68740496603915,
+    "longitude": -105.93794424080632,
+    "altitude_agl": 15.31417217313583,
+    "heading": 320.86359602338797,
+    "pitch": -14.514366680688484,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": null,
+    "time_of_day": null,
+    "timestamp_utc": "2026-09-09T19:53:31.884Z",
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 2116.6415293447744,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 3200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-09-09T19:53:31.884000+00:00",
+    "solar_azimuth": 204.78,
+    "solar_elevation": 57.5,
+    "color_temperature_k": 5800,
+    "lux": 85000,
+    "natural_description": "Calibrated 5800K High clear sun with short vertical shadows and neutral daylight (front-lighting from behind the observer, Sun Azimuth 204.8\u00b0, Elevation 57.5\u00b0). Clear sky."
+  },
+  "domain_metadata": {
+    "address": "53 Old Santa Fe Trail, Santa Fe, NM 87501, USA",
+    "coordinates": [
+      "35.687405",
+      "-105.937944"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-09T19:54:04.381882Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Specimen Identification: *Populus deltoides subsp. wislizeni* (Rio Grande cottonwood) and *Fraxinus velutina* (velvet ash).\n- Canopy\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5800K High clear sun with short vertical shadows and neutral daylight):\n- SUN POSITION IN SCREEN SPACE: Sun is behind the camera and to the LEFT, out of frame (True Azimuth 204.8\u00b0, Elevation 57.5\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in full direct sunlight; left-facing walls are brightly lit and right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: cast shadows project diagonally away from the camera toward the upper-RIGHT.\n- CAST SHADOW LENGTH: Every cast shadow is 0.6 times as long as the height of the object casting it. A 100 m tower casts a 64 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project diagonally away from the camera toward the upper-RIGHT. Every shadow must be angled toward the RIGHT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nSanta Fe historic core featuring the Palace of the Governors and the New Mexico Museum of Art. Architectural fabric anchored by an elongated single-storey Spanish-Pueblo structure featuring a continuous deep covered portal supported by massive peeled Pinus ponderosa timber posts, hand-hewn zapata corbel capitals, and exposed longitudinal wood architraves.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3071,
+    "budget": 3200,
+    "over_budget": false,
+    "skeleton_chars": 2642,
+    "doc_chars": 357,
+    "doc_trimmed": true,
+    "eco_chars": 134,
+    "eco_trimmed": true,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "batch_id": "20260920-153600_calib-abernelson-north",
+    "label": "calib-abernelson-north",
+    "created": "2026-09-20T15:36:00",
+    "model": "gemini-3.1-flash-image-preview",
+    "si_file": "SI3.3.md",
+    "si_sha256": "c2e5f476bdc1fb8403b7973270ea623383d07dfb79701c498ab8036c70a86b86",
+    "prompt_template": "IMAGE: The center of the intersection of Abercromby Pl and Nelson St., Edinburgh, UK. Looking north up Nelson to Northumberland St. It late afternoon in September. The weather is typical for this location and date.",
+    "sweep_values": [],
+    "repeats": 2,
+    "settings": {
+      "temperature": 0.2,
+      "top_p": 0.15,
+      "thinking_level": "high",
+      "include_thoughts": false,
+      "aspect_ratio": "16:9",
+      "image_size": "2K"
+    },
+    "base_seed": null,
+    "fixed_seed": false,
+    "planned_runs": 2,
+    "state": "done",
+    "finished": "2026-09-20T15:36:14"
+  },
+  "runs": [
+    {
+      "index": 1,
+      "sweep_value": null,
+      "repeat": 1,
+      "prompt": "IMAGE: The center of the intersection of Abercromby Pl and Nelson St., Edinburgh, UK. Looking north up Nelson to Northumberland St. It late afternoon in September. The weather is typical for this location and date.",
+      "seed": null,
+      "started": "2026-09-20T15:36:00",
+      "text": "A street-level photograph taken from the center of the intersection of Abercromby Place and Nelson Street in Edinburgh, looking directly north up the length of Nelson Street towards Northumberland Street. The wide, straight avenue of Nelson Street recedes into the distance, flanked by continuous terraces of uniform Georgian townhouses constructed of grey Craigleith sandstone. The buildings feature rows of sash windows, panelled doors with fanlights, and black cast-iron railings enclosing basement areas. The street surface is paved with worn stone setts. In the background, Nelson Street terminates at the cross-junction with Northumberland Street, where the opposing facade continues the Georgian architectural style. The sky is overcast with soft, diffused light typical of a late afternoon in September in Edinburgh, casting subtle, elongated shadows. The scene is completely empty of people and vehicles, emphasizing the quiet, enduring permanence of the architecture. The air is clear and still.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 181,
+        "prompt_token_count": 1481,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1481
+          }
+        ],
+        "thoughts_token_count": 1052,
+        "total_token_count": 2714
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 6.8,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 2,
+      "sweep_value": null,
+      "repeat": 2,
+      "prompt": "IMAGE: The center of the intersection of Abercromby Pl and Nelson St., Edinburgh, UK. Looking north up Nelson to Northumberland St. It late afternoon in September. The weather is typical for this location and date.",
+      "seed": null,
+      "started": "2026-09-20T15:36:07",
+      "text": "A street-level photograph taken from the center of the intersection of Abercromby Place and Nelson Street in Edinburgh, looking directly north up the length of Nelson Street towards Northumberland Street. The wide, straight avenue of Nelson Street recedes into the distance, flanked by continuous terraces of uniform Georgian townhouses constructed of grey Craigleith sandstone. The buildings feature rows of sash windows, panelled doors with fanlights, and black cast-iron railings enclosing basement areas. The street surface is paved with worn stone setts. In the background, Nelson Street terminates at the cross-junction with Northumberland Street, where the opposing facade continues the Georgian architectural style. The sky is overcast with soft, diffused light typical of a late afternoon in September in Edinburgh, casting subtle, elongated shadows. The scene is completely empty of people and vehicles, emphasizing the quiet, enduring permanence of the architecture. The air is clear and still.",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 181,
+        "prompt_token_count": 1481,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1481
+          }
+        ],
+        "thoughts_token_count": 1052,
+        "total_token_count": 2714
+      },
+      "image_count": 0,
+      "error": "No image returned (see text / finish_reason).",
+      "seconds": 6.7,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    }
+  ]
+}

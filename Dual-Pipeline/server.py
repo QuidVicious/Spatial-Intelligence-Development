@@ -12,6 +12,7 @@ Linear execution with Unified NDJSON Lifecycle Streaming:
 
 import os
 import time
+import requests
 import traceback
 from typing import Optional, List
 from pathlib import Path
@@ -91,6 +92,54 @@ async def get_geocode(lat: float = Query(...), lon: float = Query(...)):
     return {"address": address}
 
 
+@app.get("/api/search")
+async def search_place(q: str = Query(..., description="Address, place name, or postcode")):
+    """Forward geocode a free-text place to coordinates."""
+    key = os.getenv("GOOGLE_MAPS_API_KEY") or os.getenv("GOOGLE_MAPS_KEY") or os.getenv("GOOGLE_API_KEY")
+    if key:
+        try:
+            r = requests.get(
+                "https://maps.googleapis.com/maps/api/geocode/json",
+                params={"address": q, "key": key}, timeout=6
+            )
+            if r.status_code == 200:
+                results = r.json().get("results", [])
+                if results:
+                    top = results[0]
+                    loc = top["geometry"]["location"]
+                    vp = top["geometry"].get("viewport") or {}
+                    return {
+                        "address": top.get("formatted_address"),
+                        "latitude": loc["lat"],
+                        "longitude": loc["lng"],
+                        "viewport": vp,
+                        "source": "google"
+                    }
+        except Exception as e:
+            print(f"[Search Warning] Google: {e}")
+
+    # Fallback: Nominatim needs a real User-Agent and is rate limited.
+    try:
+        r = requests.get(
+            "https://nominatim.openstreetmap.org/search",
+            params={"q": q, "format": "json", "limit": 1},
+            headers={"User-Agent": "SquidBlackSpatial/1.0"}, timeout=6
+        )
+        if r.status_code == 200:
+            hits = r.json()
+            if hits:
+                return {
+                    "address": hits[0].get("display_name"),
+                    "latitude": float(hits[0]["lat"]),
+                    "longitude": float(hits[0]["lon"]),
+                    "source": "nominatim"
+                }
+    except Exception as e:
+        print(f"[Search Warning] Nominatim: {e}")
+
+    raise HTTPException(status_code=404, detail=f"No match for '{q}'")
+
+
 # -------------------------------------------------------------------------
 # Request Schemas
 # -------------------------------------------------------------------------
@@ -102,6 +151,8 @@ class TelemetryPayload(BaseModel):
     pitch: float = Field(-45.0, description="Camera Pitch (degrees)")
     fov: float = Field(45.0, description="Camera FOV (degrees)")
     tile_mode: str = Field("3D_TILES", description="3D_TILES, 2D_SATELLITE, or STANDALONE")
+    ground_elevation_m: Optional[float] = Field(None, description="Sampled ground elevation in metres")
+    altitude_method: Optional[str] = Field(None, description="TILESET_SAMPLE or ELLIPSOID_FALLBACK")
     date: Optional[str] = Field(None, description="YYYY-MM-DD date")
     time_of_day: Optional[float] = Field(None, description="24-hour decimal time (e.g. 14.5 = 14:30)")
     timestamp_utc: Optional[str] = Field(None, description="ISO 8601 UTC timestamp")
@@ -111,6 +162,9 @@ class TelemetryPayload(BaseModel):
 
 class ProcessViewRequest(BaseModel):
     screenshot_b64: Optional[str] = Field(None, description="Optional Base64 encoded viewport capture")
+    pano_b64: Optional[str] = Field(None, description="Optional Base64 equirectangular 2:1 panorama")
+    marble_input_mode: str = Field("text", description="text, image, pano, or multi-image")
+    gemini_budget: int = Field(3200, description="Total character budget for the Gemini prompt")
     multi_view_images: Optional[List[str]] = Field(None, description="Optional list of Base64 or URLs for multi-view synthesis")
     telemetry: TelemetryPayload
     address: Optional[str] = Field(None, description="Optional pre-resolved address")
@@ -118,6 +172,7 @@ class ProcessViewRequest(BaseModel):
     target_model: Optional[str] = Field(None, description="Model SKU (e.g. gemini-3.1-flash-image, marble-1.1)")
     view_scope: str = Field("FRUSTUM", description="FRUSTUM, OMNI_360, or STANDALONE")
     disable_recaption: bool = Field(True, description="Enforce original prompt without API auto-rewrite")
+    use_search_grounding: bool = Field(False, description="Attach Google Search grounding to the domain call")
 
 
 # -------------------------------------------------------------------------
@@ -160,7 +215,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         stage, event_str = stage_activate(PipelineStage.DOMAIN_ENGINE, f"Target: {address} [Date: {telemetry.date or 'Present'}]")
         yield event_str
 
-        yield stage.processing("Executing 4 Mothers Grounding (Geology, Geography, Architecture, Civil Records & Botanical Phenology)...")
+        yield stage.processing(
+            "Executing domain stack (Geology, Geography, Architecture, Civil Records, Botanical Phenology) | "
+            f"Search grounding: {'ON' if request.use_search_grounding else 'OFF'}..."
+        )
         scope = ViewScope(request.view_scope.upper()) if request.view_scope in ViewScope.__members__ else ViewScope.FRUSTUM
 
         domain_result = analyze_spatial_domain(
@@ -170,7 +228,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             telemetry=telemetry,
             screenshot_b64=request.screenshot_b64,
             temporal_epoch=telemetry.date,
-            gemini_api_key=gemini_key
+            gemini_api_key=gemini_key,
+            use_search_grounding=request.use_search_grounding
         )
         yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
         yield stage.finish(f"Domain analysis verified with Search Grounding")
@@ -198,10 +257,16 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             domain_result=domain_result,
             lighting_state=lighting_state,
             target_provider=request.provider,
-            target_model=request.target_model
+            telemetry=telemetry,
+            target_model=request.target_model,
+            gemini_budget=request.gemini_budget
         )
-        user_chars = compiled.metadata.get("user_prompt_chars", len(compiled.user_prompt))
-        yield stage.dispatching(f"Conditioning compiled: System ({compiled.metadata.get('system_contract_chars', 0)} chars), User ({user_chars} chars)")
+        _m = compiled.metadata
+        yield stage.dispatching(
+            f"Conditioning compiled: {_m.get('final_char_count', 0)} chars "
+            f"(budget {_m.get('budget', '-')}, doc {_m.get('doc_chars', '-')}"
+            f"{', TRIMMED' if _m.get('doc_trimmed') or _m.get('eco_trimmed') else ''})"
+        )
         yield stage.finish(f"Conditioning compiled for {compiled.target_model}")
 
         # 5. Vision Preprocessor (CUDA Delighting)
@@ -217,13 +282,26 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         stage, event_str = stage_activate(PipelineStage.SYNTHESIS_ENGINE, f"Model: {compiled.target_provider} / {compiled.target_model}")
         yield event_str
 
-        yield stage.processing(f"Generating 2560x1440 2K QHD visual twin via {compiled.target_provider}...")
+        marble_mode = request.marble_input_mode
+        marble_seed = None
+        if compiled.target_provider == "WORLD_LABS":
+            if marble_mode == "pano" and request.pano_b64:
+                marble_seed = request.pano_b64
+            elif marble_mode == "image":
+                marble_seed = delighted_b64
+            else:
+                marble_mode = "text"
+            yield stage.processing(f"Generating 3D world via Marble (input: {marble_mode})...")
+        else:
+            yield stage.processing(f"Generating 2560x1440 2K QHD visual twin via {compiled.target_provider}...")
         # Direct handoff of CompiledPrompt enables systemInstruction / user_prompt separation
         synthesis = synthesize_twin(
             prompt=compiled,
             provider=compiled.target_provider,
             model_name=compiled.target_model,
-            screenshot_b64=delighted_b64,
+            screenshot_b64=(marble_seed if compiled.target_provider == "WORLD_LABS" else delighted_b64),
+            marble_input_mode=marble_mode if compiled.target_provider == "WORLD_LABS" else "text",
+            display_name=address[:64],
             multi_view_images=request.multi_view_images,
             disable_recaption=request.disable_recaption,
             gemini_api_key=gemini_key,
@@ -247,7 +325,20 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 conditioning=compiled,
                 synthesis_result=synthesis,
                 screenshot_b64=request.screenshot_b64,
-                delighted_b64=delighted_b64
+                delighted_b64=delighted_b64,
+                pano_b64=request.pano_b64,
+                lighting_state=lighting_state,
+                request_settings={
+                    "provider": request.provider,
+                    "view_scope": request.view_scope,
+                    "gemini_budget": request.gemini_budget,
+                    "marble_input_mode": marble_mode if compiled.target_provider == "WORLD_LABS" else None,
+                    "disable_recaption": request.disable_recaption,
+                    "target_model_requested": request.target_model,
+                    "use_search_grounding": request.use_search_grounding,
+                    "pano_seed_supplied": bool(request.pano_b64),
+                    "screenshot_supplied": bool(request.screenshot_b64)
+                }
             )
             run_record = {
                 "status": "persisted",
@@ -279,6 +370,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 "twin_image_b64": synthesis.image_b64,
                 "world_id": synthesis.world_id,
                 "world_viewer_url": synthesis.world_viewer_url,
+                "marble_input_mode": marble_mode if compiled.target_provider == "WORLD_LABS" else None,
                 "splat_url": synthesis.splat_url,
                 "collider_mesh_url": synthesis.collider_mesh_url,
                 "pano_url": synthesis.pano_url,

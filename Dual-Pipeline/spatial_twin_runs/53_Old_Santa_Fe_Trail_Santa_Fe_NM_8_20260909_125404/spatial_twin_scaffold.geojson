@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "53 Old Santa Fe Trail, Santa Fe, NM 87501, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 15.3,
+          "pitch_deg": -14.5,
+          "heading_deg": 320.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock & Lithic Substrate: Unconsolidated alluvial basin fill, sand, gravel, and silt of the Santa Fe Group (Tesuque Formation) overlying Precambrian crystalline basement rock of the Sangre de Cristo uplift.\n- Native Structural Material: Sun-dried earthen adobe mud bricks formulated from local sandy-clay soils and straw binders; native river cobbles and volcanic basalt fieldstones used in baseline foundations.\n- Finish & Binding Chemistry: Traditional hydraulic lime, sand, and mud plasters over adobe core, overlaid in later interventions by cementitious earth-toned stucco coats."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Specimen Identification: *Populus deltoides subsp. wislizeni* (Rio Grande cottonwood) and *Fraxinus velutina* (velvet ash).\n- Canopy Structure & Phenology: Large, high-volume broadleaf crowns with complex multi-stem branching; mid-to-late autumn phenology displaying foliage transition from dull green to uniform golden-yellow senescence with early partial leaf drop.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Typologies: Spanish-Pueblo Colonial civic architecture and 20th-century Pueblo Revival/Territorial Revival institutional massing (Palace of the Governors and New Mexico Museum of Art complex).\n- Storey Heights & Massing: Single-storey elongated colonnaded civic block with stepped planar massing; adjacent multi-level (2 to 3 storeys) Pueblo Revival complex featuring asymmetrical stepped terracing, organic rounded corners, and battered load-bearing profiles.\n- Structural Rectification: Vertical wall planes plumbed to true gravity vertical; flat roofs aligned with horizontal parapet capping; portal colonnade rectified along linear structural beam lines with regular post spacing.\n- Roof & Drainage Geometry: Flat built-up membrane roofs contained by parapets; integrated timber *canales* (drainage spouts) and sheet metal flashing collectors.\n- Fenestration: Deeply recessed multi-pane rectangular timber casement and double-hung sash windows with stained wood lintels.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.93794424080632,
+          35.68740496603915
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-09T19:53:31.884000+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 204.78,
+        "solar_elevation_deg": 57.5,
+        "shadow_azimuth_deg": 24.8,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

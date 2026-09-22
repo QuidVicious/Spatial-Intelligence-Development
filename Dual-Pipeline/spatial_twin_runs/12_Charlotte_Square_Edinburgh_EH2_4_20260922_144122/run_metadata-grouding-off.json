@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_144122",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 14404.14,
+  "telemetry": {
+    "latitude": 55.95193940179104,
+    "longitude": -3.2071626013510146,
+    "altitude_agl": 1.4265570652769952,
+    "heading": 245.49748741600874,
+    "pitch": 4.81778340370248,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 16.35,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744802638455,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-12-22T15:21:00+00:00",
+    "solar_azimuth": 222.54,
+    "solar_elevation": 1.03,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under RAIN conditions (Sun Azimuth 222.5\u00b0, Elevation 1.0\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951939",
+      "-3.207163"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T21:41:22.414284Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Winter phenological state for late December. Deciduous urban parkland trees comprising mature *Tilia cordata* (small-leaved lime), *Acer pseudoplatanus* (sycamore), and *Ulmus glabra* (wych elm). All trees are fully dormant and completely defoliated, displaying bare, complex networks of dark grey-brown ramified branches, knobby trunks, and fine twig silhouettes. Turf is dormant cool-season lawn (*Lolium perenne* blended with *Festuca rubra*), trimmed and lightly moisture-retentive with fine moss infill in shaded areas.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nFine-grained pale blonde Craigleith sandstone ashlar facade of West Register House, dominated by a towering verdigris copper dome with standing-seam ribs rising from a circular colonnaded drum and lantern. Symmetrical neoclassical wings feature three-storey Georgian terraced townhouses with channelled rustication at the ground tier, smooth ashlar upper levels, dentiled eaves cornices, pitched grey Ballachulish slate roofs, tall ashlar chimney stacks, and aligned 6-over-6 timber sash-and-case windows. In the foreground, the Prince Albert Memorial features a multi-tiered polished red Peterhead granite pedestal carrying an oxidized dark bronze equestrian statue with verdigris weathering. Surrounding parkland contains completely bare, defoliated winter deciduous trees (*Tilia cordata* and *Acer pseudoplatanus*) with intricate, exposed branch structures standing over a broad expanse of flat, manicured green turfgrass. Cast-iron spearhead railings embedded in droved sandstone dwarf walls line the garden perimeter, with stone kerbstones and paved margins bordering the neoclassical square. Deep historic coal-smoke soot encrustations settle in the carved masonry mouldings, friezes, and window surrounds, contrasted against rain-washed sandstone planes.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3835,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1262,
+    "doc_trimmed": false,
+    "eco_chars": 524,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

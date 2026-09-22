@@ -1,0 +1,23 @@
+# Spatial Domain Analysis: 1540 Maine Ave SW, Washington, DC 20004, USA
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+Subterranean strata comprise Quaternary alluvial silt, sand, and Potomac River hydraulic fill resting over crystalline Piedmont metamorphic basement rock. Lower obelisk envelope constructed from Texas (Maryland) calcitic marble ashlar; upper obelisk envelope consists of Cockeysville dolomitic marble and Sheffield (Massachusetts) marble backed by interior gneiss and Maine granite rubble courses set in natural cement and hydraulic lime mortar. Surrounding institutional structures utilize Bedford/Indiana oolitic limestone superstructures over reinforced concrete slab-and-pier foundations.
+
+## 2. Architecture & Planar Rectification
+Washington Monument stands as a 169.05-meter (555 ft 5⅛ in) load-bearing hollow stone masonry obelisk tapering from a 16.76-meter square footprint to 10.49 meters at the base of the 16.76-meter pyramidion, crowned with a cast aluminum apex. Lower plaza features a circular granite paver ring accommodating fifty-six vertical perimeter flagpoles. Northeast adjacent civic structure (NMAAHC) exhibits a three-tiered inverted pyramidal corona configuration over a glazed recessed ground concourse. Background Federal Triangle complexes (Commerce, IRS, Federal Trade Commission) display monumental 6-to-8-storey Neoclassical/Beaux-Arts civic massing with rusticated podiums, monumental Doric and Ionic colonnades, regularized rectangular fenestration grids, and hipped roofs clad in red clay mission tiles.
+
+## 3. Materials & Environmental Patina
+Obelisk envelope exhibits a visible horizontal quarry demarcation at the 46-meter line: lower creamy-white Texas marble ashlar contrasting with lighter, fine-grained Cockeysville and Sheffield marble upper courses, punctuated by pairs of narrow observation openings at the pyramidion base. Plaza paving executed in sawn-finish light gray granite units with concentric jointing. NMAAHC facade composed of perforated, bronze-finished cast-aluminum lattice panels with bronze-tinted glass curtain wall infill. Federal administrative structures feature smooth-dressed Indiana limestone ashlar, weathered terra cotta roof tiles, cast bronze entry grilles, and copper gutters showing localized verdigris patina. Ground surface comprises rolled bluestone aggregate pathways, asphalt perimeter roadways, and granite safety bollards.
+
+## 4. Landscape Ecology & Botanical Canopy
+Parkland and street corridors feature mature specimen trees including *Ulmus americana* (American elm) lining avenues, *Quercus phellos* (willow oak), *Platanus × acerifolia* (London plane), and *Quercus palustris* (pin oak). Late summer phenology (September): fully developed, dense dark green canopies exhibiting peak vegetative volume with incipient late-season foliage maturity and no significant defoliation. Groundcover consists of dense, cut *Poa pratensis* (Kentucky bluegrass) and *Festuca arundinacea* turf.
+
+## 5. Static Civil Fabric Decluttering
+All transient elements are removed: no pedestrians, tour groups, passenger cars, tour buses, temporary construction fencing, security checkpoints, or mobile utility signage. Fixed civil infrastructure (paved pathways, granite bollards, flagpoles, streetlamps, curbs) remains intact.
+
+## 6. Synthesized Documentary Prompt
+```text
+A 169-meter hollow stone masonry obelisk with four tapered battered faces and a 55-foot pyramidal apex capped with cast aluminum. Lower 46 meters constructed of pale Texas marble ashlar; a distinct horizontal line transitions to upper Cockeysville and Sheffield marble ashlar courses with fine flush joints. Base surrounded by a concentric circular plaza of segmented granite pavers, encircled by fifty-six vertical stainless steel flagpoles set into low granite curbing. Radiating crushed-granite pedestrian paths and asphalt circulation loops intersect continuous manicured Poa pratensis and Festuca turf lawns over rolling topography. Beyond the perimeter, the National Museum of African American History and Culture displays a three-tiered inverted pyramidal corona clad in bronze-coated ornamental cast-aluminum filigree screens atop a recessed structural glass base. Flanking Neoclassical and Beaux-Arts Federal Triangle complexes feature rusticated Indiana limestone facades, colossal fluted classical colonnades, rhythmic rectangular fenestration with bronze mullions, and low-pitch red terra cotta barrel tile hipped roofs with verdigris copper gutters. Surrounding grounds and boulevards are structured with mature rows and groves of Ulmus americana, Quercus phellos, Platanus × acerifolia, and Quercus palustris, displaying dense, deep green late-summer canopies.
+```

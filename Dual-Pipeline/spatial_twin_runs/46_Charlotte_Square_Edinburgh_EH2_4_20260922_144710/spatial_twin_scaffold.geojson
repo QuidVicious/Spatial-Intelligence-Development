@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "46 Charlotte Square, Edinburgh EH2 4HQ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 3.6,
+          "pitch_deg": 3.2,
+          "heading_deg": 240.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Bedrock Stratigraphy:** Lower Carboniferous sedimentary bedrock of the Strathclyde Group (Gullane Formation), comprising interbedded sandstones, siltstones, and carbonaceous mudstones over volcanic tuffs.\n- **Lithic Masonry Sources:** Primary building fabric executed in pale blonde-to-buff Craigleith sandstone (calciferous quartz arenite with siliceous cement), with supplementary ashlar from Hailes and Redhall quarries. Plinth of the central Prince Albert Memorial is composed of polished pink/grey Peterhead and Aberdeen granite.\n- **Mortar Chemistry:** Traditional non-hydraulic to feebly hydraulic hot-mixed lime mortars with sharp silica sand aggregate, flush-pointed on refined ashlar arrises.\n- **Subterranean Hydrology:** Gently sloping glaciofluvial till over glacial drumlin topography, maintaining efficient natural sub-base drainage across the New Town plateau."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Arboreal Canopy:** Common Lime (*Tilia \u00d7 europaea*), Sycamore (*Acer pseudoplatanus*), and Horse Chestnut (*Aesculus hippocastanum*) planted within the central Charlotte Square Garden enclosure.\n- **Date-Grounded Phenology (Late September):** Early autumn transition; canopies show thinning foliage density, crown margin chlorosis with lime-yellow and pale ochre leaf discoloration, and emerging bare upper branch silhouettes.\n- **Ground Cover:** Uniformly mown temperate perennial rye-grass (*Lolium perenne*) lawn with delineated soil circles at tree drip lines.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Central Terminating Landmark (West Register House / St George's Church):** Monumental Neoclassical former church designed by Robert Adam (1791) and executed by Robert Reid (1811\u20131814). Features a rusticated podium, a tetrastyle Corinthian portico with full entablature and pediment, advancing corner pavilions, and a monumental cylindrical peristyle drum supporting a ribbed hemispherical dome capped with a glazed cupola lantern and gilded finial.\n- **Flanking Palace Facades (12\u201317 Charlotte Square):** Symmetrical 3-storey plus raised basement and attic Neo-Palladian palace block. Channeled V-joint rustication on the ground level, smooth ashlar piano nobile with Ionic giant pilasters terminating the pavilions, molded stringcourses, modillion cornices, and solid blocking courses.\n- **Central Monument (Prince Albert Memorial):** Colossal bronze equestrian statue sculpted by Sir John Steell (unveiled 1876) mounted on a stepped, rusticated-and-polished granite pedestal flanked by tiered bronze allegorical groupings.\n- **Fenestration & Geometry:** Plumb vertical load-bearing lines with planarized ashlar frontages. Regular grid of timber-framed 12-pane and 15-pane sash-and-case windows set into rectangular and round-arched Gibbs-surround recesses.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-22T09:03:00+00:00",
+        "weather_state": "FOG",
+        "solar_azimuth_deg": 128.68,
+        "solar_elevation_deg": 23.66,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

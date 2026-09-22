@@ -1,0 +1,36 @@
+{
+  "timestamp": "20260903_131201",
+  "address": "13/2 Ainslie Pl, Edinburgh EH3 6AS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "WORLD_LABS",
+  "model_name": "marble-1.0-draft",
+  "latency_ms": 25710.85,
+  "telemetry": {
+    "latitude": 55.9532130952049,
+    "longitude": -3.2109181593270484,
+    "altitude_agl": 109.45928477942194,
+    "heading": 34.74703924103877,
+    "pitch": 3.4829710993446175,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "system_instruction": "",
+  "user_prompt": "An outdoor world at street level in a real place: 13/2 Ainslie Pl, Edinburgh EH3 6AS, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nTHE PLACE\nTelegraphic architectural survey, documentary capture. Sweeping curved Georgian crescent terrace designed by James Gillespie Graham, Category A listed. Facades constructed of pale buff Craigleith sandstone ashlar with fine-tolerance lime joints.\n\nSTRUCTURE AND MASSING\nTypology & Era: Neoclassical / Greek Revival double-crescent urban palace-fronted terrace, designed by James Gillespie Graham in 1822 as part of the Moray Estate (Moray Feu). Vertical Hierarchy & Massing: 3 principal storeys over a continuous sunken basement lightwell, topped with an attic/mansard storey behind continuous stone parapets and deep classical cornices.\n\nSURFACES AND MATERIALS\nGround Floor: Droved and V-jointed channelled rusticated Craigleith ashlar, featuring pronounced horizontal striations and radial voussoirs over entrance fanlights. Upper Facades: Polished blonde Craigleith sandstone ashlar blocks with fine-dressed lime joints; projecting continuous stringcourses, architraves, and classical moulded eaves cornices.\n\nVEGETATION\nBotanical Taxa: Ainslie Place central private garden enclosure containing mature *Platanus \u00d7 acerifolia* (London plane),\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 253 degrees at 20.2 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "compiled_prompt": "An outdoor world at street level in a real place: 13/2 Ainslie Pl, Edinburgh EH3 6AS, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nTHE PLACE\nTelegraphic architectural survey, documentary capture. Sweeping curved Georgian crescent terrace designed by James Gillespie Graham, Category A listed. Facades constructed of pale buff Craigleith sandstone ashlar with fine-tolerance lime joints.\n\nSTRUCTURE AND MASSING\nTypology & Era: Neoclassical / Greek Revival double-crescent urban palace-fronted terrace, designed by James Gillespie Graham in 1822 as part of the Moray Estate (Moray Feu). Vertical Hierarchy & Massing: 3 principal storeys over a continuous sunken basement lightwell, topped with an attic/mansard storey behind continuous stone parapets and deep classical cornices.\n\nSURFACES AND MATERIALS\nGround Floor: Droved and V-jointed channelled rusticated Craigleith ashlar, featuring pronounced horizontal striations and radial voussoirs over entrance fanlights. Upper Facades: Polished blonde Craigleith sandstone ashlar blocks with fine-dressed lime joints; projecting continuous stringcourses, architraves, and classical moulded eaves cornices.\n\nVEGETATION\nBotanical Taxa: Ainslie Place central private garden enclosure containing mature *Platanus \u00d7 acerifolia* (London plane),\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 253 degrees at 20.2 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 4500K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees.",
+  "prompt_metadata": {
+    "renderer": "WORLD_LABS",
+    "final_char_count": 1793,
+    "budget": 2000,
+    "over_budget": false,
+    "fixed_cost": 640,
+    "sections_included": 7,
+    "sections_trimmed": [
+      "THE PLACE",
+      "STRUCTURE AND MASSING",
+      "SURFACES AND MATERIALS",
+      "VEGETATION"
+    ],
+    "scrubbed_photographic": true,
+    "screen_space_lighting_used": false
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 321.8,
+          "pitch_deg": -29.7,
+          "heading_deg": 24.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock foundation comprises crystalline metamorphic Piedmont basement (Piedmont gneiss and schist) overlain by unconsolidated Atlantic Coastal Plain sediment, Quaternary alluvium, and historic hydraulic silt fill. Subterranean structural support for the obelisk relies on an engineered mass concrete sub-foundation and stepped slab underpinning keyed into dense gravel and sand strata. Primary lithic envelope consists of white calcitic marble from the Texas quarry (Baltimore County, Maryland) for the lower 46 meters, shifting abruptly at the 152-foot construction hiatus line to white dolomitic marble from the Beaver Dam quarry (Cockeysville, Maryland) and Sheffield marble (Berkshire County, Massachusetts). Interior load-bearing backing masonry utilizes dark crystalline granite blocks and blue gneiss rubble bonded with hydraulic lime and Portland cement mortars. Surrounding monumental administrative foundations bear on reinforced concrete spread footings in dense river terrace gravels."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Platanus \u00d7 acerifolia (London Planetree) and Ulmus americana (American Elm) align the perimeter parkways, exhibiting dense, mature broad-canopied volumes with dark olive-green foliage showing subtle late-summer chlorotic dulling and early leaf margin senescence consistent with September 4 phenology. Quercus phellos (Willow Oak) and Quercus alba (White Oak) specimen plantings dot the turf lawns with full summer leaf retention. Surrounding grounds consist of heavily managed, dense hybrid tall fescue (Festuca arundinacea) and Kentucky bluegrass (Poa pratensis) turfgrass intersected by bare decomposed granite earth swaths.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Washington Monument: Hollow Egyptian-style monumental obelisk rising 169.05 meters with an unreinforced masonry shaft tapering from 16.8 meters square at base to 10.5 meters at the pyramidion base, terminating in an 16.8-meter-tall marble pyramidion capped by a cast aluminum apex. Base incorporates a low-profile rectilinear subterranean visitor screening pavilion clad in custom structural laminated glass and bronze fittings, encircled by a concentric granite plaza and paved outer walking ring.\nNational Museum of African American History and Culture: Three-tiered inverse pyramidal corona structure rising five storeys above grade, stepped outward over a recessed structural glazed curtain wall base, featuring an inverted tiered silhouette derived from traditional Yoruba caryatid crowns.\nNational Museum of American History: Five-storey monumental modernist block with rectilinear planar massing, recessed ribbon glazing bands, and inset geometric entrance loggias.\nFederal Triangle / Department of Commerce (Herbert C. Hoover Building): Six-storey monumental Neoclassical and Beaux-Arts federal administrative complexes with perimeter perimeter-block massing, continuous Tuscan/Doric colonnades, recessed light courts, and hipped roofs clad in articulated red clay barrel tiles.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03744407066473,
+          38.88569860625135
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T22:11:59+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 267.04,
+        "solar_elevation_deg": 15.35,
+        "shadow_azimuth_deg": 87.0,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

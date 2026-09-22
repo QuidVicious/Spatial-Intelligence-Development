@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "46 Charlotte Square, Edinburgh EH2 4HQ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 3.6,
+          "pitch_deg": 3.2,
+          "heading_deg": 240.2,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation composed of Lower Carboniferous sedimentary bedrock of the Inverclyde Group (sandstone, siltstone, and mudstone) overlaid by dense glacial till. Primary structural masonry is pale blonde-to-grey Craigleith quartz-arenite sandstone, complemented by secondary dressings of Hailes sandstone. Central monument plinth incorporates polished Peterhead pink granite base courses and tooled grey granite ashlar. Lime-based bedding and pointing mortars comprise historic non-hydraulic quicklime and coarse local river sand."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Parkland specimen trees within Charlotte Square Gardens: mature Platanus \u00d7 acerifolia (London plane), Tilia cordata (small-leaved lime), and Acer pseudoplatanus (sycamore). Late-September phenology: dense canopies exhibiting early autumn senescent transition, characterized by patchy chlorophyll degradation, muted olive-greens, scattered golden-yellow leaf margins, and minor early foliar litter accumulating across the turf.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Neoclassical grand square ensemble anchored by the monumental West Register House (former St George's Church). Central edifice exhibits a tetrastyle Roman Ionic portico, plain ashlar frieze, and triangular pediment, surmounted by a stepped square base supporting a circular peripteral drum with paired Corinthian column pairs, stepped attic, and a large hemispherical dome topped by an open stone lantern. Flanking Robert Adam neoclassical terraces comprise unified three-storey-plus-attic facades: rusticated ground-floor arcading, smooth ashlar piano nobile with molded architraves and triangular pediments, six-over-six timber sash-and-case windows, projecting central and terminal pavilion bays with giant order pilasters, continuous balustraded parapets, and regular Craigleith sandstone chimney stacks with cylindrical terracotta chimney pots across pitched Scottish slate roofs. Center foreground features the Prince Albert Memorial: a multi-tiered polished granite pedestal supporting bronze allegorical relief panels, lower tier bronze figurative groupings, and a heroic equestrian bronze statue.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.207107815256343,
+          55.95196325431762
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-22T09:03:00+00:00",
+        "weather_state": "FOG",
+        "solar_azimuth_deg": 128.68,
+        "solar_elevation_deg": 23.66,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "world_id": "6390e1a8-27f1-4f0d-b81d-040a29579765",
+  "viewer_url": "https://marble.worldlabs.ai/world/6390e1a8-27f1-4f0d-b81d-040a29579765",
+  "splat_url": {
+    "500k": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/43ae8c18-3f5f-4402-b0fe-237d0b3a5ccd_sand_500k.spz",
+    "100k": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/6db2efee-13d8-409a-9f67-41edea136f8d_sand_100k.spz",
+    "full_res": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/3f5f3edf-d7c6-4fc8-97fc-40d05730665e_sand.spz"
+  },
+  "collider_mesh_url": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/6a51c193.glb",
+  "pano_url": null,
+  "raw_response": {
+    "operation_id": "6fbedff9-820b-42c1-b6d0-092a5fd2802a",
+    "created_at": "2026-09-03T22:04:09Z",
+    "updated_at": "2026-09-03T22:04:22Z",
+    "expires_at": "2026-09-04T01:04:09Z",
+    "done": true,
+    "error": null,
+    "metadata": {
+      "progress": {
+        "status": "SUCCEEDED",
+        "description": "World generation completed successfully"
+      },
+      "world_id": "6390e1a8-27f1-4f0d-b81d-040a29579765",
+      "operation_type": "world_generation",
+      "public_model_name": "marble-1.0-draft"
+    },
+    "response": {
+      "world_id": "6390e1a8-27f1-4f0d-b81d-040a29579765",
+      "display_name": "",
+      "tags": null,
+      "assets": {
+        "mesh": {
+          "collider_mesh_url": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/6a51c193.glb",
+          "hq_mesh_url": null,
+          "full_res_mesh_url": null
+        },
+        "imagery": {
+          "pano_url": null
+        },
+        "splats": {
+          "spz_urls": {
+            "500k": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/43ae8c18-3f5f-4402-b0fe-237d0b3a5ccd_sand_500k.spz",
+            "100k": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/6db2efee-13d8-409a-9f67-41edea136f8d_sand_100k.spz",
+            "full_res": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/3f5f3edf-d7c6-4fc8-97fc-40d05730665e_sand.spz"
+          },
+          "semantics_metadata": null
+        },
+        "thumbnail_url": "https://cdn.marble.worldlabs.ai/6390e1a8-27f1-4f0d-b81d-040a29579765/8470ae01-864b-4941-a372-6cf62aa87438_sand_mpi/thumbnail.webp",
+        "caption": "An outdoor world at street level in a real place: 21 Ainslie Pl, Edinburgh EH3 6AJ, UK. Open sky overhead. This is a continuous exterior environment that continues in every direction, not an enclosed courtyard and not a picture.\n\nThe viewpoint is about 3 metres up, at upper-storey height.\n\nTHE PLACE\narchitectural documentary plate of the sweeping Neoclassical Georgian crescent at Ainslie Place, Edinburgh. Monumental curved facade designed by James Gillespie Graham, constructed from finely dressed pale buff Craigleith ashlar sandstone. Ground floor defined by horizontal channelling, round-arched doorways with radiating fanlights, and timber panelled doors.\n\nSTRUCTURE AND MASSING\nTypology: Late Georgian / Regency Neoclassical palatial crescent terrace, forming the south-western crescent of Ainslie Place (Moray Estate master plan by James Gillespie Graham, c. Massing & Storeys: Monumental 3-storey plus sunken basement and attic storey block with continuous horizontal continuity.\n\nSURFACES AND MATERIALS\nPrimary Facade: Dressed Craigleith ashlar sandstone blocks with finely stugged, rusticated ground courses and polished upper courses. Metalwork & Railings: Cast-iron spearhead railings, urn finials, and overthrow lamp arches along front basement drop areas; decorative anthemion-pattern cast-iron balconettes at first-floor sills.\n\nVEGETATION\nBotanical Classification: *Platanus \u00d7 acerifolia* (London plane) and *Acer pseudoplatanus* (Sycamore) dominating the\n\nILLUMINATION\nDirect sunlight from a true compass bearing of 214 degrees at 37.4 degrees elevation above the horizon, casting hard shadows away from that bearing at a length consistent with that sun elevation. Light colour temperature approximately 5400K. Clear sky.\n\nOCCUPANCY\nNo people and no vehicles anywhere. Retain permanent civil fabric: kerbs, railings, street lamps, steps, gates, and mature trees."
+      },
+      "created_at": null,
+      "updated_at": null,
+      "permission": {
+        "public": false,
+        "allowed_readers": [],
+        "allowed_writers": [],
+        "allow_id_access": false
+      },
+      "world_prompt": null,
+      "world_marble_url": "https://marble.worldlabs.ai/world/6390e1a8-27f1-4f0d-b81d-040a29579765",
+      "model": null
+    },
+    "cost": {
+      "total_credits": 150,
+      "line_items": [
+        {
+          "name": "Pano generation (image, pano)",
+          "credits": 0
+        },
+        {
+          "name": "Draft world generation",
+          "credits": 150
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 153.3,
+          "pitch_deg": -11.6,
+          "heading_deg": 23.6,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation seated upon deep Atlantic Coastal Plain alluvial sediments, river-terrace gravels, and artificial fill overlying crystalline Piedmont metamorphic bedrock (Piedmont schist and gneiss). The monumental obelisk relies on an underpinning sub-foundation of blue gneiss and mass concrete. Primary vertical masonry utilizes fine-grained white Cockeysville marble (Texas, Maryland quarry) for the lower 46 meters, transitioning abruptly above the 1854 construction hiatus line to white marble from Sheffield, Massachusetts and Beaver Dam, Maryland, backed with Maine granite ashlar. Surrounding monumental administrative complexes rest upon bedrock-anchored caissons clad in Bedford Indiana oolitic limestone and Georgia granite stylobates."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Surrounding Grounds & The Mall: Dense formal alignments and parkland clusters of *Ulmus americana* (American elm), *Quercus phellos* (willow oak), *Quercus palustris* (pin oak), and *Platanus occidentalis* (American sycamore).\n- Phenological state for September 4: Mature, full-volume late-summer canopies displaying deep forest-green foliage with minor chlorotic yellowing on lower branches and early dry-season leaf margins.\n- Turf: Continuous, fine-textured monoculture turfgrass sward (*Festuca arundinacea* and *Poa pratensis*) showing deep green tones with light drought-stress fading along footpath verges.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Washington Monument: 169.3-meter hollow stone obelisk, tapering at a 1:24 slope, terminating in an 18-meter pyramidion crowned with an aluminum apex; plumb vertical alignment with square ground plan; surrounded by a concentric paved granite plaza ringed by 56 stainless steel flagpoles. Modern low-profile security screening annex clad in structural glass and blast-resistant steel at the east base.\n- National Museum of African American History and Culture: Inverted tiered three-story corona structure inspired by Yoruba sculptural caryatids, featuring an exterior screen of 3,600 cast aluminum lattice panels above a recessed continuous glazed ground level.\n- Federal Triangle Complex (Herbert C. Hoover Building / Department of Commerce and adjacent civic structures): Multi-story neoclassical monumental perimeter blocks with Doric and Ionic limestone colonnades, rusticated basements, planar fenestration grids of double-hung bronze/timber frames, and low-pitch hipped roofs clad in red terra-cotta barrel tiles.\n- National Museum of American History: Late-modernist/classical hybrid pavilion exhibiting rectilinear massing, strip fenestration, and smooth-dressed ashlar panels.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T19:11:59+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 229.83,
+        "solar_elevation_deg": 47.84,
+        "shadow_azimuth_deg": 49.8,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

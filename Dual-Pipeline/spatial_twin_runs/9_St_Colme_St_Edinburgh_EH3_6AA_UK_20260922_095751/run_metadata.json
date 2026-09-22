@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_095751",
+  "address": "9 St Colme St, Edinburgh EH3 6AA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17975.18,
+  "telemetry": {
+    "latitude": 55.95293152492543,
+    "longitude": -3.2089071279675117,
+    "altitude_agl": 27.37757227002814,
+    "heading": 302.4108791305419,
+    "pitch": -20.138377788802245,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 8.6,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 123.13713540242014,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 3200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-22T07:35:59+00:00",
+    "solar_azimuth": 120.21,
+    "solar_elevation": -8.24,
+    "color_temperature_k": 2000,
+    "lux": 5,
+    "natural_description": "Calibrated 2000K Nocturnal Night Scene (Elevation -8.2\u00b0). Weather: SNOW."
+  },
+  "domain_metadata": {
+    "address": "9 St Colme St, Edinburgh EH3 6AA, UK",
+    "coordinates": [
+      "55.952932",
+      "-3.208907"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T16:57:51.326017Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Central circular private garden containing mature *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (sycamore), and *Tilia \u00d7 europaea* (common lime). Date-grounded phenology (late December): 100% defoliated canopy, exposed intricate branching silhouettes, bare wet bark, and dense dormant turf understory with peripheral perennial beds.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2000K Nocturnal Night Scene. Sun elevation -8.2\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nAinslie Place Georgian circus, continuous curved crescent terrace constructed from pale buff Craigleith quartzitic sandstone. Channelled V-joint rustication across basement and ground tiers, fine droved ashlar on piano nobile and second storeys, continuous stone stringcourses, molded eaves cornice with blocking course. Fenestration comprises recessed timber sash-and-case windows in precise vertical arrays with painted white glazing bars. Sloped roofs clad in Scotch Ballachulish dark grey slate, accented by sandstone ashlar chimney stacks with terracotta cylindrical chimney cans and lead valley gutters. \n\nCentral circular communal garden enclosed by cast-iron perimeter spearhead railings mounted on low sandstone plinths. Within the garden, mature *Platanus \u00d7 acerifolia* and *Acer pseudoplatanus* stand completely defoliated in mid-winter dormancy, exhibiting bare branch architecture and damp bark against a manicured perennial grass lawn. \n\nConcentric roadway paved in historic dark grey whinstone cobble setts bordered by broad Caithness flagstone pavements and tooled granite kerbs. Cast-iron railing balustrades border open sunken basement areas.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3049,
+    "budget": 3200,
+    "over_budget": false,
+    "skeleton_chars": 1603,
+    "doc_chars": 1160,
+    "doc_trimmed": true,
+    "eco_chars": 348,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_141425",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 14955.8,
+  "telemetry": {
+    "latitude": 55.95193940179104,
+    "longitude": -3.2071626013510146,
+    "altitude_agl": 1.4265570652769952,
+    "heading": 245.49748741600874,
+    "pitch": 4.81778340370248,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 16.35,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744802638455,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": true,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-22T15:21:00+00:00",
+    "solar_azimuth": 222.54,
+    "solar_elevation": 1.03,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under SNOW conditions (Sun Azimuth 222.5\u00b0, Elevation 1.0\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951939",
+      "-3.207163"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": true
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T21:14:25.801472Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Botanical phenology grounded in late December (winter dormancy):\n- Mature urban canopy species: *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm).\n- Phenological state: Complete winter defoliation; bare, intricate dark-barked branch silhouettes and structural trunk frameworks exhibiting moisture-darkened bark, void of foliage.\n- Turf surface: Dormant, dense, low-cut winter turf layer.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nFine architectural survey of the west elevation of Charlotte Square, Edinburgh. Centered in the mid-ground stands the monumental Craigleith sandstone facade of West Register House, designed with an ashlar pedimented portico, Corinthian peristyle drum, and a towering standing-seam sheet-copper dome oxidized to pale verdigris. Flanking the central civic dome are continuous 3-storey Georgian palace-front residential terraces of smooth-dressed Craigleith ashlar, rusticated ground floors, regular 6-over-6 timber sash windows, projecting cornices, and pitched Scots slate roofs with stone chimneys. Centered in the garden axis stands the Prince Albert Memorial equestrian bronze monument elevated on a tiered pink Peterhead granite plinth with subsidiary bronze corner figures. Foreground consists entirely of a flat expanse of mown winter green turf, edged by whinstone paths and black cast-iron railings. Mature park trees including Acer pseudoplatanus and Tilia cordata stand in full winter dormancy, showing completely bare, leafless dark branch networks and complex bare canopies framing the stone facades. Vertical wall lines are true plumb, stone joints are precise, masonry surfaces exhibit subtle urban coal-smoke patina in undercuts and rain-revealed pale stone faces, with no pedestrians, no vehicles, and no transient clutter.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3760,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1338,
+    "doc_trimmed": false,
+    "eco_chars": 435,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

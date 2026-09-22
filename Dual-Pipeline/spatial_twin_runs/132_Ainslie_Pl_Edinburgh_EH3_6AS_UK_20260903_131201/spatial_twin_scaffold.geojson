@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "13/2 Ainslie Pl, Edinburgh EH3 6AS, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 109.5,
+          "pitch_deg": 3.5,
+          "heading_deg": 34.7,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- **Subterranean Bedrock**: Upper Carboniferous sedimentary bedrock sequence (Gullane Formation / Strathclyde Group) comprising layered sandstone, siltstone, and mudstone, overlain by dense Devensian glacial till and perched clay deposits.\n- **Lithic Extraction**: Facade masonry composed entirely of blonde-to-buff Craigleith sandstone (Lower Carboniferous quartz-arenite, silica-cemented, high crushing strength). Subterranean foundation and lightwell retaining walls built from mixed Carboniferous freestone and basalt rubble.\n- **Mortar Chemistry**: Slaked high-calcium non-hydraulic to feebly hydraulic hot-mixed lime mortar with sharp quartz sand and crushed sandstone aggregate.\n- **Hydrology & Drainage**: Topography slopes gently northward toward the Water of Leith basin; street engineered with subterranean vaulted cellars under the flagstone footway and perimeter sunken lightwells for foundation perimeter drainage."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- **Botanical Taxa**: Ainslie Place central private garden enclosure containing mature *Platanus \u00d7 acerifolia* (London plane), *Acer pseudoplatanus* (Sycamore maple), and *Tilia cordata* (Small-leaved lime), anchored by manicured perimeter lawn and dense understory shrubbery (*Ilex aquifolium*, *Taxus baccata*).\n- **Date-Grounded Phenology (September 3)**: Full, heavy mature late-summer canopy volume; leaves displaying deep forest green with localized canopy-edge matte fading, subtle chlorosis, and earliest traces of autumn yellowing along outer foliage crowns; zero defoliation.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- **Typology & Era**: Neoclassical / Greek Revival double-crescent urban palace-fronted terrace, designed by James Gillespie Graham in 1822 as part of the Moray Estate (Moray Feu).\n- **Vertical Hierarchy & Massing**: 3 principal storeys over a continuous sunken basement lightwell, topped with an attic/mansard storey behind continuous stone parapets and deep classical cornices. Advanced end and central pavilion bays articulated by colossal Giant Order Ionic pilasters spanning the first and second storeys.\n- **Fenestration**: Strict vertical grid alignment; ground floor with flat-arched and round-arched openings within channelled masonry; first-floor piano nobile featuring tall timber sash-and-case windows (typically 6-over-6 glazing pattern) with delicate cast-iron anthemion/palmette window guards; upper storeys with square 6-over-6 or 3-over-3 timber sash configurations.\n- **Planar Rectification**: All building lines rectified to true gravity vertical; curved crescent radius resolved into smooth polygonal facets of perfectly flat ashlar ashlar wall-planes; chimney stacks squared with distinct terracotta chimney cans.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2109181593270484,
+          55.9532130952049
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-03T16:33:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 253.31,
+        "solar_elevation_deg": 20.21,
+        "shadow_azimuth_deg": 73.3,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 1.4,
+          "pitch_deg": 4.8,
+          "heading_deg": 245.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation rests on Carboniferous sedimentary bedrock of the Strathclyde Group (sandstone, siltstone, mudstone cycles) overlain by dense glacial till. Primary structural lithic is fine-grained Carboniferous quartz-arenite Craigleith sandstone, characterized by high silica cementation, pale buff-to-grey coloration, and distinct laminar carbonaceous micro-bedding. Pedestal of the central monument composed of coarse-grained pink Peterhead granite with prominent pink potassium feldspar phenocrysts, quartz, and biotite. Mortars consist of traditional slaked non-hydraulic hot-lime and sharp river sand putty with minimal crushed sandstone dust pozzolans. Groundwater dynamics governed by shallow seasonal perched water tables across the central garden hollow."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Date-grounded phenology (December 22, mid-winter): Deciduous urban tree canopy in full winter dormancy with 100% leaf drop. Canopy composition includes mature Common Lime (*Tilia \u00d7 europaea*), Sycamore (*Acer pseudoplatanus*), and European Beech (*Fagus sylvatica*), exhibiting dense networks of bare, dark grey-brown ramifications, epicormic twig clusters at trunk bases, and fine leafless silhouette tracery. Turf is cold-stunted, dense, and moss-flecked with minimal winter growth.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Central landmark: West Register House (formerly St. George's Church, Robert Reid after Robert Adam, completed 1814), featuring a monumental Neoclassical massing with a tetrastyle Ionic portico supporting an unadorned triangular pediment, flanked by rusticated wings with round-arched niches. Above the central square block rises a stepped circular drum surrounded by an Ionic peristyle colonnade, culminating in a monumental ribbed hemispherical dome with a columned cupola lantern and gilded finial. Flanking background terraces: Charlotte Square Western palatial facade (Robert Adam design), comprising 3-storey-plus-basement and attic dormered Georgian townhouses. Ground storeys feature deep V-jointed horizontal rustication with round-headed entrance doors and fanlights; upper floors exhibit smooth ashlar with giant order Corinthian pilasters framing terminal pavilions, horizontal stringcourses, dentiled and modillioned cornices, and regular grids of 6-over-6 and 12-over-12 double-hung timber sash windows. Center foreground monument: Prince Albert Memorial (Sir John Steell, 1876), consisting of a stepped, multi-tiered classical pedestal with flanking lower plinth wings supporting bronze figurative groups, surmounted by an over-life-size equestrian bronze.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2071626013510146,
+          55.95193940179104
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T15:21:00+00:00",
+        "weather_state": "FOG",
+        "solar_azimuth_deg": 222.54,
+        "solar_elevation_deg": 1.03,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_141250",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15823.47,
+  "telemetry": {
+    "latitude": 55.95193940179104,
+    "longitude": -3.2071626013510146,
+    "altitude_agl": 1.4265570652769952,
+    "heading": 245.49748741600874,
+    "pitch": 4.81778340370248,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-22",
+    "time_of_day": 18.75,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744802638455,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": true,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-09-22T17:45:00+00:00",
+    "solar_azimuth": 266.06,
+    "solar_elevation": 3.31,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under OVERCAST conditions (Sun Azimuth 266.1\u00b0, Elevation 3.3\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951939",
+      "-3.207163"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": true
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T21:12:50.318721Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Urban parkland deciduous canopy within Charlotte Square Garden:\n- *Tilia \u00d7 europaea* (Common Lime): Mature broad crowns exhibiting late-September phenology with chlorotic leaf margins, early pale-yellow foliar senescence, and partial defoliation.\n- *Acer pseudoplatanus* (Sycamore): Dense spreading crowns showing dull olive-green leaves marked by autumn tar-spot lesions (*Rhytisma acerinum*) and localized crown-edge browning.\n- *Platanus \u00d7 acerifolia* (London Plane): Broad palmate foliage with olive-to-ochre discoloration at outer twig terminals.\n- Ground cover: Dense, fine-textured mown perennial turf (*Lolium perenne*, *Festuca rubra*, *Poa pratensis*) over humic garden loam with moss incursions (*Rhytidiadelphus squarrosus*).\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nNeoclassical urban square dominated by a monumental domed former church flanked by unified Georgian residential pavilions. Monolithic central portico features four colossal Ionic columns supporting a dentiled triangular pediment, backed by a rusticated ashlar vestibule. Above rises a square attic substructure transitioning into a circular peripteral colonnade with Corinthian capitals, crowned by a ribbed standing-seam verdigris copper dome and an open-columned lantern with a gilded cross finial. Terraced flanking wings present three-storey palace-front facades of polished Craigleith sandstone ashlar with rusticated ground levels, smooth piano nobile coursing, moulded string courses, modillion cornices, and balustraded parapets pierced by six-over-six timber sash-and-case windows. Blue-grey Scottish slate mansard roofs feature dressed ashlar chimney stacks and lead-cheeked dormers. Central parkland displays an equestrian bronze monument on a stepped Peterhead pink granite plinth with sculptured bronze corner bas-reliefs. The perimeter features cast-iron spear-headed railings set into droved sandstone dwarf walls. Ground surface is manicured perennial rye and fescue lawn bordered by fine whinstone setts and Caithness flagstone paving. Mature urban trees including Tilia \u00d7 europaea, Acer pseudoplatanus, and Platanus \u00d7 acerifolia exhibit late-September phenology with yellowing outer canopies, chlorotic margin necrosis, and early crown thinning.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4210,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2072,
+    "doc_chars": 1463,
+    "doc_trimmed": false,
+    "eco_chars": 737,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

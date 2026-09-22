@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "batch_id": "20260920-120839_calib-ainslie-oct",
+    "label": "calib-ainslie-oct",
+    "created": "2026-09-20T12:08:39",
+    "model": "gemini-3.1-flash-image-preview",
+    "si_file": "SI3.3.md",
+    "si_sha256": "c2e5f476bdc1fb8403b7973270ea623383d07dfb79701c498ab8036c70a86b86",
+    "prompt_template": "Ainslie Place gardens, Edinburgh. IMAGE: Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+    "sweep_values": [],
+    "repeats": 4,
+    "settings": {
+      "temperature": 0.2,
+      "top_p": 0.15,
+      "thinking_level": "high",
+      "include_thoughts": false,
+      "aspect_ratio": "16:9",
+      "image_size": "2K"
+    },
+    "base_seed": null,
+    "fixed_seed": false,
+    "planned_runs": 4,
+    "state": "done",
+    "finished": "2026-09-20T12:10:06"
+  },
+  "runs": [
+    {
+      "index": 1,
+      "sweep_value": null,
+      "repeat": 1,
+      "prompt": "Ainslie Place gardens, Edinburgh. IMAGE: Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:08:39",
+      "text": "",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 2049,
+        "candidates_tokens_details": [
+          {
+            "modality": "IMAGE",
+            "token_count": 1680
+          }
+        ],
+        "prompt_token_count": 1494,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1494
+          }
+        ],
+        "thoughts_token_count": 1202,
+        "total_token_count": 4745
+      },
+      "image_count": 1,
+      "image_file": "r01_run.jpg",
+      "seconds": 23.0,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 2,
+      "sweep_value": null,
+      "repeat": 2,
+      "prompt": "Ainslie Place gardens, Edinburgh. IMAGE: Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:09:02",
+      "text": "",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 2049,
+        "candidates_tokens_details": [
+          {
+            "modality": "IMAGE",
+            "token_count": 1680
+          }
+        ],
+        "prompt_token_count": 1494,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1494
+          }
+        ],
+        "thoughts_token_count": 1202,
+        "total_token_count": 4745
+      },
+      "image_count": 1,
+      "image_file": "r02_run.jpg",
+      "seconds": 21.3,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 3,
+      "sweep_value": null,
+      "repeat": 3,
+      "prompt": "Ainslie Place gardens, Edinburgh. IMAGE: Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:09:23",
+      "text": "",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 2049,
+        "candidates_tokens_details": [
+          {
+            "modality": "IMAGE",
+            "token_count": 1680
+          }
+        ],
+        "prompt_token_count": 1494,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1494
+          }
+        ],
+        "thoughts_token_count": 1202,
+        "total_token_count": 4745
+      },
+      "image_count": 1,
+      "image_file": "r03_run.jpg",
+      "seconds": 21.6,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    },
+    {
+      "index": 4,
+      "sweep_value": null,
+      "repeat": 4,
+      "prompt": "Ainslie Place gardens, Edinburgh. IMAGE: Standing on the gravel path on the southeast side of the garden's interior oval, looking northwest across the lawn directly at the facade of 7 Ainslie Place. 10am in late October, weather typical for the season.",
+      "seed": null,
+      "started": "2026-09-20T12:09:45",
+      "text": "",
+      "thoughts": "",
+      "finish_reason": "FinishReason.STOP",
+      "model_version": "gemini-3.1-flash-image-preview",
+      "usage": {
+        "candidates_token_count": 2049,
+        "candidates_tokens_details": [
+          {
+            "modality": "IMAGE",
+            "token_count": 1680
+          }
+        ],
+        "prompt_token_count": 1494,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1494
+          }
+        ],
+        "thoughts_token_count": 1202,
+        "total_token_count": 4745
+      },
+      "image_count": 1,
+      "image_file": "r04_run.jpg",
+      "seconds": 20.8,
+      "review": {
+        "select": false,
+        "tags": [],
+        "note": ""
+      }
+    }
+  ]
+}

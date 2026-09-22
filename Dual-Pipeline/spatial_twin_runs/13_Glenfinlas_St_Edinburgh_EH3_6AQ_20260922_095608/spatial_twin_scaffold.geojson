@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "13 Glenfinlas St, Edinburgh EH3 6AQ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 4.0,
+          "pitch_deg": -3.2,
+          "heading_deg": 312.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock: Carboniferous sedimentary strata (Gullane Formation sandstones and shales). \nLithics: Primary ashlar of pale buff Craigleith quartzose sandstone; secondary rubble and foundations of Hailes sandstone; street paving in Scottish whinstone (quartz-dolerite) and Caithness flagstone.\nMortar: Historic non-hydraulic slaked lime and sharp river sand. Subsoil: Glacial boulder clay over solid bedrock."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Species: Central garden canopy dominated by *Acer pseudoplatanus* (Sycamore) and *Tilia \u00d7 europaea* (Common Lime).\nPhenology: Late September condition; full canopy transitioning into early autumn chlorosis with yellowing leaf margins and sparse foliage thinning.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Typology: Neoclassical Georgian residential circus (Moray Estate, James Gillespie Graham, c. 1822).\nStoreys & Massing: 3 storeys plus attic dormers over rusticated sunken basement areas. \nGeometry & Fenestration: Strictly plumbed ashlar facades, regular grid of 6-over-6 timber sash-and-case windows, projecting horizontal stringcourses, continuous dentilled eaves cornices, pitched slate roofs with substantial ashlar chimney stacks and terracotta pots.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2092757637627956,
+          55.95295106187226
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-22T07:35:59+00:00",
+        "weather_state": "FOG",
+        "solar_azimuth_deg": 108.63,
+        "solar_elevation_deg": 13.02,
+        "shadow_azimuth_deg": 288.6,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

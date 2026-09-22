@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1540 Maine Ave SW, Washington, DC 20004, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 153.3,
+          "pitch_deg": -11.6,
+          "heading_deg": 23.6,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation seated upon Atlantic Coastal Plain alluvial terrace deposits (Quaternary silt, sand, gravel) overlying crystalline bedrock of the Piedmont Province (Sykesville Formation granitic gneiss). Monument base stabilized by a mass-concrete underpinning underpinning system over crystalline rock. Primary structural masonry consists of white Cockeysville marble (Maryland calcitic/dolomitic marble) and Texas quarry marble, backed by dense granite and bluestone gneiss ashlar. Surrounding institutional structures utilize Bedford Indiana limestone (Salem Formation calcarenite) with subterranean drainage tied to the reclaimed Tiber Creek basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Mature urban forest stands and formal alignments comprising *Ulmus americana* (American elm) bordering the mall avenues, with *Quercus phellos* (willow oak), *Quercus palustris* (pin oak), and *Platanus occidentalis* scattered across the rolling parkland. Early September phenology: full dense canopies in deep late-summer green, minor foliar margin wear, and faint early chlorotic yellowing on interior leaves without full autumn defoliation.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Washington Monument: Free-standing unreinforced hollow masonry obelisk, 169.04-meter true height, with a 1:10 batter along planar faces terminating in a 16.7-meter pyramidal capstone (pyramidion). Plumbed vertical load-bearing center with visible horizontal demarcation line at the 46-meter mark reflecting the construction hiatus. At the base, a circular granite-paved plaza surrounded by 56 equidistant perimeter flagpoles and a modern low-profile subterranean/ground security screening facility in glass and steel.\n- National Museum of African American History and Culture: Three-tiered inverted pyramidal corona clad in perforated cast-aluminum architectural screens atop a subterranean concrete foundation and glazed curtain-wall base.\n- Federal Triangle Complex (Herbert C. Hoover Building / Department of Commerce, Ronald Reagan Building): Seven-story monumental Neoclassical and Beaux-Arts administrative complexes featuring continuous rusticated ashlar podiums, giant-order Doric/Ionic colonnades, deep set multipane fenestration grids, and pitched hip roofs clad in Spanish barrel terra cotta tiles.\n- Ellipse & Grounds: Geometric concentric and radial crushed-gravel pathways and asphalt service lanes intersecting graded turf berms.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03715909558203,
+          38.8858692444861
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T16:09:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 153.51,
+        "solar_elevation_deg": 55.89,
+        "shadow_azimuth_deg": 333.5,
+        "color_temperature_k": 5800,
+        "ambient_illuminance_lux": 85000
+      }
+    }
+  ]
+}

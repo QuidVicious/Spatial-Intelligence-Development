@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_100349",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16386.26,
+  "telemetry": {
+    "latitude": 55.951927757140005,
+    "longitude": -3.207899552345438,
+    "altitude_agl": 84.79986548475824,
+    "heading": 242.90471262084404,
+    "pitch": -37.33769569589998,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-06-22",
+    "time_of_day": 15.3,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.72941599300901,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-06-22T14:18:00+00:00",
+    "solar_azimuth": 227.65,
+    "solar_elevation": 50.4,
+    "color_temperature_k": 5800,
+    "lux": 85000,
+    "natural_description": "Calibrated 5800K High clear sun with short vertical shadows and neutral daylight (backlighting from ahead of the observer, Sun Azimuth 227.7\u00b0, Elevation 50.4\u00b0). Clear sky."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951928",
+      "-3.207900"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T17:03:49.965623Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Perimeter mature urban hardwoods (*Platanus \u00d7 acerifolia* and *Acer pseudoplatanus*) display late June phenology: dense, fully expanded, dark-green foliar canopies with high leaf-area index, distinct five-lobed palmate leaves, mature crown volume with strong structural branching, and deep green turf zones within adjacent park enclosures.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5800K High clear sun with short vertical shadows and neutral daylight):\n- SUN POSITION IN SCREEN SPACE: Sun is directly ahead of the camera in the centre background (True Azimuth 227.7\u00b0, Elevation 50.4\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in shadow, reading as backlit silhouettes with a bright rim along their sunward edges; left- and right-facing walls are lit roughly equally.\n- CAST SHADOW DIRECTION: cast shadows project directly toward the camera, down the frame.\n- CAST SHADOW LENGTH: Every cast shadow is 0.8 times as long as the height of the object casting it. A 100 m tower casts a 83 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project directly toward the camera, down the frame. Every shadow must be angled toward the RIGHT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Wet, mirror-reflective paving and subtle standing water under bright sky.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nNeoclassical civic dome and flanking Georgian ashlar terraces. Central monument features polished Craigleith sandstone ashlar masonry, tetrastyle Ionic portico, stepped plinth, entablature with detailed frieze, high cylindrical drum wrapped in Corinthian colonnade, surmounted by hemispherical verdigris patinated copper dome with octagonal lantern cupola and gilded finial. Flanking residential terraces constructed from fine-grained buff-grey Craigleith and Hailes sandstone, featuring V-jointed channelled rustication on ground floors, polished ashlar upper storeys, continuous molded stringcourses, and heavy modillioned eaves cornices. Symmetrical fenestration grids with recessed six-over-six timber sash-and-case windows, painted off-white frames, stone cills, and moulded architraves. Roofscape clad in dark grey Ballachulish slate tiles with lead-dressed dormers, planar hip ridges, stepped stone parapets, and massive rectangular ashlar chimney stacks with rows of cylindrical terracotta pots. Deep sunken basement areas guarded by black wrought-iron spearhead railings.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4049,
+    "budget": 4200,
+    "over_budget": false,
+    "skeleton_chars": 2692,
+    "doc_chars": 1080,
+    "doc_trimmed": true,
+    "eco_chars": 339,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

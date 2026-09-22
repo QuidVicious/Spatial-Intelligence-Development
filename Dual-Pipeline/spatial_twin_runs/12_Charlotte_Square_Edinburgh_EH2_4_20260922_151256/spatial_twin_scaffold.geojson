@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 2.3,
+          "pitch_deg": 3.8,
+          "heading_deg": 244.4,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock foundation comprises Lower Carboniferous sedimentary sequences of the Inverclyde and Strathclyde Groups (interbedded sandstones, siltstones, and mudstones) overlying regional volcanic basaltic dolerite sills. Structural masonry is predominantly Craigleith sandstone\u2014a pale buff, silica-cemented, fine-grained quartz arenite known for low porosity and high compressive strength\u2014supplemented by Hailes sandstone. Pedestal of the central monument rests on dressed blocks of pink Peterhead granite and grey granodiorite. Historic bedding mortars utilize traditional non-hydraulic to feebly-hydraulic hot-mixed lime and well-graded crushed sandstone aggregate. Subterranean moisture is governed by glacial till drift over gently undulating, well-draining urban regolith."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Enclosed square parkland containing mature deciduous canopy trees: *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm). Botanical phenology for late December: 100% leaf senescence and complete winter defoliation, revealing bare, dark, moisture-darkened branch architecture, dense twig tracery, and lichen-crusted bark. Understory comprises dormant perennial turf grasses (*Lolium perenne*, *Festuca rubra*, *Poa pratensis*) with damp winter compaction and bare root-flare perimeters.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Neoclassical civic ensemble terminating the western axis of the Edinburgh New Town (Robert Adam plan, executed and modified by Robert Reid, completed 1814). Central monumental focus is West Register House (formerly St George's Church): colossal tetrastyle Ionic portico with entablature and triangular pediment, flanked by rusticated vestibule bays, surmounted by a stepped square plinth, a peristyle drum encircled by Corinthian columns, and crowned by a high hemispherical ribbed dome terminating in a lantern cupola. Flanking terraces form a unified three-storey, basement, and attic Georgian palazzo block: rusticated ashlar ground storeys, channeled voussoirs over flat window arches, first-floor piano nobile with continuous molded stringcourses, regular fenestration grids with 6-over-6 timber sash-and-case windows, and pitched rooflines with slated dormers and ashlar chimney stacks. Foreground features the Prince Albert Memorial (Sir John Steell, 1876): multi-tiered stepped granite pedestal supporting a colossal bronze equestrian figure with bronze figurative narrative reliefs and corner plinth groups.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2072049700396352,
+          55.951904957281435
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-22T16:36:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 237.76,
+        "solar_elevation_deg": -7.01,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 2000,
+        "ambient_illuminance_lux": 5
+      }
+    }
+  ]
+}

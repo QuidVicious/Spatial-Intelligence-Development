@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LSA Dispatcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --table: #d6d8d4;       /* light table */
+    --paper: #eeefeb;       /* panels */
+    --ink: #1c1d1f;
+    --graphite: #5e6166;
+    --rule: #b9bcb6;
+    --rebate: #161618;      /* film rebate */
+    --pencil: #c42c20;      /* grease pencil */
+    --ui: "Libre Franklin", "Segoe UI", Arial, sans-serif;
+    --edge: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--table); color: var(--ink); font: 15px/1.5 var(--ui); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--pencil); outline-offset: 2px; }
+
+  header { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; padding: 18px 28px 14px; border-bottom: 1px solid var(--rule); }
+  header h1 { margin: 0; font: 600 22px/1 var(--edge); letter-spacing: .02em; }
+  #status { color: var(--graphite); font-size: 13px; }
+  #status.bad { color: var(--pencil); }
+  header .history { margin-left: auto; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+
+  main { display: grid; grid-template-columns: 360px 1fr; min-height: calc(100vh - 60px); }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+
+  form { background: var(--paper); padding: 22px 24px 32px; border-right: 1px solid var(--rule); }
+  form h2 { font: 600 17px/1.2 var(--edge); margin: 22px 0 10px; letter-spacing: .02em; }
+  form h2:first-child { margin-top: 0; }
+  label { display: block; font-size: 13px; color: var(--graphite); margin: 10px 0 4px; }
+  input[type=text], input[type=number], select, textarea {
+    width: 100%; padding: 7px 9px; background: #fff; border: 1px solid var(--rule); border-radius: 2px;
+  }
+  textarea { resize: vertical; }
+  #prompt { min-height: 150px; }
+  #sweep { min-height: 110px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .check { display: flex; gap: 8px; align-items: center; color: var(--ink); font-size: 14px; margin-top: 12px; }
+  .hint { font-size: 12.5px; color: var(--graphite); margin: 4px 0 0; }
+  #sihash { font-size: 12px; color: var(--graphite); word-break: break-all; margin-top: 4px; }
+  #run { margin-top: 22px; width: 100%; padding: 11px; background: var(--ink); color: var(--paper); border: 0; border-radius: 2px; font-weight: 600; cursor: pointer; }
+  #run:disabled { opacity: .5; cursor: wait; }
+  #formerr { color: var(--pencil); font-size: 13.5px; margin-top: 10px; min-height: 1em; }
+
+  section#table { padding: 22px 28px 60px; }
+  #batchhead h2 { margin: 0; font: 600 26px/1.1 var(--edge); }
+  #batchhead p { margin: 4px 0 0; color: var(--graphite); font-size: 13.5px; max-width: 80ch; }
+  #batchhead .links a { color: var(--ink); margin-right: 16px; font-size: 13.5px; }
+  #progress { height: 3px; background: var(--rule); margin: 14px 0 22px; }
+  #progress div { height: 100%; width: 0; background: var(--ink); transition: width .4s; }
+  .empty { color: var(--graphite); max-width: 60ch; margin-top: 40px; }
+
+  #frames { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px 26px; }
+  .frame { position: relative; }
+  .rebate { background: var(--rebate); padding: 12px; border-radius: 1px; outline: 5px solid transparent; outline-offset: 5px; transition: outline-color .15s; }
+  .frame.selected .rebate { outline-color: var(--pencil); }
+  .rebate img { display: block; width: 100%; height: auto; cursor: zoom-in; }
+  .rebate .fail { color: #d8d8d4; font-size: 13px; padding: 30px 8px; white-space: pre-wrap; }
+  .edge { display: flex; gap: 12px; align-items: baseline; margin-top: 8px; font-family: var(--edge); font-size: 17px; }
+  .edge .n { font-weight: 600; }
+  .edge .meta { color: var(--graphite); font-size: 14px; }
+  .edge button { margin-left: auto; background: none; border: 1px solid var(--ink); border-radius: 2px; padding: 1px 10px; font: 500 14px var(--edge); cursor: pointer; }
+  .frame.selected .edge button { background: var(--pencil); border-color: var(--pencil); color: #fff; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tags button { background: transparent; border: 1px solid var(--rule); border-radius: 12px; padding: 1px 9px; font-size: 12.5px; color: var(--graphite); cursor: pointer; }
+  .tags button[aria-pressed=true] { border-color: var(--pencil); color: var(--pencil); }
+  .frame textarea { margin-top: 8px; min-height: 44px; font-size: 13.5px; background: var(--paper); }
+  details { margin-top: 6px; font-size: 13.5px; }
+  details summary { cursor: pointer; color: var(--graphite); }
+  details pre { white-space: pre-wrap; font: 13.5px/1.5 var(--ui); background: var(--paper); padding: 10px 12px; margin: 6px 0 0; max-height: 320px; overflow: auto; }
+
+  dialog { border: 0; padding: 0; background: var(--rebate); max-width: 96vw; max-height: 96vh; }
+  dialog img { display: block; max-width: 96vw; max-height: 92vh; }
+  dialog::backdrop { background: rgba(10,10,12,.85); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>LSA Dispatcher</h1>
+  <span id="status">Connecting</span>
+  <div class="history">
+    <label for="history" style="margin:0">Batches</label>
+    <select id="history"></select>
+  </div>
+</header>
+
+<main>
+  <form id="f" autocomplete="off">
+    <h2>System instruction</h2>
+    <select id="si" aria-label="System instruction file"></select>
+    <div id="sihash"></div>
+
+    <h2>Prompt</h2>
+    <textarea id="prompt" placeholder="Ainslie Place gardens, Edinburgh, looking north from the east gate at 10am in {sweep}, with the weather typical for that month."></textarea>
+    <label for="sweep">Sweep values, one per line (fills {sweep})</label>
+    <textarea id="sweep" placeholder="January&#10;February&#10;March"></textarea>
+    <div class="row">
+      <div><label for="repeats">Runs per value</label><input id="repeats" type="number" min="1" max="20" value="1"></div>
+      <div><label for="label">Batch label</label><input id="label" type="text" placeholder="ainslie-gardens-12mo"></div>
+    </div>
+
+    <h2>Settings</h2>
+    <div class="row">
+      <div><label for="temperature">Temperature</label><input id="temperature" type="number" step="0.05" min="0" max="2"></div>
+      <div><label for="top_p">Top-p</label><input id="top_p" type="number" step="0.05" min="0" max="1"></div>
+      <div><label for="thinking_level">Thinking</label>
+        <select id="thinking_level"><option value="">Model default</option><option>minimal</option><option>low</option><option>medium</option><option>high</option></select></div>
+      <div><label for="aspect_ratio">Aspect</label>
+        <select id="aspect_ratio"><option value="">Model default</option><option>16:9</option><option>3:2</option><option>4:3</option><option>1:1</option><option>2:3</option><option>9:16</option><option>21:9</option></select></div>
+      <div><label for="image_size">Size</label>
+        <select id="image_size"><option value="">Model default</option><option>1K</option><option>2K</option><option>4K</option></select></div>
+      <div><label for="seed">Seed</label><input id="seed" type="text" placeholder="none"></div>
+    </div>
+    <label class="check"><input id="fixed_seed" type="checkbox"> Same seed for every run</label>
+    <p class="hint">Without this, runs count up from the seed you enter.</p>
+    <label class="check"><input id="include_thoughts" type="checkbox"> Return thought text separately</label>
+    <p class="hint">Separates thinking from the text the model emits beside the image.</p>
+
+    <button id="run" type="submit">Run batch</button>
+    <div id="formerr" role="alert"></div>
+  </form>
+
+  <section id="table" aria-live="polite">
+    <div id="batchhead"></div>
+    <div id="progress" hidden><div></div></div>
+    <div id="frames"><p class="empty">Choose a system instruction, write a prompt, and run a batch. Every frame lands here as it comes back, including the failures.</p></div>
+  </section>
+</main>
+
+<dialog id="viewer"><img alt=""></dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+let TAGS = [], current = null, pollTimer = null;
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || `Request failed (${r.status})`);
+  return j;
+}
+
+async function init() {
+  const s = await api('/api/status');
+  TAGS = s.error_tags;
+  const st = $('#status');
+  st.textContent = s.api_key_found ? `${s.model}, key loaded from ${s.env_file}` : 'No API key found. Check config.json against your .env.';
+  st.classList.toggle('bad', !s.api_key_found);
+  for (const [k, v] of Object.entries(s.defaults)) {
+    const el = document.getElementById(k);
+    if (!el) continue;
+    if (el.type === 'checkbox') el.checked = !!v; else el.value = v ?? '';
+  }
+  const si = await api('/api/si');
+  $('#si').innerHTML = si.map(x => `<option value="${x.file}" data-sha="${x.sha256}">${x.file}</option>`).join('')
+    || '<option value="">Add SI files to the si folder</option>';
+  showHash();
+  await loadHistory();
+}
+
+function showHash() {
+  const o = $('#si').selectedOptions[0];
+  $('#sihash').textContent = o && o.dataset.sha ? `sha256 ${o.dataset.sha.slice(0, 16)}` : '';
+}
+$('#si').addEventListener('change', showHash);
+
+async function loadHistory(select) {
+  const list = await api('/api/batches');
+  $('#history').innerHTML = '<option value="">Open a past batch</option>' +
+    list.map(b => `<option value="${b.batch_id}">${b.batch_id} (${b.planned_runs})</option>`).join('');
+  if (select) $('#history').value = select;
+}
+$('#history').addEventListener('change', e => e.target.value && openBatch(e.target.value));
+
+$('#f').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('#formerr').textContent = '';
+  $('#run').disabled = true;
+  const v = id => document.getElementById(id);
+  try {
+    const res = await api('/api/batch', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        si_file: v('si').value, prompt: v('prompt').value, sweep_values: v('sweep').value,
+        repeats: +v('repeats').value, label: v('label').value,
+        temperature: +v('temperature').value, top_p: +v('top_p').value,
+        thinking_level: v('thinking_level').value, aspect_ratio: v('aspect_ratio').value,
+        image_size: v('image_size').value, seed: v('seed').value,
+        fixed_seed: v('fixed_seed').checked, include_thoughts: v('include_thoughts').checked,
+      })
+    });
+    await loadHistory(res.batch_id);
+    openBatch(res.batch_id);
+  } catch (err) {
+    $('#formerr').textContent = err.message;
+    $('#run').disabled = false;
+  }
+});
+
+async function openBatch(id) {
+  clearTimeout(pollTimer);
+  current = id;
+  const data = await api(`/api/batch/${id}`);
+  render(data);
+  const running = data.job.state === 'running';
+  $('#run').disabled = running;
+  if (running) pollTimer = setTimeout(() => openBatch(id), 3000);
+}
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function render(data) {
+  const m = data.meta, s = m.settings, job = data.job;
+  const done = data.runs.length, total = m.planned_runs;
+  $('#batchhead').innerHTML = `
+    <h2>${esc(m.label || m.batch_id)}</h2>
+    <p>${esc(m.si_file)}, sha ${m.si_sha256.slice(0, 12)}. Temperature ${s.temperature}, top-p ${s.top_p}, thinking ${s.thinking_level || 'default'}${m.base_seed != null ? `, seed ${m.base_seed}${m.fixed_seed ? ' fixed' : ' counting up'}` : ''}. ${done} of ${total} frames${job.state === 'running' ? ', running' : job.state === 'failed' ? ', stopped: ' + esc(job.error) : ''}.</p>
+    <p class="links">${data.has_contact_sheet ? `<a href="/runs/${m.batch_id}/contact_sheet.jpg?t=${Date.now()}" target="_blank">Contact sheet</a>` : ''}<a href="/runs/${m.batch_id}/batch.json" target="_blank">Run log</a><a href="/runs/${m.batch_id}/si_snapshot.txt" target="_blank">SI snapshot</a></p>`;
+  const prog = $('#progress');
+  prog.hidden = job.state !== 'running';
+  prog.firstElementChild.style.width = `${total ? done / total * 100 : 0}%`;
+
+  // Keep in-progress notes: only rebuild frames that are new.
+  const frames = $('#frames');
+  if (frames.dataset.batch !== m.batch_id) { frames.innerHTML = ''; frames.dataset.batch = m.batch_id; }
+  if (!data.runs.length) frames.innerHTML = '<p class="empty">Waiting for the first frame.</p>';
+  else frames.querySelector('.empty')?.remove();
+  for (const r of data.runs) {
+    if (frames.querySelector(`[data-i="${r.index}"]`)) continue;
+    frames.insertAdjacentHTML('beforeend', frameHTML(m.batch_id, r));
+  }
+}
+
+function frameHTML(bid, r) {
+  const rv = r.review || {};
+  const img = r.image_file
+    ? `<img src="/runs/${bid}/${r.image_file}" alt="Frame ${r.index}${r.sweep_value ? ', ' + esc(r.sweep_value) : ''}" loading="lazy">`
+    : `<div class="fail">${esc(r.error || 'No image returned.')}</div>`;
+  const tags = TAGS.map(t => `<button type="button" aria-pressed="${(rv.tags || []).includes(t)}">${esc(t)}</button>`).join('');
+  return `<article class="frame${rv.select ? ' selected' : ''}" data-i="${r.index}" data-b="${bid}">
+    <div class="rebate">${img}</div>
+    <div class="edge"><span class="n">${String(r.index).padStart(2, '0')}</span>
+      <span>${esc(r.sweep_value || '')}</span>
+      <span class="meta">${r.seed != null ? 'seed ' + r.seed + ', ' : ''}${r.seconds}s</span>
+      <button type="button" class="sel">${rv.select ? 'Selected' : 'Select'}</button></div>
+    <div class="tags">${tags}</div>
+    <textarea placeholder="Note on this frame" aria-label="Note on frame ${r.index}">${esc(rv.note || '')}</textarea>
+    <details><summary>Model text${r.thoughts ? ' and thoughts' : ''}</summary>
+      <pre>${esc(r.text || '(no text)')}</pre>${r.thoughts ? `<pre>${esc(r.thoughts)}</pre>` : ''}
+      <pre>${esc(r.prompt)}</pre></details>
+  </article>`;
+}
+
+async function saveReview(frame) {
+  const tags = [...frame.querySelectorAll('.tags button[aria-pressed=true]')].map(b => b.textContent);
+  await api(`/api/batch/${frame.dataset.b}/review`, {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ index: +frame.dataset.i, select: frame.classList.contains('selected'),
+      tags, note: frame.querySelector('textarea').value })
+  });
+}
+
+$('#frames').addEventListener('click', e => {
+  const frame = e.target.closest('.frame');
+  if (!frame) return;
+  if (e.target.matches('.sel')) {
+    const on = frame.classList.toggle('selected');
+    e.target.textContent = on ? 'Selected' : 'Select';
+    saveReview(frame);
+  } else if (e.target.matches('.tags button')) {
+    e.target.setAttribute('aria-pressed', e.target.getAttribute('aria-pressed') !== 'true');
+    saveReview(frame);
+  } else if (e.target.matches('.rebate img')) {
+    $('#viewer img').src = e.target.src;
+    $('#viewer').showModal();
+  }
+});
+$('#frames').addEventListener('change', e => {
+  if (e.target.matches('.frame textarea')) saveReview(e.target.closest('.frame'));
+});
+$('#viewer').addEventListener('click', () => $('#viewer').close());
+
+init().catch(err => { $('#status').textContent = err.message; $('#status').classList.add('bad'); });
+</script>
+</body>
+</html>

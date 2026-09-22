@@ -8,6 +8,7 @@ import os
 import re
 import json
 import base64
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
@@ -19,6 +20,28 @@ from synthesis_engine import SynthesisResult, ModelProvider
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_RUNS_DIR = BASE_DIR / "spatial_twin_runs"
+
+
+def git_state() -> Dict[str, Any]:
+    """
+    Records the code that produced this run. Without it, an archived artifact
+    cannot be tied back to the source that made it.
+    """
+    state: Dict[str, Any] = {"sha": None, "branch": None, "dirty": None}
+    try:
+        def _run(args):
+            return subprocess.run(
+                args, cwd=str(BASE_DIR), capture_output=True, text=True, timeout=5
+            ).stdout.strip()
+        sha = _run(["git", "rev-parse", "HEAD"])
+        if sha:
+            state["sha"] = sha
+            state["short_sha"] = sha[:8]
+            state["branch"] = _run(["git", "rev-parse", "--abbrev-ref", "HEAD"]) or None
+            state["dirty"] = bool(_run(["git", "status", "--porcelain"]))
+    except Exception as e:
+        state["error"] = str(e)
+    return state
 
 
 def slugify_address(address: str, max_len: int = 35) -> str:
@@ -36,6 +59,9 @@ def archive_run(
     synthesis_result: SynthesisResult,
     screenshot_b64: Optional[str] = None,
     delighted_b64: Optional[str] = None,
+    pano_b64: Optional[str] = None,
+    request_settings: Optional[Dict[str, Any]] = None,
+    lighting_state: Optional[Any] = None,
     runs_dir: Optional[Path] = None
 ) -> str:
     """
@@ -68,6 +94,12 @@ def archive_run(
         delighted_path = run_folder / "delighted_reference.jpg"
         with open(delighted_path, "wb") as f:
             f.write(base64.b64decode(raw_delighted))
+
+    # 1.6 Save the panorama seed, when one was generated
+    if pano_b64:
+        raw_pano = pano_b64.split(",")[-1] if "," in pano_b64 else pano_b64
+        with open(run_folder / "pano_seed.jpg", "wb") as f:
+            f.write(base64.b64decode(raw_pano))
 
     # 2. Save Synthesized Visual Twin Artifact
     if synthesis_result.image_b64:
@@ -124,8 +156,29 @@ def archive_run(
             "fov": getattr(telemetry, "fov", 0.0),
             "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES")
         },
-        "system_instruction": getattr(conditioning, "system_instruction", None),
-        "user_prompt": getattr(conditioning, "user_prompt", None),
+        "settings": {
+            "provider": getattr(telemetry, "provider", None) or synthesis_result.provider.value,
+            "target_model": synthesis_result.model_name,
+            "date": getattr(telemetry, "date", None),
+            "time_of_day": getattr(telemetry, "time_of_day", None),
+            "timestamp_utc": getattr(telemetry, "timestamp_utc", None),
+            "lighting_mode": getattr(telemetry, "lighting_mode", None),
+            "weather_mode": getattr(telemetry, "weather_mode", None),
+            "altitude_method": getattr(telemetry, "altitude_method", None),
+            "ground_elevation_m": getattr(telemetry, "ground_elevation_m", None),
+            **(request_settings or {})
+        },
+        "lighting_resolved": (
+            dict(getattr(lighting_state, "metadata", {}) or {},
+                 natural_description=getattr(lighting_state, "natural_description", None))
+            if lighting_state is not None else None
+        ),
+        "domain_metadata": getattr(domain_result, "metadata", None),
+        "provenance": {
+            "git": git_state(),
+            "archived_at_utc": datetime.utcnow().isoformat() + "Z"
+        },
+        "system_instruction": getattr(conditioning, "system_instruction", None) or None,
         "compiled_prompt": conditioning.prompt,
         "prompt_metadata": conditioning.metadata
     }

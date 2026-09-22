@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "1501 Maine Ave SW, Washington, DC 20024, USA",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 300.2,
+          "pitch_deg": -31.5,
+          "heading_deg": 351.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean substrate situated along the Atlantic Seaboard Fall Zone transition between Piedmont crystalline metamorphic basement (Potomac Formation crystalline schist and gneiss) and unconsolidated Atlantic Coastal Plain Quaternary alluvial deposits (interbedded gravels, sands, silts, and soft plastic Potomac clays). Structural load is anchored by a massive reinforced concrete sub-foundation underpinning system (installed 1879\u20131880) resting upon compact alluvial gravel and clay strata. Lithic assembly of the central obelisk comprises lower-tier coarse-grained calcite marble from Beaver Dam Quarry (Cockeysville, Maryland) with Potomac gneiss rubblestone backing, transitioning above the 152-foot (46 m) construction hiatus to fine-grained dolomitic marble from Sheffield, Massachusetts, and upper courses of Cockeysville marble backed by biotite granite coursing from Maine and Massachusetts. Surrounding regional government edifices utilize Mississippian Salem calcarenite (Indiana limestone) over Milford pink granite plinths. Mortar chemistry shifts from early slaked lime-sand mortars at the lower shaft to high-strength unslaked hydraulic cement and Portland cement mortar in the upper tiers."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Late-summer temperate urban parkland canopy (September 4 phenology):\n- *Ulmus americana* (American elm): Mature specimens lining flanking avenues and mall borders with expansive vase-shaped canopies; deep forest-green foliage with localized early-margin chlorosis.\n- *Quercus phellos* (Willow oak) and *Quercus palustris* (Pin oak): Dense, rounded to conical crowns with dark green, glossy, mature late-season foliage.\n- *Platanus \u00d7 acerifolia* (London plane) and *Liriodendron tulipifera* (Tulip tree): Broad spreading canopies with multi-lobed leaves showing early autumn stiffness and patchy pale bronzing.\n- *Prunus \u00d7 yedoensis* (Yoshino cherry): Rounded spreading sub-canopy groves exhibiting full, dark green mature leaves prior to autumn senescence.\nTurf zones exhibit deep green irrigated turfgrass with dry pedestrian trail compression paths.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Central landmark: hollow masonry Egyptian revival obelisk rising 555 feet 5\u215b inches (169.29 m) from a 55-foot (16.8 m) square base with a 1:48 shaft taper, terminating in an 8.9-meter-tall pyramidion (1:2 proportion) crowned with a cast aluminum apex. Plumb lines strictly rectified to true gravity vertical; planar ashlar courses aligned horizontally. The circular plaza deck features an inner perimeter of 56 polished stainless steel flagpoles set in concentric granite paving bands. Northeast quadrant: National Museum of African American History and Culture (NMAAHC), a modern inverted tripartite ziggurat structure featuring three tiers of upward-flaring corona canopies suspended over an inverted pyramid structural steel diagrid with glazed ground-level curtain wall. East/Northeast perimeter: Federal Triangle complex (Herbert C. Hoover Building / U.S. Department of Commerce), an 8-storey Neoclassical/Beaux-Arts civic mega-structure featuring rusticated base arcades, Doric colonnades along continuous 1,000-foot facades, deeply recessed multi-pane double-hung fenestration grids, and red terracotta Spanish-barrel roof pantiles punctuated by classical pedimented dormers. North axis: symmetrical perimeter paths circling the southern verge of The Ellipse.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0343719630568,
+          38.88574592453011
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-04T19:09:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 228.94,
+        "solar_elevation_deg": 48.28,
+        "shadow_azimuth_deg": 48.9,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

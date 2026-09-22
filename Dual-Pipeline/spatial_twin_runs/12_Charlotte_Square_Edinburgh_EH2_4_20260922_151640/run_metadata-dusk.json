@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_151640",
+  "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15035.82,
+  "telemetry": {
+    "latitude": 55.951904957281435,
+    "longitude": -3.2072049700396352,
+    "altitude_agl": 2.2839422929885274,
+    "heading": 244.44414358716224,
+    "pitch": 3.7530876866102454,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 15.55,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.97744901795235,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-12-22T15:33:00+00:00",
+    "solar_azimuth": 225.03,
+    "solar_elevation": -0.13,
+    "color_temperature_k": 2200,
+    "lux": 800,
+    "natural_description": "Calibrated 2200K Blue Hour Civil Twilight (Elevation -0.1\u00b0). Weather: SUNNY."
+  },
+  "domain_metadata": {
+    "address": "12 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951905",
+      "-3.207205"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T22:16:40.159357Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Enclosed urban park lawn (*Lolium perenne*, *Festuca rubra*) showing winter dormancy. Deciduous canopy consisting of mature *Tilia \u00d7 europaea* (Common Lime), *Acer pseudoplatanus* (Sycamore), and *Platanus \u00d7 acerifolia* (London Plane). Phenology precisely aligned with late December (2026-12-22): 100% defoliation; bare, highly articulated branch architecture; dormant winter buds; dark, wet-barked trunks with localized epiphytic crustose lichens (*Lecanora*) and moss cushions (*Hypnum cupressiforme*) on prevailing weather flanks.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2200K Blue Hour Civil Twilight. Sun elevation -0.1\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nStatic architectural survey of Charlotte Square, Edinburgh. Center-aligned in background stands West Register House: monumental green oxidized copper dome atop a cylindrical drum with Corinthian pilasters, resting on a symmetrical Craigleith sandstone classical facade with an Ionic entrance portico and rusticated podium. Flanking terrace wings present Robert Adam Georgian palace facades: three storeys of buff Craigleith sandstone ashlar with channelled rustication on ground floors, timber six-over-six sash-and-case windows, continuous stone friezes, balustraded parapets, and Ballachulish slate roofs with multi-pot sandstone chimney stacks. Foreground features the John Steell Prince Albert Memorial: cast-bronze equestrian figure and corner allegorical statuary with weathered dark-green patina, mounted on a stepped, polished pink Peterhead granite pedestal. The surrounding garden expanse consists of flat dormant winter turf bounded by mature *Tilia \u00d7 europaea* and *Acer pseudoplatanus* trees with completely bare, leafless December branch networks and wet bark textures. Ground perimeter defined by black-painted wrought-iron spearhead railings set into dressed sandstone plinth copings with granite kerbing beyond. Masonry surfaces exhibit authentic Scottish urban patina, including localized coal-smoke darkening and water-runoff weathering lines. Zero pedestrians, zero vehicles, pure static civic fabric.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3498,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 1606,
+    "doc_chars": 1421,
+    "doc_trimmed": false,
+    "eco_chars": 533,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

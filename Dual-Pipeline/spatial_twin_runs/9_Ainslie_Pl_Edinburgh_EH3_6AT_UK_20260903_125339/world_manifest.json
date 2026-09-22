@@ -1,0 +1,73 @@
+{
+  "world_id": "970181b1-79a2-4261-845d-0d89a55f4db0",
+  "viewer_url": null,
+  "splat_url": null,
+  "collider_mesh_url": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/2148c3be.glb",
+  "pano_url": null,
+  "raw_response": {
+    "operation_id": "5f8590f8-66e0-4580-a6a3-ae6f1bca888f",
+    "created_at": "2026-09-03T19:53:14Z",
+    "updated_at": "2026-09-03T19:53:38Z",
+    "expires_at": "2026-09-03T22:53:14Z",
+    "done": true,
+    "error": null,
+    "metadata": {
+      "progress": {
+        "status": "SUCCEEDED",
+        "description": "World generation completed successfully"
+      },
+      "world_id": "970181b1-79a2-4261-845d-0d89a55f4db0",
+      "operation_type": "world_generation",
+      "public_model_name": "marble-1.0-draft"
+    },
+    "response": {
+      "world_id": "970181b1-79a2-4261-845d-0d89a55f4db0",
+      "display_name": "",
+      "tags": null,
+      "assets": {
+        "mesh": {
+          "collider_mesh_url": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/2148c3be.glb",
+          "hq_mesh_url": null,
+          "full_res_mesh_url": null
+        },
+        "imagery": {
+          "pano_url": null
+        },
+        "splats": {
+          "spz_urls": {
+            "500k": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/9293f6d8-9b00-40b3-83b5-f423c90ff8ab_sand_500k.spz",
+            "100k": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/fdee2fb4-c7ba-4ced-ab5c-2b3bf504168d_sand_100k.spz",
+            "full_res": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/463af37a-3a75-4d7e-8b0f-8335a4987e2a_sand.spz"
+          },
+          "semantics_metadata": null
+        },
+        "thumbnail_url": "https://cdn.marble.worldlabs.ai/970181b1-79a2-4261-845d-0d89a55f4db0/0bf5f54d-1ae7-4bbd-a3b9-76f3b3a13d5b_sand_mpi/thumbnail.webp",
+        "caption": "Build an explorable three-dimensional world of a real place: 9 Ainslie Pl, Edinburgh EH3 6AT, UK. This is a continuous inhabited environment, not a picture of one. Every surface should hold up when approached closely and when viewed from any direction.\n\nSTRUCTURE AND MASSING\n- **Typology & Provenance:** Neoclassical Georgian residential circus block, designed by architect James Gillespie Graham (1822) as part of the Moray Estate development. - **Storeys & Massing:** Symmetrical curved palace-front terrace consisting of a sunken basement, rusticated principal ground floor, piano nobile first floor, second floor, and an attic/blocking course storey. Advanced terminal and central pavilions break the curved facade plane. - **Vertical & Planar Alignment:** Rectified vertical load-bearing lines plumbed to true gravity vertical. Planar ashlar walls flattened from 3D scan distortions; horizontal datums restored along continuous stringcourses, sill bands, and projecting classical entablatures. - **Fenestration & Detailing:** Regular grid of timber sash-and-case windows (predominantly 6-over-6 and 12-pane configurations) recessed within dressed stone reveals. Piano nobile windows feature moulded architraves with projecting cornices. Cast-iron spearhead balustrades enclose sunken area wells crossed by oversailing ashlar entrance platts. Pitched slate roofs with dressed ashlar chimneystacks and cylindrical clay chimney pots.\n\nSURFACES AND MATERIALS\n- **Masonry Treatment:** Polished Craigleith ashlar with fine-tooled ashlar finishes on upper floors; deep V-jointed channelled rustication across the principal floor level. - **Roofing & Envelope:** Scottish Ballachulish and Welsh Penrhyn dark blue-grey slate tiles laid in diminishing courses, lead valleys, zinc/lead flashing, cast-iron rainwater goods with rectangular hopper heads. - **Environmental Pathology:** Stratified historical carbon and sulfur encrustation (gypsum black crusts) in sheltered lintel recesses and cornice undersides; surface rain-wash leaching across exposed ashlar faces; minor iron oxide staining and basal biological damp patina along plinth courses.\n\nVEGETATION\n- **Botanical Identity:** Mature urban garden specimens within Ainslie Place Gardens featuring *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm). - **Date-Grounded Phenology (September 3):** Full late-summer canopy volume with early transitional phenology; mature deep-green broadleaf foliage exhibiting incipient margins of chlorotic yellowing on upper exposed crowns; hanging clusters of dry samaras/keys; dense, manicured understory turf with perennial border plantings."
+      },
+      "created_at": null,
+      "updated_at": null,
+      "permission": {
+        "public": false,
+        "allowed_readers": [],
+        "allowed_writers": [],
+        "allow_id_access": false
+      },
+      "world_prompt": null,
+      "world_marble_url": "https://marble.worldlabs.ai/world/970181b1-79a2-4261-845d-0d89a55f4db0",
+      "model": null
+    },
+    "cost": {
+      "total_credits": 230,
+      "line_items": [
+        {
+          "name": "Pano generation (text)",
+          "credits": 80
+        },
+        {
+          "name": "Draft world generation",
+          "credits": 150
+        }
+      ]
+    }
+  }
+}

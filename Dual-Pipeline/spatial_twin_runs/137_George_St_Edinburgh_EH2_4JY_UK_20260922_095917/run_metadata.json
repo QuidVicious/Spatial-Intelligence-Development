@@ -1,0 +1,79 @@
+{
+  "timestamp": "20260922_095917",
+  "address": "137 George St, Edinburgh EH2 4JY, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17814.56,
+  "telemetry": {
+    "latitude": 55.952070481493095,
+    "longitude": -3.2060056551700455,
+    "altitude_agl": 26.76917398265286,
+    "heading": 246.79422732330875,
+    "pitch": -8.706401514447887,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-22",
+    "time_of_day": 8.6,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 118.4405982569844,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 3200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": true,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-22T07:35:59+00:00",
+    "solar_azimuth": 120.21,
+    "solar_elevation": -8.24,
+    "color_temperature_k": 2000,
+    "lux": 5,
+    "natural_description": "Calibrated 2000K Nocturnal Night Scene (Elevation -8.2\u00b0). Weather: SNOW."
+  },
+  "domain_metadata": {
+    "address": "137 George St, Edinburgh EH2 4JY, UK",
+    "coordinates": [
+      "55.952070",
+      "-3.206006"
+    ],
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": true
+  },
+  "provenance": {
+    "git": {
+      "sha": "e8895de6b386364d5df115fc8247bcd13ab2282d",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "e8895de6"
+    },
+    "archived_at_utc": "2026-09-22T16:59:17.711243Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - **Species**: *Ulmus glabra* (Wych elm), *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common lime), and *Prunus spinosa* perimeter shrubs.\n- **Phenology (Late December)**: Complete winter dormancy; 100% defoliated bare canopies; exposed complex fractal branch architecture, dark damp bark, and dormant winter turf.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2000K Nocturnal Night Scene. Sun elevation -8.2\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nCharlotte Square urban survey centered on West Register House. Monumental Neoclassical facade of polished pale buff-grey Craigleith ashlar sandstone featuring a colossal tetrastyle Ionic portico, triangular pediment, attic stage, rusticated base, and central cylindrical drum supporting an oxidized verdigris green standing-seam copper dome with gilded finial. Flanking symmetric three-storey Georgian residential terraces with channelled ashlar ground floors, smooth upper ashlar, regular 6-over-6 timber sash-and-case windows, projecting end pavilions, and Welsh and Ballachulish slate mansard roofs with dressed sandstone chimney stacks. In the far background, the triple stone spires of St Mary's Cathedral rise above multi-flatted sandstone tenements and slate roofs. Foreground occupied by the circular lawn of Charlotte Square Gardens surfaced in winter-dormant ryegrass turf, bisected by gravel paths, enclosing the Sir John Steell bronze equestrian Prince Albert Memorial seated upon a stepped Peterhead red granite plinth with bronze bas-relief plaques.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 2928,
+    "budget": 3200,
+    "over_budget": false,
+    "skeleton_chars": 1603,
+    "doc_chars": 1063,
+    "doc_trimmed": true,
+    "eco_chars": 324,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}
