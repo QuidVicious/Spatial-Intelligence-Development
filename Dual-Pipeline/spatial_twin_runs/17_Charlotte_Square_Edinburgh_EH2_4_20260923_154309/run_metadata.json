@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260923_154309",
+  "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16259.06,
+  "telemetry": {
+    "latitude": 55.95176812129627,
+    "longitude": -3.206784589026718,
+    "altitude_agl": 1.2071132342725406,
+    "heading": 265.261538828421,
+    "pitch": 6.05113576977151,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-23",
+    "time_of_day": 18.1,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 118.50387445292642,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 134.63133239936045,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-23T17:06:00+00:00",
+    "solar_azimuth": 257.76,
+    "solar_elevation": 8.35,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under RAIN conditions (Sun Azimuth 257.8\u00b0, Elevation 8.3\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+    "coordinates": [
+      "55.951669",
+      "-3.208920"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-23T22:43:09.604858Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Garden Woodland: Mature temperate urban broadleaf specimens consisting of *Ulmus glabra* (Wych elm), *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common lime), and *Aesculus hippocastanum* (Horse chestnut).\n- Phenology (Late September): Early autumn transition phase; high canopy retention (approx. 80-85% leaf density) exhibiting peripheral chlorosis, lime foliage turning pale ochre-yellow, sycamore displaying localized tar spot (*Rhytisma acerinum*), horse chestnut displaying leaf-margin bronzing, with initial wind-scattered leaf fall on turf.\n- Ground Cover: Fine-mown perennial ryegrass (*Lolium perenne*) and fescue turf forming a continuous green carpet across Charlotte Square Garden.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nCharlotte Square West range centered on the monumental Neoclassical facade of West Register House. Fine-grained Craigleith sandstone ashlar masonry with polished dressing and selective historic coal-soot encrustation in recessed mouldings. Tetrastyle Ionic pedimented portico fronting a rusticated podium, surmounted by a stepped drum with continuous Ionic peristyle colonnade and a ribbed sheet-copper dome completely patinated in sea-green verdigris with a gilded lantern. Flanking unified Georgian residential terraces of three storeys over rusticated basements, featuring smooth Craigleith sandstone ashlar, molded stringcourses, dentil cornices, Ballachulish grey slate roofs, and ashlar chimney stacks with terracotta pots. Rhythmic fenestration of white-painted timber 6-over-6 and 8-over-8 sash-and-case windows. In the foreground, open expanses of mown turf lawn over glacial till, enclosing the equestrian bronze Prince Albert Memorial patinated dark oxidized bronze upon a stepped pink Peterhead granite pedestal. Dispersed urban broadleaf trees including Ulmus glabra, Tilia \u00d7 europaea, and Acer pseudoplatanus exhibiting late-September phenology with dense canopies, chlorotic yellowing leaf margins, and minor defoliation. Cast-iron spearhead railings seated on dressed sandstone boundary copings enclosing the park perimeter.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4095,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1340,
+    "doc_trimmed": false,
+    "eco_chars": 706,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

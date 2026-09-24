@@ -150,6 +150,11 @@ class TelemetryPayload(BaseModel):
     heading: float = Field(0.0, description="Camera Heading (degrees)")
     pitch: float = Field(-45.0, description="Camera Pitch (degrees)")
     fov: float = Field(45.0, description="Camera FOV (degrees)")
+    target_latitude: Optional[float] = Field(None, description="Latitude of the surface point at frame center")
+    target_longitude: Optional[float] = Field(None, description="Longitude of the surface point at frame center")
+    target_height_m: Optional[float] = Field(None, description="Ellipsoid height of the frame-center surface point (m)")
+    target_distance_m: Optional[float] = Field(None, description="Camera-to-target distance (m)")
+    target_method: Optional[str] = Field(None, description="PICK_POSITION or GLOBE_PICK; null if no surface was hit")
     tile_mode: str = Field("3D_TILES", description="3D_TILES, 2D_SATELLITE, or STANDALONE")
     ground_elevation_m: Optional[float] = Field(None, description="Sampled ground elevation in metres")
     altitude_method: Optional[str] = Field(None, description="TILESET_SAMPLE or ELLIPSOID_FALLBACK")
@@ -185,17 +190,34 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     gemini_key = os.getenv("GEMINI_API_KEY")
     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
 
+    # Subject resolution: geocode what is framed, not where the camera hovers.
+    has_target = telemetry.target_latitude is not None and telemetry.target_longitude is not None
+    if has_target:
+        subj_lat, subj_lon = telemetry.target_latitude, telemetry.target_longitude
+        address_source = "TARGET"
+    else:
+        subj_lat, subj_lon = telemetry.latitude, telemetry.longitude
+        address_source = "CAMERA"
+    target_desc = (
+        f"({subj_lat:.5f}, {subj_lon:.5f}) via {telemetry.target_method}, {telemetry.target_distance_m or 0:.0f} m"
+        if has_target else "none (using camera position)"
+    )
+
     emit_terminal_banner(
-        f"Target: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
+        f"Camera: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Target: {target_desc} | "
+        f"Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
     )
 
     try:
         # 1. Address Resolution & Ephemeris
-        stage, event_str = stage_activate(PipelineStage.INGEST_LIGHTING, f"Target: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f})")
+        stage, event_str = stage_activate(PipelineStage.INGEST_LIGHTING, f"Target: {target_desc}")
         yield event_str
 
-        address = request.address or reverse_geocode(telemetry.latitude, telemetry.longitude, google_maps_key)
-        yield stage.processing(f"Resolved Address: {address} | Calculating NOAA Solar Math...")
+        address = request.address or reverse_geocode(subj_lat, subj_lon, google_maps_key)
+        if request.address:
+            address_source = "SUPPLIED"
+        print(f"[Subject] address source: {address_source} -> {address}")
+        yield stage.processing(f"Resolved Address ({address_source}): {address} | Calculating NOAA Solar Math...")
 
         lighting_state = resolve_lighting_state(
             lat=telemetry.latitude,
@@ -223,7 +245,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
 
         domain_result = analyze_spatial_domain(
             address=address,
-            coordinates=(telemetry.latitude, telemetry.longitude),
+            coordinates=(subj_lat, subj_lon),
             view_scope=scope,
             telemetry=telemetry,
             screenshot_b64=request.screenshot_b64,
@@ -232,7 +254,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             use_search_grounding=request.use_search_grounding
         )
         yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
-        yield stage.finish(f"Domain analysis verified with Search Grounding")
+        yield stage.finish(
+            "Domain analysis complete (search grounding ON)" if request.use_search_grounding
+            else "Domain analysis complete (search grounding OFF)"
+        )
 
         # 3. Spatial Scaffold Engine
         stage, event_str = stage_activate(PipelineStage.SPATIAL_SCAFFOLD, "Constructing RFC 7946 7-Strata GeoJSON")
@@ -336,6 +361,9 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "disable_recaption": request.disable_recaption,
                     "target_model_requested": request.target_model,
                     "use_search_grounding": request.use_search_grounding,
+                    "address_source": address_source,
+                    "target_method": telemetry.target_method,
+                    "target_distance_m": telemetry.target_distance_m,
                     "pano_seed_supplied": bool(request.pano_b64),
                     "screenshot_supplied": bool(request.screenshot_b64)
                 }

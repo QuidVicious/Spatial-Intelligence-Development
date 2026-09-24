@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260923_150301",
+  "address": "18A Charlotte Square, Edinburgh EH2 4DF, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15814.61,
+  "telemetry": {
+    "latitude": 55.95127144842705,
+    "longitude": -3.2062675275652035,
+    "altitude_agl": 5.350379007588586,
+    "heading": 281.1471632912499,
+    "pitch": -2.265906225905251,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-23",
+    "time_of_day": 17.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.23965590745793,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 119.61115024878067,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-23T16:03:00+00:00",
+    "solar_azimuth": 244.05,
+    "solar_elevation": 16.68,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under RAIN conditions (Sun Azimuth 244.1\u00b0, Elevation 16.7\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "18A Charlotte Square, Edinburgh EH2 4DF, UK",
+    "coordinates": [
+      "55.951479",
+      "-3.208145"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-23T22:03:01.564326Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - **Species Composition:** Mature urban specimens of *Platanus \u00d7 acerifolia* (London plane), *Tilia cordata* (Small-leaved lime), and *Acer pseudoplatanus* (Sycamore).\n- **Date Phenology (Late September):** Full-volume canopies exhibiting early autumn chlorosis, foliage turning pale lime-green to ochre with modest leaf loss exposing structural branch framework.\n- **Ground Flora:** Maintained *Festuca rubra* and *Poa pratensis* parkland turf.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nNeoclassical civic square centered on West Register House, flanked by monumental Georgian terraced townhouses. West Register House constructed in pale cream-buff Craigleith sandstone ashlar; featuring colossal tetrastyle Ionic portico with dentiled triangular pediment, stepped attic storey, cylindrical peristyle drum with attached Corinthian columns, topped by a large verdigris oxidized-copper hemispherical dome and crowning stone lantern. Flanking symmetrical three-storey residential facades over deeply rusticated ground floors, articulated with smooth-dressed sandstone blocks, crisp lintels, regular grids of white-painted timber twelve-pane sash-and-case windows, continuous molded entablatures, parapet balustrades, and multi-flue ashlar chimney stacks punctuating Ballachulish grey slate pitched roofs. Deep basement lightwells lined with coursed rubble and fronted by cast-iron spear-topped railings. Forecourt defined by broad asphalt road surface, dressed whinstone kerbs, and continuous Caithness stone flag pavements. Central enclosed park comprised of manicured turf edged by mature canopy trees including Platanus \u00d7 acerifolia and Tilia cordata displaying early-autumn yellowing foliage and minor canopy thinning. Facades exhibit authentic stone pathology including historical atmospheric carbon deposits in protected cornices, salt efflorescence, and lime-wash leaching.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3884,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1390,
+    "doc_trimmed": false,
+    "eco_chars": 445,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

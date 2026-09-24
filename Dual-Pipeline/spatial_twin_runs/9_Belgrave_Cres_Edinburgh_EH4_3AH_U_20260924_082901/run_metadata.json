@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_082901",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16220.66,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 8.35,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-09-24T07:20:59+00:00",
+    "solar_azimuth": 105.97,
+    "solar_elevation": 10.45,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under SNOW conditions (Sun Azimuth 106.0\u00b0, Elevation 10.4\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T15:29:01.555230Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Wooded verge containing mature *Acer pseudoplatanus* (Sycamore), *Fagus sylvatica* (Beech), and *Ulmus glabra* (Wych Elm). Late September phenology: full canopy volumes exhibiting early foliar chlorosis, pale yellowing leaf margins, and minor localized leaf drop.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nVictorian ashlar townhouse facade in Craigleith blonde sandstone with fine-droved ashlar dressing, rusticated lower level, projecting canted bay windows, molded sill courses, and rectilinear timber sash-and-case fenestration grids. Adjacent Gothic Revival church constructed from squared coursed sandstone rubble with tooled ashlar quoins, featuring a square four-tier bell tower with crenellated parapets, corner crocketed pinnacles, stepped external buttresses, and pointed-arch lancet windows with stone tracery. Pitched roof clad in dark West Highland grey-blue slate tiles with lead ridge capping and stone skews. Low sandstone dwarf boundary wall with chamfered coping stones supporting decorative wrought-iron spearhead railings. Broad tarmacadam roadway flanked by tooled granite kerbstones and Caithness flagstone pedestrian walkways. Dense deciduous woodland bank comprising mature Acer pseudoplatanus, Fagus sylvatica, and Ulmus glabra, displaying full dense canopies with early autumn foliar chlorosis, patchy yellowing margins, and exposed fibrous bark trunks. Sandstone facades exhibit localized atmospheric soot crusts, dark hydrocarbon patina, and basal green algae damp staining. Rectified vertical structural planes, crisp masonry arrises, planar roof planes, and clear spatial separation between organic vegetation and static stonework.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3605,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1355,
+    "doc_trimmed": false,
+    "eco_chars": 263,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

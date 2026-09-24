@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 2.4,
+          "pitch_deg": 7.2,
+          "heading_deg": 183.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean strata comprise Carboniferous sedimentary bedrock of the Strathclyde and Clackmannan Groups, overlain by dense glacial till. Primary structural lithic is fine-grained, pale buff-grey Craigleith quartzose sandstone, supplemented by Hailes sandstone at sub-grade footings. Historic bedding uses traditional non-hydraulic hot-mixed lime mortar with graded river sand aggregate."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Mature urban trees of *Acer pseudoplatanus* (Sycamore) and *Tilia cordata* (Small-leaved Lime) situated along the perimeter garden edge. Late September phenology displays fully developed, dense canopies exhibiting early chlorosis, transitioning from deep olive green to mottled pale ochre and dull yellow, with minimal defoliation.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Neoclassical Georgian palatial unified terrace designed by Robert Adam and executed by Robert Reid. Dominant central terminus features West Register House (former St George\u2019s Church) comprising a rusticated ground floor, giant-order tetrastyle portico with unfluted columns, pedimented entablature, and a multi-tiered circular drum supporting a hemispherical dome. Flanking symmetrical three-storey-and-attic townhouse ranges display channelled rustication at ground level, smooth ashlar upper storeys, moulded string courses, modillioned cornices, balustraded parapets, and regular vertical fenestration bays fitted with 6-over-6 timber sash-and-case frames.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2088392533288927,
+          55.95226390586746
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-23T16:00:00+00:00",
+        "weather_state": "SNOW",
+        "solar_azimuth_deg": 243.37,
+        "solar_elevation_deg": 17.06,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

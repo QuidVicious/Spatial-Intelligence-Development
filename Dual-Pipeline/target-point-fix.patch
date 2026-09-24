@@ -1,0 +1,217 @@
+diff --git a/domain_engine.py b/domain_engine.py
+index 7d9097c..c4bde3c 100644
+--- a/domain_engine.py
++++ b/domain_engine.py
+@@ -173,12 +173,37 @@ def analyze_spatial_domain(
+     fov = getattr(telemetry, "fov", 45.0) if telemetry else 45.0
+     tile_mode = getattr(telemetry, "tile_mode", "3D_TILES") if telemetry else "STANDALONE"
+ 
++    cam_lat = getattr(telemetry, "latitude", None) if telemetry else None
++    cam_lon = getattr(telemetry, "longitude", None) if telemetry else None
++    tgt_lat = getattr(telemetry, "target_latitude", None) if telemetry else None
++    tgt_lon = getattr(telemetry, "target_longitude", None) if telemetry else None
++    tgt_dist = getattr(telemetry, "target_distance_m", None) if telemetry else None
++    has_target = tgt_lat is not None and tgt_lon is not None
++
++    if has_target:
++        subject_lines = (
++            f"- Resolved Address (of the framed subject): {address}\n"
++            f"- Subject Coordinates (surface point at frame center): ({lat_str}, {lon_str})"
++            + (f", {tgt_dist:.0f} m from camera" if tgt_dist is not None else "") + "\n"
++            "- Note: the address and subject coordinates identify what the capture is aimed at, "
++            "not where the camera stands. Neighbouring addresses may also be in frame."
++        )
++    else:
++        subject_lines = (
++            f"- Resolved Address (camera ground position; no subject point resolved): {address}\n"
++            f"- Coordinates: ({lat_str}, {lon_str})\n"
++            "- Note: this address is where the camera stands and may not describe the framed subject."
++        )
++
++    camera_pos = (
++        f"({cam_lat:.6f}, {cam_lon:.6f}), " if (has_target and cam_lat is not None and cam_lon is not None) else ""
++    )
++
+     context_block = f"""TARGET LOCATION & SPATIAL CONTEXT:
+-- Resolved Address: {address}
+-- GPS Coordinates: ({lat_str}, {lon_str})
++{subject_lines}
+ - Temporal Epoch / Date: {temporal_epoch or 'Present Day'}
+ - View Scope Mode: {view_scope.value}
+-- Camera Telemetry: Altitude {altitude_agl:.1f}m AGL, Heading {heading:.1f}°, Pitch {pitch:.1f}°, FOV {fov:.1f}°
++- Camera Telemetry: {camera_pos}Altitude {altitude_agl:.1f}m AGL, Heading {heading:.1f}°, Pitch {pitch:.1f}°, FOV {fov:.1f}°
+ - Tile Mode: {tile_mode}
+ """
+ 
+@@ -293,6 +318,7 @@ Provide your output structured into the following labeled sections:
+         metadata={
+             "address": address,
+             "coordinates": (lat_str, lon_str),
++            "address_source": "TARGET" if has_target else "CAMERA",
+             "tile_mode": tile_mode,
+             "view_scope": view_scope.value,
+             "search_grounding": use_search_grounding
+diff --git a/server.py b/server.py
+index 77d0da7..1007bb6 100644
+--- a/server.py
++++ b/server.py
+@@ -150,6 +150,11 @@ class TelemetryPayload(BaseModel):
+     heading: float = Field(0.0, description="Camera Heading (degrees)")
+     pitch: float = Field(-45.0, description="Camera Pitch (degrees)")
+     fov: float = Field(45.0, description="Camera FOV (degrees)")
++    target_latitude: Optional[float] = Field(None, description="Latitude of the surface point at frame center")
++    target_longitude: Optional[float] = Field(None, description="Longitude of the surface point at frame center")
++    target_height_m: Optional[float] = Field(None, description="Ellipsoid height of the frame-center surface point (m)")
++    target_distance_m: Optional[float] = Field(None, description="Camera-to-target distance (m)")
++    target_method: Optional[str] = Field(None, description="PICK_POSITION or GLOBE_PICK; null if no surface was hit")
+     tile_mode: str = Field("3D_TILES", description="3D_TILES, 2D_SATELLITE, or STANDALONE")
+     ground_elevation_m: Optional[float] = Field(None, description="Sampled ground elevation in metres")
+     altitude_method: Optional[str] = Field(None, description="TILESET_SAMPLE or ELLIPSOID_FALLBACK")
+@@ -185,17 +190,34 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
+     gemini_key = os.getenv("GEMINI_API_KEY")
+     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
+ 
++    # Subject resolution: geocode what is framed, not where the camera hovers.
++    has_target = telemetry.target_latitude is not None and telemetry.target_longitude is not None
++    if has_target:
++        subj_lat, subj_lon = telemetry.target_latitude, telemetry.target_longitude
++        address_source = "TARGET"
++    else:
++        subj_lat, subj_lon = telemetry.latitude, telemetry.longitude
++        address_source = "CAMERA"
++    target_desc = (
++        f"({subj_lat:.5f}, {subj_lon:.5f}) via {telemetry.target_method}, {telemetry.target_distance_m or 0:.0f} m"
++        if has_target else "none (using camera position)"
++    )
++
+     emit_terminal_banner(
+-        f"Target: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
++        f"Camera: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Target: {target_desc} | "
++        f"Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
+     )
+ 
+     try:
+         # 1. Address Resolution & Ephemeris
+-        stage, event_str = stage_activate(PipelineStage.INGEST_LIGHTING, f"Target: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f})")
++        stage, event_str = stage_activate(PipelineStage.INGEST_LIGHTING, f"Target: {target_desc}")
+         yield event_str
+ 
+-        address = request.address or reverse_geocode(telemetry.latitude, telemetry.longitude, google_maps_key)
+-        yield stage.processing(f"Resolved Address: {address} | Calculating NOAA Solar Math...")
++        address = request.address or reverse_geocode(subj_lat, subj_lon, google_maps_key)
++        if request.address:
++            address_source = "SUPPLIED"
++        print(f"[Subject] address source: {address_source} -> {address}")
++        yield stage.processing(f"Resolved Address ({address_source}): {address} | Calculating NOAA Solar Math...")
+ 
+         lighting_state = resolve_lighting_state(
+             lat=telemetry.latitude,
+@@ -223,7 +245,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
+ 
+         domain_result = analyze_spatial_domain(
+             address=address,
+-            coordinates=(telemetry.latitude, telemetry.longitude),
++            coordinates=(subj_lat, subj_lon),
+             view_scope=scope,
+             telemetry=telemetry,
+             screenshot_b64=request.screenshot_b64,
+@@ -232,7 +254,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
+             use_search_grounding=request.use_search_grounding
+         )
+         yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
+-        yield stage.finish(f"Domain analysis verified with Search Grounding")
++        yield stage.finish(
++            "Domain analysis complete (search grounding ON)" if request.use_search_grounding
++            else "Domain analysis complete (search grounding OFF)"
++        )
+ 
+         # 3. Spatial Scaffold Engine
+         stage, event_str = stage_activate(PipelineStage.SPATIAL_SCAFFOLD, "Constructing RFC 7946 7-Strata GeoJSON")
+@@ -336,6 +361,9 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
+                     "disable_recaption": request.disable_recaption,
+                     "target_model_requested": request.target_model,
+                     "use_search_grounding": request.use_search_grounding,
++                    "address_source": address_source,
++                    "target_method": telemetry.target_method,
++                    "target_distance_m": telemetry.target_distance_m,
+                     "pano_seed_supplied": bool(request.pano_b64),
+                     "screenshot_supplied": bool(request.screenshot_b64)
+                 }
+diff --git a/viewfinder.html b/viewfinder.html
+index 9ffd7b9..8b0dacb 100644
+--- a/viewfinder.html
++++ b/viewfinder.html
+@@ -682,6 +682,53 @@
+       return dataUrl;
+     }
+ 
++    // Resolve what the camera is looking at: the surface point under the frame-center ray.
++    // Returns null rather than guessing when no real surface is hit (sky, or depth unavailable).
++    // The ellipsoid is deliberately NOT used as a fallback: on an oblique ray it lands
++    // hundreds of metres past the true surface, which is worse than admitting no target.
++    async function pickFrameTarget() {
++      const scene = viewer.scene;
++      const canvas = scene.canvas;
++      const center = new Cesium.Cartesian2(canvas.clientWidth / 2, canvas.clientHeight / 2);
++      scene.render();
++      await new Promise(r => requestAnimationFrame(r));
++      let pos = null, method = null;
++      if (scene.pickPositionSupported) {
++        try {
++          pos = scene.pickPosition(center);
++          if (pos) method = 'PICK_POSITION';
++        } catch (e) {
++          console.warn('[Target] pickPosition failed:', e);
++        }
++      }
++      if (!pos && scene.globe && scene.globe.show) {
++        const ray = viewer.camera.getPickRay(center);
++        if (ray) {
++          pos = scene.globe.pick(ray, scene);
++          if (pos) method = 'GLOBE_PICK';
++        }
++      }
++      if (!pos) {
++        console.warn('[Target] no surface under frame center; server will fall back to camera position');
++        return null;
++      }
++      const dist = Cesium.Cartesian3.distance(viewer.camera.position, pos);
++      if (!Number.isFinite(dist) || dist > 20000) {
++        console.warn(`[Target] rejected implausible pick (${dist} m)`);
++        return null;
++      }
++      const c = Cesium.Cartographic.fromCartesian(pos);
++      const t = {
++        latitude: Cesium.Math.toDegrees(c.latitude),
++        longitude: Cesium.Math.toDegrees(c.longitude),
++        height_m: c.height,
++        distance_m: dist,
++        method
++      };
++      console.log(`[Target] ${method}: ${t.latitude.toFixed(6)}, ${t.longitude.toFixed(6)} @ ${dist.toFixed(1)} m`);
++      return t;
++    }
++
+     async function captureAndSynthesizeTwin() {
+       if (!viewer) return;
+       resetStepperHUD();
+@@ -692,6 +739,7 @@
+ 
+       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
+       const altInfo = await computeAltitudeAGL(cart);
++      const target = await pickFrameTarget();
+       const isLiveTime = document.getElementById('chk-live-time').checked;
+ 
+       const marbleMode = currentProvider === 'WORLD_LABS'
+@@ -718,6 +766,11 @@
+           heading: Cesium.Math.toDegrees(viewer.camera.heading),
+           pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
+           fov: Cesium.Math.toDegrees(viewer.camera.frustum.fov || 0.785),
++          target_latitude: target ? target.latitude : null,
++          target_longitude: target ? target.longitude : null,
++          target_height_m: target ? target.height_m : null,
++          target_distance_m: target ? target.distance_m : null,
++          target_method: target ? target.method : null,
+           tile_mode: tilesLoaded ? '3D_TILES' : '2D_IMAGERY',
+           date: isLiveTime ? null : document.getElementById('input-date').value,
+           time_of_day: isLiveTime ? null : parseFloat(document.getElementById('input-time-slider').value),

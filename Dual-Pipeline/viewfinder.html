@@ -682,6 +682,53 @@
       return dataUrl;
     }
 
+    // Resolve what the camera is looking at: the surface point under the frame-center ray.
+    // Returns null rather than guessing when no real surface is hit (sky, or depth unavailable).
+    // The ellipsoid is deliberately NOT used as a fallback: on an oblique ray it lands
+    // hundreds of metres past the true surface, which is worse than admitting no target.
+    async function pickFrameTarget() {
+      const scene = viewer.scene;
+      const canvas = scene.canvas;
+      const center = new Cesium.Cartesian2(canvas.clientWidth / 2, canvas.clientHeight / 2);
+      scene.render();
+      await new Promise(r => requestAnimationFrame(r));
+      let pos = null, method = null;
+      if (scene.pickPositionSupported) {
+        try {
+          pos = scene.pickPosition(center);
+          if (pos) method = 'PICK_POSITION';
+        } catch (e) {
+          console.warn('[Target] pickPosition failed:', e);
+        }
+      }
+      if (!pos && scene.globe && scene.globe.show) {
+        const ray = viewer.camera.getPickRay(center);
+        if (ray) {
+          pos = scene.globe.pick(ray, scene);
+          if (pos) method = 'GLOBE_PICK';
+        }
+      }
+      if (!pos) {
+        console.warn('[Target] no surface under frame center; server will fall back to camera position');
+        return null;
+      }
+      const dist = Cesium.Cartesian3.distance(viewer.camera.position, pos);
+      if (!Number.isFinite(dist) || dist > 20000) {
+        console.warn(`[Target] rejected implausible pick (${dist} m)`);
+        return null;
+      }
+      const c = Cesium.Cartographic.fromCartesian(pos);
+      const t = {
+        latitude: Cesium.Math.toDegrees(c.latitude),
+        longitude: Cesium.Math.toDegrees(c.longitude),
+        height_m: c.height,
+        distance_m: dist,
+        method
+      };
+      console.log(`[Target] ${method}: ${t.latitude.toFixed(6)}, ${t.longitude.toFixed(6)} @ ${dist.toFixed(1)} m`);
+      return t;
+    }
+
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
       resetStepperHUD();
@@ -692,6 +739,7 @@
 
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
       const altInfo = await computeAltitudeAGL(cart);
+      const target = await pickFrameTarget();
       const isLiveTime = document.getElementById('chk-live-time').checked;
 
       const marbleMode = currentProvider === 'WORLD_LABS'
@@ -718,6 +766,11 @@
           heading: Cesium.Math.toDegrees(viewer.camera.heading),
           pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
           fov: Cesium.Math.toDegrees(viewer.camera.frustum.fov || 0.785),
+          target_latitude: target ? target.latitude : null,
+          target_longitude: target ? target.longitude : null,
+          target_height_m: target ? target.height_m : null,
+          target_distance_m: target ? target.distance_m : null,
+          target_method: target ? target.method : null,
           tile_mode: tilesLoaded ? '3D_TILES' : '2D_IMAGERY',
           date: isLiveTime ? null : document.getElementById('input-date').value,
           time_of_day: isLiveTime ? null : parseFloat(document.getElementById('input-time-slider').value),

@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_121232",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15010.47,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-03-24",
+    "time_of_day": 15.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-03-24T15:03:00+00:00",
+    "solar_azimuth": 226.71,
+    "solar_elevation": 26.14,
+    "color_temperature_k": 5400,
+    "lux": 60000,
+    "natural_description": "Calibrated 5400K Clean afternoon daylight with crisp directional shadows (front-lighting from behind the observer, Sun Azimuth 226.7\u00b0, Elevation 26.1\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T19:12:32.438747Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Mature urban woodland canopy of *Acer pseudoplatanus* (sycamore), *Ulmus glabra* (wych elm), and *Tilia \u00d7 europaea* (common lime) rooted within the terraced gardens. March 24 phenology: completely bare deciduous canopies with dense, intricate branch structures, swelling dormant vegetative buds, and exposed dark bark fissures.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean afternoon daylight with crisp directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is behind the camera and to the RIGHT, out of frame (True Azimuth 226.7\u00b0, Elevation 26.1\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in full direct sunlight; right-facing walls are brightly lit and left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: cast shadows project diagonally away from the camera toward the upper-LEFT.\n- CAST SHADOW LENGTH: Every cast shadow is 2.0 times as long as the height of the object casting it. A 100 m tower casts a 204 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project diagonally away from the camera toward the upper-LEFT. Every shadow must be angled toward the LEFT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nVictorian Edinburgh streetscape featuring a continuous residential terrace of Craigleith sandstone ashlar masonry. Multistorey facade with planar vertical alignment, projecting canted bay windows, molded horizontal stringcourses, dentiled eaves cornice, and timber-framed sash-and-case windows. Adjacent midground Gothic Revival ecclesiastical stone tower detailed with vertical stepped buttresses, pointed-arch louvred belfry openings, parapet balustrades, and crocketed corner pinnacles. Pitched roofs clad in grey-black Scotch slates with lead ridge rolls and robust ashlar chimney stacks. Ground plane comprises a continuous asphalt carriageway lined with dressed granite kerbstones, Caithness stone slab footpaths, and low sandstone boundary walls topped with black-painted cast-iron railings. Flanking urban garden embankment populated by mature Acer pseudoplatanus and Ulmus glabra trees, exhibiting bare late-March branching structures, swollen dormant leaf buds, and rough, fissured bark. Historic sandstone surfaces show localized carbon-soot darkening, subtle weathering patinas, and crisp chisel-dressed margins across all structural stone elements.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4059,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2633,
+    "doc_chars": 1161,
+    "doc_trimmed": false,
+    "eco_chars": 327,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

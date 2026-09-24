@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260923_155515",
+  "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15314.97,
+  "telemetry": {
+    "latitude": 55.95226390586746,
+    "longitude": -3.2088392533288927,
+    "altitude_agl": 2.4452328215203494,
+    "heading": 183.75411705685673,
+    "pitch": 7.226127521921974,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-23",
+    "time_of_day": 17.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 116.42333123445609,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 5200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 68.17484908765502,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-23T16:00:00+00:00",
+    "solar_azimuth": 243.37,
+    "solar_elevation": 17.06,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under RAIN conditions (Sun Azimuth 243.4\u00b0, Elevation 17.1\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+    "coordinates": [
+      "55.951658",
+      "-3.208910"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-23T22:55:16.039521Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Charlotte Square Garden perimeter retains mature *Acer pseudoplatanus* (Sycamore) and *Tilia \u00d7 europaea* (Common Lime). Canopy phenology for late September: full-volume crowns showing early autumn senescence, localized chlorosis with margins yellowing, minimal leaf-drop, exposing rough grey-brown fissured bark.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nArchitectural survey of the west side of Charlotte Square, Edinburgh. Neoclassical ashlar facade in pale Craigleith sandstone, rectilinear continuous streetscape terminated by West Register House. Monumental stepped masonry church front with Ionic columns, circular ashlar drum, and standing-seam green-oxidized copper dome topped with a stone lantern. Attached flanking 3-storey Georgian townhouses with rusticated sandstone basements, smooth upper-storey ashlar, pronounced dentilled cornices, and rooftop balustrades. Vertical fenestration aligned in uniform grids with 6-over-6 timber sash-and-case window frames set in deep stone reveals. Scottish slate roofs with tall ashlar chimneys. Iron spearhead railings bordering subterranean basement lightwells. Roadway surfaced in dark asphalt bordered by dressed granite kerbstones and broad Caithness flagstone pavements. Adjacent mature urban trees (Acer pseudoplatanus and Tilia \u00d7 europaea) with dense canopies exhibiting late-September yellowing chlorosis along branch edges. Completely devoid of vehicles, pedestrians, and street clutter; true plumb verticals, planar masonry surfaces, crisp architectural moldings.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3531,
+    "budget": 5200,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1170,
+    "doc_trimmed": false,
+    "eco_chars": 312,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 1.4,
+          "pitch_deg": 4.5,
+          "heading_deg": 95.8,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock consists of Lower Carboniferous sedimentary sandstone, siltstone, and shale strata of the Inverclyde and Strathclyde Groups. Superstructure masonry is predominantly pale buff to warm blonde Craigleith and Hailes sandstone. Paving and kerb infrastructure comprise Scottish whinstone (quartz-dolerite) and Caithness flagstone laid with lime-pozzolan mortar."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Mixed mature deciduous canopy along the right boundary consisting of *Acer pseudoplatanus* (Sycamore), *Ulmus glabra* (Wych Elm), and *Fagus sylvatica* (European Beech). Late October phenology: partial canopy defoliation (approximately 50% leaf drop), senescent foliage displaying ochre, amber, and dull gold chlorosis, exposing complex bare branch architecture and twig ramification.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Left elevation: Multi-storey Victorian residential terrace with canted bay projections, rusticated basement and ground tiers, polished ashlar upper storeys, and timber sash-and-case fenestration. Mid-ground center: Gothic Revival ecclesiastical structure featuring a rectilinear tower with corner pinnacles, stepped external buttresses, pointed-arch tracery openings, and pitched nave roof. Planar surfaces rectified to true plumb lines, eliminating mesh deformation.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.216766472155142,
+          55.953682622313394
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-10-24T14:03:00+00:00",
+        "weather_state": "SUNNY",
+        "solar_azimuth_deg": 212.5,
+        "solar_elevation_deg": 17.6,
+        "shadow_azimuth_deg": 32.5,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

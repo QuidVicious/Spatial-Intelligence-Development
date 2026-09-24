@@ -1,0 +1,23 @@
+# Spatial Domain Analysis: 17 Charlotte Square, Edinburgh EH2 4DJ, UK
+
+**View Scope:** FRUSTUM
+
+## 1. Geology & Indigenous Lithics
+Subterranean strata comprise Carboniferous sedimentary bedrock of the Strathclyde Group (sandstone, siltstone, and mudstone formations). Primary architectural masonry is pale cream-to-buff Craigleith sandstone, an exceptionally dense, quartz-rich silica-cemented calciferous freestone, supplemented by Hailes sandstone. Mortar consists of traditional hot-mixed non-hydraulic lime and sharp pit sand. The central commemorative plinth employs polished grey Peterhead and Aberdeenshire granites over subterranean rubblestone foundations.
+
+## 2. Architecture & Planar Rectification
+Planar neoclassical civic and residential composition rectified to plumb verticality. Centerpiece is West Register House (former St George's Church), featuring a central rusticated entrance pavilion, tetrastyle colossal portico with fluted columns supporting a triangular pediment, surmounted by an octagonal drum, peristyle colonnade, and high copper-clad ribbed dome terminating in a gilded lantern. Flanking wings connect to Robert Adam-designed neoclassical palatial terraces: three-storey over rusticated basements, articulated by channelled ashlar ground floors, smooth-faced ashlar piano nobiles with molded architraves, balustraded parapets, hipped dormers, and regularly spaced chimney stacks. Fenestration consists of rectilinear 6-over-6 and 12-pane timber sash-and-case windows. Center garden contains the rectilinear stepped pedestal of the Prince Albert Memorial surmounted by an equestrian bronze monument and bronze corner groups.
+
+## 3. Materials & Environmental Patina
+Exposed Craigleith ashlar masonry exhibiting authentic micro-granular quartz texture, localized historic coal-smoke soot skin in protected recesses, and clean rain-washed friezes. Lead flashing, downpipes, and zinc roof valleys. Natural Scottish Ballachulish grey slate roof cladding. High central dome clad in oxidized sheet copper with intense verdigris / malachite-green carbonate patina. Equestrian sculpture and subsidiary corner statuary in dark oxidized cast bronze with localized turquoise run-off. Wrought and cast-iron perimeter spear-head railings with black bitumen coatings. Ground cover composed of manicured perennial turf, compacted crushed whinstone and gravel walking paths, and sandstone kerbing.
+
+## 4. Landscape Ecology & Botanical Canopy
+Mature urban parkland specimens within garden enclosure: Acer pseudoplatanus (Sycamore), Tilia × europaea (Common Lime), and Ulmus glabra (Wych Elm). Late September phenological state: dense canopies exhibiting early autumn senescence, margin yellowing, chlorosis, and patchy ochre leaf discoloration, with scattered leaf litter over the dense turf of Lolium perenne and Poa pratensis.
+
+## 5. Static Civil Fabric Decluttering
+All pedestrians, transient visitors, vehicular traffic, parked cars, wheelie bins, modern plastic barriers, and temporary informational signage have been entirely removed. Fixed historic iron railings, stone bollards, monumental plinths, and permanent park boundaries remain intact.
+
+## 6. Synthesized Documentary Prompt
+```text
+A grand neoclassical urban square centered on the monumental West Register House and enclosing Georgian residential terraces. Central civic edifice constructed of pale buff Craigleith ashlar sandstone, featuring a tetrastyle colossal portico with fluted columns, pediment, and a high ribbed copper dome oxidized to a uniform verdigris patina, topped with an ashlar lantern. Flanking terraces exhibit three-storey facades of smooth-dressed sandstone ashlar over rusticated ground-floor masonry, continuous horizontal string courses, mutule cornices, balustraded parapets, dressed chimney stacks, and Ballachulish grey slate roofs with regular dormers. Windows are recessed timber sash-and-case configurations with six-over-six glazing bars in painted white timber frames. Centered in the open garden is the Prince Albert Memorial, featuring an equestrian bronze statue with oxidized dark brown and turquoise patina atop an Aberdeenshire granite pedestal. The landscape consists of expansive green turf crossed by crushed gravel paths and bounded by black-painted wrought-iron spearhead railings. Dispersed mature Acer pseudoplatanus and Tilia × europaea trees show early autumn senescence with golden-yellow margins, ochre leaves, and sturdy branching. Static civil fabric without modern vehicles, pedestrians, or temporary municipal clutter. Planar masonry surfaces rectified to gravity-true vertical lines.
+```

@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260923_155422",
+  "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16561.17,
+  "telemetry": {
+    "latitude": 55.95226390586746,
+    "longitude": -3.2088392533288927,
+    "altitude_agl": 2.4452328215203494,
+    "heading": 183.75411705685673,
+    "pitch": 7.226127521921974,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-23",
+    "time_of_day": 17.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 116.42333123445609,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 5200,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 68.17484908765502,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-09-23T16:00:00+00:00",
+    "solar_azimuth": 243.37,
+    "solar_elevation": 17.06,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under SNOW conditions (Sun Azimuth 243.4\u00b0, Elevation 17.1\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "17 Charlotte Square, Edinburgh EH2 4DJ, UK",
+    "coordinates": [
+      "55.951658",
+      "-3.208910"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-23T22:54:22.685970Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Mature urban trees of *Acer pseudoplatanus* (Sycamore) and *Tilia cordata* (Small-leaved Lime) situated along the perimeter garden edge. Late September phenology displays fully developed, dense canopies exhibiting early chlorosis, transitioning from deep olive green to mottled pale ochre and dull yellow, with minimal defoliation.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nA full architectural survey of the neoclassical facade of Charlotte Square and West Register House. The central monumental edifice presents a grand Craigleith sandstone ashlar elevation with channelled rustication across the ground level, a giant-order tetrastyle portico with tall classical columns, an unbroken entablature with detailed frieze, and a massive circular drum surmounted by a verdigris-oxidized copper hemispherical dome. Flanking Georgian townhouse ranges rise three storeys above rusticated basements, featuring precise ashlar masonry, moulded belt courses, dentiled cornices, and balustraded roof parapets. All fenestration consists of crisp, vertical 6-over-6 white-painted timber sash-and-case windows set into recessed stone reveals. Pavements are composed of large Caithness flagstones edged with dark whinstone kerbstones, bounded by black-painted wrought-iron spearhead railings. The foreground carriageway is a wide expanse of uniform dark-grey asphalt with clean white thermoplastic lane striping. To the flank, mature *Acer pseudoplatanus* and *Tilia cordata* trees display dense, late-September canopies of olive-green foliage with early ochre and pale yellow autumn chlorosis across outer leaf margins. Facade stonework exhibits genuine urban weathering, characterized by dark carbonized patination in sheltered relief recesses and mineral-washed stone surfaces.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3709,
+    "budget": 5200,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1391,
+    "doc_trimmed": false,
+    "eco_chars": 331,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

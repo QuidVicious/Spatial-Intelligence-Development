@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_121008",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16187.25,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": null,
+    "time_of_day": null,
+    "timestamp_utc": "2026-09-24T19:09:41.308Z",
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-09-24T19:09:41.308000+00:00",
+    "solar_azimuth": 283.42,
+    "solar_elevation": -9.22,
+    "color_temperature_k": 2000,
+    "lux": 5,
+    "natural_description": "Calibrated 2000K Nocturnal Night Scene (Elevation -9.2\u00b0). Weather: SUNNY."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T19:10:08.489158Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Bordering mature urban woodland strip comprising *Acer pseudoplatanus* (sycamore) and *Tilia x europaea* (common lime). Dense branching habit with full crown volume, deep green broadleaf foliage, and organic understorey shrub layer anchoring the soil bank.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2000K Nocturnal Night Scene. Sun elevation -9.2\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nVictorian urban streetscape in Edinburgh with rectified vertical geometry. On the left, a multi-storey late-19th-century residential terrace constructed from pale buff Craigleith ashlar sandstone, featuring three-sided canted bay windows, pronounced stringcourses, moulded eaves cornices, and recessed timber sash-and-case windows with dark-painted frames. Surface exhibits authentic historical coal-smoke soot staining and localized surface exfoliation. Pitched roofs clad in dark grey Scottish slate with lead flashing and dressed stone chimney stacks. In the center distance, a Gothic Revival church tower built of coursed squared sandstone rubble, detailed with corner buttresses, lancet openings, and stone pinnacles. A low, rock-faced sandstone retaining wall with flat coping separates the carriage lane from a sloped embankment on the right. Dense mature *Acer pseudoplatanus* and *Tilia cordata* trees border the roadway with full leaf canopies, textured grey-brown bark, and complex branch geometry. The road surface is continuous asphaltic concrete with dressed Scottish whinstone kerbstones, granite gutter setts, and cast-iron perimeter railings. Completely devoid of vehicles, pedestrians, and modern street clutter.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3027,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 1603,
+    "doc_chars": 1230,
+    "doc_trimmed": false,
+    "eco_chars": 256,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

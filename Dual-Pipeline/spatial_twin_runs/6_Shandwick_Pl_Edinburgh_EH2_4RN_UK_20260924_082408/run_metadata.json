@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_082408",
+  "address": "6 Shandwick Pl, Edinburgh EH2 4RN, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16167.74,
+  "telemetry": {
+    "latitude": 55.95026163749057,
+    "longitude": -3.2074151408352254,
+    "altitude_agl": 5.1068417621572735,
+    "heading": 256.95346618566407,
+    "pitch": 0.18099315653632594,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 8.35,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 115.83705714426318,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 73.80275720933128,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-24T07:20:59+00:00",
+    "solar_azimuth": 105.98,
+    "solar_elevation": 10.46,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under RAIN conditions (Sun Azimuth 106.0\u00b0, Elevation 10.5\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "6 Shandwick Pl, Edinburgh EH2 4RN, UK",
+    "coordinates": [
+      "55.950112",
+      "-3.208566"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T15:24:08.397278Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Dense urban hardscape environment. Incidental distant ornamental canopy (Tilia cordata / Acer pseudoplatanus) rendered in early-autumn phenology (late September), displaying incipient leaf senescence, localized chlorophyll breakdown along leaf margins, and mottled yellow-green foliage.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nUrban architectural view along Shandwick Place, Edinburgh. Multi-storey Victorian Renaissance Revival tenements and Scottish Baronial commercial frontages constructed of finely dressed Craigleith blonde sandstone ashlar. Facades feature rusticated ground-floor masonry piers, timber-framed display shopfronts, moulded stringcourses, canted oriel bays, and attic storeys with strapwork and scrolled dormer gables. Symmetrical timber sash-and-case windows set in deep stone reveals. Pitched roofs clad in dark grey Ballachulish slates with heavy stone chimneystacks and terracotta pots. Distant focal Italianate clock tower and campanile constructed of squared ashlar with louvred belfry arches and a verdigris-oxidized copper pyramidal spire. Street surface composed of worn asphalt carriageway embedded with twin grooved steel tram rails, bordered by tooled granite kerbstones and broad Caithness flagstone pavements. Facade stone exhibits authentic urban coal-smoke patination, localized weathering along projecting cornices, and damp mineral staining. Fixed cylindrical steel catenary poles and cast-iron street furniture grounded along the footway. Distant isolated Tilia cordata canopy showing early autumn foliar chlorosis with yellow-green leaf margins. Pure static civic architecture, devoid of pedestrians, vehicles, and transient debris.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3681,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1346,
+    "doc_trimmed": false,
+    "eco_chars": 286,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "6 Shandwick Pl, Edinburgh EH2 4RN, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 5.1,
+          "pitch_deg": 0.2,
+          "heading_deg": 257.0,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Bedrock comprises Lower Carboniferous sedimentary formations of the Strathclyde Group (sandstone, siltstone, and mudstone) intersected by volcanic dolerite intrusions. Structural masonry is predominantly blonde and grey Carboniferous sandstone sourced from the Craigleith and Hailes quarries, set in historical non-hydraulic and hydraulic lime mortars blended with local river sand. Subterranean drainage follows historical urban culverts towards the Water of Leith basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Dense urban hardscape environment. Incidental distant ornamental canopy (Tilia cordata / Acer pseudoplatanus) rendered in early-autumn phenology (late September), displaying incipient leaf senescence, localized chlorophyll breakdown along leaf margins, and mottled yellow-green foliage.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Linear urban corridor lined with 4- to 5-storey Victorian commercial tenements and Renaissance Revival blocks over ground-floor commercial premises. Facades exhibit rigorous structural verticality, pedimented and scrolled dormers, rusticated base courses, string bands, dentilled cornices, and timber-framed sash-and-case fenestration (2-over-2 and 1-over-1 configurations). In the mid-distance termination rises a prominent Italianate-Romanesque church campanile featuring multi-tiered arched belfry openings, clock dials, and a square-plan copper-clad pyramidal spire.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2074151408352254,
+          55.95026163749057
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-24T07:20:59+00:00",
+        "weather_state": "RAIN",
+        "solar_azimuth_deg": 105.98,
+        "solar_elevation_deg": 10.46,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

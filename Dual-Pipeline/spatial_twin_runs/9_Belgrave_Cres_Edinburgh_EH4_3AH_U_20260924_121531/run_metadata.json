@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_121531",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16771.07,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 15.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-09-24T14:03:00+00:00",
+    "solar_azimuth": 214.31,
+    "solar_elevation": 28.98,
+    "color_temperature_k": 5400,
+    "lux": 60000,
+    "natural_description": "Calibrated 5400K Clean afternoon daylight with crisp directional shadows (front-lighting from behind the observer, Sun Azimuth 214.3\u00b0, Elevation 29.0\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T19:15:31.528525Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   * **Canopy Composition:** Deciduous parkland boundary including *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European Ash), and *Tilia \u00d7 europaea* (Common Lime).\n* **Phenology (Late September):** Full canopy density displaying early autumn senescence, featuring peripheral chlorosis, dry ochre and pale yellow leaf margins, and intact upper crown branching.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5400K Clean afternoon daylight with crisp directional shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is behind the camera and to the RIGHT, out of frame (True Azimuth 214.3\u00b0, Elevation 29.0\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in full direct sunlight; right-facing walls are brightly lit and left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: cast shadows project diagonally away from the camera toward the upper-LEFT.\n- CAST SHADOW LENGTH: Every cast shadow is 1.8 times as long as the height of the object casting it. A 100 m tower casts a 181 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project diagonally away from the camera toward the upper-LEFT. Every shadow must be angled toward the LEFT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nVictorian residential terrace in fine-grained Craigleith buff sandstone ashlar with multi-storey canted bay windows, horizontal string courses, and deep eaves cornices. Timber-framed sash-and-case windows set in crisp rectangular stone reveals with polished ashlar margins. Adjacent Gothic Revival ecclesiastical structure constructed from squared snecked sandstone rubble with dressed ashlar quoins, featuring a rectangular central tower with corner pinnacles, pierced parapets, lancet windows with stone tracery, stepped diagonal buttresses, and a steeply pitched Scottish slate roof with lead ridge flashings. Low droved-sandstone boundary retaining walls topped with chamfered copestones and wrought-iron spearhead railings. Ground surface comprises smooth dark asphalt roadway bounded by fine-axed Scottish granite kerbstones and sett gutter details. Mature broadleaf woodland border comprising Acer pseudoplatanus, Fraxinus excelsior, and Tilia cordata featuring full dense canopies showing late September senescence, early chlorotic yellowing on leaf margins, and exposed dark textured branch architecture. Facades exhibit authentic soot encrustation in sheltered mouldings, pale rain-washed sandstone friezes, and localized biological greening along lower masonry base courses.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4224,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2633,
+    "doc_chars": 1285,
+    "doc_trimmed": false,
+    "eco_chars": 368,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

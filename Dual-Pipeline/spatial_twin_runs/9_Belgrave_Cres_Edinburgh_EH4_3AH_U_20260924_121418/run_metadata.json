@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_121418",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16918.26,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-06-24",
+    "time_of_day": 15.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-06-24T14:03:00+00:00",
+    "solar_azimuth": 222.54,
+    "solar_elevation": 51.92,
+    "color_temperature_k": 5800,
+    "lux": 85000,
+    "natural_description": "Calibrated 5800K High clear sun with short vertical shadows and neutral daylight (front-lighting from behind the observer, Sun Azimuth 222.5\u00b0, Elevation 51.9\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T19:14:18.907610Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Lush mid-summer (June) urban canopy. Dominant *Acer pseudoplatanus* (Sycamore) and *Tilia cordata* (Small-leaved Lime) displaying full, dense green leaf cover, obscuring lateral sightlines. Understory ivy (*Hedera helix*) creeping along stone boundary walling.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (5800K High clear sun with short vertical shadows and neutral daylight):\n- SUN POSITION IN SCREEN SPACE: Sun is behind the camera and to the RIGHT, out of frame (True Azimuth 222.5\u00b0, Elevation 51.9\u00b0).\n- FACADE ILLUMINATION: all camera-facing facades are in full direct sunlight; right-facing walls are brightly lit and left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: cast shadows project diagonally away from the camera toward the upper-LEFT.\n- CAST SHADOW LENGTH: Every cast shadow is 0.8 times as long as the height of the object casting it. A 100 m tower casts a 78 m shadow. Apply this ratio to every object in the scene.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that cast shadows project diagonally away from the camera toward the upper-LEFT. Every shadow must be angled toward the LEFT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nEdinburgh Victorian streetscape and Gothic church tower. Foreground terrace in fine-grained Craigleith sandstone ashlar, plumbed vertical three-storey elevation, projecting canted bay windows, molded stone cornices, and painted timber sash-and-case frames. Mid-ground Gothic revival stone church with square ashlar tower, corner pinnacles, stepped buttresses, and traceried lancet openings. Low ashlar retaining wall with dressed coping stones lining the lane. Dressed dark grey whinstone and granite kerbs framing clean bituminous roadway and stone slab pedestrian sidewalk. Flanking parkland and private gardens filled with mature *Acer pseudoplatanus* and *Tilia cordata* trees bearing dense, fully expanded June summer foliage, with dark fibrous bark and heavy leafy canopies. Weathered sandstone surfaces exhibiting authentic carbon crusting in sheltered relief and clean mineral rain-wash tracks on exposed vertical faces. Cast-iron boundary railings, rainwater downpipes, and lead-flashed slate roof pitches. Zero vehicles, zero pedestrians, pristine civic and architectural fabric survey.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3934,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2640,
+    "doc_chars": 1096,
+    "doc_trimmed": false,
+    "eco_chars": 260,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

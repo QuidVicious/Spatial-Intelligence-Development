@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260923_155225",
+  "address": "32 Charlotte Square, Edinburgh EH2 4ET, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15614.1,
+  "telemetry": {
+    "latitude": 55.95132051387233,
+    "longitude": -3.206212816853934,
+    "altitude_agl": 3.0504051171823363,
+    "heading": 287.5607030570443,
+    "pitch": 7.805829956427187,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-23",
+    "time_of_day": 15.6,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 116.7101652100889,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 5000,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 34.92524595581484,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-23T15:35:59+00:00",
+    "solar_azimuth": 225.56,
+    "solar_elevation": -0.38,
+    "color_temperature_k": 2200,
+    "lux": 800,
+    "natural_description": "Calibrated 2200K Blue Hour Civil Twilight (Elevation -0.4\u00b0). Weather: SNOW."
+  },
+  "domain_metadata": {
+    "address": "32 Charlotte Square, Edinburgh EH2 4ET, UK",
+    "coordinates": [
+      "55.951414",
+      "-3.206741"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-23T22:52:25.992583Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Species: *Tilia \u00d7 europaea* (Common Lime) and *Acer pseudoplatanus* (Sycamore) within Charlotte Square Gardens. Phenology (late December): Complete winter defoliation, fully exposed ramified branch scaffolding, bare structural silhouettes, and dormant terminal buds.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nLIGHTING: 2200K Blue Hour Civil Twilight. Sun elevation -0.4\u00b0. Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nA static architectural survey of Charlotte Square featuring the monumental neoclassical facade of West Register House. The central edifice features a prominent copper dome clad in pale verdigris-green standing-seam panels, resting on a cylindrical stone drum atop a square rusticated base and a giant-order tetrastyle Ionic entrance portico of dressed Craigleith sandstone. Flanking the monument are symmetrical multi-storey Georgian terraces constructed of pale buff-grey ashlar sandstone with rusticated ground levels, dressed window architraves, 6-over-6 double-hung timber sash windows, and pitched rooflines clad in dark Ballachulish slate with regular ashlar chimney stacks. In the foreground, Charlotte Square Gardens presents a broad, level expanse of mown turf bordered by low sandstone dwarf walls and black painted cast-iron spearhead railings. The surrounding street surfaces consist of smooth dark asphalt bordered by dressed grey granite kerbs and natural stone slab pavements. Deciduous urban trees, including mature Tilia \u00d7 europaea and Acer pseudoplatanus, stand across the interior garden in a state of full late-December winter dormancy, displaying completely bare branch networks and intricate grey-brown bark textures against the rectified stone facades. Masonry shows historic urban weathering with darker particulate accumulation in sheltered friezes and clean, rain-washed ashlar panels.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3221,
+    "budget": 5000,
+    "over_budget": false,
+    "skeleton_chars": 1606,
+    "doc_chars": 1411,
+    "doc_trimmed": false,
+    "eco_chars": 266,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

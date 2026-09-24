@@ -173,12 +173,37 @@ def analyze_spatial_domain(
     fov = getattr(telemetry, "fov", 45.0) if telemetry else 45.0
     tile_mode = getattr(telemetry, "tile_mode", "3D_TILES") if telemetry else "STANDALONE"
 
+    cam_lat = getattr(telemetry, "latitude", None) if telemetry else None
+    cam_lon = getattr(telemetry, "longitude", None) if telemetry else None
+    tgt_lat = getattr(telemetry, "target_latitude", None) if telemetry else None
+    tgt_lon = getattr(telemetry, "target_longitude", None) if telemetry else None
+    tgt_dist = getattr(telemetry, "target_distance_m", None) if telemetry else None
+    has_target = tgt_lat is not None and tgt_lon is not None
+
+    if has_target:
+        subject_lines = (
+            f"- Resolved Address (of the framed subject): {address}\n"
+            f"- Subject Coordinates (surface point at frame center): ({lat_str}, {lon_str})"
+            + (f", {tgt_dist:.0f} m from camera" if tgt_dist is not None else "") + "\n"
+            "- Note: the address and subject coordinates identify what the capture is aimed at, "
+            "not where the camera stands. Neighbouring addresses may also be in frame."
+        )
+    else:
+        subject_lines = (
+            f"- Resolved Address (camera ground position; no subject point resolved): {address}\n"
+            f"- Coordinates: ({lat_str}, {lon_str})\n"
+            "- Note: this address is where the camera stands and may not describe the framed subject."
+        )
+
+    camera_pos = (
+        f"({cam_lat:.6f}, {cam_lon:.6f}), " if (has_target and cam_lat is not None and cam_lon is not None) else ""
+    )
+
     context_block = f"""TARGET LOCATION & SPATIAL CONTEXT:
-- Resolved Address: {address}
-- GPS Coordinates: ({lat_str}, {lon_str})
+{subject_lines}
 - Temporal Epoch / Date: {temporal_epoch or 'Present Day'}
 - View Scope Mode: {view_scope.value}
-- Camera Telemetry: Altitude {altitude_agl:.1f}m AGL, Heading {heading:.1f}°, Pitch {pitch:.1f}°, FOV {fov:.1f}°
+- Camera Telemetry: {camera_pos}Altitude {altitude_agl:.1f}m AGL, Heading {heading:.1f}°, Pitch {pitch:.1f}°, FOV {fov:.1f}°
 - Tile Mode: {tile_mode}
 """
 
@@ -293,6 +318,7 @@ Provide your output structured into the following labeled sections:
         metadata={
             "address": address,
             "coordinates": (lat_str, lon_str),
+            "address_source": "TARGET" if has_target else "CAMERA",
             "tile_mode": tile_mode,
             "view_scope": view_scope.value,
             "search_grounding": use_search_grounding

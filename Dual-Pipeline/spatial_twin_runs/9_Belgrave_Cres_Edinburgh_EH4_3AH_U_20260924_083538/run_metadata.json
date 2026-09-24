@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_083538",
+  "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17287.7,
+  "telemetry": {
+    "latitude": 55.953682622313394,
+    "longitude": -3.216766472155142,
+    "altitude_agl": 1.369640603917631,
+    "heading": 95.79485346258224,
+    "pitch": 4.549126010925398,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 8.35,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 104.4054006253241,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4800,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 67.59846437399179,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-09-24T07:20:59+00:00",
+    "solar_azimuth": 105.97,
+    "solar_elevation": 10.45,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under OVERCAST conditions (Sun Azimuth 106.0\u00b0, Elevation 10.4\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "9 Belgrave Cres, Edinburgh EH4 3AH, UK",
+    "coordinates": [
+      "55.953622",
+      "-3.215693"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "a044e928ecd7665a9ced6ef1e73e72c7d46b50a5",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "a044e928"
+    },
+    "archived_at_utc": "2026-09-24T15:35:38.701620Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   * **Species Identification:** *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European Ash), and *Ulmus glabra* (Wych Elm).\n* **Phenology (September 24):** Dense late-season canopies showing early autumn senescence; marginal foliar chlorosis, patchy yellowing, desiccated leaf margins, and minor early leaf fall along road margins.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nStatic architectural survey of an Edinburgh West End streetscape. Left foreground features a rectified Victorian sandstone townhouse terrace of fine-grained Craigleith ashlar masonry, multi-storey canted bay windows, 1-over-1 timber sash-and-case frames, moulded stringcourses, and tall stone chimneystacks. In the midground rises a Gothic Revival church tower built of coursed ashlar with stepped corner buttresses, lancet tracery windows, and decorated corner pinnacles over pitched Ballachulish slate roofs. Low droved sandstone boundary walls with cast-iron spearhead railings border the roadway. The right side is occupied by mature urban parkland featuring Acer pseudoplatanus and Ulmus glabra trees with late September foliage exhibiting early autumn yellowing and patchy foliar chlorosis. The ground surface consists of continuous tarmacadam carriageway bordered by straight whinstone kerbs and level Caithness flagstone pedestrian pavements. Architectural surfaces display authentic Scottish urban weathering, including soot-patinated sandstone recesses, sharp rain-washed cornices, and base-level lichen patination. Completely devoid of vehicles, pedestrians, or temporary signage. True vertical alignments across all structural walls.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3594,
+    "budget": 4800,
+    "over_budget": false,
+    "skeleton_chars": 2072,
+    "doc_chars": 1245,
+    "doc_trimmed": false,
+    "eco_chars": 339,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}
