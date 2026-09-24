@@ -11,7 +11,10 @@ Linear execution with Unified NDJSON Lifecycle Streaming:
 """
 
 import os
+import re
+import json
 import time
+from datetime import datetime, timezone
 import requests
 import traceback
 from typing import Optional, List
@@ -417,6 +420,98 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             "message": str(e)
         }
         yield format_ndjson(error_payload)
+
+
+# -------------------------------------------------------------------------
+# Saved Camera Views (/api/views)
+# Stored server-side as JSON beside server.py so views survive browser cache
+# clears and can be committed to git alongside the code.
+# -------------------------------------------------------------------------
+SAVED_VIEWS_PATH = Path(__file__).parent / "saved_views.json"
+
+
+class SavedCamera(BaseModel):
+    # Exact ECEF position: restores the pose bit-for-bit.
+    x: float
+    y: float
+    z: float
+    # Human-readable copy of the same position (not used for restore).
+    latitude: float
+    longitude: float
+    height_m: float = Field(..., description="Ellipsoid height (m)")
+    heading_deg: float
+    pitch_deg: float
+    roll_deg: float = 0.0
+    fov_deg: float
+    capture_w: Optional[int] = None
+    capture_h: Optional[int] = None
+
+
+class SaveViewRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=80)
+    camera: SavedCamera
+    note: Optional[str] = Field(None, max_length=500)
+    overwrite: bool = False
+
+
+def _slug(name: str) -> str:
+    s = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    return s or "view"
+
+
+def _load_views() -> list:
+    if not SAVED_VIEWS_PATH.exists():
+        return []
+    try:
+        data = json.loads(SAVED_VIEWS_PATH.read_text(encoding="utf-8"))
+        return data.get("views", []) if isinstance(data, dict) else []
+    except Exception as e:
+        print(f"[Views] could not read {SAVED_VIEWS_PATH}: {e}")
+        raise HTTPException(status_code=500, detail=f"saved_views.json is unreadable: {e}")
+
+
+def _write_views(views: list) -> None:
+    tmp = SAVED_VIEWS_PATH.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps({"version": 1, "views": views}, indent=2), encoding="utf-8")
+    tmp.replace(SAVED_VIEWS_PATH)  # atomic swap: a crash never leaves a half-written file
+
+
+@app.get("/api/views")
+async def list_views():
+    return {"views": sorted(_load_views(), key=lambda v: v.get("name", "").lower())}
+
+
+@app.post("/api/views")
+async def save_view(req: SaveViewRequest):
+    views = _load_views()
+    view_id = _slug(req.name)
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    existing = next((v for v in views if v.get("id") == view_id), None)
+    if existing and not req.overwrite:
+        raise HTTPException(status_code=409, detail=f"A view named '{existing.get('name')}' already exists.")
+    record = {
+        "id": view_id,
+        "name": req.name.strip(),
+        "note": req.note,
+        "camera": req.camera.model_dump() if hasattr(req.camera, "model_dump") else req.camera.dict(),
+        "created_utc": existing.get("created_utc", now) if existing else now,
+        "updated_utc": now,
+    }
+    views = [v for v in views if v.get("id") != view_id] + [record]
+    _write_views(views)
+    print(f"[Views] {'updated' if existing else 'saved'}: {record['name']} ({view_id})")
+    return record
+
+
+@app.delete("/api/views/{view_id}")
+async def delete_view(view_id: str):
+    views = _load_views()
+    kept = [v for v in views if v.get("id") != view_id]
+    if len(kept) == len(views):
+        raise HTTPException(status_code=404, detail="View not found.")
+    _write_views(kept)
+    print(f"[Views] deleted: {view_id}")
+    return {"deleted": view_id}
 
 
 # -------------------------------------------------------------------------

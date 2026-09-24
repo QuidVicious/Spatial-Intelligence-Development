@@ -1,0 +1,280 @@
+diff --git a/server.py b/server.py
+index 1007bb6..4e20bef 100644
+--- a/server.py
++++ b/server.py
+@@ -11,7 +11,10 @@ Linear execution with Unified NDJSON Lifecycle Streaming:
+ """
+ 
+ import os
++import re
++import json
+ import time
++from datetime import datetime, timezone
+ import requests
+ import traceback
+ from typing import Optional, List
+@@ -419,6 +422,98 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
+         yield format_ndjson(error_payload)
+ 
+ 
++# -------------------------------------------------------------------------
++# Saved Camera Views (/api/views)
++# Stored server-side as JSON beside server.py so views survive browser cache
++# clears and can be committed to git alongside the code.
++# -------------------------------------------------------------------------
++SAVED_VIEWS_PATH = Path(__file__).parent / "saved_views.json"
++
++
++class SavedCamera(BaseModel):
++    # Exact ECEF position: restores the pose bit-for-bit.
++    x: float
++    y: float
++    z: float
++    # Human-readable copy of the same position (not used for restore).
++    latitude: float
++    longitude: float
++    height_m: float = Field(..., description="Ellipsoid height (m)")
++    heading_deg: float
++    pitch_deg: float
++    roll_deg: float = 0.0
++    fov_deg: float
++    capture_w: Optional[int] = None
++    capture_h: Optional[int] = None
++
++
++class SaveViewRequest(BaseModel):
++    name: str = Field(..., min_length=1, max_length=80)
++    camera: SavedCamera
++    note: Optional[str] = Field(None, max_length=500)
++    overwrite: bool = False
++
++
++def _slug(name: str) -> str:
++    s = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
++    return s or "view"
++
++
++def _load_views() -> list:
++    if not SAVED_VIEWS_PATH.exists():
++        return []
++    try:
++        data = json.loads(SAVED_VIEWS_PATH.read_text(encoding="utf-8"))
++        return data.get("views", []) if isinstance(data, dict) else []
++    except Exception as e:
++        print(f"[Views] could not read {SAVED_VIEWS_PATH}: {e}")
++        raise HTTPException(status_code=500, detail=f"saved_views.json is unreadable: {e}")
++
++
++def _write_views(views: list) -> None:
++    tmp = SAVED_VIEWS_PATH.with_suffix(".json.tmp")
++    tmp.write_text(json.dumps({"version": 1, "views": views}, indent=2), encoding="utf-8")
++    tmp.replace(SAVED_VIEWS_PATH)  # atomic swap: a crash never leaves a half-written file
++
++
++@app.get("/api/views")
++async def list_views():
++    return {"views": sorted(_load_views(), key=lambda v: v.get("name", "").lower())}
++
++
++@app.post("/api/views")
++async def save_view(req: SaveViewRequest):
++    views = _load_views()
++    view_id = _slug(req.name)
++    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
++    existing = next((v for v in views if v.get("id") == view_id), None)
++    if existing and not req.overwrite:
++        raise HTTPException(status_code=409, detail=f"A view named '{existing.get('name')}' already exists.")
++    record = {
++        "id": view_id,
++        "name": req.name.strip(),
++        "note": req.note,
++        "camera": req.camera.model_dump() if hasattr(req.camera, "model_dump") else req.camera.dict(),
++        "created_utc": existing.get("created_utc", now) if existing else now,
++        "updated_utc": now,
++    }
++    views = [v for v in views if v.get("id") != view_id] + [record]
++    _write_views(views)
++    print(f"[Views] {'updated' if existing else 'saved'}: {record['name']} ({view_id})")
++    return record
++
++
++@app.delete("/api/views/{view_id}")
++async def delete_view(view_id: str):
++    views = _load_views()
++    kept = [v for v in views if v.get("id") != view_id]
++    if len(kept) == len(views):
++        raise HTTPException(status_code=404, detail="View not found.")
++    _write_views(kept)
++    print(f"[Views] deleted: {view_id}")
++    return {"deleted": view_id}
++
++
+ # -------------------------------------------------------------------------
+ # Main Pipeline Endpoint (/api/process_view)
+ # -------------------------------------------------------------------------
+diff --git a/viewfinder.html b/viewfinder.html
+index 8b0dacb..18ce7b5 100644
+--- a/viewfinder.html
++++ b/viewfinder.html
+@@ -175,6 +175,24 @@
+       <div id="search-status" style="font-size: 10px; color: var(--text-muted); margin-top: 5px; min-height: 12px;"></div>
+     </div>
+ 
++    <div class="hud-card">
++      <div class="hud-card-header">📌 Saved Views</div>
++      <div style="display: flex; gap: 6px;">
++        <input type="text" id="input-view-name" placeholder="Name this view"
++               style="flex: 1; min-width: 0;"
++               onkeydown="if (event.key === 'Enter') saveCurrentView();" />
++        <button onclick="saveCurrentView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">SAVE</button>
++      </div>
++      <div style="display: flex; gap: 6px; margin-top: 6px;">
++        <select id="select-saved-view" style="flex: 1; min-width: 0;">
++          <option value="">No saved views</option>
++        </select>
++        <button onclick="goToSavedView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">GO</button>
++        <button onclick="deleteSavedView()" class="toggle-btn" title="Delete selected view" style="flex: 0 0 auto; padding: 6px 10px;">✕</button>
++      </div>
++      <div id="views-status" style="font-size: 10px; color: var(--text-muted); margin-top: 5px; min-height: 12px;"></div>
++    </div>
++
+     <div class="hud-card">
+       <div class="hud-card-header">☀️ Solar Ephemeris & Time</div>
+       <div class="mode-toggle">
+@@ -353,6 +371,7 @@
+ 
+       viewer.camera.changed.addEventListener(updateTelemetryHUD);
+       viewer.camera.moveEnd.addEventListener(onCameraSettle);
++      loadSavedViews();
+       updateTelemetryHUD();
+       syncCesiumTime();
+       onCameraSettle();
+@@ -486,6 +505,128 @@
+       }
+     }
+ 
++    // ---------------- Saved Views ----------------
++    let savedViews = [];
++
++    function setViewsStatus(msg, color) {
++      const el = document.getElementById('views-status');
++      el.style.color = color || 'var(--text-muted)';
++      el.textContent = msg;
++    }
++
++    async function loadSavedViews(selectId) {
++      try {
++        const resp = await fetch('/api/views');
++        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
++        savedViews = (await resp.json()).views || [];
++      } catch (e) {
++        console.warn('[Views] load failed:', e);
++        setViewsStatus('Could not load saved views.', '#ff5252');
++        return;
++      }
++      const sel = document.getElementById('select-saved-view');
++      sel.innerHTML = '';
++      if (!savedViews.length) {
++        sel.innerHTML = '<option value="">No saved views</option>';
++        return;
++      }
++      for (const v of savedViews) {
++        const opt = document.createElement('option');
++        opt.value = v.id;
++        opt.textContent = v.name;
++        opt.title = v.note || '';
++        sel.appendChild(opt);
++      }
++      if (selectId) sel.value = selectId;
++    }
++
++    function currentCameraRecord() {
++      const cam = viewer.camera;
++      const p = cam.position;
++      const c = Cesium.Cartographic.fromCartesian(p);
++      return {
++        x: p.x, y: p.y, z: p.z,
++        latitude: Cesium.Math.toDegrees(c.latitude),
++        longitude: Cesium.Math.toDegrees(c.longitude),
++        height_m: c.height,
++        heading_deg: Cesium.Math.toDegrees(cam.heading),
++        pitch_deg: Cesium.Math.toDegrees(cam.pitch),
++        roll_deg: Cesium.Math.toDegrees(cam.roll),
++        fov_deg: Cesium.Math.toDegrees(cam.frustum.fov || 0.785),
++        capture_w: CAPTURE_W,
++        capture_h: CAPTURE_H
++      };
++    }
++
++    async function saveCurrentView(overwrite) {
++      if (!viewer) return;
++      const input = document.getElementById('input-view-name');
++      const name = input.value.trim();
++      if (!name) { setViewsStatus('Enter a name first.', '#ff5252'); return; }
++      const body = { name, camera: currentCameraRecord(), overwrite: !!overwrite };
++      try {
++        const resp = await fetch('/api/views', {
++          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
++        });
++        if (resp.status === 409) {
++          if (confirm(`A view named "${name}" already exists. Overwrite it with the current camera?`)) {
++            return saveCurrentView(true);
++          }
++          setViewsStatus('Not saved.');
++          return;
++        }
++        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
++        const rec = await resp.json();
++        input.value = '';
++        await loadSavedViews(rec.id);
++        setViewsStatus(`Saved: ${rec.name}`, 'var(--accent-cyan)');
++        console.log('[Views] saved', rec);
++      } catch (e) {
++        console.warn('[Views] save failed:', e);
++        setViewsStatus('Save failed.', '#ff5252');
++      }
++    }
++
++    function goToSavedView() {
++      if (!viewer) return;
++      const id = document.getElementById('select-saved-view').value;
++      const v = savedViews.find(s => s.id === id);
++      if (!v) { setViewsStatus('Pick a view first.', '#ff5252'); return; }
++      const c = v.camera;
++      // Exact restore: ECEF position and raw angles, no flight interpolation.
++      if (c.fov_deg && viewer.camera.frustum.fov !== undefined) {
++        viewer.camera.frustum.fov = Cesium.Math.toRadians(c.fov_deg);
++      }
++      viewer.camera.setView({
++        destination: new Cesium.Cartesian3(c.x, c.y, c.z),
++        orientation: {
++          heading: Cesium.Math.toRadians(c.heading_deg),
++          pitch: Cesium.Math.toRadians(c.pitch_deg),
++          roll: Cesium.Math.toRadians(c.roll_deg || 0)
++        }
++      });
++      updateTelemetryHUD();
++      onCameraSettle();
++      setViewsStatus(`At: ${v.name}`, 'var(--accent-cyan)');
++      console.log(`[Views] restored ${v.name} (${v.id})`);
++    }
++
++    async function deleteSavedView() {
++      const id = document.getElementById('select-saved-view').value;
++      const v = savedViews.find(s => s.id === id);
++      if (!v) return;
++      if (!confirm(`Delete saved view "${v.name}"?`)) return;
++      try {
++        const resp = await fetch(`/api/views/${encodeURIComponent(id)}`, { method: 'DELETE' });
++        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
++        await loadSavedViews();
++        setViewsStatus(`Deleted: ${v.name}`);
++      } catch (e) {
++        console.warn('[Views] delete failed:', e);
++        setViewsStatus('Delete failed.', '#ff5252');
++      }
++    }
++
+     function resetStepperHUD() {
+       const stages = ['INGEST_LIGHTING', 'DOMAIN_ENGINE', 'SPATIAL_SCAFFOLD', 'PROMPT_ENGINE', 'VISION_PREPROCESSOR', 'SYNTHESIS_ENGINE', 'ARCHIVER'];
+       stages.forEach(s => {

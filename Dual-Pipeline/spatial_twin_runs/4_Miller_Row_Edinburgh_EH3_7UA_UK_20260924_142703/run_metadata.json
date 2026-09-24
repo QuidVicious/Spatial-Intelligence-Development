@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_142703",
+  "address": "4 Miller Row, Edinburgh EH3 7UA, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16454.43,
+  "telemetry": {
+    "latitude": 55.953147501062666,
+    "longitude": -3.2162735906791715,
+    "altitude_agl": 45.8785093553802,
+    "heading": 104.47346158762603,
+    "pitch": -8.937253231127507,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 14.4,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 81.33647007518312,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 136.82657566499958,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-24T13:24:00+00:00",
+    "solar_azimuth": 203.43,
+    "solar_elevation": 31.63,
+    "color_temperature_k": 5400,
+    "lux": 60000,
+    "natural_description": "Calibrated 5400K diffuse daylight under RAIN conditions (Sun Azimuth 203.4\u00b0, Elevation 31.6\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "4 Miller Row, Edinburgh EH3 7UA, UK",
+    "coordinates": [
+      "55.952844",
+      "-3.214179"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "8182f416b892c5d244e9e92bac6c48e205d518c7",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "8182f416"
+    },
+    "archived_at_utc": "2026-09-24T21:27:03.866803Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Riparian/Gorge Canopy: *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European Ash), *Ulmus glabra* (Wych Elm), and *Alnus glutinosa* (Alder) lining the Water of Leith gorge.\n- Phenology (Late September): Dense, mature broadleaf crowns transitioning with localized foliar chlorosis, patchy yellow-ochre edges, and early leaf drop along the upper riverbank margins.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nStatic architectural survey of Dean Bridge and the Water of Leith gorge. Four monumental four-centred ashlar arches in grey Craigleith sandstone span the gorge on tall, slender, battered rectangular piers with dressed cutwaters, supporting a cantilevered stone roadway with planar stone parapets and cast-iron lanterns. Below the span, the steep gorge is densely filled with mature riparian woodland comprising Acer pseudoplatanus, Fraxinus excelsior, and Ulmus glabra displaying late September foliage with subtle chlorotic yellowing and early autumn leaf-thinning over moss-covered sandstone outcroppings. Bordering the ravine, multi-storey Georgian and Victorian residential tenements rise in strict vertical alignment: ashlar facades in pale grey carboniferous sandstone, rusticated ground floors, continuous moulded belt courses, slate-hung mansard roofs with dressed stone chimney stacks, terracotta chimney pots, and regular grids of white-painted timber sash-and-case windows. In the background horizon, the urban profile transitions to dense multi-storey tenements, the copper-clad dome of St George's, and the distant dark volcanic crag and masonry fortifications of Edinburgh Castle. Paved surfaces consist of dressed granite kerbs, asphalt carriage tracks, and Ballachulish grey-black slate pitched roofs across all historic residential massing. Zero vehicles, zero pedestrians.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3814,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1390,
+    "doc_trimmed": false,
+    "eco_chars": 375,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

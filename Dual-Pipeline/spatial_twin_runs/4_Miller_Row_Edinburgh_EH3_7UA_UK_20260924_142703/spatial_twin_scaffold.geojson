@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "4 Miller Row, Edinburgh EH3 7UA, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 45.9,
+          "pitch_deg": -8.9,
+          "heading_deg": 104.5,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "- Bedrock: Carboniferous sedimentary strata (Wardie Shales and sandstone beds) incised by the Water of Leith, flanked by basaltic volcanic volcanic plugs (Castle Rock, Arthur's Seat).\n- Lithics: Craigleith and Hailes pale blonde-to-grey carboniferous sandstone for Georgian terraces and bridge piers; Scottish slate roofing (Ballachulish).\n- Mortar: Historic non-hydraulic and feebly hydraulic lime mortars; natural stone bedding joints with ashlar fine-lime pointing."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "- Riparian/Gorge Canopy: *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (European Ash), *Ulmus glabra* (Wych Elm), and *Alnus glutinosa* (Alder) lining the Water of Leith gorge.\n- Phenology (Late September): Dense, mature broadleaf crowns transitioning with localized foliar chlorosis, patchy yellow-ochre edges, and early leaf drop along the upper riverbank margins.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Civil Infrastructure: Dean Bridge (Thomas Telford, 1831); four four-centred main ashlar arches carrying cantilevered side footpaths on slender piers.\n- Residential: 4-to-5-storey Georgian classical and Victorian New Town tenements; rusticated basements, planar ashlar upper storeys, sash-and-case fenestration grids (mostly 6-over-6 and 2-over-2 timber frames), continuous string courses, cornices, and pitched slate mansards/attics with stone dormers.\n- Skyline Monuments: St George's West dome and distant Edinburgh Castle fortress complex atop volcanic crag.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2162735906791715,
+          55.953147501062666
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-24T13:24:00+00:00",
+        "weather_state": "RAIN",
+        "solar_azimuth_deg": 203.43,
+        "solar_elevation_deg": 31.63,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

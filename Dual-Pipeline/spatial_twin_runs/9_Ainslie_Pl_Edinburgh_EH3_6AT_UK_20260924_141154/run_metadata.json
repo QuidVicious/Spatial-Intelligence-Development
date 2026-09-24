@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_141154",
+  "address": "9 Ainslie Pl, Edinburgh EH3 6AT, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15715.73,
+  "telemetry": {
+    "latitude": 55.953578948184465,
+    "longitude": -3.210687571427369,
+    "altitude_agl": 13.818666644070674,
+    "heading": 137.59377820251734,
+    "pitch": -7.28431415267085,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-10-24",
+    "time_of_day": 14.15,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 105.4661140975823,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 42.180536964826025,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-10-24T13:09:00+00:00",
+    "solar_azimuth": 198.93,
+    "solar_elevation": 20.89,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under RAIN conditions (Sun Azimuth 198.9\u00b0, Elevation 20.9\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "9 Ainslie Pl, Edinburgh EH3 6AT, UK",
+    "coordinates": [
+      "55.953301",
+      "-3.210236"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "8182f416b892c5d244e9e92bac6c48e205d518c7",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "8182f416"
+    },
+    "archived_at_utc": "2026-09-24T21:11:54.140506Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Canopy Taxa: *Acer pseudoplatanus* (Sycamore), *Fraxinus excelsior* (Ash), *Ulmus glabra* (Wych Elm), and *Tilia cordata* (Small-leaved Lime).\n- Phenology (Late October): Autumnal senescence; canopies display 40\u201360% defoliation, yellow-brown chlorotic leaves, exposed branching structure, and fallen leaf litter on turf.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nEdinburgh Georgian circus townhouses of the Moray Estate framing a central circular communal pleasure ground. Facades constructed from regular coursed Craigleith sandstone ashlar, featuring deeply channelled rustication at ground floor level, polished ashlar upper storeys, continuous molded string courses, and projecting mutule cornices beneath a parapet wall. Fenestration consists of vertically aligned six-over-six and twelve-pane double-hung timber sash windows with painted off-white astragals set in reveals. Sloped mansard roofs clad in dark Scotch slate with pedimented lead-cheeked timber dormers and dressed stone ashlar chimney stacks with ceramic chimney pots. Foreground occupied by the central garden ring, surfaced with perennial rye turf and circular peripheral hoggin gravel pathways bounded by droved Craigleith stone kerbstones and cast-iron spearhead boundary railings. Mature urban deciduous canopy comprising Acer pseudoplatanus, Fraxinus excelsior, and Tilia cordata displaying late-October phenology: 50% canopy thinning, crisp senescent yellow-brown and russet leaves, exposed bare upper branch architecture, and scattered leaf litter across the mown grass and curving macadam carriageway. Distance punctuated by classical masonry cupola dome clad in patinated copper sheeting.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3675,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1304,
+    "doc_trimmed": false,
+    "eco_chars": 322,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_140833",
+  "address": "7 Ainslie Pl, Edinburgh EH3 6AS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15466.71,
+  "telemetry": {
+    "latitude": 55.95361395987533,
+    "longitude": -3.2106998692080797,
+    "altitude_agl": 1.3562269678481869,
+    "heading": 139.86140805762602,
+    "pitch": -8.760024304510448,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-24",
+    "time_of_day": 14.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 118.64718307273125,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 45.96355588679689,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-24T14:03:00+00:00",
+    "solar_azimuth": 205.49,
+    "solar_elevation": 7.21,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under SNOW conditions (Sun Azimuth 205.5\u00b0, Elevation 7.2\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "7 Ainslie Pl, Edinburgh EH3 6AS, UK",
+    "coordinates": [
+      "55.953302",
+      "-3.210231"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "8182f416b892c5d244e9e92bac6c48e205d518c7",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "8182f416"
+    },
+    "archived_at_utc": "2026-09-24T21:08:33.894744Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   - Urban Canopy: Mature *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Lime), and *Ulmus glabra* (Wych Elm) specimens within central circus garden.\n- Phenology (December 24): Full winter dormancy; complete deciduous defoliation exhibiting bare, intricate branch architecture over dormant, damp perennial turf.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nEdinburgh New Town Georgian circus terraces executed in pale buff Craigleith sandstone ashlar. Ground storeys feature deep channelled horizontal rustication with round-arched doorways, resting above sunken stone basement lightwells spanned by cast-iron crossover bridges. Upper storeys feature smooth fine-droved ashlar, continuous moulded stringcourses, plain architraves, and timber sash-and-case windows in regular 6-over-6 configurations. Pitched roofs clad in dark grey Ballachulish slate with timber-framed dormers and robust ashlar chimney stacks with cylindrical terracotta chimney pots. Distant background reveals copper-clad neoclassical church dome. Foreground comprises Ainslie Place central private garden encircled by black-painted cast-iron spearhead railings on dressed sandstone plinths. Within the garden, manicured winter grass lawn is dissected by curving paths surfaced in compacted crushed whinstone gravel. Mature specimen trees including Acer pseudoplatanus and Tilia cordata stand fully defoliated in late-December dormancy, exhibiting dense networks of bare, dark grey winter branches against the architectural backdrop. Sandstone facades display authentic urban weathering with coal-smoke carbon encrustations along under-eaves and stone water tables, contrasted with rain-cleansed ashlar courses and damp-induced mossing on low boundary copings. Kerbs cut from solid grey granite border asphalt road surfacing with cast-iron drainage grates.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3771,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1469,
+    "doc_trimmed": false,
+    "eco_chars": 315,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

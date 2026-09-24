@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "7 Ainslie Pl, Edinburgh EH3 6AS, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 1.4,
+          "pitch_deg": -8.8,
+          "heading_deg": 139.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean Carboniferous sedimentary strata and basaltic volcanic basement. Superficial deposits of dense glacial till. Primary masonry composed of buff-grey Craigleith and Hailes carboniferous quartz-arenite sandstone. Traditional lime-sand mortar beds and pointing."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Central urban garden enclave containing mature *Tilia \u00d7 europaea* (Common Lime), *Acer pseudoplatanus* (Sycamore), and *Ulmus glabra* (Wych Elm). Late-autumn/early-winter phenology for late November: predominantly defoliated canopies with bare, intricate crown architecture, sparse clusters of dry brown senescent leaves clinging to sheltered inner branches, and leaf litter over mown rye-grass turf.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Early 19th-century Georgian New Town residential terrace (Ainslie Place, Moray Estate, designed by James Gillespie Graham, c. 1822). Classical composition with planar vertical masonry walls, rusticated ashlar ground floors, polished ashlar upper storeys, continuous stringcourses, and moulded eaves cornices. Three-storey plus attic and sunk basement configurations. Regular fenestration featuring 6-over-6 and 12-pane timber sash-and-case windows. Pitched roofs clad in Scottish Ballachulish slates with dressed stone chimney stacks and ceramic pots. Distant lead-clad classical copper-patinated dome aligned beyond the roofline. Symmetrical central private communal garden with radial gravel paths and perimeter ironwork.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2106998692080797,
+          55.95361395987533
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-11-24T14:03:00+00:00",
+        "weather_state": "FOG",
+        "solar_azimuth_deg": 209.08,
+        "solar_elevation_deg": 9.3,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 3000,
+        "ambient_illuminance_lux": 12000
+      }
+    }
+  ]
+}

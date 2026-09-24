@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260924_140548",
+  "address": "7 Ainslie Pl, Edinburgh EH3 6AS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17224.67,
+  "telemetry": {
+    "latitude": 55.95361395987533,
+    "longitude": -3.2106998692080797,
+    "altitude_agl": 1.3562269678481869,
+    "heading": 139.86140805762602,
+    "pitch": -8.760024304510448,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-24",
+    "time_of_day": 14.05,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "RAIN",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 118.64718307273125,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 45.96355588679689,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "RAIN",
+    "timestamp_utc": "2026-09-24T13:03:00+00:00",
+    "solar_azimuth": 197.36,
+    "solar_elevation": 32.66,
+    "color_temperature_k": 5400,
+    "lux": 60000,
+    "natural_description": "Calibrated 5400K diffuse daylight under RAIN conditions (Sun Azimuth 197.4\u00b0, Elevation 32.7\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "7 Ainslie Pl, Edinburgh EH3 6AS, UK",
+    "coordinates": [
+      "55.953302",
+      "-3.210231"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "8182f416b892c5d244e9e92bac6c48e205d518c7",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "8182f416"
+    },
+    "archived_at_utc": "2026-09-24T21:05:48.500475Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Species: Ainslie Place central garden featuring *Acer pseudoplatanus* (Sycamore), *Tilia \u00d7 europaea* (Common Lime), and *Ulmus glabra* (Wych Elm).\nPhenology (Late September): Fully expanded mature broadleaf canopies exhibiting early seasonal chlorosis; localized lime-green to pale ochre edge senescence with partial inner-canopy defoliation.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (RAIN):\nActive rainfall under a dark overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Soaked, mirror-reflective paving and roadway with standing water and visible surface ripples; darkened, saturated stone and brickwork; water streaking down vertical surfaces and running at kerbs. Low contrast, cool grey ambient light, zero directional shadows.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under rain conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nAinslie Place communal gardens and neoclassical Georgian crescent. Curvilinear terrace of fine Craigleith blonde sandstone ashlar with planar vertical facades, channel-rusticated ground storeys, molded belt courses, and decorative entablatures. Multi-storey elevations featuring rectified 6-over-6 timber sash windows, droved basement lightwells, and cast-iron spear-point balustrades. Pitched roofs clad in Ballachulish dark grey slate punctuated by dressed ashlar chimney stacks with terracotta pots; distant neoclassical copper-patina dome profile rising above the skyline. Central oval pleasure ground composed of mown perennial ryegrass turf, compacted crushed gravel paths, and mature *Acer pseudoplatanus* and *Tilia europaea* trees displaying dense September foliage with early autumn ochre edge-yellowing. Foreground perimeter enclosed by low dressed-stone dwarf walls and black painted wrought-iron railings fronting a swept whinstone-kerbed asphalt carriageway. Entirely devoid of vehicles, people, and modern street clutter.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3427,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2111,
+    "doc_chars": 1036,
+    "doc_trimmed": false,
+    "eco_chars": 342,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

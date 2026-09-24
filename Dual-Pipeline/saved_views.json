@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "views": [
+    {
+      "id": "ainslie-place-gardens-view-of-7",
+      "name": "Ainslie Place Gardens view of #7",
+      "note": null,
+      "camera": {
+        "x": 3573590.225498028,
+        "y": -200429.71646215592,
+        "z": 5261626.584131364,
+        "latitude": 55.953365569624125,
+        "longitude": -3.2101492786067856,
+        "height_m": 108.16164789494921,
+        "heading_deg": 290.4793532605116,
+        "pitch_deg": 5.461732396456734,
+        "roll_deg": 1.844884707226268e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-24T21:01:35+00:00",
+      "updated_utc": "2026-09-24T21:01:35+00:00"
+    },
+    {
+      "id": "7-ainslie-attic-window-ne",
+      "name": "7 Ainslie attic window ne",
+      "note": null,
+      "camera": {
+        "x": 3573572.0389162432,
+        "y": -200463.14515122253,
+        "z": 5261651.879949365,
+        "latitude": 55.95361395987533,
+        "longitude": -3.2106998692080797,
+        "height_m": 120.00341004057944,
+        "heading_deg": 139.86140805762602,
+        "pitch_deg": -8.760024304510436,
+        "roll_deg": 6.320803374070745e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-24T21:04:41+00:00",
+      "updated_utc": "2026-09-24T21:04:41+00:00"
+    },
+    {
+      "id": "7-ainslie-attic-window",
+      "name": "7 Ainslie Attic Window",
+      "note": null,
+      "camera": {
+        "x": 3573574.9052478075,
+        "y": -200462.53650682012,
+        "z": 5261649.101980723,
+        "latitude": 55.953578948184465,
+        "longitude": -3.210687571427369,
+        "height_m": 119.28478074165298,
+        "heading_deg": 137.59377820251734,
+        "pitch_deg": -7.28431415267085,
+        "roll_deg": 3.495105315750858e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-24T21:12:39+00:00",
+      "updated_utc": "2026-09-24T21:14:41+00:00"
+    },
+    {
+      "id": "dean-bridge-from-nw-looking-se",
+      "name": "Dean Bridge from nw looking se",
+      "note": null,
+      "camera": {
+        "x": 3573601.787782294,
+        "y": -200785.53686294894,
+        "z": 5261610.898753256,
+        "latitude": 55.95305238088334,
+        "longitude": -3.2158258835244617,
+        "height_m": 112.79370532052951,
+        "heading_deg": 100.49995265426577,
+        "pitch_deg": -6.007621907943508,
+        "roll_deg": 359.9999974627347,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-24T21:19:10+00:00",
+      "updated_utc": "2026-09-24T21:19:10+00:00"
+    },
+    {
+      "id": "behind-randolph-cres-looking-se",
+      "name": "Behind Randolph Cres looking se",
+      "note": null,
+      "camera": {
+        "x": 3573658.6757353116,
+        "y": -200572.49540358485,
+        "z": 5261577.047567707,
+        "latitude": 55.95254837668989,
+        "longitude": -3.2123698836873014,
+        "height_m": 109.85797499562653,
+        "heading_deg": 66.9200321415709,
+        "pitch_deg": 3.891311965209945,
+        "roll_deg": 4.6624757046852784e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-24T21:20:23+00:00",
+      "updated_utc": "2026-09-24T21:20:23+00:00"
+    }
+  ]
+}
