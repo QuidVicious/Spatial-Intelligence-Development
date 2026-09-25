@@ -139,6 +139,14 @@ def archive_run(
         f.write(f"## 5. Static Civil Fabric Decluttering\n{domain_result.static_decluttering_summary}\n\n")
         f.write(f"## 6. Synthesized Documentary Prompt\n```text\n{domain_result.documentary_prompt}\n```\n")
 
+    # 4.5 Save the domain result as data, so a replay can reload it exactly.
+    # (The markdown above is for reading; this file is for the pipeline.)
+    try:
+        with open(run_folder / "domain_result.json", "w", encoding="utf-8") as f:
+            json.dump(domain_result.to_dict(), f, indent=2, default=str)
+    except Exception as e:
+        print(f"[Archiver] domain_result.json not written: {e}")
+
     # 5. Save Run Metadata (JSON) with Separated Prompt Contracts
     metadata = {
         "timestamp": timestamp,
@@ -154,7 +162,11 @@ def archive_run(
             "heading": getattr(telemetry, "heading", 0.0),
             "pitch": getattr(telemetry, "pitch", 0.0),
             "fov": getattr(telemetry, "fov", 0.0),
-            "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES")
+            "tile_mode": getattr(telemetry, "tile_mode", "3D_TILES"),
+            "target_latitude": getattr(telemetry, "target_latitude", None),
+            "target_longitude": getattr(telemetry, "target_longitude", None),
+            "target_distance_m": getattr(telemetry, "target_distance_m", None),
+            "target_method": getattr(telemetry, "target_method", None)
         },
         "settings": {
             "provider": getattr(telemetry, "provider", None) or synthesis_result.provider.value,

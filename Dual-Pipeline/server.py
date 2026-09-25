@@ -13,6 +13,7 @@ Linear execution with Unified NDJSON Lifecycle Streaming:
 import os
 import re
 import json
+import base64
 import time
 from datetime import datetime, timezone
 import requests
@@ -37,13 +38,13 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
 from vision_preprocessor import delight_image
 from synthesis_engine import synthesize_twin
-from archiver import archive_run
+from archiver import archive_run, DEFAULT_RUNS_DIR
 
 # Load Environment
 env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
@@ -181,6 +182,114 @@ class ProcessViewRequest(BaseModel):
     view_scope: str = Field("FRUSTUM", description="FRUSTUM, OMNI_360, or STANDALONE")
     disable_recaption: bool = Field(True, description="Enforce original prompt without API auto-rewrite")
     use_search_grounding: bool = Field(False, description="Attach Google Search grounding to the domain call")
+    saved_view_id: Optional[str] = Field(None, description="Saved view the camera was at when captured")
+    saved_view_name: Optional[str] = Field(None, description="Display name of that saved view")
+    replay_of: Optional[str] = Field(None, description="Archived run id to replay: reuses its capture and domain text")
+    documentary_prompt_override: Optional[str] = Field(None, description="Replay only: edited scene text replacing the frozen documentary prompt")
+
+
+# -------------------------------------------------------------------------
+# Replay: frozen sources loaded back from archived runs
+# -------------------------------------------------------------------------
+RUN_ID_RE = re.compile(r"^[\w\-]+$")
+DOMAIN_MD_SECTIONS = {
+    "1": "geological_foundation",
+    "2": "architectural_analysis",
+    "3": "material_and_lithics",
+    "4": "botanical_ecology",
+    "5": "static_decluttering_summary",
+}
+RUN_FILES = {
+    "viewport_capture.jpg": "image/jpeg",
+    "delighted_reference.jpg": "image/jpeg",
+    "spatial_twin.png": "image/png",
+}
+
+
+def _run_dir(run_id: str) -> Path:
+    if not run_id or not RUN_ID_RE.match(run_id):
+        raise HTTPException(status_code=400, detail="Invalid run id.")
+    d = DEFAULT_RUNS_DIR / run_id
+    if not d.is_dir():
+        raise HTTPException(status_code=404, detail=f"Run not found: {run_id}")
+    return d
+
+
+def _read_json(path: Path) -> Optional[dict]:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _parse_domain_md(text: str) -> dict:
+    """Fallback for runs archived before domain_result.json existed.
+    The layout is fixed by archiver.py, so the sections can be read back reliably."""
+    fields: dict = {}
+    m = re.search(r"^# Spatial Domain Analysis:\s*(.+)$", text, re.M)
+    fields["address"] = m.group(1).strip() if m else ""
+    m = re.search(r"^\*\*View Scope:\*\*\s*(\w+)", text, re.M)
+    fields["view_scope"] = m.group(1) if m else "FRUSTUM"
+    for num, key in DOMAIN_MD_SECTIONS.items():
+        m = re.search(rf"^## {num}\. [^\n]*\n(.*?)(?=^## \d\. |\Z)", text, re.S | re.M)
+        fields[key] = m.group(1).strip() if m else ""
+    m = re.search(r"^## 6\. [^\n]*\n```text\n(.*?)\n```", text, re.S | re.M)
+    fields["documentary_prompt"] = m.group(1).strip() if m else ""
+    return fields
+
+
+def load_domain_from_run(d: Path):
+    data = _read_json(d / "domain_result.json")
+    source = "json"
+    if data is None:
+        md = d / "domain_analysis.md"
+        if not md.exists():
+            raise HTTPException(status_code=404, detail=f"Run {d.name} has no domain analysis.")
+        data = _parse_domain_md(md.read_text(encoding="utf-8"))
+        source = "markdown"
+    try:
+        scope = ViewScope(str(data.get("view_scope") or "FRUSTUM").split(".")[-1])
+    except ValueError:
+        scope = ViewScope.FRUSTUM
+    result = DomainAnalysisResult(
+        address=data.get("address") or "",
+        view_scope=scope,
+        documentary_prompt=data.get("documentary_prompt") or "",
+        geological_foundation=data.get("geological_foundation") or "",
+        architectural_analysis=data.get("architectural_analysis") or "",
+        material_and_lithics=data.get("material_and_lithics") or "",
+        botanical_ecology=data.get("botanical_ecology") or "",
+        static_decluttering_summary=data.get("static_decluttering_summary") or "",
+        raw_response=data.get("raw_response") or "",
+        metadata=dict(data.get("metadata") or {}, loaded_from=source),
+    )
+    if not result.documentary_prompt:
+        raise HTTPException(status_code=422, detail=f"Run {d.name} has no documentary prompt to replay.")
+    return result, source
+
+
+def _file_data_url(path: Path, mime: str) -> Optional[str]:
+    if not path.exists():
+        return None
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode("ascii")
+
+
+def load_replay_source(run_id: str) -> dict:
+    d = _run_dir(run_id)
+    meta = _read_json(d / "run_metadata.json")
+    if meta is None:
+        raise HTTPException(status_code=422, detail=f"Run {run_id} has no readable run_metadata.json.")
+    screenshot = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
+    if not screenshot:
+        raise HTTPException(status_code=422, detail=f"Run {run_id} has no viewport capture to use as the seed.")
+    domain, source = load_domain_from_run(d)
+    return {
+        "meta": meta,
+        "domain": domain,
+        "domain_source": source,
+        "screenshot_b64": screenshot,
+        "delighted_b64": _file_data_url(d / "delighted_reference.jpg", "image/jpeg"),
+    }
 
 
 # -------------------------------------------------------------------------
@@ -192,6 +301,39 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     google_maps_key = os.getenv("GOOGLE_MAPS_API_KEY")
     gemini_key = os.getenv("GEMINI_API_KEY")
     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
+    scene_edited = False
+
+    # Replay: load the frozen negative (seed capture + domain text) before anything else.
+    replay = None
+    if request.replay_of:
+        try:
+            replay = load_replay_source(request.replay_of)
+        except Exception as e:
+            detail = getattr(e, "detail", None) or str(e)
+            print(f"[Replay] could not load source {request.replay_of}: {detail}")
+            yield format_ndjson({"type": "ERROR", "message": f"Replay source unavailable: {detail}"})
+            return
+        src_tel = replay["meta"].get("telemetry") or {}
+        src_set = replay["meta"].get("settings") or {}
+        # The camera pose always comes from the source run; only date, time, weather and lighting are new.
+        pose = {k: src_tel[k] for k in (
+            "latitude", "longitude", "altitude_agl", "heading", "pitch", "fov", "tile_mode",
+            "target_latitude", "target_longitude"
+        ) if src_tel.get(k) is not None}
+        for k in ("target_distance_m", "target_method", "ground_elevation_m", "altitude_method"):
+            v = src_tel.get(k) if src_tel.get(k) is not None else src_set.get(k)
+            if v is not None:
+                pose[k] = v
+        telemetry = telemetry.model_copy(update=pose) if hasattr(telemetry, "model_copy") else telemetry.copy(update=pose)
+        request.screenshot_b64 = replay["screenshot_b64"]
+        if not request.saved_view_id:
+            request.saved_view_id = src_set.get("saved_view_id")
+            request.saved_view_name = src_set.get("saved_view_name")
+        replay["source_date"] = src_set.get("date")
+        print(
+            f"[Replay] source {request.replay_of} | domain from {replay['domain_source']} | "
+            f"delighted seed {'reused' if replay['delighted_b64'] else 'will be recomputed'}"
+        )
 
     # Subject resolution: geocode what is framed, not where the camera hovers.
     has_target = telemetry.target_latitude is not None and telemetry.target_longitude is not None
@@ -207,6 +349,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     )
 
     emit_terminal_banner(
+        (f"REPLAY of {request.replay_of} | " if replay else "") +
         f"Camera: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Target: {target_desc} | "
         f"Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
     )
@@ -216,9 +359,13 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         stage, event_str = stage_activate(PipelineStage.INGEST_LIGHTING, f"Target: {target_desc}")
         yield event_str
 
-        address = request.address or reverse_geocode(subj_lat, subj_lon, google_maps_key)
-        if request.address:
-            address_source = "SUPPLIED"
+        if replay:
+            address = replay["domain"].address
+            address_source = "REPLAY"
+        else:
+            address = request.address or reverse_geocode(subj_lat, subj_lon, google_maps_key)
+            if request.address:
+                address_source = "SUPPLIED"
         print(f"[Subject] address source: {address_source} -> {address}")
         yield stage.processing(f"Resolved Address ({address_source}): {address} | Calculating NOAA Solar Math...")
 
@@ -240,27 +387,45 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         stage, event_str = stage_activate(PipelineStage.DOMAIN_ENGINE, f"Target: {address} [Date: {telemetry.date or 'Present'}]")
         yield event_str
 
-        yield stage.processing(
-            "Executing domain stack (Geology, Geography, Architecture, Civil Records, Botanical Phenology) | "
-            f"Search grounding: {'ON' if request.use_search_grounding else 'OFF'}..."
-        )
-        scope = ViewScope(request.view_scope.upper()) if request.view_scope in ViewScope.__members__ else ViewScope.FRUSTUM
+        if replay:
+            domain_result = replay["domain"]
+            override = (request.documentary_prompt_override or "").strip()
+            if override and override != domain_result.documentary_prompt.strip():
+                domain_result.documentary_prompt = override
+                scene_edited = True
+            src_date = replay.get("source_date")
+            pheno_note = ""
+            if telemetry.date and src_date and telemetry.date[:7] != str(src_date)[:7]:
+                pheno_note = f" | NOTE: phenology text is frozen from source date {src_date}"
+            yield stage.processing(
+                f"Frozen domain text loaded from {request.replay_of} ({replay['domain_source']})"
+                f"{' | scene text EDITED' if scene_edited else ''}{pheno_note}"
+            )
+            print(f"[Replay] scene text {'EDITED by user' if scene_edited else 'unchanged'}{pheno_note}")
+            yield stage.dispatching(f"Documentary prompt frozen ({len(domain_result.documentary_prompt)} chars)")
+            yield stage.finish("Domain text frozen (replay: no LSA call)")
+        else:
+            yield stage.processing(
+                "Executing domain stack (Geology, Geography, Architecture, Civil Records, Botanical Phenology) | "
+                f"Search grounding: {'ON' if request.use_search_grounding else 'OFF'}..."
+            )
+            scope = ViewScope(request.view_scope.upper()) if request.view_scope in ViewScope.__members__ else ViewScope.FRUSTUM
 
-        domain_result = analyze_spatial_domain(
-            address=address,
-            coordinates=(subj_lat, subj_lon),
-            view_scope=scope,
-            telemetry=telemetry,
-            screenshot_b64=request.screenshot_b64,
-            temporal_epoch=telemetry.date,
-            gemini_api_key=gemini_key,
-            use_search_grounding=request.use_search_grounding
-        )
-        yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
-        yield stage.finish(
-            "Domain analysis complete (search grounding ON)" if request.use_search_grounding
-            else "Domain analysis complete (search grounding OFF)"
-        )
+            domain_result = analyze_spatial_domain(
+                address=address,
+                coordinates=(subj_lat, subj_lon),
+                view_scope=scope,
+                telemetry=telemetry,
+                screenshot_b64=request.screenshot_b64,
+                temporal_epoch=telemetry.date,
+                gemini_api_key=gemini_key,
+                use_search_grounding=request.use_search_grounding
+            )
+            yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
+            yield stage.finish(
+                "Domain analysis complete (search grounding ON)" if request.use_search_grounding
+                else "Domain analysis complete (search grounding OFF)"
+            )
 
         # 3. Spatial Scaffold Engine
         stage, event_str = stage_activate(PipelineStage.SPATIAL_SCAFFOLD, "Constructing RFC 7946 7-Strata GeoJSON")
@@ -301,8 +466,12 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         stage, event_str = stage_activate(PipelineStage.VISION_PREPROCESSOR, "Guided filter albedo extraction")
         yield event_str
 
-        yield stage.processing("Pushing viewport frame to PyTorch CUDA -> Delighting...")
-        delighted_b64 = delight_image(request.screenshot_b64) if request.screenshot_b64 else None
+        if replay and replay["delighted_b64"]:
+            yield stage.processing("Reusing archived delighted seed from the source run...")
+            delighted_b64 = replay["delighted_b64"]
+        else:
+            yield stage.processing("Pushing viewport frame to PyTorch CUDA -> Delighting...")
+            delighted_b64 = delight_image(request.screenshot_b64) if request.screenshot_b64 else None
         yield stage.dispatching("Edge-preserved albedo tensor extracted")
         yield stage.finish("Albedo delighting complete")
 
@@ -365,6 +534,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "target_model_requested": request.target_model,
                     "use_search_grounding": request.use_search_grounding,
                     "address_source": address_source,
+                    "saved_view_id": request.saved_view_id,
+                    "saved_view_name": request.saved_view_name,
+                    "replay_of": request.replay_of,
+                    "scene_text_edited": scene_edited,
                     "target_method": telemetry.target_method,
                     "target_distance_m": telemetry.target_distance_m,
                     "pano_seed_supplied": bool(request.pano_b64),
@@ -407,6 +580,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 "pano_url": synthesis.pano_url,
                 "geojson": scaffold.to_geojson(),
                 "latency_ms": round(total_latency_ms, 1),
+                "replay_of": request.replay_of,
                 "run_record": run_record
             }
         }
@@ -512,6 +686,66 @@ async def delete_view(view_id: str):
     _write_views(kept)
     print(f"[Views] deleted: {view_id}")
     return {"deleted": view_id}
+
+
+# -------------------------------------------------------------------------
+# Archived Runs (/api/runs): list, scene text, and preview images for replay
+# -------------------------------------------------------------------------
+def _run_summary(d: Path) -> dict:
+    meta = _read_json(d / "run_metadata.json") or {}
+    settings = meta.get("settings") or {}
+    tel = meta.get("telemetry") or {}
+    has_seed = (d / "viewport_capture.jpg").exists()
+    has_domain = (d / "domain_result.json").exists() or (d / "domain_analysis.md").exists()
+    return {
+        "id": d.name,
+        "timestamp": meta.get("timestamp") or "",
+        "address": meta.get("address"),
+        "saved_view_id": settings.get("saved_view_id"),
+        "saved_view_name": settings.get("saved_view_name"),
+        "replay_of": settings.get("replay_of"),
+        "scene_text_edited": settings.get("scene_text_edited"),
+        "date": settings.get("date"),
+        "time_of_day": settings.get("time_of_day"),
+        "weather_mode": settings.get("weather_mode"),
+        "provider": meta.get("provider"),
+        "latitude": tel.get("latitude"),
+        "longitude": tel.get("longitude"),
+        "has_twin": (d / "spatial_twin.png").exists(),
+        "replayable": has_seed and has_domain,
+    }
+
+
+@app.get("/api/runs")
+async def list_runs(view_id: Optional[str] = None, limit: int = 300):
+    if not DEFAULT_RUNS_DIR.exists():
+        return {"runs": []}
+    runs = [_run_summary(d) for d in DEFAULT_RUNS_DIR.iterdir() if d.is_dir()]
+    if view_id:
+        runs = [r for r in runs if r["saved_view_id"] == view_id]
+    runs.sort(key=lambda r: (r["timestamp"] or "", r["id"]), reverse=True)
+    return {"runs": runs[:limit]}
+
+
+@app.get("/api/runs/{run_id}/scene")
+async def run_scene(run_id: str):
+    domain, source = load_domain_from_run(_run_dir(run_id))
+    return {
+        "id": run_id,
+        "address": domain.address,
+        "documentary_prompt": domain.documentary_prompt,
+        "loaded_from": source,
+    }
+
+
+@app.get("/api/runs/{run_id}/file/{name}")
+async def run_file(run_id: str, name: str):
+    if name not in RUN_FILES:
+        raise HTTPException(status_code=404, detail="Unknown run file.")
+    path = _run_dir(run_id) / name
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"{name} not in run {run_id}.")
+    return FileResponse(path, media_type=RUN_FILES[name])
 
 
 # -------------------------------------------------------------------------

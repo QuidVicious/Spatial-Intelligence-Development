@@ -195,6 +195,24 @@
     </div>
 
     <div class="hud-card">
+      <div class="hud-card-header">🎞 Replay Run</div>
+      <div style="display: flex; gap: 6px;">
+        <select id="select-replay-view" style="flex: 1; min-width: 0;" onchange="loadReplayRuns()">
+          <option value="">All runs</option>
+        </select>
+        <button onclick="loadReplayRuns()" class="toggle-btn" title="Refresh run list" style="flex: 0 0 auto; padding: 6px 10px;">⟳</button>
+      </div>
+      <select id="select-replay-run" style="width: 100%; margin-top: 6px;" onchange="loadReplayScene()">
+        <option value="">No runs</option>
+      </select>
+      <img id="replay-thumb" alt="Source capture" style="display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
+      <textarea id="replay-scene-text" rows="6" placeholder="Scene text (documentary prompt) of the selected run. Edits apply to this replay only."
+        style="width: 100%; box-sizing: border-box; margin-top: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; font-family: var(--font-mono); font-size: 10px; resize: vertical;"></textarea>
+      <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+      <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY WITH CURRENT DATE / TIME / WEATHER</button>
+    </div>
+
+    <div class="hud-card">
       <div class="hud-card-header">☀️ Solar Ephemeris & Time</div>
       <div class="mode-toggle">
         <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')">Solar Ephemeris</button>
@@ -373,6 +391,7 @@
       viewer.camera.changed.addEventListener(updateTelemetryHUD);
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
       loadSavedViews();
+      loadReplayRuns();
       updateTelemetryHUD();
       syncCesiumTime();
       onCameraSettle();
@@ -508,6 +527,18 @@
 
     // ---------------- Saved Views ----------------
     let savedViews = [];
+    let activeSavedView = null;  // last view reached with GO
+
+    // A capture is tagged with a saved view only if the camera is still exactly there.
+    function cameraMatchesView(v) {
+      if (!v || !viewer) return false;
+      const c = v.camera, cam = viewer.camera;
+      const dist = Cesium.Cartesian3.distance(cam.position, new Cesium.Cartesian3(c.x, c.y, c.z));
+      const angDiff = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
+      return dist < 0.5
+        && angDiff(Cesium.Math.toDegrees(cam.heading), c.heading_deg) < 0.1
+        && angDiff(Cesium.Math.toDegrees(cam.pitch), c.pitch_deg) < 0.1;
+    }
 
     function setViewsStatus(msg, color) {
       const el = document.getElementById('views-status');
@@ -525,6 +556,17 @@
         setViewsStatus('Could not load saved views.', '#ff5252');
         return;
       }
+      const rsel = document.getElementById('select-replay-view');
+      const rkeep = rsel.value;
+      rsel.innerHTML = '<option value="">All runs</option>';
+      for (const v of savedViews) {
+        const o = document.createElement('option');
+        o.value = v.id;
+        o.textContent = `View: ${v.name}`;
+        rsel.appendChild(o);
+      }
+      rsel.value = savedViews.some(v => v.id === rkeep) ? rkeep : '';
+
       const sel = document.getElementById('select-saved-view');
       sel.innerHTML = '';
       if (!savedViews.length) {
@@ -608,6 +650,7 @@
       });
       updateTelemetryHUD();
       onCameraSettle();
+      activeSavedView = v;
       setViewsStatus(`At: ${v.name}`, 'var(--accent-cyan)');
       console.log(`[Views] restored ${v.name} (${v.id})`);
     }
@@ -873,6 +916,8 @@
 
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
+      const atView = cameraMatchesView(activeSavedView) ? activeSavedView : null;
+      console.log(atView ? `[Views] capture tagged with view: ${atView.name}` : '[Views] capture not at a saved view (untagged)');
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       
@@ -928,8 +973,16 @@
           ? document.getElementById('select-marble-model').value : 'gemini-3.1-flash-image',
         view_scope: document.getElementById('select-view-scope').value,
         disable_recaption: document.getElementById('chk-disable-recaption').checked,
-        use_search_grounding: document.getElementById('chk-search-grounding').checked
+        use_search_grounding: document.getElementById('chk-search-grounding').checked,
+        saved_view_id: atView ? atView.id : null,
+        saved_view_name: atView ? atView.name : null
       };
+
+      await streamPipeline(payload);
+    }
+
+    // Shared by fresh captures and replays: posts the request and drives the stepper HUD.
+    async function streamPipeline(payload) {
 
       try {
         const response = await fetch('/api/process_view', {
@@ -971,7 +1024,124 @@
         setTimeout(() => {
           document.getElementById('loadingOverlay').classList.add('hidden');
         }, 600);
+        loadReplayRuns(true);
       }
+    }
+
+    // ---------------- Replay ----------------
+    let replayRuns = [];
+    let replayOriginalText = '';
+
+    function setReplayStatus(msg, color) {
+      const el = document.getElementById('replay-status');
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg;
+    }
+
+    function fmtClock(h) {
+      if (h === null || h === undefined || h === '') return 'live';
+      const hh = Math.floor(h), mm = Math.round((h - hh) * 60);
+      return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+    }
+
+    function runLabel(r) {
+      const ts = r.timestamp ? `${r.timestamp.slice(0, 4)}-${r.timestamp.slice(4, 6)}-${r.timestamp.slice(6, 8)} ${r.timestamp.slice(9, 11)}:${r.timestamp.slice(11, 13)}` : r.id;
+      const scene = `${r.date || 'live'} ${fmtClock(r.time_of_day)} ${r.weather_mode || ''}`.trim();
+      const tag = r.replay_of ? (r.scene_text_edited ? ' [replay, edited]' : ' [replay]') : '';
+      return `${ts} | ${scene}${tag}`;
+    }
+
+    async function loadReplayRuns(keepSelection) {
+      const viewId = document.getElementById('select-replay-view').value;
+      const sel = document.getElementById('select-replay-run');
+      const keep = keepSelection ? sel.value : null;
+      try {
+        const resp = await fetch('/api/runs' + (viewId ? `?view_id=${encodeURIComponent(viewId)}` : ''));
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        replayRuns = ((await resp.json()).runs || []).filter(r => r.replayable);
+      } catch (e) {
+        console.warn('[Replay] run list failed:', e);
+        setReplayStatus('Could not load runs.', '#ff5252');
+        return;
+      }
+      sel.innerHTML = '';
+      if (!replayRuns.length) {
+        sel.innerHTML = '<option value="">No replayable runs</option>';
+        document.getElementById('replay-thumb').style.display = 'none';
+        document.getElementById('replay-scene-text').value = '';
+        replayOriginalText = '';
+        setReplayStatus(viewId ? 'No runs tagged with this view yet.' : '');
+        return;
+      }
+      for (const r of replayRuns) {
+        const o = document.createElement('option');
+        o.value = r.id;
+        o.textContent = runLabel(r);
+        o.title = `${r.address || ''}\n${r.id}`;
+        sel.appendChild(o);
+      }
+      if (keep && replayRuns.some(r => r.id === keep)) {
+        sel.value = keep;
+      } else {
+        await loadReplayScene();
+      }
+    }
+
+    async function loadReplayScene() {
+      const id = document.getElementById('select-replay-run').value;
+      const thumb = document.getElementById('replay-thumb');
+      const text = document.getElementById('replay-scene-text');
+      if (!id) { thumb.style.display = 'none'; text.value = ''; replayOriginalText = ''; return; }
+      thumb.src = `/api/runs/${encodeURIComponent(id)}/file/viewport_capture.jpg`;
+      thumb.style.display = 'block';
+      try {
+        const resp = await fetch(`/api/runs/${encodeURIComponent(id)}/scene`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const d = await resp.json();
+        text.value = d.documentary_prompt || '';
+        replayOriginalText = text.value;
+        setReplayStatus(`${d.address || ''} (scene text from ${d.loaded_from})`);
+      } catch (e) {
+        console.warn('[Replay] scene load failed:', e);
+        text.value = '';
+        replayOriginalText = '';
+        setReplayStatus('Could not load scene text for this run.', '#ff5252');
+      }
+    }
+
+    async function replaySelectedRun() {
+      const id = document.getElementById('select-replay-run').value;
+      const run = replayRuns.find(r => r.id === id);
+      if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
+      const text = document.getElementById('replay-scene-text').value.trim();
+      const edited = text && text !== replayOriginalText.trim();
+      const isLiveTime = document.getElementById('chk-live-time').checked;
+      const payload = {
+        screenshot_b64: null,  // the server loads the source run's capture
+        telemetry: {
+          latitude: run.latitude || 0,   // pose is replaced server-side with the source run's pose
+          longitude: run.longitude || 0,
+          date: isLiveTime ? null : document.getElementById('input-date').value,
+          time_of_day: isLiveTime ? null : parseFloat(document.getElementById('input-time-slider').value),
+          timestamp_utc: isLiveTime ? new Date().toISOString() : null,
+          lighting_mode: currentLightingMode,
+          weather_mode: currentWeatherMode
+        },
+        marble_input_mode: 'text',
+        gemini_budget: parseInt(document.getElementById('slider-gemini-budget').value, 10),
+        provider: currentProvider,
+        target_model: currentProvider === 'WORLD_LABS'
+          ? document.getElementById('select-marble-model').value : 'gemini-3.1-flash-image',
+        view_scope: 'FRUSTUM',
+        disable_recaption: document.getElementById('chk-disable-recaption').checked,
+        use_search_grounding: false,
+        replay_of: run.id,
+        documentary_prompt_override: edited ? text : null
+      };
+      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}`);
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      await streamPipeline(payload);
     }
 
     function displayResults(data) {
