@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260925_102612",
+  "address": "10 Eton Terrace, Edinburgh EH4 1QD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 18205.67,
+  "telemetry": {
+    "latitude": 55.95562973580179,
+    "longitude": -3.21129321357239,
+    "altitude_agl": 3.7665798265811645,
+    "heading": 203.4331947474367,
+    "pitch": 0.2968478621355738,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-25",
+    "time_of_day": 10.4,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 70.00842970166295,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 5000,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 121.44755577196096,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-25T10:24:00+00:00",
+    "solar_azimuth": 155.04,
+    "solar_elevation": 7.37,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under SNOW conditions (Sun Azimuth 155.0\u00b0, Elevation 7.4\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "10 Eton Terrace, Edinburgh EH4 1QD, UK",
+    "coordinates": [
+      "55.954629",
+      "-3.212066"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "9e29ee63682d3bcc4285dc33e2a1c934ab4ce541",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "9e29ee63"
+    },
+    "archived_at_utc": "2026-09-25T17:26:12.693945Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Riparian deciduous gorge woodland. Dominated by mature specimens of *Acer pseudoplatanus* (Sycamore), *Ulmus glabra* (Wych Elm), *Fraxinus excelsior* (Ash), and *Alnus glutinosa* (Alder). December winter phenology: fully defoliated canopies with bare, intricate branch architecture, dark damp bark colonized by epiphytic lichens, and a dormant ground layer of leaf litter, ivy (*Hedera helix*), and winter mosses.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nWater of Leith gorge corridor below Eton Terrace, featuring deep-cut embankment infrastructure and Georgian-era boundary architecture. Sinuous pedestrian pathway paved in compacted grey whinstone aggregate and asphalt with dressed stone kerbing, flanked by robust coursed squared-rubble sandstone retaining walls and dressed Craigleith sandstone ashlar piers. Wall joints bonded with weathered lime mortar showing extensive surface moss and green algae patination across lower courses. Upper valley ridge features rear elevations of multi-storey Georgian terraced residences constructed of fine-tooled buff sandstone ashlar, regular sash-and-case timber fenestration grids, and pitched dark grey Scottish slate roofs punctuated by rectilinear ashlar chimney stacks. Dense riparian woodland occupying the steep earthen valley slopes, comprised of mature *Acer pseudoplatanus*, *Ulmus glabra*, and *Alnus glutinosa* in complete winter dormancy, presenting bare defoliated canopies, dark damp bark, and intricate branch networks against the stone revetments. Dormant undergrowth composed of *Hedera helix* mats and damp decomposing broadleaf litter covering the riverbank soils. Wrought-iron pedestrian guardrails with dark weathered paint and minor surface oxidation. Clean static architectural survey of historic civil masonry and riparian woodland.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3748,
+    "budget": 5000,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1348,
+    "doc_trimmed": false,
+    "eco_chars": 413,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

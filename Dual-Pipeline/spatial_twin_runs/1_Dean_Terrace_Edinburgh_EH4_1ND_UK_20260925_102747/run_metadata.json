@@ -1,0 +1,83 @@
+{
+  "timestamp": "20260925_102747",
+  "address": "1 Dean Terrace, Edinburgh EH4 1ND, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 17704.3,
+  "telemetry": {
+    "latitude": 55.956953905887566,
+    "longitude": -3.2048478901822453,
+    "altitude_agl": 4.434489875208612,
+    "heading": 289.2530450529401,
+    "pitch": -2.633242347790687,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-25",
+    "time_of_day": 10.4,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SNOW",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 85.97107930739448,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 5000,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 284.53223020624324,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SNOW",
+    "timestamp_utc": "2026-12-25T10:24:00+00:00",
+    "solar_azimuth": 155.05,
+    "solar_elevation": 7.37,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under SNOW conditions (Sun Azimuth 155.1\u00b0, Elevation 7.4\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "1 Dean Terrace, Edinburgh EH4 1ND, UK",
+    "coordinates": [
+      "55.957796",
+      "-3.209144"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "9e29ee63682d3bcc4285dc33e2a1c934ab4ce541",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "9e29ee63"
+    },
+    "archived_at_utc": "2026-09-25T17:27:47.161819Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   Bordering urban canopy comprising *Acer pseudoplatanus* (Sycamore) and *Tilia cordata* (Small-leaved Lime). Late December mid-winter phenology: complete seasonal defoliation, fully exposed branch architecture, dormant terminal buds, and bare grey-brown bark.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (SNOW):\nSnowfall under a heavy overcast sky. The sun is not visible and casts no shadow anywhere in the scene. Snow lying evenly on every horizontal surface: roofs, ledges, sills, steps, kerbs, branches, and ground. Flat bright ambient light bouncing off the snow, very low contrast, cold blue-grey shadowless tone.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under snow conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nA static architectural view of a descending Georgian street in Edinburgh. Multi-storey residential tenement terraces line the downward slope, constructed from fine-grained pale buff and olive Craigleith sandstone ashlar with channelled rustication across basement and ground tiers. Upper levels display smooth ashlar masonry, crisp moulded stringcourses, and classical eaves cornices. Regular fenestration grid populated by recessed timber 12-over-12 and 6-over-6 sash-and-case windows in white-painted frames. Pitched slate roofs clad in dark grey Ballachulish slates with monolithic stone chimney stacks and cylindrical clay chimney pots. Cast-iron spearhead railings line the edges of deep, stone-retained basement lightwells. The sloping roadway consists of worn, split whinstone cobblestone setts bordered by dressed grey granite kerbs and wide Caithness flagstone pavements. Flanking the street, mature Acer pseudoplatanus and Tilia cordata trees exhibit complete winter defoliation, exposing intricate bare branch ramification and dark bark textures. Weathered stone surfaces show localized carbon crusting in sheltered decorative reveals and subtle rain-washed limestone streaks. Pure structural survey, pristine architectural geometry, zero pedestrians, zero vehicles.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3522,
+    "budget": 5000,
+    "over_budget": false,
+    "skeleton_chars": 2049,
+    "doc_chars": 1277,
+    "doc_trimmed": false,
+    "eco_chars": 258,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}
