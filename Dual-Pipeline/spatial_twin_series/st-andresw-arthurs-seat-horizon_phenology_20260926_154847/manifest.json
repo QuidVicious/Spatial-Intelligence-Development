@@ -1,0 +1,236 @@
+{
+  "id": "st-andresw-arthurs-seat-horizon_phenology_20260926_154847",
+  "kind": "phenology",
+  "view_id": "st-andresw-arthurs-seat-horizon",
+  "view_name": "St Andresw Arthurs Seat horizon",
+  "keystone_run": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100203",
+  "created_utc": "2026-09-26T22:48:47+00:00",
+  "status": "done",
+  "spec": {
+    "view_id": "st-andresw-arthurs-seat-horizon",
+    "kind": "phenology",
+    "start_date": "2026-09-01",
+    "end_date": "2026-10-31",
+    "step": "week",
+    "dates": null,
+    "time_mode": "fixed",
+    "time_fixed": 15.75,
+    "time_start": 13.0,
+    "time_end": 17.0,
+    "time_step_hours": 1.0,
+    "weather_mode": "AUTO",
+    "lighting_mode": "SOLAR",
+    "gemini_budget": 4400,
+    "target_model": "gemini-3.1-flash-image",
+    "disable_recaption": true,
+    "confirm_large": false
+  },
+  "frames": [
+    {
+      "n": 1,
+      "status": "done",
+      "date": "2026-09-01",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (late full leaf): Dense canopy of broad, dark green palmate leaves; hanging green winged samaras form. *Tilia × europaea* (late full leaf): Dense heart-shaped green leaves form heavy ovate canopy; fragrant cream cymes in July. *Ulmus glabra* (late full leaf): Large, rough, deep green asymmetric leaves form a dense, broad upright canopy. *Betula pendula* (late full leaf): Airy, weeping canopy of shimmering triangular green leaves; silvery-white bark. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 2,
+      "status": "done",
+      "date": "2026-09-08",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (late full leaf): Dense canopy of broad, dark green palmate leaves; hanging green winged samaras form. *Tilia × europaea* (late full leaf): Dense heart-shaped green leaves form heavy ovate canopy; fragrant cream cymes in July. *Ulmus glabra* (late full leaf): Large, rough, deep green asymmetric leaves form a dense, broad upright canopy. *Betula pendula* (late full leaf): Airy, weeping canopy of shimmering triangular green leaves; silvery-white bark. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 3,
+      "status": "done",
+      "date": "2026-09-15",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (late full leaf): Dense canopy of broad, dark green palmate leaves; hanging green winged samaras form. *Tilia × europaea* (late full leaf): Dense heart-shaped green leaves form heavy ovate canopy; fragrant cream cymes in July. *Ulmus glabra* (late full leaf): Large, rough, deep green asymmetric leaves form a dense, broad upright canopy. *Betula pendula* (late full leaf): Airy, weeping canopy of shimmering triangular green leaves; silvery-white bark. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 4,
+      "status": "done",
+      "date": "2026-09-22",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (late full leaf): Dense canopy of broad, dark green palmate leaves; hanging green winged samaras form. *Tilia × europaea* (early colouring): Leaves fade to pale yellow; small nutlets hang from dried pale leafy bracts. *Ulmus glabra* (late full leaf): Large, rough, deep green asymmetric leaves form a dense, broad upright canopy. *Betula pendula* (early colouring): Fine leaves fade to lime green and clear yellow across pendulous branch tips. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 5,
+      "status": "done",
+      "date": "2026-09-29",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (early colouring): Coarse foliage turns dull yellow to golden brown; winged keys mature to woody brown. *Tilia × europaea* (early colouring): Leaves fade to pale yellow; small nutlets hang from dried pale leafy bracts. *Ulmus glabra* (early colouring): Foliage shifts to dull yellow and ochre; disc-shaped dry samaras mostly dropped. *Betula pendula* (early colouring): Fine leaves fade to lime green and clear yellow across pendulous branch tips. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 6,
+      "status": "done",
+      "date": "2026-10-06",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (mid colouring): Coarse foliage turns dull yellow to golden brown; winged keys mature to woody brown. *Tilia × europaea* (mid colouring): Leaves fade to pale yellow; small nutlets hang from dried pale leafy bracts. *Ulmus glabra* (mid colouring): Foliage shifts to dull yellow and ochre; disc-shaped dry samaras mostly dropped. *Betula pendula* (mid colouring): Fine leaves fade to lime green and clear yellow across pendulous branch tips. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 7,
+      "status": "done",
+      "date": "2026-10-13",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (mid colouring): Coarse foliage turns dull yellow to golden brown; winged keys mature to woody brown. *Tilia × europaea* (late colouring): Leaves fade to pale yellow; small nutlets hang from dried pale leafy bracts. *Ulmus glabra* (late colouring): Foliage shifts to dull yellow and ochre; disc-shaped dry samaras mostly dropped. *Betula pendula* (late colouring): Fine leaves fade to lime green and clear yellow across pendulous branch tips. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 8,
+      "status": "done",
+      "date": "2026-10-20",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (late colouring): Coarse foliage turns dull yellow to golden brown; winged keys mature to woody brown. *Tilia × europaea* (early peak colour): Uniform bright buttery-yellow canopy; dense epicormic base shoots also yellowing. *Ulmus glabra* (mid peak colour): Vibrant golden-yellow to russet crown; leaf margins curl and brown. *Betula pendula* (mid peak colour): Luminous golden-yellow weeping crown contrasting against stark white trunks. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    },
+    {
+      "n": 9,
+      "status": "done",
+      "date": "2026-10-27",
+      "time": null,
+      "started_utc": "2026-09-26T22:48:52+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus* (mid peak colour): Uneven golden-brown and tawny canopy; heavy shedding of dry samaras begins. *Tilia × europaea* (late peak colour): Uniform bright buttery-yellow canopy; dense epicormic base shoots also yellowing. *Ulmus glabra* (late peak colour): Vibrant golden-yellow to russet crown; leaf margins curl and brown. *Betula pendula* (late peak colour): Luminous golden-yellow weeping crown contrasting against stark white trunks. *Lolium perenne*: Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface. *Poa pratensis*: Deep blue-green, closely mown turf forming a smooth, uniform carpet.",
+      "phenology_source": "calendar-cache",
+      "finished_utc": "2026-09-26T22:48:52+00:00"
+    }
+  ],
+  "calendar": {
+    "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumn leaf drop.",
+    "species": [
+      {
+        "name": "Acer pseudoplatanus",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-20",
+          "full_leaf": "05-25",
+          "colour_onset": "09-28",
+          "peak_colour": "10-22",
+          "half_fall": "11-04",
+          "bare": "11-18"
+        },
+        "stages": {
+          "budburst": "Bright green leaf tips emerge from large buds; pendulous yellow-green racemes expand.",
+          "full_leaf": "Dense canopy of broad, dark green palmate leaves; hanging green winged samaras form.",
+          "colouring": "Coarse foliage turns dull yellow to golden brown; winged keys mature to woody brown.",
+          "peak": "Uneven golden-brown and tawny canopy; heavy shedding of dry samaras begins.",
+          "falling": "Canopy rapidly thins; thick grey limbs and peeling bark increasingly exposed.",
+          "dormant": "Completely bare; heavy-limbed framework, plate-like bark, and plump green buds visible."
+        },
+        "evergreen_look": null
+      },
+      {
+        "name": "Tilia × europaea",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-25",
+          "full_leaf": "05-30",
+          "colour_onset": "09-20",
+          "peak_colour": "10-18",
+          "half_fall": "10-30",
+          "bare": "11-12"
+        },
+        "stages": {
+          "budburst": "Tender pale green shoots emerge; vigorous leafy suckers sprout at trunk bases.",
+          "full_leaf": "Dense heart-shaped green leaves form heavy ovate canopy; fragrant cream cymes in July.",
+          "colouring": "Leaves fade to pale yellow; small nutlets hang from dried pale leafy bracts.",
+          "peak": "Uniform bright buttery-yellow canopy; dense epicormic base shoots also yellowing.",
+          "falling": "Canopy thins rapidly; upper crown exposed while lower suckers hold yellow leaves.",
+          "dormant": "Entirely bare canopy showing dense dark crown and thick sprout clusters around base."
+        },
+        "evergreen_look": null
+      },
+      {
+        "name": "Ulmus glabra",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-12",
+          "full_leaf": "05-20",
+          "colour_onset": "09-25",
+          "peak_colour": "10-16",
+          "half_fall": "10-28",
+          "bare": "11-10"
+        },
+        "stages": {
+          "budburst": "Small brownish-red flowers precede rough, emerging folded green leaf clusters.",
+          "full_leaf": "Large, rough, deep green asymmetric leaves form a dense, broad upright canopy.",
+          "colouring": "Foliage shifts to dull yellow and ochre; disc-shaped dry samaras mostly dropped.",
+          "peak": "Vibrant golden-yellow to russet crown; leaf margins curl and brown.",
+          "falling": "Scattered yellow leaves; stout upright and arching branch architecture revealed.",
+          "dormant": "Leafless; rugged dark grey fissured bark and sweeping branches fully visible."
+        },
+        "evergreen_look": null
+      },
+      {
+        "name": "Betula pendula",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-15",
+          "full_leaf": "05-18",
+          "colour_onset": "09-22",
+          "peak_colour": "10-15",
+          "half_fall": "10-29",
+          "bare": "11-08"
+        },
+        "stages": {
+          "budburst": "Tiny bright green leaves unfurl alongside dangling brownish-yellow male catkins.",
+          "full_leaf": "Airy, weeping canopy of shimmering triangular green leaves; silvery-white bark.",
+          "colouring": "Fine leaves fade to lime green and clear yellow across pendulous branch tips.",
+          "peak": "Luminous golden-yellow weeping crown contrasting against stark white trunks.",
+          "falling": "Sparse golden foliage; fine weeping reddish-brown twigs dominate canopy.",
+          "dormant": "Leafless; delicate weeping twig spray and silvery-white trunks prominent."
+        },
+        "evergreen_look": null
+      },
+      {
+        "name": "Lolium perenne",
+        "habit": "evergreen",
+        "milestones": null,
+        "stages": null,
+        "evergreen_look": "Dense, glossy mid-green sward; maintained low with uniform, fine-bladed surface."
+      },
+      {
+        "name": "Poa pratensis",
+        "habit": "evergreen",
+        "milestones": null,
+        "stages": null,
+        "evergreen_look": "Deep blue-green, closely mown turf forming a smooth, uniform carpet."
+      }
+    ],
+    "dropped": [],
+    "version": 1
+  },
+  "calendar_source": "generated",
+  "finished_utc": "2026-09-26T22:48:52+00:00"
+}
