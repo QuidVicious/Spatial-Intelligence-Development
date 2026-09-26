@@ -15,7 +15,10 @@ import re
 import json
 import base64
 import time
-from datetime import datetime, timezone
+import asyncio
+import calendar
+import threading
+from datetime import datetime, timezone, date as _date, timedelta
 import requests
 import traceback
 from typing import Optional, List
@@ -188,6 +191,8 @@ class ProcessViewRequest(BaseModel):
     documentary_prompt_override: Optional[str] = Field(None, description="Replay only: edited scene text replacing the frozen documentary prompt")
     mode: Optional[str] = Field(None, description="KEYSTONE (neutral master plate from replay_of) or PRINT (edit of a view's approved keystone)")
     print_view_id: Optional[str] = Field(None, description="PRINT only: saved view whose approved keystone is the seed")
+    series_id: Optional[str] = Field(None, description="Set by the series runner: the series this frame belongs to")
+    series_frame: Optional[int] = Field(None, description="Set by the series runner: 1-based frame number")
 
 
 # -------------------------------------------------------------------------
@@ -655,6 +660,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
                     "keystone_run": keystone_run_id,
+                    "series_id": request.series_id,
+                    "series_frame": request.series_frame,
                     "phenology_date": phenology_date,
                     "phenology_source": phenology_source,
                     "target_method": telemetry.target_method,
@@ -826,6 +833,8 @@ def _run_summary(d: Path) -> dict:
         "scene_text_edited": settings.get("scene_text_edited"),
         "keystone_candidate": bool(settings.get("keystone_candidate")),
         "keystone_print_of": settings.get("keystone_print_of"),
+        "series_id": settings.get("series_id"),
+        "series_frame": settings.get("series_frame"),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
         "weather_mode": settings.get("weather_mode"),
@@ -900,6 +909,323 @@ async def approve_keystone(req: ApproveKeystoneRequest):
     _write_keystones(views)
     print(f"[Keystone] approved {req.run_id} for view {view_id}" + (f" (replaces {prev['run_id']})" if prev and prev.get('run_id') != req.run_id else ""))
     return views[view_id]
+
+
+# -------------------------------------------------------------------------
+# Series (/api/series): batches of prints (or phenology text) from a view's keystone.
+# Jobs run on a server thread, one at a time, so they survive a closed browser tab.
+# -------------------------------------------------------------------------
+SERIES_DIR = Path(__file__).parent / "spatial_twin_series"
+SERIES_HARD_CAP = 400        # refuse anything larger outright
+SERIES_CONFIRM_ABOVE = 30    # larger series need an explicit second confirmation
+_series_state = {"active_id": None, "last_id": None, "cancel": False}
+_series_lock = threading.Lock()
+
+
+class SeriesRequest(BaseModel):
+    view_id: str
+    kind: str = Field("prints", description="prints, or phenology (text preview only, no renders)")
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    step: str = Field("day", description="day, week, or month")
+    dates: Optional[List[str]] = Field(None, description="Explicit dates; overrides start/end/step")
+    time_mode: str = Field("fixed", description="fixed or range")
+    time_fixed: float = 12.0
+    time_start: Optional[float] = None
+    time_end: Optional[float] = None
+    time_step_hours: float = 1.0
+    weather_mode: str = "OVERCAST"
+    lighting_mode: str = "SOLAR"
+    gemini_budget: int = 4400
+    target_model: Optional[str] = "gemini-3.1-flash-image"
+    disable_recaption: bool = True
+    confirm_large: bool = False
+
+
+def _parse_date(s: str) -> _date:
+    try:
+        return datetime.strptime(s, "%Y-%m-%d").date()
+    except Exception:
+        raise HTTPException(status_code=422, detail=f"Not a date (YYYY-MM-DD): {s}")
+
+
+def _add_months(d: _date, months: int, anchor_day: int) -> _date:
+    y, m = divmod(d.month - 1 + months, 12)
+    y, m = d.year + y, m + 1
+    return _date(y, m, min(anchor_day, calendar.monthrange(y, m)[1]))   # clamp to month end
+
+
+def _series_dates(req: SeriesRequest) -> List[str]:
+    if req.dates:
+        return [_parse_date(x).isoformat() for x in req.dates]
+    if not req.start_date or not req.end_date:
+        raise HTTPException(status_code=422, detail="Set a start and end date, or pick a preset.")
+    start, end = _parse_date(req.start_date), _parse_date(req.end_date)
+    if end < start:
+        raise HTTPException(status_code=422, detail="End date is before start date.")
+    if req.step not in ("day", "week", "month"):
+        raise HTTPException(status_code=422, detail="Step must be day, week, or month.")
+    out, d, k = [], start, 0
+    while d <= end and len(out) <= SERIES_HARD_CAP:
+        out.append(d.isoformat())
+        k += 1
+        if req.step == "day":
+            d = start + timedelta(days=k)
+        elif req.step == "week":
+            d = start + timedelta(weeks=k)
+        else:
+            d = _add_months(start, k, start.day)   # anchored to the start day: Jan 31 -> Feb 28 -> Mar 31
+    return out
+
+
+def _series_times(req: SeriesRequest) -> List[float]:
+    if req.time_mode == "fixed":
+        return [round(req.time_fixed, 2)]
+    if req.time_start is None or req.time_end is None or req.time_step_hours <= 0:
+        raise HTTPException(status_code=422, detail="A time range needs a start, an end, and a positive step.")
+    if req.time_end < req.time_start:
+        raise HTTPException(status_code=422, detail="End time is before start time.")
+    out, t = [], req.time_start
+    while t <= req.time_end + 1e-6 and len(out) <= SERIES_HARD_CAP:
+        out.append(round(t, 2))
+        t += req.time_step_hours
+    return out
+
+
+def _series_frames(req: SeriesRequest) -> List[dict]:
+    dates = _series_dates(req)
+    if req.kind == "phenology":
+        frames = [{"date": d, "time": None} for d in dates]
+    else:
+        frames = [{"date": d, "time": t} for d in dates for t in _series_times(req)]
+    if len(frames) > SERIES_HARD_CAP:
+        raise HTTPException(status_code=422, detail=f"That is over {SERIES_HARD_CAP} frames; narrow the range.")
+    return frames
+
+
+def _seconds_per_frame(kind: str) -> float:
+    if kind == "phenology":
+        return 4.0
+    lat = []
+    if DEFAULT_RUNS_DIR.exists():
+        for d in sorted(DEFAULT_RUNS_DIR.iterdir(), key=lambda p: p.name, reverse=True)[:40]:
+            v = (_read_json(d / "run_metadata.json") or {}).get("latency_ms")
+            if isinstance(v, (int, float)) and v > 0:
+                lat.append(v / 1000.0)
+    lat.sort()
+    return (lat[len(lat) // 2] * 1.15 + 5) if lat else 60.0
+
+
+def _manifest_path(series_id: str) -> Path:
+    if not RUN_ID_RE.match(series_id or ""):
+        raise HTTPException(status_code=400, detail="Invalid series id.")
+    return SERIES_DIR / series_id / "manifest.json"
+
+
+def _load_manifest(series_id: str) -> dict:
+    p = _manifest_path(series_id)
+    m = _read_json(p)
+    if m is None:
+        raise HTTPException(status_code=404, detail=f"Series not found: {series_id}")
+    return m
+
+
+def _save_manifest(m: dict) -> None:
+    p = _manifest_path(m["id"])
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(m, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(p)
+
+
+def _now_utc() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+async def _run_print_frame(m: dict, fr: dict) -> tuple:
+    spec = m["spec"]
+    req = ProcessViewRequest(
+        telemetry=TelemetryPayload(
+            latitude=0.0, longitude=0.0,               # replaced by the keystone run's pose
+            date=fr["date"], time_of_day=fr["time"], timestamp_utc=None,
+            lighting_mode=spec["lighting_mode"], weather_mode=spec["weather_mode"],
+        ),
+        provider="GEMINI",
+        target_model=spec.get("target_model"),
+        gemini_budget=spec.get("gemini_budget", 4400),
+        disable_recaption=spec.get("disable_recaption", True),
+        mode="PRINT",
+        print_view_id=m["view_id"],
+        series_id=m["id"],
+        series_frame=fr["n"],
+    )
+    run_path, error = None, None
+    async for chunk in execute_pipeline_stream(req):
+        try:
+            msg = json.loads(chunk)
+        except Exception:
+            continue
+        if msg.get("type") == "RESULT":
+            rec = (msg.get("data") or {}).get("run_record") or {}
+            if rec.get("path"):
+                run_path = rec["path"]
+            else:
+                error = f"rendered but not archived: {rec.get('error', 'unknown')}"
+        elif msg.get("type") == "ERROR":
+            error = msg.get("message") or "pipeline error"
+    return run_path, error
+
+
+def _series_worker(series_id: str, frame_numbers: List[int]) -> None:
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    m = _load_manifest(series_id)
+    m["status"] = "running"
+    _save_manifest(m)
+    ks_domain, ks_lat, ks_lon = None, 0.0, 0.0
+    if m["kind"] == "phenology":
+        kd = _run_dir(m["keystone_run"])
+        ks_domain, _ = load_domain_from_run(kd)
+        tel = (_read_json(kd / "run_metadata.json") or {}).get("telemetry") or {}
+        ks_lat = tel.get("target_latitude") or tel.get("latitude") or 0.0
+        ks_lon = tel.get("target_longitude") or tel.get("longitude") or 0.0
+    cancelled = False
+    try:
+        for n in frame_numbers:
+            if _series_state["cancel"]:
+                cancelled = True
+                break
+            fr = m["frames"][n - 1]
+            fr.update(status="running", started_utc=_now_utc(), error=None)
+            _save_manifest(m)
+            print(f"[Series] {series_id} frame {n}/{len(m['frames'])}: {fr['date']} {fr['time'] if fr['time'] is not None else ''}")
+            try:
+                if m["kind"] == "phenology":
+                    text, src = generate_phenology(
+                        ecology_text=ks_domain.botanical_ecology, address=ks_domain.address,
+                        lat=ks_lat, lon=ks_lon, date_str=fr["date"], gemini_api_key=gemini_key,
+                    )
+                    fr.update(phenology=text, phenology_source=src, status="failed" if src == "failed" else "done")
+                    if src == "failed":
+                        fr["error"] = "phenology generation failed"
+                else:
+                    run_path, error = asyncio.run(_run_print_frame(m, fr))
+                    if run_path and not error:
+                        run_id = Path(run_path).name
+                        dom = _read_json(DEFAULT_RUNS_DIR / run_id / "domain_result.json") or {}
+                        fr.update(status="done", run_id=run_id, phenology=dom.get("phenology"))
+                    else:
+                        fr.update(status="failed", error=error or "no result returned")
+            except Exception as e:
+                traceback.print_exc()
+                fr.update(status="failed", error=str(e))
+            fr["finished_utc"] = _now_utc()
+            _save_manifest(m)
+    finally:
+        failed = sum(1 for f in m["frames"] if f.get("status") == "failed")
+        pending = sum(1 for f in m["frames"] if f.get("status") in ("pending", "running"))
+        m["status"] = "cancelled" if cancelled else ("done_with_failures" if failed else ("done" if not pending else "incomplete"))
+        for f in m["frames"]:
+            if f.get("status") == "running":
+                f["status"] = "pending"
+        m["finished_utc"] = _now_utc()
+        _save_manifest(m)
+        with _series_lock:
+            _series_state["active_id"] = None
+            _series_state["cancel"] = False
+        print(f"[Series] {series_id} finished: {m['status']} ({failed} failed)")
+
+
+def _start_series_thread(series_id: str, frame_numbers: List[int]) -> None:
+    with _series_lock:
+        if _series_state["active_id"]:
+            raise HTTPException(status_code=409, detail=f"A series is already running: {_series_state['active_id']}")
+        _series_state.update(active_id=series_id, last_id=series_id, cancel=False)
+    threading.Thread(target=_series_worker, args=(series_id, frame_numbers), daemon=True).start()
+
+
+@app.post("/api/series/plan")
+async def plan_series(req: SeriesRequest):
+    frames = _series_frames(req)
+    spf = _seconds_per_frame(req.kind)
+    return {
+        "count": len(frames),
+        "dates": len({f["date"] for f in frames}),
+        "times": len({f["time"] for f in frames}),
+        "first": frames[:3],
+        "last": frames[-1:] if frames else [],
+        "needs_confirm": len(frames) > SERIES_CONFIRM_ABOVE,
+        "estimate_minutes": round(len(frames) * spf / 60.0, 1),
+        "has_keystone": bool(_load_keystones().get(req.view_id)),
+    }
+
+
+@app.post("/api/series")
+async def start_series(req: SeriesRequest):
+    if req.kind not in ("prints", "phenology"):
+        raise HTTPException(status_code=422, detail="kind must be prints or phenology.")
+    ks = _load_keystones().get(req.view_id)
+    if not ks:
+        raise HTTPException(status_code=422, detail="This view has no approved keystone yet.")
+    if req.kind == "prints" and req.weather_mode.upper() == "AUTO":
+        raise HTTPException(status_code=422, detail="Pick an explicit weather preset for a series; live weather only applies to today.")
+    frames = _series_frames(req)
+    if not frames:
+        raise HTTPException(status_code=422, detail="That range produces no frames.")
+    if len(frames) > SERIES_CONFIRM_ABOVE and not req.confirm_large:
+        raise HTTPException(status_code=422, detail=f"{len(frames)} frames needs explicit confirmation.")
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    series_id = f"{req.view_id}_{req.kind}_{stamp}"
+    spec = req.model_dump() if hasattr(req, "model_dump") else req.dict()
+    m = {
+        "id": series_id,
+        "kind": req.kind,
+        "view_id": req.view_id,
+        "view_name": ks.get("view_name"),
+        "keystone_run": ks["run_id"],
+        "created_utc": _now_utc(),
+        "status": "queued",
+        "spec": spec,
+        "frames": [dict(n=i + 1, status="pending", **f) for i, f in enumerate(frames)],
+    }
+    _save_manifest(m)
+    _start_series_thread(series_id, [f["n"] for f in m["frames"]])
+    print(f"[Series] started {series_id}: {len(frames)} {req.kind} frame(s)")
+    return m
+
+
+@app.get("/api/series/active")
+async def active_series():
+    sid = _series_state["active_id"] or _series_state["last_id"]
+    if not sid:
+        return {"series": None, "running": False}
+    return {"series": _load_manifest(sid), "running": _series_state["active_id"] == sid}
+
+
+@app.get("/api/series/{series_id}")
+async def get_series(series_id: str):
+    return _load_manifest(series_id)
+
+
+@app.post("/api/series/{series_id}/cancel")
+async def cancel_series(series_id: str):
+    if _series_state["active_id"] != series_id:
+        raise HTTPException(status_code=409, detail="That series is not running.")
+    _series_state["cancel"] = True
+    return {"cancelling": series_id, "note": "Stops after the frame in progress."}
+
+
+@app.post("/api/series/{series_id}/rerun_failed")
+async def rerun_failed(series_id: str):
+    m = _load_manifest(series_id)
+    todo = [f["n"] for f in m["frames"] if f.get("status") in ("failed", "pending")]
+    if not todo:
+        raise HTTPException(status_code=422, detail="No failed or unfinished frames to rerun.")
+    for f in m["frames"]:
+        if f["n"] in todo:
+            f.update(status="pending", error=None)
+    _save_manifest(m)
+    _start_series_thread(series_id, todo)
+    return {"rerunning": todo}
 
 
 @app.get("/api/runs/{run_id}/scene")

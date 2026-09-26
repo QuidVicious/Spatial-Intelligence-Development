@@ -53,6 +53,7 @@
 
     input[type="date"], input[type="range"], select, button { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); padding: 6px 8px; border-radius: 6px; font-size: 11.5px; outline: none; }
     select option { background: var(--bg-dark); color: var(--text-main); }
+    input[type="number"] { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); padding: 5px 6px; border-radius: 6px; font-size: 11.5px; outline: none; }
     input[type="range"] { padding: 0; height: 6px; cursor: pointer; accent-color: var(--accent-cyan); }
 
     .mode-toggle { display: flex; gap: 6px; margin-bottom: 8px; }
@@ -205,7 +206,7 @@
       <select id="select-replay-run" style="width: 100%; margin-top: 6px;" onchange="loadReplayScene()">
         <option value="">No runs</option>
       </select>
-      <img id="replay-thumb" alt="Run preview" onclick="toggleReplayThumb()" style="cursor: pointer; display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
+      <img id="replay-thumb" alt="Run preview" onclick="openLightbox()" style="cursor: pointer; display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
       <textarea id="replay-scene-text" rows="6" spellcheck="false" placeholder="Scene text (documentary prompt) of the selected run. Edits apply to this replay only."
         style="width: 100%; box-sizing: border-box; margin-top: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; font-family: var(--font-mono); font-size: 10px; resize: vertical;"></textarea>
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
@@ -216,6 +217,48 @@
       </div>
       <div id="keystone-status" style="font-size: 10px; color: var(--text-muted); margin-top: 6px; min-height: 12px;"></div>
       <button id="btn-print-keystone" onclick="printFromKeystone()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🖨 PRINT FROM KEYSTONE</button>
+    </div>
+
+    <div class="hud-card">
+      <div class="hud-card-header">🗓 Series</div>
+      <div id="series-context" style="font-size: 10px; color: var(--text-muted); margin-bottom: 6px;"></div>
+      <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+        <button class="toggle-btn" style="flex: 1; padding: 5px 4px;" onclick="seriesPreset('spring')">Spring</button>
+        <button class="toggle-btn" style="flex: 1; padding: 5px 4px;" onclick="seriesPreset('summer')">Summer</button>
+        <button class="toggle-btn" style="flex: 1; padding: 5px 4px;" onclick="seriesPreset('autumn')">Autumn</button>
+        <button class="toggle-btn" style="flex: 1; padding: 5px 4px;" onclick="seriesPreset('winter')">Winter</button>
+      </div>
+      <button class="toggle-btn" style="width: 100%; margin-top: 4px; padding: 5px;" onclick="seriesPreset('solstices')">Solstices &amp; equinoxes</button>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <input type="date" id="series-start" style="flex: 1; min-width: 0;" onchange="clearSeriesExplicit()" />
+        <input type="date" id="series-end" style="flex: 1; min-width: 0;" onchange="clearSeriesExplicit()" />
+      </div>
+      <select id="series-step" style="width: 100%; margin-top: 6px;" onchange="clearSeriesExplicit()">
+        <option value="day">Day by day</option>
+        <option value="week">Week by week</option>
+        <option value="month" selected>Month by month</option>
+      </select>
+      <div id="series-dates-note" style="font-size: 10px; color: var(--accent-cyan); margin-top: 4px; min-height: 12px;"></div>
+      <div style="display: flex; gap: 6px; margin-top: 4px; align-items: center; font-size: 11px; color: var(--text-muted);">
+        <label style="flex: 0 0 auto;"><input type="checkbox" id="series-time-range" onchange="updateSeriesTimeUI()" /> Time range</label>
+        <input type="number" id="series-time-start" min="0" max="23.95" step="0.25" value="13" title="Start hour" style="width: 52px;" disabled />
+        <span>to</span>
+        <input type="number" id="series-time-end" min="0" max="23.95" step="0.25" value="17" title="End hour" style="width: 52px;" disabled />
+        <span>every</span>
+        <input type="number" id="series-time-step" min="0.25" max="12" step="0.25" value="1" title="Step (hours)" style="width: 46px;" disabled />
+        <span>h</span>
+      </div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">Fixed time uses the 24-hour slider. Weather comes from the Atmosphere panel.</div>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('phenology')" title="Phenology text for each date, no renders">🌿 PHENOLOGY PREVIEW</button>
+        <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('prints')">▶ START SERIES</button>
+      </div>
+      <div id="series-status" style="font-size: 10px; color: var(--text-muted); margin-top: 6px; min-height: 12px;"></div>
+      <div style="display: flex; gap: 6px; margin-top: 4px;">
+        <button id="btn-series-cancel" class="toggle-btn" style="flex: 1; padding: 6px; display: none;" onclick="cancelSeries()">■ CANCEL</button>
+        <button id="btn-series-rerun" class="toggle-btn" style="flex: 1; padding: 6px; display: none;" onclick="rerunFailedFrames()">↻ RERUN FAILED</button>
+        <button id="btn-series-pheno" class="toggle-btn" style="flex: 1; padding: 6px; display: none;" onclick="showPhenologyPanel(lastSeries)">🌿 SHOW TEXT</button>
+      </div>
     </div>
 
     <div class="hud-card">
@@ -398,6 +441,7 @@
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
       loadSavedViews();
       loadReplayRuns();
+      pollSeries();   // pick up a series that is already running on the server
       updateTelemetryHUD();
       syncCesiumTime();
       onCameraSettle();
@@ -1044,8 +1088,260 @@
       const thumb = document.getElementById('replay-thumb');
       const file = thumbShowsRender ? 'spatial_twin.png' : 'viewport_capture.jpg';
       thumb.src = `/api/runs/${encodeURIComponent(id)}/file/${file}`;
-      thumb.title = thumbShowsRender ? 'Rendered plate (click for the Cesium capture)' : 'Cesium capture (click for the rendered plate)';
+      thumb.title = 'Click to view full screen';
     }
+
+    // ---------------- Series ----------------
+    let seriesExplicitDates = null;
+    let seriesPollTimer = null;
+    let lastSeries = null;
+
+    function setSeriesStatus(msg, color) {
+      const el = document.getElementById('series-status');
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg;
+    }
+
+    function clearSeriesExplicit() {
+      seriesExplicitDates = null;
+      document.getElementById('series-dates-note').textContent = '';
+    }
+
+    function updateSeriesTimeUI() {
+      const on = document.getElementById('series-time-range').checked;
+      ['series-time-start', 'series-time-end', 'series-time-step'].forEach(id => document.getElementById(id).disabled = !on);
+    }
+
+    // Astronomical seasons (approximate: the true dates shift by a day between years).
+    function seriesPreset(name) {
+      const viewId = keystoneContextViewId();
+      const view = savedViews.find(v => v.id === viewId);
+      const south = view && view.camera && view.camera.latitude < 0;
+      const panelYear = parseInt((document.getElementById('input-date').value || '').slice(0, 4), 10);
+      const y = Number.isFinite(panelYear) ? panelYear : new Date().getFullYear();
+      const ranges = {
+        springN: [`${y}-03-20`, `${y}-06-20`], summerN: [`${y}-06-21`, `${y}-09-22`],
+        autumnN: [`${y}-09-23`, `${y}-12-20`], winterN: [`${y}-12-21`, `${y + 1}-03-19`]
+      };
+      const flip = { spring: 'autumnN', summer: 'winterN', autumn: 'springN', winter: 'summerN' };
+      if (name === 'solstices') {
+        seriesExplicitDates = [`${y}-03-20`, `${y}-06-21`, `${y}-09-23`, `${y}-12-21`];
+        document.getElementById('series-dates-note').textContent = `Fixed dates: ${seriesExplicitDates.join(', ')}`;
+        return;
+      }
+      const r = ranges[south ? flip[name] : `${name}N`];
+      document.getElementById('series-start').value = r[0];
+      document.getElementById('series-end').value = r[1];
+      clearSeriesExplicit();
+      document.getElementById('series-dates-note').textContent = `${name[0].toUpperCase() + name.slice(1)} ${south ? '(southern hemisphere)' : ''}: ${r[0]} to ${r[1]}`;
+    }
+
+    function seriesSpec(kind) {
+      const range = document.getElementById('series-time-range').checked;
+      const spec = {
+        view_id: keystoneContextViewId(),
+        kind,
+        step: document.getElementById('series-step').value,
+        time_mode: range ? 'range' : 'fixed',
+        time_fixed: parseFloat(document.getElementById('input-time-slider').value),
+        time_start: parseFloat(document.getElementById('series-time-start').value),
+        time_end: parseFloat(document.getElementById('series-time-end').value),
+        time_step_hours: parseFloat(document.getElementById('series-time-step').value),
+        weather_mode: currentWeatherMode,
+        lighting_mode: currentLightingMode,
+        gemini_budget: parseInt(document.getElementById('slider-gemini-budget').value, 10),
+        target_model: 'gemini-3.1-flash-image',
+        disable_recaption: document.getElementById('chk-disable-recaption').checked
+      };
+      if (seriesExplicitDates) spec.dates = seriesExplicitDates;
+      else { spec.start_date = document.getElementById('series-start').value; spec.end_date = document.getElementById('series-end').value; }
+      return spec;
+    }
+
+    function fmtFrameTime(t) { return (t === null || t === undefined) ? '' : ` ${fmtClock(t)}`; }
+
+    async function startSeries(kind) {
+      const viewId = keystoneContextViewId();
+      if (!viewId || !keystones[viewId]) { setSeriesStatus('This view has no approved keystone yet.', '#ff5252'); return; }
+      if (kind === 'prints' && currentWeatherMode === 'AUTO') {
+        setSeriesStatus('Pick an explicit weather preset: live weather only applies to today.', '#ff5252');
+        return;
+      }
+      const spec = seriesSpec(kind);
+      let plan;
+      try {
+        const resp = await fetch('/api/series/plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(spec) });
+        plan = await resp.json();
+        if (!resp.ok) throw new Error(plan.detail || `HTTP ${resp.status}`);
+      } catch (e) { setSeriesStatus(e.message, '#ff5252'); return; }
+      const first = plan.first[0], last = plan.last[0];
+      const what = kind === 'phenology' ? 'phenology entries (text only, no renders)' : 'prints';
+      const msg = `${plan.count} ${what}: ${plan.dates} date(s) x ${plan.times} time(s).\n` +
+        `First: ${first.date}${fmtFrameTime(first.time)}   Last: ${last.date}${fmtFrameTime(last.time)}\n` +
+        (kind === 'prints' ? `Weather: ${currentWeatherMode}\n` : '') +
+        `Rough estimate: ${plan.estimate_minutes} min.\n\nStart?`;
+      if (!confirm(msg)) return;
+      if (plan.needs_confirm) {
+        if (!confirm(`This is a large series: ${plan.count} frames. Are you sure?`)) return;
+        spec.confirm_large = true;
+      }
+      try {
+        const resp = await fetch('/api/series', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(spec) });
+        const m = await resp.json();
+        if (!resp.ok) throw new Error(m.detail || `HTTP ${resp.status}`);
+        lastSeries = m;
+        setSeriesStatus(`Started ${m.frames.length} frame(s)...`, 'var(--accent-cyan)');
+        pollSeries();
+      } catch (e) { setSeriesStatus(e.message, '#ff5252'); }
+    }
+
+    async function pollSeries() {
+      clearTimeout(seriesPollTimer);
+      let a;
+      try { a = await (await fetch('/api/series/active')).json(); } catch (e) { return; }
+      const m = a.series;
+      document.getElementById('btn-series-cancel').style.display = a.running ? 'block' : 'none';
+      if (!m) return;
+      lastSeries = m;
+      const n = m.frames.length;
+      const done = m.frames.filter(f => f.status === 'done').length;
+      const failed = m.frames.filter(f => f.status === 'failed').length;
+      const cur = m.frames.find(f => f.status === 'running');
+      const kind = m.kind === 'phenology' ? 'Phenology preview' : 'Series';
+      if (a.running) {
+        setSeriesStatus(`${kind}: ${done}/${n} done${failed ? `, ${failed} failed` : ''}${cur ? ` | now: ${cur.date}${fmtFrameTime(cur.time)}` : ''}`, 'var(--accent-cyan)');
+        seriesPollTimer = setTimeout(pollSeries, 3000);
+      } else {
+        setSeriesStatus(`${kind} ${m.status.replace(/_/g, ' ')}: ${done}/${n} done${failed ? `, ${failed} failed` : ''}`, failed ? '#ffb74d' : 'var(--text-muted)');
+        loadReplayRuns(true);
+      }
+      document.getElementById('btn-series-rerun').style.display = (!a.running && (failed || m.frames.some(f => f.status === 'pending'))) ? 'block' : 'none';
+      document.getElementById('btn-series-pheno').style.display = (m.kind === 'phenology' || done) ? 'block' : 'none';
+      if (!a.running && m.kind === 'phenology' && m.status === 'done' && !m._shown) {
+        m._shown = true;
+        showPhenologyPanel(m);
+      }
+    }
+
+    async function cancelSeries() {
+      if (!lastSeries) return;
+      if (!confirm('Cancel the series? It stops after the frame in progress.')) return;
+      await fetch(`/api/series/${encodeURIComponent(lastSeries.id)}/cancel`, { method: 'POST' });
+      setSeriesStatus('Cancelling after the current frame...', '#ffb74d');
+    }
+
+    async function rerunFailedFrames() {
+      if (!lastSeries) return;
+      const resp = await fetch(`/api/series/${encodeURIComponent(lastSeries.id)}/rerun_failed`, { method: 'POST' });
+      const d = await resp.json();
+      if (!resp.ok) { setSeriesStatus(d.detail || 'Rerun failed.', '#ff5252'); return; }
+      setSeriesStatus(`Rerunning frame(s) ${d.rerunning.join(', ')}...`, 'var(--accent-cyan)');
+      pollSeries();
+    }
+
+    // Side-by-side phenology text for every date in a series (preview or prints).
+    function showPhenologyPanel(m) {
+      if (!m) return;
+      const rows = m.frames.map(f => {
+        const txt = (f.phenology || (f.status === 'failed' ? `FAILED: ${f.error || ''}` : '(pending)'))
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;');
+        return `<tr><td style="padding: 6px 10px; white-space: nowrap; vertical-align: top; color: var(--accent-cyan);">${f.date}${fmtFrameTime(f.time)}</td>` +
+               `<td style="padding: 6px 10px; vertical-align: top;">${txt}</td></tr>`;
+      }).join('');
+      let panel = document.getElementById('pheno-panel');
+      if (!panel) {
+        panel = document.createElement('div');
+        panel.id = 'pheno-panel';
+        panel.style.cssText = 'position: fixed; inset: 0; z-index: 9998; background: rgba(5, 7, 10, 0.95); display: flex; flex-direction: column; align-items: center; padding: 40px 20px 20px;';
+        panel.addEventListener('click', e => { if (e.target === panel) panel.style.display = 'none'; });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.style.display !== 'none') panel.style.display = 'none'; });
+        document.body.appendChild(panel);
+      }
+      panel.innerHTML = `<button onclick="document.getElementById('pheno-panel').style.display='none'" style="position: absolute; top: 14px; right: 18px; padding: 6px 12px;">✕</button>` +
+        `<div style="color: var(--text-main); font-size: 13px; margin-bottom: 10px;">🌿 Phenology by date | ${m.view_name || m.view_id} | ${m.id}</div>` +
+        `<div style="overflow: auto; max-width: 1100px; width: 100%; border: 1px solid var(--panel-border); border-radius: 6px;">` +
+        `<table style="border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-main);">${rows}</table></div>`;
+      panel.style.display = 'flex';
+    }
+
+    // ---------------- Full-screen viewer ----------------
+    let lbOpen = false, lbShowRender = true, lbKeystoneHeld = false;
+
+    function lbRun() {
+      const id = document.getElementById('select-replay-run').value;
+      return replayRuns.find(r => r.id === id) || null;
+    }
+
+    function lbKeystoneFor(run) {
+      const vid = run && run.saved_view_id;
+      return vid ? keystones[vid] : null;
+    }
+
+    function openLightbox() {
+      const run = lbRun();
+      if (!run) return;
+      lbOpen = true;
+      lbShowRender = thumbShowsRender;
+      const ks = lbKeystoneFor(run);
+      if (ks) (new Image()).src = `/api/runs/${encodeURIComponent(ks.run_id)}/file/spatial_twin.png`;  // preload for instant K
+      document.getElementById('lightbox').style.display = 'flex';
+      renderLightbox();
+    }
+
+    function closeLightbox() {
+      lbOpen = false;
+      lbKeystoneHeld = false;
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function renderLightbox() {
+      const run = lbRun();
+      if (!run) { closeLightbox(); return; }
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      const ks = lbKeystoneFor(run);
+      if (lbKeystoneHeld && ks) {
+        img.src = `/api/runs/${encodeURIComponent(ks.run_id)}/file/spatial_twin.png`;
+        cap.textContent = `★ KEYSTONE PLATE for this view (release K to return)`;
+        return;
+      }
+      const showRender = lbShowRender && run.has_twin;
+      img.src = `/api/runs/${encodeURIComponent(run.id)}/file/${showRender ? 'spatial_twin.png' : 'viewport_capture.jpg'}`;
+      const pos = replayRuns.findIndex(r => r.id === run.id) + 1;
+      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${showRender ? 'rendered plate' : 'Cesium capture'}   |   ${pos} of ${replayRuns.length}`;
+    }
+
+    function lbToggle() {
+      lbShowRender = !lbShowRender;
+      renderLightbox();
+    }
+
+    async function lbStep(delta) {
+      const sel = document.getElementById('select-replay-run');
+      const n = replayRuns.findIndex(r => r.id === sel.value) + delta;
+      if (n < 0 || n >= replayRuns.length) return;
+      sel.value = replayRuns[n].id;
+      renderLightbox();
+      await loadReplayScene();   // keep the Replay card in step with the viewer
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!lbOpen) return;
+      const k = e.key;
+      if (k === 'Escape') closeLightbox();
+      else if (k === 'ArrowRight') lbStep(1);
+      else if (k === 'ArrowLeft') lbStep(-1);
+      else if (k === 'c' || k === 'C') lbToggle();
+      else if ((k === 'k' || k === 'K') && !e.repeat) { lbKeystoneHeld = true; renderLightbox(); }
+      else return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    document.addEventListener('keyup', (e) => {
+      if (!lbOpen) return;
+      if (e.key === 'k' || e.key === 'K') { lbKeystoneHeld = false; renderLightbox(); e.stopPropagation(); }
+    }, true);
 
     function toggleReplayThumb() {
       const id = document.getElementById('select-replay-run').value;
@@ -1096,7 +1392,19 @@
       return run ? run.saved_view_id : null;
     }
 
+    function updateSeriesContext() {
+      const el = document.getElementById('series-context');
+      if (!el) return;
+      const viewId = keystoneContextViewId();
+      const view = savedViews.find(v => v.id === viewId);
+      if (!viewId) { el.textContent = 'Pick a saved view in the Replay card.'; el.style.color = 'var(--text-muted)'; return; }
+      const ks = keystones[viewId];
+      el.textContent = ks ? `Series for: ${view ? view.name : viewId} (★ keystone approved)` : `${view ? view.name : viewId}: approve a keystone first.`;
+      el.style.color = ks ? 'var(--accent-cyan)' : 'var(--text-muted)';
+    }
+
     function updateKeystoneUI() {
+      updateSeriesContext();
       const run = replayRuns.find(r => r.id === document.getElementById('select-replay-run').value);
       const approveBtn = document.getElementById('btn-approve-keystone');
       approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !run.keystone_print_of && !isApprovedKeystone(run.id)) ? 'block' : 'none';
@@ -1131,7 +1439,7 @@
       const ts = r.timestamp ? `${r.timestamp.slice(0, 4)}-${r.timestamp.slice(4, 6)}-${r.timestamp.slice(6, 8)} ${r.timestamp.slice(9, 11)}:${r.timestamp.slice(11, 13)}` : r.id;
       const scene = `${r.date || 'live'} ${fmtClock(r.time_of_day)} ${r.weather_mode || ''}`.trim();
       let tag = r.replay_of ? (r.scene_text_edited ? ' [replay, edited]' : ' [replay]') : '';
-      if (r.keystone_print_of) tag = ' [print]';
+      if (r.keystone_print_of) tag = r.series_frame ? ` [series frame ${r.series_frame}]` : ' [print]';
       if (r.keystone_candidate) tag = isApprovedKeystone(r.id) ? ' [★ KEYSTONE]' : ' [keystone candidate]';
       return `${ts} | ${scene}${tag}`;
     }
@@ -1340,5 +1648,14 @@
 
     window.addEventListener('DOMContentLoaded', initApp);
   </script>
+  <!-- Full-screen run viewer -->
+  <div id="lightbox" onclick="if (event.target === this) closeLightbox()"
+       style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(5, 7, 10, 0.95); flex-direction: column; align-items: center; justify-content: center;">
+    <button onclick="closeLightbox()" title="Close (Esc)" style="position: absolute; top: 14px; right: 18px; padding: 6px 12px;">✕</button>
+    <button onclick="lbToggle()" title="Rendered plate / Cesium capture (C)" style="position: absolute; top: 14px; right: 70px; padding: 6px 12px;">C</button>
+    <img id="lightbox-img" alt="" style="max-width: 96vw; max-height: 84vh; object-fit: contain; border-radius: 4px;" />
+    <div id="lightbox-caption" style="color: var(--text-main); font-family: var(--font-mono); font-size: 12px; margin-top: 10px; text-align: center; max-width: 96vw;"></div>
+    <div style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">← → previous / next run &nbsp;·&nbsp; C plate / capture &nbsp;·&nbsp; hold K for the keystone &nbsp;·&nbsp; Esc close</div>
+  </div>
 </body>
 </html>
