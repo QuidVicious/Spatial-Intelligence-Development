@@ -1,0 +1,100 @@
+{
+  "timestamp": "20260925_173301",
+  "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16044.31,
+  "telemetry": {
+    "latitude": 55.95533322769255,
+    "longitude": -3.192528841505891,
+    "altitude_agl": 56.59500237095945,
+    "heading": 196.10245689399713,
+    "pitch": -15.094739896494286,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.95370663221746,
+    "target_longitude": -3.1933657926629797,
+    "target_distance_m": 195.24205685082777,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-01-15",
+    "time_of_day": 12.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.3173496469782,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "REPLAY",
+    "saved_view_id": "st-andrews-aerial-for-mod-old-contrast-and-season",
+    "saved_view_name": "St Andrews: Aerial for mod/old contrast and season",
+    "replay_of": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260925_170822",
+    "scene_text_edited": false,
+    "mode": "KEYSTONE",
+    "keystone_candidate": true,
+    "keystone_print_of": null,
+    "keystone_run": null,
+    "phenology_date": "2026-01-15",
+    "phenology_source": "generated",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 195.24205685082777,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-01-15T12:00:00+00:00",
+    "solar_azimuth": 174.89,
+    "solar_elevation": 12.64,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under OVERCAST conditions (Sun Azimuth 174.9\u00b0, Elevation 12.6\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.953707",
+      "-3.193366"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false,
+    "loaded_from": "json"
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-26T00:33:01.874994Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, scaffolding, construction hoardings, building wraps, and temporary street clutter from the seed image. Add no signage, logos, or lettering that is not part of the permanent fabric. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   *Platanus \u00d7 acerifolia*: completely leafless; bare spreading branch architecture exposed; spherical bristly fruiting heads hang from twigs.\n*Acer pseudoplatanus*: entirely leafless; bare rounded crown exposed with prominent dormant winter buds; no fruit.\n*Tilia cordata*: completely leafless; fine bare ovate twiggy framework; dormant reddish buds.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nSt Andrew Square civic landscape centered on the Melville Monument, a 42.7-metre fluted Craigleith sandstone Roman Doric column on a massive stepped ashlar pedestal, crowned with a sculpted stone figure. Surrounding park interior contains radial compacted-gravel footpaths, circular turf lawns edged with Caithness flagstone kerbs, and a circular single-storey cafe pavilion featuring curved planar glazing under a zinc-clad roof. Perimeter fabric comprises multi-storey neoclassical and Victorian commercial palazzi in droved carboniferous sandstone ashlar with rusticated ground floors, sash-and-case fenestration, dentil cornices, and mansard slate roofs, directly abutting modern infill buildings with planar curtain-wall structural glass and rectilinear stone rainscreen panels. Ground plane features bituminous asphalt streets, Scottish whinstone setts, embedded steel tramway rails, and cast-iron streetlamps. Stand of mature urban trees including Platanus \u00d7 acerifolia with broad-spreading branch scaffolding and flaking trunks, Acer pseudoplatanus with dense dome-shaped canopy frameworks, and upright Tilia cordata lining path borders. Southern background terminates in the steep volcanic basalt escarpment of Castle Rock crowned by the coursed rubble battlements of Edinburgh Castle and the soaring stone spire of The Hub along the Old Town ridge. Planar masonry elevations plumbed true with coal-smoke patination set in decorative relief.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3939,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2203,
+    "doc_chars": 1450,
+    "doc_trimmed": false,
+    "eco_chars": 348,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

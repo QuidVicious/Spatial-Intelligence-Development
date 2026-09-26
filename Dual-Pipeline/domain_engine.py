@@ -1,13 +1,17 @@
 """
 Domain Engine: Standalone Causal Spatial Cognition & Multimodal Archetype Engine.
 Executes deep architectural, geological, geographical, and optical reasoning across the 4 Mothers.
-Features Climate-Adaptive Material Pathology, Date-Grounded Botanical Phenology,
+Features Climate-Adaptive Material Pathology, Time-Invariant Botanical Identification
+(seasonal phenology is generated per date by generate_phenology),
 and High-Density Telegraphic Synthesis for Downstream Generative Models.
 """
 
 import os
 import re
+import json
 import base64
+import hashlib
+from pathlib import Path
 import traceback
 from enum import Enum
 from dataclasses import dataclass, asdict, field
@@ -38,6 +42,9 @@ class DomainAnalysisResult:
     static_decluttering_summary: str
     raw_response: str
     metadata: Dict[str, Any] = field(default_factory=dict)
+    # Variant layer: seasonal canopy state for ONE date. Empty in pre-split runs,
+    # whose seasonal state is woven into botanical_ecology and documentary_prompt instead.
+    phenology: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -67,6 +74,7 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
       "conversational filler", "AI pleasantries", "generic summaries", 
       "sterile CGI rendering", "smooth sandblasted textures", "material homogenization", 
       "pedestrians", "vehicles", "cars", "traffic", "transient street clutter", "dumpsters", "temporary signage",
+      "scaffolding", "construction hoardings", "building wraps",
       "misclassifying foliage as stone", "misinterpreting photogrammetry mesh noise as crumpled architecture",
       "lighting descriptions", "sky colors", "shadow angles", "time of day assertions", "sun positions",
       "camera, lens, film format, aperture, resolution, or aspect ratio",
@@ -77,7 +85,7 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
       "heterogeneous per-structure material discrimination (distinguish modern glass/steel from historic masonry)",
       "strict visual geometry adherence and planar vertical load-bearing lines",
       "specific lithic quarry names, bond patterns, and dressing terms",
-      "date-grounded botanical phenology (exact Latin tree genus/species and seasonal leaf/canopy state)",
+      "time-invariant botanical identification (exact Latin tree genus/species, canopy form and volume; NO seasonal leaf state)",
       "static civil fabric decluttering",
       "high-density telegraphic prompt synthesis (<1600 characters, zero conversational fluff)"
     ]
@@ -97,8 +105,9 @@ DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMA
    - **Mother 4: CIVIL RECORDS (Provenance, Massing & Height Truth):**
      Ground building heights, exact storey counts, window configurations (e.g. 6-over-6 timber sash-and-case, tripartite Venetian), and architectural orders in verified historical records.
 
-2. **Landscape Ecology & Date-Grounded Phenology**:
-   Urban trees are precise botanical anchors. Explicitly identify tree genus and species (e.g. Platanus × acerifolia, Acer pseudoplatanus, Tilia cordata, Quercus robur). Detail their canopy volume, branch structure, and exact seasonal state corresponding to the target date/month (e.g. early yellowing chlorosis, heavy autumn defoliation, bare winter branch silhouettes, or dense summer foliage).
+2. **Landscape Ecology (Time-Invariant Only)**:
+   Urban trees are precise botanical anchors. Explicitly identify tree genus and species (e.g. Platanus × acerifolia, Acer pseudoplatanus, Tilia cordata, Quercus robur). Detail their canopy volume, height, trunk and branch structure, and placement.
+   SEASONAL STATE IS OUT OF SCOPE: never describe leaf presence, leaf colour, flowering, fruiting, leaf fall, bare branches, or season in ANY section. Seasonal canopy state is generated separately for each target date. The scene must stay valid in every season.
 
 3. **Static Civil Fabric Decluttering (MANDATORY)**:
    Render as a pure static architectural survey: ZERO pedestrians, ZERO vehicles, ZERO dumpsters, ZERO temporary clutter. Retain stone kerbs, iron railings, fixed streetlamps, and mature trees.
@@ -242,13 +251,13 @@ Provide your output structured into the following labeled sections:
 [Per-structure facade materials, brick bonds, renders, and climate-adaptive weathering/patina]
 
 ---ECOLOGY---
-[Identified native/urban tree genus and species, canopy volume, and date-grounded seasonal phenology]
+[Identified native/urban tree genus and species, canopy volume, height, trunk and branch structure. Time-invariant only: no leaf state, colour, or season]
 
 ---STATIC_DECLUTTERING---
 [Confirmation of complete removal of all transient vehicles, pedestrians, dumpsters, and clutter]
 
 ---DOCUMENTARY_PROMPT---
-[High-density, telegraphic documentary prompt covering only what is visible in the reference capture. Include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, ground surfacing, and botanical tree species with date-specific canopy state. TARGET LENGTH: 1200 to 1500 characters. Material and fabric only: no lighting, sky, shadows, or time of day; no camera, lens, or format; no frame or compass placement.]
+[High-density, telegraphic documentary prompt covering only what is visible in the reference capture. Include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, ground surfacing, and botanical tree species with canopy form. TARGET LENGTH: 1200 to 1500 characters. Time-invariant material and fabric only: no lighting, sky, shadows, weather, or time of day; no leaf state, foliage colour, or season; no camera, lens, or format; no frame or compass placement.]
 """
 
     contents: List[Any] = [user_prompt]
@@ -317,6 +326,8 @@ Provide your output structured into the following labeled sections:
         raw_response=response_text,
         metadata={
             "address": address,
+            "invariant_split": True,
+            "split_version": 1,
             "coordinates": (lat_str, lon_str),
             "address_source": "TARGET" if has_target else "CAMERA",
             "tile_mode": tile_mode,
@@ -324,3 +335,92 @@ Provide your output structured into the following labeled sections:
             "search_grounding": use_search_grounding
         }
     )
+
+
+# =========================================================================
+# PHENOLOGY: the variant layer, generated per date and cached
+# =========================================================================
+
+PHENOLOGY_MODEL = "gemini-3.7-flash"
+PHENOLOGY_CACHE_PATH = Path(__file__).resolve().parent / "phenology_cache.json"
+
+PHENOLOGY_SYSTEM_INSTRUCTION = """You are an urban arboriculturist and phenologist.
+You receive the tree species present at a real site, its location, and one calendar date.
+Describe, for each listed species only, its canopy state on that date in that local climate:
+leaf presence and density, leaf colour, leaf fall, bare branch structure, and any flowering or fruiting visible from street level.
+Account for regional climate and typical seasonal timing at that latitude.
+Rules: telegraphic notation, one clause per species, 350 characters maximum in total.
+Never add species that are not listed. Never describe weather, sky, light, shadows, time of day, or buildings.
+Output only the description, no preamble."""
+
+
+def _load_phenology_cache() -> Dict[str, Any]:
+    try:
+        return json.loads(PHENOLOGY_CACHE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_phenology_cache(cache: Dict[str, Any]) -> None:
+    try:
+        tmp = PHENOLOGY_CACHE_PATH.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(cache, indent=2, ensure_ascii=False), encoding="utf-8")
+        tmp.replace(PHENOLOGY_CACHE_PATH)
+    except Exception as e:
+        print(f"[Phenology] cache not written: {e}")
+
+
+def generate_phenology(
+    ecology_text: str,
+    address: str,
+    lat: float,
+    lon: float,
+    date_str: str,
+    gemini_api_key: Optional[str] = None,
+) -> tuple:
+    """
+    Returns (phenology_text, source) where source is "cache", "generated", or "failed".
+    The same species list, place, and date always return the same text, so a series
+    frame can be re-rendered without its foliage changing.
+    """
+    ecology_text = (ecology_text or "").strip()
+    if not ecology_text or not date_str:
+        return "", "failed"
+
+    key_src = f"{PHENOLOGY_MODEL}|{ecology_text}|{round(lat, 3)}|{round(lon, 3)}|{date_str}"
+    key = hashlib.sha1(key_src.encode("utf-8")).hexdigest()
+    cache = _load_phenology_cache()
+    if key in cache:
+        return cache[key]["text"], "cache"
+
+    api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        return "", "failed"
+
+    prompt = (
+        f"SITE: {address} ({lat:.4f}, {lon:.4f})\n"
+        f"DATE: {date_str}\n"
+        f"TREES PRESENT (time-invariant description):\n{ecology_text}\n\n"
+        "Describe each listed species' canopy state on this date."
+    )
+    try:
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model=PHENOLOGY_MODEL,
+            contents=[prompt],
+            config=types.GenerateContentConfig(
+                system_instruction=PHENOLOGY_SYSTEM_INSTRUCTION,
+                temperature=0.0,
+                thinking_config=types.ThinkingConfig(thinking_budget=1024),
+            ),
+        )
+        text = (response.text or "").strip()
+    except Exception as e:
+        print(f"[Phenology] generation failed: {e}")
+        return "", "failed"
+
+    if not text:
+        return "", "failed"
+    cache[key] = {"date": date_str, "address": address, "text": text}
+    _save_phenology_cache(cache)
+    return text, "generated"

@@ -1,0 +1,100 @@
+{
+  "timestamp": "20260926_100044",
+  "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16611.36,
+  "telemetry": {
+    "latitude": 55.954660121583075,
+    "longitude": -3.1948613332386016,
+    "altitude_agl": 10.710834600938881,
+    "heading": 120.07437041175145,
+    "pitch": -11.57248993094595,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.95389215653144,
+    "target_longitude": -3.1924976318046863,
+    "target_distance_m": 174.1672975566548,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": null,
+    "time_of_day": null,
+    "timestamp_utc": "2026-09-26T17:00:26.882Z",
+    "lighting_mode": "SOLAR",
+    "weather_mode": "AUTO",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 147.14941705095674,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "REPLAY",
+    "saved_view_id": "st-andresw-arthurs-seat-horizon",
+    "saved_view_name": "St Andresw Arthurs Seat horizon",
+    "replay_of": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_095806",
+    "scene_text_edited": false,
+    "mode": null,
+    "keystone_candidate": false,
+    "keystone_print_of": null,
+    "keystone_run": null,
+    "phenology_date": "2026-09-26",
+    "phenology_source": "cache",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 174.1672975566548,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-09-26T17:00:26.882000+00:00",
+    "solar_azimuth": 256.18,
+    "solar_elevation": 7.97,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K diffuse daylight under OVERCAST conditions (Sun Azimuth 256.2\u00b0, Elevation 8.0\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.953892",
+      "-3.192498"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false,
+    "loaded_from": "json"
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-26T17:00:44.364763Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, scaffolding, construction hoardings, building wraps, and temporary street clutter from the seed image. Add no signage, logos, or lettering that is not part of the permanent fabric. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   *Acer pseudoplatanus*: thinning canopy, yellow-green leaves with tar spots, early leaf drop, brown samaras.\n*Tilia \u00d7 europaea*: thinning canopy, pale-yellow leaves, active leaf fall, dry bracts.\n*Ulmus glabra*: moderately full canopy, dull yellowing foliage, early leaf drop.\n*Betula pendula*: sparse canopy, golden foliage, active leaf shed, weeping twigs exposed.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nSt Andrew Square urban core centered on the 46-metre Melville Monument: a fluted Craigleith blonde sandstone Roman Doric column on a stepped rusticated ashlar pedestal supporting a carved stone statue. Curving crushed-gravel pathways and level turf lawns surround the central plinth, enclosed by mature canopy specimens of Acer pseudoplatanus and Tilia \u00d7 europaea with dense branching frameworks. Surrounding perimeter presents a dense, plumb architectural street wall: Georgian and Victorian Classical commercial facades in ashlar Craigleith and Hailes sandstone with rusticated lower storeys, piano nobile pedimented windows, giant-order Corinthian pilasters, balustraded parapets, and slate mansard roofs with dressed stone chimney stacks. Adjacent modern commercial infill displays vertical structural granite fins and modular curtain-wall glazing. In the background, the multi-tiered Victorian Baronial clock tower of the Balmoral Hotel rises alongside the cylindrical stone Nelson Monument on Calton Hill, backed by the exposed volcanic basaltic ridge and crags of Arthur's Seat and Salisbury Crags. Ground surfaces transition from internal park turf and resin-bound paths to Caithness flagstone footways, dressed whinstone kerbs, and asphalt carriageways embedded with parallel steel tram tracks. Facades exhibit authentic Carboniferous sandstone weathering with atmospheric carbon encrustation on relief carvings.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3927,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2203,
+    "doc_chars": 1421,
+    "doc_trimmed": false,
+    "eco_chars": 365,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

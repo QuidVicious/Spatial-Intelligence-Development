@@ -205,11 +205,17 @@
       <select id="select-replay-run" style="width: 100%; margin-top: 6px;" onchange="loadReplayScene()">
         <option value="">No runs</option>
       </select>
-      <img id="replay-thumb" alt="Source capture" style="display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
-      <textarea id="replay-scene-text" rows="6" placeholder="Scene text (documentary prompt) of the selected run. Edits apply to this replay only."
+      <img id="replay-thumb" alt="Run preview" onclick="toggleReplayThumb()" style="cursor: pointer; display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
+      <textarea id="replay-scene-text" rows="6" spellcheck="false" placeholder="Scene text (documentary prompt) of the selected run. Edits apply to this replay only."
         style="width: 100%; box-sizing: border-box; margin-top: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; font-family: var(--font-mono); font-size: 10px; resize: vertical;"></textarea>
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
-      <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY WITH CURRENT DATE / TIME / WEATHER</button>
+      <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button onclick="makeKeystone()" class="toggle-btn" title="Render this run as a neutral master plate: bare trees, flat overcast, noon" style="flex: 1; padding: 8px;">🧱 MAKE KEYSTONE</button>
+        <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
+      </div>
+      <div id="keystone-status" style="font-size: 10px; color: var(--text-muted); margin-top: 6px; min-height: 12px;"></div>
+      <button id="btn-print-keystone" onclick="printFromKeystone()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🖨 PRINT FROM KEYSTONE</button>
     </div>
 
     <div class="hud-card">
@@ -1031,6 +1037,83 @@
     // ---------------- Replay ----------------
     let replayRuns = [];
     let replayOriginalText = '';
+    let keystones = {};   // view_id -> approved keystone record
+    let thumbShowsRender = true;
+
+    function setReplayThumb(id) {
+      const thumb = document.getElementById('replay-thumb');
+      const file = thumbShowsRender ? 'spatial_twin.png' : 'viewport_capture.jpg';
+      thumb.src = `/api/runs/${encodeURIComponent(id)}/file/${file}`;
+      thumb.title = thumbShowsRender ? 'Rendered plate (click for the Cesium capture)' : 'Cesium capture (click for the rendered plate)';
+    }
+
+    function toggleReplayThumb() {
+      const id = document.getElementById('select-replay-run').value;
+      const run = replayRuns.find(r => r.id === id);
+      if (!run || !run.has_twin) return;
+      thumbShowsRender = !thumbShowsRender;
+      setReplayThumb(id);
+    }
+
+    // Conditions that would bake into every print if this plate became the keystone.
+    function keystoneWarnings(run) {
+      const w = [];
+      const weather = (run.weather_resolved || run.weather_mode || '').toUpperCase();
+      if (weather === 'RAIN') w.push('Rain: wet, reflective surfaces');
+      else if (weather === 'SNOW') w.push('Snow cover');
+      else if (!['OVERCAST', 'FOG'].includes(weather)) w.push(`${weather || 'Unknown'} weather: likely direct sun and cast shadows`);
+      if (!run.date) {
+        w.push('Live date: season unknown');
+      } else {
+        const m = parseInt(run.date.slice(5, 7), 10);
+        const north = (run.latitude || 0) >= 0;
+        const dormant = north ? [12, 1, 2, 3].includes(m) : [6, 7, 8, 9].includes(m);
+        if (!dormant) w.push('Trees may be in leaf: prints cannot reliably reveal what a canopy hides');
+      }
+      return w;
+    }
+
+    async function loadKeystones() {
+      try {
+        const resp = await fetch('/api/keystones');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        keystones = (await resp.json()).views || {};
+      } catch (e) {
+        console.warn('[Keystone] load failed:', e);
+        keystones = {};
+      }
+    }
+
+    function isApprovedKeystone(runId) {
+      return Object.values(keystones).some(k => k.run_id === runId);
+    }
+
+    // The view the keystone controls act on: the view filter, else the selected run's view.
+    function keystoneContextViewId() {
+      const viewId = document.getElementById('select-replay-view').value;
+      if (viewId) return viewId;
+      const run = replayRuns.find(r => r.id === document.getElementById('select-replay-run').value);
+      return run ? run.saved_view_id : null;
+    }
+
+    function updateKeystoneUI() {
+      const run = replayRuns.find(r => r.id === document.getElementById('select-replay-run').value);
+      const approveBtn = document.getElementById('btn-approve-keystone');
+      approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !run.keystone_print_of && !isApprovedKeystone(run.id)) ? 'block' : 'none';
+      const status = document.getElementById('keystone-status');
+      const viewId = keystoneContextViewId();
+      const view = savedViews.find(v => v.id === viewId);
+      const ks = viewId ? keystones[viewId] : null;
+      if (!viewId) {
+        status.textContent = 'Pick a saved view (or a tagged run) to see its keystone.';
+      } else if (ks) {
+        status.style.color = 'var(--accent-cyan)';
+        status.textContent = `★ Keystone for ${view ? view.name : viewId}: approved ${String(ks.approved_utc || '').slice(0, 10)}`;
+      } else {
+        status.style.color = 'var(--text-muted)';
+        status.textContent = `No keystone for ${view ? view.name : viewId} yet.`;
+      }
+    }
 
     function setReplayStatus(msg, color) {
       const el = document.getElementById('replay-status');
@@ -1047,7 +1130,9 @@
     function runLabel(r) {
       const ts = r.timestamp ? `${r.timestamp.slice(0, 4)}-${r.timestamp.slice(4, 6)}-${r.timestamp.slice(6, 8)} ${r.timestamp.slice(9, 11)}:${r.timestamp.slice(11, 13)}` : r.id;
       const scene = `${r.date || 'live'} ${fmtClock(r.time_of_day)} ${r.weather_mode || ''}`.trim();
-      const tag = r.replay_of ? (r.scene_text_edited ? ' [replay, edited]' : ' [replay]') : '';
+      let tag = r.replay_of ? (r.scene_text_edited ? ' [replay, edited]' : ' [replay]') : '';
+      if (r.keystone_print_of) tag = ' [print]';
+      if (r.keystone_candidate) tag = isApprovedKeystone(r.id) ? ' [★ KEYSTONE]' : ' [keystone candidate]';
       return `${ts} | ${scene}${tag}`;
     }
 
@@ -1055,6 +1140,7 @@
       const viewId = document.getElementById('select-replay-view').value;
       const sel = document.getElementById('select-replay-run');
       const keep = keepSelection ? sel.value : null;
+      await loadKeystones();
       try {
         const resp = await fetch('/api/runs' + (viewId ? `?view_id=${encodeURIComponent(viewId)}` : ''));
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -1071,6 +1157,7 @@
         document.getElementById('replay-scene-text').value = '';
         replayOriginalText = '';
         setReplayStatus(viewId ? 'No runs tagged with this view yet.' : '');
+        updateKeystoneUI();
         return;
       }
       for (const r of replayRuns) {
@@ -1082,6 +1169,7 @@
       }
       if (keep && replayRuns.some(r => r.id === keep)) {
         sel.value = keep;
+        updateKeystoneUI();
       } else {
         await loadReplayScene();
       }
@@ -1091,8 +1179,11 @@
       const id = document.getElementById('select-replay-run').value;
       const thumb = document.getElementById('replay-thumb');
       const text = document.getElementById('replay-scene-text');
+      updateKeystoneUI();
       if (!id) { thumb.style.display = 'none'; text.value = ''; replayOriginalText = ''; return; }
-      thumb.src = `/api/runs/${encodeURIComponent(id)}/file/viewport_capture.jpg`;
+      const run = replayRuns.find(r => r.id === id);
+      thumbShowsRender = !!(run && run.has_twin);
+      setReplayThumb(id);
       thumb.style.display = 'block';
       try {
         const resp = await fetch(`/api/runs/${encodeURIComponent(id)}/scene`);
@@ -1109,14 +1200,83 @@
       }
     }
 
-    async function replaySelectedRun() {
+    function selectedReplayRun() {
       const id = document.getElementById('select-replay-run').value;
-      const run = replayRuns.find(r => r.id === id);
-      if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
+      return replayRuns.find(r => r.id === id) || null;
+    }
+
+    function editedSceneText() {
       const text = document.getElementById('replay-scene-text').value.trim();
-      const edited = text && text !== replayOriginalText.trim();
+      return (text && text !== replayOriginalText.trim()) ? text : null;
+    }
+
+    async function makeKeystone() {
+      const run = selectedReplayRun();
+      if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
+      if (!run.saved_view_id) { setReplayStatus('Keystones need a run tagged with a saved view.', '#ff5252'); return; }
+      if (!confirm('Render a keystone candidate from this run?\n\nIt ignores the date, time and weather panels: bare midwinter trees, flat overcast, noon.')) return;
+      const payload = buildReplayPayload(run, editedSceneText());
+      payload.mode = 'KEYSTONE';
+      console.log(`[Keystone] candidate from ${run.id}`);
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      await streamPipeline(payload);
+    }
+
+    async function approveKeystone() {
+      const run = selectedReplayRun();
+      if (!run) return;
+      const view = savedViews.find(v => v.id === run.saved_view_id);
+      const replacing = keystones[run.saved_view_id];
+      const warnings = keystoneWarnings(run);
+      const msg = `Approve this plate as the keystone for "${view ? view.name : run.saved_view_id}"?` +
+        `\n\nConditions: ${run.date || 'live'} ${fmtClock(run.time_of_day)} ${run.weather_resolved || run.weather_mode || ''}` +
+        (warnings.length ? '\n\nNOT NEUTRAL, these will carry into every print:\n- ' + warnings.join('\n- ') : '\n\nConditions are neutral.') +
+        (replacing ? '\n\nIt replaces the current keystone (kept on record).' : '') +
+        '\n\nEvery print from this view will start from it.';
+      if (!confirm(msg)) return;
+      try {
+        const resp = await fetch('/api/keystones', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ run_id: run.id, warnings_acknowledged: warnings })
+        });
+        if (!resp.ok) throw new Error((await resp.json()).detail || `HTTP ${resp.status}`);
+        await loadReplayRuns(true);
+        setReplayStatus('Keystone approved.', 'var(--accent-cyan)');
+      } catch (e) {
+        console.warn('[Keystone] approve failed:', e);
+        setReplayStatus(`Approve failed: ${e.message}`, '#ff5252');
+      }
+    }
+
+    async function printFromKeystone() {
+      const viewId = keystoneContextViewId();
+      if (!viewId || !keystones[viewId]) { setReplayStatus('This view has no approved keystone yet.', '#ff5252'); return; }
+      const view = savedViews.find(v => v.id === viewId);
+      const stub = { latitude: view ? view.camera.latitude : 0, longitude: view ? view.camera.longitude : 0 };
+      const payload = buildReplayPayload(stub, null);
+      payload.mode = 'PRINT';
+      payload.print_view_id = viewId;
+      payload.replay_of = null;   // the server resolves the keystone
+      console.log(`[Print] from keystone of view ${viewId}`);
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      await streamPipeline(payload);
+    }
+
+    async function replaySelectedRun() {
+      const run = selectedReplayRun();
+      if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
+      const edited = editedSceneText();
+      const payload = buildReplayPayload(run, edited);
+      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}`);
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      await streamPipeline(payload);
+    }
+
+    function buildReplayPayload(run, editedText) {
       const isLiveTime = document.getElementById('chk-live-time').checked;
-      const payload = {
+      return {
         screenshot_b64: null,  // the server loads the source run's capture
         telemetry: {
           latitude: run.latitude || 0,   // pose is replaced server-side with the source run's pose
@@ -1135,13 +1295,9 @@
         view_scope: 'FRUSTUM',
         disable_recaption: document.getElementById('chk-disable-recaption').checked,
         use_search_grounding: false,
-        replay_of: run.id,
-        documentary_prompt_override: edited ? text : null
+        replay_of: run.id || null,
+        documentary_prompt_override: editedText
       };
-      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}`);
-      resetStepperHUD();
-      document.getElementById('loadingOverlay').classList.remove('hidden');
-      await streamPipeline(payload);
     }
 
     function displayResults(data) {

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "views": {
+    "st-andresw-arthurs-seat-horizon": {
+      "run_id": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100203",
+      "view_name": "St Andresw Arthurs Seat horizon",
+      "source_run": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100044",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-09-26T17:09:46+00:00",
+      "history": [
+        {
+          "run_id": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100044",
+          "approved_utc": "2026-09-26T17:01:33+00:00",
+          "replaced_utc": "2026-09-26T17:09:46+00:00"
+        }
+      ]
+    }
+  }
+}

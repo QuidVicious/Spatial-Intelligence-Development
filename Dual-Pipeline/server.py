@@ -38,7 +38,7 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
@@ -186,6 +186,36 @@ class ProcessViewRequest(BaseModel):
     saved_view_name: Optional[str] = Field(None, description="Display name of that saved view")
     replay_of: Optional[str] = Field(None, description="Archived run id to replay: reuses its capture and domain text")
     documentary_prompt_override: Optional[str] = Field(None, description="Replay only: edited scene text replacing the frozen documentary prompt")
+    mode: Optional[str] = Field(None, description="KEYSTONE (neutral master plate from replay_of) or PRINT (edit of a view's approved keystone)")
+    print_view_id: Optional[str] = Field(None, description="PRINT only: saved view whose approved keystone is the seed")
+
+
+# -------------------------------------------------------------------------
+# Keystones: one approved master plate per saved view
+# -------------------------------------------------------------------------
+KEYSTONES_PATH = Path(__file__).parent / "keystones.json"
+
+
+def _load_keystones() -> dict:
+    if not KEYSTONES_PATH.exists():
+        return {}
+    try:
+        data = json.loads(KEYSTONES_PATH.read_text(encoding="utf-8"))
+        return data.get("views", {}) if isinstance(data, dict) else {}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"keystones.json is unreadable: {e}")
+
+
+def _write_keystones(views: dict) -> None:
+    tmp = KEYSTONES_PATH.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps({"version": 1, "views": views}, indent=2), encoding="utf-8")
+    tmp.replace(KEYSTONES_PATH)
+
+
+def _midwinter_date(lat: float) -> str:
+    """Mid-January in the northern hemisphere, mid-July in the southern: deciduous trees bare, evergreens unchanged."""
+    year = datetime.now(timezone.utc).year
+    return f"{year}-01-15" if lat >= 0 else f"{year}-07-15"
 
 
 # -------------------------------------------------------------------------
@@ -262,6 +292,7 @@ def load_domain_from_run(d: Path):
         static_decluttering_summary=data.get("static_decluttering_summary") or "",
         raw_response=data.get("raw_response") or "",
         metadata=dict(data.get("metadata") or {}, loaded_from=source),
+        phenology=data.get("phenology") or "",
     )
     if not result.documentary_prompt:
         raise HTTPException(status_code=422, detail=f"Run {d.name} has no documentary prompt to replay.")
@@ -302,6 +333,28 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     gemini_key = os.getenv("GEMINI_API_KEY")
     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
     scene_edited = False
+    phenology_date = None
+    phenology_source = None
+
+    mode = (request.mode or "").strip().upper() or None
+    if mode not in (None, "KEYSTONE", "PRINT"):
+        yield format_ndjson({"type": "ERROR", "message": f"Unknown mode: {request.mode}"})
+        return
+    keystone_run_id = None
+    if mode == "PRINT":
+        ks = _load_keystones().get(request.print_view_id or "")
+        if not ks:
+            yield format_ndjson({"type": "ERROR", "message": "This view has no approved keystone yet."})
+            return
+        if request.provider.upper() == "WORLD_LABS":
+            yield format_ndjson({"type": "ERROR", "message": "Prints from a keystone are Gemini-only."})
+            return
+        keystone_run_id = ks["run_id"]
+        request.replay_of = keystone_run_id          # its capture, pose, and frozen text
+        request.documentary_prompt_override = None   # a print never edits the art bible
+    elif mode == "KEYSTONE" and not request.replay_of:
+        yield format_ndjson({"type": "ERROR", "message": "Pick a source run to make a keystone from."})
+        return
 
     # Replay: load the frozen negative (seed capture + domain text) before anything else.
     replay = None
@@ -330,6 +383,31 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             request.saved_view_id = src_set.get("saved_view_id")
             request.saved_view_name = src_set.get("saved_view_name")
         replay["source_date"] = src_set.get("date")
+
+        if mode in ("KEYSTONE", "PRINT") and not (replay["domain"].metadata or {}).get("invariant_split"):
+            yield format_ndjson({"type": "ERROR", "message": "Keystones need a run made after the phenology split."})
+            return
+        if mode == "KEYSTONE":
+            if not request.saved_view_id:
+                yield format_ndjson({"type": "ERROR", "message": "Keystones need a run tagged with a saved view (capture after using GO)."})
+                return
+            # The neutral master plate: bare deciduous trees, flat dry overcast, noon.
+            neutral = {
+                "date": _midwinter_date(telemetry.latitude),
+                "time_of_day": 12.0,
+                "timestamp_utc": None,
+                "lighting_mode": "SOLAR",
+                "weather_mode": "OVERCAST",
+            }
+            telemetry = telemetry.model_copy(update=neutral) if hasattr(telemetry, "model_copy") else telemetry.copy(update=neutral)
+            print(f"[Keystone] neutral plate: {neutral['date']} 12:00 OVERCAST")
+        if mode == "PRINT":
+            plate = _file_data_url(_run_dir(keystone_run_id) / "spatial_twin.png", "image/png")
+            if not plate:
+                yield format_ndjson({"type": "ERROR", "message": f"Keystone run {keystone_run_id} has no rendered plate."})
+                return
+            replay["delighted_b64"] = plate   # the synthesis seed is the approved plate itself
+            print(f"[Print] seed is keystone plate from {keystone_run_id}")
         print(
             f"[Replay] source {request.replay_of} | domain from {replay['domain_source']} | "
             f"delighted seed {'reused' if replay['delighted_b64'] else 'will be recomputed'}"
@@ -349,6 +427,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     )
 
     emit_terminal_banner(
+        (f"{mode} " if mode else "") +
         (f"REPLAY of {request.replay_of} | " if replay else "") +
         f"Camera: ({telemetry.latitude:.5f}, {telemetry.longitude:.5f}) | Target: {target_desc} | "
         f"Date: {telemetry.date or 'Live'} | Scope: {request.view_scope}"
@@ -395,15 +474,16 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 scene_edited = True
             src_date = replay.get("source_date")
             pheno_note = ""
-            if telemetry.date and src_date and telemetry.date[:7] != str(src_date)[:7]:
-                pheno_note = f" | NOTE: phenology text is frozen from source date {src_date}"
+            is_split = bool((domain_result.metadata or {}).get("invariant_split"))
+            if not is_split and telemetry.date and src_date and telemetry.date[:7] != str(src_date)[:7]:
+                pheno_note = f" | NOTE: pre-split run, phenology text is frozen from source date {src_date}"
             yield stage.processing(
                 f"Frozen domain text loaded from {request.replay_of} ({replay['domain_source']})"
                 f"{' | scene text EDITED' if scene_edited else ''}{pheno_note}"
             )
             print(f"[Replay] scene text {'EDITED by user' if scene_edited else 'unchanged'}{pheno_note}")
             yield stage.dispatching(f"Documentary prompt frozen ({len(domain_result.documentary_prompt)} chars)")
-            yield stage.finish("Domain text frozen (replay: no LSA call)")
+            domain_finish_msg = "Domain text frozen (replay: no LSA call)"
         else:
             yield stage.processing(
                 "Executing domain stack (Geology, Geography, Architecture, Civil Records, Botanical Phenology) | "
@@ -422,10 +502,42 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 use_search_grounding=request.use_search_grounding
             )
             yield stage.dispatching(f"Documentary prompt synthesized ({len(domain_result.documentary_prompt)} chars)")
-            yield stage.finish(
+            domain_finish_msg = (
                 "Domain analysis complete (search grounding ON)" if request.use_search_grounding
                 else "Domain analysis complete (search grounding OFF)"
             )
+
+        # 2.5 Phenology: the variant layer for THIS frame's date (split runs only)
+        if (domain_result.metadata or {}).get("invariant_split"):
+            if telemetry.date:
+                phenology_date = telemetry.date
+            elif telemetry.timestamp_utc:
+                phenology_date = str(telemetry.timestamp_utc)[:10]
+            else:
+                phenology_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            src_date = replay.get("source_date") if replay else None
+            if replay and domain_result.phenology and src_date == phenology_date:
+                phenology_source = "source-run"
+            else:
+                domain_result.phenology, phenology_source = generate_phenology(
+                    ecology_text=domain_result.botanical_ecology,
+                    address=address,
+                    lat=subj_lat,
+                    lon=subj_lon,
+                    date_str=phenology_date,
+                    gemini_api_key=gemini_key,
+                )
+            print(f"[Phenology] {phenology_date}: {phenology_source} | {domain_result.phenology[:100]}")
+            if phenology_source == "failed":
+                print("[Phenology] WARNING: no seasonal state for this frame; trees fall back to time-invariant description only")
+                yield stage.dispatching(f"WARNING: phenology for {phenology_date} failed; trees use time-invariant text only")
+            else:
+                yield stage.dispatching(f"Phenology for {phenology_date}: {phenology_source}")
+        else:
+            phenology_source = "pre-split"
+            yield stage.dispatching("Pre-split run: seasonal state is embedded in the frozen text")
+        yield stage.finish(domain_finish_msg)
+
 
         # 3. Spatial Scaffold Engine
         stage, event_str = stage_activate(PipelineStage.SPATIAL_SCAFFOLD, "Constructing RFC 7946 7-Strata GeoJSON")
@@ -452,7 +564,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             target_provider=request.provider,
             telemetry=telemetry,
             target_model=request.target_model,
-            gemini_budget=request.gemini_budget
+            gemini_budget=request.gemini_budget,
+            print_mode=(mode == "PRINT")
         )
         _m = compiled.metadata
         yield stage.dispatching(
@@ -522,7 +635,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 conditioning=compiled,
                 synthesis_result=synthesis,
                 screenshot_b64=request.screenshot_b64,
-                delighted_b64=delighted_b64,
+                delighted_b64=None if mode == "PRINT" else delighted_b64,  # a print's seed is the keystone plate, recorded by id
                 pano_b64=request.pano_b64,
                 lighting_state=lighting_state,
                 request_settings={
@@ -538,6 +651,12 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "saved_view_name": request.saved_view_name,
                     "replay_of": request.replay_of,
                     "scene_text_edited": scene_edited,
+                    "mode": mode,
+                    "keystone_candidate": mode == "KEYSTONE",
+                    "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
+                    "keystone_run": keystone_run_id,
+                    "phenology_date": phenology_date,
+                    "phenology_source": phenology_source,
                     "target_method": telemetry.target_method,
                     "target_distance_m": telemetry.target_distance_m,
                     "pano_seed_supplied": bool(request.pano_b64),
@@ -705,6 +824,8 @@ def _run_summary(d: Path) -> dict:
         "saved_view_name": settings.get("saved_view_name"),
         "replay_of": settings.get("replay_of"),
         "scene_text_edited": settings.get("scene_text_edited"),
+        "keystone_candidate": bool(settings.get("keystone_candidate")),
+        "keystone_print_of": settings.get("keystone_print_of"),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
         "weather_mode": settings.get("weather_mode"),
@@ -712,6 +833,8 @@ def _run_summary(d: Path) -> dict:
         "latitude": tel.get("latitude"),
         "longitude": tel.get("longitude"),
         "has_twin": (d / "spatial_twin.png").exists(),
+        "split": bool(((_read_json(d / "domain_result.json") or {}).get("metadata") or {}).get("invariant_split")),
+        "weather_resolved": (meta.get("lighting_resolved") or {}).get("weather"),
         "replayable": has_seed and has_domain,
     }
 
@@ -725,6 +848,58 @@ async def list_runs(view_id: Optional[str] = None, limit: int = 300):
         runs = [r for r in runs if r["saved_view_id"] == view_id]
     runs.sort(key=lambda r: (r["timestamp"] or "", r["id"]), reverse=True)
     return {"runs": runs[:limit]}
+
+
+@app.get("/api/keystones")
+async def list_keystones():
+    return {"views": _load_keystones()}
+
+
+class ApproveKeystoneRequest(BaseModel):
+    run_id: str
+    warnings_acknowledged: list = Field(default_factory=list, description="Non-neutral conditions the user saw and accepted")
+
+
+@app.post("/api/keystones")
+async def approve_keystone(req: ApproveKeystoneRequest):
+    d = _run_dir(req.run_id)
+    meta = _read_json(d / "run_metadata.json") or {}
+    settings = meta.get("settings") or {}
+    # Any good plate can become the keystone; the user judges it. Prints are excluded
+    # so a keystone never descends from another keystone.
+    if settings.get("keystone_print_of"):
+        raise HTTPException(status_code=422, detail="A print cannot become a keystone; approve the run it came from instead.")
+    domain_meta = ((_read_json(d / "domain_result.json") or {}).get("metadata") or {})
+    if not domain_meta.get("invariant_split"):
+        raise HTTPException(status_code=422, detail="Keystones need a run made after the phenology split.")
+    view_id = settings.get("saved_view_id")
+    if not view_id:
+        raise HTTPException(status_code=422, detail="This candidate is not tagged with a saved view.")
+    if not (d / "spatial_twin.png").exists():
+        raise HTTPException(status_code=422, detail="This candidate has no rendered plate.")
+    views = _load_keystones()
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    prev = views.get(view_id)
+    history = list(prev.get("history", [])) if prev else []
+    if prev and prev.get("run_id") != req.run_id:
+        history.append({"run_id": prev["run_id"], "approved_utc": prev.get("approved_utc"), "replaced_utc": now})
+    views[view_id] = {
+        "run_id": req.run_id,
+        "view_name": settings.get("saved_view_name"),
+        "source_run": settings.get("replay_of"),
+        "approved_from": "candidate" if settings.get("keystone_candidate") else "run",
+        "conditions": {
+            "date": settings.get("date"),
+            "time_of_day": settings.get("time_of_day"),
+            "weather": (meta.get("lighting_resolved") or {}).get("weather") or settings.get("weather_mode"),
+        },
+        "warnings_acknowledged": req.warnings_acknowledged,
+        "approved_utc": now,
+        "history": history,
+    }
+    _write_keystones(views)
+    print(f"[Keystone] approved {req.run_id} for view {view_id}" + (f" (replaces {prev['run_id']})" if prev and prev.get('run_id') != req.run_id else ""))
+    return views[view_id]
 
 
 @app.get("/api/runs/{run_id}/scene")

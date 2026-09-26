@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 4.7,
+          "pitch_deg": 3.4,
+          "heading_deg": 136.9,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean strata comprise Carboniferous sedimentary rock formations of the Strathclyde Group (sandstone, siltstone, and mudstone) overlain by dense glacial till (boulder clay). Primary load-bearing masonry consists of Lower Carboniferous Craigleith and Hailes sandstone (dense, silica-cemented pale grey-to-buff quartzose freestone) and Binny sandstone for monumental structures. Bedding mortar utilizes traditional non-hydraulic to weakly hydraulic lime blended with sharp pit sand. Subsurface hydrology drains southward towards the historic Nor Loch basin/Princes Street Gardens trough."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Urban garden enclosure populated by mature broadleaf trees:\n- *Acer pseudoplatanus* (Sycamore maple) and *Platanus \u00d7 acerifolia* (London plane); massive upright trunks with peeling, mottled bark plates, strong scaffolding limb structure branching into broad, hemispherical spreading canopies measuring 14\u201320 metres in height.\n- *Tilia \u00d7 europaea* (Common lime); upright oval crown structure, dense fine-twig epicormic growth around lower trunk bases.\n- Understory: Clipped mixed ornamental shrub beds and manicured perennial ryegrass (*Lolium perenne*) turf lawns.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Spatial layout defined by Edinburgh New Town James Craig grid (St Andrew Square).\n- Center-left midground: Melville Monument (1821\u20131827, William Burn/Robert Forrest), 42-metre fluted Roman Doric column on a high square rusticated pedestal, surmounted by a heroic stone statue and stepped drum.\n- Left foreground: Late Georgian/Early Victorian Classical corner palazzo facade; channelled rusticated ashlar ground floor, upper floors delineated by string courses, molded architraves, 6-over-6 and 2-over-2 timber sash-and-case windows, terminating in a dentilled parapet cornice.\n- Right mid-to-background: Mid-to-late 20th-century commercial blocks; repetitive vertical precast concrete fins and structural mullions interspersed with recessed aluminium-framed curtain-wall glazing.\n- Far right background: Scott Monument (1844, George Meikle Kemp); high Victorian Gothic steeple with open-crocketed pinnacles, flying buttresses, and tiered micro-architecture.\n- Midground park: Elliptical garden perimeter bounded by cast-iron railings set into dressed stone dwarf copings.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1946585499133633,
+          55.954891661288386
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-25T12:00:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 177.09,
+        "solar_elevation_deg": 10.6,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

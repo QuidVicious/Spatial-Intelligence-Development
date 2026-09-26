@@ -1,0 +1,99 @@
+{
+  "timestamp": "20260925_165841",
+  "address": "6 St Andrew Sq, Edinburgh EH2 2BD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 16283.81,
+  "telemetry": {
+    "latitude": 55.95532940911465,
+    "longitude": -3.192639325250222,
+    "altitude_agl": 51.45653716473524,
+    "heading": 191.12161364065315,
+    "pitch": -11.920969290792756,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.95348395244948,
+    "target_longitude": -3.19328594840639,
+    "target_distance_m": 214.02739708222816,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-09-25",
+    "time_of_day": 12.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 117.3173483767599,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "saved_view_id": null,
+    "saved_view_name": null,
+    "replay_of": null,
+    "scene_text_edited": false,
+    "mode": null,
+    "keystone_candidate": false,
+    "keystone_print_of": null,
+    "keystone_run": null,
+    "phenology_date": "2026-09-25",
+    "phenology_source": "generated",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 214.02739708222816,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-09-25T11:00:00+00:00",
+    "solar_azimuth": 160.9,
+    "solar_elevation": 32.03,
+    "color_temperature_k": 5400,
+    "lux": 60000,
+    "natural_description": "Calibrated 5400K diffuse daylight under OVERCAST conditions (Sun Azimuth 160.9\u00b0, Elevation 32.0\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "6 St Andrew Sq, Edinburgh EH2 2BD, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.953484",
+      "-3.193286"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-25T23:58:41.226412Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, scaffolding, construction hoardings, building wraps, and temporary street clutter from the seed image. Add no signage, logos, or lettering that is not part of the permanent fabric. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   *Tilia cordata*: dense canopy fading to pale yellow with early thinning; dry brown bract-attached nutlets persist.\n*Acer pseudoplatanus*: full canopy showing yellowing and tar spots, light leaf fall; clusters of dry brown samaras.\n*Ulmus glabra*: foliage fading dull yellow, early drop exposing upper crown tips; no visible fruit.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nSt Andrew Square architectural survey. Central 46-metre fluted Craigleith sandstone Roman Doric column on a high rusticated stone pedestal, surmounted by a carved monumental statue. Surrounding elliptical civic park features smooth mown turf, crushed gravel pathways, low stone kerbstones, cast-iron perimeter railings, and a low circular pavilion with a radial glass roof. Perimeter urban streetwall exhibits sharp material contrast: 5-to-6-storey Georgian and Victorian Classical ashlar sandstone facades with rusticated basements, molded entablatures, 6-over-6 timber sash-and-case fenestration, balustrades, and slate mansards, juxtaposed with contemporary commercial curtain-wall buildings of structural glass, vertical aluminium louvres, and precast concrete cladding. Ground surfaces consist of Caithness flagstone pavements, granite setts, whinstone kerbs, and asphalt streets embedded with steel tram tracks. Mature urban tree canopy of Tilia cordata and Acer pseudoplatanus with dense domed and pyramidal branch structures. In the distant background, the rising Old Town ridge displays multi-tiered sandstone tenements, vertical Gothic stone church spires, and the abrupt dark basalt crag of Castle Rock surmounted by the stone ramparts and fortified masonry mass of Edinburgh Castle. Weathering reveals authentic differential coal-smoke soot encrustations across historic stone moldings alongside rain-washed ashlar facades. True vertical rectification applied to all facades, structural lines, and spires.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3988,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2203,
+    "doc_chars": 1517,
+    "doc_trimmed": false,
+    "eco_chars": 330,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 10.7,
+          "pitch_deg": -11.6,
+          "heading_deg": 120.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean formation composed of Carboniferous sedimentary sequences interbedded with calciferous sandstones and the intrusive igneous volcanic suites of the Arthur's Seat and Calton Hill basaltic/dolerite complex. Primary structural masonry derived from regional Lower Carboniferous quarries, notably fine-grained quartzose Craigleith and Binny sandstones, featuring high silica content and durability. Mortar chemistry comprises traditional non-hydraulic to weakly hydraulic slaked quicklime blended with sharp, coarse local pit sand. Sub-base drainage relies on natural glacial till gradients sloping east-southeast toward the Firth of Forth basin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Civic garden square framed by mature urban specimens:\n- *Acer pseudoplatanus* (Sycamore): Stout upright boles with scaly, flaking bark, broad multi-stem scaffold branching forming dense globular crowns, 12\u201318 m height.\n- *Tilia \u00d7 europaea* (Common Lime): Upright trunks with prominent basal epicormic burrs, arching secondary scaffold limbs, pyramidal-to-ovoid crown architecture.\n- *Betula pendula* (Silver Birch): Slender pendulous branchlets, peeling white papery bark with dark diamond-shaped fissures, narrow columnar habit.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "Central monumental verticality anchored by the Melville Monument: a 42-metre fluted ashlar Roman Doric column set upon a massive square stepped rusticated plinth, terminating in an abacus, circular drum pedestal, and colossal draped stone statuary. Surrounding urban fabric comprises an orthogonal New Town perimeter: \n- East and North flanks: 4-to-5-storey classical Georgian palazzo blocks and Palladian pavilions with channelled rustication at ground tier, ashlar piano nobile with pedimented window aedicules, 6-over-6 timber sash fenestration, continuous moulded stringcourses, and mansard slate roofs punctuated by dormers and ashlar chimney stacks.\n- Distance south-east: Victorian-Edwardian eclectic baronial clock tower rising with stepped bartizans, stone balustrades, and a domed cupola.\n- South-east flank: Modern commercial 6-storey civic office block defined by a rigid rectilinear grid of continuous vertical extruded stone/aluminium composite piers and inset glazing.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1948613332386016,
+          55.954660121583075
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-12-21T12:00:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 177.52,
+        "solar_elevation_deg": 10.59,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 4500,
+        "ambient_illuminance_lux": 35000
+      }
+    }
+  ]
+}

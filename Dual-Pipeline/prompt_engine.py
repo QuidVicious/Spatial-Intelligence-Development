@@ -48,11 +48,45 @@ def _build_task_header(eco_clause: str) -> str:
         "Keep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\n"
         "MANDATORY TRANSFORMATION RULES:\n"
         "1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n"
-        "2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n"
+        "2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, scaffolding, construction hoardings, building wraps, and temporary street clutter from the seed image. Add no signage, logos, or lettering that is not part of the permanent fabric. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n"
         "3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n"
         f"   {eco_clause}\n"
         "4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting."
     )
+
+
+def _render_gemini_print(domain_result: Any, lighting_state: Any) -> Dict[str, Any]:
+    """
+    PRINT mode: the seed is an approved keystone plate, not photogrammetry.
+    Deliberately short and restrictive: only the canopy and the light may change.
+    Longer prompts pull the model toward redrawing, which is exactly what a print must not do.
+    """
+    phen = (getattr(domain_result, "phenology", "") or "").strip() or "Keep every tree canopy exactly as it is."
+    light = (getattr(lighting_state, "prompt_directive", "") or "").strip()
+    # The shadow-overwrite rule describes a sunlit photogrammetry seed; a keystone plate has no cast shadows.
+    light = "\n".join(l for l in light.splitlines() if "SHADOW OVERWRITE RULE" not in l).strip()
+    prompt = (
+        "[TASK: SEASONAL AND LIGHTING EDIT OF AN APPROVED PLATE]\n"
+        "This image is a finished, approved photograph of a real place. Edit it; do not redraw it.\n\n"
+        "KEEP EXACTLY AS THEY ARE, in the same positions, sizes, and proportions: every building, facade, window, "
+        "door, roofline, chimney, monument, statue, railing, kerb, paving joint, road marking, lamp, and every tree "
+        "trunk and branch. Add no objects and remove none. Add no people, vehicles, scaffolding, signage, logos, or lettering.\n\n"
+        "CHANGE ONLY THESE TWO THINGS:\n"
+        f"1. TREE CANOPY for this date, grown on the existing branch structure: {phen}\n"
+        f"2. LIGHT AND WEATHER:\n{light}\n\n"
+        "Sharp focus near to far. No blur, no vignetting."
+    )
+    return {
+        "prompt": prompt,
+        "metadata": {
+            "renderer": "GEMINI",
+            "mode": "PRINT",
+            "final_char_count": len(prompt),
+            "doc_trimmed": False,
+            "eco_trimmed": False,
+            "has_botanical_phenology": bool(getattr(domain_result, "phenology", "")),
+        },
+    }
 
 
 def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) -> Dict[str, Any]:
@@ -66,7 +100,11 @@ def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) 
     doc_prompt = (getattr(domain_result, "documentary_prompt", "") or "").strip()
     if not doc_prompt:
         doc_prompt = "Documentary-grade architectural survey with authentic regional lithics, intact fenestration grids, and planar vertical rectification."
-    botanical_text = (getattr(domain_result, "botanical_ecology", "") or "").strip()
+    # Split runs carry this date's canopy state in `phenology`; pre-split runs
+    # carry it inside botanical_ecology, so fall back to that.
+    botanical_text = (
+        getattr(domain_result, "phenology", "") or getattr(domain_result, "botanical_ecology", "") or ""
+    ).strip()
     light_directive = (getattr(lighting_state, "prompt_directive", "Clear sky daylight with natural directional illumination.") or "").strip()
 
     lighting_block = f"[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\n{light_directive}"
@@ -297,7 +335,12 @@ def _render_marble(domain_result: Any, lighting_state: Any, telemetry: Any = Non
         ("THE PLACE", scrub_photographic(_flatten(getattr(domain_result, "documentary_prompt", "") or "")), 3),
         ("STRUCTURE AND MASSING", scrub_photographic(_flatten(getattr(domain_result, "architectural_analysis", "") or "")), 3),
         ("SURFACES AND MATERIALS", scrub_photographic(_flatten(getattr(domain_result, "material_and_lithics", "") or "")), 3),
-        ("VEGETATION", scrub_photographic(_flatten(getattr(domain_result, "botanical_ecology", "") or "")), 1),
+        ("VEGETATION", scrub_photographic(_flatten(
+            " ".join(t for t in (
+                getattr(domain_result, "botanical_ecology", "") or "",
+                getattr(domain_result, "phenology", "") or "",
+            ) if t)
+        )), 1),
     ]
     variable = [(h, b, w) for h, b, w in variable if b]
 
@@ -371,12 +414,18 @@ def compile_conditioning(
     target_model: Optional[str] = None,
     telemetry: Any = None,
     marble_budget: int = 2000,
-    gemini_budget: int = 3200
+    gemini_budget: int = 3200,
+    print_mode: bool = False
 ) -> CompiledPrompt:
 
     provider = target_provider.upper()
 
-    if provider == "WORLD_LABS":
+    if print_mode:
+        if provider == "WORLD_LABS":
+            raise ValueError("Prints from a keystone are Gemini-only.")
+        rendered = _render_gemini_print(domain_result, lighting_state)
+        default_model = "gemini-3.1-flash-image"
+    elif provider == "WORLD_LABS":
         rendered = _render_marble(domain_result, lighting_state, telemetry, budget=marble_budget)
         default_model = "marble-1.1-plus"
     else:

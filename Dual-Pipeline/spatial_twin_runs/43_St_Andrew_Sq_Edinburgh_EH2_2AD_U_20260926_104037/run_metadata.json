@@ -1,0 +1,96 @@
+{
+  "timestamp": "20260926_104037",
+  "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 20147.23,
+  "telemetry": {
+    "latitude": 55.954660121583075,
+    "longitude": -3.1948613332386016,
+    "altitude_agl": 10.710834600938881,
+    "heading": 120.07437041175145,
+    "pitch": -11.57248993094595,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.95389215653144,
+    "target_longitude": -3.1924976318046863,
+    "target_distance_m": 174.1672975566548,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-10-21",
+    "time_of_day": 14.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 147.14941705095674,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "REPLAY",
+    "saved_view_id": "st-andresw-arthurs-seat-horizon",
+    "saved_view_name": "St Andresw Arthurs Seat horizon",
+    "replay_of": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100203",
+    "scene_text_edited": false,
+    "mode": "PRINT",
+    "keystone_candidate": false,
+    "keystone_print_of": "st-andresw-arthurs-seat-horizon",
+    "keystone_run": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100203",
+    "phenology_date": "2026-10-21",
+    "phenology_source": "cache",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 174.1672975566548,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-10-21T13:00:00+00:00",
+    "solar_azimuth": 196.7,
+    "solar_elevation": 22.34,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K Late afternoon raking sunlight with warm golden highlights (hard raking side-light from camera-right, Sun Azimuth 196.7\u00b0, Elevation 22.3\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.953892",
+      "-3.192498"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false,
+    "loaded_from": "json"
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-26T17:40:37.343980Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: SEASONAL AND LIGHTING EDIT OF AN APPROVED PLATE]\nThis image is a finished, approved photograph of a real place. Edit it; do not redraw it.\n\nKEEP EXACTLY AS THEY ARE, in the same positions, sizes, and proportions: every building, facade, window, door, roofline, chimney, monument, statue, railing, kerb, paving joint, road marking, lamp, and every tree trunk and branch. Add no objects and remove none. Add no people, vehicles, scaffolding, signage, logos, or lettering.\n\nCHANGE ONLY THESE TWO THINGS:\n1. TREE CANOPY for this date, grown on the existing branch structure: *Acer pseudoplatanus*: thinning canopy, mottled yellow-brown leaves shedding rapidly, persistent samaras.\n*Tilia \u00d7 europaea*: sparse dull yellow foliage, heavy leaf fall exposing inner limbs.\n*Ulmus glabra*: yellow-brown leaves defoliating, bare outer branch network visible.\n*Betula pendula*: thin canopy of bright yellow leaves, weeping bare twigs prominent.\n2. LIGHT AND WEATHER:\nSOLAR RELIGHTING DIRECTIVE (4500K Late afternoon raking sunlight with warm golden highlights):\n- SUN POSITION IN SCREEN SPACE: Sun is at the RIGHT edge of the frame, roughly level with the view direction (True Azimuth 196.7\u00b0, Elevation 22.3\u00b0).\n- FACADE ILLUMINATION: camera-facing facades receive grazing light and read as half-lit; right-facing walls are brightly lit and left-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long lateral cast shadows run horizontally across the ground to the LEFT.\n- CAST SHADOW LENGTH: Every cast shadow is 2.4 times as long as the height of the object casting it. A 100 m tower casts a 243 m shadow. Apply this ratio to every object in the scene.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\nSharp focus near to far. No blur, no vignetting.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "mode": "PRINT",
+    "final_char_count": 1763,
+    "doc_trimmed": false,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

@@ -105,6 +105,153 @@
       },
       "created_utc": "2026-09-24T21:20:23+00:00",
       "updated_utc": "2026-09-24T21:20:23+00:00"
+    },
+    {
+      "id": "the-linen-bank-69-george",
+      "name": "The Linen Bank, 69 George",
+      "note": null,
+      "camera": {
+        "x": 3573680.157260855,
+        "y": -199858.48488721342,
+        "z": 5261608.297206967,
+        "latitude": 55.952843123665644,
+        "longitude": -3.2009389096470597,
+        "height_m": 125.3973890113221,
+        "heading_deg": 48.79667255192963,
+        "pitch_deg": 2.243659577436639,
+        "roll_deg": 0.00011019547869966274,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-25T22:15:11+00:00",
+      "updated_utc": "2026-09-25T22:15:11+00:00"
+    },
+    {
+      "id": "bruntsfield-west-view-on-greess-at-spire",
+      "name": "Bruntsfield west view on greess at spire",
+      "note": null,
+      "camera": {
+        "x": 3574934.2096353667,
+        "y": -200072.74605561048,
+        "z": 5260776.118841334,
+        "latitude": 55.93925192919587,
+        "longitude": -3.2032416565140474,
+        "height_m": 143.7701080077943,
+        "heading_deg": 352.08066540842776,
+        "pitch_deg": -0.49459514281111255,
+        "roll_deg": 9.317946515029001e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-25T22:17:08+00:00",
+      "updated_utc": "2026-09-25T22:17:08+00:00"
+    },
+    {
+      "id": "st-andrews-street-level-scots-mem-right-frame",
+      "name": "St Andrews, street level Scots Mem right frame",
+      "note": null,
+      "camera": {
+        "x": 3573511.607009987,
+        "y": -199456.13283444266,
+        "z": 5261733.421911516,
+        "latitude": 55.954891661288386,
+        "longitude": -3.1946585499133633,
+        "height_m": 122.29068893994716,
+        "heading_deg": 136.93551583994622,
+        "pitch_deg": 3.3528420777115855,
+        "roll_deg": 4.0887113549026955e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-25T22:21:22+00:00",
+      "updated_utc": "2026-09-25T22:21:22+00:00"
+    },
+    {
+      "id": "st-andrews-low-contrasting-archi",
+      "name": "St. Andrews low contrasting archi",
+      "note": null,
+      "camera": {
+        "x": 3573513.476634727,
+        "y": -199322.67330862733,
+        "z": 5261743.423045604,
+        "latitude": 55.95498338625207,
+        "longitude": -3.192523705315883,
+        "height_m": 127.46022843891967,
+        "heading_deg": 203.78912102949582,
+        "pitch_deg": 8.830862903020206,
+        "roll_deg": 0.00034034096973198824,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-25T23:55:44+00:00",
+      "updated_utc": "2026-09-25T23:55:44+00:00"
+    },
+    {
+      "id": "st-andrews-ariel-contrasting-archi",
+      "name": "St. Andrews ariel contrasting archi",
+      "note": null,
+      "camera": {
+        "x": 3573507.1981989727,
+        "y": -199322.64444944146,
+        "z": 5261803.720556154,
+        "latitude": 55.95533322769255,
+        "longitude": -3.192528841505891,
+        "height_m": 173.91235201793765,
+        "heading_deg": 196.10245689399713,
+        "pitch_deg": -15.094739896494286,
+        "roll_deg": 359.99988417229997,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-25T23:56:17+00:00",
+      "updated_utc": "2026-09-25T23:56:17+00:00"
+    },
+    {
+      "id": "st-andrews-aerial-for-mod-old-contrast-and-season",
+      "name": "St Andrews: Aerial for mod/old contrast and season",
+      "note": null,
+      "camera": {
+        "x": 3573507.1981989727,
+        "y": -199322.64444944146,
+        "z": 5261803.720556154,
+        "latitude": 55.95533322769255,
+        "longitude": -3.192528841505891,
+        "height_m": 173.91235201793765,
+        "heading_deg": 196.10245689399713,
+        "pitch_deg": -15.094739896494286,
+        "roll_deg": 359.99988417229997,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-26T00:07:32+00:00",
+      "updated_utc": "2026-09-26T00:07:32+00:00"
+    },
+    {
+      "id": "st-andresw-arthurs-seat-horizon",
+      "name": "St Andresw Arthurs Seat horizon",
+      "note": null,
+      "camera": {
+        "x": 3573552.1119898846,
+        "y": -199471.08067738937,
+        "z": 5261748.46160791,
+        "latitude": 55.954660121583075,
+        "longitude": -3.1948613332386016,
+        "height_m": 157.86025165189562,
+        "heading_deg": 120.07437041175145,
+        "pitch_deg": -11.57248993094595,
+        "roll_deg": 5.8684755942922824e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "created_utc": "2026-09-26T16:53:39+00:00",
+      "updated_utc": "2026-09-26T16:53:39+00:00"
     }
   ]
 }

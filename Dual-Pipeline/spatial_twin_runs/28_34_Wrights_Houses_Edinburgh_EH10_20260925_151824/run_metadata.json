@@ -1,0 +1,95 @@
+{
+  "timestamp": "20260925_151824",
+  "address": "28 & 34 Wright's Houses, Edinburgh EH10 4HR, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 15783.7,
+  "telemetry": {
+    "latitude": 55.93925192919587,
+    "longitude": -3.2032416565140474,
+    "altitude_agl": 6.072292287227526,
+    "heading": 352.08066540842776,
+    "pitch": -0.49459514281111255,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.940008135924714,
+    "target_longitude": -3.203429083678939,
+    "target_distance_m": 85.01241189178624,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-25",
+    "time_of_day": 12.0,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "OVERCAST",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 137.69781572056678,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "TARGET",
+    "saved_view_id": "bruntsfield-west-view-on-greess-at-spire",
+    "saved_view_name": "Bruntsfield west view on greess at spire",
+    "replay_of": null,
+    "scene_text_edited": false,
+    "phenology_date": "2026-12-25",
+    "phenology_source": "generated",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 85.01241189178624,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "OVERCAST",
+    "timestamp_utc": "2026-12-25T12:00:00+00:00",
+    "solar_azimuth": 177.08,
+    "solar_elevation": 10.62,
+    "color_temperature_k": 4500,
+    "lux": 35000,
+    "natural_description": "Calibrated 4500K diffuse daylight under OVERCAST conditions (Sun Azimuth 177.1\u00b0, Elevation 10.6\u00b0)."
+  },
+  "domain_metadata": {
+    "address": "28 & 34 Wright's Houses, Edinburgh EH10 4HR, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.940008",
+      "-3.203429"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-25T22:18:24.221679Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   *Ulmus glabra*: Fully leafless canopy exposing arching branch architecture with tiny, dark rounded flower buds along bare twigs.\n*Acer pseudoplatanus*: Completely bare, showing stout spreading framework, plump green winter buds, and sparse persistent samaras.\n*Tilia \u00d7 europaea*: Entirely leafless, displaying intricate twig tracery, red dormant buds, and dense trunk epicormics.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nATMOSPHERIC LIGHTING (OVERCAST):\nFully overcast. The sun is not visible and casts no shadow anywhere in the scene. Soft omnidirectional 6500K skylight from a flat pale grey cloud deck. Zero directional cast shadows; render only ambient contact occlusion under cornices, sills, and ledges. Low overall contrast, muted colour saturation, no warm highlights.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate. The reference plate was captured in direct sun; this scene has none. Render all previously shadowed ground and facades as evenly lit under overcast conditions, with no directional shadow anywhere.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nOpen expanse of Bruntsfield Links park turf crossed by a macadam pedestrian footpath with granite kerb edges. Along the perimeter road of Wright's Houses stands a continuous masonry streetscape anchored by the towering High Victorian Gothic Barclay Viewforth Church, featuring a 76-metre faceted octagonal sandstone spire adorned with gabled lucarnes, multi-tiered stone pinnacles, steeply pitched Ballachulish slate roofs, and deep-relief arched stone tracery. Adjoining residential fabric comprises four- and five-storey Scottish tenements of squared coursed Craigleith blonde sandstone rubble, ashlar dressings, canted bay projections, crow-stepped gables, and vertical timber sash-and-case fenestration, juxtaposed against modern infill blocks of reconstituted stone and brick. In the far distance rises the volcanic basalt precipice of Castle Rock supporting the stone battlements, ramparts, and masonry pavilions of Edinburgh Castle. Mature parkland trees, including Ulmus glabra and Acer pseudoplatanus, display heavy upright trunks and broad architectural crown structures along the park verges. Masonry surfaces exhibit authentic historical weathering, with localized coal-smoke carbon crusting in sheltered mouldings and rain-washed sandstone relief.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 3649,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2072,
+    "doc_chars": 1260,
+    "doc_trimmed": false,
+    "eco_chars": 379,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}

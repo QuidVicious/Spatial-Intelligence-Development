@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "address": "6 St Andrew Sq, Edinburgh EH2 2BD, UK",
+    "spatial_mode": "3D_TILES",
+    "schema_version": "7-Strata-v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "stratum_1_observer_frame",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "observer_frame",
+        "spatial_mode": "3D_TILES",
+        "camera": {
+          "altitude_m_agl": 51.5,
+          "pitch_deg": -11.9,
+          "heading_deg": 191.1,
+          "fov_deg": 60.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_2_subterranean_geology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "subterranean_geology",
+        "foundation_analysis": "Subterranean foundation seated on the Carboniferous sedimentary sequence of the Midland Valley, interrupted by Early Carboniferous volcanic plugs and sills (olivine basalt and dolerite intrusions of Castle Rock and Calton Hill). Primary structural lithic: pale grey to buff Carboniferous Craigleith and Hailes sandstone (quartz-rich, silica-cemented, high crushing strength), interspersed with Binny and Cullalo sandstones. Base courses and road paving composed of dark grey microgabbro/dolerite whinstone and Peterhead/Aberdeenshire granite setts. Mortar matrix throughout historic masonry consists of traditional non-hydraulic to feebly hydraulic hot-mixed lime mortars with coarse quartz and river-gravel aggregates; modern infill structures seated on reinforced Portland cement concrete pile foundations into stiff glacial till."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_3_ground_surface",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "ground_surface",
+        "primary_surfacing": "Engineered roadway and paved pedestrian curbs",
+        "wear_characteristics": "Authentic environmental patina and drainage grading"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_4_landscape_ecology",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "landscape_ecology",
+        "botanical_analysis": "Urban parkland canopy composed of mature broadleaf specimens:\n- *Tilia cordata* (Small-leaved Lime): Upright, dense pyramidal to rounded crown structures with extensive multi-tiered twiggy branching, supported on deeply fissured, dark grey single trunks.\n- *Acer pseudoplatanus* (Sycamore): Spreading, domed canopies with heavy horizontal scaffold limbs, scaly grey-brown bark plates.\n- *Ulmus glabra* (Wych Elm): Vase-shaped branching architecture with high arching upper scaffolds and rough, furrowed bark.",
+        "foliage_rectification": "Disambiguated from masonry mesh"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_5_built_environment",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "built_environment",
+        "architectural_summary": "- Melville Monument: 46-metre-tall Roman Doric fluted freestone column raised on an elevated rusticated pedestal and stepped square plinth, surmounted by a stepped capital, drum pedestal, and colossal carved stone statue.\n- St Andrew Square Gardens: Concentric elliptical plan with radiating gravel circulation paths, low stone retaining kerbs, and a low-profile glass-and-steel circular pavilion structure with a radial ribbed conical roof.\n- Perimeter Square Fabric: Heterogeneous multi-era street wall. West and East flanks feature 4-to-6-storey Georgian and Victorian Classical palazzo blocks with rusticated basements, ashlar piano nobiles, molded architraves, pedimented window headers, balustraded parapets, and slate mansard roofs with pedimented dormers. Interspersed with late-20th and early-21st-century commercial infill: multi-storey planar curtain-wall structures with expressed vertical aluminum fins, regular grid fenestration, recessed glazed double-height loggias, and flat membrane roofs.\n- Urban Horizon: Rising south-facing slope of the Old Town ridge featuring high-density 6-to-10-storey historic rubble and ashlar tenements with crow-stepped gables, punctuated by slender Gothic Revival stone spires (including the Tolbooth Kirk spire), terminating at the western precipice of Castle Rock crowned by the ashlar ramparts and fortified curtain walls of Edinburgh Castle.",
+        "structures": [
+          {
+            "name": "Primary Facade",
+            "storeys": 2,
+            "height_m": 7.5,
+            "roof_geometry": "pitched / parapet",
+            "facade_material": "authentic regional masonry",
+            "planar_rectification": "ENFORCED"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_6_dynamic_elements",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.192639325250222,
+          55.95532940911465
+        ]
+      },
+      "properties": {
+        "stratum": "dynamic_elements",
+        "transient_decluttering": "ENFORCED",
+        "vehicles": "NONE",
+        "pedestrians": "NONE",
+        "transient_clutter": "STRIPPED",
+        "permanent_civil_fabric": "PRESERVED"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stratum_7_atmospheric_state",
+      "geometry": null,
+      "properties": {
+        "stratum": "atmospheric_state",
+        "lighting_rig": "SOLAR_EPHEMERIS",
+        "timestamp_utc": "2026-09-25T11:00:00+00:00",
+        "weather_state": "OVERCAST",
+        "solar_azimuth_deg": 160.9,
+        "solar_elevation_deg": 32.03,
+        "shadow_azimuth_deg": null,
+        "color_temperature_k": 5400,
+        "ambient_illuminance_lux": 60000
+      }
+    }
+  ]
+}

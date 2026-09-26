@@ -138,6 +138,9 @@ def archive_run(
         f.write(f"## 4. Landscape Ecology & Botanical Canopy\n{domain_result.botanical_ecology}\n\n")
         f.write(f"## 5. Static Civil Fabric Decluttering\n{domain_result.static_decluttering_summary}\n\n")
         f.write(f"## 6. Synthesized Documentary Prompt\n```text\n{domain_result.documentary_prompt}\n```\n")
+        phen = getattr(domain_result, "phenology", "") or ""
+        if phen:
+            f.write(f"\n## 7. Seasonal Phenology (this frame's date)\n{phen}\n")
 
     # 4.5 Save the domain result as data, so a replay can reload it exactly.
     # (The markdown above is for reading; this file is for the pipeline.)

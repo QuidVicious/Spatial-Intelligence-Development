@@ -1,0 +1,96 @@
+{
+  "timestamp": "20260925_142929",
+  "address": "8 Ainslie Pl, Edinburgh EH3 6AS, UK",
+  "view_scope": "FRUSTUM",
+  "provider": "GEMINI",
+  "model_name": "gemini-3.1-flash-image",
+  "latency_ms": 14890.51,
+  "telemetry": {
+    "latitude": 55.953365569624125,
+    "longitude": -3.2101492786067856,
+    "altitude_agl": 2.129082372125197,
+    "heading": 290.4793532605116,
+    "pitch": 5.461732396456734,
+    "fov": 59.99999999999999,
+    "tile_mode": "3D_TILES",
+    "target_latitude": 55.953508128772356,
+    "target_longitude": -3.21082964101276,
+    "target_distance_m": 45.575685928663496,
+    "target_method": "PICK_POSITION"
+  },
+  "settings": {
+    "provider": "GEMINI",
+    "target_model": "gemini-3.1-flash-image",
+    "date": "2026-12-25",
+    "time_of_day": 14.75,
+    "timestamp_utc": null,
+    "lighting_mode": "SOLAR",
+    "weather_mode": "SUNNY",
+    "altitude_method": "TILESET_SAMPLE",
+    "ground_elevation_m": 106.03256552282402,
+    "view_scope": "FRUSTUM",
+    "gemini_budget": 4400,
+    "marble_input_mode": null,
+    "disable_recaption": true,
+    "target_model_requested": "gemini-3.1-flash-image",
+    "use_search_grounding": false,
+    "address_source": "REPLAY",
+    "saved_view_id": "ainslie-place-gardens-view-of-7",
+    "saved_view_name": "Ainslie Place Gardens view of #7",
+    "replay_of": "8_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20260925_142601",
+    "scene_text_edited": false,
+    "phenology_date": "2026-12-25",
+    "phenology_source": "source-run",
+    "target_method": "PICK_POSITION",
+    "target_distance_m": 45.575685928663496,
+    "pano_seed_supplied": false,
+    "screenshot_supplied": true
+  },
+  "lighting_resolved": {
+    "mode": "SOLAR",
+    "weather": "SUNNY",
+    "timestamp_utc": "2026-12-25T14:45:00+00:00",
+    "solar_azimuth": 214.61,
+    "solar_elevation": 4.32,
+    "color_temperature_k": 3000,
+    "lux": 12000,
+    "natural_description": "Calibrated 3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows (hard raking side-light from camera-left, Sun Azimuth 214.6\u00b0, Elevation 4.3\u00b0). Crisp clear sky with direct solar exposure."
+  },
+  "domain_metadata": {
+    "address": "8 Ainslie Pl, Edinburgh EH3 6AS, UK",
+    "invariant_split": true,
+    "split_version": 1,
+    "coordinates": [
+      "55.953508",
+      "-3.210830"
+    ],
+    "address_source": "TARGET",
+    "tile_mode": "3D_TILES",
+    "view_scope": "FRUSTUM",
+    "search_grounding": false,
+    "loaded_from": "json"
+  },
+  "provenance": {
+    "git": {
+      "sha": "5abc3b26c6cac2c41fce841aba13268dfc138eb9",
+      "branch": "main",
+      "dirty": true,
+      "short_sha": "5abc3b26"
+    },
+    "archived_at_utc": "2026-09-25T21:29:30.050945Z"
+  },
+  "system_instruction": null,
+  "compiled_prompt": "[TASK: ARCHITECTURAL RELIGHTING & STATIC RECONSTRUCTION]\nTransform the reference photogrammetry plate into a razor-sharp, photorealistic architectural image.\nKeep the reference plate's exact composition: every edge, horizon line, and object position stays where it is.\n\nMANDATORY TRANSFORMATION RULES:\n1. PLANAR RECTIFICATION & GEOMETRY LOCK: Treat the reference image as an immutable spatial coordinate frame. Eliminate all 3D mesh polygon wobble, melted facades, and distorted rooflines. Plumb all vertical walls to true gravity vertical. Render the specific materials, coursing, window types, and roof forms named in the SCENE section below with sharp, correct detail.\n2. STATIC DECLUTTERING (MANDATORY): COMPLETELY ERASE all transient vehicles, parked cars, delivery vans, pedestrians, and temporary street clutter from the seed image. Repaint the ground plane with the authentic surfacing, kerbs, and pavement named in the SCENE section below.\n3. BOTANICAL PHENOLOGY & CANOPY INTEGRITY: Overwrite all raw 3D mesh blob foliage with authentic seasonal canopy structures matching the target date. Zero green summer foliage during dormant/autumn/winter periods:\n   *Acer pseudoplatanus*: Completely bare of leaves; coarse branch framework exposed with plump greenish dormant buds; occasional sparse weathered brown samaras persisting aloft.\n*Tilia \u00d7 europaea*: Completely bare of leaves; dense fine-twigged crown and basal epicormics exposed; small reddish-brown winter buds with rare dried bract-attached nutlets.\n4. OPTICAL DEPTH: Sharp focus across the entire frame, near to far. No blur, no depth-of-field falloff, no vignetting.\n\n[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\nSOLAR RELIGHTING DIRECTIVE (3000K Dusk / late sunset low-angle amber golden hour with elongated cast shadows):\n- SUN POSITION IN SCREEN SPACE: Sun is at the LEFT edge of the frame, roughly level with the view direction (True Azimuth 214.6\u00b0, Elevation 4.3\u00b0).\n- FACADE ILLUMINATION: camera-facing facades receive grazing light and read as half-lit; left-facing walls are brightly lit and right-facing walls are in deep shadow.\n- CAST SHADOW DIRECTION: long lateral cast shadows run horizontally across the ground to the RIGHT.\n- CAST SHADOW LENGTH: Cast shadows are more than twelve times the height of the object casting them: extremely long, running off the edge of the frame.\n- SHADOW OVERWRITE RULE: MANDATORY: Erase every cast shadow present in the reference plate before relighting. Render all previously shadowed ground and facades as if that shadow never existed, then cast entirely new shadows so that long lateral cast shadows run horizontally across the ground to the RIGHT. Every shadow must be angled toward the RIGHT; a shadow running straight up or straight down the frame is wrong. Do not retain, tint, or reuse any shadow from the reference plate.\n- WEATHER/SKY: Crisp clear sky with direct solar exposure.\n\n[SCENE GEOMETRY & AUTHENTIC LITHICS]\nRegency neoclassical circus crescent facade constructed from fine-grained, pale buff Craigleith quartz-arenite ashlar sandstone. Four-storey elevation over continuous sunken basement lightwells fronted by black wrought-iron spearhead railings. Ground floor detailed in deep horizontal channeled rustication with round-headed entrance doorways featuring radial timber fanlights and six-panel doors. Piano nobile and upper floors defined by monumental attached fluted Ionic pilasters supporting a continuous frieze, molded dentil cornice, and ashlar blocking course. Fenestration strictly arranged in planar grids of twelve-pane and six-over-six timber sash-and-case windows with fine sandstone surrounds and continuous string courses. Pitched roofs clad in Scottish slate with square ashlar party-wall chimney stacks surmounted by cylindrical terracotta chimney cans. Foreground comprises the central circus garden lawn of fine turf, bordered by a dressed whinstone kerb and Caithness flagstone perimeter footway meeting an asphalt roadway. Garden populated by mature Acer pseudoplatanus and Tilia \u00d7 europaea trees characterized by massive spreading crowns, stout fissured trunks, and dense ascending branch scaffolds. Masonry exhibits authentic differential historic coal-smoke darkening within entablature recesses and mineral-washed blonde stone highlights across exposed vertical surfaces.",
+  "prompt_metadata": {
+    "renderer": "GEMINI",
+    "final_char_count": 4328,
+    "budget": 4400,
+    "over_budget": false,
+    "skeleton_chars": 2649,
+    "doc_chars": 1392,
+    "doc_trimmed": false,
+    "eco_chars": 349,
+    "eco_trimmed": false,
+    "has_botanical_phenology": true
+  }
+}
