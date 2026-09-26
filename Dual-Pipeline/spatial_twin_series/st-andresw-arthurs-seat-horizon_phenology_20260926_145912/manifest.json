@@ -1,0 +1,130 @@
+{
+  "id": "st-andresw-arthurs-seat-horizon_phenology_20260926_145912",
+  "kind": "phenology",
+  "view_id": "st-andresw-arthurs-seat-horizon",
+  "view_name": "St Andresw Arthurs Seat horizon",
+  "keystone_run": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20260926_100203",
+  "created_utc": "2026-09-26T21:59:12+00:00",
+  "status": "done",
+  "spec": {
+    "view_id": "st-andresw-arthurs-seat-horizon",
+    "kind": "phenology",
+    "start_date": "2026-09-01",
+    "end_date": "2026-10-31",
+    "step": "week",
+    "dates": null,
+    "time_mode": "fixed",
+    "time_fixed": 14.85,
+    "time_start": 13.0,
+    "time_end": 17.0,
+    "time_step_hours": 1.0,
+    "weather_mode": "AUTO",
+    "lighting_mode": "SOLAR",
+    "gemini_budget": 4400,
+    "target_model": "gemini-3.1-flash-image",
+    "disable_recaption": true,
+    "confirm_large": false
+  },
+  "frames": [
+    {
+      "n": 1,
+      "status": "done",
+      "date": "2026-09-01",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:12+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: Full dense canopy, dark green with minor early browning and tar spot; mature winged samaras drying brown.\n*Tilia × europaea*: Full foliage, dull green with slight yellowing and aphid sooty mould; cymes with pale bracts bearing hard nutlets.\n*Ulmus glabra*: Full canopy, deep green, coarse texture; no fruits.\n*Betula pendula*: Light pendulous canopy, bright green with initial yellowing on outer twigs; disintegrating female catkins shed seed.\n*Lolium perenne*: Intact, green, vegetative.\n*Poa pratensis*: Dense, green, mown vegetative turf.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:13+00:00"
+    },
+    {
+      "n": 2,
+      "status": "done",
+      "date": "2026-09-08",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:13+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: full canopy, dull dark green with slight yellowing and tar spots, paired samaras hanging.\n*Tilia × europaea*: dense canopy, fading yellow-green with minor leaf drop, pale fruiting bracts visible.\n*Ulmus glabra*: full canopy, deep green turning dull, no fruit.\n*Betula pendula*: light canopy, green flecked with yellow, ripe catkins.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:18+00:00"
+    },
+    {
+      "n": 3,
+      "status": "done",
+      "date": "2026-09-15",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:18+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: full canopy, dull green with brown patches, ripe brown samaras. *Tilia × europaea*: dense foliage yellowing at edges, dried bracts with nutlets. *Ulmus glabra*: full canopy fading to lime-yellow, slight leaf drop. *Betula pendula*: light canopy, leaves turning yellow with early shedding, mature catkins.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:22+00:00"
+    },
+    {
+      "n": 4,
+      "status": "done",
+      "date": "2026-09-22",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:22+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: dense canopy, dull green yellowing with tar spots, brown samaras shedding.\n*Tilia × europaea*: moderately dense, yellowing foliage, dried nutlets on bracts.\n*Ulmus glabra*: full canopy, foliage yellowing, slight leaf fall.\n*Betula pendula*: thin weeping canopy, bright yellow foliage shedding, catkins disintegrating.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:27+00:00"
+    },
+    {
+      "n": 5,
+      "status": "done",
+      "date": "2026-09-29",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:27+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: dense canopy, dull green turning yellow-brown, brown samaras hanging.\n*Tilia × europaea*: thinning canopy, yellowing leaves, shedding dried bracts/nutlets.\n*Ulmus glabra*: full canopy, matte green with early yellowing, minor leaf fall.\n*Betula pendula*: sparse weeping canopy, leaves turning bright yellow and falling, catkins present.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:31+00:00"
+    },
+    {
+      "n": 6,
+      "status": "done",
+      "date": "2026-10-06",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:31+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: thinning canopy, dull yellow-brown foliage with tar spots, samaras shedding.\n*Tilia × europaea*: pale yellowing leaves, light leaf drop, dry bract-nutlets visible.\n*Ulmus glabra*: dull yellowing foliage, early shedding exposing crown tips.\n*Betula pendula*: open canopy, yellowing leaves actively falling, seed catkins present.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:35+00:00"
+    },
+    {
+      "n": 7,
+      "status": "done",
+      "date": "2026-10-13",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:35+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: thinning canopy, yellow-brown foliage with tar spots, moderate leaf fall, brown samaras.\n*Tilia × europaea*: pale yellowing leaves, active defoliation exposing outer twigs.\n*Ulmus glabra*: thinning dull yellow canopy, upper limbs exposed.\n*Betula pendula*: sparse golden leaves, pendulous branch structure showing.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:40+00:00"
+    },
+    {
+      "n": 8,
+      "status": "done",
+      "date": "2026-10-20",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:40+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: thinning yellow-brown canopy, active leaf drop, upper limbs exposed, brown samaras persisting.\n*Tilia × europaea*: sparse yellow-brown foliage, heavy defoliation revealing crown framework.\n*Ulmus glabra*: patchy russet-gold leaves, advanced leaf fall.\n*Betula pendula*: open golden canopy, bare weeping tips, shedding catkins.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:45+00:00"
+    },
+    {
+      "n": 9,
+      "status": "done",
+      "date": "2026-10-27",
+      "time": null,
+      "started_utc": "2026-09-26T21:59:45+00:00",
+      "error": null,
+      "phenology": "*Acer pseudoplatanus*: thinning yellow-brown canopy, active leaf fall, heavy limbs exposed, sparse brown samaras.\n*Tilia × europaea*: sparse dull-yellow foliage shedding fast, branch network visible.\n*Ulmus glabra*: mostly bare, few yellow-brown leaves dropping, coarse framework exposed.\n*Betula pendula*: thin canopy, golden leaves falling, bare weeping twigs.",
+      "phenology_source": "generated",
+      "finished_utc": "2026-09-26T21:59:49+00:00"
+    }
+  ],
+  "finished_utc": "2026-09-26T21:59:49+00:00"
+}

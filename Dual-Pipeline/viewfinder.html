@@ -1248,17 +1248,32 @@
         return `<tr><td style="padding: 6px 10px; white-space: nowrap; vertical-align: top; color: var(--accent-cyan);">${f.date}${fmtFrameTime(f.time)}</td>` +
                `<td style="padding: 6px 10px; vertical-align: top;">${txt}</td></tr>`;
       }).join('');
+      const esc = t => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      let calHtml = '';
+      const cal = m.calendar;
+      if (cal && cal.species) {
+        const cols = [['budburst', 'Bud break'], ['full_leaf', 'Full leaf'], ['colour_onset', 'Colour onset'], ['peak_colour', 'Peak colour'], ['half_fall', 'Half fallen'], ['bare', 'Bare']];
+        const head = '<tr><th style="padding: 5px 8px; text-align: left;">Plant</th>' + cols.map(c => `<th style="padding: 5px 8px; text-align: left;">${c[1]}</th>`).join('') + '</tr>';
+        const body = cal.species.map(sp => `<tr><td style="padding: 5px 8px; font-style: italic;">${esc(sp.name)}</td>` +
+          (sp.habit === 'evergreen'
+            ? `<td colspan="6" style="padding: 5px 8px; color: var(--text-muted);">evergreen: ${esc(sp.evergreen_look)}</td>`
+            : cols.map(c => `<td style="padding: 5px 8px;">${esc((sp.milestones || {})[c[0]])}</td>`).join('')) + '</tr>').join('');
+        calHtml = `<div style="color: var(--text-muted); font-size: 11px; margin: 0 0 6px;">Phenology calendar (${esc(m.calendar_source)}): typical key dates, MM-DD. ${esc(cal.climate_note)}` +
+          (cal.dropped && cal.dropped.length ? ` Dropped: ${esc(cal.dropped.join(', '))}.` : '') + `</div>` +
+          `<div style="overflow: auto; max-width: 1100px; width: 100%; border: 1px solid var(--panel-border); border-radius: 6px; margin-bottom: 12px;">` +
+          `<table style="border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-main);">${head}${body}</table></div>`;
+      }
       let panel = document.getElementById('pheno-panel');
       if (!panel) {
         panel = document.createElement('div');
         panel.id = 'pheno-panel';
-        panel.style.cssText = 'position: fixed; inset: 0; z-index: 9998; background: rgba(5, 7, 10, 0.95); display: flex; flex-direction: column; align-items: center; padding: 40px 20px 20px;';
+        panel.style.cssText = 'position: fixed; inset: 0; z-index: 9998; background: rgba(5, 7, 10, 0.95); display: flex; flex-direction: column; align-items: center; padding: 40px 20px 20px; overflow-y: auto;';
         panel.addEventListener('click', e => { if (e.target === panel) panel.style.display = 'none'; });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.style.display !== 'none') panel.style.display = 'none'; });
         document.body.appendChild(panel);
       }
       panel.innerHTML = `<button onclick="document.getElementById('pheno-panel').style.display='none'" style="position: absolute; top: 14px; right: 18px; padding: 6px 12px;">✕</button>` +
-        `<div style="color: var(--text-main); font-size: 13px; margin-bottom: 10px;">🌿 Phenology by date | ${m.view_name || m.view_id} | ${m.id}</div>` +
+        `<div style="color: var(--text-main); font-size: 13px; margin-bottom: 10px;">🌿 Phenology by date | ${m.view_name || m.view_id} | ${m.id}</div>` + calHtml +
         `<div style="overflow: auto; max-width: 1100px; width: 100%; border: 1px solid var(--panel-border); border-radius: 6px;">` +
         `<table style="border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-main);">${rows}</table></div>`;
       panel.style.display = 'flex';

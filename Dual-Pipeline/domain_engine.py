@@ -11,6 +11,7 @@ import re
 import json
 import base64
 import hashlib
+import datetime as _dt
 from pathlib import Path
 import traceback
 from enum import Enum
@@ -370,7 +371,7 @@ def _save_phenology_cache(cache: Dict[str, Any]) -> None:
         print(f"[Phenology] cache not written: {e}")
 
 
-def generate_phenology(
+def _generate_phenology_per_date(
     ecology_text: str,
     address: str,
     lat: float,
@@ -412,6 +413,8 @@ def generate_phenology(
                 system_instruction=PHENOLOGY_SYSTEM_INSTRUCTION,
                 temperature=0.0,
                 thinking_config=types.ThinkingConfig(thinking_budget=1024),
+                **({"automatic_function_calling": types.AutomaticFunctionCallingConfig(disable=True)}
+                   if hasattr(types, "AutomaticFunctionCallingConfig") else {}),
             ),
         )
         text = (response.text or "").strip()
@@ -424,3 +427,186 @@ def generate_phenology(
     cache[key] = {"date": date_str, "address": address, "text": text}
     _save_phenology_cache(cache)
     return text, "generated"
+
+
+# =========================================================================
+# PHENOLOGY CALENDAR: one model call per site returns each species' key dates
+# and a short look for each stage. Every frame's text is then derived from
+# where its date falls, so the seasons can only move forward.
+# =========================================================================
+
+CALENDAR_VERSION = 1
+STAGE_ORDER = ["budburst", "full_leaf", "colour_onset", "peak_colour", "half_fall", "bare"]
+STAGE_FOR_INTERVAL = {        # interval starting at each milestone -> the stage it opens
+    "budburst": ("budburst", "bud break"),
+    "full_leaf": ("full_leaf", "full leaf"),
+    "colour_onset": ("colouring", "colouring"),
+    "peak_colour": ("peak", "peak colour"),
+    "half_fall": ("falling", "leaf fall"),
+    "bare": ("dormant", "dormant"),
+}
+
+CALENDAR_SYSTEM_INSTRUCTION = """You are an urban arboriculturist and phenologist.
+You receive the plants listed at a real site and its location. Return the TYPICAL annual phenology
+for each listed plant at that location in its local climate (climate normals, not one particular year).
+Return JSON only, no prose, in exactly this shape:
+{
+  "climate_note": "one sentence on how this climate shifts seasonal timing",
+  "species": [
+    {
+      "name": "Latin name exactly as listed",
+      "habit": "deciduous" or "evergreen",
+      "milestones": {"budburst": "MM-DD", "full_leaf": "MM-DD", "colour_onset": "MM-DD",
+                     "peak_colour": "MM-DD", "half_fall": "MM-DD", "bare": "MM-DD"},
+      "stages": {"budburst": "...", "full_leaf": "...", "colouring": "...",
+                 "peak": "...", "falling": "...", "dormant": "..."},
+      "evergreen_look": "..."
+    }
+  ]
+}
+Rules: include every listed plant and never add one. Deciduous plants need all six milestones, in
+seasonal order, and all six stages. Evergreen plants (including lawn grasses) need only evergreen_look.
+Each stage and evergreen_look is at most 90 characters of telegraphic visual description as seen from
+street level: leaf presence and density, colour, flowers or fruit, exposed branch structure.
+Never describe weather, sky, light, shadows, time of day, or buildings."""
+
+
+def _doy(month_day: str) -> int:
+    """Day of year in a fixed non-leap reference year; Feb 29 counts as Feb 28."""
+    m, d = (int(x) for x in month_day.split("-"))
+    if m == 2 and d == 29:
+        d = 28
+    return (_dt.date(2025, m, d) - _dt.date(2025, 1, 1)).days
+
+
+def _valid_species(sp: Dict[str, Any]) -> bool:
+    if sp.get("habit") == "evergreen":
+        return bool(sp.get("evergreen_look"))
+    ms, st = sp.get("milestones") or {}, sp.get("stages") or {}
+    try:
+        days = [_doy(ms[k]) for k in STAGE_ORDER]
+    except Exception:
+        return False
+    offsets = [(d - days[0]) % 365 for d in days]
+    increasing = all(offsets[i] < offsets[i + 1] for i in range(len(offsets) - 1))
+    return increasing and all(st.get(v[0]) for v in STAGE_FOR_INTERVAL.values())
+
+
+def _parse_calendar(text: str, ecology_text: str) -> Optional[Dict[str, Any]]:
+    raw = (text or "").strip()
+    raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw)
+    try:
+        cal = json.loads(raw)
+    except Exception:
+        return None
+    eco_lower = ecology_text.lower()
+    kept, dropped = [], []
+    for sp in cal.get("species") or []:
+        genus = (sp.get("name") or "").split()[0].strip("*").lower() if sp.get("name") else ""
+        if not genus or genus not in eco_lower:
+            dropped.append(sp.get("name"))           # a plant the art bible never listed
+        elif _valid_species(sp):
+            kept.append(sp)
+        else:
+            dropped.append(f"{sp.get('name')} (invalid dates)")
+    if dropped:
+        print(f"[Phenology] calendar dropped: {dropped}")
+    if not kept:
+        return None
+    cal["species"] = kept
+    cal["dropped"] = dropped
+    cal["version"] = CALENDAR_VERSION
+    return cal
+
+
+def phenology_from_calendar(cal: Dict[str, Any], date_str: str) -> str:
+    """Deterministic: the same calendar and date always give the same text, and later dates never look earlier."""
+    target = _doy(date_str[5:10])
+    parts = []
+    for sp in cal["species"]:
+        name = sp["name"].strip("*")
+        if sp.get("habit") == "evergreen":
+            parts.append(f"*{name}*: {sp['evergreen_look'].rstrip('.')}.")
+            continue
+        days = [_doy(sp["milestones"][k]) for k in STAGE_ORDER]
+        offsets = [(d - days[0]) % 365 for d in days] + [365]
+        pos = (target - days[0]) % 365
+        for i, key in enumerate(STAGE_ORDER):
+            if offsets[i] <= pos < offsets[i + 1]:
+                stage_key, label = STAGE_FOR_INTERVAL[key]
+                frac = (pos - offsets[i]) / max(1, offsets[i + 1] - offsets[i])
+                when = "early" if frac < 1 / 3 else ("mid" if frac < 2 / 3 else "late")
+                parts.append(f"*{name}* ({when} {label}): {sp['stages'][stage_key].rstrip('.')}.")
+                break
+    return " ".join(parts)
+
+
+def get_phenology_calendar(
+    ecology_text: str,
+    address: str,
+    lat: float,
+    lon: float,
+    gemini_api_key: Optional[str] = None,
+) -> tuple:
+    """Returns (calendar or None, source) where source is "cache", "generated", or "failed"."""
+    ecology_text = (ecology_text or "").strip()
+    if not ecology_text:
+        return None, "failed"
+    key_src = f"cal{CALENDAR_VERSION}|{PHENOLOGY_MODEL}|{ecology_text}|{round(lat, 3)}|{round(lon, 3)}"
+    key = "cal:" + hashlib.sha1(key_src.encode("utf-8")).hexdigest()
+    cache = _load_phenology_cache()
+    if key in cache:
+        return cache[key]["calendar"], "cache"
+    api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        return None, "failed"
+    prompt = (
+        f"SITE: {address} ({lat:.4f}, {lon:.4f})\n"
+        f"PLANTS LISTED (time-invariant description):\n{ecology_text}\n\n"
+        "Return the typical annual phenology calendar for every listed plant at this site."
+    )
+    cfg = dict(
+        system_instruction=CALENDAR_SYSTEM_INSTRUCTION,
+        temperature=0.0,
+        response_mime_type="application/json",
+        thinking_config=types.ThinkingConfig(thinking_budget=2048),
+    )
+    if hasattr(types, "AutomaticFunctionCallingConfig"):
+        cfg["automatic_function_calling"] = types.AutomaticFunctionCallingConfig(disable=True)
+    try:
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model=PHENOLOGY_MODEL, contents=[prompt], config=types.GenerateContentConfig(**cfg),
+        )
+        cal = _parse_calendar(response.text or "", ecology_text)
+    except Exception as e:
+        print(f"[Phenology] calendar generation failed: {e}")
+        return None, "failed"
+    if not cal:
+        print("[Phenology] calendar unusable; falling back to per-date generation")
+        return None, "failed"
+    cache[key] = {"address": address, "calendar": cal}
+    _save_phenology_cache(cache)
+    return cal, "generated"
+
+
+def generate_phenology(
+    ecology_text: str,
+    address: str,
+    lat: float,
+    lon: float,
+    date_str: str,
+    gemini_api_key: Optional[str] = None,
+) -> tuple:
+    """
+    Returns (phenology_text, source). Uses the site's phenology calendar, so frames
+    progress monotonically; falls back to one model call per date only if no calendar
+    can be made. Sources: calendar-cache, calendar-generated, cache, generated, failed.
+    """
+    if not date_str:
+        return "", "failed"
+    cal, src = get_phenology_calendar(ecology_text, address, lat, lon, gemini_api_key)
+    if cal:
+        return phenology_from_calendar(cal, date_str), f"calendar-{src}"
+    return _generate_phenology_per_date(ecology_text, address, lat, lon, date_str, gemini_api_key)
+

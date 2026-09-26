@@ -41,7 +41,7 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
@@ -1081,13 +1081,19 @@ def _series_worker(series_id: str, frame_numbers: List[int]) -> None:
     m = _load_manifest(series_id)
     m["status"] = "running"
     _save_manifest(m)
-    ks_domain, ks_lat, ks_lon = None, 0.0, 0.0
-    if m["kind"] == "phenology":
-        kd = _run_dir(m["keystone_run"])
-        ks_domain, _ = load_domain_from_run(kd)
-        tel = (_read_json(kd / "run_metadata.json") or {}).get("telemetry") or {}
-        ks_lat = tel.get("target_latitude") or tel.get("latitude") or 0.0
-        ks_lon = tel.get("target_longitude") or tel.get("longitude") or 0.0
+    # The keystone's tree description and location drive the phenology calendar for every frame.
+    kd = _run_dir(m["keystone_run"])
+    ks_domain, _ = load_domain_from_run(kd)
+    tel = (_read_json(kd / "run_metadata.json") or {}).get("telemetry") or {}
+    ks_lat = tel.get("target_latitude") or tel.get("latitude") or 0.0
+    ks_lon = tel.get("target_longitude") or tel.get("longitude") or 0.0
+    try:
+        cal, cal_src = get_phenology_calendar(ks_domain.botanical_ecology, ks_domain.address, ks_lat, ks_lon, gemini_key)
+        m["calendar"], m["calendar_source"] = cal, cal_src
+        _save_manifest(m)
+        print(f"[Series] phenology calendar: {cal_src}")
+    except Exception as e:
+        print(f"[Series] phenology calendar unavailable: {e}")
     cancelled = False
     try:
         for n in frame_numbers:
