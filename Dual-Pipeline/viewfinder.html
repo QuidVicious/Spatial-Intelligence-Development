@@ -215,6 +215,9 @@
         <input type="number" id="replay-seed" min="0" step="1" placeholder="blank = random" title="Same seed + same settings = the same image. Used by Replay, Make Keystone and Print." style="flex: 1; min-width: 0;" />
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 5px 8px;" title="Copy the selected run's seed into this box" onclick="useRunSeed()">use run's</button>
       </div>
+      <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);" title="Prints only. Keeps the keystone's pixels outside the trees, so buildings can't shimmy. Applied only when the print's weather matches the keystone's.">
+        <input type="checkbox" id="chk-composite" checked /> Composite outside canopy (prints, matching weather)
+      </label>
       <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button onclick="makeKeystone()" class="toggle-btn" title="Render this run as a neutral master plate: bare trees, flat overcast, noon" style="flex: 1; padding: 8px;">🧱 MAKE KEYSTONE</button>
@@ -258,6 +261,9 @@
         <label for="series-seed" style="flex: 0 0 auto;">Seed for all frames</label>
         <input type="number" id="series-seed" min="0" step="1" placeholder="blank = random, fixed for the series" style="flex: 1; min-width: 0;" />
       </div>
+      <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
+        <input type="checkbox" id="chk-series-composite" checked /> Composite outside canopy (frames with the keystone's weather)
+      </label>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('phenology')" title="Phenology text for each date, no renders">🌿 PHENOLOGY PREVIEW</button>
         <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('prints')">▶ START SERIES</button>
@@ -1163,6 +1169,7 @@
         disable_recaption: document.getElementById('chk-disable-recaption').checked
       };
       spec.seed = readSeed('series-seed');
+      spec.composite = document.getElementById('chk-series-composite').checked;
       if (seriesExplicitDates) spec.dates = seriesExplicitDates;
       else { spec.start_date = document.getElementById('series-start').value; spec.end_date = document.getElementById('series-end').value; }
       return spec;
@@ -1290,7 +1297,7 @@
     }
 
     // ---------------- Full-screen viewer ----------------
-    let lbOpen = false, lbShowRender = true, lbKeystoneHeld = false;
+    let lbOpen = false, lbShowRender = true, lbKeystoneHeld = false, lbShowRaw = false;
 
     function lbRun() {
       const id = document.getElementById('select-replay-run').value;
@@ -1331,10 +1338,11 @@
         return;
       }
       const showRender = lbShowRender && run.has_twin;
-      img.src = `/api/runs/${encodeURIComponent(run.id)}/file/${showRender ? 'spatial_twin.png' : 'viewport_capture.jpg'}`;
+      const raw = showRender && lbShowRaw && run.has_raw;
+      img.src = `/api/runs/${encodeURIComponent(run.id)}/file/${raw ? 'spatial_twin_raw.png' : (showRender ? 'spatial_twin.png' : 'viewport_capture.jpg')}`;
       const pos = replayRuns.findIndex(r => r.id === run.id) + 1;
       const seedTxt = run.seed !== null && run.seed !== undefined ? `seed ${run.seed}` : 'seed not recorded';
-      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${showRender ? 'rendered plate' : 'Cesium capture'}   |   ${seedTxt}   |   ${pos} of ${replayRuns.length}`;
+      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${raw ? 'RAW render (before composite)' : (showRender ? (run.composite_applied ? 'composited print' : 'rendered plate') : 'Cesium capture')}   |   ${seedTxt}   |   ${pos} of ${replayRuns.length}`;
     }
 
     function lbToggle() {
@@ -1358,6 +1366,7 @@
       else if (k === 'ArrowRight') lbStep(1);
       else if (k === 'ArrowLeft') lbStep(-1);
       else if (k === 'c' || k === 'C') lbToggle();
+      else if (k === 'r' || k === 'R') { lbShowRaw = !lbShowRaw; renderLightbox(); }
       else if ((k === 'k' || k === 'K') && !e.repeat) { lbKeystoneHeld = true; renderLightbox(); }
       else return;
       e.preventDefault();
@@ -1465,7 +1474,7 @@
       const ts = r.timestamp ? `${r.timestamp.slice(0, 4)}-${r.timestamp.slice(4, 6)}-${r.timestamp.slice(6, 8)} ${r.timestamp.slice(9, 11)}:${r.timestamp.slice(11, 13)}` : r.id;
       const scene = `${r.date || 'live'} ${fmtClock(r.time_of_day)} ${r.weather_mode || ''}`.trim();
       let tag = r.replay_of ? (r.scene_text_edited ? ' [replay, edited]' : ' [replay]') : '';
-      if (r.keystone_print_of) tag = r.series_frame ? ` [series frame ${r.series_frame}]` : ' [print]';
+      if (r.keystone_print_of) tag = (r.series_frame ? ` [series frame ${r.series_frame}` : ' [print') + (r.composite_applied ? ', composited]' : ']');
       if (r.keystone_candidate) tag = isApprovedKeystone(r.id) ? ' [★ KEYSTONE]' : ' [keystone candidate]';
       return `${ts} | ${scene}${tag}`;
     }
@@ -1647,7 +1656,8 @@
         use_search_grounding: false,
         replay_of: run.id || null,
         documentary_prompt_override: editedText,
-        seed: readSeed('replay-seed')
+        seed: readSeed('replay-seed'),
+        composite: document.getElementById('chk-composite').checked
       };
     }
 
@@ -1698,7 +1708,7 @@
     <button onclick="lbToggle()" title="Rendered plate / Cesium capture (C)" style="position: absolute; top: 14px; right: 70px; padding: 6px 12px;">C</button>
     <img id="lightbox-img" alt="" style="max-width: 96vw; max-height: 84vh; object-fit: contain; border-radius: 4px;" />
     <div id="lightbox-caption" style="color: var(--text-main); font-family: var(--font-mono); font-size: 12px; margin-top: 10px; text-align: center; max-width: 96vw;"></div>
-    <div style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">← → previous / next run &nbsp;·&nbsp; C plate / capture &nbsp;·&nbsp; hold K for the keystone &nbsp;·&nbsp; Esc close</div>
+    <div style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">← → previous / next run &nbsp;·&nbsp; C plate / capture &nbsp;·&nbsp; hold K for the keystone &nbsp;·&nbsp; R raw render / composite &nbsp;·&nbsp; Esc close</div>
   </div>
 </body>
 </html>

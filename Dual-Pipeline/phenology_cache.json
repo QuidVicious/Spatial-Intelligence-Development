@@ -256,5 +256,105 @@
       "dropped": [],
       "version": 1
     }
+  },
+  "cal:8b7b00af4027f0aad98c3f638e16ef1be8245149": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and northern latitude delay spring budburst and prolong autumn leaf retention.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Bright green pleated leaves emerging from large greenish-brown buds.",
+            "full_leaf": "Dark green palmate leaves, winged samaras, flaking grey-brown bark plates.",
+            "colouring": "Leaves turning dull yellow and speckled brown across the crown.",
+            "peak": "Golden-yellow to russet palmate foliage with pendant brown samaras.",
+            "falling": "Yellow-brown leaves dropping, exposing thick grey scaffold limbs.",
+            "dormant": "Stout bare branches, scaly plate-like bark, large green-scaled winter buds."
+          }
+        },
+        {
+          "name": "Tilia × europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-22",
+            "full_leaf": "05-28",
+            "colour_onset": "09-22",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Tender pale green heart-shaped leaves unfolding with pinkish stipules.",
+            "full_leaf": "Dark green cordate leaves, pale undersides, dense epicormic trunk sprouts.",
+            "colouring": "Foliage yellowing from top down, pale bracts turning dry and papery.",
+            "peak": "Luminous pale yellow heart-shaped canopy above dense basal shoots.",
+            "falling": "Yellow-brown leaves shedding readily, revealing dark ridged trunk.",
+            "dormant": "Bare ovate crown, dark fissured bark, dense tangled basal epicormics."
+          }
+        },
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-22",
+            "colour_onset": "09-25",
+            "peak_colour": "10-16",
+            "half_fall": "10-30",
+            "bare": "11-12"
+          },
+          "stages": {
+            "budburst": "Small purple-red cluster blooms followed by rough emerging green leaves.",
+            "full_leaf": "Broad, rough-textured dark green leaves with asymmetric bases.",
+            "colouring": "Crown fading to dull yellow with dry papery winged seeds shed.",
+            "peak": "Uniform bright yellow foliage on wide, spreading branches.",
+            "falling": "Crisp yellow-brown foliage dropping rapidly from upper limbs.",
+            "dormant": "Heavy upright-spreading bare framework with smooth-to-fissured grey bark."
+          }
+        },
+        {
+          "name": "Betula pendula",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-12",
+            "full_leaf": "05-15",
+            "colour_onset": "09-20",
+            "peak_colour": "10-15",
+            "half_fall": "10-28",
+            "bare": "11-10"
+          },
+          "stages": {
+            "budburst": "Tiny bright green triangular leaves unfolding along weeping twigs.",
+            "full_leaf": "Glossy diamond-shaped green leaves trembling on pendulous branches, white bark.",
+            "colouring": "Delicate leaves turning yellow against bright peeling white bark.",
+            "peak": "Golden-yellow canopy draped over weeping twigs and silver-white trunks.",
+            "falling": "Small yellow leaves shedding, exposing fine pendulous dark twigs.",
+            "dormant": "White peeling trunk bark and weeping canopy of fine purple-brown twigs."
+          }
+        },
+        {
+          "name": "Lolium perenne",
+          "habit": "evergreen",
+          "evergreen_look": "Dense, fine-bladed green turf with glossy leaf undersides, kept low and uniform."
+        },
+        {
+          "name": "Poa pratensis",
+          "habit": "evergreen",
+          "evergreen_look": "Smooth, boat-tipped blue-green blades forming a dense, uniform mown sward."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

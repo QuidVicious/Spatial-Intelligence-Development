@@ -49,6 +49,7 @@ from prompt_engine import compile_conditioning
 from vision_preprocessor import delight_image
 from synthesis_engine import synthesize_twin
 from archiver import archive_run, DEFAULT_RUNS_DIR
+from composite_engine import composite_canopy
 
 # Load Environment
 env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
@@ -195,6 +196,7 @@ class ProcessViewRequest(BaseModel):
     series_id: Optional[str] = Field(None, description="Set by the series runner: the series this frame belongs to")
     series_frame: Optional[int] = Field(None, description="Set by the series runner: 1-based frame number")
     seed: Optional[int] = Field(None, description="Render seed; blank picks a random one. Always recorded, so any run can be reproduced")
+    composite: bool = Field(True, description="PRINT only: keep the keystone's pixels outside the changed canopy, when the print's weather matches the keystone's")
 
 
 # -------------------------------------------------------------------------
@@ -240,6 +242,8 @@ RUN_FILES = {
     "viewport_capture.jpg": "image/jpeg",
     "delighted_reference.jpg": "image/jpeg",
     "spatial_twin.png": "image/png",
+    "spatial_twin_raw.png": "image/png",
+    "canopy_mask.png": "image/png",
 }
 
 
@@ -341,6 +345,9 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
     scene_edited = False
     run_seed = request.seed if request.seed is not None else secrets.randbelow(2**31 - 1)
+    composite_info = None
+    raw_render_b64 = None
+    canopy_mask_b64 = None
     phenology_date = None
     phenology_source = None
 
@@ -628,6 +635,28 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         )
         print(f"[Synthesis] seed {run_seed}{' (fixed)' if request.seed is not None else ' (random)'}")
         yield stage.dispatching(f"Twin artifact received (seed {run_seed})")
+        # 6.5 Canopy composite (prints only): everything outside the changed canopy comes from the keystone,
+        # so buildings and windows can't shimmy. Only when the print's light matches the keystone's.
+        if mode == "PRINT" and synthesis.image_b64:
+            ks_rec = next((k for k in _load_keystones().values() if k.get("run_id") == keystone_run_id), {}) or {}
+            ks_weather = ((ks_rec.get("conditions") or {}).get("weather")
+                          or ((replay["meta"].get("lighting_resolved") or {}).get("weather"))
+                          or (replay["meta"].get("settings") or {}).get("weather_mode") or "").upper()
+            print_weather = (getattr(lighting_state, "weather_mode", None) or telemetry.weather_mode or "").upper()
+            if not request.composite:
+                composite_info = {"applied": False, "reason": "turned off for this print"}
+            elif print_weather != ks_weather:
+                composite_info = {"applied": False, "reason": f"print weather {print_weather} differs from keystone weather {ks_weather}"}
+            else:
+                comp_b64, canopy_mask_b64, composite_info = composite_canopy(replay["delighted_b64"], synthesis.image_b64)
+                if comp_b64:
+                    raw_render_b64 = synthesis.image_b64
+                    synthesis.image_b64 = comp_b64
+            print(f"[Composite] {'applied' if composite_info.get('applied') else 'skipped'}: {composite_info.get('reason')}"
+                  + (f" | canopy {composite_info['mask_coverage']:.0%}, structure change {composite_info['structure_change']:.0%}"
+                     if 'mask_coverage' in composite_info and 'structure_change' in composite_info else ""))
+            yield stage.dispatching(
+                f"Canopy composite {'applied' if composite_info.get('applied') else 'skipped'}: {composite_info.get('reason')}")
         yield stage.finish("Visual twin generated")
 
         total_latency_ms = (time.perf_counter() - pipeline_start) * 1000.0
@@ -663,6 +692,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "scene_text_edited": scene_edited,
                     "seed": run_seed,
                     "seed_fixed": request.seed is not None,
+                    "composite": composite_info,
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
@@ -677,6 +707,14 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "screenshot_supplied": bool(request.screenshot_b64)
                 }
             )
+            # Keep the untouched render and the canopy mask beside the composite, for inspection.
+            if raw_render_b64 or canopy_mask_b64:
+                for fname, data in (("spatial_twin_raw.png", raw_render_b64), ("canopy_mask.png", canopy_mask_b64)):
+                    if data:
+                        try:
+                            (Path(run_folder_path) / fname).write_bytes(base64.b64decode(data.split(",", 1)[1]))
+                        except Exception as e:
+                            print(f"[Composite] could not write {fname}: {e}")
             run_record = {
                 "status": "persisted",
                 "path": run_folder_path,
@@ -843,6 +881,8 @@ def _run_summary(d: Path) -> dict:
         "series_id": settings.get("series_id"),
         "series_frame": settings.get("series_frame"),
         "seed": settings.get("seed"),
+        "composite_applied": bool((settings.get("composite") or {}).get("applied")),
+        "has_raw": (d / "spatial_twin_raw.png").exists(),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
         "weather_mode": settings.get("weather_mode"),
@@ -949,6 +989,7 @@ class SeriesRequest(BaseModel):
     disable_recaption: bool = True
     confirm_large: bool = False
     seed: Optional[int] = Field(None, description="One seed for every frame; blank picks a random one, recorded in the manifest")
+    composite: bool = True
 
 
 def _parse_date(s: str) -> _date:
@@ -1068,6 +1109,7 @@ async def _run_print_frame(m: dict, fr: dict) -> tuple:
         series_id=m["id"],
         series_frame=fr["n"],
         seed=m.get("seed"),
+        composite=spec.get("composite", True),
     )
     run_path, error = None, None
     async for chunk in execute_pipeline_stream(req):
