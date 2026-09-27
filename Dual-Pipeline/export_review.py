@@ -14,6 +14,8 @@ Usage, from the Dual-Pipeline folder:
 Options:
     --width 1600    maximum width in pixels
     --quality 82    JPEG quality
+    --raw           also export the raw render (before the canopy composite), where one exists
+    --mask          also export the canopy mask, where one exists
 
 Copies go to review_out\\<date_time>\\ with an index.txt mapping each file to its
 run folder. Originals are never touched. On Windows the folder opens when done.
@@ -99,6 +101,8 @@ def main():
     ap.add_argument("--runs", nargs="+")
     ap.add_argument("--width", type=int, default=1600)
     ap.add_argument("--quality", type=int, default=82)
+    ap.add_argument("--raw", action="store_true", help="also export spatial_twin_raw.png where present")
+    ap.add_argument("--mask", action="store_true", help="also export canopy_mask.png where present")
     args = ap.parse_args()
 
     runs = pick_runs(args)
@@ -109,18 +113,26 @@ def main():
 
     lines = []
     for n, d in enumerate(runs, 1):
-        src = d / "spatial_twin.png"
-        if not src.exists():
+        if not (d / "spatial_twin.png").exists():
             print(f"  skipped (no image): {d.name}")
             continue
-        img = Image.open(src).convert("RGB")
-        if img.width > args.width:
-            img = img.resize((args.width, round(img.height * args.width / img.width)), Image.LANCZOS)
-        name = f"{n:02d}_{label(d)}.jpg"
-        img.save(dest / name, "JPEG", quality=args.quality, optimize=True)
-        kb = (dest / name).stat().st_size // 1024
-        lines.append(f"{name}  <-  {d.name}  ({kb} KB)")
-        print(f"  {name}  ({kb} KB)")
+        variants = [("spatial_twin.png", "", "RGB")]
+        if args.raw:
+            variants.append(("spatial_twin_raw.png", "_RAW", "RGB"))
+        if args.mask:
+            variants.append(("canopy_mask.png", "_MASK", "L"))
+        for fname, suffix, mode in variants:
+            src = d / fname
+            if not src.exists():
+                continue
+            img = Image.open(src).convert(mode)
+            if img.width > args.width:
+                img = img.resize((args.width, round(img.height * args.width / img.width)), Image.LANCZOS)
+            name = f"{n:02d}_{label(d)}{suffix}.jpg"
+            img.save(dest / name, "JPEG", quality=args.quality, optimize=True)
+            kb = (dest / name).stat().st_size // 1024
+            lines.append(f"{name}  <-  {d.name}/{fname}  ({kb} KB)")
+            print(f"  {name}  ({kb} KB)")
 
     (dest / "index.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"\n{len(lines)} file(s) in {dest}")

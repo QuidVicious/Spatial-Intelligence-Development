@@ -36,6 +36,7 @@ WORK_WIDTH = 1600          # the mask is computed at this width, whatever the ou
                            # threshold below stays calibrated (tuned on St Andrews prints at 1600 px)
 DENSITY_WINDOW = 7         # box radius (px, working size) for the vegetation-density check
 MIN_VEG_DENSITY = 0.55     # canopy cores measure ~0.8-1.0; speckled or mossy stone ~0.3
+MIN_NEW_FOLIAGE_DENSITY = 0.40  # share of a neighbourhood that is new foliage before it counts
 MIN_TEXTURE = 9.0          # local luminance std (working size): canopy ~15, mown lawn ~5
 MAX_LIGHT_DIFFERENCE = 0.12 # buildings+ground brightness, render vs plate. June-noon Overcast renders
                            # measured within ~2% of the January-noon St Andrews plate; evening or
@@ -145,7 +146,18 @@ def composite_canopy(
     changed = diff > threshold
 
     # 3. only changes that are vegetation in either image
-    veg = _vegetation(R) | _vegetation(P)
+    veg_r, veg_p = _vegetation(R), _vegetation(P)
+    veg = veg_r | veg_p
+    # New leaves over bare branches are mostly a change of COLOUR (brown-grey to green) at similar
+    # brightness, which the channel-average difference above barely registers (median ~19 against a
+    # threshold of 18 on June St Andrews renders, so half were missed). A pixel that is vegetation in
+    # the render but not in the plate is, by definition, new foliage: count it as changed too.
+    # Only where it is dense: a canopy grows over an area, while weathered stone and lawn flip in and
+    # out of the colour test in scattered specks (the column torus did exactly that).
+    new_foliage = veg_r & ~veg_p
+    nf_density = np.asarray(Image.fromarray((new_foliage * 255).astype(np.uint8)).filter(
+        ImageFilter.BoxBlur(DENSITY_WINDOW))).astype(np.float32) / 255.0
+    changed = changed | (new_foliage & (nf_density >= MIN_NEW_FOLIAGE_DENSITY))
     structure_change = float((changed & ~veg).sum() / max((~veg).sum(), 1))
     stone = ~veg
     light_ratio = float(R.mean(axis=2)[stone].mean() / max(P.mean(axis=2)[stone].mean(), 1e-6)) if stone.any() else 1.0
