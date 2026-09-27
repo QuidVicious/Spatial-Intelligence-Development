@@ -435,7 +435,7 @@ def _generate_phenology_per_date(
 # where its date falls, so the seasons can only move forward.
 # =========================================================================
 
-CALENDAR_VERSION = 1
+CALENDAR_VERSION = 2
 STAGE_ORDER = ["budburst", "full_leaf", "colour_onset", "peak_colour", "half_fall", "bare"]
 STAGE_FOR_INTERVAL = {        # interval starting at each milestone -> the stage it opens
     "budburst": ("budburst", "bud break"),
@@ -467,7 +467,10 @@ Return JSON only, no prose, in exactly this shape:
 Rules: include every listed plant and never add one. Deciduous plants need all six milestones, in
 seasonal order, and all six stages. Evergreen plants (including lawn grasses) need only evergreen_look.
 Each stage and evergreen_look is at most 90 characters of telegraphic visual description as seen from
-street level: leaf presence and density, colour, flowers or fruit, exposed branch structure.
+street level: leaf colour and form, flowers or fruit, bark or branch character.
+Each stage description must be true for the WHOLE stage: never name a month, and never include an event
+that lasts only part of the stage (for example, flowering that ends partway through summer).
+Do not state how dense or sparse the canopy is; leaf cover is supplied separately as a number.
 Never describe weather, sky, light, shadows, time of day, or buildings."""
 
 
@@ -519,6 +522,34 @@ def _parse_calendar(text: str, ecology_text: str) -> Optional[Dict[str, Any]]:
     return cal
 
 
+# Leaf cover (percent of a full canopy) across each stage, as (start, end), interpolated by
+# how far into the stage the date falls. Words like "dense" or "thinning" leave the renderer room
+# to choose; a number derived from the date gives every frame the same target.
+LEAF_COVER = {
+    "budburst": (5, 90),
+    "full_leaf": (100, 100),
+    "colouring": (100, 95),
+    "peak": (95, 50),      # peak colour runs up to "half fallen"
+    "falling": (50, 0),
+    "dormant": (0, 0),
+}
+
+
+def _leaf_cover(stage_key: str, frac: float) -> int:
+    a, b = LEAF_COVER[stage_key]
+    return int(round((a + (b - a) * max(0.0, min(1.0, frac))) / 5.0) * 5)
+
+
+def _branch_note(cover: int) -> str:
+    if cover >= 90:
+        return "inner branches hidden"
+    if cover >= 50:
+        return "main limbs partly visible through the leaves"
+    if cover >= 10:
+        return "branch framework clearly visible"
+    return "bare branches"
+
+
 def phenology_from_calendar(cal: Dict[str, Any], date_str: str) -> str:
     """Deterministic: the same calendar and date always give the same text, and later dates never look earlier."""
     target = _doy(date_str[5:10])
@@ -536,7 +567,9 @@ def phenology_from_calendar(cal: Dict[str, Any], date_str: str) -> str:
                 stage_key, label = STAGE_FOR_INTERVAL[key]
                 frac = (pos - offsets[i]) / max(1, offsets[i + 1] - offsets[i])
                 when = "early" if frac < 1 / 3 else ("mid" if frac < 2 / 3 else "late")
-                parts.append(f"*{name}* ({when} {label}): {sp['stages'][stage_key].rstrip('.')}.")
+                cover = _leaf_cover(stage_key, frac)
+                parts.append(f"*{name}* ({when} {label}; leaf cover about {cover}%, {_branch_note(cover)}): "
+                             f"{sp['stages'][stage_key].rstrip('.')}.")
                 break
     return " ".join(parts)
 

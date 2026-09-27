@@ -72,7 +72,9 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any) -> Dict[str, A
         "door, roofline, chimney, monument, statue, railing, kerb, paving joint, road marking, lamp, and every tree "
         "trunk and branch. Add no objects and remove none. Add no people, vehicles, scaffolding, signage, logos, or lettering.\n\n"
         "CHANGE ONLY THESE TWO THINGS:\n"
-        f"1. TREE CANOPY for this date, grown on the existing branch structure: {phen}\n"
+        "1. TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves match the "
+        "stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
+        f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. {phen}\n"
         f"2. LIGHT AND WEATHER:\n{light}\n\n"
         "Sharp focus near to far. No blur, no vignetting."
     )

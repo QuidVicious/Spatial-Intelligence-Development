@@ -74,7 +74,8 @@ def synthesize_gemini_image(
     screenshot_b64: Optional[str] = None,
     model_name: str = "gemini-3.1-flash-image",
     temperature: float = 0.0,
-    gemini_api_key: Optional[str] = None
+    gemini_api_key: Optional[str] = None,
+    seed: Optional[int] = None
 ) -> SynthesisResult:
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -97,6 +98,10 @@ def synthesize_gemini_image(
             "imageConfig": {"aspectRatio": "16:9", "imageSize": "2K"}
         }
     }
+    if seed is not None:
+        # Same seed + same inputs + same temperature -> the same image, on models that honour it
+        # (Gemini 3.1 Flash Image does; Nano Banana Pro reportedly does not).
+        payload["generationConfig"]["seed"] = int(seed)
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
 
@@ -328,6 +333,7 @@ def synthesize_twin(
     world_labs_api_key: Optional[str] = None,
     marble_input_mode: str = "text",
     display_name: str = "Spatial Twin",
+    seed: Optional[int] = None,
     **kwargs
 ) -> SynthesisResult:
     prov = ModelProvider(provider) if isinstance(provider, str) else provider
@@ -351,6 +357,7 @@ def synthesize_twin(
             model_name=model_name or "marble-1.1",
             disable_recaption=disable_recaption,
             display_name=display_name,
+            seed=seed,
             world_labs_api_key=world_labs_api_key
         )
 
@@ -358,5 +365,6 @@ def synthesize_twin(
         prompt=prompt_text,
         screenshot_b64=screenshot_b64,
         model_name=model_name or "gemini-3.1-flash-image",
-        gemini_api_key=gemini_api_key
+        gemini_api_key=gemini_api_key,
+        seed=seed
     )

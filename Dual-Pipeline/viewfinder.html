@@ -210,6 +210,11 @@
       <textarea id="replay-scene-text" rows="6" spellcheck="false" placeholder="Scene text (documentary prompt) of the selected run. Edits apply to this replay only."
         style="width: 100%; box-sizing: border-box; margin-top: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; font-family: var(--font-mono); font-size: 10px; resize: vertical;"></textarea>
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+      <div style="display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 11px; color: var(--text-muted);">
+        <label for="replay-seed" style="flex: 0 0 auto;">Seed</label>
+        <input type="number" id="replay-seed" min="0" step="1" placeholder="blank = random" title="Same seed + same settings = the same image. Used by Replay, Make Keystone and Print." style="flex: 1; min-width: 0;" />
+        <button class="toggle-btn" style="flex: 0 0 auto; padding: 5px 8px;" title="Copy the selected run's seed into this box" onclick="useRunSeed()">use run's</button>
+      </div>
       <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button onclick="makeKeystone()" class="toggle-btn" title="Render this run as a neutral master plate: bare trees, flat overcast, noon" style="flex: 1; padding: 8px;">🧱 MAKE KEYSTONE</button>
@@ -249,6 +254,10 @@
         <span>h</span>
       </div>
       <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">Fixed time uses the 24-hour slider. Weather comes from the Atmosphere panel.</div>
+      <div style="display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 11px; color: var(--text-muted);">
+        <label for="series-seed" style="flex: 0 0 auto;">Seed for all frames</label>
+        <input type="number" id="series-seed" min="0" step="1" placeholder="blank = random, fixed for the series" style="flex: 1; min-width: 0;" />
+      </div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('phenology')" title="Phenology text for each date, no renders">🌿 PHENOLOGY PREVIEW</button>
         <button class="toggle-btn" style="flex: 1; padding: 8px;" onclick="startSeries('prints')">▶ START SERIES</button>
@@ -1153,6 +1162,7 @@
         target_model: 'gemini-3.1-flash-image',
         disable_recaption: document.getElementById('chk-disable-recaption').checked
       };
+      spec.seed = readSeed('series-seed');
       if (seriesExplicitDates) spec.dates = seriesExplicitDates;
       else { spec.start_date = document.getElementById('series-start').value; spec.end_date = document.getElementById('series-end').value; }
       return spec;
@@ -1178,7 +1188,7 @@
       const what = kind === 'phenology' ? 'phenology entries (text only, no renders)' : 'prints';
       const msg = `${plan.count} ${what}: ${plan.dates} date(s) x ${plan.times} time(s).\n` +
         `First: ${first.date}${fmtFrameTime(first.time)}   Last: ${last.date}${fmtFrameTime(last.time)}\n` +
-        (kind === 'prints' ? `Weather: ${currentWeatherMode}\n` : '') +
+        (kind === 'prints' ? `Weather: ${currentWeatherMode}\nSeed: ${spec.seed !== null ? spec.seed : 'random, the same for every frame'}\n` : '') +
         `Rough estimate: ${plan.estimate_minutes} min.\n\nStart?`;
       if (!confirm(msg)) return;
       if (plan.needs_confirm) {
@@ -1323,7 +1333,8 @@
       const showRender = lbShowRender && run.has_twin;
       img.src = `/api/runs/${encodeURIComponent(run.id)}/file/${showRender ? 'spatial_twin.png' : 'viewport_capture.jpg'}`;
       const pos = replayRuns.findIndex(r => r.id === run.id) + 1;
-      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${showRender ? 'rendered plate' : 'Cesium capture'}   |   ${pos} of ${replayRuns.length}`;
+      const seedTxt = run.seed !== null && run.seed !== undefined ? `seed ${run.seed}` : 'seed not recorded';
+      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${showRender ? 'rendered plate' : 'Cesium capture'}   |   ${seedTxt}   |   ${pos} of ${replayRuns.length}`;
     }
 
     function lbToggle() {
@@ -1514,13 +1525,29 @@
         const d = await resp.json();
         text.value = d.documentary_prompt || '';
         replayOriginalText = text.value;
-        setReplayStatus(`${d.address || ''} (scene text from ${d.loaded_from})`);
+        const r = replayRuns.find(x => x.id === id);
+        const seedTxt = r && r.seed !== null && r.seed !== undefined ? ` | seed ${r.seed}` : ' | seed not recorded';
+        setReplayStatus(`${d.address || ''} (scene text from ${d.loaded_from})${seedTxt}`);
       } catch (e) {
         console.warn('[Replay] scene load failed:', e);
         text.value = '';
         replayOriginalText = '';
         setReplayStatus('Could not load scene text for this run.', '#ff5252');
       }
+    }
+
+    // A seed box: blank means "pick a random one" (the server always records what it used).
+    function readSeed(id) {
+      const v = document.getElementById(id).value.trim();
+      if (!v) return null;
+      const n = parseInt(v, 10);
+      return Number.isFinite(n) && n >= 0 ? n : null;
+    }
+
+    function useRunSeed() {
+      const run = selectedReplayRun();
+      if (!run || run.seed === null || run.seed === undefined) { setReplayStatus('This run has no recorded seed (made before seeds were recorded).', '#ffb74d'); return; }
+      document.getElementById('replay-seed').value = run.seed;
     }
 
     function selectedReplayRun() {
@@ -1619,7 +1646,8 @@
         disable_recaption: document.getElementById('chk-disable-recaption').checked,
         use_search_grounding: false,
         replay_of: run.id || null,
-        documentary_prompt_override: editedText
+        documentary_prompt_override: editedText,
+        seed: readSeed('replay-seed')
       };
     }
 

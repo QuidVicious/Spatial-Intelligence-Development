@@ -16,6 +16,7 @@ import json
 import base64
 import time
 import asyncio
+import secrets
 import calendar
 import threading
 from datetime import datetime, timezone, date as _date, timedelta
@@ -193,6 +194,7 @@ class ProcessViewRequest(BaseModel):
     print_view_id: Optional[str] = Field(None, description="PRINT only: saved view whose approved keystone is the seed")
     series_id: Optional[str] = Field(None, description="Set by the series runner: the series this frame belongs to")
     series_frame: Optional[int] = Field(None, description="Set by the series runner: 1-based frame number")
+    seed: Optional[int] = Field(None, description="Render seed; blank picks a random one. Always recorded, so any run can be reproduced")
 
 
 # -------------------------------------------------------------------------
@@ -338,6 +340,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     gemini_key = os.getenv("GEMINI_API_KEY")
     world_labs_key = os.getenv("WORLD_LABS_API_KEY") or os.getenv("WLT_API_KEY")
     scene_edited = False
+    run_seed = request.seed if request.seed is not None else secrets.randbelow(2**31 - 1)
     phenology_date = None
     phenology_source = None
 
@@ -620,9 +623,11 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             multi_view_images=request.multi_view_images,
             disable_recaption=request.disable_recaption,
             gemini_api_key=gemini_key,
-            world_labs_api_key=world_labs_key
+            world_labs_api_key=world_labs_key,
+            seed=run_seed
         )
-        yield stage.dispatching("Twin artifact received")
+        print(f"[Synthesis] seed {run_seed}{' (fixed)' if request.seed is not None else ' (random)'}")
+        yield stage.dispatching(f"Twin artifact received (seed {run_seed})")
         yield stage.finish("Visual twin generated")
 
         total_latency_ms = (time.perf_counter() - pipeline_start) * 1000.0
@@ -656,6 +661,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "saved_view_name": request.saved_view_name,
                     "replay_of": request.replay_of,
                     "scene_text_edited": scene_edited,
+                    "seed": run_seed,
+                    "seed_fixed": request.seed is not None,
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
@@ -835,6 +842,7 @@ def _run_summary(d: Path) -> dict:
         "keystone_print_of": settings.get("keystone_print_of"),
         "series_id": settings.get("series_id"),
         "series_frame": settings.get("series_frame"),
+        "seed": settings.get("seed"),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
         "weather_mode": settings.get("weather_mode"),
@@ -940,6 +948,7 @@ class SeriesRequest(BaseModel):
     target_model: Optional[str] = "gemini-3.1-flash-image"
     disable_recaption: bool = True
     confirm_large: bool = False
+    seed: Optional[int] = Field(None, description="One seed for every frame; blank picks a random one, recorded in the manifest")
 
 
 def _parse_date(s: str) -> _date:
@@ -1058,6 +1067,7 @@ async def _run_print_frame(m: dict, fr: dict) -> tuple:
         print_view_id=m["view_id"],
         series_id=m["id"],
         series_frame=fr["n"],
+        seed=m.get("seed"),
     )
     run_path, error = None, None
     async for chunk in execute_pipeline_stream(req):
@@ -1190,6 +1200,7 @@ async def start_series(req: SeriesRequest):
         "keystone_run": ks["run_id"],
         "created_utc": _now_utc(),
         "status": "queued",
+        "seed": req.seed if req.seed is not None else secrets.randbelow(2**31 - 1),
         "spec": spec,
         "frames": [dict(n=i + 1, status="pending", **f) for i, f in enumerate(frames)],
     }
