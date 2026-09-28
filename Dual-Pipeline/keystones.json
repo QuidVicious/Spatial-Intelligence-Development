@@ -20,6 +20,20 @@
           "replaced_utc": "2026-09-26T17:09:46+00:00"
         }
       ]
+    },
+    "abercromby-and-nelson": {
+      "run_id": "20_Abercromby_Pl_Edinburgh_EH3_6LB_20260928_134712",
+      "view_name": "Abercromby and Nelson",
+      "source_run": "20_Abercromby_Pl_Edinburgh_EH3_6LB_20260928_134544",
+      "approved_from": "run",
+      "conditions": {
+        "date": "2026-12-21",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-09-28T20:49:19+00:00",
+      "history": []
     }
   }
 }

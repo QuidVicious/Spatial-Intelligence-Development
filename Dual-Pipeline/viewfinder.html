@@ -193,6 +193,11 @@
         <button onclick="deleteSavedView()" class="toggle-btn" title="Delete selected view" style="flex: 0 0 auto; padding: 6px 10px;">✕</button>
       </div>
       <div id="views-status" style="font-size: 10px; color: var(--text-muted); margin-top: 5px; min-height: 12px;"></div>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button id="btn-set-subject" class="toggle-btn" style="flex: 1; padding: 6px;" onclick="toggleSubjectPick()" title="Click this, then click the building or object the view is about">🎯 SET SUBJECT</button>
+        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" title="Clear the subject point" onclick="clearSubject()">✕</button>
+      </div>
+      <div id="subject-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;">No subject set: captures aim at the centre of the frame.</div>
     </div>
 
     <div class="hud-card">
@@ -456,6 +461,7 @@
       viewer.camera.moveEnd.addEventListener(onCameraSettle);
       loadSavedViews();
       loadReplayRuns();
+      initSubjectPicking();
       pollSeries();   // pick up a series that is already running on the server
       updateTelemetryHUD();
       syncCesiumTime();
@@ -671,7 +677,7 @@
       const input = document.getElementById('input-view-name');
       const name = input.value.trim();
       if (!name) { setViewsStatus('Enter a name first.', '#ff5252'); return; }
-      const body = { name, camera: currentCameraRecord(), overwrite: !!overwrite };
+      const body = { name, camera: currentCameraRecord(), overwrite: !!overwrite, subject: subjectPoint };
       try {
         const resp = await fetch('/api/views', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
@@ -716,6 +722,7 @@
       updateTelemetryHUD();
       onCameraSettle();
       activeSavedView = v;
+      if (v.subject) setSubject(v.subject); else clearSubject(true);
       setViewsStatus(`At: ${v.name}`, 'var(--accent-cyan)');
       console.log(`[Views] restored ${v.name} (${v.id})`);
     }
@@ -936,6 +943,107 @@
     // Returns null rather than guessing when no real surface is hit (sky, or depth unavailable).
     // The ellipsoid is deliberately NOT used as a fallback: on an oblique ray it lands
     // hundreds of metres past the true surface, which is worse than admitting no target.
+    // ---------------- Subject point ----------------
+    // The building or object a view is about. Captures aim at it instead of the frame centre,
+    // so the address, domain analysis and (later) Street View selection follow what you chose.
+    let subjectPoint = null;        // { x, y, z, latitude, longitude, height_m }
+    let subjectEntity = null;
+    let subjectPickMode = false;
+
+    function setSubjectStatus(msg, color) {
+      const el = document.getElementById('subject-status');
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg;
+    }
+
+    function describeSubject() {
+      if (!subjectPoint) { setSubjectStatus('No subject set: captures aim at the centre of the frame.'); return; }
+      const d = Cesium.Cartesian3.distance(viewer.camera.position, new Cesium.Cartesian3(subjectPoint.x, subjectPoint.y, subjectPoint.z));
+      setSubjectStatus(`🎯 Subject: ${subjectPoint.latitude.toFixed(6)}, ${subjectPoint.longitude.toFixed(6)} | ${d.toFixed(0)} m from camera`, 'var(--accent-cyan)');
+    }
+
+    function setSubject(p) {
+      subjectPoint = p;
+      if (subjectEntity) { viewer.entities.remove(subjectEntity); subjectEntity = null; }
+      subjectEntity = viewer.entities.add({
+        position: new Cesium.Cartesian3(p.x, p.y, p.z),
+        point: { pixelSize: 12, color: Cesium.Color.fromCssColorString('#00e5ff'), outlineColor: Cesium.Color.BLACK,
+                 outlineWidth: 2, disableDepthTestDistance: Number.POSITIVE_INFINITY },
+        label: { text: 'SUBJECT', font: '11px monospace', pixelOffset: new Cesium.Cartesian2(0, -18),
+                 fillColor: Cesium.Color.WHITE, showBackground: true, disableDepthTestDistance: Number.POSITIVE_INFINITY }
+      });
+      describeSubject();
+    }
+
+    function clearSubject(silent) {
+      subjectPoint = null;
+      if (subjectEntity) { viewer.entities.remove(subjectEntity); subjectEntity = null; }
+      subjectPickMode = false;
+      document.getElementById('btn-set-subject').textContent = '🎯 SET SUBJECT';
+      if (!silent) describeSubject(); else setSubjectStatus('No subject set: captures aim at the centre of the frame.');
+    }
+
+    function toggleSubjectPick() {
+      subjectPickMode = !subjectPickMode;
+      document.getElementById('btn-set-subject').textContent = subjectPickMode ? '🎯 CLICK THE SUBJECT… (Esc cancels)' : '🎯 SET SUBJECT';
+      if (subjectPickMode) setSubjectStatus('Click the building or object this view is about.', '#ffb74d'); else describeSubject();
+    }
+
+    function pickSurfaceAt(windowPos) {
+      const scene = viewer.scene;
+      let pos = null;
+      if (scene.pickPositionSupported) {
+        try { pos = scene.pickPosition(windowPos); } catch (e) { pos = null; }
+      }
+      if (!pos && scene.globe && scene.globe.show) {
+        const ray = viewer.camera.getPickRay(windowPos);
+        if (ray) pos = scene.globe.pick(ray, scene);
+      }
+      return pos || null;
+    }
+
+    function initSubjectPicking() {
+      const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+      handler.setInputAction(click => {
+        if (!subjectPickMode) return;
+        const pos = pickSurfaceAt(click.position);
+        if (!pos) { setSubjectStatus('No surface there. Click a building, the ground, or an object.', '#ff5252'); return; }
+        const c = Cesium.Cartographic.fromCartesian(pos);
+        subjectPickMode = false;
+        document.getElementById('btn-set-subject').textContent = '🎯 SET SUBJECT';
+        setSubject({ x: pos.x, y: pos.y, z: pos.z, latitude: Cesium.Math.toDegrees(c.latitude),
+                     longitude: Cesium.Math.toDegrees(c.longitude), height_m: c.height });
+        console.log('[Subject] set', subjectPoint);
+      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+      document.addEventListener('keydown', e => {
+        if (subjectPickMode && e.key === 'Escape') { subjectPickMode = false; document.getElementById('btn-set-subject').textContent = '🎯 SET SUBJECT'; describeSubject(); }
+      });
+      viewer.camera.moveEnd.addEventListener(() => { if (subjectPoint) describeSubject(); });
+    }
+
+    // At capture: aim at the subject if it is in frame, otherwise fall back to the frame centre.
+    async function resolveCaptureTarget() {
+      if (subjectPoint) {
+        const p = new Cesium.Cartesian3(subjectPoint.x, subjectPoint.y, subjectPoint.z);
+        const toWin = Cesium.SceneTransforms.worldToWindowCoordinates || Cesium.SceneTransforms.wgs84ToWindowCoordinates;
+        const win = toWin(viewer.scene, p);
+        const canvas = viewer.scene.canvas;
+        const toP = Cesium.Cartesian3.subtract(p, viewer.camera.position, new Cesium.Cartesian3());
+        const inFront = Cesium.Cartesian3.dot(toP, viewer.camera.direction) > 0;
+        const inFrame = win && inFront && win.x >= 0 && win.y >= 0 && win.x <= canvas.clientWidth && win.y <= canvas.clientHeight;
+        if (inFrame) {
+          const t = {
+            latitude: subjectPoint.latitude, longitude: subjectPoint.longitude, height_m: subjectPoint.height_m,
+            distance_m: Cesium.Cartesian3.distance(viewer.camera.position, p), method: 'SUBJECT_CLICK'
+          };
+          console.log(`[Target] SUBJECT_CLICK: ${t.latitude.toFixed(6)}, ${t.longitude.toFixed(6)} @ ${t.distance_m.toFixed(1)} m`);
+          return t;
+        }
+        console.warn('[Target] subject is out of frame; aiming at the frame centre instead');
+      }
+      return await pickFrameTarget();
+    }
+
     async function pickFrameTarget() {
       const scene = viewer.scene;
       const canvas = scene.canvas;
@@ -985,13 +1093,16 @@
       console.log(atView ? `[Views] capture tagged with view: ${atView.name}` : '[Views] capture not at a saved view (untagged)');
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
+
+      // The subject marker must never appear in the seed image.
+      if (subjectEntity) subjectEntity.show = false;
       
       // Fixed 16:9 seed so the model never has to choose a crop.
       const screenshotB64 = await captureFixedAspect(0.9);
 
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
       const altInfo = await computeAltitudeAGL(cart);
-      const target = await pickFrameTarget();
+      const target = await resolveCaptureTarget();
       const isLiveTime = document.getElementById('chk-live-time').checked;
 
       const marbleMode = currentProvider === 'WORLD_LABS'
@@ -1043,6 +1154,7 @@
         saved_view_name: atView ? atView.name : null
       };
 
+      if (subjectEntity) subjectEntity.show = true;
       await streamPipeline(payload);
     }
 

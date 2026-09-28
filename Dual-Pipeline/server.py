@@ -797,6 +797,7 @@ class SaveViewRequest(BaseModel):
     camera: SavedCamera
     note: Optional[str] = Field(None, max_length=500)
     overwrite: bool = False
+    subject: Optional[dict] = Field(None, description="The point the view is about: ECEF x/y/z plus lat/lon/height, set by clicking in the viewer")
 
 
 def _slug(name: str) -> str:
@@ -839,6 +840,7 @@ async def save_view(req: SaveViewRequest):
         "name": req.name.strip(),
         "note": req.note,
         "camera": req.camera.model_dump() if hasattr(req.camera, "model_dump") else req.camera.dict(),
+        "subject": req.subject,
         "created_utc": existing.get("created_utc", now) if existing else now,
         "updated_utc": now,
     }
