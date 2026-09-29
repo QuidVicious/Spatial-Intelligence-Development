@@ -233,6 +233,29 @@
     </div>
 
     <div class="hud-card">
+      <div class="hud-card-header">📷 Street View Reference</div>
+      <div id="sv-context" style="font-size: 10px; color: var(--text-muted);">Select a run in the Replay card.</div>
+      <button class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" onclick="svPropose()">🔎 PROPOSE PANO FOR SUBJECT</button>
+      <img id="sv-preview" alt="Street View preview" style="display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
+      <div id="sv-meta" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+      <div style="display: flex; gap: 4px; margin-top: 6px; align-items: center;">
+        <input type="text" id="sv-pano" placeholder="pano ID" title="Pano ID: paste one to use an older or different pano" style="flex: 1; min-width: 0; background: rgba(255,255,255,0.05); border: 1px solid var(--panel-border); color: var(--text-main); border-radius: 6px; padding: 5px 6px; font-size: 10px;" />
+        <input type="number" id="sv-heading" title="Heading (degrees)" style="width: 54px;" />
+        <input type="number" id="sv-pitch" title="Pitch (degrees)" style="width: 44px;" />
+        <input type="number" id="sv-fov" title="Field of view (degrees)" style="width: 44px;" />
+      </div>
+      <div style="font-size: 9px; color: var(--text-muted); margin-top: 2px;">pano ID · heading · pitch · field of view</div>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRead()" title="Compare the pano with the capture and add construction and weathering notes to the scene text">📝 READ INTO SCENE TEXT</button>
+      </div>
+      <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
+        <input type="checkbox" id="chk-sv-keystone" checked /> Use this pano in MAKE KEYSTONE (form and weathering only)
+      </label>
+      <div id="sv-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+    </div>
+
+    <div class="hud-card">
       <div class="hud-card-header">🗓 Series</div>
       <div id="series-context" style="font-size: 10px; color: var(--text-muted); margin-bottom: 6px;"></div>
       <div style="display: flex; gap: 4px; flex-wrap: wrap;">
@@ -1218,6 +1241,117 @@
       thumb.title = 'Click to view full screen';
     }
 
+    // ---------------- Street View reference ----------------
+    // Images are only ever previewed, fetched through the server and never stored;
+    // the run records the pano ID, view settings and the notes you keep.
+    let svState = null;   // { pano_id, heading, pitch, fov, date, distance_m, copyright }
+
+    function setSvStatus(msg, color) {
+      const el = document.getElementById('sv-status');
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg;
+    }
+
+    function svSubjectFor(run) {
+      if (!run) return null;
+      const view = savedViews.find(v => v.id === run.saved_view_id);
+      if (view && view.subject) return { lat: view.subject.latitude, lon: view.subject.longitude, source: 'view subject' };
+      if (run.target_latitude !== null && run.target_latitude !== undefined)
+        return { lat: run.target_latitude, lon: run.target_longitude, source: "run's target point" };
+      return null;
+    }
+
+    function svReset() {
+      svState = null;
+      document.getElementById('sv-preview').style.display = 'none';
+      document.getElementById('sv-meta').textContent = '';
+      ['sv-pano', 'sv-heading', 'sv-pitch', 'sv-fov'].forEach(id => document.getElementById(id).value = '');
+      const run = selectedReplayRun();
+      const subj = svSubjectFor(run);
+      document.getElementById('sv-context').textContent = !run ? 'Select a run in the Replay card.'
+        : subj ? `Aims at the ${subj.source}: ${subj.lat.toFixed(6)}, ${subj.lon.toFixed(6)}`
+        : 'This run has no subject or target point; set a subject on its view first.';
+      setSvStatus('');
+    }
+
+    function svFillInputs() {
+      document.getElementById('sv-pano').value = svState.pano_id;
+      document.getElementById('sv-heading').value = svState.heading;
+      document.getElementById('sv-pitch').value = svState.pitch;
+      document.getElementById('sv-fov').value = svState.fov;
+    }
+
+    function svShowPreview() {
+      const s = svState;
+      const img = document.getElementById('sv-preview');
+      img.src = `/api/streetview/image?pano=${encodeURIComponent(s.pano_id)}&heading=${s.heading}&pitch=${s.pitch}&fov=${s.fov}`;
+      img.style.display = 'block';
+      document.getElementById('sv-meta').textContent =
+        `Pano ${s.date || 'date unknown'} · ${s.distance_m} m from subject · heading ${s.heading}° · pitch ${s.pitch}° · fov ${s.fov}° · ${s.copyright || '© Google'}`;
+    }
+
+    async function svFetchMeta(subj, panoId) {
+      const resp = await fetch('/api/streetview/propose', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lat: subj.lat, lon: subj.lon, pano_id: panoId || null })
+      });
+      const d = await resp.json();
+      if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+      return d;
+    }
+
+    async function svPropose() {
+      const run = selectedReplayRun();
+      const subj = svSubjectFor(run);
+      if (!subj) { setSvStatus('Select a run whose view has a subject point.', '#ff5252'); return; }
+      setSvStatus('Finding the nearest outdoor pano...');
+      try {
+        svState = await svFetchMeta(subj, null);
+        svFillInputs(); svShowPreview();
+        setSvStatus('Check the preview shows the subject. Adjust heading, pitch or field of view, or paste another pano ID, then UPDATE.', 'var(--accent-cyan)');
+      } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
+    async function svApplyOverride() {
+      const run = selectedReplayRun();
+      const subj = svSubjectFor(run);
+      if (!subj) { setSvStatus('Select a run whose view has a subject point.', '#ff5252'); return; }
+      const pano = document.getElementById('sv-pano').value.trim();
+      const num = id => { const v = parseFloat(document.getElementById(id).value); return Number.isFinite(v) ? v : null; };
+      try {
+        if (!svState || pano !== svState.pano_id) {
+          svState = await svFetchMeta(subj, pano || null);   // a new pano: fresh date, distance and aimed heading
+          if (num('sv-pitch') !== null) svState.pitch = num('sv-pitch');
+          if (num('sv-fov') !== null) svState.fov = num('sv-fov');
+        } else {
+          if (num('sv-heading') !== null) svState.heading = num('sv-heading');
+          if (num('sv-pitch') !== null) svState.pitch = num('sv-pitch');
+          if (num('sv-fov') !== null) svState.fov = num('sv-fov');
+        }
+        svFillInputs(); svShowPreview();
+        setSvStatus('Preview updated.', 'var(--accent-cyan)');
+      } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
+    async function svRead() {
+      const run = selectedReplayRun();
+      if (!run || !svState) { setSvStatus('Propose a pano first.', '#ff5252'); return; }
+      const box = document.getElementById('replay-scene-text');
+      setSvStatus('Reading the pano against the capture...');
+      try {
+        const resp = await fetch('/api/streetview/read', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ run_id: run.id, pano_id: svState.pano_id, heading: svState.heading, pitch: svState.pitch,
+                                 fov: svState.fov, date: svState.date, scene_text: box.value })
+        });
+        const d = await resp.json();
+        if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+        box.value = `${box.value.trim()}\n\nStreet View reference notes (${svState.date || 'undated'}): ${d.notes}`;
+        box.scrollTop = box.scrollHeight;
+        setSvStatus('Notes added to the scene text. Review and edit them before MAKE KEYSTONE.', 'var(--accent-cyan)');
+      } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
     // ---------------- Series ----------------
     let seriesExplicitDates = null;
     let seriesPollTimer = null;
@@ -1635,6 +1769,7 @@
       const thumb = document.getElementById('replay-thumb');
       const text = document.getElementById('replay-scene-text');
       updateKeystoneUI();
+      svReset();
       if (!id) { thumb.style.display = 'none'; text.value = ''; replayOriginalText = ''; return; }
       const run = replayRuns.find(r => r.id === id);
       thumbShowsRender = !!(run && run.has_twin);
@@ -1688,6 +1823,10 @@
       if (!confirm('Render a keystone candidate from this run?\n\nIt ignores the date, time and weather panels: bare midwinter trees, flat overcast, noon.')) return;
       const payload = buildReplayPayload(run, editedSceneText());
       payload.mode = 'KEYSTONE';
+      if (svState && document.getElementById('chk-sv-keystone').checked) {
+        payload.streetview = { ...svState };
+        console.log(`[Keystone] with Street View reference ${svState.pano_id} (${svState.date})`);
+      }
       console.log(`[Keystone] candidate from ${run.id}`);
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');

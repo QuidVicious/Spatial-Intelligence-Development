@@ -28,7 +28,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse, Response
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
@@ -42,7 +42,7 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar, read_streetview
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
@@ -197,6 +197,7 @@ class ProcessViewRequest(BaseModel):
     series_frame: Optional[int] = Field(None, description="Set by the series runner: 1-based frame number")
     seed: Optional[int] = Field(None, description="Render seed; blank picks a random one. Always recorded, so any run can be reproduced")
     composite: bool = Field(True, description="PRINT only: keep the keystone's pixels outside the changed canopy, when the print's weather matches the keystone's")
+    streetview: Optional[dict] = Field(None, description="KEYSTONE only: {pano_id, heading, pitch, fov, date, distance_m, copyright}; the pano is fetched, used, and never stored")
 
 
 # -------------------------------------------------------------------------
@@ -347,6 +348,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     run_seed = request.seed if request.seed is not None else secrets.randbelow(2**31 - 1)
     composite_info = None
     raw_render_b64 = None
+    streetview_b64 = None
+    streetview_record = None
     canopy_mask_b64 = None
     phenology_date = None
     phenology_source = None
@@ -619,6 +622,22 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             yield stage.processing(f"Generating 3D world via Marble (input: {marble_mode})...")
         else:
             yield stage.processing(f"Generating 2560x1440 2K QHD visual twin via {compiled.target_provider}...")
+        # Street View reference (keystones only): a second image for form and weathering.
+        if mode == "KEYSTONE" and request.streetview and compiled.target_provider == "GEMINI":
+            sv = request.streetview
+            streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright")}
+            try:
+                pano = _fetch_pano(sv["pano_id"], sv.get("heading", 0), sv.get("pitch", 10), sv.get("fov", 80))
+                streetview_b64 = "data:image/jpeg;base64," + base64.b64encode(pano).decode("ascii")
+                compiled.prompt += STREETVIEW_REFERENCE_TEXT.format(date=sv.get("date") or "recently")
+                streetview_record["used"] = True
+                print(f"[StreetView] keystone reference: pano {sv['pano_id']} ({sv.get('date')}), heading {sv.get('heading')}")
+                yield stage.dispatching(f"Street View reference attached: pano {sv.get('date') or ''} (not stored)")
+            except Exception as e:
+                streetview_record["used"] = False
+                streetview_record["error"] = str(getattr(e, "detail", e))
+                print(f"[StreetView] reference skipped: {streetview_record['error']}")
+                yield stage.dispatching("Street View reference could not be fetched; rendering without it")
         # Direct handoff of CompiledPrompt enables systemInstruction / user_prompt separation
         synthesis = synthesize_twin(
             prompt=compiled,
@@ -631,7 +650,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             disable_recaption=request.disable_recaption,
             gemini_api_key=gemini_key,
             world_labs_api_key=world_labs_key,
-            seed=run_seed
+            seed=run_seed,
+            reference_b64=streetview_b64
         )
         print(f"[Synthesis] seed {run_seed}{' (fixed)' if request.seed is not None else ' (random)'}")
         yield stage.dispatching(f"Twin artifact received (seed {run_seed})")
@@ -693,6 +713,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "seed": run_seed,
                     "seed_fixed": request.seed is not None,
                     "composite": composite_info,
+                    "streetview": streetview_record,
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
@@ -891,6 +912,8 @@ def _run_summary(d: Path) -> dict:
         "provider": meta.get("provider"),
         "latitude": tel.get("latitude"),
         "longitude": tel.get("longitude"),
+        "target_latitude": tel.get("target_latitude"),
+        "target_longitude": tel.get("target_longitude"),
         "has_twin": (d / "spatial_twin.png").exists(),
         "split": bool(((_read_json(d / "domain_result.json") or {}).get("metadata") or {}).get("invariant_split")),
         "weather_resolved": (meta.get("lighting_resolved") or {}).get("weather"),
@@ -1287,6 +1310,127 @@ async def rerun_failed(series_id: str):
     _save_manifest(m)
     _start_series_thread(series_id, todo)
     return {"rerunning": todo}
+
+
+# -------------------------------------------------------------------------
+# Street View reference (/api/streetview): propose a pano aimed at the subject,
+# preview it, read it into notes. Images pass through and are never stored;
+# only the pano ID, view settings and notes are kept (Street View policy exempts pano IDs).
+# -------------------------------------------------------------------------
+SV_META_URL = "https://maps.googleapis.com/maps/api/streetview/metadata"
+SV_IMAGE_URL = "https://maps.googleapis.com/maps/api/streetview"
+PANO_ID_RE = re.compile(r"^[A-Za-z0-9_\-]{10,120}$")
+STREETVIEW_REFERENCE_TEXT = (
+    "\n\n[STREET-LEVEL REFERENCE: THE SECOND IMAGE]\n"
+    "The second image is a street-level reference photograph of the subject, taken {date} from a different position. "
+    "Use it ONLY for the form of architectural details and for the pattern, strength and placement of weathering and "
+    "soiling on facades that appear in both images; the reference notes in the SCENE section say which facade is which. "
+    "The first image still defines composition, geometry, camera and the position of every object. Never copy the "
+    "reference's vehicles, people, signs, foliage, weather, wet surfaces, sky, light, shadows, season, camera position or framing."
+)
+
+
+def _maps_key() -> str:
+    key = os.getenv("GOOGLE_MAPS_API_KEY")
+    if not key:
+        raise HTTPException(status_code=500, detail="GOOGLE_MAPS_API_KEY is not configured.")
+    return key
+
+
+def _bearing(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    import math
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dl = math.radians(lon2 - lon1)
+    x = math.sin(dl) * math.cos(p2)
+    y = math.cos(p1) * math.sin(p2) - math.sin(p1) * math.cos(p2) * math.cos(dl)
+    return (math.degrees(math.atan2(x, y)) + 360.0) % 360.0
+
+
+def _distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    import math
+    r = 6371000.0
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dp, dl = p2 - p1, math.radians(lon2 - lon1)
+    a = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * r * math.asin(math.sqrt(a))
+
+
+def _fetch_pano(pano_id: str, heading: float, pitch: float, fov: float) -> bytes:
+    if not PANO_ID_RE.match(pano_id or ""):
+        raise HTTPException(status_code=400, detail="Invalid pano ID.")
+    r = requests.get(SV_IMAGE_URL, params={
+        "size": "640x640", "pano": pano_id, "heading": round(float(heading), 1),
+        "pitch": round(float(pitch), 1), "fov": round(max(10.0, min(120.0, float(fov))), 1),
+        "return_error_code": "true", "key": _maps_key(),
+    }, timeout=20)
+    if r.status_code != 200 or not r.headers.get("content-type", "").startswith("image"):
+        raise HTTPException(status_code=502, detail=f"Street View image request failed ({r.status_code}).")
+    return r.content
+
+
+class StreetViewProposeRequest(BaseModel):
+    lat: float
+    lon: float
+    pano_id: Optional[str] = None
+    radius: int = 50
+
+
+@app.post("/api/streetview/propose")
+def streetview_propose(req: StreetViewProposeRequest):
+    params = {"key": _maps_key(), "source": "outdoor"}
+    if req.pano_id:
+        if not PANO_ID_RE.match(req.pano_id):
+            raise HTTPException(status_code=400, detail="Invalid pano ID.")
+        params["pano"] = req.pano_id
+    else:
+        params.update(location=f"{req.lat},{req.lon}", radius=max(10, min(200, req.radius)))
+    try:
+        meta = requests.get(SV_META_URL, params=params, timeout=15).json()
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Street View metadata request failed: {e}")
+    if meta.get("status") != "OK":
+        raise HTTPException(status_code=404, detail=f"No Street View pano found ({meta.get('status')}). Try a larger radius or a pano ID.")
+    plat, plon = meta["location"]["lat"], meta["location"]["lng"]
+    return {
+        "pano_id": meta.get("pano_id"),
+        "date": meta.get("date"),
+        "copyright": meta.get("copyright"),
+        "lat": plat, "lon": plon,
+        "heading": round(_bearing(plat, plon, req.lat, req.lon), 1),
+        "pitch": 10.0,
+        "fov": 80.0,
+        "distance_m": round(_distance_m(plat, plon, req.lat, req.lon), 1),
+    }
+
+
+@app.get("/api/streetview/image")
+def streetview_image(pano: str, heading: float = 0.0, pitch: float = 10.0, fov: float = 80.0):
+    # Passed straight through for preview; never written to disk.
+    return Response(content=_fetch_pano(pano, heading, pitch, fov), media_type="image/jpeg",
+                    headers={"Cache-Control": "no-store"})
+
+
+class StreetViewReadRequest(BaseModel):
+    run_id: str
+    pano_id: str
+    heading: float
+    pitch: float = 10.0
+    fov: float = 80.0
+    date: Optional[str] = None
+    scene_text: Optional[str] = None
+
+
+@app.post("/api/streetview/read")
+def streetview_read(req: StreetViewReadRequest):
+    d = _run_dir(req.run_id)
+    capture = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
+    if not capture:
+        raise HTTPException(status_code=422, detail="This run has no capture to compare against.")
+    scene = req.scene_text or load_domain_from_run(d)[0].documentary_prompt
+    pano = _fetch_pano(req.pano_id, req.heading, req.pitch, req.fov)
+    notes = read_streetview(capture, pano, scene, req.date, os.getenv("GEMINI_API_KEY"))
+    print(f"[StreetView] read pano {req.pano_id} for {req.run_id}: {len(notes)} chars")
+    return {"notes": notes, "pano_id": req.pano_id, "date": req.date}
 
 
 @app.get("/api/runs/{run_id}/scene")

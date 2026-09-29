@@ -643,3 +643,54 @@ def generate_phenology(
         return phenology_from_calendar(cal, date_str), f"calendar-{src}"
     return _generate_phenology_per_date(ecology_text, address, lat, lon, date_str, gemini_api_key)
 
+
+# =========================================================================
+# STREET VIEW READ: reference notes for the keystone's art bible
+# =========================================================================
+
+STREETVIEW_READ_INSTRUCTION = """You are an architectural surveyor and building conservator.
+You receive two images of the same real place and the current scene description.
+IMAGE 1 is the composition being rendered, from a 3D capture. It defines what is in frame and where.
+IMAGE 2 is a recent street-level reference photograph of the subject, taken from a different position.
+Write reference notes for elements that appear in BOTH images, covering only what Image 2 shows and the capture cannot:
+- construction detail: doors and fanlights, window types, blind or painted windows, railings, cornices, string courses, rustication, roof features
+- surface condition per facade: stone colour, soot or grime blackening versus cleaned stone, how uneven it is, where it is heaviest (which storeys, under cornices, around windows), streaking, patch repairs
+Locate every facade by its position in IMAGE 1 (for example "left foreground facade", "centre corner block", "far terrace beyond"). Never use street names or compass directions: the renderer cannot map them.
+Ignore everything temporary or seasonal in Image 2: vehicles, people, signs, scaffolding, bins, foliage, weather, wet surfaces, sky, light and shadows.
+Never describe anything that is not visible in Image 1. Where Image 2 clearly contradicts the scene description, say so in one clause.
+Telegraphic notation, at most 700 characters. Output only the notes."""
+
+
+def read_streetview(
+    capture_b64: str,
+    pano_jpeg: bytes,
+    scene_text: str,
+    pano_date: Optional[str] = None,
+    gemini_api_key: Optional[str] = None,
+) -> str:
+    """Construction and weathering notes from a Street View pano, located by position in the capture."""
+    api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
+    raw = capture_b64.split(",", 1)[1] if capture_b64.startswith("data:") else capture_b64
+    mime = capture_b64.split(";")[0].replace("data:", "") if capture_b64.startswith("data:") else "image/jpeg"
+    contents = [
+        "IMAGE 1 (the composition being rendered):",
+        types.Part.from_bytes(data=base64.b64decode(raw), mime_type=mime),
+        f"IMAGE 2 (Street View reference, {pano_date or 'date unknown'}):",
+        types.Part.from_bytes(data=pano_jpeg, mime_type="image/jpeg"),
+        f"CURRENT SCENE DESCRIPTION:\n{scene_text}\n\nWrite the reference notes.",
+    ]
+    cfg = dict(
+        system_instruction=STREETVIEW_READ_INSTRUCTION,
+        temperature=0.0,
+        thinking_config=types.ThinkingConfig(thinking_budget=2048),
+    )
+    if hasattr(types, "AutomaticFunctionCallingConfig"):
+        cfg["automatic_function_calling"] = types.AutomaticFunctionCallingConfig(disable=True)
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model=PHENOLOGY_MODEL, contents=contents, config=types.GenerateContentConfig(**cfg),
+    )
+    return (response.text or "").strip()
+

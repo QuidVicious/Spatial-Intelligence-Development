@@ -75,7 +75,8 @@ def synthesize_gemini_image(
     model_name: str = "gemini-3.1-flash-image",
     temperature: float = 0.0,
     gemini_api_key: Optional[str] = None,
-    seed: Optional[int] = None
+    seed: Optional[int] = None,
+    reference_b64: Optional[str] = None
 ) -> SynthesisResult:
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -87,6 +88,10 @@ def synthesize_gemini_image(
     if screenshot_b64:
         mime_type, raw_b64 = _extract_mime_and_data(screenshot_b64)
         parts.append({"inlineData": {"mimeType": mime_type, "data": raw_b64}})
+    if reference_b64:
+        # Second image: a street-level reference for form and weathering only (the prompt says so).
+        ref_mime, ref_raw = _extract_mime_and_data(reference_b64)
+        parts.append({"inlineData": {"mimeType": ref_mime, "data": ref_raw}})
 
     parts.append({"text": prompt})
 
@@ -334,6 +339,7 @@ def synthesize_twin(
     marble_input_mode: str = "text",
     display_name: str = "Spatial Twin",
     seed: Optional[int] = None,
+    reference_b64: Optional[str] = None,
     **kwargs
 ) -> SynthesisResult:
     prov = ModelProvider(provider) if isinstance(provider, str) else provider
@@ -366,5 +372,6 @@ def synthesize_twin(
         screenshot_b64=screenshot_b64,
         model_name=model_name or "gemini-3.1-flash-image",
         gemini_api_key=gemini_api_key,
-        seed=seed
+        seed=seed,
+        reference_b64=reference_b64
     )
