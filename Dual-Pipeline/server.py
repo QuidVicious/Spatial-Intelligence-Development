@@ -42,7 +42,7 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar, read_streetview
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar, read_streetview, rewrite_condition_from_streetview
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
@@ -305,6 +305,7 @@ def load_domain_from_run(d: Path):
         raw_response=data.get("raw_response") or "",
         metadata=dict(data.get("metadata") or {}, loaded_from=source),
         phenology=data.get("phenology") or "",
+        surface_condition=data.get("surface_condition") or "",
     )
     if not result.documentary_prompt:
         raise HTTPException(status_code=422, detail=f"Run {d.name} has no documentary prompt to replay.")
@@ -348,6 +349,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     run_seed = request.seed if request.seed is not None else secrets.randbelow(2**31 - 1)
     composite_info = None
     raw_render_b64 = None
+    delight_setting = None
     streetview_b64 = None
     streetview_record = None
     canopy_mask_b64 = None
@@ -419,6 +421,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             }
             telemetry = telemetry.model_copy(update=neutral) if hasattr(telemetry, "model_copy") else telemetry.copy(update=neutral)
             print(f"[Keystone] neutral plate: {neutral['date']} 12:00 OVERCAST")
+            replay["delighted_b64"] = None   # re-delight the source capture at the keystone setting
         if mode == "PRINT":
             plate = _file_data_url(_run_dir(keystone_run_id) / "spatial_twin.png", "image/png")
             if not plate:
@@ -600,9 +603,18 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         if replay and replay["delighted_b64"]:
             yield stage.processing("Reusing archived delighted seed from the source run...")
             delighted_b64 = replay["delighted_b64"]
+            delight_setting = "keystone plate" if mode == "PRINT" else "reused from source run"
         else:
-            yield stage.processing("Pushing viewport frame to PyTorch CUDA -> Delighting...")
-            delighted_b64 = delight_image(request.screenshot_b64) if request.screenshot_b64 else None
+            gamma = _keystone_delight_setting() if mode == "KEYSTONE" else DEFAULT_DELIGHT_GAMMA
+            if gamma == "off":
+                yield stage.processing("Keystone: delighting off, seeding with the raw capture...")
+                delighted_b64 = request.screenshot_b64
+                delight_setting = "off (raw capture)"
+            else:
+                yield stage.processing(f"Pushing viewport frame to PyTorch CUDA -> Delighting (gamma {gamma})...")
+                delighted_b64 = delight_image(request.screenshot_b64, gamma=gamma) if request.screenshot_b64 else None
+                delight_setting = f"gamma {gamma}"
+        print(f"[Delight] {delight_setting}")
         yield stage.dispatching("Edge-preserved albedo tensor extracted")
         yield stage.finish("Albedo delighting complete")
 
@@ -714,6 +726,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "seed_fixed": request.seed is not None,
                     "composite": composite_info,
                     "streetview": streetview_record,
+                    "delight": delight_setting,
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
@@ -1330,6 +1343,24 @@ STREETVIEW_REFERENCE_TEXT = (
 )
 
 
+# Delighting: the guided-filter lift brightens broad dark areas, soot included (see vision_preprocessor).
+# Fresh captures keep the original gamma. Keystones re-delight their source capture more gently.
+DEFAULT_DELIGHT_GAMMA = 0.72
+
+
+def _keystone_delight_setting():
+    """KEYSTONE_DELIGHT_GAMMA in .env: a gamma between 0.5 and 1.0 (default 0.85), or "off" for the raw capture.
+    Lower lifts more. 1.0 still sharpens detail slightly; only "off" sends the capture untouched."""
+    raw = (os.getenv("KEYSTONE_DELIGHT_GAMMA") or "0.85").strip().lower()
+    if raw == "off":
+        return "off"
+    try:
+        return min(max(float(raw), 0.5), 1.0)
+    except ValueError:
+        print(f"[Delight] KEYSTONE_DELIGHT_GAMMA={raw!r} is not a number or 'off'; using 0.85")
+        return 0.85
+
+
 def _maps_key() -> str:
     key = os.getenv("GOOGLE_MAPS_API_KEY")
     if not key:
@@ -1431,6 +1462,22 @@ def streetview_read(req: StreetViewReadRequest):
     notes = read_streetview(capture, pano, scene, req.date, os.getenv("GEMINI_API_KEY"))
     print(f"[StreetView] read pano {req.pano_id} for {req.run_id}: {len(notes)} chars")
     return {"notes": notes, "pano_id": req.pano_id, "date": req.date}
+
+
+@app.post("/api/streetview/rewrite")
+def streetview_rewrite(req: StreetViewReadRequest):
+    """Finishing pass: the full scene text with its surface condition rewritten from the pano.
+    Nothing is saved here; the original text stays in the source run's domain_result.json."""
+    d = _run_dir(req.run_id)
+    capture = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
+    if not capture:
+        raise HTTPException(status_code=422, detail="This run has no capture to compare against.")
+    scene = req.scene_text or load_domain_from_run(d)[0].documentary_prompt
+    pano = _fetch_pano(req.pano_id, req.heading, req.pitch, req.fov)
+    revised = rewrite_condition_from_streetview(capture, pano, scene, req.date, os.getenv("GEMINI_API_KEY"))
+    print(f"[StreetView] rewrote condition from pano {req.pano_id} for {req.run_id}: {len(scene)} -> {len(revised)} chars")
+    return {"scene_text": revised, "original": scene, "pano_id": req.pano_id, "date": req.date,
+            "changed": revised.strip() != scene.strip()}
 
 
 @app.get("/api/runs/{run_id}/scene")

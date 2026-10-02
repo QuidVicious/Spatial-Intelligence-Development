@@ -50,18 +50,24 @@
       "history": []
     },
     "ainslie-place-street-east": {
-      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_085532",
+      "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261002_162755",
       "view_name": "Ainslie Place Street east",
-      "source_run": null,
-      "approved_from": "run",
+      "source_run": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261002_160630",
+      "approved_from": "candidate",
       "conditions": {
-        "date": "2026-01-02",
+        "date": "2026-01-15",
         "time_of_day": 12.0,
         "weather": "OVERCAST"
       },
       "warnings_acknowledged": [],
-      "approved_utc": "2026-10-02T16:00:36+00:00",
-      "history": []
+      "approved_utc": "2026-10-02T23:31:24+00:00",
+      "history": [
+        {
+          "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_085532",
+          "approved_utc": "2026-10-02T16:00:36+00:00",
+          "replaced_utc": "2026-10-02T23:31:24+00:00"
+        }
+      ]
     }
   }
 }

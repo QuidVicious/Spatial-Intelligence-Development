@@ -247,7 +247,8 @@
       <div style="font-size: 9px; color: var(--text-muted); margin-top: 2px;">pano ID · heading · pitch · field of view</div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRead()" title="Compare the pano with the capture and add construction and weathering notes to the scene text">📝 READ INTO SCENE TEXT</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Finishing pass: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 FINISHING PASS</button>
+        <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
       </div>
       <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
         <input type="checkbox" id="chk-sv-keystone" checked /> Use this pano in MAKE KEYSTONE (form and weathering only)
@@ -1245,6 +1246,7 @@
     // Images are only ever previewed, fetched through the server and never stored;
     // the run records the pano ID, view settings and the notes you keep.
     let svState = null;   // { pano_id, heading, pitch, fov, date, distance_m, copyright }
+    let svPreRewriteText = null;   // scene text before the last condition rewrite, for UNDO
 
     function setSvStatus(msg, color) {
       const el = document.getElementById('sv-status');
@@ -1263,6 +1265,8 @@
 
     function svReset() {
       svState = null;
+      svPreRewriteText = null;
+      document.getElementById('btn-sv-undo').style.display = 'none';
       document.getElementById('sv-preview').style.display = 'none';
       document.getElementById('sv-meta').textContent = '';
       ['sv-pano', 'sv-heading', 'sv-pitch', 'sv-fov'].forEach(id => document.getElementById(id).value = '');
@@ -1350,6 +1354,38 @@
         box.scrollTop = box.scrollHeight;
         setSvStatus('Notes added to the scene text. Review and edit them before MAKE KEYSTONE.', 'var(--accent-cyan)');
       } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
+    // Finishing pass: the scene text comes back whole, with only its surface condition rewritten from the pano.
+    async function svRewrite() {
+      const run = selectedReplayRun();
+      if (!run || !svState) { setSvStatus('Propose a pano first.', '#ff5252'); return; }
+      const box = document.getElementById('replay-scene-text');
+      const before = box.value;
+      setSvStatus('Running the finishing pass against the pano...');
+      try {
+        const resp = await fetch('/api/streetview/rewrite', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ run_id: run.id, pano_id: svState.pano_id, heading: svState.heading, pitch: svState.pitch,
+                                 fov: svState.fov, date: svState.date, scene_text: before })
+        });
+        const d = await resp.json();
+        if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+        if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); return; }
+        svPreRewriteText = before;
+        box.value = d.scene_text;
+        box.scrollTop = 0;
+        document.getElementById('btn-sv-undo').style.display = '';
+        setSvStatus(`Finishing pass from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars. Review it before MAKE KEYSTONE; UNDO restores the previous text.`, 'var(--accent-cyan)');
+      } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
+    function svUndoRewrite() {
+      if (svPreRewriteText === null) return;
+      document.getElementById('replay-scene-text').value = svPreRewriteText;
+      svPreRewriteText = null;
+      document.getElementById('btn-sv-undo').style.display = 'none';
+      setSvStatus('Scene text restored to before the finishing pass.');
     }
 
     // ---------------- Series ----------------

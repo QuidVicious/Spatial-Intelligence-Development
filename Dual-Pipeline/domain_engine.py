@@ -1,9 +1,7 @@
 """
-Domain Engine: Standalone Causal Spatial Cognition & Multimodal Archetype Engine.
-Executes deep architectural, geological, geographical, and optical reasoning across the 4 Mothers.
-Features Climate-Adaptive Material Pathology, Time-Invariant Botanical Identification
-(seasonal phenology is generated per date by generate_phenology),
-and High-Density Telegraphic Synthesis for Downstream Generative Models.
+Domain Engine: analyses a captured view through five domain lenses (latent space archaeology)
+and writes the time-invariant scene text the renderer works from.
+Seasonal phenology is generated per date by generate_phenology.
 """
 
 import os
@@ -22,6 +20,9 @@ import requests
 from fastapi import HTTPException
 from google import genai
 from google.genai import types
+
+# Domain analysis and the Street View passes. Phenology keeps its own model (PHENOLOGY_MODEL).
+DOMAIN_MODEL = "gemini-3.8-flash"
 
 
 class ViewScope(str, Enum):
@@ -46,79 +47,52 @@ class DomainAnalysisResult:
     # Variant layer: seasonal canopy state for ONE date. Empty in pre-split runs,
     # whose seasonal state is woven into botanical_ecology and documentary_prompt instead.
     phenology: str = ""
+    # Present surface condition (soiling, cleaning, streaking), kept apart from the fabric.
+    # Empty in runs made before the fabric/condition split.
+    surface_condition: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 
 
 # =========================================================================
-# THE ALL-SEEING EYE SYSTEM INSTRUCTION (LOCATION-AGNOSTIC COGNITIVE CORE)
+# DOMAIN SYSTEM INSTRUCTION (latent space archaeology, five lenses)
 # =========================================================================
 
-DOMAIN_SYSTEM_INSTRUCTION = """# [ALL SEEING EYE: ACTIVE COGNITIVE ANCHOR & DOMAIN CORE]
+DOMAIN_SYSTEM_INSTRUCTION = """# DOMAIN ANALYSIS: LATENT SPACE ARCHAEOLOGY FOR A CAPTURED VIEW
 
-{
-  "system_state": "ACTIVE",
-  "archetype": [
-    "Architect", 
-    "Surveyor", 
-    "Geologist", 
-    "Geographer", 
-    "Civil Records Archivist", 
-    "Botanist", 
-    "Building Conservator"
-  ],
-  "cognitive_mode": "Location-Agnostic Causal Spatial Analysis & Telegraphic Documentary Synthesis",
-  "narrative_style": "high-density telegraphic notation, geophysically grounded, structurally precise",
-  "constraints": {
-    "suppress": [
-      "conversational filler", "AI pleasantries", "generic summaries", 
-      "sterile CGI rendering", "smooth sandblasted textures", "material homogenization", 
-      "pedestrians", "vehicles", "cars", "traffic", "transient street clutter", "dumpsters", "temporary signage",
-      "scaffolding", "construction hoardings", "building wraps",
-      "misclassifying foliage as stone", "misinterpreting photogrammetry mesh noise as crumpled architecture",
-      "lighting descriptions", "sky colors", "shadow angles", "time of day assertions", "sun positions",
-      "camera, lens, film format, aperture, resolution, or aspect ratio",
-      "screen position, compass placement, or view-type language"
-    ],
-    "enforce": [
-      "causal synthesis across the 4 Mothers (Geology, Geography, Architecture, Civil Records)",
-      "heterogeneous per-structure material discrimination (distinguish modern glass/steel from historic masonry)",
-      "strict visual geometry adherence and planar vertical load-bearing lines",
-      "specific lithic quarry names, bond patterns, and dressing terms",
-      "time-invariant botanical identification (exact Latin tree genus/species, canopy form and volume; NO seasonal leaf state)",
-      "static civil fabric decluttering",
-      "high-density telegraphic prompt synthesis (<1600 characters, zero conversational fluff)"
-    ]
-  }
-}
+## ROLE AND PRINCIPLE
+You analyse one real place from a 3D capture and write the scene text an image model renders from. Your purpose is to bypass centroid collapse: the tendency of image models to fall back on the generic, cliche version of a place. You do it by drawing deep, specific knowledge from several domains at once, while keeping every claim about structure tied to what the capture shows.
+The governing principle: invent texture, never structure. Knowledge may enrich materials, weathering, chemistry and plant life, because those follow from the place's stone, climate and age. Knowledge may never add architectural features, because those are specific to each building and recall gets them wrong.
 
-## THE DIRECTIVES:
+## STAGE 1: CENTROID IDENTIFICATION AND REJECTION
+Before anything else, name the centroid for this specific place: the generic version an image model would produce if asked for it, in stone colour, ornament, condition, ground surfaces and planting. Everything that follows must resist drifting toward it.
 
-1. **The 4 Mothers Causal Domain Stack**:
-   - **Mother 1: GEOLOGY (Subterranean Foundation & Lithics):**
-     Identify bedrock stratigraphy, regional quarry masonry materials (e.g. specific local sandstones, limestones, granites, volcanic basalts, clay brick bonds), mortar chemistry, and subterranean dynamics.
-   - **Mother 2: GEOGRAPHY (Environmental Weathering & Climate-Adaptive Pathology):**
-     Deduce authentic environmental weathering from the location's specific micro-climate, regional environment, and structural age (coal-smoke encrustations, salt efflorescence, biological greening, rain-wash reveals).
-   - **Mother 3: ARCHITECTURE (Planar Rectification & Material Heterogeneity):**
-     * NEVER interpret photogrammetry mesh noise as deconstructivist architecture. Plumb all vertical walls to true gravity vertical. Planarize wobbly wall surfaces, sharpen roof ridges, and align fenestration grids.
-     * MULTI-STRUCTURE HETEROGENEITY: Never homogenize the scene into one material. Evaluate each structure's construction era independently (e.g. 1820s ashlar townhouse vs. adjacent 1970s exposed concrete vs. 2010s curtain-wall glass).
-   - **Mother 4: CIVIL RECORDS (Provenance, Massing & Height Truth):**
-     Ground building heights, exact storey counts, window configurations (e.g. 6-over-6 timber sash-and-case, tripartite Venetian), and architectural orders in verified historical records.
+## STAGE 2: DOMAIN LENSES
+- GEOLOGY: bedrock, the local building stone and its quarries, mineralogy and cement, mortar chemistry, drainage.
+- HISTORICAL AND MATERIAL: how the stone and iron were worked: tooling, dressing, coursing, casting, period fabrication. Not ornament: recalled ornament is unreliable.
+- CIVIL ENGINEERING: structural logic and true geometry. Plumb every wall to gravity vertical, planarize facades, sharpen ridges, align window grids. Never read photogrammetry mesh noise as real architecture. Rectification is geometric only: it never cleans, smooths or evens out surface colour or soiling.
+- CHEMICAL: how the materials have aged: soot and gypsum crusts, salt efflorescence, iron staining and rust, lime leaching, spalling, and where each concentrates.
+- ECOLOGICAL: trees by genus and species, with canopy form, height, trunk and branch structure; and the biology of surfaces: moss, lichen and algae, and where moisture and shelter put them.
 
-2. **Landscape Ecology (Time-Invariant Only)**:
-   Urban trees are precise botanical anchors. Explicitly identify tree genus and species (e.g. Platanus × acerifolia, Acer pseudoplatanus, Tilia cordata, Quercus robur). Detail their canopy volume, height, trunk and branch structure, and placement.
-   SEASONAL STATE IS OUT OF SCOPE: never describe leaf presence, leaf colour, flowering, fruiting, leaf fall, bare branches, or season in ANY section. Seasonal canopy state is generated separately for each target date. The scene must stay valid in every season.
+## STAGE 3: CROSS-DOMAIN SYNERGY
+Find the details that appear only where lenses intersect: how this stone's mineralogy, the local pollution history and the climate together produce the particular soiling, crusting, staining and growth on these surfaces. These intersections are the richest part of the scene and belong in MATERIALS and CONDITION.
 
-3. **Static Civil Fabric Decluttering (MANDATORY)**:
-   Render as a pure static architectural survey: ZERO pedestrians, ZERO vehicles, ZERO dumpsters, ZERO temporary clutter. Retain stone kerbs, iron railings, fixed streetlamps, and mature trees.
+## STAGE 4: CONFLICT RESOLUTION
+Where lenses disagree, resolve it explicitly. One rule always holds: when recalled knowledge conflicts with the capture, the capture wins. Architectural orders, pilasters, pediments, porticoes, dormers, mansards, balustrades and roof forms enter the documentary prompt only when the capture shows them. In the ARCHITECTURE section, mark any recalled feature the capture does not show as UNVERIFIED.
 
-4. **Atmospheric Blindness (CRITICAL)**:
-   DO NOT describe the sky, lighting, shadows, sun position, or time of day in ANY section. Lighting is managed strictly by an independent ephemeris engine.
+## FABRIC AND CONDITION
+Fabric is what a structure is made of and how it is built. Condition is how its surfaces look today. A 3D capture cannot show condition reliably, so condition is always an estimate here, made from the place's history, stone, climate and age, and confirmed later against street-level photography. Describe it as typical for the place and keep it consistent across a uniform terrace. Never assume a building has been cleaned or restored, and never invent differences between neighbouring buildings. Locate weathering and growth by exposure, never by compass direction: sheltered or exposed faces, drip lines, the undersides of projections, ground contact.
 
-5. **The Frame Is Given**:
-   The reference capture is the survey. Report only the structures and ground surfaces actually present in it, in proportion to how much of it they occupy. Ground, turf, water, and paving that fill the capture are subjects in their own right and deserve the same specificity as buildings. A famous building at this address that is not in the capture is not part of this site. Say what each thing is made of; the capture already says where it is and how it is seen.
-
+## SCENE RULES
+- The frame is given. The capture is the survey. Report only the structures and ground surfaces actually present in it, in proportion to how much of it they occupy. Ground, turf, water and paving that fill the capture deserve the same specificity as buildings. A famous building at this address that is not in the capture is not part of this site.
+- Evaluate each structure's era and material independently. Never homogenize the scene into one material; distinguish, for example, historic masonry from modern concrete or glass.
+- Trees are time-invariant. Seasonal state is generated separately for each date: never describe leaf presence, leaf colour, flowering, fruiting, leaf fall, bare branches or season in any section.
+- Lighting is out of scope. Never describe sky, light, shadows, sun position, weather or time of day: an independent engine manages them.
+- Decluttering: no pedestrians, vehicles, bins, temporary signage, scaffolding, hoardings or building wraps. Keep stone kerbs, iron railings, fixed streetlamps and mature trees. Decluttering removes transient objects only; soiling, staining and weathering are permanent.
+- Avoid sterile CGI surfaces, sandblasted smoothness and homogenized materials.
+- The documentary prompt never uses camera, lens or format language, screen positions, compass directions or street names.
+- Style: high-density telegraphic notation, technically precise, no conversational filler.
 """
 
 
@@ -242,14 +216,20 @@ def analyze_spatial_domain(
 OUTPUT REQUIREMENTS:
 Provide your output structured into the following labeled sections:
 
+---CENTROID---
+[Stage 1: the generic version of this specific place an image model would produce, in stone colour, ornament, condition, ground surfaces and planting. Everything below resists it]
+
 ---GEOLOGY---
 [Subterranean bedrock, local stone/masonry lithics, mortar chemistry, and local groundwater/drainage]
 
 ---ARCHITECTURE---
-[Architectural typologies, verified storey counts, roof geometry, window fenestration, planar rectification]
+[Architectural typologies, storey counts, bay rhythm, roof geometry, window fenestration, planar rectification. Mark every recalled feature the capture does not show as UNVERIFIED]
 
 ---MATERIALS---
-[Per-structure facade materials, brick bonds, renders, and climate-adaptive weathering/patina]
+[Per-structure fabric: facade materials, quarry stone, dressing, brick bonds, renders. Fabric only: surface condition goes in CONDITION]
+
+---CONDITION---
+[Per-structure estimated present surface condition from the chemical and ecological lenses, for buildings, paving, kerbs, walls and ironwork: overall colour as it looks today, soiling and crusts, staining, efflorescence, moss, lichen and algae, and where each concentrates by exposure. Always an estimate: a 3D capture cannot show it. No differences between neighbouring buildings unless the capture plainly shows them]
 
 ---ECOLOGY---
 [Identified native/urban tree genus and species, canopy volume, height, trunk and branch structure. Time-invariant only: no leaf state, colour, or season]
@@ -258,7 +238,7 @@ Provide your output structured into the following labeled sections:
 [Confirmation of complete removal of all transient vehicles, pedestrians, dumpsters, and clutter]
 
 ---DOCUMENTARY_PROMPT---
-[High-density, telegraphic documentary prompt covering only what is visible in the reference capture. Include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, ground surfacing, and botanical tree species with canopy form. TARGET LENGTH: 1200 to 1500 characters. Time-invariant material and fabric only: no lighting, sky, shadows, weather, or time of day; no leaf state, foliage colour, or season; no camera, lens, or format; no frame or compass placement.]
+[High-density, telegraphic documentary prompt covering only what is visible in the reference capture. Include specific quarry lithics, masonry dressing, fenestration grids, distinct modern vs historic materials, ground surfacing, and botanical tree species with canopy form. Name only features the capture shows: massing, storey count, bay rhythm, window grid, materials, and the ground surface as far as it is legible. Never include UNVERIFIED features or ornament the capture does not show, such as orders, pilasters, pediments, dormers, mansards or balustrades. Describe each structure surface first: open with how its stone looks today (its colour as seen, its soiling and where that concentrates), then the material and dressing beneath. Never open with the clean quarry colour, and give tone as an actual colour, not an intensity word such as light or moderate. Surface condition is part of the time-invariant scene. Never drift toward the centroid named in CENTROID. TARGET LENGTH: 1200 to 1600 characters. Time-invariant material and fabric only: no lighting, sky, shadows, weather, or time of day; no leaf state, foliage colour, or season; no camera, lens, or format; no frame or compass placement.]
 """
 
     contents: List[Any] = [user_prompt]
@@ -288,7 +268,7 @@ Provide your output structured into the following labeled sections:
 
     try:
         response = client.models.generate_content(
-            model="gemini-3.7-flash",
+            model=DOMAIN_MODEL,
             contents=contents,
             config=config
         )
@@ -308,6 +288,8 @@ Provide your output structured into the following labeled sections:
     geology = _extract_section("GEOLOGY", response_text)
     architecture = _extract_section("ARCHITECTURE", response_text)
     materials = _extract_section("MATERIALS", response_text)
+    condition = _extract_section("CONDITION", response_text)
+    centroid = _extract_section("CENTROID", response_text)
     ecology = _extract_section("ECOLOGY", response_text)
     decluttering = _extract_section("STATIC_DECLUTTERING", response_text)
     doc_prompt = _extract_section("DOCUMENTARY_PROMPT", response_text)
@@ -325,6 +307,7 @@ Provide your output structured into the following labeled sections:
         botanical_ecology=ecology,
         static_decluttering_summary=decluttering,
         raw_response=response_text,
+        surface_condition=condition,
         metadata={
             "address": address,
             "invariant_split": True,
@@ -333,7 +316,12 @@ Provide your output structured into the following labeled sections:
             "address_source": "TARGET" if has_target else "CAMERA",
             "tile_mode": tile_mode,
             "view_scope": view_scope.value,
-            "search_grounding": use_search_grounding
+            "search_grounding": use_search_grounding,
+            "condition_split": True,
+            "visible_only": True,
+            "domain_instruction": "lsa-merge-1",
+            "centroid": centroid,
+            "domain_model": DOMAIN_MODEL
         }
     )
 
@@ -669,6 +657,14 @@ def read_streetview(
     gemini_api_key: Optional[str] = None,
 ) -> str:
     """Construction and weathering notes from a Street View pano, located by position in the capture."""
+    return _streetview_call(STREETVIEW_READ_INSTRUCTION, capture_b64, pano_jpeg, scene_text, pano_date,
+                            "Write the reference notes.", 2048, gemini_api_key)
+
+
+def _streetview_call(instruction: str, capture_b64: str, pano_jpeg: bytes, scene_text: str,
+                     pano_date: Optional[str], ask: str, thinking_budget: int,
+                     gemini_api_key: Optional[str]) -> str:
+    """One call with the capture (IMAGE 1), the pano (IMAGE 2) and the current scene text."""
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
@@ -679,18 +675,57 @@ def read_streetview(
         types.Part.from_bytes(data=base64.b64decode(raw), mime_type=mime),
         f"IMAGE 2 (Street View reference, {pano_date or 'date unknown'}):",
         types.Part.from_bytes(data=pano_jpeg, mime_type="image/jpeg"),
-        f"CURRENT SCENE DESCRIPTION:\n{scene_text}\n\nWrite the reference notes.",
+        f"CURRENT SCENE DESCRIPTION:\n{scene_text}\n\n{ask}",
     ]
     cfg = dict(
-        system_instruction=STREETVIEW_READ_INSTRUCTION,
+        system_instruction=instruction,
         temperature=0.0,
-        thinking_config=types.ThinkingConfig(thinking_budget=2048),
+        thinking_config=types.ThinkingConfig(thinking_budget=thinking_budget),
     )
     if hasattr(types, "AutomaticFunctionCallingConfig"):
         cfg["automatic_function_calling"] = types.AutomaticFunctionCallingConfig(disable=True)
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model=PHENOLOGY_MODEL, contents=contents, config=types.GenerateContentConfig(**cfg),
+        model=DOMAIN_MODEL, contents=contents, config=types.GenerateContentConfig(**cfg),
     )
     return (response.text or "").strip()
+
+
+# =========================================================================
+# STREET VIEW FINISHING PASS: rewrite the scene text's surface condition
+# =========================================================================
+
+STREETVIEW_REWRITE_INSTRUCTION = """You are an architectural surveyor and building conservator doing the finishing pass on a scene description.
+You receive two images of the same real place and the current scene description.
+IMAGE 1 is the composition being rendered, from a 3D capture. It fixes what is in frame, where it is, and the massing. Its surface detail is unreliable.
+IMAGE 2 is a street-level reference photograph of the subject, taken from a different position. It is the evidence for visible detail and for how the surfaces look today.
+Return the complete scene description, revised so that:
+- Surface condition matches IMAGE 2 and comes first. Open each structure's description with how its stone looks today (its colour as seen, its soiling, how even or uneven it really is, where darkening concentrates), then name the material and dressing beneath it. Never open with the clean quarry colour, and remove clean quarry-colour words such as blonde, pale buff or honey for stone that IMAGE 2 shows soiled. Give tone as an actual colour, not an intensity word such as light or moderate. Describe differences between buildings only where IMAGE 2 shows them.
+- Visible detail matches IMAGE 2 for structures that appear in both images: doors and fanlights, window types, pilasters and their order and how many bays they span, string courses, cornices, the roofline including dormers or their absence, railings, and the ground surface. Add detail IMAGE 2 shows; correct detail it contradicts.
+- Every architectural feature that appears in neither image is deleted, for example pediments, pilaster orders, dormers or mansard roofs that neither image shows.
+- Everything else, including tree species, stays word for word.
+Ignore everything temporary or seasonal in IMAGE 2: vehicles, people, signs, scaffolding, bins, foliage, weather, wet surfaces, sky, light and shadows. Bright sun or deep shade in IMAGE 2 is light, not surface colour.
+Never add lighting, weather, season, camera, screen-position or compass language, and never use street names. Name structures by their architectural features. Keep the telegraphic style and keep the length within about 25% of the original.
+Output only the revised scene description."""
+
+
+def rewrite_condition_from_streetview(
+    capture_b64: str,
+    pano_jpeg: bytes,
+    scene_text: str,
+    pano_date: Optional[str] = None,
+    gemini_api_key: Optional[str] = None,
+) -> str:
+    """Finishing pass: the full scene text back, with condition and visible detail set from the pano
+    and features shown in neither image removed."""
+    out = _streetview_call(STREETVIEW_REWRITE_INSTRUCTION, capture_b64, pano_jpeg, scene_text, pano_date,
+                           "Return the revised scene description.", 4096, gemini_api_key)
+    out = re.sub(r"^```[a-z]*\s*|\s*```$", "", out).strip()
+    if not out:
+        raise HTTPException(status_code=502, detail="The rewrite came back empty; the scene text is unchanged.")
+    ratio = len(out) / max(len(scene_text), 1)
+    if not 0.6 <= ratio <= 1.6:
+        raise HTTPException(status_code=502, detail=(
+            f"The rewrite changed the length too much ({ratio:.0%} of the original); the scene text is unchanged."))
+    return out
 

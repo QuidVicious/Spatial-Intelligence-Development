@@ -51,7 +51,11 @@ def guided_filter(guide: torch.Tensor, src: torch.Tensor, r: int = 16, eps: floa
     return mean_a * guide + mean_b
 
 
-def delight_image(base64_str: Optional[str]) -> Optional[str]:
+def delight_image(base64_str: Optional[str], gamma: float = 0.72) -> Optional[str]:
+    """gamma sets the shadow lift on the low-frequency base layer. Lower lifts more.
+    The lift cannot tell a cast shadow from broad soiling, so a soot-darkened facade is
+    brightened too: 0.72 (default, fresh captures) compresses broad tonal differences by
+    about a quarter; keystones use a gentler value set in server.py."""
     if not base64_str:
         return None
         
@@ -87,7 +91,7 @@ def delight_image(base64_str: Optional[str]) -> Optional[str]:
     norm_base = torch.clamp(base_linear / base_max, 0.0, 1.0)
     
     # Smooth gamma lift on low frequencies (lifts deep shadow regions toward neutral ambient)
-    lifted_norm_base = torch.pow(norm_base, 0.72)
+    lifted_norm_base = torch.pow(norm_base, gamma)
     lifted_base_linear = lifted_norm_base * base_max
     lifted_base_log = torch.log(lifted_base_linear + eps)
     
