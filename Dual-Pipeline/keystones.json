@@ -34,6 +34,34 @@
       "warnings_acknowledged": [],
       "approved_utc": "2026-09-28T20:49:19+00:00",
       "history": []
+    },
+    "royal-scotts-club-27-abercromby-pl": {
+      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20260929_150546",
+      "view_name": "Royal Scotts Club, 27 Abercromby Pl",
+      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20260929_150324",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-09-29T22:09:02+00:00",
+      "history": []
+    },
+    "ainslie-place-street-east": {
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_085532",
+      "view_name": "Ainslie Place Street east",
+      "source_run": null,
+      "approved_from": "run",
+      "conditions": {
+        "date": "2026-01-02",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-02T16:00:36+00:00",
+      "history": []
     }
   }
 }

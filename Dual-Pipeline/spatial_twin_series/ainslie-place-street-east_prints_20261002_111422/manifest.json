@@ -1,0 +1,172 @@
+{
+  "id": "ainslie-place-street-east_prints_20261002_111422",
+  "kind": "prints",
+  "view_id": "ainslie-place-street-east",
+  "view_name": "Ainslie Place Street east",
+  "keystone_run": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_085532",
+  "created_utc": "2026-10-02T18:14:22+00:00",
+  "status": "done",
+  "seed": 286888233,
+  "spec": {
+    "view_id": "ainslie-place-street-east",
+    "kind": "prints",
+    "start_date": "2026-10-15",
+    "end_date": "2026-11-15",
+    "step": "week",
+    "dates": null,
+    "time_mode": "fixed",
+    "time_fixed": 12.0,
+    "time_start": 13.0,
+    "time_end": 17.0,
+    "time_step_hours": 1.0,
+    "weather_mode": "SUNNY",
+    "lighting_mode": "SOLAR",
+    "gemini_budget": 4800,
+    "target_model": "gemini-3.1-flash-image",
+    "disable_recaption": true,
+    "confirm_large": false,
+    "seed": 286888233,
+    "composite": true
+  },
+  "frames": [
+    {
+      "n": 1,
+      "status": "done",
+      "date": "2026-10-15",
+      "time": 12.0,
+      "started_utc": "2026-10-02T18:14:22+00:00",
+      "error": null,
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_111440",
+      "phenology": "*Acer pseudoplatanus* (late colouring; leaf cover about 95%, inner branches hidden): Deep green leaves fading unevenly to dull greenish-yellow with dark leaf spots. *Ulmus glabra* (late colouring; leaf cover about 95%, inner branches hidden): Rough foliage shifting to pale lime-green and butter-yellow from outer branch tips. *Tilia cordata* (mid colouring; leaf cover about 95%, inner branches hidden): Dark green heart-shaped leaves turning pale greenish-yellow across the crown. *Lolium perenne*: Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover. *Taxus baccata*: Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark. *Ilex aquifolium*: Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches.",
+      "finished_utc": "2026-10-02T18:14:40+00:00"
+    },
+    {
+      "n": 2,
+      "status": "done",
+      "date": "2026-10-22",
+      "time": 12.0,
+      "started_utc": "2026-10-02T18:14:40+00:00",
+      "error": null,
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_111458",
+      "phenology": "*Acer pseudoplatanus* (early peak colour; leaf cover about 95%, inner branches hidden): Warm dull yellow and brown-tinged palmate foliage across heavy scaffold limbs. *Ulmus glabra* (early peak colour; leaf cover about 80%, main limbs partly visible through the leaves): Bright golden-yellow rough leaves glowing across wide arching branches. *Tilia cordata* (late colouring; leaf cover about 95%, inner branches hidden): Dark green heart-shaped leaves turning pale greenish-yellow across the crown. *Lolium perenne*: Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover. *Taxus baccata*: Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark. *Ilex aquifolium*: Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches.",
+      "finished_utc": "2026-10-02T18:14:58+00:00"
+    },
+    {
+      "n": 3,
+      "status": "done",
+      "date": "2026-10-29",
+      "time": 12.0,
+      "started_utc": "2026-10-02T18:14:58+00:00",
+      "error": null,
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_111516",
+      "phenology": "*Acer pseudoplatanus* (mid peak colour; leaf cover about 70%, main limbs partly visible through the leaves): Warm dull yellow and brown-tinged palmate foliage across heavy scaffold limbs. *Ulmus glabra* (late peak colour; leaf cover about 60%, main limbs partly visible through the leaves): Bright golden-yellow rough leaves glowing across wide arching branches. *Tilia cordata* (mid peak colour; leaf cover about 80%, main limbs partly visible through the leaves): Rich clear yellow heart-shaped foliage cloaking the rounded crown. *Lolium perenne*: Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover. *Taxus baccata*: Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark. *Ilex aquifolium*: Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches.",
+      "finished_utc": "2026-10-02T18:15:16+00:00"
+    },
+    {
+      "n": 4,
+      "status": "done",
+      "date": "2026-11-05",
+      "time": 12.0,
+      "started_utc": "2026-10-02T18:15:16+00:00",
+      "error": null,
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_111534",
+      "phenology": "*Acer pseudoplatanus* (early leaf fall; leaf cover about 45%, branch framework clearly visible): Yellow and brown leaves dropping rapidly from heavy limbs, revealing flaking grey bark. *Ulmus glabra* (early leaf fall; leaf cover about 35%, branch framework clearly visible): Crisp golden and brown leaves shedding steadily, exposing arching vase-like limbs. *Tilia cordata* (late peak colour; leaf cover about 55%, main limbs partly visible through the leaves): Rich clear yellow heart-shaped foliage cloaking the rounded crown. *Lolium perenne*: Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover. *Taxus baccata*: Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark. *Ilex aquifolium*: Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches.",
+      "finished_utc": "2026-10-02T18:15:34+00:00"
+    },
+    {
+      "n": 5,
+      "status": "done",
+      "date": "2026-11-12",
+      "time": 12.0,
+      "started_utc": "2026-10-02T18:15:34+00:00",
+      "error": null,
+      "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_111553",
+      "phenology": "*Acer pseudoplatanus* (mid leaf fall; leaf cover about 20%, branch framework clearly visible): Yellow and brown leaves dropping rapidly from heavy limbs, revealing flaking grey bark. *Ulmus glabra* (late leaf fall; leaf cover about 10%, branch framework clearly visible): Crisp golden and brown leaves shedding steadily, exposing arching vase-like limbs. *Tilia cordata* (mid leaf fall; leaf cover about 25%, branch framework clearly visible): Golden-yellow leaves falling freely, revealing dense fine twigs and furrowed trunk. *Lolium perenne*: Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover. *Taxus baccata*: Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark. *Ilex aquifolium*: Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches.",
+      "finished_utc": "2026-10-02T18:15:53+00:00"
+    }
+  ],
+  "calendar": {
+    "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong a cool, gradual autumn leaf-fall.",
+    "species": [
+      {
+        "name": "Acer pseudoplatanus",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-22",
+          "full_leaf": "05-24",
+          "colour_onset": "09-28",
+          "peak_colour": "10-22",
+          "half_fall": "11-04",
+          "bare": "11-18"
+        },
+        "stages": {
+          "budburst": "Bronze-tinged pleated young leaves emerging from swollen buds along grey branches.",
+          "full_leaf": "Broad dark green palmate leaves with hanging green samara clusters; grey scaly bark.",
+          "colouring": "Deep green leaves fading unevenly to dull greenish-yellow with dark leaf spots.",
+          "peak": "Warm dull yellow and brown-tinged palmate foliage across heavy scaffold limbs.",
+          "falling": "Yellow and brown leaves dropping rapidly from heavy limbs, revealing flaking grey bark.",
+          "dormant": "Bare grey flaking-plated trunk and heavy multi-forking scaffold limbs with blunt buds."
+        }
+      },
+      {
+        "name": "Ulmus glabra",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-26",
+          "full_leaf": "05-28",
+          "colour_onset": "09-24",
+          "peak_colour": "10-18",
+          "half_fall": "11-01",
+          "bare": "11-14"
+        },
+        "stages": {
+          "budburst": "Rough bright-green leaf sprigs unfurling on arching twigs after small flower clusters.",
+          "full_leaf": "Large, rough-textured, asymmetrical dark green leaves along arching primary boughs.",
+          "colouring": "Rough foliage shifting to pale lime-green and butter-yellow from outer branch tips.",
+          "peak": "Bright golden-yellow rough leaves glowing across wide arching branches.",
+          "falling": "Crisp golden and brown leaves shedding steadily, exposing arching vase-like limbs.",
+          "dormant": "Bare vase-shaped crown of arching grey limbs with dark, fissured bark and stout buds."
+        }
+      },
+      {
+        "name": "Tilia cordata",
+        "habit": "deciduous",
+        "milestones": {
+          "budburst": "04-28",
+          "full_leaf": "06-02",
+          "colour_onset": "10-02",
+          "peak_colour": "10-24",
+          "half_fall": "11-06",
+          "bare": "11-19"
+        },
+        "stages": {
+          "budburst": "Glossy reddish buds opening to tender heart-shaped light-green leaves.",
+          "full_leaf": "Heart-shaped dark green leaves with pale undersides; straight deeply furrowed trunk.",
+          "colouring": "Dark green heart-shaped leaves turning pale greenish-yellow across the crown.",
+          "peak": "Rich clear yellow heart-shaped foliage cloaking the rounded crown.",
+          "falling": "Golden-yellow leaves falling freely, revealing dense fine twigs and furrowed trunk.",
+          "dormant": "Bare dense rounded crown of fine twigs and single straight deeply furrowed grey trunk."
+        }
+      },
+      {
+        "name": "Lolium perenne",
+        "habit": "evergreen",
+        "evergreen_look": "Uniform green, fine-bladed mown turf carpet forming a dense, low ground cover."
+      },
+      {
+        "name": "Taxus baccata",
+        "habit": "evergreen",
+        "evergreen_look": "Very dark green, flat needle-like foliage on dense woody stems with reddish-brown bark."
+      },
+      {
+        "name": "Ilex aquifolium",
+        "habit": "evergreen",
+        "evergreen_look": "Glossy, spiny-margined dark green leathery leaves on dense rigid grey-barked branches."
+      }
+    ],
+    "dropped": [],
+    "version": 2
+  },
+  "calendar_source": "cache",
+  "finished_utc": "2026-10-02T18:15:53+00:00"
+}
