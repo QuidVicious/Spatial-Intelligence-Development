@@ -1,0 +1,12 @@
+{
+  "text_model": "gemini-3.8-flash",
+  "image_models": {
+    "nb2": {
+      "label": "Nano Banana 2",
+      "model": "gemini-3.1-flash-image",
+      "addendum": "nb2.md"
+    }
+  },
+  "aspect_ratios": ["16:9", "3:2", "4:3", "1:1", "3:4", "2:3", "9:16", "21:9"],
+  "image_sizes": ["1K", "2K", "4K"]
+}

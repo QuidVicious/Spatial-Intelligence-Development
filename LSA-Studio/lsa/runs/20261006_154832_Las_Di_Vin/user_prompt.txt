@@ -1,0 +1,14 @@
+SCENE REQUEST
+Place: Charlotte Square Garden in Edinburgh, UK
+Standpoint: Standing in the grass
+Facing: south-south-west (SSW, 200 degrees). From here you see the north-north-east-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Looking at the Albert Memorial with the West Records House beyond.
+Distance to subject: about 4 m
+Framing: medium view, camera at eye level, 50 mm lens
+Date and time: 2025-11-15 11:00
+Weather: Overcast after a morning rain. Damp, wet surfaces.
+Focus: The bronze statue, the plinth and brass reliefs on the base below the statue. The wet surfaces and the wet grass around the base of the monument.
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.

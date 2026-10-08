@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LSA Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --slate: #2a302e;        /* wet slate: page */
+    --slate-2: #343b38;      /* panels */
+    --slate-3: #3f4743;      /* inputs */
+    --rule: #4b5450;
+    --paper: #e9e4d8;        /* text */
+    --lichen-grey: #a4ab9f;  /* secondary text */
+    --xanthoria: #e2892b;    /* the one accent: run, needle */
+    --moss: #b5c26b;         /* done */
+    --rust: #e0685a;         /* errors */
+    --ui: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --read: "Literata", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--slate); color: var(--paper); font: 15px/1.45 var(--ui); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--xanthoria); outline-offset: 2px; }
+
+  header { display: flex; align-items: baseline; gap: 16px; padding: 14px 22px; border-bottom: 1px solid var(--rule); }
+  header h1 { margin: 0; font: 600 20px/1 var(--read); letter-spacing: 0.01em; }
+  header .sub { color: var(--lichen-grey); font-size: 13px; }
+  header .status { margin-left: auto; font-size: 13px; color: var(--lichen-grey); }
+
+  main { display: grid; grid-template-columns: 370px minmax(0, 1fr) 270px; height: calc(100% - 50px); }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; height: auto; } }
+  .col { overflow-y: auto; padding: 18px 20px 28px; }
+  .col + .col { border-left: 1px solid var(--rule); }
+
+  h2 { font: 600 15px/1.2 var(--read); margin: 22px 0 10px; color: var(--paper); }
+  h2:first-child { margin-top: 0; }
+  label { display: block; font-size: 13px; color: var(--lichen-grey); margin: 10px 0 4px; }
+  input[type=text], input[type=number], input[type=date], input[type=time], select, textarea {
+    width: 100%; background: var(--slate-3); border: 1px solid var(--rule); border-radius: 4px; padding: 7px 9px;
+  }
+  textarea { resize: vertical; min-height: 58px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .invalid { border-color: var(--rust) !important; }
+  .hint { font-size: 12px; color: var(--lichen-grey); margin-top: 4px; }
+
+  /* the compass: the one memorable thing */
+  .bearing { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; }
+  .dial { width: 150px; height: 150px; cursor: crosshair; touch-action: none; user-select: none; }
+  .dial:focus-visible { outline-offset: 4px; border-radius: 50%; }
+  .readout { font: 400 14px/1.5 var(--read); }
+  .readout strong { font-size: 22px; font-weight: 600; display: block; }
+  .readout .seen { color: var(--lichen-grey); font-size: 13px; }
+
+  .check { display: flex; gap: 8px; align-items: flex-start; margin-top: 12px; color: var(--paper); font-size: 14px; }
+  .check input { margin-top: 3px; accent-color: var(--xanthoria); }
+
+  .presets { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; }
+  .btn { background: var(--slate-3); border: 1px solid var(--rule); border-radius: 4px; padding: 7px 12px; cursor: pointer; }
+  .btn:hover { border-color: var(--lichen-grey); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .run { width: 100%; margin-top: 18px; padding: 11px; background: var(--xanthoria); border: 0; color: #2a1a06; font-weight: 600; font-size: 16px; border-radius: 4px; cursor: pointer; }
+  .run:disabled { background: var(--slate-3); color: var(--lichen-grey); cursor: not-allowed; }
+
+  details summary { cursor: pointer; color: var(--lichen-grey); font-size: 13px; margin-top: 16px; }
+  pre.prompt { white-space: pre-wrap; font: 13px/1.5 var(--read); background: var(--slate-2); padding: 10px; border-radius: 4px; margin: 8px 0 0; }
+
+  /* result */
+  .stages { display: flex; gap: 18px; font-size: 13px; color: var(--lichen-grey); margin-bottom: 12px; min-height: 20px; }
+  .stage::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--rule); vertical-align: 1px; }
+  .stage.active { color: var(--paper); }
+  .stage.active::before { background: var(--xanthoria); animation: pulse 1.2s ease-in-out infinite; }
+  .stage.done::before { background: var(--moss); }
+  .stage.failed::before { background: var(--rust); }
+  @keyframes pulse { 50% { opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) { .stage.active::before { animation: none; } }
+  .message { font-size: 14px; margin-bottom: 12px; }
+  .message.error { color: var(--rust); }
+  .frame { background: var(--slate-2); border-radius: 4px; min-height: 280px; display: grid; place-items: center; overflow: hidden; }
+  .frame img { width: 100%; height: auto; display: block; }
+  .frame .empty { color: var(--lichen-grey); padding: 40px; text-align: center; max-width: 46ch; }
+  .renders { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+  .renders img { width: 72px; height: 48px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; }
+  .renders img.on { border-color: var(--xanthoria); }
+  .tabs { display: flex; gap: 2px; margin-top: 18px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+  .tab { background: none; border: 0; padding: 8px 12px; color: var(--lichen-grey); cursor: pointer; border-bottom: 2px solid transparent; }
+  .tab[aria-selected=true] { color: var(--paper); border-bottom-color: var(--xanthoria); }
+  .panel { white-space: pre-wrap; font: 15px/1.6 var(--read); padding: 14px 2px; max-width: 78ch; }
+  .meta { font-size: 13px; color: var(--lichen-grey); }
+
+  /* runs list */
+  .runs { list-style: none; padding: 0; margin: 0; }
+  .runs li button { width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); padding: 10px 2px; cursor: pointer; }
+  .runs li button:hover, .runs li button[aria-current=true] { background: var(--slate-2); }
+  .runs .place { display: block; font: 600 14px/1.3 var(--read); }
+  .runs .what { display: block; font-size: 13px; color: var(--lichen-grey); }
+  .runs .when { font-size: 12px; color: var(--lichen-grey); }
+  .runs .flag { font-size: 12px; margin-left: 6px; }
+  .runs .flag.fail { color: var(--rust); }
+</style>
+</head>
+<body>
+<header>
+  <h1>LSA Studio</h1>
+  <span class="sub">Pure latent space archaeology: a described view, excavated and rendered</span>
+  <span class="status" id="server-status">Connecting to the server...</span>
+</header>
+
+<main>
+  <!-- the shot -->
+  <section class="col" aria-label="Shot">
+    <h2>Where you stand</h2>
+    <label for="f-place">Place</label>
+    <input type="text" id="f-place" data-field="place" placeholder="Ainslie Place, Edinburgh New Town" required>
+    <label for="f-standpoint">Standpoint</label>
+    <input type="text" id="f-standpoint" data-field="standpoint" placeholder="On the pavement at the central pavilion" required>
+
+    <label>Facing</label>
+    <div class="bearing">
+      <svg class="dial" id="dial" viewBox="-75 -75 150 150" role="slider" tabindex="0"
+           aria-label="Camera bearing in degrees" aria-valuemin="0" aria-valuemax="359" aria-valuenow="135"></svg>
+      <div>
+        <div class="readout" id="readout"></div>
+        <label for="f-bearing">Degrees</label>
+        <input type="number" id="f-bearing" data-field="bearing" min="0" max="359" step="1" value="135">
+      </div>
+    </div>
+    <div class="hint">Click or drag the dial, or use the arrow keys (shift for 10 degrees).</div>
+
+    <label for="f-subject">Looking at</label>
+    <input type="text" id="f-subject" data-field="subject" placeholder="Into Ainslie Place Garden: mature trunks, railings on a stone plinth" required>
+    <div class="row">
+      <div><label for="f-distance">Distance (m)</label><input type="number" id="f-distance" data-field="distance_m" min="0" step="1"></div>
+      <div><label for="f-focal">Lens (mm)</label><input type="number" id="f-focal" data-field="focal_mm" min="8" max="800" step="1" placeholder="35"></div>
+    </div>
+    <div class="row">
+      <div><label for="f-framing">Framing</label>
+        <select id="f-framing" data-field="framing">
+          <option value="wide">Wide</option><option value="medium" selected>Medium</option>
+          <option value="close">Close</option><option value="macro">Macro</option>
+        </select></div>
+      <div><label for="f-height">Camera height</label><input type="text" id="f-height" data-field="camera_height" value="eye level"></div>
+    </div>
+
+    <h2>When</h2>
+    <div class="row">
+      <div><label for="f-date">Date</label><input type="date" id="f-date" data-field="date"></div>
+      <div><label for="f-time">Time</label><input type="time" id="f-time" data-field="time"></div>
+    </div>
+    <label for="f-weather">Weather</label>
+    <input type="text" id="f-weather" data-field="weather" placeholder="Overcast after rain, surfaces still wet">
+
+    <h2>What to look for</h2>
+    <label for="f-focus">Focus</label>
+    <textarea id="f-focus" data-field="focus" placeholder="Bark surfaces: lichen, algae and moss, and where each grows"></textarea>
+    <div class="hint">Name what to examine, never what you expect to find, or the test only measures your own notes.</div>
+
+    <h2>Models</h2>
+    <label for="o-instruction">System instruction</label>
+    <select id="o-instruction"></select>
+    <label for="o-model">Image model</label>
+    <select id="o-model"></select>
+    <label class="check"><input type="checkbox" id="o-addendum" checked><span id="o-addendum-label">Add the image model's instructions</span></label>
+    <div class="row">
+      <div><label for="o-aspect">Aspect ratio</label><select id="o-aspect"></select></div>
+      <div><label for="o-size">Size</label><select id="o-size"></select></div>
+    </div>
+    <label for="o-label">Run name (optional)</label>
+    <input type="text" id="o-label" placeholder="Lichen test, SW exposed trunk">
+
+    <h2>Presets</h2>
+    <div class="presets">
+      <select id="p-list" aria-label="Saved presets"><option value="">Choose a preset</option></select>
+      <button class="btn" id="p-load">Load</button>
+      <button class="btn" id="p-delete">Delete</button>
+    </div>
+    <div class="presets" style="grid-template-columns: 1fr auto; margin-top: 6px;">
+      <input type="text" id="p-name" aria-label="Preset name" placeholder="Name this shot">
+      <button class="btn" id="p-save">Save shot</button>
+    </div>
+
+    <details id="preview-box">
+      <summary>Prompt that will be sent</summary>
+      <pre class="prompt" id="preview">Fill in place, standpoint and subject to see the prompt.</pre>
+    </details>
+    <button class="run" id="run" disabled>Excavate and render</button>
+    <div class="hint" id="run-hint">Place, standpoint and subject are needed.</div>
+  </section>
+
+  <!-- the result -->
+  <section class="col" aria-label="Result" aria-live="polite">
+    <div class="stages">
+      <span class="stage" id="st-analysis">Analysis</span>
+      <span class="stage" id="st-render">Render</span>
+      <span class="stage" id="st-saved">Saved</span>
+    </div>
+    <div class="message" id="message"></div>
+    <div class="frame" id="frame"><div class="empty">Describe a view on the left and excavate it. Past runs open from the list on the right.</div></div>
+    <div class="renders" id="renders"></div>
+    <div role="tablist" class="tabs" id="tabs">
+      <button class="tab" role="tab" data-tab="render_prompt" aria-selected="true">Render prompt</button>
+      <button class="tab" role="tab" data-tab="analysis" aria-selected="false">Analysis</button>
+      <button class="tab" role="tab" data-tab="user_prompt" aria-selected="false">Prompt sent</button>
+      <button class="tab" role="tab" data-tab="instruction" aria-selected="false">Instruction</button>
+      <button class="tab" role="tab" data-tab="settings" aria-selected="false">Settings</button>
+    </div>
+    <div class="panel" id="panel" role="tabpanel"></div>
+  </section>
+
+  <!-- past runs -->
+  <section class="col" aria-label="Runs">
+    <h2>Runs</h2>
+    <ul class="runs" id="runs"></ul>
+  </section>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const COMPASS = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+const point = (deg) => COMPASS[Math.floor((((deg % 360) + 360) % 360 + 11.25) / 22.5) % 16];
+
+let config = null;
+let current = { run_id: null, data: {}, tab: "render_prompt" };
+
+/* ---------- compass dial ---------- */
+function drawDial(deg) {
+  const ticks = [];
+  for (let i = 0; i < 16; i++) {
+    const a = i * 22.5 * Math.PI / 180, major = i % 4 === 0;
+    const r1 = major ? 52 : 58, r2 = 64;
+    ticks.push(`<line x1="${Math.sin(a)*r1}" y1="${-Math.cos(a)*r1}" x2="${Math.sin(a)*r2}" y2="${-Math.cos(a)*r2}" stroke="#a4ab9f" stroke-width="${major ? 2 : 1}"/>`);
+  }
+  const letters = [["N",0],["E",90],["S",180],["W",270]].map(([t, d]) => {
+    const a = d * Math.PI / 180;
+    return `<text x="${Math.sin(a)*42}" y="${-Math.cos(a)*42 + 5}" text-anchor="middle" font-family="Literata, Georgia, serif" font-size="13" fill="#e9e4d8">${t}</text>`;
+  }).join("");
+  const a = deg * Math.PI / 180;
+  const tip = [Math.sin(a)*60, -Math.cos(a)*60];
+  const back = [-Math.sin(a)*22, Math.cos(a)*22];
+  const side = [Math.cos(a)*6, Math.sin(a)*6];
+  $("dial").innerHTML = `<circle r="68" fill="#343b38" stroke="#4b5450"/>${ticks.join("")}${letters}
+    <polygon points="${tip[0]},${tip[1]} ${side[0]},${side[1]} ${back[0]},${back[1]} ${-side[0]},${-side[1]}" fill="#e2892b"/>
+    <circle r="4" fill="#2a302e"/>`;
+  $("dial").setAttribute("aria-valuenow", Math.round(deg));
+  $("dial").setAttribute("aria-valuetext", `${Math.round(deg)} degrees, ${point(deg)}`);
+  $("readout").innerHTML = `<strong>${point(deg)} ${Math.round(deg)}°</strong><span class="seen">You see the ${point(deg + 180)}-facing sides of what is in front of you.</span>`;
+}
+function setBearing(deg, fromInput) {
+  deg = ((Math.round(deg) % 360) + 360) % 360;
+  if (!fromInput) $("f-bearing").value = deg;
+  drawDial(deg);
+  onChange();
+}
+function dialAngle(e) {
+  const r = $("dial").getBoundingClientRect();
+  const x = e.clientX - (r.left + r.width / 2), y = e.clientY - (r.top + r.height / 2);
+  return (Math.atan2(x, -y) * 180 / Math.PI + 360) % 360;
+}
+let dragging = false;
+$("dial").addEventListener("pointerdown", e => { dragging = true; $("dial").setPointerCapture(e.pointerId); setBearing(dialAngle(e)); });
+$("dial").addEventListener("pointermove", e => { if (dragging) setBearing(dialAngle(e)); });
+$("dial").addEventListener("pointerup", () => { dragging = false; });
+$("dial").addEventListener("keydown", e => {
+  const step = e.shiftKey ? 10 : 1, v = Number($("f-bearing").value) || 0;
+  if (["ArrowRight","ArrowUp"].includes(e.key)) { setBearing(v + step); e.preventDefault(); }
+  if (["ArrowLeft","ArrowDown"].includes(e.key)) { setBearing(v - step); e.preventDefault(); }
+});
+$("f-bearing").addEventListener("input", () => setBearing(Number($("f-bearing").value) || 0, true));
+
+/* ---------- the shot ---------- */
+function readShot() {
+  const shot = {};
+  document.querySelectorAll("[data-field]").forEach(el => {
+    const k = el.dataset.field, v = el.value.trim();
+    if (el.type === "number") shot[k] = v === "" ? null : Number(v);
+    else shot[k] = v === "" ? null : v;
+  });
+  shot.bearing = shot.bearing ?? 0;
+  shot.framing = shot.framing || "medium";
+  shot.camera_height = shot.camera_height || "eye level";
+  return shot;
+}
+function writeShot(shot) {
+  document.querySelectorAll("[data-field]").forEach(el => {
+    const v = shot[el.dataset.field];
+    el.value = v === null || v === undefined ? "" : v;
+  });
+  setBearing(Number(shot.bearing) || 0);
+}
+function missing(shot) {
+  return ["place", "standpoint", "subject"].filter(k => !shot[k]);
+}
+let previewTimer = null;
+function onChange() {
+  const shot = readShot(), miss = missing(shot);
+  ["place", "standpoint", "subject"].forEach(k => $("f-" + k).classList.toggle("invalid", miss.includes(k) && $("f-" + k).dataset.touched));
+  $("run").disabled = miss.length > 0 || running;
+  $("run-hint").textContent = miss.length ? `Still needed: ${miss.join(", ")}.` : "Ready. The prompt below is exactly what will be sent.";
+  clearTimeout(previewTimer);
+  if (miss.length) { $("preview").textContent = "Fill in place, standpoint and subject to see the prompt."; return; }
+  previewTimer = setTimeout(async () => {
+    try {
+      const r = await fetch("/api/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(shot) });
+      $("preview").textContent = (await r.json()).prompt;
+    } catch { $("preview").textContent = "Preview unavailable: the server is not answering."; }
+  }, 250);
+}
+document.querySelectorAll("[data-field]").forEach(el => {
+  el.addEventListener("input", onChange);
+  el.addEventListener("blur", () => { el.dataset.touched = "1"; onChange(); });
+});
+
+/* ---------- config, presets ---------- */
+async function loadConfig() {
+  try {
+    config = await (await fetch("/api/config")).json();
+  } catch {
+    $("server-status").textContent = "Server not answering on port 8001. Is start_server.bat running?";
+    return;
+  }
+  $("server-status").textContent = `Connected: text model ${config.text_model}`;
+  $("o-instruction").innerHTML = config.instructions.map(n => `<option>${esc(n)}</option>`).join("");
+  $("o-model").innerHTML = config.image_models.map(m => `<option value="${esc(m.id)}">${esc(m.label)} (${esc(m.model)})</option>`).join("");
+  $("o-aspect").innerHTML = config.aspect_ratios.map(a => `<option>${esc(a)}</option>`).join("");
+  $("o-size").innerHTML = config.image_sizes.map(s => `<option ${s === "2K" ? "selected" : ""}>${esc(s)}</option>`).join("");
+  updateAddendumLabel();
+}
+function updateAddendumLabel() {
+  const m = config.image_models.find(x => x.id === $("o-model").value);
+  $("o-addendum").disabled = !m?.addendum;
+  $("o-addendum-label").textContent = m?.addendum ? `Add the ${m.label} instructions (${m.addendum})` : "This model has no instructions file";
+}
+$("o-model").addEventListener("change", updateAddendumLabel);
+
+async function loadPresets(select) {
+  const p = await (await fetch("/api/presets")).json();
+  $("p-list").innerHTML = `<option value="">Choose a preset</option>` + Object.keys(p).sort().map(n => `<option ${n === select ? "selected" : ""}>${esc(n)}</option>`).join("");
+  return p;
+}
+$("p-load").addEventListener("click", async () => {
+  const name = $("p-list").value; if (!name) return;
+  const p = await (await fetch("/api/presets")).json();
+  writeShot(p[name]); showMessage(`Loaded preset: ${name}.`);
+});
+$("p-save").addEventListener("click", async () => {
+  const name = $("p-name").value.trim(), shot = readShot();
+  if (!name) { showMessage("Name the shot before saving it.", true); return; }
+  if (missing(shot).length) { showMessage("Fill in place, standpoint and subject before saving.", true); return; }
+  const r = await fetch("/api/presets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, shot }) });
+  if (r.ok) { await loadPresets(name); $("p-name").value = ""; showMessage(`Saved preset: ${name}.`); }
+  else showMessage("The preset was not saved: " + (await r.json()).detail, true);
+});
+$("p-delete").addEventListener("click", async () => {
+  const name = $("p-list").value; if (!name) return;
+  if (!confirm(`Delete the preset "${name}"?`)) return;
+  await fetch("/api/presets/" + encodeURIComponent(name), { method: "DELETE" });
+  await loadPresets(); showMessage(`Deleted preset: ${name}.`);
+});
+
+/* ---------- running ---------- */
+let running = false;
+function showMessage(text, error) { $("message").textContent = text; $("message").className = "message" + (error ? " error" : ""); }
+function stage(id, state) { const el = $("st-" + id); el.className = "stage" + (state ? " " + state : ""); }
+
+$("run").addEventListener("click", async () => {
+  const shot = readShot();
+  if (missing(shot).length) return;
+  running = true; onChange();
+  ["analysis", "render", "saved"].forEach(s => stage(s, ""));
+  stage("analysis", "active");
+  current = { run_id: null, data: {}, tab: current.tab };
+  $("frame").innerHTML = `<div class="empty">Excavating...</div>`; $("renders").innerHTML = ""; $("panel").textContent = "";
+  showMessage("Sending the prompt.");
+  const body = { shot, instruction: $("o-instruction").value, image_model: $("o-model").value,
+                 use_addendum: $("o-addendum").checked && !$("o-addendum").disabled,
+                 aspect_ratio: $("o-aspect").value, image_size: $("o-size").value, label: $("o-label").value.trim() || null };
+  try {
+    const resp = await fetch("/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    if (!resp.ok) throw new Error((await resp.json()).detail || `HTTP ${resp.status}`);
+    const reader = resp.body.getReader(), dec = new TextDecoder(); let buf = "";
+    while (true) {
+      const { value, done } = await reader.read(); if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let nl; while ((nl = buf.indexOf("\n")) >= 0) { const line = buf.slice(0, nl); buf = buf.slice(nl + 1); if (line.trim()) handle(JSON.parse(line)); }
+    }
+  } catch (e) {
+    showMessage("The run did not start: " + e.message, true); stage("analysis", "failed");
+  }
+  running = false; onChange(); loadRuns();
+});
+
+function handle(ev) {
+  if (ev.event === "stage") {
+    if (ev.run_id) current.run_id = ev.run_id;
+    if (ev.stage === "render") { stage("analysis", "done"); stage("render", "active"); }
+    showMessage(ev.message);
+  } else if (ev.event === "analysis") {
+    current.data.analysis = ev.text; showMessage(`Analysis done in ${ev.seconds} s.`);
+  } else if (ev.event === "render_prompt") {
+    current.data.render_prompt = ev.text;
+    if (!ev.source.startsWith("RENDER_PROMPT section")) showMessage(`No RENDER_PROMPT section found; rendering from the ${ev.source}.`, true);
+    showTab(current.tab);
+  } else if (ev.event === "done") {
+    stage("render", "done"); stage("saved", "done");
+    showMessage(`Done in ${ev.seconds} s. Saved as ${ev.run_id}.`);
+    openRun(ev.run_id);
+  } else if (ev.event === "error") {
+    ["analysis", "render"].forEach(s => { if ($("st-" + s).classList.contains("active")) stage(s, "failed"); });
+    showMessage(ev.message, true);
+    if (ev.run_id) openRun(ev.run_id, true);
+  }
+}
+
+/* ---------- viewing a run ---------- */
+function showTab(tab) {
+  current.tab = tab;
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.tab === tab));
+  const d = current.data;
+  let text = d[tab];
+  if (tab === "settings" && d.settings) text = JSON.stringify(d.settings, null, 2);
+  $("panel").textContent = text || "Nothing here yet.";
+}
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+
+async function openRun(run_id, keepMessage) {
+  const r = await fetch("/api/runs/" + encodeURIComponent(run_id));
+  if (!r.ok) { showMessage("That run could not be opened.", true); return; }
+  const d = await r.json();
+  current = { run_id, data: d, tab: current.tab };
+  const renders = d.renders || [];
+  const show = (f) => {
+    $("frame").innerHTML = f ? `<img alt="Render of ${esc(d.shot.place)}" src="/api/runs/${encodeURIComponent(run_id)}/image?f=${encodeURIComponent(f)}">`
+                             : `<div class="empty">${esc(d.settings.error || "This run has no image.")}</div>`;
+    document.querySelectorAll("#renders img").forEach(i => i.classList.toggle("on", i.dataset.f === f));
+  };
+  $("renders").innerHTML = renders.map(f => `<img data-f="${esc(f)}" alt="Render ${esc(f)}" src="/api/runs/${encodeURIComponent(run_id)}/image?f=${encodeURIComponent(f)}">`).join("")
+    + (d.render_prompt ? `<button class="btn" id="rerender">Render again</button>` : "")
+    + `<button class="btn" id="reuse">Use this shot</button>`;
+  document.querySelectorAll("#renders img").forEach(i => i.addEventListener("click", () => show(i.dataset.f)));
+  show(renders[renders.length - 1]);
+  $("rerender")?.addEventListener("click", () => rerender(run_id));
+  $("reuse").addEventListener("click", () => { writeShot(d.shot); showMessage("Shot copied into the form."); });
+  document.querySelectorAll("#runs button").forEach(b => b.setAttribute("aria-current", b.dataset.run === run_id));
+  if (!keepMessage) showMessage(`${d.settings.instruction || ""}${d.settings.addendum ? " + " + d.settings.addendum : ", no addendum"}, ${d.settings.image_model_label || ""}`);
+  showTab(current.tab);
+}
+
+async function rerender(run_id) {
+  stage("render", "active"); showMessage("Rendering again from the saved render prompt...");
+  const btn = $("rerender"); if (btn) btn.disabled = true;
+  const r = await fetch(`/api/runs/${encodeURIComponent(run_id)}/render`, { method: "POST" });
+  const d = await r.json();
+  if (!r.ok) { stage("render", "failed"); showMessage(d.detail, true); if (btn) btn.disabled = false; return; }
+  stage("render", "done"); showMessage(`New render saved: ${d.file}.`);
+  openRun(run_id, true); loadRuns();
+}
+
+async function loadRuns() {
+  let list = [];
+  try { list = await (await fetch("/api/runs")).json(); } catch { return; }
+  $("runs").innerHTML = list.length ? list.map(r => {
+    const when = r.created ? new Date(r.created).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "";
+    const flag = r.error ? `<span class="flag fail">failed</span>` : (r.addendum ? "" : `<span class="flag">no addendum</span>`);
+    return `<li><button data-run="${esc(r.run_id)}" aria-current="${r.run_id === current.run_id}">
+      <span class="place">${esc(r.label || r.place || r.run_id)}</span>
+      <span class="what">${esc(r.subject || "")}</span>
+      <span class="when">${esc(when)}</span>${flag}</button></li>`;
+  }).join("") : `<li class="meta">No runs yet. Your first one will appear here.</li>`;
+  document.querySelectorAll("#runs button").forEach(b => b.addEventListener("click", () => openRun(b.dataset.run)));
+}
+
+/* ---------- start ---------- */
+drawDial(135);
+loadConfig().then(() => { loadPresets(); loadRuns(); onChange(); });
+</script>
+</body>
+</html>

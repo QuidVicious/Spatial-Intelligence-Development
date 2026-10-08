@@ -1,0 +1,14 @@
+SCENE REQUEST
+Place: Ainslie Place, Edinburgh, UK
+Standpoint: On the pavement in front of the Central Pavilion
+Facing: south-east (SE, 135 degrees). From here you see the north-west-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Into Ainslie Place Gardens
+Distance to subject: about 2 m
+Framing: medium view, camera at eye level, 50 mm lens
+Date and time: 2026-10-15 11:00
+Weather: Overcast with wet surfaces after an early morning rain.
+Focus: Tree trunks and branches
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.

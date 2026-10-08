@@ -1,0 +1,13 @@
+SCENE REQUEST
+Place: Ainslie Place, Edinburgh, UK
+Standpoint: Standing in the street on the north west crescent.
+Facing: south-east (SE, 131 degrees). From here you see the north-west-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Looking toward the eastern intersection of Ainslie Place and Great Stuart St.
+Framing: medium view, camera at eye level
+Date and time: 2026-10-15 15:30
+Weather: Rainy
+Focus: The sweeping terrace of NW Ainslie Place dominates the left side of the frame. Ainslie Place Garden dominates the right.
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.

@@ -1,0 +1,21 @@
+{
+  "run_id": "20261007_093814_Ainslie_Place_Garden_interior_views",
+  "created": "2026-10-07T09:38:14",
+  "text_model": "gemini-3.8-flash",
+  "image_model": "gemini-3.1-flash-image",
+  "image_model_label": "Nano Banana 2",
+  "instruction": "SI3.8.md",
+  "addendum": "nb2.md",
+  "aspect_ratio": "16:9",
+  "image_size": "2K",
+  "label": "Ainslie Place Garden interior views.",
+  "analysis_seconds": 32.7,
+  "render_prompt_source": "RENDER_PROMPT section",
+  "render_seconds": 16.9,
+  "image_file": "image_3.jpg",
+  "renders": [
+    "image.jpg",
+    "image_2.jpg",
+    "image_3.jpg"
+  ]
+}

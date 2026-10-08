@@ -50,9 +50,9 @@
       "history": []
     },
     "ainslie-place-street-east": {
-      "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261002_162755",
+      "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261007_122016",
       "view_name": "Ainslie Place Street east",
-      "source_run": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261002_160630",
+      "source_run": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261007_121102",
       "approved_from": "candidate",
       "conditions": {
         "date": "2026-01-15",
@@ -60,12 +60,42 @@
         "weather": "OVERCAST"
       },
       "warnings_acknowledged": [],
-      "approved_utc": "2026-10-02T23:31:24+00:00",
+      "approved_utc": "2026-10-07T19:22:16+00:00",
       "history": [
         {
           "run_id": "7_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261002_085532",
           "approved_utc": "2026-10-02T16:00:36+00:00",
           "replaced_utc": "2026-10-02T23:31:24+00:00"
+        },
+        {
+          "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261002_162755",
+          "approved_utc": "2026-10-02T23:31:24+00:00",
+          "replaced_utc": "2026-10-07T19:22:16+00:00"
+        }
+      ]
+    },
+    "ainslie-toward-moray": {
+      "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261004_144810",
+      "view_name": "Ainslie toward Moray",
+      "source_run": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261004_144556",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-04T21:58:15+00:00",
+      "history": [
+        {
+          "run_id": "4_Ainslie_Pl_Edinburgh_EH3_6AR_UK_20261004_144556",
+          "approved_utc": "2026-10-04T21:47:00+00:00",
+          "replaced_utc": "2026-10-04T21:50:47+00:00"
+        },
+        {
+          "run_id": "8_Ainslie_Pl_Edinburgh_EH3_6AS_UK_20261004_143718",
+          "approved_utc": "2026-10-04T21:50:47+00:00",
+          "replaced_utc": "2026-10-04T21:58:15+00:00"
         }
       ]
     }

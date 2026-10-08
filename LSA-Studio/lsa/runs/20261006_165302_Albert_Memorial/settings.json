@@ -1,0 +1,19 @@
+{
+  "run_id": "20261006_165302_Albert_Memorial",
+  "created": "2026-10-06T16:53:02",
+  "text_model": "gemini-3.8-flash",
+  "image_model": "gemini-3.1-flash-image",
+  "image_model_label": "Nano Banana 2",
+  "instruction": "SI3.8.md",
+  "addendum": "nb2.md",
+  "aspect_ratio": "16:9",
+  "image_size": "2K",
+  "label": "Albert Memorial",
+  "analysis_seconds": 28.9,
+  "render_prompt_source": "RENDER_PROMPT section",
+  "render_seconds": 11.7,
+  "image_file": "image.jpg",
+  "renders": [
+    "image.jpg"
+  ]
+}

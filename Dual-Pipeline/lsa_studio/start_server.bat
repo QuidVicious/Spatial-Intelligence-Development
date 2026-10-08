@@ -23,7 +23,7 @@ if exist "%USERPROFILE%\miniconda3\Scripts\activate.bat" (
 )
 
 echo [INFO] Starting LSA Studio on port 8001 in its own window...
-start "LSA Studio Server" /D "%~dp0..\LSA-Studio" cmd /k python -m uvicorn lsa_server:app --reload --port 8001
+start "LSA Studio Server" cmd /k python -m uvicorn lsa_server:app --reload --port 8001
 
 echo [INFO] Starting Viewfinder on port 8000...
 python -m uvicorn server:app --reload --port 8000

@@ -1,0 +1,20 @@
+{
+  "run_id": "20261007_113931_Ainslie_texture_source",
+  "created": "2026-10-07T11:39:31",
+  "text_model": "gemini-3.8-flash",
+  "image_model": "gemini-3.1-flash-image",
+  "image_model_label": "Nano Banana 2",
+  "instruction": "SI3.8.md",
+  "addendum": "nb2.md",
+  "aspect_ratio": "16:9",
+  "image_size": "2K",
+  "label": "Ainslie texture source",
+  "analysis_seconds": 34.6,
+  "render_prompt_source": "RENDER_PROMPT section",
+  "render_seconds": 14.3,
+  "image_file": "image_2.jpg",
+  "renders": [
+    "image.jpg",
+    "image_2.jpg"
+  ]
+}

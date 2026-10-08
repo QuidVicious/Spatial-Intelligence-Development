@@ -1,0 +1,22 @@
+{
+  "run_id": "20261007_105928_Ainslie_Place_street_Terrace_Garden",
+  "created": "2026-10-07T10:59:28",
+  "text_model": "gemini-3.8-flash",
+  "image_model": "gemini-3.1-flash-image",
+  "image_model_label": "Nano Banana 2",
+  "instruction": "SI3.8.md",
+  "addendum": "nb2.md",
+  "aspect_ratio": "16:9",
+  "image_size": "2K",
+  "label": "Ainslie Place street, Terrace/Garden",
+  "analysis_seconds": 39.9,
+  "render_prompt_source": "RENDER_PROMPT section",
+  "render_seconds": 14.6,
+  "image_file": "image_4.jpg",
+  "renders": [
+    "image.jpg",
+    "image_2.jpg",
+    "image_3.jpg",
+    "image_4.jpg"
+  ]
+}

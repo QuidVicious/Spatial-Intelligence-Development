@@ -1,0 +1,14 @@
+SCENE REQUEST
+Place: Ainslie Place, Edinburgh, UK
+Standpoint: Standing on the street looking directly into Ainslie Place Garden after a morning rain has cleared.
+Facing: south-east (SE, 135 degrees). From here you see the north-west-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Mature trees, cast iron fencing, the patinas and growth on surfaces.
+Distance to subject: about 2 m
+Framing: medium view, camera at eye level, 50 mm lens
+Date and time: 11:30
+Weather: Overcast after rain with breaking clouds.
+Focus: Barks, lichens, mosses, patinas on surfaces. Material in damp, wet environments. Leaves and the stage of senescence.
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.

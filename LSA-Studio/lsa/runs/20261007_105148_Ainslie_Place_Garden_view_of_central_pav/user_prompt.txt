@@ -1,0 +1,13 @@
+SCENE REQUEST
+Place: Ainslie Place Garden, Ainslie Place, Edinburgh, UK
+Standpoint: Standing in the center of the garden facing north west.
+Facing: north-west (NW, 317 degrees). From here you see the south-east-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Through the trees and over the fence at the facades of the central pavilion and it's attached neighboring facades.
+Framing: medium view, camera at eye level
+Date and time: 2026-10-15 15:30
+Weather: Rainy
+Focus: The tree trunk surfaces, leaves, grass, structures, objects, surfaces effects of weathering and seasonal variations.
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.

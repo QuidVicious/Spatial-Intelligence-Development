@@ -1,0 +1,19 @@
+{
+  "run_id": "20261007_105308_Ainslie_Place_Garden_view_of_central_pav",
+  "created": "2026-10-07T10:53:08",
+  "text_model": "gemini-3.8-flash",
+  "image_model": "gemini-3.1-flash-image",
+  "image_model_label": "Nano Banana 2",
+  "instruction": "SI3.8.md",
+  "addendum": "nb2.md",
+  "aspect_ratio": "16:9",
+  "image_size": "2K",
+  "label": "Ainslie Place Garden view of central pavillion",
+  "analysis_seconds": 34.0,
+  "render_prompt_source": "RENDER_PROMPT section",
+  "render_seconds": 16.3,
+  "image_file": "image.jpg",
+  "renders": [
+    "image.jpg"
+  ]
+}

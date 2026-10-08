@@ -1,0 +1,14 @@
+SCENE REQUEST
+Place: Water of Leith Walkway below Randolph Cres, Edinburgh, UK
+Standpoint: Standing on the pathway  about 175 feet east of Dean Bridge
+Facing: south-east (SE, 146 degrees). From here you see the north-west-facing sides of the tree trunks, walls and other objects in front of you.
+Looking at: Looking up the steep slope to the rear of the buildings on Randolph Cres.
+Distance to subject: about 47 m
+Framing: medium view, camera at eye level, 50 mm lens
+Date and time: 2025-11-15 11:00
+Weather: Overcast after a morning rain. Damp, wet surfaces.
+Focus: The back of the buildings, windows, the back gardens, walkway routes and trees on the steep slope up to the buildings.
+
+Excavate this view through the domain lenses, with particular attention to the focus above.
+
+End your response with a section headed exactly ---RENDER_PROMPT--- containing one prompt for an image model that renders this view as a photograph.
