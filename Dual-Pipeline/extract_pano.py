@@ -30,7 +30,24 @@ def extract_pano_id(url):
         
     return None
 
-print("--- Upgraded Google Maps Pano ID Extractor ---")
+def extract_heading(url):
+    # Strategy 1: Look for the precise high-precision yaw value in the query/metadata parameters
+    # Matches 'yaw=74.878...' or 'yaw%3D74.878...'
+    yaw_pattern = r'(?:yaw%3D|yaw=)([0-9.]+)'
+    yaw_match = re.search(yaw_pattern, url)
+    if yaw_match:
+        return float(yaw_match.group(1))
+    
+    # Strategy 2: Fall back to the standard viewport parameter sequence (e.g., ,74.88h,)
+    # Matches a number ending with 'h' right after commas/numbers inside the viewport string
+    viewport_pattern = r',([0-9.]+)h'
+    viewport_match = re.search(viewport_pattern, url)
+    if viewport_match:
+        return float(viewport_match.group(1))
+        
+    return None
+
+print("--- Upgraded Google Maps Pano ID & Heading Extractor ---")
 print("Paste your URL and press Enter. Type 'exit' or 'q' to quit.\n")
 
 while True:
@@ -44,8 +61,18 @@ while True:
         continue
         
     pano_id = extract_pano_id(user_input)
+    heading = extract_heading(user_input)
     
-    if pano_id:
-        print(f"-> Compatible Pano ID: {pano_id}\n")
+    if pano_id or heading:
+        if pano_id:
+            print(f"-> Compatible Pano ID: {pano_id}")
+        else:
+            print("-> [Warning] Could not find a Panorama ID in that URL.")
+            
+        if heading is not None:
+            print(f"-> Compass Heading:   {heading}°")
+        else:
+            print("-> [Warning] Could not find a Heading angle in that URL.")
+        print() # Add an extra blank line for cleaner formatting
     else:
-        print("-> [Error] Could not find a Panorama ID in that URL.\n")
+        print("-> [Error] Could not extract Street View metadata from that URL.\n")

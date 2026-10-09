@@ -98,6 +98,26 @@
           "replaced_utc": "2026-10-04T21:58:15+00:00"
         }
       ]
+    },
+    "abercromby-pl-2": {
+      "run_id": "21A_Abercromby_Pl_Edinburgh_EH3_6QE_20261008_085443",
+      "view_name": "Abercromby Pl 2",
+      "source_run": "21A_Abercromby_Pl_Edinburgh_EH3_6QE_20261008_085252",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-08T22:52:06+00:00",
+      "history": [
+        {
+          "run_id": "21A_Abercromby_Pl_Edinburgh_EH3_6QE_20261008_085252",
+          "approved_utc": "2026-10-08T15:53:19+00:00",
+          "replaced_utc": "2026-10-08T22:52:06+00:00"
+        }
+      ]
     }
   }
 }
