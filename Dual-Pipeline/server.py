@@ -637,7 +637,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         # Street View reference (keystones only): a second image for form and weathering.
         if mode == "KEYSTONE" and request.streetview and compiled.target_provider == "GEMINI":
             sv = request.streetview
-            streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright", "source_url", "lat", "lon", "fitted")}
+            streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright", "source_url", "lat", "lon")}
             streetview_record["size"] = SV_SIZE   # records made before 16:9 have no size: they were 640x640
             try:
                 pano = _fetch_pano(sv["pano_id"], sv.get("heading", 0), sv.get("pitch", SV_DEFAULT_PITCH), sv.get("fov", SV_DEFAULT_FOV))

@@ -6,6 +6,40 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-12: Capture frame overlay parked
+
+**The capture frame on the pano and Fit pano to capture are removed from the code until LSA and the Cesium pipeline are fully joined and testing well; they return as a Pro Mode polish item.** Adopted.
+The code is kept in PARKED_capture_frame_overlay.md with restore steps. The 16:9 fetch, Maps link paste, readable angle fields and the frame-shape guard stay. Keystone records keep the pano's position.
+Why: not critical to the join, and it was the one piece that moved the Cesium camera behind the scenes; fewer moving parts while the join is tested.
+
+## 2026-10-12: LSA refinement loop and an editor dock (planned, after the Cesium join)
+
+**Refinement loop: rate a run, write a correction for what scored low, revise the render prompt, render again; repeat until the image is right.** Adopted.
+An iterative session, not one shot. Example: at Abercromby and Nelson St, materials were excellent but the junction rendered as a Y instead of a right angle turning out of view, with only the corner building's Nelson St facade visible.
+Why: lets LSA do the heavy lifting so the grounding pass becomes finishing carpentry.
+
+**The correction revises the render prompt; the analysis is kept.** Adopted.
+High-scoring aspects are locked and kept word for word; the correction is merged into the prompt with the smallest change, shown as a before and after before rendering. Why: excavating again rewrites the analysis, and the gold (materials that scored high) may not come back.
+
+**Ratings: 1 to 5 with a written anchor for each score, on a small fixed set: layout, structure, materials, condition and weathering, vegetation, light and atmosphere, photographic realism.** Adopted.
+Every low score carries a note, and the note is the correction. 1 to 10 is too fine for one rater. Ratings are kept per pass, so a session shows whether it is converging; over many sessions they show where LSA is strong and weak, which tells the grounding pass what it still has to do.
+
+**Pass 1 is the model's finding; later passes are director's corrections, recorded separately.** Adopted.
+Why: LSA runs test the model's knowledge, and the focus field never says what to expect. A correction is what to expect, so it gets its own field and the record keeps the two apart, as with Pro Mode.
+
+**Open:** whether the image model accepts a fixed seed (without one, a change between passes mixes the correction's effect with chance; render two per pass instead). Layout may be hard to fix by text alone: cap a session at about five passes and show the score trend.
+
+**Editor dock under the frame: the one place for all long text, instead of a tab per field.** Adopted.
+Clicking a long field (scene layout, standpoint, subject, focus, render prompt, the pipeline's scene text) opens it in a large editor under the frame, labelled with what is being edited and where it comes from; the sidebar field highlights and shows "editing below"; both views share one text, so there is no save step. The frame stays in view, since the text is written while looking at the image. The dock later hosts ratings and corrections. The pipeline's scene text editor joins the dock.
+Why: editing in small sidebar boxes was hard, another tab would add to a long row, and the Pro Mode editor under the frame already works.
+
+**The dock teaches the method.** Adopted.
+A journey strip in the dock header, Brief > Analysis > Render prompt > Image, highlights the step being edited. Each stage has one colour used everywhere (sidebar highlight, dock header, journey strip, tab label), always paired with its name, never colour alone.
+Why: users should learn the components and how they fit, until scene layout and render prompt feel like steps in one journey and the balance between them is second nature.
+
+**A hand edit to the render prompt is a Pro Mode edit: marked "edited by hand" and recorded with the run.** Adopted.
+Why: the render prompt is the model's output; editing it skips the analysis. Composition is fixed in the brief; the render prompt is touched for finishing.
+
 ## 2026-10-09: Storm demo and weather ramps (planning)
 
 **The demo is a storm built on keystone plates: a fixed camera first, a moving camera later.** Adopted.

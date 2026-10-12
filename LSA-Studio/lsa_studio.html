@@ -126,12 +126,6 @@
   .sv-angles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .sv-angles label { margin-top: 8px; }
 
-  /* the capture's frame drawn on the pano: grey outside, frame lines and corner marks */
-  .sv-frame { position: relative; margin-top: 8px; }
-  .sv-frame img { display: block; }
-  #sv-frame-svg { position: absolute; inset: 1px; width: calc(100% - 2px); height: calc(100% - 2px); pointer-events: none; border-radius: 5px; }
-  .sv-frame-tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
-  .sv-frame-tools .toggle-btn { padding: 6px 10px; }
 
   /* side columns can be widened by dragging their inner edge */
   .col.left, .col.right { position: relative; }
@@ -674,15 +668,7 @@
       </div>
       <div class="hint">Sets the pano exactly as you framed it in Maps. Or let the tool pick:</div>
       <button class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" onclick="svPropose()">🔎 PROPOSE NEAREST PANO FOR SUBJECT</button>
-      <div class="sv-frame" id="sv-frame-box">
-        <img id="sv-preview" alt="Street View preview" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); border-radius: 6px; border: 1px solid var(--panel-border);" />
-        <svg id="sv-frame-svg" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"></svg>
-      </div>
-      <div class="sv-frame-tools">
-        <label class="live-toggle-wrapper"><input type="checkbox" id="chk-sv-frame" checked onchange="svDrawFrame()"> Show what the capture frames</label>
-        <button class="toggle-btn" id="btn-sv-fit" onclick="svFitToCapture()" title="Aim the pano and set its field of view so the capture's whole frame fits inside it">FIT PANO TO CAPTURE</button>
-      </div>
-      <div class="hint" id="sv-frame-note"></div>
+      <img id="sv-preview" alt="Street View preview" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 8px; border-radius: 6px; border: 1px solid var(--panel-border);" />
       <div id="sv-meta" class="status-line"></div>
       <label for="sv-pano">Pano ID</label>
       <input type="text" id="sv-pano" spellcheck="false" placeholder="Pano ID" title="Paste a pano ID to use an older or different pano, then UPDATE" />
