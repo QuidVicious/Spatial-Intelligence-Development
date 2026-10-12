@@ -5657,5 +5657,391 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:dc2222d38003c03785368252cbf5636f45e67151": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays spring budburst into late April and produces a protracted, wind-driven autumn leaf drop.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Pale green pleated leaves emerge alongside pendent yellow-green flower tassels.",
+            "full_leaf": "Broad dark green palmate leaves with hanging paired winged samaras.",
+            "colouring": "Leaves turn dull yellow-green and ochre with brown soot-like tar spots.",
+            "peak": "Warm dull yellow, ochre, and brown foliage among heavy winged seeds.",
+            "falling": "Tattered yellow-brown leaves drop fast, exposing gray plated bark and twigs.",
+            "dormant": "Stout bare gray branches, plump greenish-brown buds, and coarse fissured bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-12",
+            "full_leaf": "05-20",
+            "colour_onset": "09-24",
+            "peak_colour": "10-18",
+            "half_fall": "11-01",
+            "bare": "11-15"
+          },
+          "stages": {
+            "budburst": "Tiny reddish clusters yield to papery green samaras and rough emerging leaves.",
+            "full_leaf": "Large rough-surfaced, asymmetrical dark green leaves on spreading boughs.",
+            "colouring": "Coarse foliage fades unevenly from dark olive to pale yellow.",
+            "peak": "Bright ochre-yellow to golden-buff leaves across wide ascending limbs.",
+            "falling": "Yellow and brown leaves thin rapidly from upper crowns, revealing coarse twigs.",
+            "dormant": "Naked zigzagging twigs, blunt hairy buds, and deeply fissured dark gray bark."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:e5f2dcab1d6c109705fe0c5d789425d2477f5c8a": {
+    "address": "205 Whitehead St, Key West, FL 33040, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate allows continuous vegetative persistence without winter dormancy.",
+      "species": [
+        {
+          "name": "Ficus aurea",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Leathery elliptic emerald leaves; paired round green-to-red figs; smooth gray banyan roots"
+        },
+        {
+          "name": "Sabal palmetto",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Fan-shaped costapalmate deep green fronds form a rounded crown atop a textured gray trunk"
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:322b88f322ff60c971e7d446b93b2c7e865630fc": {
+    "address": "205 Whitehead St, Key West, FL 33040, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate shifts leaf drop to the late dry season with rapid spring refoliation.",
+      "species": [
+        {
+          "name": "Swietenia mahagoni",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-10",
+            "full_leaf": "05-05",
+            "colour_onset": "02-15",
+            "peak_colour": "03-10",
+            "half_fall": "03-25",
+            "bare": "04-01"
+          },
+          "stages": {
+            "budburst": "Tender reddish-bronze leaflets unfurl alongside emergent pale green shoots.",
+            "full_leaf": "Deep green pinnate leaves; woody upright capsule fruits persist on limbs.",
+            "colouring": "Glossy leaflets turn mottled yellow-brown; large woody fruit capsules split open.",
+            "peak": "Yellowed and dry brown foliage clinging amidst spreading, furrowed dark branches.",
+            "falling": "Widespread leaflet shedding leaves thick dark branches exposed with hanging pods.",
+            "dormant": "Heavy dark-barked limbs fully bare of leaves; scattered persistent woody capsules."
+          }
+        },
+        {
+          "name": "Ficus aurea",
+          "habit": "evergreen",
+          "evergreen_look": "Stout braided aerial roots, smooth gray bark, leathery oval green leaves, paired figs."
+        },
+        {
+          "name": "Cocos nucifera",
+          "habit": "evergreen",
+          "evergreen_look": "Curved ringed gray trunk; crown of arching green pinnate fronds with clustered coconuts."
+        },
+        {
+          "name": "Conocarpus erectus",
+          "habit": "evergreen",
+          "evergreen_look": "Rough ridged dark bark, alternate leathery shiny green leaves, round purplish cone-heads."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:94b88c16b0bd5d2ed02fb9c8d003ff603a651ef7": {
+    "address": "H57V+GH Key West, FL, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate shifts dormancy into the winter dry season rather than a cold winter.",
+      "species": [
+        {
+          "name": "Cocos nucifera",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Arching bright green feather fronds atop ringed curving trunks with clustered coconuts"
+        },
+        {
+          "name": "Conocarpus erectus",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Leathery dark green leaves on gnarled twisted stems with small purplish cone-like fruit"
+        },
+        {
+          "name": "Bursera simaruba",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-15",
+            "full_leaf": "05-20",
+            "colour_onset": "12-10",
+            "peak_colour": "01-15",
+            "half_fall": "02-10",
+            "bare": "03-01"
+          },
+          "stages": {
+            "budburst": "Tender reddish-bronze leaflets unfurl along twisting branches with peeling red bark",
+            "full_leaf": "Glossy green pinnate leaves cover canopy; smooth copper bark peels in thin papery sheets",
+            "colouring": "Leaves fade to dull yellowish-green; peeling reddish bark reveals green underlayer",
+            "peak": "Yellowing foliage clings to contorted limbs; lustrous coppery bark stands out",
+            "falling": "Dull yellow leaves drop from crooked branches; green trunk shows through peeling bark",
+            "dormant": "Stout twisting bare branches with glossy, red-bronze exfoliating papery bark"
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:664e7b9ea6364219e800f49e54888d59a4dbb529": {
+    "address": "H57V+GH Key West, FL, USA",
+    "calendar": {
+      "climate_note": "Key West features a tropical savanna climate with warm winters where deciduous timing is governed by winter dry seasons rather than cold.",
+      "species": [
+        {
+          "name": "Rhizophora mangle",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Leathery deep green oval leaves, reddish arching prop roots, pencil-like propagules."
+        },
+        {
+          "name": "Conocarpus erectus",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Thick lanceolate dark green leaves, rough fissured bark, small purplish-brown cone heads."
+        },
+        {
+          "name": "Cocos nucifera",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Long arching green pinnate fronds, grey ringed stipes, clusters of green to brown nuts."
+        },
+        {
+          "name": "Bursera simaruba",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-10",
+            "full_leaf": "05-15",
+            "colour_onset": "12-15",
+            "peak_colour": "01-15",
+            "half_fall": "02-10",
+            "bare": "03-01"
+          },
+          "stages": {
+            "budburst": "Tender reddish-green leaves uncurling on glossy coppery bark, tiny greenish flowers.",
+            "full_leaf": "Glossy green pinnate foliage; shiny reddish-brown peeling bark; small rounded drupes.",
+            "colouring": "Canopy foliage dulling to yellowish-green and pale yellow; coppery peeling trunk.",
+            "peak": "Dull yellow and bronze leaflets; peeling papery red bark exposing green underbark.",
+            "falling": "Shedding yellowed leaflets leaving scattered bare twigs; papery reddish bark.",
+            "dormant": "Completely bare branches; swollen trunk with thin, peeling coppery-red bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Casuarina equisetifolia",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Drooping grey-green needle-like branchlets, rough furrowed bark, tiny woody cone-fruits."
+        },
+        {
+          "name": "Thalassia testudinum",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Submerged ribbon-like dark green flat blades rooted in white marine sand."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:e8a062e280aa76540c51989a6e653f3794980314": {
+    "address": "205 Whitehead St, Key West, FL 33040, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate allows continuous growth and foliage retention throughout the year.",
+      "species": [
+        {
+          "name": "Ficus aurea",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Broad glossy green leaves, smooth gray bark, dangling aerial roots, small paired figs."
+        },
+        {
+          "name": "Ficus benghalensis",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Large leathery oval leaves, extensive aerial prop roots forming massive woody pillars."
+        },
+        {
+          "name": "Cocos nucifera",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Arching feather-like pinnate fronds atop a leaning gray trunk with clusters of coconuts."
+        },
+        {
+          "name": "Sabal palmetto",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Fan-shaped costapalmate green fronds forming a compact crown atop a textured gray trunk."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:e9d566e45640192d8d3ae123c8643de5d65ce834": {
+    "address": "The Custom House, 281 Front St, Key West, FL 33040, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate allows year-round foliage retention without typical seasonal senescence.",
+      "species": [
+        {
+          "name": "Ficus aurea",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Glossy ovate dark-green leaves; aerial roots clasping pale, braided, furrowed bark."
+        },
+        {
+          "name": "Conocarpus erectus",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Leathery elliptic green leaves; button-like conehead fruit clusters on fibrous grey bark."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:0057f953ecbfb25c424246a496ab1116f7b99455": {
+    "address": "938 Whitehead St, Key West, FL 33040, USA",
+    "calendar": {
+      "climate_note": "Key West's frost-free tropical savanna climate drives dry-season deciduousness rather than cold-induced dormancy.",
+      "species": [
+        {
+          "name": "Ficus microcarpa / Ficus aurea",
+          "habit": "evergreen",
+          "evergreen_look": "Glossy leathery deep green leaves; hanging aerial roots and pale braided boles; tiny figs."
+        },
+        {
+          "name": "Delonix regia",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-15",
+            "full_leaf": "05-20",
+            "colour_onset": "01-10",
+            "peak_colour": "02-15",
+            "half_fall": "03-01",
+            "bare": "03-25"
+          },
+          "stages": {
+            "budburst": "Bright emerald frond-like feather foliage unfurling; smooth gray buttressed trunk.",
+            "full_leaf": "Lush bipinnate emerald foliage; scarlet-orange blossoms give way to woody green pods.",
+            "colouring": "Bipinnate leaflets turn pale muted yellow; prominent hard dark brown seed pods.",
+            "peak": "Tarnished ochre-yellow leaflets clinging alongside long woody dark brown pods.",
+            "falling": "Raining fine yellow leaflets exposing wide branching; persistent large brown pods.",
+            "dormant": "Bare wide-spreading umbrella crown; long woody dark brown pods hang from gray branches."
+          }
+        },
+        {
+          "name": "Arecaceae (Sabal palmetto / Cocos nucifera)",
+          "habit": "evergreen",
+          "evergreen_look": "Arching green fan or feather fronds; tall ringed trunks; pendent fruit clusters."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:7b27c34453e0ba8694281ae875f11aadd0b1f118": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays spring budburst into late April and produces a gradual, wind-truncated autumn senescence.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Pale green pleated leaflets unfolding alongside pendulous yellowish flower racemes.",
+            "full_leaf": "Broad dark green palmate leaves with hanging paired winged samaras.",
+            "colouring": "Coarse leaves dulling to yellow-brown and dirty gold, often with tar spots.",
+            "peak": "Warm dull yellow and brown foliage; dark winged keys drying on twigs.",
+            "falling": "Yellow-brown curled leaves dropping; gray-brown scaly bark visible.",
+            "dormant": "Stout gray twigs with plump green buds; plate-fissured gray bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-12",
+            "full_leaf": "05-20",
+            "colour_onset": "09-22",
+            "peak_colour": "10-18",
+            "half_fall": "10-30",
+            "bare": "11-12"
+          },
+          "stages": {
+            "budburst": "Purplish flower clusters followed by expanding rough, bright green serrated leaves.",
+            "full_leaf": "Asymmetric, rough deep green leaves on arching twigs; papery round samaras.",
+            "colouring": "Large scabrid leaves fading from dark green to dull yellowish green.",
+            "peak": "Golden-yellow to warm buff leaves with harsh surface texture.",
+            "falling": "Yellow leaves shedding rapidly, revealing dark, deeply fissured bark.",
+            "dormant": "High-arching branches with dark fissured bark and small blunt purple-brown buds."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

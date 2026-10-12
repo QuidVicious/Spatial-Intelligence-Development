@@ -637,9 +637,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         # Street View reference (keystones only): a second image for form and weathering.
         if mode == "KEYSTONE" and request.streetview and compiled.target_provider == "GEMINI":
             sv = request.streetview
-            streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright")}
+            streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright", "source_url", "lat", "lon", "fitted")}
+            streetview_record["size"] = SV_SIZE   # records made before 16:9 have no size: they were 640x640
             try:
-                pano = _fetch_pano(sv["pano_id"], sv.get("heading", 0), sv.get("pitch", 10), sv.get("fov", 80))
+                pano = _fetch_pano(sv["pano_id"], sv.get("heading", 0), sv.get("pitch", SV_DEFAULT_PITCH), sv.get("fov", SV_DEFAULT_FOV))
                 streetview_b64 = "data:image/jpeg;base64," + base64.b64encode(pano).decode("ascii")
                 compiled.prompt += STREETVIEW_REFERENCE_TEXT.format(date=sv.get("date") or "recently")
                 streetview_record["used"] = True
@@ -898,6 +899,29 @@ async def delete_view(view_id: str):
 # -------------------------------------------------------------------------
 # Archived Runs (/api/runs): list, scene text, and preview images for replay
 # -------------------------------------------------------------------------
+_RUN_STAMP_RE = re.compile(r"(\d{8})_(\d{6})")
+
+
+def _run_created(d: Path, meta: dict) -> str:
+    """When the run was made, as local ISO time, whatever format the archive used.
+    Tries the metadata timestamp (compact or ISO), then a YYYYMMDD_HHMMSS stamp in the folder
+    name, then the metadata file's modified time. Sorting on this keeps the list in true order."""
+    ts = str(meta.get("timestamp") or "").strip()
+    for text, fmt in ((ts[:15], "%Y%m%d_%H%M%S"), (ts[:19], "%Y-%m-%dT%H:%M:%S"), (ts[:19], "%Y-%m-%d %H:%M:%S")):
+        try:
+            return datetime.strptime(text, fmt).isoformat(timespec="seconds")
+        except ValueError:
+            pass
+    m = _RUN_STAMP_RE.search(d.name)
+    if m:
+        try:
+            return datetime.strptime(m.group(1) + m.group(2), "%Y%m%d%H%M%S").isoformat(timespec="seconds")
+        except ValueError:
+            pass
+    f = d / "run_metadata.json"
+    return datetime.fromtimestamp((f if f.exists() else d).stat().st_mtime).isoformat(timespec="seconds")
+
+
 def _run_summary(d: Path) -> dict:
     meta = _read_json(d / "run_metadata.json") or {}
     settings = meta.get("settings") or {}
@@ -907,6 +931,7 @@ def _run_summary(d: Path) -> dict:
     return {
         "id": d.name,
         "timestamp": meta.get("timestamp") or "",
+        "created": _run_created(d, meta),
         "address": meta.get("address"),
         "saved_view_id": settings.get("saved_view_id"),
         "saved_view_name": settings.get("saved_view_name"),
@@ -918,6 +943,7 @@ def _run_summary(d: Path) -> dict:
         "series_frame": settings.get("series_frame"),
         "seed": settings.get("seed"),
         "composite_applied": bool((settings.get("composite") or {}).get("applied")),
+        "streetview": settings.get("streetview"),   # keystones: the pano reference used (ID and angles only)
         "has_raw": (d / "spatial_twin_raw.png").exists(),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
@@ -941,7 +967,7 @@ async def list_runs(view_id: Optional[str] = None, limit: int = 300):
     runs = [_run_summary(d) for d in DEFAULT_RUNS_DIR.iterdir() if d.is_dir()]
     if view_id:
         runs = [r for r in runs if r["saved_view_id"] == view_id]
-    runs.sort(key=lambda r: (r["timestamp"] or "", r["id"]), reverse=True)
+    runs.sort(key=lambda r: (r["created"], r["id"]), reverse=True)   # newest first, by when each run was made
     return {"runs": runs[:limit]}
 
 
@@ -1386,11 +1412,22 @@ def _distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return 2 * r * math.asin(math.sqrt(a))
 
 
-def _fetch_pano(pano_id: str, heading: float, pitch: float, fov: float) -> bytes:
+# Street View frames are fetched at 16:9 so they match the Maps view and the Cesium capture.
+# The API's fov is HORIZONTAL; a Maps URL's "y" value is VERTICAL (verified 2026-10-09):
+# horizontal = 2 * atan(tan(vertical / 2) * 16 / 9). Maps' default 75 vertical is about 107 horizontal.
+SV_SIZE = "640x360"
+SV_SIZES = ("640x360", "640x640")   # 640x640 only to re-show keystones made before the switch
+SV_DEFAULT_PITCH = 0.0
+SV_DEFAULT_FOV = 107.5
+
+
+def _fetch_pano(pano_id: str, heading: float, pitch: float, fov: float, size: str = SV_SIZE) -> bytes:
     if not PANO_ID_RE.match(pano_id or ""):
         raise HTTPException(status_code=400, detail="Invalid pano ID.")
+    if size not in SV_SIZES:
+        raise HTTPException(status_code=400, detail=f"Unsupported Street View size: {size}")
     r = requests.get(SV_IMAGE_URL, params={
-        "size": "640x640", "pano": pano_id, "heading": round(float(heading), 1),
+        "size": size, "pano": pano_id, "heading": round(float(heading), 1),
         "pitch": round(float(pitch), 1), "fov": round(max(10.0, min(120.0, float(fov))), 1),
         "return_error_code": "true", "key": _maps_key(),
     }, timeout=20)
@@ -1428,16 +1465,18 @@ def streetview_propose(req: StreetViewProposeRequest):
         "copyright": meta.get("copyright"),
         "lat": plat, "lon": plon,
         "heading": round(_bearing(plat, plon, req.lat, req.lon), 1),
-        "pitch": 10.0,
-        "fov": 80.0,
+        "pitch": SV_DEFAULT_PITCH,
+        "fov": SV_DEFAULT_FOV,
+        "size": SV_SIZE,
         "distance_m": round(_distance_m(plat, plon, req.lat, req.lon), 1),
     }
 
 
 @app.get("/api/streetview/image")
-def streetview_image(pano: str, heading: float = 0.0, pitch: float = 10.0, fov: float = 80.0):
+def streetview_image(pano: str, heading: float = 0.0, pitch: float = SV_DEFAULT_PITCH, fov: float = SV_DEFAULT_FOV,
+                     size: str = SV_SIZE):
     # Passed straight through for preview; never written to disk.
-    return Response(content=_fetch_pano(pano, heading, pitch, fov), media_type="image/jpeg",
+    return Response(content=_fetch_pano(pano, heading, pitch, fov, size), media_type="image/jpeg",
                     headers={"Cache-Control": "no-store"})
 
 

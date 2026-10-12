@@ -69,6 +69,7 @@ class Shot(BaseModel):
     standpoint: str
     bearing: float
     subject: str
+    layout: Optional[str] = None
     distance_m: Optional[float] = None
     framing: str = "medium"
     camera_height: str = "eye level"
@@ -101,6 +102,8 @@ def build_prompt(s: Shot) -> str:
         f"{COMPASS_WORDS[seen]}-facing sides of the tree trunks, walls and other objects in front of you.",
         f"Looking at: {s.subject.strip()}",
     ]
+    if s.layout:
+        lines.append(f"Scene layout: {s.layout.strip()}")
     if s.distance_m:
         lines.append(f"Distance to subject: about {s.distance_m:.0f} m")
     frame = f"Framing: {s.framing} view, camera at {s.camera_height}"
@@ -186,6 +189,12 @@ def slug(s: str, n: int = 40) -> str:
 @app.get("/")
 def page():
     return FileResponse(BASE / "lsa_studio.html")
+
+
+@app.get("/pipeline.js")
+def pipeline_js():
+    # The Cesium pipeline client: talks to the pipeline server on port 8000.
+    return FileResponse(BASE / "pipeline.js", media_type="text/javascript")
 
 
 @app.get("/api/config")

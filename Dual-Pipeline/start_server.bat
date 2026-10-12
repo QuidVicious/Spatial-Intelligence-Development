@@ -5,7 +5,8 @@ cd /d "%~dp0"
 echo [INFO] Checking for and clearing existing processes on ports 8000 and 8001...
 for %%p in (8000 8001) do (
     for /f "tokens=5" %%a in ('netstat -aon ^| findstr :%%p ^| findstr LISTENING') do (
-        taskkill /F /PID %%a >nul 2>&1
+        rem /T also stops child processes: uvicorn --reload leaves workers that keep serving old code
+        taskkill /F /T /PID %%a >nul 2>&1
     )
 )
 
