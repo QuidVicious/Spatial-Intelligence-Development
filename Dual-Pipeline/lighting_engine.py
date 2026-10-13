@@ -363,20 +363,37 @@ def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float)
         screen_sun = "behind the camera and to the LEFT, out of frame"
 
     # ---- which surfaces are lit ----
+    # "Left-facing walls" is ambiguous to an image model: it can read it as "the walls on the left",
+    # which mirrors the light (2026-10-13: Leven St looking south, 9 to 11 am rendered with the sun
+    # on the wrong side). So name the lit side of the frame, and give examples that cannot be mirrored:
+    # the faces of free-standing objects, and which side of a street has its building fronts in sun.
+    LAT_SIDE = 0.15   # below this the sun is close enough to the view axis that neither side dominates
+    side = "RIGHT" if lateral > 0 else "LEFT"
+    opp = "LEFT" if side == "RIGHT" else "RIGHT"
+    has_side = abs(lateral) > LAT_SIDE
+    light_side = (f"Sunlight comes from the {side} side of the frame; the sun is never on the {opp} side."
+                  if has_side else "The sun is close to the line of view; neither side of the frame is favoured.")
+
     parts = []
     if depth < -AX:
-        parts.append("all camera-facing facades are in full direct sunlight")
+        parts.append("surfaces facing the camera are in full direct sunlight")
     elif depth > AX:
-        parts.append("all camera-facing facades are in shadow, reading as backlit silhouettes with a bright rim along their sunward edges")
+        rim = f"along their {side}-hand edges" if has_side else "along their top edges"
+        parts.append(f"surfaces facing the camera are in shadow, backlit, with a bright rim of sunlight {rim}")
     else:
-        parts.append("camera-facing facades receive grazing light and read as half-lit")
+        parts.append("surfaces facing the camera receive grazing light and read as half-lit")
 
-    if lateral > AX:
-        parts.append("right-facing walls are brightly lit and left-facing walls are in deep shadow")
-    elif lateral < -AX:
-        parts.append("left-facing walls are brightly lit and right-facing walls are in deep shadow")
+    if has_side:
+        strength = ("in direct sun", "in deep shadow") if abs(lateral) > AX else ("brighter", "darker")
+        parts.append(
+            f"surfaces that face toward the {side} edge of the frame are {strength[0]}: the {side.lower()}-hand faces "
+            f"of towers, spires, chimneys and free-standing buildings, and the fronts of buildings along the "
+            f"{opp.lower()}-hand side of a street")
+        parts.append(
+            f"surfaces that face toward the {opp} edge of the frame are {strength[1]}: the {opp.lower()}-hand faces "
+            f"of towers, spires and chimneys, and the fronts of buildings along the {side.lower()}-hand side of a street")
     else:
-        parts.append("left- and right-facing walls are lit roughly equally")
+        parts.append("left- and right-facing surfaces are lit roughly equally")
     facade_lighting = "; ".join(parts)
 
     # ---- where shadows go ----
@@ -397,11 +414,11 @@ def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float)
     else:
         traj = "cast shadows project diagonally toward the camera and to the lower-LEFT"
 
-    # ---- summary ----
+    # ---- summary: always says which side once the sun is off the view axis ----
     if depth < -AX:
-        summ = "front-lighting from behind the observer"
+        summ = "front-lighting from behind the observer" + (f" and to camera-{side}" if has_side else "")
     elif depth > AX:
-        summ = "backlighting from ahead of the observer"
+        summ = "backlighting from ahead of the observer" + (f" and to camera-{side}" if has_side else "")
     elif lateral > 0:
         summ = "hard raking side-light from camera-right"
     else:
@@ -423,6 +440,7 @@ def _classify_relative_light_vector(solar_azimuth: float, camera_heading: float)
 
     return {
         "summary": summ,
+        "light_side": light_side,
         "screen_sun": screen_sun,
         "facade_lighting": facade_lighting,
         "shadow_trajectory": traj,
@@ -611,7 +629,8 @@ def resolve_lighting_state(
         )
         prompt_directive = (
             f"SOLAR RELIGHTING DIRECTIVE ({cct}K {epoch_desc}):\n"
-            f"- SUN POSITION IN SCREEN SPACE: Sun is {rel_map['screen_sun']} (True Azimuth {solar_azimuth:.1f}°, Elevation {solar_elevation:.1f}°).\n"
+            f"- LIGHT SIDE: {rel_map['light_side']}\n"
+            f"- SUN POSITION IN SCREEN SPACE: Sun is {rel_map['screen_sun']}, {solar_elevation:.0f} degrees above the horizon.\n"
             f"- FACADE ILLUMINATION: {rel_map['facade_lighting']}.\n"
             f"- CAST SHADOW DIRECTION: {rel_map['shadow_trajectory']}.\n"
             f"- CAST SHADOW LENGTH: {_shadow_length_clause(solar_elevation)}\n"

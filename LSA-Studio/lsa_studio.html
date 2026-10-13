@@ -655,6 +655,9 @@
       <div class="module" id="mod-cesium">
         <h2>Cesium</h2>
         <button class="btn" id="btn-frame-mode" style="width: 100%;">Show Cesium in the frame</button>
+        <label class="check" style="margin-top: 8px;" title="Cesium's own sun for the strip's date and time, with cast shadows. Test switch: while on, captures include these shadows too.">
+          <input type="checkbox" id="chk-sun-shadows" onchange="setSunShadows(this.checked)"> Sun and shadows (test: shows Cesium's sun for the strip's time)
+        </label>
         <h3 class="sub">Saved views and subject</h3>
       <div style="display: flex; gap: 6px;">
         <input type="text" id="input-view-name" placeholder="Name this view"

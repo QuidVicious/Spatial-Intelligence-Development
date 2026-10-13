@@ -163,6 +163,20 @@
       ],
       "approved_utc": "2026-10-13T17:10:26+00:00",
       "history": []
+    },
+    "leven-st": {
+      "run_id": "1_Barclay_Pl_Edinburgh_EH10_4HW_UK_20261013_115210",
+      "view_name": "Leven St",
+      "source_run": "1_Barclay_Pl_Edinburgh_EH10_4HW_UK_20261013_115134",
+      "approved_from": "run",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-13T18:53:10+00:00",
+      "history": []
     }
   }
 }

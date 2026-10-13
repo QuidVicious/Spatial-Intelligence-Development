@@ -111,10 +111,50 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (lsaTime) { lsaTime.value = hhmm; if (typeof onChange === 'function') onChange(); }
     }
 
+    // The date and time controls mean local time AT THE LOCATION, as the pipeline's lighting engine reads them.
+    // Cesium wants UTC, so convert with the location's time zone (from /api/weather), including daylight saving
+    // on the chosen date. Until the zone is known, fall back to an offset from longitude.
+    let locationTZ = null, locationLon = null;
+    function tzOffsetMs(tz, utcMs) {
+      const parts = {};
+      new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(new Date(utcMs)).forEach(p => { parts[p.type] = p.value; });
+      const asUTC = Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour % 24, +parts.minute, +parts.second);
+      return asUTC - Math.floor(utcMs / 1000) * 1000;
+    }
+    function localToUtcMs(dateStr, hh, mm) {
+      const [y, mo, d] = dateStr.split('-').map(Number);
+      const guess = Date.UTC(y, mo - 1, d, hh, mm);
+      if (locationTZ) {
+        try { const off = tzOffsetMs(locationTZ, guess - tzOffsetMs(locationTZ, guess)); return guess - off; }
+        catch (e) { console.warn('[Time] zone', locationTZ, 'unusable:', e); }
+      }
+      return guess - Math.round((locationLon || 0) / 15) * 3600e3;
+    }
+    // Test switch (2026-10-13): Cesium's own sun and cast shadows for the strip's date and time.
+    // Google's tiles carry the light of their aerial photos; this shows whether Cesium can lay the right
+    // sun over them. Google's tiles are unlit, so expect cast shadows rather than shading by face direction.
+    function setSunShadows(on) {
+      if (!viewer) return;
+      viewer.scene.light = new Cesium.SunLight();
+      viewer.shadows = !!on;
+      if (on) {
+        viewer.shadowMap.softShadows = true;
+        viewer.shadowMap.darkness = 0.35;
+        viewer.shadowMap.maximumDistance = 1500.0;
+      }
+      if (googleTileset) googleTileset.shadows = on ? Cesium.ShadowMode.ENABLED : Cesium.ShadowMode.DISABLED;
+      syncCesiumTime();
+      viewer.scene.requestRender();
+      console.log(`[Sun] Cesium sun and shadows ${on ? 'on' : 'off'} at`, Cesium.JulianDate.toIso8601(viewer.clock.currentTime));
+    }
+
     function syncCesiumTime() {
       if (!viewer) return;
-      const iso = `${document.getElementById('input-date').value}T${document.getElementById('slider-time-display').textContent}:00Z`;
-      viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(iso);
+      const dateStr = document.getElementById('input-date').value;
+      const [hh, mm] = document.getElementById('slider-time-display').textContent.split(':').map(Number);
+      if (!dateStr || isNaN(hh)) return;
+      viewer.clock.currentTime = Cesium.JulianDate.fromDate(new Date(localToUtcMs(dateStr, hh, mm || 0)));
     }
 
     function setTileStatusHUD(ok) {
@@ -173,7 +213,19 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     }
 
     async function fetchLiveWeatherHUD(lat, lon) {
-      try { const resp = await fetch(`${PIPE}/api/weather?lat=${lat}&lon=${lon}`); if (resp.ok) { const w = await resp.json(); document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${w.temperature_c.toFixed(1)}°C`; } } catch (e) {}
+      locationLon = lon;
+      try {
+        const resp = await fetch(`${PIPE}/api/weather?lat=${lat}&lon=${lon}`);
+        if (resp.ok) {
+          const w = await resp.json();
+          document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${Number(w.temperature_c).toFixed(1)}°C`;
+          // A reply without a source is the server's fallback when the weather service failed: its "UTC" is a placeholder.
+          const tz = w.source && w.timezone ? w.timezone : null;
+          if (tz !== locationTZ) { locationTZ = tz; syncCesiumTime(); }
+          const disp = document.getElementById('slider-time-display');
+          if (disp) disp.title = locationTZ ? `Local time at the location (${locationTZ})` : 'Local time at the location (zone not yet known)';
+        }
+      } catch (e) {}
     }
 
     function setLightingMode(mode) { currentLightingMode = mode; document.getElementById('btn-mode-solar').classList.toggle('active', mode === 'SOLAR'); document.getElementById('btn-mode-floodlight').classList.toggle('active', mode === 'FLOODLIGHT'); }
@@ -965,7 +1017,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       setSvStatus('');
       // A keystone shows the pano it was actually made with, not the view's latest one.
       // It is shown without being remembered for the view; "use these pano settings" does that.
-      const own = run && run.keystone_candidate && run.streetview && run.streetview.pano_id ? run.streetview : null;
+      const own = run && isKeystoneRun(run) && run.streetview && run.streetview.pano_id ? run.streetview : null;
       if (own) {
         svState = { ...own, size: own.size || SV_SQUARE };   // shown exactly as it was fetched
         svFillInputs(false); svShowPreview();
@@ -1500,13 +1552,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!box) return;
       if (!run) { box.innerHTML = ''; return; }
       const parts = [];
-      if (run.keystone_candidate && run.replay_of) {
+      if (isKeystoneRun(run) && run.replay_of) {
         const src = replayRuns.find(r => r.id === run.replay_of);
         parts.push(`<div>Made from: ${src
           ? `<button class="family-link" data-run="${escHtml(src.id)}">${escHtml(runLabel(src))}</button>`
           : escHtml(run.replay_of)}${run.scene_text_edited ? ' <span class="family-note">(scene text hand-edited)</span>' : ''}</div>`);
       }
-      if (run.keystone_candidate) {
+      if (isKeystoneRun(run)) {
         const sv = run.streetview;
         if (sv && sv.pano_id) {
           const sq = !sv.size || sv.size === SV_SQUARE;
@@ -1555,7 +1607,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
 
     // What the run is, in words.
     function runKind(r) {
-      if (r.keystone_candidate) return { approved: '★ Keystone', superseded: 'Keystone, superseded', candidate: 'Keystone candidate' }[keystoneStateOf(r.id)];
+      if (isKeystoneRun(r)) return { approved: '★ Keystone', superseded: 'Keystone, superseded', candidate: 'Keystone candidate' }[keystoneStateOf(r.id)];
       if (r.keystone_print_of) return (r.series_frame ? `Series frame ${r.series_frame}` : 'Print') + (r.composite_applied ? ', composited' : '');
       if (r.replay_of) return r.scene_text_edited ? 'Replay, edited' : 'Replay';
       return 'Synthesize';
@@ -1567,7 +1619,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     function runLabel(r) {
       const d = runMadeAt(r);
       let label = `${d ? fmtHM(d) : r.id} · ${runKind(r)}`;
-      if (!r.keystone_candidate) {
+      if (!isKeystoneRun(r)) {
         const w = (r.weather_resolved || r.weather_mode || '').toLowerCase();
         const when = r.date ? `${r.date} ${fmtClock(r.time_of_day)}` : 'live clock';
         label += ` (scene ${when}${w ? ', ' + w : ''})`;
@@ -1583,7 +1635,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
 
     // Keystone candidates made from a run, newest first (the list is already sorted that way).
     function keystonesMadeFrom(runId) {
-      return replayRuns.filter(c => c.keystone_candidate && c.replay_of === runId);
+      return replayRuns.filter(c => isKeystoneRun(c) && c.replay_of === runId);
+    }
+
+    // A keystone is a run made with Make keystone, OR any run that was approved as the keystone
+    // (Approve accepts any run), now or earlier. Labels, links and the pano card all use this one test.
+    function isKeystoneRun(r) {
+      return !!r && (!!r.keystone_candidate || keystoneStateOf(r.id) !== 'candidate');
     }
 
     // Approved now, approved earlier and since replaced, or never approved.
@@ -1700,11 +1758,32 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const r = replayRuns.find(x => x.id === id);
         const seedTxt = r && r.seed !== null && r.seed !== undefined ? ` | seed ${r.seed}` : ' | seed not recorded';
         setReplayStatus(`${d.address || ''} (scene text from ${d.loaded_from})${seedTxt}`);
+        loadRunPrompt(id);
       } catch (e) {
         console.warn('[Replay] scene load failed:', e);
         text.value = '';
         replayOriginalText = '';
         setReplayStatus('Could not load scene text for this run.', '#ff5252');
+      }
+    }
+
+    // The Pipeline result tab follows the selected run: the prompt that run actually sent to the image model.
+    async function loadRunPrompt(id) {
+      const meta = document.getElementById('pipeline-meta'), box = document.getElementById('pipeline-prompt');
+      if (!meta || !box) return;
+      try {
+        const resp = await fetch(`${PIPE}/api/runs/${encodeURIComponent(id)}/prompt`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const p = await resp.json();
+        if (id !== document.getElementById('select-replay-run').value) return;   // the selection moved on meanwhile
+        const r = replayRuns.find(x => x.id === id);
+        const comp = p.composite && typeof p.composite === 'object'
+          ? ` · composite ${p.composite.applied ? 'applied' : 'skipped'}${p.composite.reason ? ' (' + p.composite.reason + ')' : ''}` : '';
+        meta.textContent = `Run ${r ? runLabel(r) : id} · ${p.date || 'live date'} ${fmtClock(p.time_of_day)} · ${p.weather || ''}${comp}`;
+        box.textContent = p.prompt || 'No saved prompt found for this run.';
+      } catch (e) {
+        meta.textContent = 'Could not load the prompt for this run.';
+        box.textContent = '';
       }
     }
 

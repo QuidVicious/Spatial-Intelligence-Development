@@ -6,6 +6,48 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-13: Open issues from testing
+
+**Sun side flips in keystone prints from 9 am on.** Fixed in lighting_engine.py (to confirm in a test).
+Leven St looking south at Barclay church: 8 am lit correctly (east side in sun); 9 am twice, 10 and 11 am all flipped (west side lit). Cause: the sun maths were correct, but the wording changed category at 9 am, from "hard raking side-light from camera-left" to "backlighting from ahead of the observer", and the side survived only as "left-facing walls are brightly lit". An image model can read "left-facing walls" as "the walls on the left", which mirrors the light.
+Fix: every directive now opens with the lit side of the frame ("Sunlight comes from the LEFT side of the frame; the sun is never on the RIGHT side"), the summary always names the side once the sun is off the view axis, the backlit rim is placed on a named edge, and the lit and shaded surfaces are given with examples that cannot be mirrored: "the left-hand faces of towers, spires and chimneys, and the fronts of buildings along the right-hand side of a street". The compass azimuth was removed from the renderer's directive, in line with the 2026-10-02 rule.
+
+**LSA Studio prompts give no sun position.** Open. The text model must work the sun out from facing and time, which models do unreliably. Planned: the LSA server computes the sun for place, date and time and states it in camera terms.
+
+**Cesium's sun read the time slider as UTC.** Fixed in pipeline.js.
+The date and time controls now mean local time at the location, as the lighting engine already read them: the page takes the location's time zone from /api/weather (Open-Meteo), applies daylight saving for the chosen date, and falls back to an offset from longitude until the zone is known or if the weather service fails. Hovering over the time shows which zone is in use.
+
+**The Pipeline result tab showed only the last pipeline action in this browser session,** not the selected run (it showed clear sky on a rainy run). Fixed: the tab now loads the selected run's own prompt from its folder (/api/runs/{id}/prompt finds the text that opens with "[TASK:" in run_metadata.json or the run's text files), with the run's date, time, weather and whether the canopy composite was applied.
+
+**Finding: the image model keeps the light that is in its seed image and does not follow light-direction words.** Confirmed 2026-10-13.
+St Andrew Square looking north at the Melville column: prints and a fresh Synthesize at 4 pm all lit the east face, although the prompt said, correctly and plainly, that the sun was behind the camera to the left. Reviewing earlier runs, the light has always come from the south-east; most views faced east, where that looks natural, so it went unnoticed until the south-facing Leven St run. The model does follow sun height (shadows lengthening and warming toward dusk). Likely source of the fixed direction: Google's 3D tiles carry the light of the day their aerial photos were taken, so every capture, and to some degree every keystone made from one, starts with that sun. The Street View reference is not involved (it is sent only when making a keystone, and the St Andrew Square pano is overcast).
+
+**Cesium's sun and shadows were off in this tool:** captures are only Google's tile textures, which carry the light of their aerial photos. Question for the record: the Washington Monument sundial tests that passed over a month ago were manual (AI Studio); if their frames came from Google Earth Studio, which renders its own sun and shadows for a set time, the seed carried the right light, which would explain why they passed and the pipeline does not. The 2026-10-02 gentler keystone delight affects keystones and prints only, not fresh Synthesize runs, so it does not explain the 4 pm Synthesize failure.
+Test switch added to the Cesium card: "Sun and shadows" turns on Cesium's sun for the strip's date and time with cast shadows (tiles are unlit, so expect cast shadows rather than face shading); while on, captures include them.
+
+**Planned fix: give the model correctly lit pixels, not words.** Cesium renders the saved view at the frame's date and time with shadows (the time zone fix of 2026-10-13 makes its sun exact). Option B, to test first: use that render's light and shade to pre-light the seed (darken shaded faces, lay in cast shadows) before it is sent, so the model's habit of keeping the seed's light keeps the right light. Option A, fallback: send the render as a second image to match. Needs: a check that Cesium's sun is right at St Andrew Square at 4 pm, and synthesis_engine.py.
+
+**An approved keystone was labelled as an ordinary run.** Fixed in pipeline.js and server.py.
+Approve accepts any run, but labels and links recognised a keystone only by the keystone_candidate flag set by Make keystone, so the Leven St keystone (an approved run without the flag) showed as a plain run with a midwinter scene date; K in the viewer found it through keystones.json. Now a run is a keystone if it was made with Make keystone, or is the approved keystone, or was approved earlier and replaced; the server also treats mode KEYSTONE as the flag.
+
+**Tree drift in prints from a keystone.** Open. Trunks and branches change shape between prints. Likely cause: the canopy composite keeps keystone pixels outside the trees, so the trees are redrawn every print (by design, for the seasons) with nothing holding their structure. First things to try: a fixed seed, and an instruction that trunk and branch structure stay unchanged.
+
+**Weather presets on prints:** reported broken, then found working (a missed step). No change.
+
+**New tool, planned: a sequence player and video exporter for public content.** From a folder of time-of-day or seasonal prints: scrub at any speed (like holding an arrow key in the run viewer, which already looks striking), set holds on chosen frames, and export a video for the website. Like the Series tab, but for presentation. It is the tool the planned seasonal montage needs.
+
+## 2026-10-12: Refinement in two phases (from Don's first dock sessions)
+
+**Phase A tunes the brief; phase B finishes on the render prompt.** Adopted, refines the refinement loop entry below.
+Phase A: layout and structure (street arc, junction angle, storey counts) are corrected in the scene layout, excavating each time; materials vary with every excavation and are not judged yet. Phase B: once layout and structure are right, the run with the best materials is kept and only its render prompt is edited, so the analysis and the materials stay fixed. The winning layout wording goes back into the brief.
+Why: excavating rewrites the analysis and the render prompt every time (materials came and went over three runs); the render prompt path changes only the image.
+
+**Diagnostic: when the image is wrong, check the render prompt.** If it lost or garbled the layout, the fix belongs in the brief; if it has the layout right and the image does not, the fix belongs in the render prompt.
+
+**Measure chance first:** render an unchanged prompt once more to see how much an image varies on its own, before crediting a wording change.
+
+Finding: the dock makes the look, find, correct cycle continuous; three runs gave steadily better results. Brief and render prompt edits work best together.
+
 ## 2026-10-12: Lenses shown, JSON hardened, SI3.9, place mode drafted
 
 **LSA Studio shows the lenses SI3.x chose for each run, as soon as the analysis arrives.** Built.

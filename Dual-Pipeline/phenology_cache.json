@@ -6102,5 +6102,462 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:3b0ffa88321e0b7b528495f8232a0811b82e0897": {
+    "address": "1 Barclay Pl, Edinburgh EH10 4HW, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumn foliage retention.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Pale green pleated leaves unfolding from fat buds with hanging greenish racemes.",
+            "full_leaf": "Deep green leathery palmate leaves with winged samaras ripening on gray-barked twigs.",
+            "colouring": "Coarse yellowing foliage marked with tar spots and dull brown drying leaf margins.",
+            "peak": "Warm dull yellow, tan, and brown palmate leaves alongside brown paired samaras.",
+            "falling": "Shedding tan and dull yellow leaves exposing coarse branches and flaky bark.",
+            "dormant": "Bare sturdy gray-brown branches, coarse twigs, and scaly peeling bark plates."
+          }
+        },
+        {
+          "name": "Tilia x europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-25",
+            "full_leaf": "05-30",
+            "colour_onset": "09-25",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Tender lime-green cordate leaves emerging amid reddish bud scales and basal shoots.",
+            "full_leaf": "Heart-shaped dark green leaves with pale undersides and small nutlets on pale bracts.",
+            "colouring": "Canopy turning pale yellow and golden-ochre with lingering pale papery bracts.",
+            "peak": "Bright ochre and clear yellow heart-shaped leaves clinging to dark twigs.",
+            "falling": "Loose yellow leaves falling to reveal dense twiggy growth and burred dark trunks.",
+            "dormant": "Naked dark gray crowns with dense epicormic twig burrs along lower upright trunks."
+          }
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:5da448d6bf16eebc3dccd9e31d764db39e69cd2a": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumn leaf retention.",
+      "species": [
+        {
+          "name": "Platanus × hispanica",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-08",
+            "full_leaf": "06-05",
+            "colour_onset": "10-12",
+            "peak_colour": "11-02",
+            "half_fall": "11-16",
+            "bare": "12-02"
+          },
+          "stages": {
+            "budburst": "Fuzzy bronze-green shoots unfurl; peeling cream and olive bark visible below.",
+            "full_leaf": "Broad, leathery palmate green leaves; spherical bristly seed balls suspend.",
+            "colouring": "Thick foliage turns dull yellow-ochre and dry tan; seed balls remain.",
+            "peak": "Warm russet and brown-gold leaves cling beside hanging spherical seed balls.",
+            "falling": "Tough brown leaves drop; exposed patchwork olive-cream bark and hanging fruit.",
+            "dormant": "Bare zig-zagging branches with hanging seed balls against mottled bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia × europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-24",
+            "full_leaf": "05-26",
+            "colour_onset": "09-28",
+            "peak_colour": "10-20",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Tender lime-green heart-shaped leaves unfurl with dense base epicormic sprouts.",
+            "full_leaf": "Rich dark green heart-shaped foliage; dense burrs and sprouts encircle trunk.",
+            "colouring": "Foliage fades to pale yellow and chartreuse; small nutlets cling on bracts.",
+            "peak": "Bright pale golden-yellow leaves canopy over dark, sprout-clustered trunk.",
+            "falling": "Yellow-brown leaves shed rapidly, revealing upright twigs and basal burrs.",
+            "dormant": "Bare dark-barked framework with fine red-tinged twigs and dense base shoots."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-20",
+            "colour_onset": "09-24",
+            "peak_colour": "10-16",
+            "half_fall": "10-31",
+            "bare": "11-14"
+          },
+          "stages": {
+            "budburst": "Red-tinged bud scales open to pale five-lobed leaves on pinkish petioles.",
+            "full_leaf": "Broad dark green five-lobed leaves; paired winged samaras hang in bunches.",
+            "colouring": "Foliage turns dull matte yellow-brown, marked with dark fungal tar spots.",
+            "peak": "Warm tawny-yellow and brown foliage carries dry pale brown winged samaras.",
+            "falling": "Spotted dry brown leaves and winged keys drop from stout grey branches.",
+            "dormant": "Stout grey branches and scaly trunk plates carry plump green-scaled winter buds."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:1aecbe4a099704cb2b9dfd4f3c7b804d3e18074a": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high northern latitude compress the growing season with delayed spring emergence and rapid autumn defoliation.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-24",
+            "colour_onset": "09-22",
+            "peak_colour": "10-20",
+            "half_fall": "11-03",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Pale green pleated leaves unfolding from swollen pink-tinted buds on grey twigs.",
+            "full_leaf": "Broad dark green leathery five-lobed leaves; paired winged samaras hang below twigs.",
+            "colouring": "Leaves unevenly dulling to speckled yellow-brown, blotched with dark fungal tar spots.",
+            "peak": "Tarnished amber and yellow-brown leaves across the crown; brown samaras drying.",
+            "falling": "Tattered brown foliage shedding; heavy limbs and grey fissured bark exposed.",
+            "dormant": "Stout bare grey-brown twigs with large green-scaled blunt buds and plated bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia x europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-26",
+            "full_leaf": "05-29",
+            "colour_onset": "09-18",
+            "peak_colour": "10-16",
+            "half_fall": "10-29",
+            "bare": "11-12"
+          },
+          "stages": {
+            "budburst": "Tender heart-shaped chartreuse leaves breaking from glossy red-brown buds.",
+            "full_leaf": "Heart-shaped dark green leaves above, pale below; dense basal epicormic tufts.",
+            "colouring": "Canopy foliage fading from muted green to patchy pale yellow; browning edges.",
+            "peak": "Uniform pale butter-yellow foliage across the upper crown and trunk suckers.",
+            "falling": "Crisp yellow and brown leaves falling freely; dense trunk sprouts exposed.",
+            "dormant": "Bare grey branches with dense clusters of red-budded epicormic twigs at trunk base."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Betula pendula",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-16",
+            "full_leaf": "05-20",
+            "colour_onset": "09-25",
+            "peak_colour": "10-22",
+            "half_fall": "11-02",
+            "bare": "11-15"
+          },
+          "stages": {
+            "budburst": "Tiny bright green triangular leaves emerging along slender weeping twigs.",
+            "full_leaf": "Diamond-shaped fluttering mid-green leaves on weeping branchlets; white papery trunk.",
+            "colouring": "Canopy foliage turning lime-green to clear yellow along pendulous shoot tips.",
+            "peak": "Bright golden-yellow leaves shivering on drooping branchlets against pale bark.",
+            "falling": "Sparse yellow leaves falling quickly from fine pendulous twigs; white trunk clear.",
+            "dormant": "Slender drooping purple-brown bare twigs, dormant catkins, and pale peeling bark."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:6a4903c91b489ac8868a0108f42149dc8b35d37a": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and produce a prolonged, gentle autumn foliage decline.",
+      "species": [
+        {
+          "name": "Platanus × acerifolia",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-08",
+            "full_leaf": "06-12",
+            "colour_onset": "10-05",
+            "peak_colour": "10-28",
+            "half_fall": "11-12",
+            "bare": "11-28"
+          },
+          "stages": {
+            "budburst": "Pale green downy leaf buds swell and unfurl; mottled olive-cream exfoliating bark.",
+            "full_leaf": "Leathery palmate mid-green leaves; bristly round seed balls hang along branches.",
+            "colouring": "Leaves turn olive to dull ochre yellow; mottled green-cream bark visible on trunks.",
+            "peak": "Warm russet-brown and dull orange-yellow leaves; hanging persistent seed balls.",
+            "falling": "Crisp brown leaves shedding from limbs; mottled cream, grey, and olive bark exposed.",
+            "dormant": "Bare ascending scaffold limbs; pendulous seed balls hang against mottled flaking bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-24",
+            "full_leaf": "05-28",
+            "colour_onset": "09-26",
+            "peak_colour": "10-20",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Bright green pleated leaves emerging from plump buds; grey-pink scaly bark.",
+            "full_leaf": "Coarse dark green five-lobed leaves; paired winged samaras hang among foliage.",
+            "colouring": "Leaves fade to pale greenish-yellow, often marked with dark tar spots; grey bark.",
+            "peak": "Dull yellow and brown-tinged foliage; paired winged keys turning tan and drying.",
+            "falling": "Faded yellow and brown leaves drop, revealing heavy lateral limbs and scaly bark.",
+            "dormant": "Bare rounded dome of spreading branches; rough grey scaly bark plates on stout trunks."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:b41093b689b28827302160bbbeb0849a9c78de05": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumn leaf drop.",
+      "species": [
+        {
+          "name": "Platanus x hispanica",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-08",
+            "full_leaf": "06-05",
+            "colour_onset": "10-12",
+            "peak_colour": "11-02",
+            "half_fall": "11-16",
+            "bare": "12-02"
+          },
+          "stages": {
+            "budburst": "Pale green downy leaves unfold; mottled cream and olive bark patches visible",
+            "full_leaf": "Broad thick medium-green palmate leaves; hanging spherical fruit clusters",
+            "colouring": "Leathery foliage fading to dull ochre and yellow-brown; brown fruit balls hang",
+            "peak": "Tough yellow-brown and russet foliage; peeling olive, cream, and grey bark",
+            "falling": "Crisp brown leaves drop rapidly; persistent bristly brown seed balls dangle",
+            "dormant": "Stout bare branches with patchy flaking bark; dry bristly seed balls on twigs"
+          }
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-24",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-06",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Bronze-tinged young leaves emerge from large buds; grey-pink scaly bark",
+            "full_leaf": "Dark green five-lobed leaves; winged samara fruit clusters; scaly grey bark",
+            "colouring": "Foliage turns dull yellow and mottled brown, often marked with black tar spots",
+            "peak": "Golden-yellow and tawny-brown leaves with dark spots; dry paired samaras",
+            "falling": "Faded brown foliage drops steadily; grey bark peeling in squarish plates",
+            "dormant": "Bare spreading grey limbs; flaky bark plates; large green-scaled dormant buds"
+          }
+        },
+        {
+          "name": "Tilia x europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-26",
+            "full_leaf": "05-30",
+            "colour_onset": "09-24",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Luminously pale green heart-shaped leaves unfurl; reddish bud scales",
+            "full_leaf": "Rich green heart-shaped leaves; burred lower trunk with clustered epicormic shoots",
+            "colouring": "Leaves turn pale yellowish-green and butter-yellow from outer canopy inward",
+            "peak": "Clear golden-yellow to pale lime leaves; dense leafy sprouts crowd trunk base",
+            "falling": "Dry yellow-brown leaves detach; dark fissured bark with heavy trunk burrs",
+            "dormant": "Dark ridged trunk with dense basal sprout tangle; bare fine branch tracery"
+          }
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:51729e2c5b80e9c8c7409ba1cffd99cc0574245a": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays spring budburst into late April and produces a protracted, wind-driven autumn leaf drop.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-22",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Pale green pleated emerging leaves; swelling greenish buds on grey-brown twigs.",
+            "full_leaf": "Broad dark green palmate leaves; winged paired samaras; scaly grey bark.",
+            "colouring": "Leaves turn dull yellow and brown-tinged; hanging clusters of dry samaras.",
+            "peak": "Golden-yellow and mottled brown foliage; grey plated bark on upright trunks.",
+            "falling": "Torn yellow-brown foliage; exposed ascending scaffold branches; bare twigs.",
+            "dormant": "Bare grey branches; hemispherical crown form; scaly flaking bark on trunks."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia cordata",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-02",
+            "full_leaf": "06-03",
+            "colour_onset": "09-24",
+            "peak_colour": "10-18",
+            "half_fall": "10-31",
+            "bare": "11-15"
+          },
+          "stages": {
+            "budburst": "Tiny bright green heart-shaped leaves unfurling from reddish-brown buds.",
+            "full_leaf": "Dark green cordate leaves with pale undersides; ridged grey-brown bark.",
+            "colouring": "Leaves turning pale lime-green to muted ochre; dry nutlets on pale bracts.",
+            "peak": "Canopy glowing bright clear yellow; upright trunks with dark ridged bark.",
+            "falling": "Scattered yellow leaves; exposed ascending scaffold branches and fine twigs.",
+            "dormant": "Bare reddish-brown twigs, dark fissured trunks, and dense branch framework."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Lolium perenne",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Dense fine green turf; glossy leaf undersides; ground-hugging matted sward."
+        },
+        {
+          "name": "Poa pratensis",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Uniform deep green sward with boat-shaped leaf tips forming a low carpet."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:a0432ee464bf18080595c3684f09d50ec856dd55": {
+    "address": "43 St Andrew Sq, Edinburgh EH2 2AD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst until late April and prompt steady autumn defoliation by mid-November.",
+      "species": [
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Tiny purplish-red flower clusters precede emerging pale green, rough folded leaves.",
+            "full_leaf": "Rough, dark green obovate leaves with asymmetric bases on arching branches.",
+            "colouring": "Deep green canopy develops scattered dull yellow and pale ochre patches.",
+            "peak": "Warm dull yellow to russet-gold leaves held across the arching crown.",
+            "falling": "Tattered golden-brown foliage sheds rapidly, exposing coarse grey-brown twigs.",
+            "dormant": "Bare arching branches with rough grey-brown furrowed bark and blunt black buds."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia × europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-25",
+            "full_leaf": "05-28",
+            "colour_onset": "09-22",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-15"
+          },
+          "stages": {
+            "budburst": "Translucent lime-green heart-shaped leaves unfurl from reddish winter buds.",
+            "full_leaf": "Dark green heart-shaped leaves with pale undersides; burred base sprouts leafy shoots.",
+            "colouring": "Leaves fade from rich green to pale yellow-green with brown-spotted margins.",
+            "peak": "Pale greenish-yellow to clear butter-yellow foliage across the oval crown.",
+            "falling": "Faded yellow leaves drop swiftly, leaving persistent fruit clusters on twigs.",
+            "dormant": "Bare crown, dark twigs with red buds, and a burred trunk base with tangled shoots."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-22",
+            "colour_onset": "09-25",
+            "peak_colour": "10-20",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Plump greenish buds open to reveal bronze-tinted emerging five-lobed leaves.",
+            "full_leaf": "Thick, coarse dark green palmate leaves with winged samaras dangling below.",
+            "colouring": "Coarse foliage turns dull yellow-green with irregular brown and black tar spots.",
+            "peak": "Muted golden-amber and brown-mottled leaves hang from reddish petioles.",
+            "falling": "Crisp brown and yellow leaves shed rapidly, revealing scaly grey bark.",
+            "dormant": "Bare spreading limbs showing grey-pink peeling bark plates and green-scaled buds."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }
