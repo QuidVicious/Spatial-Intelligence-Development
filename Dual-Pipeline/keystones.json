@@ -146,6 +146,23 @@
       "warnings_acknowledged": [],
       "approved_utc": "2026-10-10T21:08:41+00:00",
       "history": []
+    },
+    "warrender-park-terrace-1": {
+      "run_id": "26_Warrender_Park_Cres_Edinburgh_EH_20261013_100921",
+      "view_name": "Warrender Park Terrace: 1",
+      "source_run": "26_Warrender_Park_Cres_Edinburgh_EH_20261013_100558",
+      "approved_from": "run",
+      "conditions": {
+        "date": "2026-10-13",
+        "time_of_day": 9.85,
+        "weather": "SUNNY"
+      },
+      "warnings_acknowledged": [
+        "SUNNY weather: likely direct sun and cast shadows",
+        "Trees may be in leaf: prints cannot reliably reveal what a canopy hides"
+      ],
+      "approved_utc": "2026-10-13T17:10:26+00:00",
+      "history": []
     }
   }
 }

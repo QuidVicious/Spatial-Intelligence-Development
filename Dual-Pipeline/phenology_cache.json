@@ -6043,5 +6043,64 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:413478b5e0d0710a93b8d0cae811e4068db8c1af": {
+    "address": "26 Warrender Park Cres, Edinburgh EH9 1DY, UK",
+    "calendar": {
+      "climate_note": "Cool maritime conditions at this northern latitude delay budburst well into spring and compress autumn defoliation before severe early frosts.",
+      "species": [
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-28",
+            "colour_onset": "09-25",
+            "peak_colour": "10-20",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Pale green developing leaf clusters emerge alongside drying papery samaras",
+            "full_leaf": "Broad, scabrid deep green foliage; mature rough grey-brown fissured bark",
+            "colouring": "Rough foliage dulls from dark green to patchwork lime and faded yellow",
+            "peak": "Coarse leaves turn bright golden yellow across the spreading framework",
+            "falling": "Faded ochre and brown leaves shed rapidly from heavy ascending branches",
+            "dormant": "Stout, zig-zagging twigs and dark grey deeply fissured bark without foliage"
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-24",
+            "full_leaf": "05-30",
+            "colour_onset": "09-28",
+            "peak_colour": "10-24",
+            "half_fall": "11-06",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Bronzy-pink young foliage unfurls from plump green buds on grey twigs",
+            "full_leaf": "Large palmate dark green leaves with red petioles and paired winged samaras",
+            "colouring": "Canopy dulls to yellow-green, showing scattered brown spots and blemishes",
+            "peak": "Tough palmate leaves turn rich yellow-brown and dull amber",
+            "falling": "Crisp brown and yellow foliage drops, revealing grey plate-fissured bark",
+            "dormant": "Stout grey twigs with greenish buds and coarse scaly grey-brown bark plates"
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Bryum argenteum",
+          "habit": "evergreen",
+          "milestones": null,
+          "stages": null,
+          "evergreen_look": "Compact silvery-green velvety cushions tucked tightly into pavement crevices"
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

@@ -50,6 +50,40 @@ COMPASS_WORDS = {
 app = FastAPI(title="LSA Studio")
 
 
+# ------------------------------------------------------------------ JSON on disk
+# Every JSON file is read so that one bad file can never take down a page, and written so that a
+# crash mid-write can never leave a half-written file: write to a temporary file, then swap it in.
+
+def read_json(path: Path, default=None, kind=dict):
+    """The file's JSON if it parses to the expected kind, else `default` (and a note on the console)."""
+    if not path.is_file():
+        return default
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"[JSON] {path} is unreadable ({e}); using the default")
+        return default
+    if kind is not None and not isinstance(data, kind):
+        print(f"[JSON] {path} holds a {type(data).__name__}, not a {kind.__name__}; using the default")
+        return default
+    return data
+
+
+def write_json(path: Path, data) -> None:
+    """Atomic write: the old file stays whole until the new one is complete."""
+    text = json.dumps(data, indent=2, ensure_ascii=False)
+    json.loads(text)                                   # never write something that will not read back
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    tmp.replace(path)
+
+
+def write_text_atomic(path: Path, text: str) -> None:
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    tmp.replace(path)
+
+
 # ------------------------------------------------------------------ config
 
 def load_models() -> dict:
@@ -57,7 +91,14 @@ def load_models() -> dict:
         raise HTTPException(status_code=500, detail=(
             f"Missing {MODELS_PATH}. Copy the lsa folder (models.json, instructions, addenda) "
             f"into {BASE}, beside lsa_server.py."))
-    return json.loads(MODELS_PATH.read_text(encoding="utf-8"))
+    try:
+        data = json.loads(MODELS_PATH.read_text(encoding="utf-8"))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"{MODELS_PATH.name} is not valid JSON: {e}")
+    missing = [k for k in ("text_model", "image_models", "aspect_ratios", "image_sizes") if k not in data]
+    if missing:
+        raise HTTPException(status_code=500, detail=f"{MODELS_PATH.name} is missing: {', '.join(missing)}")
+    return data
 
 
 def compass_point(deg: float) -> str:
@@ -149,8 +190,50 @@ def extract_render_prompt(text: str):
             return out, "RENDER_PROMPT section"
     m = re.search(r'"RENDER_PROMPT"\s*:\s*"((?:[^"\\]|\\.)+)"', text)
     if m:
-        return json.loads(f'"{m.group(1)}"'), "RENDER_PROMPT field in JSON"
+        try:
+            return json.loads(f'"{m.group(1)}"'), "RENDER_PROMPT field in JSON"
+        except Exception:
+            return m.group(1).replace('\\"', '"').replace("\\n", "\n"), "RENDER_PROMPT field in JSON (loosely decoded)"
     return None, None
+
+
+def parse_lsa_metadata(text: str) -> dict:
+    """SI3.x opens its analysis with an LSA_METADATA JSON block naming the lenses it chose.
+    Read it strictly if it parses; otherwise pull the fields out loosely, so a stray bracket in the
+    model's JSON never hides which lenses ran. `parsed` says which way it was read."""
+    out = {"project": None, "centroid": None, "lenses": [], "parsed": "none"}
+    if not text:
+        return out
+    blocks = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+    head = text.find("LSA_METADATA")
+    if head >= 0:
+        start = text.rfind("{", 0, head)
+        if start >= 0:
+            depth = 0
+            for i in range(start, len(text)):
+                depth += {"{": 1, "}": -1}.get(text[i], 0)
+                if depth == 0:
+                    blocks.append(text[start:i + 1]); break
+    for b in blocks:
+        try:
+            meta = json.loads(b)
+        except Exception:
+            continue
+        meta = meta.get("LSA_METADATA", meta) if isinstance(meta, dict) else {}
+        keys = meta.get("ACTIVE_DOMAIN_KEYS") if isinstance(meta, dict) else None
+        if isinstance(keys, list):
+            out.update(project=meta.get("PROJECT_NAME"), centroid=meta.get("CENTROID_SUPPRESSED"),
+                       lenses=[str(k).strip() for k in keys if str(k).strip()], parsed="json")
+            return out
+    m = re.search(r'"ACTIVE_DOMAIN_KEYS"\s*:\s*\[(.*?)\]', text, re.S)
+    if m:
+        out["lenses"] = [x.strip() for x in re.findall(r'"((?:[^"\\]|\\.)*)"', m.group(1)) if x.strip()]
+        for field, key in (("project", "PROJECT_NAME"), ("centroid", "CENTROID_SUPPRESSED")):
+            f = re.search(rf'"{key}"\s*:\s*"((?:[^"\\]|\\.)*)"', text)
+            if f:
+                out[field] = f.group(1)
+        out["parsed"] = "loose"
+    return out
 
 
 def render_image(client, d: Path, model: str, prompt: str, aspect_ratio: str, image_size: str) -> str:
@@ -219,10 +302,7 @@ def preview(shot: Shot):
 # ------------------------------------------------------------------ presets
 
 def _presets() -> dict:
-    try:
-        return json.loads(PRESETS_PATH.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
+    return read_json(PRESETS_PATH, default={})
 
 
 class Preset(BaseModel):
@@ -239,7 +319,7 @@ def presets():
 def save_preset(p: Preset):
     data = _presets()
     data[p.name.strip()] = p.shot.model_dump()
-    PRESETS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    write_json(PRESETS_PATH, data)
     return {"saved": p.name.strip()}
 
 
@@ -248,7 +328,7 @@ def delete_preset(name: str):
     data = _presets()
     if data.pop(name, None) is None:
         raise HTTPException(status_code=404, detail=f"No preset named {name}")
-    PRESETS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    write_json(PRESETS_PATH, data)
     return {"deleted": name}
 
 
@@ -285,7 +365,7 @@ def run(req: RunRequest):
     (d / "instruction_used.md").write_text(instruction, encoding="utf-8")
 
     def save_settings():
-        (d / "settings.json").write_text(json.dumps(settings, indent=2, ensure_ascii=False), encoding="utf-8")
+        write_json(d / "settings.json", settings)
 
     def stream():
         client = genai.Client(api_key=api_key)
@@ -302,7 +382,10 @@ def run(req: RunRequest):
             (d / "analysis.md").write_text(analysis, encoding="utf-8")
             if not analysis.strip():
                 raise RuntimeError("The text model returned nothing. Try the run again.")
-            yield _event("analysis", text=analysis, seconds=settings["analysis_seconds"])
+            meta = parse_lsa_metadata(analysis)
+            settings["lsa_metadata"] = meta
+            save_settings()
+            yield _event("analysis", text=analysis, seconds=settings["analysis_seconds"], lsa_metadata=meta)
 
             render_prompt, source = extract_render_prompt(analysis)
             if not render_prompt:
@@ -349,8 +432,8 @@ def runs():
         for d in sorted(RUNS.iterdir(), reverse=True):
             if not d.is_dir():
                 continue
-            s = json.loads(_read(d / "settings.json") or "{}")
-            shot = json.loads(_read(d / "shot.json") or "{}")
+            s = read_json(d / "settings.json", default={})
+            shot = read_json(d / "shot.json", default={})
             out.append({"run_id": d.name, "created": s.get("created"), "place": shot.get("place"),
                         "subject": shot.get("subject"), "label": s.get("label"),
                         "has_image": bool(s.get("image_file")), "error": s.get("error"),
@@ -361,11 +444,14 @@ def runs():
 @app.get("/api/runs/{run_id}")
 def run_detail(run_id: str):
     d = _run_dir(run_id)
-    s = json.loads(_read(d / "settings.json") or "{}")
+    s = read_json(d / "settings.json", default={})
+    analysis = _read(d / "analysis.md")
     return {
-        "settings": s, "shot": json.loads(_read(d / "shot.json") or "{}"),
+        "settings": s, "shot": read_json(d / "shot.json", default={}),
+        "lsa_metadata": s.get("lsa_metadata") or parse_lsa_metadata(analysis),
         "user_prompt": _read(d / "user_prompt.txt"), "instruction": _read(d / "instruction_used.md"),
-        "analysis": _read(d / "analysis.md"), "render_prompt": _read(d / "render_prompt.txt"),
+        "analysis": analysis, "render_prompt": _read(d / "render_prompt.txt"),
+        "render_prompt_model": _read(d / "render_prompt_model.txt") or _read(d / "render_prompt.txt"),
         "render_notes": _read(d / "render_notes.txt"),
         "renders": s.get("renders") or ([s["image_file"]] if s.get("image_file") else []),
         "image": f"/api/runs/{run_id}/image" if s.get("image_file") else None,
@@ -375,21 +461,42 @@ def run_detail(run_id: str):
 @app.get("/api/runs/{run_id}/image")
 def run_image(run_id: str, f: Optional[str] = None):
     d = _run_dir(run_id)
-    s = json.loads(_read(d / "settings.json") or "{}")
+    s = read_json(d / "settings.json", default={})
     name = f if f in (s.get("renders") or []) else s.get("image_file")
     if not name or not (d / name).exists():
         raise HTTPException(status_code=404, detail="This run has no image.")
     return FileResponse(d / name)
 
 
+class RerenderRequest(BaseModel):
+    prompt: Optional[str] = None   # a render prompt edited by hand (Pro Mode); None = the saved one
+
+
 @app.post("/api/runs/{run_id}/render")
-def rerender(run_id: str):
-    """Render again from the saved render prompt. Earlier images are kept."""
+def rerender(run_id: str, req: Optional[RerenderRequest] = None):
+    """Render again from the saved render prompt, or from a hand-edited one. Earlier images are kept.
+    A hand edit never overwrites the model's prompt: the model's text stays in render_prompt_model.txt,
+    each edited version is saved as render_prompt_vN.txt, and render_log records which prompt made which image."""
     d = _run_dir(run_id)
-    s = json.loads(_read(d / "settings.json") or "{}")
-    prompt = _read(d / "render_prompt.txt")
-    if not prompt:
+    s = read_json(d / "settings.json", default={})
+    saved = _read(d / "render_prompt.txt")
+    if not saved:
         raise HTTPException(status_code=422, detail="This run has no render prompt to render from.")
+    model_prompt = _read(d / "render_prompt_model.txt") or saved
+    prompt, prompt_file, edited = saved, "render_prompt.txt", bool(s.get("render_prompt_edited"))
+    new = (req.prompt or "").strip() if req else ""
+    if new and new != saved.strip():
+        if not (d / "render_prompt_model.txt").exists():
+            (d / "render_prompt_model.txt").write_text(model_prompt, encoding="utf-8")
+        n = len(list(d.glob("render_prompt_v*.txt"))) + 1
+        prompt_file = f"render_prompt_v{n}.txt"
+        (d / prompt_file).write_text(new, encoding="utf-8")
+        write_text_atomic(d / "render_prompt.txt", new)   # the current prompt
+        prompt, edited = new, new != model_prompt.strip()
+        s["render_prompt_edited"] = edited
+    elif s.get("render_prompt_edited"):
+        log = s.get("render_log") if isinstance(s.get("render_log"), list) else []
+        prompt_file = (log[-1] if log and isinstance(log[-1], dict) else {}).get("prompt_file", "render_prompt.txt")
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not set in .env.")
@@ -400,6 +507,10 @@ def rerender(run_id: str):
         raise HTTPException(status_code=502, detail=str(e))
     s["image_file"] = f
     s["renders"] = (s.get("renders") or []) + [f]
+    log = s.get("render_log") if isinstance(s.get("render_log"), list) and s.get("render_log") else [{"image": x, "prompt_file": "render_prompt.txt", "edited": False}
+                                   for x in (s["renders"][:-1])]
+    log.append({"image": f, "prompt_file": prompt_file, "edited": edited})
+    s["render_log"] = log
     s.pop("error", None)
-    (d / "settings.json").write_text(json.dumps(s, indent=2, ensure_ascii=False), encoding="utf-8")
-    return {"image": f"/api/runs/{run_id}/image?f={f}", "file": f, "renders": s["renders"]}
+    write_json(d / "settings.json", s)
+    return {"image": f"/api/runs/{run_id}/image?f={f}", "file": f, "renders": s["renders"], "edited": edited}

@@ -258,10 +258,16 @@ def _run_dir(run_id: str) -> Path:
 
 
 def _read_json(path: Path) -> Optional[dict]:
+    """The file's JSON object, or None if it is missing, unreadable, or not an object.
+    Callers treat None as "no data", so one bad file never breaks a list or a page."""
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
         return None
+    except Exception as e:
+        print(f"[JSON] {path} is unreadable: {e}")
+        return None
+    return data if isinstance(data, dict) else None
 
 
 def _parse_domain_md(text: str) -> dict:

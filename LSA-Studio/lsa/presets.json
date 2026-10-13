@@ -328,5 +328,20 @@
     "time": "15:00",
     "weather": null,
     "focus": "The foliage, species, fauna, trees, bushes, mosses, lichen, material surfaces, surface weathering in local micro climate, chemical composition and hard surface weathering."
+  },
+  "Warrender Park Terrace": {
+    "place": "26 Warrender Park Cres, Edinburgh EH9 1DY, UK",
+    "standpoint": "Standing in the center of the street facing west.",
+    "bearing": 250.0,
+    "subject": "Looking down the street at the older building in center frame.",
+    "layout": "Left side of frame is completely dominated by the  4 and 5 story terraced facade. The right side of the frame is dominated by the trees and grass of Bruntsfield Links and The Meadows, open grassy public greens. The central part of the frame is primarily the street from foreground to the distance where an old multi-story building dominates the far ground center.",
+    "distance_m": 126.0,
+    "framing": "medium",
+    "camera_height": "eye level",
+    "focal_mm": 31,
+    "date": "2026-10-13",
+    "time": "09:50",
+    "weather": null,
+    "focus": "Surfaces, materials, weathering, flora, trees, tree trunks, limbs, branches and leaves, grassy public green beyond the trees to the far right."
   }
 }

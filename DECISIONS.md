@@ -6,6 +6,60 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-12: Lenses shown, JSON hardened, SI3.9, place mode drafted
+
+**LSA Studio shows the lenses SI3.x chose for each run, as soon as the analysis arrives.** Built.
+SI3.8 selects 3 to 5 lenses per run and names them in its LSA_METADATA block (the 2026-10-03 garden run chose four, under its own names). The server reads that block, strictly if it parses and loosely if not, saves it with the run, and the page lists the lenses under the message line. Older runs are read from their saved analysis.
+Note: the pipeline's domain engine uses five fixed lenses; its progress panel label is stale. That panel is relabelled when SI3.x replaces the engine.
+
+**All JSON reads and writes are hardened.** Built.
+LSA server: one helper reads every JSON file and falls back to a default (with a console note) if the file is missing, corrupt or the wrong shape, so one bad run never breaks the runs list; every JSON write is atomic (temporary file, then swap) and checked to read back; models.json errors name the missing key. Pipeline server: its JSON reader now returns objects only. Both pages skip a malformed line from a server stream instead of stopping the run. Not audited: the pipeline's archiver module, which writes run_metadata.json (not in hand).
+
+**SI3.9: SI3.8 with a valid output schema.** Adopted.
+SI3.8's schema had an extra closing bracket (`"Domain Key 5"]]`), invalid JSON. SI3.9 fixes it, asks for valid JSON explicitly, shows 3 keys as the example instead of implying always 5, and replaces one em dash. Nothing else changed, so 3.8 and 3.9 runs stay comparable. SI3.8 is kept as is.
+
+**Place mode drafted as an addendum (place_mode_DRAFT.md), for review.** Not yet used.
+Realizes a whole address by element, with hidden elements, permanence, confidence, "true as of" for recalled facts, and the moment set aside; one strict JSON object as output.
+
+**Finding: recalled biology can be decades out of date.** The 2026-10-03 garden run named Lecanora conizaeoides, a lichen characteristic of sulphur-polluted cities that declined as air quality improved. Flora is a finer era check than soot: no one cleans the micro-biome of a garden. Recalled condition and biology therefore carry "true as of", and recalled species stay "to verify".
+
+**Finding: the Ainslie Place garden railing is not spearheaded** (Don: a rail that rises, loops over and comes back down). Spearheads were the image model's centroid for New Town railings. The 2026-10-03 render also added a diagonal iron bar across the foreground that does not exist there. Both are what grounding (capture and Street View) must fix, and good first cases for the refinement loop.
+
+## 2026-10-12: One LSA stack and the place model (planning)
+
+**SI3.8 becomes the only domain instruction, for both LSA Studio and the pipeline; the pipeline's separate domain engine is retired after A/B tests show SI3.8 is better.** Planned.
+Why: two domain stacks meant two sets of lenses and two places for knowledge to drift (the progress panel already disagreed with the engine). SI3.8 is never edited; grounding rules go in a separate addendum.
+
+**Three steps, each with one job.** Planned.
+1. Realize the place: SI3.8 works out everything at the address, not just the shot.
+2. Look at the evidence: the capture and Street View show what is there and how it looks today; recall fills in, evidence corrects. Transient and seasonal things are ignored.
+3. Focus and paint: choose from the place by what this shot sees, and write the scene for the renderer. Not a clean-up of a photograph: a landscape painter building the real scene in the studio from location sketches and knowledge.
+Light comes after: it is cast across the focused scene, not baked into the place.
+
+**Detail by distance and by attention.** The subject gets full detail even in the midground; a near element the shot is not about gets less; distant elements keep their form (fenestration, pane layout) and lose fine texture. The focus field supplies the attention.
+
+**The place model: what an address is, kept once and reused by every shot, keystone and series frame there.** Planned.
+Two layers: facts (JSON: geometry, coordinates, materials, species, which house is which) and character (prose: humidity, soot history, drainage behind the vaults, the architect's intent). Organised by element (a house, a tree, a run of railing). Hidden elements are kept but appear only when in view or asked for.
+
+**It grows with every run, under provenance rules.** Each run appends to the elements it saw, and every item carries its source: seen in evidence, recalled, or corrected by Don. Repetition never upgrades a recalled item; only evidence or Don's confirmation does. Disagreements between runs are kept and flagged, never overwritten.
+
+**Place and moment are separate layers.** Leaves on the bark, wet surfaces, mist and sky are the moment, split off before anything enters the place model; they are what the season and weather ramps vary.
+
+**Permanence classes for what Street View shows:** permanent (built into stone or iron: window box brackets and ledges, balconettes, boot scrapers, lamp standards, railings, fanlights), seasonal (planting, foliage, wreaths), transient (cars, bins, scaffolding, signs). The fixing is permanent even when its contents are not. Uncertain items are flagged for Don, not guessed. This records fine structure Cesium cannot resolve. Strong extra signal: a detail present in Street View from different years is almost certainly permanent.
+
+**Next:** read SI3.8.md and Don's example analyses to see how much of step 1 SI3.8 already does, and what steps 2 and 3 must add. Then the place model spec.
+
+## 2026-10-12: Editor dock built
+
+**The dock under the frame replaces the scene text editor and is the one place for long text.** Built.
+Sources: standpoint, looking at, scene layout and focus (LSA brief); the render prompt of the open LSA run; the scene text of the selected pipeline run. Clicking a brief field opens it in the dock with the caret there; tabbing into it opens the dock but leaves the caret in the field. The Render prompt tab, or clicking its text, opens the prompt; "Edit this run's scene text below" in the Runs card opens the scene text. Esc or Close closes the dock; with a pipeline run selected it falls back to that run's scene text, as the old editor did.
+The dock and the source share one text, so nothing is saved or pasted. Brief fields are marked with a brief-coloured dot; the field being edited is outlined and tagged "Editing below".
+
+**The journey strip shows two methods.** LSA: Brief > Analysis > Render prompt > Image. Pipeline: Capture > Scene text > Plate. Each step has its own colour (brief ochre, render prompt cyan, scene text lavender), always shown with its name.
+
+**Render prompt hand edits are kept apart from the model's text.** Built.
+The edit is a draft until rendered; "Render with this text" sends it. The server keeps the model's prompt in render_prompt_model.txt, saves each edited version as render_prompt_vN.txt, and records which prompt made which image in the run's render_log, flagged as edited. Opening another run with an unrendered edit asks first. This is the groundwork for the refinement loop.
+
 ## 2026-10-12: Capture frame overlay parked
 
 **The capture frame on the pano and Fit pano to capture are removed from the code until LSA and the Cesium pipeline are fully joined and testing well; they return as a Pro Mode polish item.** Adopted.
@@ -314,3 +368,16 @@ Why: the original lift brightened broad soot along with shadows, about 20 percen
 
 **The Street View image, not the notes, places the weathering.** Finding.
 Evidence: at Abercromby Place, the same notes with the image placed the soot on the correct corner block; without the image, they didn't.
+
+## Background: before this log (January to September 2026)
+
+Recorded 2026-10-12 from Don's account; dates are approximate.
+
+- **Late January 2026:** work with Claude begins: method research and early tools.
+- **Early summer:** the two sides of the method, the model's knowledge and real-world grounding, become the central problem. All testing is by hand in Google AI Studio. The tools of the time keep being reframed by what the manual tests show; none is finished, but the method keeps being distilled.
+- **Mid-summer:** walks along the Water of Leith, from St Bernard's Well to Dean Bridge and down into the valley, give the method its current form and start the system instruction that becomes SI3.8. Occlusion is first worked on there, and leads to the JSON geometric ground-truth model. Cesium and Google Earth Studio are in use; Street View is discussed but not acted on until the autumn.
+- **Through the summer:** the system instruction is rewritten around the strengths and weaknesses of Gemini 3.1 Flash Image (Nano Banana 2), becoming SI3.8, which works better than any tool before it.
+- **September:** the manual process collapses under its own complexity. Copying and pasting between AI Studio runs causes more errors than it catches, and the closing gap between the two sides makes the tools still in development obsolete before they can be fixed. Decision: automate from the ground up, with SI3.8 as the benchmark.
+- **September to early October:** the dual pipeline is built, grounding side first. It drifts from the method's model knowledge and produces pristine facades that look newly built. Then the first LSA dashboard (LSA Studio, 2026-10-03) produces runs like the Ainslie Place garden test, and the two sides begin to merge.
+- **The two-sided design** (brief on the left, grounding on the right, the frame between) took shape in building the tool as much as on the whiteboard.
+- **Now (October):** SI3.8 to drive the grounding side too, bringing it back to the method it had drifted from.

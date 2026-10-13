@@ -819,7 +819,9 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
             const trimmed = line.trim();
             if (!trimmed) continue;
 
-            const packet = JSON.parse(trimmed);
+            let packet;
+            try { packet = JSON.parse(trimmed); }
+            catch (e) { console.warn('[Pipeline] skipped a malformed line from the server:', trimmed.slice(0, 200)); continue; }
 
             if (packet.type === 'LIFECYCLE') {
               updateStageHUD(packet);

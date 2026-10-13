@@ -433,35 +433,6 @@
       "updated_utc": "2026-09-30T18:20:59+00:00"
     },
     {
-      "id": "warrender-park-terrace-1",
-      "name": "Warrender Park Terrace 1",
-      "note": null,
-      "camera": {
-        "x": 3574843.325529757,
-        "y": -199762.3507879389,
-        "z": 5260838.250313371,
-        "latitude": 55.94036857557511,
-        "longitude": -3.1983635754802315,
-        "height_m": 134.7149402235692,
-        "heading_deg": 168.24191723203646,
-        "pitch_deg": 7.970053333043088,
-        "roll_deg": 0.00011051488974565877,
-        "fov_deg": 59.99999999999999,
-        "capture_w": 2560,
-        "capture_h": 1440
-      },
-      "subject": {
-        "x": 3574950.4607782257,
-        "y": -199725.0083746379,
-        "z": 5260773.1806435725,
-        "latitude": 55.93926087140257,
-        "longitude": -3.197671300074485,
-        "height_m": 139.55034901107229
-      },
-      "created_utc": "2026-09-30T19:04:14+00:00",
-      "updated_utc": "2026-09-30T19:04:14+00:00"
-    },
-    {
       "id": "warrender-park-terrace-east",
       "name": "Warrender Park Terrace East",
       "note": null,
@@ -1338,6 +1309,57 @@
       "subject": null,
       "created_utc": "2026-10-11T16:57:23+00:00",
       "updated_utc": "2026-10-11T16:57:23+00:00"
+    },
+    {
+      "id": "22-abercromby-pl-just-before-nelson-st-intersection",
+      "name": "22 Abercromby PL just before Nelson St. intersection",
+      "note": null,
+      "camera": {
+        "x": 3573343.6265977267,
+        "y": -199571.9681435396,
+        "z": 5261820.821169703,
+        "latitude": 55.956531202467225,
+        "longitude": -3.196659974291431,
+        "height_m": 104.43035485207069,
+        "heading_deg": 58.96449972792912,
+        "pitch_deg": 1.6472307655337752,
+        "roll_deg": 6.71037134967487e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "subject": null,
+      "created_utc": "2026-10-12T23:17:43+00:00",
+      "updated_utc": "2026-10-12T23:17:43+00:00"
+    },
+    {
+      "id": "warrender-park-terrace-1",
+      "name": "Warrender Park Terrace: 1",
+      "note": null,
+      "camera": {
+        "x": 3574961.7425107406,
+        "y": -199859.16711267046,
+        "z": 5260760.068050552,
+        "latitude": 55.9390554035144,
+        "longitude": -3.1998046923728842,
+        "height_m": 139.18875943868795,
+        "heading_deg": 250.18119092721392,
+        "pitch_deg": 4.3360325444488454,
+        "roll_deg": 4.5248429919989086e-05,
+        "fov_deg": 59.99999999999999,
+        "capture_w": 2560,
+        "capture_h": 1440
+      },
+      "subject": {
+        "x": 3575001.504606948,
+        "y": -199977.2136840584,
+        "z": 5260742.373693825,
+        "latitude": 55.938621972401386,
+        "longitude": -3.201655186371939,
+        "height_m": 150.45665406168914
+      },
+      "created_utc": "2026-09-30T19:04:14+00:00",
+      "updated_utc": "2026-10-13T17:02:23+00:00"
     }
   ]
 }
