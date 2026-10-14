@@ -177,6 +177,20 @@
       "warnings_acknowledged": [],
       "approved_utc": "2026-10-13T18:53:10+00:00",
       "history": []
+    },
+    "regent-rd-and-carlton-hill": {
+      "run_id": "24_Calton_Hill_Edinburgh_EH1_3BJ_UK_20261014_152401",
+      "view_name": "Regent Rd and Carlton Hill",
+      "source_run": "24_Calton_Hill_Edinburgh_EH1_3BJ_UK_20261014_143937",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-14T22:24:43+00:00",
+      "history": []
     }
   }
 }

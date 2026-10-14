@@ -176,6 +176,8 @@ class TelemetryPayload(BaseModel):
 
 class ProcessViewRequest(BaseModel):
     screenshot_b64: Optional[str] = Field(None, description="Optional Base64 encoded viewport capture")
+    shadow_pass_b64: Optional[str] = Field(None, description="Optional: the same capture with Cesium's sun and cast shadows on, "
+                                           "at the frame's date and time. When present, its shadows are laid onto the delighted seed.")
     pano_b64: Optional[str] = Field(None, description="Optional Base64 equirectangular 2:1 panorama")
     marble_input_mode: str = Field("text", description="text, image, pano, or multi-image")
     gemini_budget: int = Field(3200, description="Total character budget for the Gemini prompt")
@@ -356,6 +358,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     composite_info = None
     raw_render_b64 = None
     delight_setting = None
+    sun_shadows_info = None
+    seed_for_archive = None
     streetview_b64 = None
     streetview_record = None
     canopy_mask_b64 = None
@@ -621,6 +625,17 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 delighted_b64 = delight_image(request.screenshot_b64, gamma=gamma) if request.screenshot_b64 else None
                 delight_setting = f"gamma {gamma}"
         print(f"[Delight] {delight_setting}")
+        # Sun shadows (fresh captures only, and only when the client sent a shadow pass)
+        sun_shadows_info = None
+        if not replay and request.shadow_pass_b64 and request.screenshot_b64 and delighted_b64:
+            shadowed, sun_shadows_info = _apply_sun_shadows(delighted_b64, request.screenshot_b64, request.shadow_pass_b64)
+            if shadowed and sun_shadows_info.get("applied"):
+                seed_for_archive = delighted_b64      # replays at other times need the shadow-free seed
+                delighted_b64 = shadowed
+                _keep_shadows_in_prompt(compiled)
+            print(f"[SunShadows] {'applied' if sun_shadows_info.get('applied') else 'skipped'}: {sun_shadows_info.get('reason')}"
+                  + (f" | {sun_shadows_info['coverage']:.1%} of the frame in shadow" if 'coverage' in sun_shadows_info else ""))
+            yield stage.dispatching(f"Sun shadows {'laid onto the seed' if sun_shadows_info.get('applied') else 'skipped'}: {sun_shadows_info.get('reason')}")
         yield stage.dispatching("Edge-preserved albedo tensor extracted")
         yield stage.finish("Albedo delighting complete")
 
@@ -713,7 +728,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 conditioning=compiled,
                 synthesis_result=synthesis,
                 screenshot_b64=request.screenshot_b64,
-                delighted_b64=None if mode == "PRINT" else delighted_b64,  # a print's seed is the keystone plate, recorded by id
+                delighted_b64=None if mode == "PRINT" else (seed_for_archive or delighted_b64),  # a print's seed is the keystone plate, recorded by id; sun-shadowed seeds archive shadow-free
                 pano_b64=request.pano_b64,
                 lighting_state=lighting_state,
                 request_settings={
@@ -732,6 +747,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "seed": run_seed,
                     "seed_fixed": request.seed is not None,
                     "composite": composite_info,
+                    "sun_shadows": {k: v for k, v in (sun_shadows_info or {}).items() if k != "mask_png_b64"} or None,
                     "streetview": streetview_record,
                     "delight": delight_setting,
                     "mode": mode,
@@ -748,6 +764,11 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "screenshot_supplied": bool(request.screenshot_b64)
                 }
             )
+            if sun_shadows_info and sun_shadows_info.get("mask_png_b64"):
+                try:
+                    (Path(run_folder_path) / "sun_shadow_mask.png").write_bytes(base64.b64decode(sun_shadows_info["mask_png_b64"]))
+                except Exception as e:
+                    print(f"[SunShadows] could not write the mask: {e}")
             # Keep the untouched render and the canopy mask beside the composite, for inspection.
             if raw_render_b64 or canopy_mask_b64:
                 for fname, data in (("spatial_twin_raw.png", raw_render_b64), ("canopy_mask.png", canopy_mask_b64)):
@@ -943,7 +964,7 @@ def _run_summary(d: Path) -> dict:
         "saved_view_name": settings.get("saved_view_name"),
         "replay_of": settings.get("replay_of"),
         "scene_text_edited": settings.get("scene_text_edited"),
-        "keystone_candidate": bool(settings.get("keystone_candidate")),
+        "keystone_candidate": bool(settings.get("keystone_candidate")) or settings.get("mode") == "KEYSTONE",
         "keystone_print_of": settings.get("keystone_print_of"),
         "series_id": settings.get("series_id"),
         "series_frame": settings.get("series_frame"),
@@ -1393,6 +1414,66 @@ def _keystone_delight_setting():
         return 0.85
 
 
+# ---------------------------------------------------------------------------------------------
+# Sun shadows from Cesium (2026-10-13). The image model keeps the light in its seed and does not follow
+# light-direction words, and Google's tiles carry the sun of their aerial photos. So the client captures
+# the view twice, without and with Cesium's own sun and cast shadows, at the frame's date and time.
+# The shadowless capture is delighted as usual; the shadow mask (shadowed / shadowless brightness) is then
+# laid onto the delighted seed, after delighting, so the delight pass cannot weaken it.
+SUN_SHADOW_FLOOR = 0.35      # never darken below this fraction of the delighted seed's brightness
+SUN_SHADOW_KEEP_RULE = ("- SHADOW RULE: The cast shadows in the reference plate are correct for this date and time: "
+                        "keep their positions, shapes and directions exactly, and light every surface consistently with them.")
+
+
+def _b64_to_array(data_url: str):
+    import io
+    import numpy as np
+    from PIL import Image
+    raw = data_url.split(",", 1)[1] if data_url.startswith("data:") else data_url
+    return np.asarray(Image.open(io.BytesIO(base64.b64decode(raw))).convert("RGB")).astype("float32")
+
+
+def _apply_sun_shadows(seed_b64: str, off_b64: str, on_b64: str):
+    """Returns (new seed data URL or None, info dict). Never raises: on any problem the seed is left alone."""
+    try:
+        import io
+        import numpy as np
+        from PIL import Image, ImageFilter
+        off, on = _b64_to_array(off_b64), _b64_to_array(on_b64)
+        if off.shape != on.shape:
+            return None, {"applied": False, "reason": f"capture sizes differ {off.shape[:2]} vs {on.shape[:2]}"}
+        lum = lambda a: 0.2126 * a[..., 0] + 0.7152 * a[..., 1] + 0.0722 * a[..., 2]
+        ratio = (lum(on) + 4.0) / (lum(off) + 4.0)
+        mask = np.clip(ratio, SUN_SHADOW_FLOOR, 1.0)
+        mask[mask > 0.95] = 1.0                       # ignore JPEG noise: only real shadows darken
+        m_img = Image.fromarray((mask * 255).astype("uint8"), "L").filter(ImageFilter.MedianFilter(3)).filter(ImageFilter.GaussianBlur(1.2))
+        seed = _b64_to_array(seed_b64)
+        if seed.shape[:2] != off.shape[:2]:
+            m_img = m_img.resize((seed.shape[1], seed.shape[0]), Image.BILINEAR)
+        m = np.asarray(m_img).astype("float32") / 255.0
+        out = np.clip(seed * m[..., None], 0, 255).astype("uint8")
+        buf = io.BytesIO(); Image.fromarray(out, "RGB").save(buf, "JPEG", quality=92)
+        coverage = float((m < 0.9).mean())
+        mbuf = io.BytesIO(); m_img.save(mbuf, "PNG")
+        return ("data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode("ascii"),
+                {"applied": coverage > 0.002, "coverage": round(coverage, 4),
+                 "reason": "shadows laid onto the delighted seed" if coverage > 0.002 else "no shadows found in the shadow pass",
+                 "mask_png_b64": base64.b64encode(mbuf.getvalue()).decode("ascii")})
+    except Exception as e:
+        traceback.print_exc()
+        return None, {"applied": False, "reason": f"error: {e}"}
+
+
+def _keep_shadows_in_prompt(compiled) -> None:
+    """The lighting directive tells the model to erase every shadow in the plate (written for the tiles' baked-in,
+    wrong shadows). With Cesium's correct shadows laid in, that line must say the opposite."""
+    pat = re.compile(r"^- SHADOW OVERWRITE RULE:.*$", re.M)
+    for attr in ("prompt", "user_prompt"):
+        text = getattr(compiled, attr, None)
+        if text and pat.search(text):
+            setattr(compiled, attr, pat.sub(SUN_SHADOW_KEEP_RULE, text))
+
+
 def _maps_key() -> str:
     key = os.getenv("GOOGLE_MAPS_API_KEY")
     if not key:
@@ -1523,6 +1604,56 @@ def streetview_rewrite(req: StreetViewReadRequest):
     print(f"[StreetView] rewrote condition from pano {req.pano_id} for {req.run_id}: {len(scene)} -> {len(revised)} chars")
     return {"scene_text": revised, "original": scene, "pano_id": req.pano_id, "date": req.date,
             "changed": revised.strip() != scene.strip()}
+
+
+def _find_compiled_prompt(d: Path) -> tuple:
+    """The prompt the image model was sent for this run, wherever the archiver put it.
+    Every compiled prompt opens with "[TASK:", so look for that: first in run_metadata.json (any string
+    value, at any depth), then in the run's text files. Returns (prompt, where it was found)."""
+    def walk(v, path):
+        if isinstance(v, str) and v.lstrip().startswith("[TASK:"):
+            return v, path
+        if isinstance(v, dict):
+            for k, x in v.items():
+                hit = walk(x, f"{path}.{k}")
+                if hit:
+                    return hit
+        if isinstance(v, list):
+            for i, x in enumerate(v):
+                hit = walk(x, f"{path}[{i}]")
+                if hit:
+                    return hit
+        return None
+    meta = _read_json(d / "run_metadata.json")
+    if meta:
+        hit = walk(meta, "run_metadata.json")
+        if hit:
+            return hit
+    for f in sorted(d.glob("*")):
+        if f.suffix.lower() not in (".txt", ".md") or f.stat().st_size > 400_000:
+            continue
+        try:
+            text = f.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        i = text.find("[TASK:")
+        if i >= 0:
+            return text[i:].strip(), f.name
+    return None, None
+
+
+@app.get("/api/runs/{run_id}/prompt")
+async def run_prompt(run_id: str):
+    """The prompt sent to the image model for one archived run, for the Pipeline result tab."""
+    d = _run_dir(run_id)
+    prompt, source = _find_compiled_prompt(d)
+    meta = _read_json(d / "run_metadata.json") or {}
+    settings = meta.get("settings") or {}
+    return {"run_id": run_id, "prompt": prompt, "source": source,
+            "provider": meta.get("provider"), "mode": settings.get("mode"),
+            "date": settings.get("date"), "time_of_day": settings.get("time_of_day"),
+            "weather": (meta.get("lighting_resolved") or {}).get("weather") or settings.get("weather_mode"),
+            "composite": settings.get("composite")}
 
 
 @app.get("/api/runs/{run_id}/scene")

@@ -769,7 +769,19 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (subjectEntity) subjectEntity.show = false;
       
       // Fixed 16:9 seed so the model never has to choose a crop.
-      const screenshotB64 = await captureFixedAspect(0.9);
+      // With "Sun and shadows" ticked, capture twice at the same camera and time: without Cesium's shadows
+      // (the seed, delighted as usual) and with them (the shadow pass, laid onto the delighted seed server-side).
+      const sunShadows = !!document.getElementById('chk-sun-shadows')?.checked;
+      let screenshotB64, shadowPassB64 = null;
+      if (sunShadows) {
+        setSunShadows(false);
+        screenshotB64 = await captureFixedAspect(0.92);
+        setSunShadows(true);
+        shadowPassB64 = await captureFixedAspect(0.92);
+        console.log('[Sun] captured a shadowless seed and a shadow pass');
+      } else {
+        screenshotB64 = await captureFixedAspect(0.9);
+      }
 
       const cart = Cesium.Cartographic.fromCartesian(viewer.camera.position);
       const altInfo = await computeAltitudeAGL(cart);
@@ -822,7 +834,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         disable_recaption: document.getElementById('chk-disable-recaption').checked,
         use_search_grounding: document.getElementById('chk-search-grounding').checked,
         saved_view_id: atView ? atView.id : null,
-        saved_view_name: atView ? atView.name : null
+        saved_view_name: atView ? atView.name : null,
+        shadow_pass_b64: document.getElementById('select-view-scope').value === 'STANDALONE' ? null : shadowPassB64
       };
 
       if (subjectEntity) subjectEntity.show = true;
