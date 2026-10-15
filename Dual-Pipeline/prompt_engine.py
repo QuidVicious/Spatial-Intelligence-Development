@@ -55,16 +55,51 @@ def _build_task_header(eco_clause: str) -> str:
     )
 
 
-def _render_gemini_print(domain_result: Any, lighting_state: Any) -> Dict[str, Any]:
+_KEEP_FABRIC = (
+    "KEEP EXACTLY AS THEY ARE, in the same positions, sizes, and proportions: every building, facade, window, "
+    "door, roofline, chimney, monument, statue, railing, kerb, paving joint, road marking, lamp, and every tree "
+    "trunk and branch. Add no objects and remove none. Add no people, vehicles, scaffolding, signage, logos, or lettering."
+)
+
+
+def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str = "full") -> Dict[str, Any]:
     """
-    PRINT mode: the seed is an approved keystone plate, not photogrammetry.
-    Deliberately short and restrictive: only the canopy and the light may change.
-    Longer prompts pull the model toward redrawing, which is exactly what a print must not do.
+    PRINT mode: the seed is an approved plate, not photogrammetry.
+    Deliberately short and restrictive. Longer prompts pull the model toward redrawing, which is exactly what a
+    print must not do. Three variants (2026-10-14), the layers keystone > date plate > hour print:
+      full    seed = keystone; change the canopy for the date AND the light (the original print)
+      season  seed = keystone; change ONLY the canopy for the date, under the neutral light given (the date plate)
+      light   seed = date plate; change ONLY the light and weather; every leaf stays as it is (the hour print)
     """
     phen = (getattr(domain_result, "phenology", "") or "").strip() or "Keep every tree canopy exactly as it is."
     light = (getattr(lighting_state, "prompt_directive", "") or "").strip()
     # The shadow-overwrite rule describes a sunlit photogrammetry seed; a keystone plate has no cast shadows.
     light = "\n".join(l for l in light.splitlines() if "SHADOW OVERWRITE RULE" not in l).strip()
+    if variant == "season":
+        prompt = (
+            "[TASK: SEASONAL EDIT OF AN APPROVED PLATE]\n"
+            "This image is a finished, approved photograph of a real place. Edit it; do not redraw it.\n\n"
+            f"{_KEEP_FABRIC} Keep the light exactly as it is: flat, even, shadowless overcast.\n\n"
+            "CHANGE ONLY THE TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves "
+            "match the stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
+            f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. {phen}\n\n"
+            "Sharp focus near to far. No blur, no vignetting."
+        )
+        return {"prompt": prompt, "metadata": {"renderer": "GEMINI", "mode": "PRINT", "print_variant": "season",
+                "final_char_count": len(prompt), "doc_trimmed": False, "eco_trimmed": False,
+                "has_botanical_phenology": bool(getattr(domain_result, "phenology", ""))}}
+    if variant == "light":
+        prompt = (
+            "[TASK: LIGHTING EDIT OF AN APPROVED PLATE]\n"
+            "This image is a finished, approved photograph of a real place on this date. Edit it; do not redraw it.\n\n"
+            f"{_KEEP_FABRIC} Keep every tree exactly as it is, leaves included: the shape, density, colour and gaps "
+            "of every canopy stay as in the plate. Leaves may catch the light or fall into shade; they do not change.\n\n"
+            f"CHANGE ONLY THE LIGHT AND WEATHER:\n{light}\n\n"
+            "Sharp focus near to far. No blur, no vignetting."
+        )
+        return {"prompt": prompt, "metadata": {"renderer": "GEMINI", "mode": "PRINT", "print_variant": "light",
+                "final_char_count": len(prompt), "doc_trimmed": False, "eco_trimmed": False,
+                "has_botanical_phenology": False}}
     prompt = (
         "[TASK: SEASONAL AND LIGHTING EDIT OF AN APPROVED PLATE]\n"
         "This image is a finished, approved photograph of a real place. Edit it; do not redraw it.\n\n"
@@ -417,7 +452,8 @@ def compile_conditioning(
     telemetry: Any = None,
     marble_budget: int = 2000,
     gemini_budget: int = 3200,
-    print_mode: bool = False
+    print_mode: bool = False,
+    print_variant: str = "full"
 ) -> CompiledPrompt:
 
     provider = target_provider.upper()
@@ -425,7 +461,7 @@ def compile_conditioning(
     if print_mode:
         if provider == "WORLD_LABS":
             raise ValueError("Prints from a keystone are Gemini-only.")
-        rendered = _render_gemini_print(domain_result, lighting_state)
+        rendered = _render_gemini_print(domain_result, lighting_state, print_variant)
         default_model = "gemini-3.1-flash-image"
     elif provider == "WORLD_LABS":
         rendered = _render_marble(domain_result, lighting_state, telemetry, budget=marble_budget)

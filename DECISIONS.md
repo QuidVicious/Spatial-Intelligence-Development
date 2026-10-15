@@ -6,6 +6,22 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-14: Keystone, date plate, hour print
+
+**Three layers for prints: keystone (structure) > date plate (the canopy for one date) > hour print (the light).** Built, to test.
+Why: leaves changed between hours of the same day, as different growth, not a breeze. Every print regrew the canopy from the bare keystone (Make keystone always renders midwinter noon overcast, so a keystone made from a June run is bare too), with no fixed seed, and the canopy composite only protects what lies outside the trees. Sun shadows made it more visible, since each hour now starts from a different seed image.
+- Keystone: unchanged, bare midwinter overcast, so it shows what is behind the trees.
+- Date plate: the keystone plus that date's canopy, rendered under the keystone's own neutral light (12:00 overcast), made automatically the first time a date is printed, then reused. Registered in date_plates.json by view, keystone and date; approving a new keystone starts fresh plates. "Remake the date plate for this date" replaces one.
+- Hour print: starts from the date plate; its prompt changes only the light and weather ("every leaf stays as in the plate"); sun shadows apply here.
+Series make any missing date plate on the server before the frame. With the live clock (no set date), prints keep the original behaviour (canopy and light together).
+Don's choice: the keystone stays bare; the "June keystone" he wanted is the June date plate.
+
+**UI round, planned (Don, 2026-10-14):**
+- One pinned cluster in workflow order: Synthesize, Make keystone, Replay, Approve as keystone, Print from keystone. Outline and text colour only. States: green = the next decision; dim yellow = in play (already run, can be run again); dark = not available yet. Start: only Synthesize green. After Synthesize: Synthesize yellow, Make keystone and Replay green. After a keystone is made: Approve green. After approval: Print green.
+- Approve asks first when the run was not made with Make keystone ("may carry its own light and weather into every print").
+- Whole UI from dark grey to full black.
+- Street View card: when a pano is loaded, Update and Finishing pass are green; once the finishing pass has run, it turns yellow (in play); clear feedback while it runs, which is now easy to miss.
+
 ## 2026-10-13: Open issues from testing
 
 **Sun side flips in keystone prints from 9 am on.** Fixed in lighting_engine.py (to confirm in a test).
@@ -29,6 +45,12 @@ Test switch added to the Cesium card: "Sun and shadows" turns on Cesium's sun fo
 Cesium's sun and cast shadows checked at St Andrew Square: the column's shadow moves correctly with the hour. A rough first try (Synthesize with Cesium shadows in the capture) came out right once and wrong once at the same settings: the CUDA delight pass, built to strip light and shadow, weakens Cesium's shadows along with the tiles' baked light, and the lighting directive's SHADOW OVERWRITE RULE told the model to erase every shadow in the plate.
 Now, only when "Sun and shadows" is ticked at Synthesize: the client captures twice at the same camera and time, without and with Cesium's shadows; the shadowless capture is delighted as usual; the shadow mask (shadowed brightness over shadowless, floored at 0.35) is laid onto the delighted seed after delighting; and the SHADOW OVERWRITE RULE becomes "the cast shadows in the reference plate are correct for this date and time: keep them". The run records sun_shadows (applied, coverage) and saves sun_shadow_mask.png. The run archives its shadow-free capture and seed, so keystones and replays at other hours are not baked with these shadows. With the switch off, nothing changes. Not yet: prints from a keystone (step 2: render the saved view at the print's time and lay its shadows onto the keystone plate).
 Test: about four Synthesize runs at the same settings, counting how many put the light on the correct side.
+Result 2026-10-13 (Don): St Andrew Square, 9 am and 4 pm, light on the correct side in both. To confirm: a run of four at the same settings, and another view (Leven St, looking south, 10 am). The delight stage takes longer with the switch on because the shadow step runs inside it (mostly the median filter on the mask).
+
+**Sun shadows from Cesium, step 2: prints from a keystone.** Built, opt-in, to test.
+With "Sun and shadows" ticked, Print from keystone renders the keystone's saved view in Cesium at the print's date and time, without and with shadows, then restores the camera; the server lays the shadow mask onto the keystone plate and adds the keep-the-shadows rule to the print prompt. If a canopy composite applies, it pastes back the shadowed plate. Skipped, with a note, on the live clock or when the saved view is missing.
+Both steps now add shadows only with direct sun: an overcast, foggy, rainy, snowy, twilight or night frame gets none, even with the switch on (this also tightens step 1).
+Not covered yet: series prints, which the server runs frame by frame without the browser, so no Cesium shadow pass. Next: render one shadow pair per frame in the browser before the series starts.
 
 **Planned fix: give the model correctly lit pixels, not words.** Cesium renders the saved view at the frame's date and time with shadows (the time zone fix of 2026-10-13 makes its sun exact). Option B, to test first: use that render's light and shade to pre-light the seed (darken shaded faces, lay in cast shadows) before it is sent, so the model's habit of keeping the seed's light keeps the right light. Option A, fallback: send the render as a second image to match. Needs: a check that Cesium's sun is right at St Andrew Square at 4 pm, and synthesis_engine.py.
 

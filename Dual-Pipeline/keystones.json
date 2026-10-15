@@ -191,6 +191,20 @@
       "warnings_acknowledged": [],
       "approved_utc": "2026-10-14T22:24:43+00:00",
       "history": []
+    },
+    "4-st-andrews-solar-test": {
+      "run_id": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261014_160620",
+      "view_name": "4 St Andrews Solar Test",
+      "source_run": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261014_160532",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-14T23:10:51+00:00",
+      "history": []
     }
   }
 }

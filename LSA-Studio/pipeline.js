@@ -1621,7 +1621,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     // What the run is, in words.
     function runKind(r) {
       if (isKeystoneRun(r)) return { approved: '★ Keystone', superseded: 'Keystone, superseded', candidate: 'Keystone candidate' }[keystoneStateOf(r.id)];
-      if (r.keystone_print_of) return (r.series_frame ? `Series frame ${r.series_frame}` : 'Print') + (r.composite_applied ? ', composited' : '');
+      if (r.mode === 'DATE_PLATE' || r.date_plate_of) return 'Date plate';
+      if (r.keystone_print_of) return (r.series_frame ? `Series frame ${r.series_frame}` : 'Print') + (r.date_plate_run ? ' from date plate' : '') + (r.composite_applied ? ', composited' : '');
       if (r.replay_of) return r.scene_text_edited ? 'Replay, edited' : 'Replay';
       return 'Synthesize';
     }
@@ -1879,9 +1880,97 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       payload.print_view_id = viewId;
       payload.replay_of = null;   // the server resolves the keystone
       console.log(`[Print] from keystone of view ${viewId}`);
+      // Layer 2 first: an hour print starts from this date's plate; make it once if it doesn't exist yet.
+      const date = payload.telemetry.date;
+      if (date) {
+        let plate = null;
+        try { plate = (await (await fetch(`${PIPE}/api/date_plate?view_id=${encodeURIComponent(viewId)}&date=${date}`)).json()).run_id; }
+        catch (e) { console.warn('[DatePlate] lookup failed:', e); }
+        if (!plate) {
+          setReplayStatus(`No date plate for ${date} yet: making it first (the canopy for that date, neutral light), then the print.`, 'var(--accent-cyan)');
+          const ok = await runDatePlate(viewId, view, date);
+          if (!ok) return;
+        }
+      }
+      resetStepperHUD();
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+      // Sun shadows: render the keystone's saved view at the print's date and time, without and with
+      // Cesium's shadows; the server lays the difference onto the keystone plate (direct sun only).
+      if (document.getElementById('chk-sun-shadows')?.checked) {
+        if (document.getElementById('chk-live-time').checked) {
+          setReplayStatus('Sun shadows skipped: they need a set date and time, not the live clock.', '#ffb74d');
+        } else if (!view || !view.camera) {
+          setReplayStatus('Sun shadows skipped: the saved view for this keystone was not found.', '#ffb74d');
+        } else {
+          try {
+            const pair = await captureShadowPairAtView(view);
+            payload.shadow_base_b64 = pair.base;
+            payload.shadow_pass_b64 = pair.pass;
+          } catch (e) {
+            console.warn('[Sun] shadow pair for the print failed:', e);
+            setReplayStatus('Sun shadows skipped: the shadow capture failed (see console). Printing without them.', '#ffb74d');
+          }
+        }
+      }
+      await streamPipeline(payload);
+    }
+
+    // Make (or remake) the date plate for a view's keystone on a date: the keystone with that date's canopy.
+    async function runDatePlate(viewId, view, date) {
+      const stub = { latitude: view ? view.camera.latitude : 0, longitude: view ? view.camera.longitude : 0 };
+      const payload = buildReplayPayload(stub, null);
+      payload.mode = 'DATE_PLATE';
+      payload.print_view_id = viewId;
+      payload.replay_of = null;
+      payload.telemetry.date = date;
+      console.log(`[DatePlate] ${viewId} ${date}`);
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       await streamPipeline(payload);
+      try {
+        const r = await (await fetch(`${PIPE}/api/date_plate?view_id=${encodeURIComponent(viewId)}&date=${date}`)).json();
+        if (r.run_id) return true;
+      } catch (e) {}
+      setReplayStatus(`The date plate for ${date} was not made (see the server window). Nothing printed.`, '#ff5252');
+      return false;
+    }
+
+    async function remakeDatePlate() {
+      const viewId = keystoneContextViewId();
+      if (!viewId || !keystones[viewId]) { setReplayStatus('This view has no approved keystone yet.', '#ff5252'); return; }
+      if (document.getElementById('chk-live-time').checked) { setReplayStatus('A date plate needs a set date, not the live clock.', '#ffb74d'); return; }
+      const date = document.getElementById('input-date').value;
+      if (!confirm(`Make a new date plate for ${date}? Later prints on that date start from the new one; the old one stays in the run list.`)) return;
+      await runDatePlate(viewId, savedViews.find(v => v.id === viewId), date);
+    }
+
+    // Render a saved view at the strip's date and time twice, without and with Cesium's sun and shadows,
+    // then put the camera, field of view, subject marker and shadow switch back as they were.
+    async function captureShadowPairAtView(view) {
+      const cam = viewer.camera, c = view.camera;
+      const saved = { pos: cam.position.clone(), h: cam.heading, p: cam.pitch, r: cam.roll, fov: cam.frustum.fov,
+                      subj: subjectEntity ? subjectEntity.show : null,
+                      shadows: !!document.getElementById('chk-sun-shadows')?.checked };
+      try {
+        if (subjectEntity) subjectEntity.show = false;
+        if (c.fov_deg) cam.frustum.fov = Cesium.Math.toRadians(c.fov_deg);
+        cam.setView({ destination: new Cesium.Cartesian3(c.x, c.y, c.z),
+                      orientation: { heading: Cesium.Math.toRadians(c.heading_deg), pitch: Cesium.Math.toRadians(c.pitch_deg),
+                                     roll: Cesium.Math.toRadians(c.roll_deg || 0) } });
+        syncCesiumTime();
+        setSunShadows(false);
+        const base = await captureFixedAspect(0.92);
+        setSunShadows(true);
+        const pass = await captureFixedAspect(0.92);
+        console.log(`[Sun] shadow pair rendered at saved view ${view.name}`);
+        return { base, pass };
+      } finally {
+        setSunShadows(saved.shadows);
+        cam.frustum.fov = saved.fov;
+        cam.setView({ destination: saved.pos, orientation: { heading: saved.h, pitch: saved.p, roll: saved.r } });
+        if (subjectEntity && saved.subj !== null) subjectEntity.show = saved.subj;
+        updateTelemetryHUD();
+      }
     }
 
     async function replaySelectedRun() {

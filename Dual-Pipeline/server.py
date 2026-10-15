@@ -178,6 +178,8 @@ class ProcessViewRequest(BaseModel):
     screenshot_b64: Optional[str] = Field(None, description="Optional Base64 encoded viewport capture")
     shadow_pass_b64: Optional[str] = Field(None, description="Optional: the same capture with Cesium's sun and cast shadows on, "
                                            "at the frame's date and time. When present, its shadows are laid onto the delighted seed.")
+    shadow_base_b64: Optional[str] = Field(None, description="Optional: the shadowless capture paired with shadow_pass_b64, when it is "
+                                           "not screenshot_b64 (prints: the saved view rendered by the client at the print's time).")
     pano_b64: Optional[str] = Field(None, description="Optional Base64 equirectangular 2:1 panorama")
     marble_input_mode: str = Field("text", description="text, image, pano, or multi-image")
     gemini_budget: int = Field(3200, description="Total character budget for the Gemini prompt")
@@ -222,6 +224,37 @@ def _write_keystones(views: dict) -> None:
     tmp = KEYSTONES_PATH.with_suffix(".json.tmp")
     tmp.write_text(json.dumps({"version": 1, "views": views}, indent=2), encoding="utf-8")
     tmp.replace(KEYSTONES_PATH)
+
+
+# -------------------------------------------------------------------------
+# Date plates (2026-10-14): keystone > date plate > hour print. A date plate is the approved keystone with one
+# date's canopy, under the keystone's neutral light; every hour of that date is relit from it, so the leaves
+# stay the same across the day. Keyed by view, then keystone run (a new keystone starts fresh plates), then date.
+DATE_PLATES_PATH = Path(__file__).parent / "date_plates.json"
+
+
+def _load_date_plates() -> dict:
+    data = _read_json(DATE_PLATES_PATH) or {}
+    plates = data.get("plates")
+    return plates if isinstance(plates, dict) else {}
+
+
+def _date_plate_for(view_id: Optional[str], keystone_run: Optional[str], date: Optional[str]) -> Optional[str]:
+    if not (view_id and keystone_run and date):
+        return None
+    run_id = ((_load_date_plates().get(view_id) or {}).get(keystone_run) or {}).get(date[:10])
+    if run_id and (DEFAULT_RUNS_DIR / run_id / "spatial_twin.png").exists():
+        return run_id
+    return None
+
+
+def _register_date_plate(view_id: str, keystone_run: str, date: str, run_id: str) -> None:
+    plates = _load_date_plates()
+    plates.setdefault(view_id, {}).setdefault(keystone_run, {})[date[:10]] = run_id
+    tmp = DATE_PLATES_PATH.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps({"version": 1, "plates": plates}, indent=2), encoding="utf-8")
+    tmp.replace(DATE_PLATES_PATH)
+    print(f"[DatePlate] registered {view_id} / keystone {keystone_run} / {date[:10]} -> {run_id}")
 
 
 def _midwinter_date(lat: float) -> str:
@@ -367,11 +400,14 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     phenology_source = None
 
     mode = (request.mode or "").strip().upper() or None
-    if mode not in (None, "KEYSTONE", "PRINT"):
+    if mode not in (None, "KEYSTONE", "PRINT", "DATE_PLATE"):
         yield format_ndjson({"type": "ERROR", "message": f"Unknown mode: {request.mode}"})
         return
     keystone_run_id = None
-    if mode == "PRINT":
+    print_like = mode in ("PRINT", "DATE_PLATE")   # both start from the approved keystone of a view
+    print_variant = "full"
+    date_plate_run_id = None
+    if print_like:
         ks = _load_keystones().get(request.print_view_id or "")
         if not ks:
             yield format_ndjson({"type": "ERROR", "message": "This view has no approved keystone yet."})
@@ -414,7 +450,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             request.saved_view_name = src_set.get("saved_view_name")
         replay["source_date"] = src_set.get("date")
 
-        if mode in ("KEYSTONE", "PRINT") and not (replay["domain"].metadata or {}).get("invariant_split"):
+        if mode in ("KEYSTONE", "PRINT", "DATE_PLATE") and not (replay["domain"].metadata or {}).get("invariant_split"):
             yield format_ndjson({"type": "ERROR", "message": "Keystones need a run made after the phenology split."})
             return
         if mode == "KEYSTONE":
@@ -432,13 +468,33 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             telemetry = telemetry.model_copy(update=neutral) if hasattr(telemetry, "model_copy") else telemetry.copy(update=neutral)
             print(f"[Keystone] neutral plate: {neutral['date']} 12:00 OVERCAST")
             replay["delighted_b64"] = None   # re-delight the source capture at the keystone setting
-        if mode == "PRINT":
+        if print_like:
             plate = _file_data_url(_run_dir(keystone_run_id) / "spatial_twin.png", "image/png")
             if not plate:
                 yield format_ndjson({"type": "ERROR", "message": f"Keystone run {keystone_run_id} has no rendered plate."})
                 return
             replay["delighted_b64"] = plate   # the synthesis seed is the approved plate itself
             print(f"[Print] seed is keystone plate from {keystone_run_id}")
+        if mode == "DATE_PLATE":
+            # Layer 2: the keystone with this date's canopy, under the keystone's own neutral light.
+            if not telemetry.date:
+                yield format_ndjson({"type": "ERROR", "message": "A date plate needs a set date (not the live clock)."})
+                return
+            neutral = {"time_of_day": 12.0, "timestamp_utc": None, "lighting_mode": "SOLAR", "weather_mode": "OVERCAST"}
+            telemetry = telemetry.model_copy(update=neutral) if hasattr(telemetry, "model_copy") else telemetry.copy(update=neutral)
+            print_variant = "season"
+            print(f"[DatePlate] {request.print_view_id} {telemetry.date}: canopy only, 12:00 OVERCAST")
+        elif mode == "PRINT" and telemetry.date:
+            # Layer 3: an hour print starts from this date's plate, if one exists, and changes only the light.
+            date_plate_run_id = _date_plate_for(request.print_view_id, keystone_run_id, telemetry.date)
+            dp = _file_data_url(_run_dir(date_plate_run_id) / "spatial_twin.png", "image/png") if date_plate_run_id else None
+            if dp:
+                replay["delighted_b64"] = dp
+                print_variant = "light"
+                print(f"[Print] seed is the date plate {date_plate_run_id} for {telemetry.date}: light only")
+            else:
+                date_plate_run_id = None
+                print(f"[Print] no date plate for {telemetry.date}: canopy and light in one print (original behaviour)")
         print(
             f"[Replay] source {request.replay_of} | domain from {replay['domain_source']} | "
             f"delighted seed {'reused' if replay['delighted_b64'] else 'will be recomputed'}"
@@ -596,7 +652,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             telemetry=telemetry,
             target_model=request.target_model,
             gemini_budget=request.gemini_budget,
-            print_mode=(mode == "PRINT")
+            print_mode=print_like,
+            print_variant=print_variant
         )
         _m = compiled.metadata
         yield stage.dispatching(
@@ -613,7 +670,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         if replay and replay["delighted_b64"]:
             yield stage.processing("Reusing archived delighted seed from the source run...")
             delighted_b64 = replay["delighted_b64"]
-            delight_setting = "keystone plate" if mode == "PRINT" else "reused from source run"
+            delight_setting = ("date plate" if date_plate_run_id else "keystone plate") if print_like else "reused from source run"
         else:
             gamma = _keystone_delight_setting() if mode == "KEYSTONE" else DEFAULT_DELIGHT_GAMMA
             if gamma == "off":
@@ -625,14 +682,21 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 delighted_b64 = delight_image(request.screenshot_b64, gamma=gamma) if request.screenshot_b64 else None
                 delight_setting = f"gamma {gamma}"
         print(f"[Delight] {delight_setting}")
-        # Sun shadows (fresh captures only, and only when the client sent a shadow pass)
+        # Sun shadows: fresh captures and prints, only when the client sent a shadow pass and the frame has direct sun.
+        # A print's seed is the keystone plate; the pair comes from the client rendering the saved view at the print's time.
         sun_shadows_info = None
-        if not replay and request.shadow_pass_b64 and request.screenshot_b64 and delighted_b64:
-            shadowed, sun_shadows_info = _apply_sun_shadows(delighted_b64, request.screenshot_b64, request.shadow_pass_b64)
-            if shadowed and sun_shadows_info.get("applied"):
-                seed_for_archive = delighted_b64      # replays at other times need the shadow-free seed
-                delighted_b64 = shadowed
-                _keep_shadows_in_prompt(compiled)
+        shadow_base = request.shadow_base_b64 or (None if replay else request.screenshot_b64)
+        if request.shadow_pass_b64 and shadow_base and delighted_b64 and (not replay or print_like):
+            if not _direct_sun(lighting_state):
+                sun_shadows_info = {"applied": False, "reason": f"no direct sun in this frame ({lighting_state.weather_mode}), so no cast shadows"}
+            else:
+                shadowed, sun_shadows_info = _apply_sun_shadows(delighted_b64, shadow_base, request.shadow_pass_b64)
+                if shadowed and sun_shadows_info.get("applied"):
+                    seed_for_archive = delighted_b64      # replays at other times need the shadow-free seed
+                    delighted_b64 = shadowed
+                    if print_like:
+                        replay["delighted_b64"] = shadowed   # a canopy composite then pastes back the shadowed plate
+                    _keep_shadows_in_prompt(compiled)
             print(f"[SunShadows] {'applied' if sun_shadows_info.get('applied') else 'skipped'}: {sun_shadows_info.get('reason')}"
                   + (f" | {sun_shadows_info['coverage']:.1%} of the frame in shadow" if 'coverage' in sun_shadows_info else ""))
             yield stage.dispatching(f"Sun shadows {'laid onto the seed' if sun_shadows_info.get('applied') else 'skipped'}: {sun_shadows_info.get('reason')}")
@@ -691,7 +755,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         yield stage.dispatching(f"Twin artifact received (seed {run_seed})")
         # 6.5 Canopy composite (prints only): everything outside the changed canopy comes from the keystone,
         # so buildings and windows can't shimmy. Only when the print's light matches the keystone's.
-        if mode == "PRINT" and synthesis.image_b64:
+        if print_like and synthesis.image_b64:
             ks_rec = next((k for k in _load_keystones().values() if k.get("run_id") == keystone_run_id), {}) or {}
             ks_weather = ((ks_rec.get("conditions") or {}).get("weather")
                           or ((replay["meta"].get("lighting_resolved") or {}).get("weather"))
@@ -728,7 +792,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 conditioning=compiled,
                 synthesis_result=synthesis,
                 screenshot_b64=request.screenshot_b64,
-                delighted_b64=None if mode == "PRINT" else (seed_for_archive or delighted_b64),  # a print's seed is the keystone plate, recorded by id; sun-shadowed seeds archive shadow-free
+                delighted_b64=None if print_like else (seed_for_archive or delighted_b64),  # a print's seed is the keystone plate, recorded by id; sun-shadowed seeds archive shadow-free
                 pano_b64=request.pano_b64,
                 lighting_state=lighting_state,
                 request_settings={
@@ -753,6 +817,9 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
                     "keystone_print_of": request.print_view_id if mode == "PRINT" else None,
+                    "date_plate_of": request.print_view_id if mode == "DATE_PLATE" else None,
+                    "date_plate_run": date_plate_run_id,
+                    "print_variant": print_variant if print_like else None,
                     "keystone_run": keystone_run_id,
                     "series_id": request.series_id,
                     "series_frame": request.series_frame,
@@ -777,6 +844,11 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                             (Path(run_folder_path) / fname).write_bytes(base64.b64decode(data.split(",", 1)[1]))
                         except Exception as e:
                             print(f"[Composite] could not write {fname}: {e}")
+            if mode == "DATE_PLATE" and synthesis.image_b64:
+                try:
+                    _register_date_plate(request.print_view_id, keystone_run_id, telemetry.date, Path(run_folder_path).name)
+                except Exception as e:
+                    print(f"[DatePlate] could not register: {e}")
             run_record = {
                 "status": "persisted",
                 "path": run_folder_path,
@@ -966,6 +1038,9 @@ def _run_summary(d: Path) -> dict:
         "scene_text_edited": settings.get("scene_text_edited"),
         "keystone_candidate": bool(settings.get("keystone_candidate")) or settings.get("mode") == "KEYSTONE",
         "keystone_print_of": settings.get("keystone_print_of"),
+        "mode": settings.get("mode"),
+        "date_plate_of": settings.get("date_plate_of"),
+        "date_plate_run": settings.get("date_plate_run"),
         "series_id": settings.get("series_id"),
         "series_frame": settings.get("series_frame"),
         "seed": settings.get("seed"),
@@ -996,6 +1071,14 @@ async def list_runs(view_id: Optional[str] = None, limit: int = 300):
         runs = [r for r in runs if r["saved_view_id"] == view_id]
     runs.sort(key=lambda r: (r["created"], r["id"]), reverse=True)   # newest first, by when each run was made
     return {"runs": runs[:limit]}
+
+
+@app.get("/api/date_plate")
+async def get_date_plate(view_id: str, date: str):
+    """The date plate for a view's current keystone on a date, if one has been made."""
+    ks = _load_keystones().get(view_id) or {}
+    run_id = _date_plate_for(view_id, ks.get("run_id"), date)
+    return {"view_id": view_id, "date": date[:10], "keystone_run": ks.get("run_id"), "run_id": run_id}
 
 
 @app.get("/api/keystones")
@@ -1183,8 +1266,40 @@ def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+async def _consume_pipeline(req) -> tuple:
+    """Run one pipeline request to the end; returns (run folder path or None, error or None)."""
+    run_path, error = None, None
+    async for chunk in execute_pipeline_stream(req):
+        try:
+            msg = json.loads(chunk)
+        except Exception:
+            continue
+        if msg.get("type") == "RESULT":
+            rec = (msg.get("data") or {}).get("run_record") or {}
+            if rec.get("path"):
+                run_path = rec["path"]
+            else:
+                error = f"rendered but not archived: {rec.get('error', 'unknown')}"
+        elif msg.get("type") == "ERROR":
+            error = msg.get("message") or "pipeline error"
+    return run_path, error
+
+
 async def _run_print_frame(m: dict, fr: dict) -> tuple:
     spec = m["spec"]
+    # Layer 2 first: if this frame's date has no plate for the current keystone, make it (once per date).
+    ks = _load_keystones().get(m["view_id"]) or {}
+    if fr.get("date") and ks.get("run_id") and not _date_plate_for(m["view_id"], ks["run_id"], fr["date"]):
+        plate_req = ProcessViewRequest(
+            telemetry=TelemetryPayload(latitude=0.0, longitude=0.0, date=fr["date"], time_of_day=12.0, timestamp_utc=None,
+                                       lighting_mode="SOLAR", weather_mode="OVERCAST"),
+            provider="GEMINI", target_model=spec.get("target_model"), gemini_budget=spec.get("gemini_budget", 4400),
+            disable_recaption=spec.get("disable_recaption", True), mode="DATE_PLATE", print_view_id=m["view_id"],
+            seed=m.get("seed"), composite=spec.get("composite", True),
+        )
+        _, plate_err = await _consume_pipeline(plate_req)
+        if plate_err:
+            print(f"[Series] date plate for {fr['date']} failed ({plate_err}); printing canopy and light together")
     req = ProcessViewRequest(
         telemetry=TelemetryPayload(
             latitude=0.0, longitude=0.0,               # replaced by the keystone run's pose
@@ -1202,21 +1317,7 @@ async def _run_print_frame(m: dict, fr: dict) -> tuple:
         seed=m.get("seed"),
         composite=spec.get("composite", True),
     )
-    run_path, error = None, None
-    async for chunk in execute_pipeline_stream(req):
-        try:
-            msg = json.loads(chunk)
-        except Exception:
-            continue
-        if msg.get("type") == "RESULT":
-            rec = (msg.get("data") or {}).get("run_record") or {}
-            if rec.get("path"):
-                run_path = rec["path"]
-            else:
-                error = f"rendered but not archived: {rec.get('error', 'unknown')}"
-        elif msg.get("type") == "ERROR":
-            error = msg.get("message") or "pipeline error"
-    return run_path, error
+    return await _consume_pipeline(req)
 
 
 def _series_worker(series_id: str, frame_numbers: List[int]) -> None:
@@ -1466,12 +1567,25 @@ def _apply_sun_shadows(seed_b64: str, off_b64: str, on_b64: str):
 
 def _keep_shadows_in_prompt(compiled) -> None:
     """The lighting directive tells the model to erase every shadow in the plate (written for the tiles' baked-in,
-    wrong shadows). With Cesium's correct shadows laid in, that line must say the opposite."""
+    wrong shadows). With Cesium's correct shadows laid in, that line must say the opposite. Print prompts drop
+    the erase line altogether, so there the keep rule is added at the end of the light block."""
     pat = re.compile(r"^- SHADOW OVERWRITE RULE:.*$", re.M)
     for attr in ("prompt", "user_prompt"):
         text = getattr(compiled, attr, None)
-        if text and pat.search(text):
-            setattr(compiled, attr, pat.sub(SUN_SHADOW_KEEP_RULE, text))
+        if not text:
+            continue
+        if pat.search(text):
+            text = pat.sub(SUN_SHADOW_KEEP_RULE, text)
+        elif SUN_SHADOW_KEEP_RULE not in text:
+            tail = "\n\nSharp focus near to far."
+            text = text.replace(tail, "\n" + SUN_SHADOW_KEEP_RULE + tail, 1) if tail in text else text + "\n" + SUN_SHADOW_KEEP_RULE
+        setattr(compiled, attr, text)
+
+
+def _direct_sun(lighting_state) -> bool:
+    """True only when the frame is lit by direct sun (not overcast, fog, rain, snow, twilight or night):
+    the only case where cast shadows belong in the seed."""
+    return "SOLAR RELIGHTING DIRECTIVE" in (getattr(lighting_state, "prompt_directive", "") or "")
 
 
 def _maps_key() -> str:
