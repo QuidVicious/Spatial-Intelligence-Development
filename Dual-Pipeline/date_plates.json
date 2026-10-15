@@ -3,7 +3,13 @@
   "plates": {
     "4-st-andrews-solar-test": {
       "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261014_160620": {
-        "2026-10-15": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261015_094942"
+        "2026-10-15": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261015_094942",
+        "2026-06-15": "43_St_Andrew_Sq_Edinburgh_EH2_2AD_U_20261015_103129"
+      }
+    },
+    "wash-mon-2": {
+      "1601_Independence_Ave_SW_Washington_20261015_113957": {
+        "2026-06-15": "1601_Independence_Ave_SW_Washington_20261015_114101"
       }
     }
   }

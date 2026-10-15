@@ -205,6 +205,26 @@
       "warnings_acknowledged": [],
       "approved_utc": "2026-10-14T23:10:51+00:00",
       "history": []
+    },
+    "wash-mon-2": {
+      "run_id": "1601_Independence_Ave_SW_Washington_20261015_113957",
+      "view_name": "Wash Mon 2",
+      "source_run": "1601_Independence_Ave_SW_Washington_20261015_113825",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "approved_utc": "2026-10-15T18:40:21+00:00",
+      "history": [
+        {
+          "run_id": "1601_Independence_Ave_SW_Washington_20261015_113825",
+          "approved_utc": "2026-10-15T18:38:41+00:00",
+          "replaced_utc": "2026-10-15T18:40:21+00:00"
+        }
+      ]
     }
   }
 }

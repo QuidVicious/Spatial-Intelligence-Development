@@ -7680,5 +7680,198 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:34ceee00f70d45331c8f1b83f077c9adbf81a411": {
+    "address": "1601 Independence Ave SW, Washington, DC 20004, USA",
+    "calendar": {
+      "climate_note": "Washington DC's humid subtropical climate brings warm, early springs and prolonged autumns that extend the foliage season.",
+      "species": [
+        {
+          "name": "Quercus palustris",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-12",
+            "full_leaf": "05-10",
+            "colour_onset": "10-22",
+            "peak_colour": "11-08",
+            "half_fall": "11-24",
+            "bare": "12-18"
+          },
+          "stages": {
+            "budburst": "Tiny yellowish-pink unfolding leaves with hanging yellowish-green male catkins.",
+            "full_leaf": "Glossy deep green deeply-lobed leaves; dark grey fissured bark and small green acorns.",
+            "colouring": "Glossy leaves turning dull green to russet-bronze and muted brownish-red.",
+            "peak": "Deep bronze, russet-red, and scarlet-brown lobed leaves across spreading branches.",
+            "falling": "Dull copper and brown dry leaves shedding; lower canopy retains persistent brown foliage.",
+            "dormant": "Stout spreading branches with lower descending limbs; clustered small brown terminal buds."
+          }
+        },
+        {
+          "name": "Ulmus americana",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "03-28",
+            "full_leaf": "05-02",
+            "colour_onset": "09-28",
+            "peak_colour": "10-20",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Clusters of small brownish-green flowers followed by emergent light green ovate leaves.",
+            "full_leaf": "Dark green, rough-textured serrated leaves with unequal bases; dark furrowed bark.",
+            "colouring": "Foliage transitioning from dark summer green to pale greenish-yellow and chartreuse.",
+            "peak": "Warm bright yellow and golden-amber leaves throughout broad spreading crowns.",
+            "falling": "Pale yellow and brown leaves falling rapidly, exposing stout arching framework.",
+            "dormant": "Vase-like spreading branch structure with deeply fissured dark grey bark and bare twigs."
+          }
+        },
+        {
+          "name": "Poa pratensis",
+          "habit": "evergreen",
+          "evergreen_look": "Fine-textured, rich emerald to dark blue-green sod with upright blunt-tipped blades."
+        },
+        {
+          "name": "Festuca arundinacea",
+          "habit": "evergreen",
+          "evergreen_look": "Dense, coarse-textured deep green turf with broad, distinctly ridged upright blades."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:bcf6ba580e38d959332f5cf454a889f6014da46b": {
+    "address": "8 St Andrew Sq, Edinburgh EH2 2BD, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumn leaf drop.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-05",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Bright green unfolding five-lobed leaves; yellowish emerging flower racemes.",
+            "full_leaf": "Dark green palmate leaves with pale undersides; winged samaras hanging in pairs.",
+            "colouring": "Leaves turning dull yellow and muted brown; papery samaras browning.",
+            "peak": "Tarnished amber to rich ochre-yellow leaves; brittle brown samaras.",
+            "falling": "Scattered yellow leaves; exposed grey bark plates and bare twigs.",
+            "dormant": "Bare grey branches; smooth to flaking scaly bark; prominent green-brown buds."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-12",
+            "full_leaf": "05-20",
+            "colour_onset": "09-25",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-15"
+          },
+          "stages": {
+            "budburst": "Clusters of reddish-purple flowers fading to pale round papery samaras as leaves open.",
+            "full_leaf": "Broad, rough, dark green obovate leaves with distinctly asymmetrical bases.",
+            "colouring": "Rough foliage turning pale greenish-yellow to dull ochre.",
+            "peak": "Warm, luminous golden-yellow to russet leaves with rough texture.",
+            "falling": "Thinning golden foliage revealing dark, deeply fissured branch network.",
+            "dormant": "Stout, dark grey fissured twigs; zig-zag branch patterns with purplish buds."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Fraxinus excelsior",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-08",
+            "full_leaf": "06-08",
+            "colour_onset": "10-02",
+            "peak_colour": "10-24",
+            "half_fall": "11-04",
+            "bare": "11-14"
+          },
+          "stages": {
+            "budburst": "Jet-black sooty buds opening into pale green pinnate shoots and purple-green blooms.",
+            "full_leaf": "Pinnate mid-green leaves with lanceolate leaflets; pendulous bunches of green keys.",
+            "colouring": "Foliage shifting to pale yellow-green; keys maturing to pale brown.",
+            "peak": "Soft chartreuse to pale buttery-yellow foliage; dry brown keys persisting.",
+            "falling": "Rapidly dropping yellow-green leaflets; prominent hanging clusters of dry keys.",
+            "dormant": "Smooth pale grey branches tipped with jet-black velvety buds and persistent keys."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:4c4f5ec23d7e88dd6a58679b66ccbf713d64cb90": {
+    "address": "1601 Independence Ave SW, Washington, DC 20004, USA",
+    "calendar": {
+      "climate_note": "Humid subtropical conditions along the Tidal Basin prompt early spring flowering and budburst followed by prolonged, warm autumns.",
+      "species": [
+        {
+          "name": "Prunus serrulata",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "03-24",
+            "full_leaf": "04-22",
+            "colour_onset": "09-28",
+            "peak_colour": "10-24",
+            "half_fall": "11-08",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Pale pink to white blossom clusters opening on dark twigs ahead of bronze unfolding leaves.",
+            "full_leaf": "Deep green ovate serrated leaves on spreading branches with dark, lenticelled bark.",
+            "colouring": "Dark green leaves gradually turning mottled orange, yellow, and bronze across the crown.",
+            "peak": "Bright bronze-orange and yellow leaves held across broad, arching branches.",
+            "falling": "Scattered yellow-bronze leaves remaining on twigs over exposed dark, furrowed bark.",
+            "dormant": "Bare dark grey-brown branches with prominent horizontal lenticels and stout dormant buds."
+          }
+        },
+        {
+          "name": "Ulmus americana",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-06",
+            "full_leaf": "05-08",
+            "colour_onset": "10-06",
+            "peak_colour": "10-28",
+            "half_fall": "11-12",
+            "bare": "11-25"
+          },
+          "stages": {
+            "budburst": "Inconspicuous green flowers fading to light green papery samaras alongside tender leaves.",
+            "full_leaf": "Dark green, rough-textured asymmetrical leaves on vase-shaped branching crowns.",
+            "colouring": "Canopy foliage shifting from dark matte green to dull greenish-yellow.",
+            "peak": "Warm golden-yellow leaves across high arching boughs and deeply furrowed trunks.",
+            "falling": "Thinning yellow and brown leaves on high spreading branches exposing grey-brown bark.",
+            "dormant": "Naked vase-shaped framework of dark, ridged limbs against the open canopy space."
+          }
+        },
+        {
+          "name": "Poa pratensis",
+          "habit": "evergreen",
+          "evergreen_look": "Fine-textured, rich emerald-green turf with narrow boat-shaped leaf tips."
+        },
+        {
+          "name": "Festuca arundinacea",
+          "habit": "evergreen",
+          "evergreen_look": "Coarse, deep green upright blades forming a dense, durable ground sward."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }
