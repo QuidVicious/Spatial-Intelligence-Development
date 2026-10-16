@@ -129,6 +129,10 @@ class RunRequest(BaseModel):
     aspect_ratio: str = "16:9"
     image_size: str = "2K"
     label: Optional[str] = None
+    # Stamped by the page when the run is made with the Cesium camera linked at a saved view (2026-10-15),
+    # so the pipeline's LSA pass can pick the newest LSA run for that view.
+    saved_view_id: Optional[str] = None
+    saved_view_name: Optional[str] = None
 
 
 def build_prompt(s: Shot) -> str:
@@ -359,6 +363,7 @@ def run(req: RunRequest):
         "image_model_label": img_model.get("label", req.image_model),
         "instruction": req.instruction, "addendum": img_model.get("addendum") if req.use_addendum else None,
         "aspect_ratio": req.aspect_ratio, "image_size": req.image_size, "label": req.label,
+        "saved_view_id": req.saved_view_id, "saved_view_name": req.saved_view_name,
     }
     (d / "shot.json").write_text(req.shot.model_dump_json(indent=2), encoding="utf-8")
     (d / "user_prompt.txt").write_text(user_prompt, encoding="utf-8")
@@ -437,7 +442,8 @@ def runs():
             out.append({"run_id": d.name, "created": s.get("created"), "place": shot.get("place"),
                         "subject": shot.get("subject"), "label": s.get("label"),
                         "has_image": bool(s.get("image_file")), "error": s.get("error"),
-                        "addendum": s.get("addendum")})
+                        "addendum": s.get("addendum"), "instruction": s.get("instruction"),
+                        "saved_view_id": s.get("saved_view_id"), "saved_view_name": s.get("saved_view_name")})
     return out
 
 

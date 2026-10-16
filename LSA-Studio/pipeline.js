@@ -1174,6 +1174,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
         if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); return; }
         svPreRewriteText = before;
+        if (lsaJoin) lsaJoin.finishing_after = true;   // A/B: only the B text has had the finishing pass
         box.value = d.scene_text; if (typeof updateSceneState === 'function') updateSceneState();
         box.scrollTop = 0;
         document.getElementById('btn-sv-undo').style.display = '';
@@ -1200,6 +1201,159 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       svFillInputs(); svShowPreview();
       setSvStatus(old ? 'These angles are now the view\'s current pano. They were a square crop: same width, but the 16:9 frame shows less at the top and bottom. Check it before the next keystone.'
                       : 'These pano settings are now the view\'s current pano and will be used by the next keystone.', old ? '#ffb74d' : 'var(--accent-cyan)');
+    }
+
+    // ---------------- LSA pass (2026-10-15) ----------------
+    // Weaves an LSA Studio run's analysis into the selected pipeline run's scene text: materials, condition and
+    // biology go in; structure stays the scene text's; light, season and compass words stay out (and are listed).
+    // LSA runs live on this page's own server (8001); the weave runs on the pipeline server (8000).
+    let lsaRuns = [];
+    let lsaJoin = null;   // { run_id, label, instruction, text_before, text_after, ecology, species_to_verify, set_aside, not_added, finishing_after }
+
+    function setLsaStatus(msg, color) {
+      const el = document.getElementById('lsa-join-status');
+      if (!el) return;
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg;
+    }
+
+    function lsaReset() {
+      lsaJoin = null;
+      const undo = document.getElementById('btn-lsa-undo');
+      if (undo) undo.style.display = 'none';
+      const notes = document.getElementById('lsa-join-notes');
+      if (notes) notes.hidden = true;
+      setLsaStatus('');
+    }
+
+    function fmtLsaRun(r) {
+      const when = r.created ? String(r.created).slice(0, 16).replace('T', ' ') : r.run_id;
+      return `${when} · ${r.label || r.place || r.run_id}${r.instruction ? ' (' + String(r.instruction).replace(/\.md$/, '') + ')' : ''}`;
+    }
+
+    // The newest LSA run stamped with the selected run's view is chosen by default; any other can be picked by hand.
+    async function loadLsaRuns() {
+      const sel = document.getElementById('lsa-join-run');
+      if (!sel) return;
+      try { const r = await fetch('/api/runs'); lsaRuns = r.ok ? await r.json() : []; } catch (e) { lsaRuns = []; }
+      lsaRuns = (Array.isArray(lsaRuns) ? lsaRuns : []).filter(r => !r.error);
+      const run = selectedReplayRun();
+      const viewId = run ? run.saved_view_id : null;
+      const mine = lsaRuns.filter(r => viewId && r.saved_view_id === viewId);
+      const rest = lsaRuns.filter(r => !mine.includes(r));
+      const opt = r => `<option value="${escHtml(r.run_id)}" title="${escHtml(r.subject || '')}">${escHtml(fmtLsaRun(r))}</option>`;
+      if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA runs yet</option>'; return; }
+      sel.innerHTML = '<option value="">Choose an LSA run</option>' +
+        (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>` : '') +
+        `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
+      sel.value = mine.length ? mine[0].run_id : '';
+      if (run && !lsaJoin) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected.'
+        : 'No LSA run is stamped with this view yet: pick one by hand.');
+    }
+
+    async function lsaWeave() {
+      const run = selectedReplayRun();
+      const id = document.getElementById('lsa-join-run').value;
+      if (!run) { setLsaStatus('Select a pipeline run first.', '#ff5252'); return; }
+      if (!id) { setLsaStatus('Choose an LSA run.', '#ff5252'); return; }
+      if (lsaJoin && !confirm('The scene text already has an LSA pass. Weave again on top of it?\n\n(UNDO first to start from the text before the pass.)')) return;
+      const box = document.getElementById('replay-scene-text');
+      const before = box.value;
+      setLsaStatus('Reading the LSA analysis...');
+      let lsa;
+      try {
+        const r = await fetch('/api/runs/' + encodeURIComponent(id));
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        lsa = await r.json();
+      } catch (e) { setLsaStatus('Could not read that LSA run: ' + e.message, '#ff5252'); return; }
+      if (!(lsa.analysis || '').trim()) { setLsaStatus('That LSA run has no analysis.', '#ff5252'); return; }
+      setLsaStatus('Weaving the analysis into the scene text (about a minute)...', 'var(--accent-cyan)');
+      try {
+        const resp = await fetch(PIPE + '/api/lsa/weave', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ run_id: run.id, scene_text: before, analysis: lsa.analysis, lsa_run_id: id })
+        });
+        const d = await resp.json();
+        if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+        if ((selectedReplayRun() || {}).id !== run.id) { setLsaStatus('The selected run changed while the pass ran; nothing was changed.', '#ffb74d'); return; }
+        const s = lsa.settings || {};
+        lsaJoin = { run_id: id, label: s.label || id, instruction: s.instruction || null,
+                    text_before: (lsaJoin ? lsaJoin.text_before : before), text_after: d.scene_text,
+                    ecology: d.ecology || '', species_to_verify: d.species_to_verify || [],
+                    set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false };
+        box.value = d.scene_text;
+        if (typeof updateSceneState === 'function') updateSceneState();
+        document.getElementById('btn-lsa-undo').style.display = '';
+        const notes = [];
+        if (lsaJoin.species_to_verify.length) notes.push('Species to verify: ' + lsaJoin.species_to_verify.join(', '));
+        if (lsaJoin.not_added) notes.push('Structure not added: ' + lsaJoin.not_added);
+        if (lsaJoin.set_aside) notes.push('Light, weather and season set aside (kept with the run): ' + lsaJoin.set_aside);
+        document.getElementById('lsa-join-notes-text').textContent = notes.join('\n\n');
+        document.getElementById('lsa-join-notes').hidden = !notes.length;
+        setLsaStatus(`LSA pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
+          (d.warnings && d.warnings.length ? ` Check these words in the text: ${d.warnings.join(', ')}.` : '') +
+          ' Review it in the editor before making a keystone; UNDO restores the previous text.',
+          d.warnings && d.warnings.length ? '#ffb74d' : 'var(--accent-cyan)');
+      } catch (e) { setLsaStatus(e.message, '#ff5252'); }
+    }
+
+    function lsaUndo() {
+      if (!lsaJoin) return;
+      document.getElementById('replay-scene-text').value = lsaJoin.text_before;
+      if (typeof updateSceneState === 'function') updateSceneState();
+      lsaReset();
+      setLsaStatus('Scene text restored to before the LSA pass.');
+    }
+
+    // What the server records with a run made from the woven text. Null when there is no pass, or it was undone.
+    function lsaJoinPayload() {
+      if (!lsaJoin) return null;
+      const text = document.getElementById('replay-scene-text').value.trim();
+      if (text === lsaJoin.text_before.trim()) return null;
+      return { run_id: lsaJoin.run_id, label: lsaJoin.label, instruction: lsaJoin.instruction, ecology: lsaJoin.ecology,
+               species_to_verify: lsaJoin.species_to_verify, set_aside: lsaJoin.set_aside, not_added: lsaJoin.not_added,
+               hand_edited_after: text !== lsaJoin.text_after.trim(), finishing_after: !!lsaJoin.finishing_after };
+    }
+
+    // A/B: two keystone candidates from the same run, same seed, same pano. A = the text before the LSA pass,
+    // B = the text now (after it). Labelled as a pair, so the comparison can't be crossed.
+    async function makeKeystoneAB() {
+      const run = selectedReplayRun();
+      if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
+      if (!run.saved_view_id) { setReplayStatus('Keystones need a run tagged with a saved view.', '#ff5252'); return; }
+      if (!lsaJoin) { setReplayStatus('Run the LSA pass first: A is the scene text before it, B the text after it.', '#ff5252'); return; }
+      const textA = lsaJoin.text_before.trim();
+      const textB = document.getElementById('replay-scene-text').value.trim();
+      if (!textB || textA === textB) { setReplayStatus('The two texts are the same: nothing to compare.', '#ff5252'); return; }
+      let seed = readSeed('replay-seed');
+      if (seed === null) seed = Math.floor(Math.random() * 2147483646);
+      const useSv = !!(svState && document.getElementById('chk-sv-keystone').checked);
+      const join = lsaJoinPayload();
+      const warn = [];
+      if (lsaJoin.finishing_after) warn.push('The finishing pass ran after the LSA pass, so only B has had it. For a fair test, UNDO, run the finishing pass first, then the LSA pass.');
+      if (join && join.hand_edited_after) warn.push('B has hand edits made after the LSA pass.');
+      if (!confirm(`Make two keystone candidates from this run, both with seed ${seed} and ${useSv ? 'the same Street View pano' : 'no Street View reference'}:\n\n` +
+        `A: the scene text before the LSA pass (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
+        (warn.length ? 'NOTE: ' + warn.join(' ') + '\n\n' : '') + 'That is two renders. Continue?')) return;
+      const pair = 'ab_' + Date.now().toString(36);
+      const build = (text, arm) => {
+        const p = buildReplayPayload(run, text === replayOriginalText.trim() ? null : text);
+        p.mode = 'KEYSTONE';
+        p.seed = seed;
+        if (useSv) p.streetview = { ...svState };
+        p.ab = { pair_id: pair, arm, seed, lsa_run_id: lsaJoin.run_id };
+        return p;
+      };
+      const pA = build(textA, 'A');
+      const pB = build(textB, 'B');
+      pB.lsa_join = join;
+      console.log(`[A/B] ${pair} from ${run.id}, seed ${seed}`);
+      for (const p of [pA, pB]) {
+        resetStepperHUD();
+        document.getElementById('loadingOverlay').classList.remove('hidden');
+        await streamPipeline(p);   // each finished arm is selected as it lands; B is selected at the end
+      }
+      setReplayStatus(`A/B pair finished (seed ${seed}). The last arm made is selected; the other arm is linked below the run list.`, 'var(--accent-cyan)');
     }
 
     // ---------------- Series ----------------
@@ -1584,6 +1738,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           parts.push(`<div>Street View: <span class="family-note">no reference recorded for this keystone</span></div>`);
         }
       }
+      if (run.lsa_run) parts.push(`<div>LSA pass from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
+      if (run.ab && run.ab.pair_id) {
+        const other = replayRuns.find(r => r.id !== run.id && r.ab && r.ab.pair_id === run.ab.pair_id);
+        parts.push(`<div>A/B ${escHtml(run.ab.arm)}, seed ${escHtml(run.ab.seed)}: ${other
+          ? `<button class="family-link" data-run="${escHtml(other.id)}">the ${escHtml(other.ab.arm)} arm</button>`
+          : '<span class="family-note">the other arm is not in this list</span>'}</div>`);
+      }
       const kids = keystonesMadeFrom(run.id);
       if (kids.length) {
         const mark = { approved: '★ approved', superseded: 'superseded', candidate: 'candidate' };
@@ -1638,6 +1799,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const when = r.date ? `${r.date} ${fmtClock(r.time_of_day)}` : 'live clock';
         label += ` (scene ${when}${w ? ', ' + w : ''})`;
       }
+      if (r.ab && r.ab.arm) label += ` · A/B ${r.ab.arm}${r.ab.arm === 'B' ? ' (LSA)' : ''}`;
+      else if (r.lsa_run) label += ' · LSA pass';
       if (!document.getElementById('select-replay-view').value) label += ` · ${r.saved_view_name || 'no view'}`;
       const kids = keystonesMadeFrom(r.id);
       if (kids.length) {
@@ -1758,6 +1921,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const text = document.getElementById('replay-scene-text');
       updateKeystoneUI();
       svReset();
+      lsaReset();
+      loadLsaRuns();
       if (!id) { thumb.style.display = 'none'; text.value = ''; replayOriginalText = ''; return; }
       const run = replayRuns.find(r => r.id === id);
       thumbShowsRender = !!(run && run.has_twin);
@@ -1834,6 +1999,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           !confirm('The Street View card shows a square crop from before the 16:9 switch. The keystone will fetch this pano at 16:9 with the same angles, so the reference will show less at the top and bottom than the preview.\n\nContinue?')) return;
       const payload = buildReplayPayload(run, editedSceneText());
       payload.mode = 'KEYSTONE';
+      payload.lsa_join = lsaJoinPayload();
       if (svState && document.getElementById('chk-sv-keystone').checked) {
         payload.streetview = { ...svState };
         console.log(`[Keystone] with Street View reference ${svState.pano_id} (${svState.date})`);
@@ -1978,7 +2144,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
       const edited = editedSceneText();
       const payload = buildReplayPayload(run, edited);
-      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}`);
+      payload.lsa_join = lsaJoinPayload();
+      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}${payload.lsa_join ? ' (LSA pass)' : ''}`);
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       await streamPipeline(payload);

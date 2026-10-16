@@ -42,7 +42,7 @@ from pipeline_bus import (
 )
 
 # Pipeline Modules
-from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar, read_streetview, rewrite_condition_from_streetview
+from domain_engine import analyze_spatial_domain, reverse_geocode, ViewScope, DomainAnalysisResult, generate_phenology, get_phenology_calendar, read_streetview, rewrite_condition_from_streetview, weave_lsa_into_scene
 from lighting_engine import resolve_lighting_state, get_live_weather
 from spatial_scaffold_engine import build_spatial_scaffold
 from prompt_engine import compile_conditioning
@@ -202,6 +202,10 @@ class ProcessViewRequest(BaseModel):
     seed: Optional[int] = Field(None, description="Render seed; blank picks a random one. Always recorded, so any run can be reproduced")
     composite: bool = Field(True, description="PRINT only: keep the keystone's pixels outside the changed canopy, when the print's weather matches the keystone's")
     streetview: Optional[dict] = Field(None, description="KEYSTONE only: {pano_id, heading, pitch, fov, date, distance_m, copyright}; the pano is fetched, used, and never stored")
+    lsa_join: Optional[dict] = Field(None, description="Replay and KEYSTONE only: the LSA pass behind the edited scene text "
+                                     "{run_id, label, instruction, ecology, species_to_verify, set_aside, not_added, hand_edited_after}. "
+                                     "Its ecology replaces the run's ecology record, so seasonal prints age the same trees the text names.")
+    ab: Optional[dict] = Field(None, description="Set by Make keystone A/B: {pair_id, arm, seed, lsa_run_id}")
 
 
 # -------------------------------------------------------------------------
@@ -398,6 +402,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
     canopy_mask_b64 = None
     phenology_date = None
     phenology_source = None
+    lsa_join_record = None
 
     mode = (request.mode or "").strip().upper() or None
     if mode not in (None, "KEYSTONE", "PRINT", "DATE_PLATE"):
@@ -559,6 +564,19 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             if override and override != domain_result.documentary_prompt.strip():
                 domain_result.documentary_prompt = override
                 scene_edited = True
+            # The LSA pass (2026-10-15): its species go into the ecology record too, so a series ages the trees the text names.
+            if request.lsa_join and scene_edited and not print_like:
+                lj = request.lsa_join
+                eco = str(lj.get("ecology") or "").strip()
+                if eco:
+                    domain_result.botanical_ecology = eco
+                lsa_join_record = {k: lj.get(k) for k in ("run_id", "label", "instruction", "species_to_verify",
+                                                          "set_aside", "not_added", "hand_edited_after")}
+                lsa_join_record["ecology_replaced"] = bool(eco)
+                print(f"[LSA] scene text from the LSA pass of {lj.get('run_id')}"
+                      f"{' (hand-edited after)' if lj.get('hand_edited_after') else ''}"
+                      f"{'; ecology record replaced' if eco else ''}; species to verify: {lj.get('species_to_verify') or 'none'}")
+                yield stage.dispatching(f"LSA pass from {lj.get('label') or lj.get('run_id')}")
             src_date = replay.get("source_date")
             pheno_note = ""
             is_split = bool((domain_result.metadata or {}).get("invariant_split"))
@@ -813,6 +831,8 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "composite": composite_info,
                     "sun_shadows": {k: v for k, v in (sun_shadows_info or {}).items() if k != "mask_png_b64"} or None,
                     "streetview": streetview_record,
+                    "lsa_join": lsa_join_record,
+                    "ab": request.ab,
                     "delight": delight_setting,
                     "mode": mode,
                     "keystone_candidate": mode == "KEYSTONE",
@@ -1046,6 +1066,9 @@ def _run_summary(d: Path) -> dict:
         "seed": settings.get("seed"),
         "composite_applied": bool((settings.get("composite") or {}).get("applied")),
         "streetview": settings.get("streetview"),   # keystones: the pano reference used (ID and angles only)
+        "lsa_run": (settings.get("lsa_join") or {}).get("run_id"),
+        "lsa_label": (settings.get("lsa_join") or {}).get("label"),
+        "ab": settings.get("ab"),
         "has_raw": (d / "spatial_twin_raw.png").exists(),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
@@ -1718,6 +1741,31 @@ def streetview_rewrite(req: StreetViewReadRequest):
     print(f"[StreetView] rewrote condition from pano {req.pano_id} for {req.run_id}: {len(scene)} -> {len(revised)} chars")
     return {"scene_text": revised, "original": scene, "pano_id": req.pano_id, "date": req.date,
             "changed": revised.strip() != scene.strip()}
+
+
+class LsaWeaveRequest(BaseModel):
+    run_id: str
+    analysis: str
+    scene_text: Optional[str] = None
+    lsa_run_id: Optional[str] = None
+
+
+@app.post("/api/lsa/weave")
+def lsa_weave(req: LsaWeaveRequest):
+    """The LSA pass: the scene text back with an LSA Studio analysis's materials, condition and biology woven in.
+    Nothing is saved here; the page puts the text in the editor and sends it with Replay or Make keystone."""
+    d = _run_dir(req.run_id)
+    capture = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
+    if not capture:
+        raise HTTPException(status_code=422, detail="This run has no capture to weave against.")
+    if not (req.analysis or "").strip():
+        raise HTTPException(status_code=422, detail="The LSA run has no analysis.")
+    domain, _ = load_domain_from_run(d)
+    scene = (req.scene_text or "").strip() or domain.documentary_prompt
+    out = weave_lsa_into_scene(capture, scene, domain.botanical_ecology, req.analysis, os.getenv("GEMINI_API_KEY"))
+    print(f"[LSA] pass from {req.lsa_run_id} on {req.run_id}: {len(scene)} -> {len(out['scene_text'])} chars"
+          f"{' | check: ' + ', '.join(out['warnings']) if out['warnings'] else ''}")
+    return {**out, "original": scene, "lsa_run_id": req.lsa_run_id}
 
 
 def _find_compiled_prompt(d: Path) -> tuple:

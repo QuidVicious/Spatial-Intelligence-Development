@@ -729,3 +729,123 @@ def rewrite_condition_from_streetview(
             f"The rewrite changed the length too much ({ratio:.0%} of the original); the scene text is unchanged."))
     return out
 
+
+
+# =========================================================================
+# LSA PASS (2026-10-15): weave an LSA Studio analysis (SI3.8/3.9) into the scene text.
+# "SI3.8 paints, the domain engine builds": the scene text keeps its structure; the analysis
+# supplies materials, condition and biology. Light, weather, season and recalled structure are
+# left out of the text, and what was left out is returned, so it can be used later.
+# =========================================================================
+
+LSA_WEAVE_INSTRUCTION = """You are an architectural conservator and urban ecologist merging two descriptions of one real place for an image model.
+You receive:
+IMAGE 1: a 3D capture of the view being rendered. It fixes what is in frame, where it is, and how far each element is from the camera. Its surface detail is unreliable.
+SCENE TEXT: the current scene description, written from the capture. It is the authority on structure.
+LSA ANALYSIS: a deep domain analysis of the same place by another model, written from recall. It is rich in materials, weathering, chemistry and biology, and unreliable on structure.
+ECOLOGY RECORD: the current time-invariant description of the trees and plants, used later to age them through the seasons.
+
+Return the scene text with the analysis's surface knowledge woven in.
+
+KEEP, because the scene text is the authority on structure:
+- Every structure and ground surface it names, with its massing, storey count, bays, windows, doors, roof forms and openings, as written wherever possible.
+- Its order: structures stay in the same sequence.
+- Its surface-first style: each structure opens with how its stone looks today, then the material beneath.
+
+ADD from the analysis, only for structures and surfaces visible in IMAGE 1:
+- stone type and quarry character, tooling and dressing, mortar
+- condition: soiling and crusts and where they concentrate, washed runoff channels, staining, efflorescence, spalling, repairs, ironwork corrosion and paint
+- biology on surfaces: lichen, moss and algae, by species where the analysis names them, and where moisture and shelter put them
+- ground materials: paving stone, setts, kerbs
+Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it): a railing, coping or fixture must stay next to what it stands on.
+
+DETAIL BY DISTANCE: judge each element's distance from IMAGE 1. Near elements get the full detail. Mid-distance elements get colour, staining and where soiling gathers. Far elements get overall tone in a few words. Spend no words on detail too small to be seen at its distance.
+
+NEVER ADD:
+- Structural features that neither the scene text nor IMAGE 1 shows, such as string courses, platts or bridges over basement areas, steps, finials of a stated type, dormers, mansards, pilasters, arches or blind windows. Recalled structure is unreliable.
+- Light, sun, shadows, sky, weather, wetness or time of day.
+- Season: leaf state or colour, fallen leaves, flowering, fruiting, fungal leaf spots.
+- Compass directions or compass aspects such as "north-facing" or "west-facing": turn them into exposure terms (sheltered, exposed, damp, shaded base, under projections, drip lines).
+- Street names, house numbers, place names, dates, numeric rendering parameters (roughness, albedo), or camera and lens language.
+
+SPECIES: trees keep the scene text's species, unless the analysis names a more specific or a different species for the same trees; then use the analysis's name in both the scene text and the ecology record, and list it in species_to_verify. Never add trees IMAGE 1 does not show. The ecology record must name exactly the species the scene text names, and stay time-invariant: form, height, trunk, bark and branch structure, never leaf state or season.
+
+STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.6 times the original length, and never over 2400 characters.
+
+Return JSON only, in exactly this shape:
+{"scene_text": "the revised scene text",
+ "ecology": "the revised ecology record",
+ "species_to_verify": ["Latin name", "..."],
+ "set_aside": "one short paragraph: the light, weather, season and time details in the analysis that were left out",
+ "not_added": "one short paragraph: the structural claims in the analysis that were not added because neither the scene text nor IMAGE 1 shows them"}"""
+
+# Words that should not survive the weave; their presence is reported, not fatal.
+_WEAVE_WARN_RE = re.compile(
+    r"\b(?:north|south|east|west)(?:ern|erly|-facing|\s+facing)?\b|\b(?:sun|sunlight|sunlit|shadows?|golden|"
+    r"autumn|autumnal|spring|summer|winter|october|november|yellowing|fallen leaves|wet|rain|sky|"
+    r"degrees?|mm lens|lens)\b", re.IGNORECASE)
+
+
+def weave_lsa_into_scene(
+    capture_b64: str,
+    scene_text: str,
+    ecology_text: str,
+    analysis: str,
+    gemini_api_key: Optional[str] = None,
+) -> Dict[str, Any]:
+    """The LSA pass. Returns scene_text, ecology, species_to_verify, set_aside, not_added and warnings.
+    Raises HTTPException(502) and changes nothing if the result is empty, unparseable or the wrong length."""
+    api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
+    raw = capture_b64.split(",", 1)[1] if capture_b64.startswith("data:") else capture_b64
+    mime = capture_b64.split(";")[0].replace("data:", "") if capture_b64.startswith("data:") else "image/jpeg"
+    contents = [
+        "IMAGE 1 (the composition being rendered):",
+        types.Part.from_bytes(data=base64.b64decode(raw), mime_type=mime),
+        f"SCENE TEXT:\n{scene_text}",
+        f"ECOLOGY RECORD:\n{ecology_text or '(none)'}",
+        f"LSA ANALYSIS:\n{analysis}",
+        "Return the JSON.",
+    ]
+    cfg = dict(
+        system_instruction=LSA_WEAVE_INSTRUCTION,
+        temperature=0.0,
+        response_mime_type="application/json",
+        thinking_config=types.ThinkingConfig(thinking_budget=4096),
+    )
+    if hasattr(types, "AutomaticFunctionCallingConfig"):
+        cfg["automatic_function_calling"] = types.AutomaticFunctionCallingConfig(disable=True)
+    client = genai.Client(api_key=api_key)
+    try:
+        response = client.models.generate_content(
+            model=DOMAIN_MODEL, contents=contents, config=types.GenerateContentConfig(**cfg),
+        )
+    except Exception as e:
+        traceback.print_exc()
+        raise HTTPException(status_code=502, detail=f"The LSA pass call failed: {e}")
+    text = re.sub(r"^```(?:json)?\s*|\s*```$", "", (response.text or "").strip())
+    try:
+        data = json.loads(text)
+    except Exception:
+        raise HTTPException(status_code=502, detail="The LSA pass did not return valid JSON; the scene text is unchanged.")
+    if not isinstance(data, dict):
+        raise HTTPException(status_code=502, detail="The LSA pass returned the wrong shape; the scene text is unchanged.")
+    out = str(data.get("scene_text") or "").strip()
+    if not out:
+        raise HTTPException(status_code=502, detail="The LSA pass came back empty; the scene text is unchanged.")
+    ratio = len(out) / max(len(scene_text), 1)
+    if not 0.8 <= ratio <= 2.0 or len(out) > 2800:
+        raise HTTPException(status_code=502, detail=(
+            f"The LSA pass changed the length too much ({len(scene_text)} to {len(out)} characters); the scene text is unchanged."))
+    species = data.get("species_to_verify") or []
+    species = [str(s).strip() for s in species if str(s).strip()] if isinstance(species, list) else []
+    warnings = sorted({m.group(0).lower() for m in _WEAVE_WARN_RE.finditer(out)})
+    return {
+        "scene_text": out,
+        "ecology": str(data.get("ecology") or "").strip(),
+        "species_to_verify": species,
+        "set_aside": str(data.get("set_aside") or "").strip(),
+        "not_added": str(data.get("not_added") or "").strip(),
+        "warnings": warnings,
+    }

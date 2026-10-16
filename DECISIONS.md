@@ -6,6 +6,49 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-15: The LSA join, stage 1: the LSA pass and A/B keystones
+
+**The LSA pass: an LSA Studio analysis woven into a pipeline run's scene text, as a step you run and review.** Built, to test.
+A button in the Runs and keystones card takes the scene text in the editor and an LSA run's whole analysis, and returns the scene text with the analysis's materials, condition and biology attached to the elements they describe. Structure stays the scene text's ("SI3.8 paints, the domain engine builds"). Detail is set by distance as judged from the capture image (an approximation: the plan's per-element depth is not built). Left out: light, weather, season, time, compass aspects (turned into exposure terms), street names, numbers and recalled structure. What was left out is returned and kept with the run ("set aside" and "not added"), so LSA's light knowledge is not discarded. UNDO restores the text. Words that should not have survived (sun, shadow, west-facing and so on) are flagged in the status line.
+Why a reviewable step: Don can read what LSA added before spending a render, as with the finishing pass. The whole analysis is passed because SI3.9 has no fixed sections after its JSON block.
+
+**Species from the pass go into the run's ecology record as well as its scene text, listed as "to verify".** Built.
+Why: date plates and series age the species in the ecology record (2026-10-09). A changed species list makes a new phenology calendar for that keystone.
+
+**LSA runs are stamped with the saved view when made with the Cesium camera linked and sitting on it.** Built.
+The pass picks the newest LSA run stamped with the selected run's view; any LSA run can be picked by hand. Runs made before today carry no stamp.
+
+**A/B keystones: one button makes two keystone candidates from the same run, same seed, same pano: A from the text before the LSA pass, B from the text after.** Built.
+Both are recorded as a pair (pair id, arm, seed, LSA run) and labelled "A/B A" and "A/B B (LSA)"; each links to the other. Warns if the finishing pass ran after the LSA pass (then only B has had it).
+
+**Finding to keep in mind when reading the A/B:** the pipeline's domain engine is already "lsa-merge-1" (five lenses, centroid, synergy). The test compares that compressed method with SI3.9's full excavation, not "no LSA" with "LSA".
+
+**Test protocol, first run.** Abercromby Place, the LSA run "Nelson at Abercromby" (2026-10-12). No finishing pass in either arm, because the finishing pass rewrites condition from the pano and would overwrite what the LSA pass adds. Same pano reference in both. Two seeds.
+
+**Brief corrections from reading that LSA run.** The saved layout says the garden railing is on the left; it is on the right (SI3.8 caught and resolved it in Stage 4). "Nelson St slopes at roughly 15 degrees" went in as fact and the model built structure on it (stepped string courses); Don confirms it is steep, but the number is unmeasured.
+
+**Later, Don's idea:** use the set-aside light knowledge when the render prompt is synthesized, with LSA writing for the same date, time and light control the pipeline side uses. Not now.
+
+## 2026-10-15: Date plate test, time of day, open light issues
+
+**Keystone > date plate > hour print: works.** Tested 15 June at St Andrew Square (looking north at the Melville column, as a sundial) and at the Washington Monument (1420 Independence Ave, Washington DC, mid June).
+St Andrew Square: light on the correct side at 8, 9, 10 and 11 am and 2, 3, 4:25 pm. Washington Monument: correct at [hours tested].
+Leaves across hours of one date: [same / changed].
+Finding: the shadow mask overcomes the tiles' baked south-east light when the mask is clean. The model still keeps the seed's light; the mask changes what that light is.
+
+**First test invalid: the strip's date was 15 October, not 15 June.** The page sets the date to today on load and when the Live clock is unticked, with nothing to show it. The 8:00 and 16:00 "June" prints and their date plate were October (16 degrees sun, yellowing leaves). Polish pass: make the date reset visible, or stop resetting it on load.
+
+**Open: light on the wrong side around 16:00 at St Andrew Square.** Prompt and Cesium shadows both correct (sun behind the camera, to the left); the image is usually lit from the right, as in morning. 14:00 and 16:25 are correct. Varies from run to run at the same hour.
+Working guess: a weak cue. At 16:00 the column's shadow falls away from the camera and is mostly hidden, so the mask says little, and nothing shades the column's right face; the baked light wins. Not checked: whether good and bad masks at the same hour differ, with a fixed seed.
+
+**Open: ghost geometry around noon after several consecutive prints.** A pale faceted copy of the column beside the real one, grey facets behind the trees, dark streaks across the lawn: Cesium mesh shapes darkened into the plate by the mask and painted as objects. The mask only darkens, so the ghost against the sky means the shadow renders and the plate were not registered (about 40 px).
+Candidate causes: tiles not fully loaded when a render is taken (the loaded flag can carry over from the previous view), or a field of view mismatch (views are matched by position and angles, not FOV). Noon-specific or cumulative: not separated yet (test: reload, print 12:00 first).
+Planned fix: wait until tiles are stable for several frames after each camera jump and shadow toggle; save shadow_base.jpg and shadow_pass.jpg with the run; skip shadows, with the reason logged, when the base render does not match the keystone's capture or the shadow render is brighter than the base anywhere.
+
+**Hypothesis, untested: the problems are specific to the saved St Andrew Square view** (its tiles, its baked light, or high latitude). Washington ran clean, but it differs in latitude, sun height, view and tiles at once, so it does not separate these. Test: a second view from another side of the square.
+
+All three open items move to the clean-up and bug-fix pass. Next: the LSA join.
+
 ## 2026-10-14: Keystone, date plate, hour print
 
 **Three layers for prints: keystone (structure) > date plate (the canopy for one date) > hour print (the light).** Built, to test.

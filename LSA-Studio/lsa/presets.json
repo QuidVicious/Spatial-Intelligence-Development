@@ -343,5 +343,20 @@
     "time": "09:50",
     "weather": null,
     "focus": "Surfaces, materials, weathering, flora, trees, tree trunks, limbs, branches and leaves, grassy public green beyond the trees to the far right."
+  },
+  "22 Abercromby Pl: 1 New LSA 10-15-26": {
+    "place": "21 Abercromby Pl, Edinburgh, UK",
+    "standpoint": "Center of the street looking east down Abercromby at the intersection of Nelson on the left.",
+    "bearing": 66.0,
+    "subject": "The building on the corner of Abercromby Pl and Nelson St., The facades to the left and Queen St Garden to the right. The intersection with Nelson St. deep midground left.",
+    "layout": "Standing in front of 22 Abercromby Pl in Edinburgh. Camera is in the center of the street looking down the gentle arching curve of the street's layout. To the immediate left, dominating the foreground is the Abercromby Pl facade of the corner building just before the intersection of Abercromby and Nelson St. Nelson is only seen at the intersection as the camera is too close to the left facade to show much more than the tall 4 story, 4 bay facade of the corner house across the street on Nelson St. That building is the target. This building's Nelson St. facade has squared windows and entry, not arched fanlights. There are blocked out windows from the old Window Tax era clearly visible on its facade. Nelson St. slopes steeply downhill before it's out of view. Further down, mid and far ground in the frame, the left side continues to be dominated by the long sweeping facade. The corner building across Nelson is 4 stories tall. The attic level is flush with the lower levels' facade. The building's Abercromby Place facade is 5 bays deep with the ground floor entrance in the center with an arched fanlight; the doorway is flanked on both sides by arched windows. Beyond the corner house, the terraced facade continues with 3, 3 story, 3 bay townhouses, all with flat, flush attic facades and squared off windows and doors. Beyond are 6 more 3 bay houses, but these are 4 story. The 1st, closest to the camera, has a fully flush attic facade and squared windows. The final 5 have a sloped slate roof and dormer window casements. These last buildings, because of the street's arching layout, cross the center of the frame and terminate well into the right hand side, just past the left 1/3 threshold.\n\nOn the right side of the frame is the counterpart to the buildings: the long sweeping street with sidewalk, plinth and cast-iron fencing that encloses Queen St. Garden. There are mature trees along the fence line in the right side fore to mid ground. The trees overhang the fencing in places, particularly across from the intersection, and block the rest of the view down the right side of Abercromby Pl.",
+    "distance_m": 68.0,
+    "framing": "medium",
+    "camera_height": "eye level",
+    "focal_mm": 31,
+    "date": "2026-10-09",
+    "time": "10:30",
+    "weather": "Clearing sky after a morning rain.",
+    "focus": "Surfaces, patinas, foliage, materials, structures, secondary and tertiary objects and details."
   }
 }

@@ -696,6 +696,18 @@
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
       <div id="run-family" class="run-family"></div>
       <button class="scene-link" id="open-scene-text" type="button" hidden>Edit this run's scene text below</button>
+      <h3 class="sub">LSA pass</h3>
+      <label for="lsa-join-run" style="margin-top: 0;">LSA run to weave in</label>
+      <select id="lsa-join-run" style="width: 100%;"><option value="">No LSA runs</option></select>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="lsaWeave()" title="Weave the LSA run's materials, condition and biology into this run's scene text. Structure, light, season and compass words stay out. Review it in the editor before making a keystone.">LSA PASS</button>
+        <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before the LSA pass">UNDO</button>
+      </div>
+      <div id="lsa-join-status" class="status-line"></div>
+      <details id="lsa-join-notes" hidden style="font-size: 12px; color: var(--lichen-grey);">
+        <summary style="margin-top: 4px;">What the LSA pass left out</summary>
+        <div id="lsa-join-notes-text" style="white-space: pre-wrap; margin-top: 4px;"></div>
+      </details>
       <div style="display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 11px; color: var(--text-muted);">
         <label for="replay-seed" style="flex: 0 0 auto;">Seed</label>
         <input type="number" id="replay-seed" min="0" step="1" placeholder="blank = random" title="Same seed + same settings = the same image. Used by Replay, Make Keystone and Print." style="flex: 1; min-width: 0;" />
@@ -705,6 +717,7 @@
         <input type="checkbox" id="chk-composite" checked /> Composite outside canopy (prints, matching weather)
       </label>
       <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
+      <button onclick="makeKeystoneAB()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Two keystone candidates from this run, same seed and pano: A from the scene text before the LSA pass, B from the text after it">A/B KEYSTONES (before and after the LSA pass)</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
       </div>
@@ -929,7 +942,11 @@ $("run").addEventListener("click", async () => {
   showLenses(null);
   $("frame").innerHTML = `<div class="empty">Excavating...</div>`; $("renders").innerHTML = ""; $("panel").textContent = "";
   showMessage("Sending the prompt.");
+  // Stamp the run with the saved view when the Cesium camera is linked and sitting exactly on it.
+  const atView = (linked && typeof activeSavedView !== "undefined" && activeSavedView &&
+                  typeof cameraMatchesView === "function" && cameraMatchesView(activeSavedView)) ? activeSavedView : null;
   const body = { shot, instruction: $("o-instruction").value, image_model: $("o-model").value,
+                 saved_view_id: atView ? atView.id : null, saved_view_name: atView ? atView.name : null,
                  use_addendum: $("o-addendum").checked && !$("o-addendum").disabled,
                  aspect_ratio: $("o-aspect").value, image_size: $("o-size").value, label: $("o-label").value.trim() || null };
   try {
