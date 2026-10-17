@@ -7873,5 +7873,57 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:ca72d0e3a4f311e39c5135ce1ec320cc5b8dccd0": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumnal leaf retention.",
+      "species": [
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-20",
+            "half_fall": "11-02",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Purple-red flower clusters precede emerging rough, bright green pleated leaf buds.",
+            "full_leaf": "Broad, rough-textured dark green leaves with doubly serrate margins; winged samaras form.",
+            "colouring": "Coarse leaves dull and gradually shift to mottled, pale yellow-green.",
+            "peak": "Rough-textured foliage turns a uniform, rich golden-yellow across the crown.",
+            "falling": "Faded ochre and brown leaves shed, exposing heavy dark rough-fissured boughs.",
+            "dormant": "Stout, dark rough-fissured branches and heavy trunk bare with blunt winter buds."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-22",
+            "colour_onset": "10-02",
+            "peak_colour": "10-24",
+            "half_fall": "11-06",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Large green buds swell and unfurl into five-lobed leaves with yellow flower spikes.",
+            "full_leaf": "Deep green palmate leaves with reddish petioles; paired winged samaras develop.",
+            "colouring": "Leaves fade to dull yellowish-green, often marked with dark tar spots.",
+            "peak": "Crown turns muted yellow and pale brown among flaking grey-brown bark plates.",
+            "falling": "Brown and yellow-gold leaves drop rapidly from the spreading boughs.",
+            "dormant": "Heavy-girthed trunk and ascending bare branches show dark, plate-fissured bark."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

@@ -203,7 +203,8 @@ class ProcessViewRequest(BaseModel):
     composite: bool = Field(True, description="PRINT only: keep the keystone's pixels outside the changed canopy, when the print's weather matches the keystone's")
     streetview: Optional[dict] = Field(None, description="KEYSTONE only: {pano_id, heading, pitch, fov, date, distance_m, copyright}; the pano is fetched, used, and never stored")
     lsa_join: Optional[dict] = Field(None, description="Replay and KEYSTONE only: the LSA pass behind the edited scene text "
-                                     "{run_id, label, instruction, ecology, species_to_verify, set_aside, not_added, hand_edited_after}. "
+                                     "{run_id, label, instruction, ecology, added_structure, species_to_verify, set_aside, not_added, "
+                                     "hand_edited_after, director_layout_used}. "
                                      "Its ecology replaces the run's ecology record, so seasonal prints age the same trees the text names.")
     ab: Optional[dict] = Field(None, description="Set by Make keystone A/B: {pair_id, arm, seed, lsa_run_id}")
 
@@ -570,8 +571,9 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 eco = str(lj.get("ecology") or "").strip()
                 if eco:
                     domain_result.botanical_ecology = eco
-                lsa_join_record = {k: lj.get(k) for k in ("run_id", "label", "instruction", "species_to_verify",
-                                                          "set_aside", "not_added", "hand_edited_after")}
+                lsa_join_record = {k: lj.get(k) for k in ("run_id", "label", "instruction", "added_structure",
+                                                          "species_to_verify", "set_aside", "not_added",
+                                                          "hand_edited_after", "director_layout_used")}
                 lsa_join_record["ecology_replaced"] = bool(eco)
                 print(f"[LSA] scene text from the LSA pass of {lj.get('run_id')}"
                       f"{' (hand-edited after)' if lj.get('hand_edited_after') else ''}"
@@ -1748,11 +1750,15 @@ class LsaWeaveRequest(BaseModel):
     analysis: str
     scene_text: Optional[str] = None
     lsa_run_id: Optional[str] = None
+    # 2026-10-16: the LSA run's brief (place, standpoint, looking at, scene layout), in Don's words.
+    # Its structure counts as confirmed; its street names are translated into position words.
+    director_layout: Optional[str] = None
 
 
 @app.post("/api/lsa/weave")
 def lsa_weave(req: LsaWeaveRequest):
-    """The LSA pass: the scene text back with an LSA Studio analysis's materials, condition and biology woven in.
+    """The LSA pass: the scene text back with an LSA Studio analysis's materials, condition and biology woven in,
+    the director's layout applied, and every structural addition listed with its status (confirmed or proposed).
     Nothing is saved here; the page puts the text in the editor and sends it with Replay or Make keystone."""
     d = _run_dir(req.run_id)
     capture = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
@@ -1762,8 +1768,13 @@ def lsa_weave(req: LsaWeaveRequest):
         raise HTTPException(status_code=422, detail="The LSA run has no analysis.")
     domain, _ = load_domain_from_run(d)
     scene = (req.scene_text or "").strip() or domain.documentary_prompt
-    out = weave_lsa_into_scene(capture, scene, domain.botanical_ecology, req.analysis, os.getenv("GEMINI_API_KEY"))
+    out = weave_lsa_into_scene(capture, scene, domain.botanical_ecology, req.analysis, os.getenv("GEMINI_API_KEY"),
+                               director_layout=req.director_layout)
+    added = out.get("added_structure") or []
     print(f"[LSA] pass from {req.lsa_run_id} on {req.run_id}: {len(scene)} -> {len(out['scene_text'])} chars"
+          f" | layout {'sent' if (req.director_layout or '').strip() else 'none'}"
+          f" | structure added: {sum(a['status'] == 'confirmed' for a in added)} confirmed, "
+          f"{sum(a['status'] == 'proposed' for a in added)} proposed"
           f"{' | check: ' + ', '.join(out['warnings']) if out['warnings'] else ''}")
     return {**out, "original": scene, "lsa_run_id": req.lsa_run_id}
 

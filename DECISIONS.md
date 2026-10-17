@@ -6,6 +6,48 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-16: The LSA join, stage 2, the first A/B, and a new keystone
+
+**The bag and the placement.** Adopted.
+LSA Studio is the authority on what the scene contains: materials, condition, biology, species, and named places. The pipeline is the authority on form and position. Street and place names are used on the LSA side (brief, Scene layout, analysis) and translated into position words in the scene text the image model reads. Items in the scene are confirmed (Don's layout or brief, or the capture), proposed (LSA recall only, flagged for Don to keep or remove), or excluded (light, weather and season, set aside for the render stage).
+Why: Don's framing. The LSA is meant to know everything in the scene; the pipeline gives each thing its form and place. Proposed items are where LSA finds things Don did not know to look for, so they are shown, not refused. The no-street-names rule was always a rendering rule (the image model cannot map names to pixels), not a public-copy rule.
+
+**The LSA pass sends the LSA run's brief as the director's layout.** Built.
+Place, Standpoint, Looking at and Scene layout go to the weave with the analysis. Structure in them is confirmed. Every structural addition comes back with a status (confirmed or proposed) and a source, in an "Added structure: check" list with KEEP and REMOVE; decisions are saved with the run. Render directives and qualifiers in the scene text are kept word for word. Street-like names that survive are flagged.
+Why: 2026-10-15's pass refused the dormers and storey counts, which were real, because they were in Don's layout but not the scene text. The weave could not tell recalled structure from confirmed structure.
+
+**The LSA pass dropdown lists runs with an analysis, and previews the chosen run.** Built.
+It used to hide any run whose settings ever recorded an error. The preview shows the run's image, time, view stamp and the start of its layout.
+Why: the wrong LSA run (2026-10-12 16:48) was woven twice, once on each day, because runs could only be told apart by name.
+
+**Terminology.** Scene text: the pipeline's description of the view, edited in the box under the frame (the LSA pass edits it; "woven text" is the scene text after a pass). Render prompt: LSA Studio's own prompt for its image. Scene layout: Don's description of the view in LSA Studio's brief. The scene text reaches the image model only through the prompt compiler.
+
+**Finding: the prompt compiler trims the scene text.** Adopted: budget raised to 6,000 for these tests.
+It reserves the task header and light block, gives the trees a share, and gives the scene text the rest, trimmed at a sentence boundary. At budget 4,400 that was about 1,960 characters; a 2,785-character scene text lost everything after the side-street sentence (terrace, storeys, dormers, railings, kerbs, trees, the geometric accuracy line). Only the TRIMMED flag in the stepper shows it. The 2026-10-09 keystone's 1,532-character text was probably not trimmed. Planned: make trimming impossible to miss, and keep the geometric accuracy line out of the trimmable text.
+
+**Finding: the weave drops structure despite the keep rule.** Planned fix: a removal check.
+Both of today's passes dropped or changed structure and qualifiers (droved ashlar, string courses, "like the basements", granite kerbs swapped for whinstone, "four-storey" on the corner block). The added-structure list cannot catch this because it only tracks additions. Fix: structural terms in the input but missing from the output are listed as "Removed: check". The same inputs gave a different weave on a second run.
+
+**Finding: elements the capture cannot show lead the model to rebuild geometry.** Open.
+The globe-and-cap lamp, the entrance steps, window hoods and aprons on the near corner building were described by position. The model turned the near facade toward the camera to show them (a false corner). The lamp rendered as a lantern in every render: the centroid won against the text. Next lever: a Street View pano framed to show the globe and cap. Two lamp types in the Moray Feu: the Victorian globe and cap here, and an early 20th-century type that looks art deco (Great Stuart Street, Randolph Crescent). The gas-era history is Don's research; it needs a source before it goes public.
+
+**LSA A/B, first run: inconclusive.** Abercromby and Nelson 1, LSA run 2026-10-15 15:37, seed 42, budget 6,000, same pano, no finishing pass.
+A: the keystone's scene text with the structure corrected by hand (storeys, dormers, both corner buildings, the lamp), 2,578 characters. B: A plus exactly what the LSA pass added, nothing removed, 2,785 characters (corrected by hand because the weave dropped structure). No trimming in either.
+A held the capture's frame. B tilted up. Re-rendered with the same text and seed, B tilted the same way. With "dark blue-grey West Highland slate roofs" removed, B turned right instead. The 2026-10-09 keystone matches its capture.
+Finding: framing depends on the exact scene text plus the seed. Any text change can move the camera, so A/B comparisons need an alignment check before surfaces can be compared. Planned: measure each keystone's shift against the capture and warn before approving a drifted one.
+Don's assessment: all of the day's LSA-infused keystones (with the pano) were good; surfaces and materials look almost exactly like the real street, and apart from the streetlight a local could take them for photographs. B without the roof phrase had more and better detail than most renders so far (one render, frame moved). The LSA's share is not separated from the structural corrections and the pano yet.
+The target building's blue door (side-street return, 2025-06 pano) appeared in only some renders. It goes into the scene text and Scene layout as a confirmed detail, dated.
+
+**New keystone approved.** Adopted.
+B without the roof phrase (seed 42) replaces the 2026-10-09 13:43 keystone for Abercromby and Nelson 1. It is turned right relative to the capture, so prints use it with Sun and shadows off. The old keystone can be re-approved for tests that need the capture-aligned baseline.
+
+**Prints from the new keystone: very good.** Rain, sun, snow and fog, autumn into winter.
+One early print grew young trees on the distant lamp columns: the canopy rule ("apply to every tree... leave none bare") read thin poles as trunks. Planned: the canopy rule names lamp columns, posts and railings as not trees.
+
+**Next round, in order:** alignment check; UI overhaul (one name per thing, a numbered A/B panel showing each step); weave removal check; small fixes (no auto-pick in the LSA dropdown, pasting new text starts a fresh pass, the added-structure box always appears, lamp columns are not trees).
+
+**Workflow:** from 2026-10-17 this chat is linked to Don's computer through the Claude desktop app, with access to this folder. Claude writes files in place; Don commits before and after each round.
+
 ## 2026-10-15: The LSA join, stage 1: the LSA pass and A/B keystones
 
 **The LSA pass: an LSA Studio analysis woven into a pipeline run's scene text, as a step you run and review.** Built, to test.
@@ -33,7 +75,7 @@ Both are recorded as a pair (pair id, arm, seed, LSA run) and labelled "A/B A" a
 
 **Keystone > date plate > hour print: works.** Tested 15 June at St Andrew Square (looking north at the Melville column, as a sundial) and at the Washington Monument (1420 Independence Ave, Washington DC, mid June).
 St Andrew Square: light on the correct side at 8, 9, 10 and 11 am and 2, 3, 4:25 pm. Washington Monument: correct at [hours tested].
-Leaves across hours of one date: [same / changed].
+Leaves across hours of one date: held across hour-to-hour runs with no serious drift (provisional, testing continues).
 Finding: the shadow mask overcomes the tiles' baked south-east light when the mask is clean. The model still keeps the seed's light; the mask changes what that light is.
 
 **First test invalid: the strip's date was 15 October, not 15 June.** The page sets the date to today on load and when the Live clock is unticked, with nothing to show it. The 8:00 and 16:00 "June" prints and their date plate were October (16 degrees sun, yellowing leaves). Polish pass: make the date reset visible, or stop resetting it on load.

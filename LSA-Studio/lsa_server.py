@@ -439,9 +439,14 @@ def runs():
                 continue
             s = read_json(d / "settings.json", default={})
             shot = read_json(d / "shot.json", default={})
+            a = d / "analysis.md"
             out.append({"run_id": d.name, "created": s.get("created"), "place": shot.get("place"),
                         "subject": shot.get("subject"), "label": s.get("label"),
                         "has_image": bool(s.get("image_file")), "error": s.get("error"),
+                        # 2026-10-16: the LSA pass lists runs by this, not by error: a run whose render failed
+                        # can still have a good analysis.
+                        "has_analysis": a.is_file() and a.stat().st_size > 0,
+                        "has_layout": bool((shot.get("layout") or "").strip()),
                         "addendum": s.get("addendum"), "instruction": s.get("instruction"),
                         "saved_view_id": s.get("saved_view_id"), "saved_view_name": s.get("saved_view_name")})
     return out

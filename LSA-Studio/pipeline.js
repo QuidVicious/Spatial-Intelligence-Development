@@ -1203,12 +1203,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
                       : 'These pano settings are now the view\'s current pano and will be used by the next keystone.', old ? '#ffb74d' : 'var(--accent-cyan)');
     }
 
-    // ---------------- LSA pass (2026-10-15) ----------------
-    // Weaves an LSA Studio run's analysis into the selected pipeline run's scene text: materials, condition and
-    // biology go in; structure stays the scene text's; light, season and compass words stay out (and are listed).
-    // LSA runs live on this page's own server (8001); the weave runs on the pipeline server (8000).
+    // ---------------- LSA pass (2026-10-15, revised 2026-10-16) ----------------
+    // Weaves an LSA Studio run into the selected pipeline run's scene text. The LSA run's brief (place, standpoint,
+    // looking at, scene layout) goes with it as the director's layout: its structure is confirmed, and its street
+    // names are turned into position words. Every structural addition comes back with a status (confirmed or
+    // proposed) for Don to keep or remove. LSA runs live on this page's own server (8001); the weave runs on 8000.
     let lsaRuns = [];
-    let lsaJoin = null;   // { run_id, label, instruction, text_before, text_after, ecology, species_to_verify, set_aside, not_added, finishing_after }
+    let lsaJoin = null;   // { run_id, label, instruction, text_before, text_after, ecology, added_structure, species_to_verify, set_aside, not_added, finishing_after, director_layout_used }
+    const lsaDetailCache = {};
 
     function setLsaStatus(msg, color) {
       const el = document.getElementById('lsa-join-status');
@@ -1223,33 +1225,88 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (undo) undo.style.display = 'none';
       const notes = document.getElementById('lsa-join-notes');
       if (notes) notes.hidden = true;
+      const added = document.getElementById('lsa-join-added');
+      if (added) { added.hidden = true; added.innerHTML = ''; }
       setLsaStatus('');
     }
 
     function fmtLsaRun(r) {
       const when = r.created ? String(r.created).slice(0, 16).replace('T', ' ') : r.run_id;
-      return `${when} · ${r.label || r.place || r.run_id}${r.instruction ? ' (' + String(r.instruction).replace(/\.md$/, '') + ')' : ''}`;
+      return `${when} · ${r.label || r.place || r.run_id}${r.instruction ? ' (' + String(r.instruction).replace(/\.md$/, '') + ')' : ''}` +
+        (r.has_image ? '' : ' · no image');
     }
+
+    // A run is usable if it has an analysis. Older 8001 servers don't report that, so fall back to "no error".
+    function lsaUsable(r) { return r.has_analysis !== undefined ? !!r.has_analysis : !r.error; }
 
     // The newest LSA run stamped with the selected run's view is chosen by default; any other can be picked by hand.
     async function loadLsaRuns() {
       const sel = document.getElementById('lsa-join-run');
       if (!sel) return;
       try { const r = await fetch('/api/runs'); lsaRuns = r.ok ? await r.json() : []; } catch (e) { lsaRuns = []; }
-      lsaRuns = (Array.isArray(lsaRuns) ? lsaRuns : []).filter(r => !r.error);
+      lsaRuns = (Array.isArray(lsaRuns) ? lsaRuns : []).filter(lsaUsable);
       const run = selectedReplayRun();
       const viewId = run ? run.saved_view_id : null;
       const mine = lsaRuns.filter(r => viewId && r.saved_view_id === viewId);
       const rest = lsaRuns.filter(r => !mine.includes(r));
       const opt = r => `<option value="${escHtml(r.run_id)}" title="${escHtml(r.subject || '')}">${escHtml(fmtLsaRun(r))}</option>`;
-      if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA runs yet</option>'; return; }
+      if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA runs yet</option>'; lsaPreview(); return; }
       sel.innerHTML = '<option value="">Choose an LSA run</option>' +
         (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>` : '') +
         `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
       sel.value = mine.length ? mine[0].run_id : '';
-      if (run && !lsaJoin) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected.'
-        : 'No LSA run is stamped with this view yet: pick one by hand.');
+      if (run && !lsaJoin) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
+        : 'No LSA run is stamped with this view yet: pick one by hand and check the preview.');
+      lsaPreview();
     }
+
+    async function lsaDetail(id) {
+      if (lsaDetailCache[id]) return lsaDetailCache[id];
+      const r = await fetch('/api/runs/' + encodeURIComponent(id));
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return (lsaDetailCache[id] = await r.json());
+    }
+
+    // The brief in Don's words, sent with the analysis: structure in it is confirmed.
+    function lsaDirectorLayout(shot) {
+      shot = shot || {};
+      const lines = [
+        ['Place', shot.place], ['Standpoint', shot.standpoint], ['Looking at', shot.subject], ['Scene layout', shot.layout],
+      ].filter(([, v]) => v && String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
+      return lines.join('\n');
+    }
+
+    // Under the dropdown: the chosen run's image, when it was made, its view stamp and the start of its layout,
+    // so the right run is picked before the pass.
+    async function lsaPreview() {
+      const box = document.getElementById('lsa-join-preview');
+      if (!box) return;
+      const id = (document.getElementById('lsa-join-run') || {}).value;
+      if (!id) { box.hidden = true; return; }
+      const thumb = document.getElementById('lsa-join-thumb');
+      const brief = document.getElementById('lsa-join-brief');
+      box.hidden = false;
+      brief.textContent = 'Loading...';
+      thumb.style.display = 'none';
+      let d;
+      try { d = await lsaDetail(id); } catch (e) { brief.textContent = 'Could not read this LSA run: ' + e.message; return; }
+      if ((document.getElementById('lsa-join-run') || {}).value !== id) return;   // the pick moved on meanwhile
+      const s = d.settings || {}, shot = d.shot || {};
+      if (d.image) {
+        thumb.src = d.image;
+        thumb.style.display = 'block';
+        thumb.title = 'Click to open the full image in a new tab';
+        thumb.onclick = () => window.open(d.image, '_blank');
+      }
+      const made = s.created ? new Date(s.created).toLocaleString([], { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+      const stamp = s.saved_view_name ? `made at view "${s.saved_view_name}"` : 'not stamped with a view';
+      const layout = (shot.layout || '').trim();
+      brief.textContent = `${s.label || shot.place || id} · ${made} · ${s.instruction || ''} · ${stamp}\n` +
+        (shot.subject ? `Looking at: ${shot.subject}\n` : '') +
+        (layout ? `Scene layout: ${layout.length > 260 ? layout.slice(0, 260) + '...' : layout}`
+                : 'No scene layout in this run: only the analysis will be woven in, with no confirmed structure.');
+    }
+    document.getElementById('lsa-join-run')?.addEventListener('change', lsaPreview);
 
     async function lsaWeave() {
       const run = selectedReplayRun();
@@ -1259,19 +1316,16 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (lsaJoin && !confirm('The scene text already has an LSA pass. Weave again on top of it?\n\n(UNDO first to start from the text before the pass.)')) return;
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
-      setLsaStatus('Reading the LSA analysis...');
+      setLsaStatus('Reading the LSA run...');
       let lsa;
-      try {
-        const r = await fetch('/api/runs/' + encodeURIComponent(id));
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        lsa = await r.json();
-      } catch (e) { setLsaStatus('Could not read that LSA run: ' + e.message, '#ff5252'); return; }
+      try { lsa = await lsaDetail(id); } catch (e) { setLsaStatus('Could not read that LSA run: ' + e.message, '#ff5252'); return; }
       if (!(lsa.analysis || '').trim()) { setLsaStatus('That LSA run has no analysis.', '#ff5252'); return; }
-      setLsaStatus('Weaving the analysis into the scene text (about a minute)...', 'var(--accent-cyan)');
+      const layout = lsaDirectorLayout(lsa.shot);
+      setLsaStatus('Weaving the analysis and your layout into the scene text (about a minute)...', 'var(--accent-cyan)');
       try {
         const resp = await fetch(PIPE + '/api/lsa/weave', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ run_id: run.id, scene_text: before, analysis: lsa.analysis, lsa_run_id: id })
+          body: JSON.stringify({ run_id: run.id, scene_text: before, analysis: lsa.analysis, lsa_run_id: id, director_layout: layout || null })
         });
         const d = await resp.json();
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
@@ -1279,8 +1333,10 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const s = lsa.settings || {};
         lsaJoin = { run_id: id, label: s.label || id, instruction: s.instruction || null,
                     text_before: (lsaJoin ? lsaJoin.text_before : before), text_after: d.scene_text,
-                    ecology: d.ecology || '', species_to_verify: d.species_to_verify || [],
-                    set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false };
+                    ecology: d.ecology || '', added_structure: (d.added_structure || []).map(a => ({ ...a, decision: null })),
+                    species_to_verify: d.species_to_verify || [],
+                    set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false,
+                    director_layout_used: !!layout };
         box.value = d.scene_text;
         if (typeof updateSceneState === 'function') updateSceneState();
         document.getElementById('btn-lsa-undo').style.display = '';
@@ -1290,11 +1346,61 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         if (lsaJoin.set_aside) notes.push('Light, weather and season set aside (kept with the run): ' + lsaJoin.set_aside);
         document.getElementById('lsa-join-notes-text').textContent = notes.join('\n\n');
         document.getElementById('lsa-join-notes').hidden = !notes.length;
+        renderLsaAdded();
+        const added = lsaJoin.added_structure;
+        const nProp = added.filter(a => a.status === 'proposed').length;
         setLsaStatus(`LSA pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
+          (layout ? '' : ' No scene layout was sent (the LSA run has none).') +
+          (added.length ? ` Structure added: ${added.length - nProp} confirmed, ${nProp} proposed (listed below).` : ' No structure added.') +
           (d.warnings && d.warnings.length ? ` Check these words in the text: ${d.warnings.join(', ')}.` : '') +
           ' Review it in the editor before making a keystone; UNDO restores the previous text.',
           d.warnings && d.warnings.length ? '#ffb74d' : 'var(--accent-cyan)');
       } catch (e) { setLsaStatus(e.message, '#ff5252'); }
+    }
+
+    // The added-structure list: each item with its status, and KEEP or REMOVE. REMOVE takes the phrase out of the
+    // editor text; KEEP just records the decision. Decisions go with the run (lsa_join.added_structure).
+    function renderLsaAdded() {
+      const el = document.getElementById('lsa-join-added');
+      if (!el) return;
+      const items = (lsaJoin && lsaJoin.added_structure) || [];
+      if (!items.length) { el.hidden = true; el.innerHTML = ''; return; }
+      const order = { proposed: 0, confirmed: 1 };
+      const rows = items.map((a, i) => ({ a, i })).sort((x, y) => order[x.a.status] - order[y.a.status]);
+      el.innerHTML = `<div class="lsa-added-head">Added structure: check</div>` + rows.map(({ a, i }) => {
+        const tag = a.status === 'confirmed' ? 'Confirmed' : 'Proposed';
+        const src = { layout: 'from your layout', analysis: 'from the LSA', capture: 'seen in the capture' }[a.source] || a.source;
+        const state = a.decision === 'removed' ? '<span class="lsa-added-done">removed</span>'
+          : a.decision === 'kept' ? '<span class="lsa-added-done">kept</span>'
+          : `<button class="lsa-added-btn" data-i="${i}" data-act="keep">KEEP</button>` +
+            `<button class="lsa-added-btn" data-i="${i}" data-act="remove"${a.found ? '' : ' disabled title="Not found word for word in the text: edit it by hand"'}>REMOVE</button>`;
+        return `<div class="lsa-added-row ${a.status}${a.decision ? ' decided' : ''}">` +
+          `<span class="lsa-added-tag ${a.status}">${tag}</span>` +
+          `<span class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(src)}${a.note ? ': ' + escHtml(a.note) : ''}</span></span>` +
+          `<span class="lsa-added-acts">${state}</span></div>`;
+      }).join('');
+      el.hidden = false;
+      el.querySelectorAll('.lsa-added-btn').forEach(b => b.addEventListener('click', () => lsaDecide(+b.dataset.i, b.dataset.act)));
+    }
+
+    function lsaDecide(i, act) {
+      const a = lsaJoin && lsaJoin.added_structure[i];
+      if (!a) return;
+      if (act === 'remove') {
+        const box = document.getElementById('replay-scene-text');
+        if (!box.value.includes(a.phrase)) { setLsaStatus(`"${a.phrase}" is no longer in the text word for word: edit it by hand.`, '#ffb74d'); return; }
+        box.value = box.value.replace(a.phrase, '')
+          .replace(/\s*\b(and|with|or)\s*([,;.])/g, '$2')   // a dangling join word
+          .replace(/\s+([,;.])/g, '$1')            // space before punctuation
+          .replace(/([,;])\s*([,;.])/g, '$2')      // doubled punctuation
+          .replace(/[ \t]{2,}/g, ' ')
+          .replace(/^\s*[,;]\s*/gm, '');
+        lsaJoin.text_after = box.value;   // a removal from the list is part of the pass, not a hand edit
+        if (typeof updateSceneState === 'function') updateSceneState();
+        setLsaStatus(`Removed "${a.phrase}". Read the sentence it was in: the join may need a word.`, 'var(--accent-cyan)');
+      }
+      a.decision = act === 'remove' ? 'removed' : 'kept';
+      renderLsaAdded();
     }
 
     function lsaUndo() {
@@ -1311,7 +1417,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const text = document.getElementById('replay-scene-text').value.trim();
       if (text === lsaJoin.text_before.trim()) return null;
       return { run_id: lsaJoin.run_id, label: lsaJoin.label, instruction: lsaJoin.instruction, ecology: lsaJoin.ecology,
-               species_to_verify: lsaJoin.species_to_verify, set_aside: lsaJoin.set_aside, not_added: lsaJoin.not_added,
+               added_structure: lsaJoin.added_structure, species_to_verify: lsaJoin.species_to_verify,
+               set_aside: lsaJoin.set_aside, not_added: lsaJoin.not_added, director_layout_used: lsaJoin.director_layout_used,
                hand_edited_after: text !== lsaJoin.text_after.trim(), finishing_after: !!lsaJoin.finishing_after };
     }
 

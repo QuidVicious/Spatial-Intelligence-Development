@@ -120,9 +120,9 @@
       ]
     },
     "abercromby-and-nelson-1": {
-      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261009_134341",
+      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261016_151135",
       "view_name": "Abercromby and Nelson 1",
-      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261009_133247",
+      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261016_143938",
       "approved_from": "candidate",
       "conditions": {
         "date": "2026-01-15",
@@ -130,8 +130,14 @@
         "weather": "OVERCAST"
       },
       "warnings_acknowledged": [],
-      "approved_utc": "2026-10-09T20:47:51+00:00",
-      "history": []
+      "approved_utc": "2026-10-16T22:20:18+00:00",
+      "history": [
+        {
+          "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261009_134341",
+          "approved_utc": "2026-10-09T20:47:51+00:00",
+          "replaced_utc": "2026-10-16T22:20:18+00:00"
+        }
+      ]
     },
     "key-west-205-whitehead-st": {
       "run_id": "205_Whitehead_St_Key_West_FL_33040_20261010_140811",

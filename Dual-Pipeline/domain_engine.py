@@ -732,58 +732,100 @@ def rewrite_condition_from_streetview(
 
 
 # =========================================================================
-# LSA PASS (2026-10-15): weave an LSA Studio analysis (SI3.8/3.9) into the scene text.
-# "SI3.8 paints, the domain engine builds": the scene text keeps its structure; the analysis
-# supplies materials, condition and biology. Light, weather, season and recalled structure are
-# left out of the text, and what was left out is returned, so it can be used later.
+# LSA PASS (2026-10-15, revised 2026-10-16): weave an LSA Studio run into the scene text.
+# The bag and the placement (DECISIONS.md, 2026-10-16): LSA Studio decides what the scene contains;
+# the pipeline decides form and position. Names go in (the director's layout and the analysis may use
+# street and place names); position words come out (the scene text the image model reads never does).
+# Every structural item the pass adds is listed with a status for Don to keep or remove:
+#   confirmed = in the director's layout, the scene text or plainly in the capture
+#   proposed  = recalled by the LSA analysis only
+# Light, weather, season and time are excluded and set aside for the render stage.
 # =========================================================================
 
-LSA_WEAVE_INSTRUCTION = """You are an architectural conservator and urban ecologist merging two descriptions of one real place for an image model.
+LSA_WEAVE_INSTRUCTION = """You are an architectural conservator and urban ecologist merging descriptions of one real place for an image model.
 You receive:
-IMAGE 1: a 3D capture of the view being rendered. It fixes what is in frame, where it is, and how far each element is from the camera. Its surface detail is unreliable.
-SCENE TEXT: the current scene description, written from the capture. It is the authority on structure.
-LSA ANALYSIS: a deep domain analysis of the same place by another model, written from recall. It is rich in materials, weathering, chemistry and biology, and unreliable on structure.
+IMAGE 1: a 3D capture of the view being rendered. It fixes what is in frame, where each element sits, and how far it is from the camera. Its surface detail is unreliable.
+SCENE TEXT: the current scene description. The director has reviewed and edited it. It is the base text you revise.
+DIRECTOR'S LAYOUT: the director's own description of this view, checked on site and in street-level photography. It may use street names, house numbers and storey counts. Everything structural in it is CONFIRMED.
+LSA ANALYSIS: a deep domain analysis of the same place by another model. It is the authority on what the scene contains: stone, tooling, condition, chemistry, biology and species. Structure it recalls that the director's layout, the scene text and IMAGE 1 do not show is PROPOSED, not confirmed.
 ECOLOGY RECORD: the current time-invariant description of the trees and plants, used later to age them through the seasons.
 
-Return the scene text with the analysis's surface knowledge woven in.
+Return the scene text with the analysis's knowledge woven in and the director's layout applied.
 
-KEEP, because the scene text is the authority on structure:
-- Every structure and ground surface it names, with its massing, storey count, bays, windows, doors, roof forms and openings, as written wherever possible.
-- Its order: structures stay in the same sequence.
+KEEP FROM THE SCENE TEXT:
+- Every structure and ground surface it names, in the same order, with its massing, storeys, bays, windows, doors, roof forms and openings.
 - Its surface-first style: each structure opens with how its stone looks today, then the material beneath.
+- Its specific wording and qualifiers ("dashed" lane markings, "like the basements", a stated comparison or count): replace a word only with something more specific, never with something more general.
+- Every rendering directive, word for word and in its place: any sentence about geometric accuracy, plumb verticals, planar facades, sharp ridgelines, or how to render rather than what is there.
 
-ADD from the analysis, only for structures and surfaces visible in IMAGE 1:
+STRUCTURE, IN THREE STATUSES:
+- CONFIRMED: storeys, bays, roof forms, dormers, attics, openings, arches, blind windows, railings and other structure named in the DIRECTOR'S LAYOUT or the SCENE TEXT, or plainly shown in IMAGE 1. Add confirmed structure the scene text lacks, for structures visible in IMAGE 1, attached to the structure it belongs to.
+- PROPOSED: structure only the LSA ANALYSIS names (for example setts, platts over basement areas, a cornice type, finials, a roof form). Add it where it belongs, as a separate short clause so it can be removed cleanly.
+- Never add structure that contradicts the DIRECTOR'S LAYOUT or IMAGE 1; list it in not_added.
+List EVERY structural feature that is in your scene text but was not in the original SCENE TEXT in added_structure, with its status. Surface condition, materials and biology are not structure and are not listed.
+
+STOREYS: count floors of windows above the pavement. Say whether the top floor is flush with the facade or an attic of dormers set into a pitched slate roof. Basements behind area railings are not counted; name them separately. Example: "three floors of windows with a fourth, attic floor of dormers in a pitched slate roof, basement behind railings below street level".
+
+NAMES IN, POSITIONS OUT: the DIRECTOR'S LAYOUT and the analysis may locate things by street names and house numbers. Translate each into words that point at IMAGE 1: which facade, which side, near or far, the long curved front, the short return down the sloping side street, the corner block, the terrace beyond. Keep the fact exactly (which openings are arched, which squared; which houses have dormers). The scene text you return never contains street names, house numbers or place names.
+
+ADD FROM THE ANALYSIS, only for structures and surfaces visible in IMAGE 1:
 - stone type and quarry character, tooling and dressing, mortar
 - condition: soiling and crusts and where they concentrate, washed runoff channels, staining, efflorescence, spalling, repairs, ironwork corrosion and paint
 - biology on surfaces: lichen, moss and algae, by species where the analysis names them, and where moisture and shelter put them
-- ground materials: paving stone, setts, kerbs
-Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it): a railing, coping or fixture must stay next to what it stands on.
+- ground materials: paving stone, kerbs
+Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it).
 
-DETAIL BY DISTANCE: judge each element's distance from IMAGE 1. Near elements get the full detail. Mid-distance elements get colour, staining and where soiling gathers. Far elements get overall tone in a few words. Spend no words on detail too small to be seen at its distance.
+DETAIL BY DISTANCE: judge each element's distance from IMAGE 1. Near elements get the full detail. Mid-distance elements get colour, staining and where soiling gathers. Far elements get overall tone in a few words.
 
 NEVER ADD:
-- Structural features that neither the scene text nor IMAGE 1 shows, such as string courses, platts or bridges over basement areas, steps, finials of a stated type, dormers, mansards, pilasters, arches or blind windows. Recalled structure is unreliable.
-- Light, sun, shadows, sky, weather, wetness or time of day.
+- Light, sun, cast shadows, sky, weather, wetness or time of day. Exposure terms are allowed: sheltered, exposed, damp, shaded by mature trees, under projections, drip lines.
 - Season: leaf state or colour, fallen leaves, flowering, fruiting, fungal leaf spots.
-- Compass directions or compass aspects such as "north-facing" or "west-facing": turn them into exposure terms (sheltered, exposed, damp, shaded base, under projections, drip lines).
-- Street names, house numbers, place names, dates, numeric rendering parameters (roughness, albedo), or camera and lens language.
+- Compass directions or aspects ("north-facing"): turn them into exposure terms.
+- Street names, house numbers, place names, dates, numeric rendering parameters, or camera and lens language.
 
-SPECIES: trees keep the scene text's species, unless the analysis names a more specific or a different species for the same trees; then use the analysis's name in both the scene text and the ecology record, and list it in species_to_verify. Never add trees IMAGE 1 does not show. The ecology record must name exactly the species the scene text names, and stay time-invariant: form, height, trunk, bark and branch structure, never leaf state or season.
+SPECIES: trees keep the scene text's species, unless the analysis or the director's layout names a more specific or different species for the same trees; then use that name in both the scene text and the ecology record, and list it in species_to_verify. Never add trees IMAGE 1 does not show. The ecology record names exactly the species the scene text names, and stays time-invariant: form, height, trunk, bark and branch structure.
 
-STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.6 times the original length, and never over 2400 characters.
+STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.7 times the original length, and never over 2600 characters.
 
 Return JSON only, in exactly this shape:
 {"scene_text": "the revised scene text",
  "ecology": "the revised ecology record",
+ "added_structure": [{"phrase": "the exact words as they appear in your scene_text", "status": "confirmed" or "proposed", "source": "layout", "analysis" or "capture", "note": "a few words: what it is and why"}],
  "species_to_verify": ["Latin name", "..."],
  "set_aside": "one short paragraph: the light, weather, season and time details in the analysis that were left out",
- "not_added": "one short paragraph: the structural claims in the analysis that were not added because neither the scene text nor IMAGE 1 shows them"}"""
+ "not_added": "one short paragraph: structural claims not added because they contradict the director's layout or IMAGE 1, or are not visible in it"}"""
 
 # Words that should not survive the weave; their presence is reported, not fatal.
 _WEAVE_WARN_RE = re.compile(
     r"\b(?:north|south|east|west)(?:ern|erly|-facing|\s+facing)?\b|\b(?:sun|sunlight|sunlit|shadows?|golden|"
     r"autumn|autumnal|spring|summer|winter|october|november|yellowing|fallen leaves|wet|rain|sky|"
     r"degrees?|mm lens|lens)\b", re.IGNORECASE)
+# Street-like names (case-sensitive): "Nelson St", "Abercromby Place", "Queen Street".
+_WEAVE_STREET_RE = re.compile(
+    r"\b[A-Z][a-z]+\s+(?:Place|Pl|Street|St|Row|Crescent|Square|Terrace|Lane|Road|Rd|Avenue|Ave|Circus|Gardens?)\b\.?")
+
+
+def _clean_added(raw: Any, scene: str) -> List[Dict[str, Any]]:
+    """The added-structure list, tidied: each item has phrase, status, source, note and whether
+    the phrase was found word for word in the returned scene text (so the page can remove it)."""
+    out: List[Dict[str, Any]] = []
+    if not isinstance(raw, list):
+        return out
+    for it in raw:
+        if not isinstance(it, dict):
+            continue
+        phrase = str(it.get("phrase") or "").strip()
+        if not phrase:
+            continue
+        status = str(it.get("status") or "").strip().lower()
+        out.append({
+            "phrase": phrase,
+            "status": status if status in ("confirmed", "proposed") else "proposed",
+            "source": str(it.get("source") or "").strip().lower() or "analysis",
+            "note": str(it.get("note") or "").strip(),
+            "found": phrase in scene,
+        })
+    return out
 
 
 def weave_lsa_into_scene(
@@ -792,9 +834,10 @@ def weave_lsa_into_scene(
     ecology_text: str,
     analysis: str,
     gemini_api_key: Optional[str] = None,
+    director_layout: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """The LSA pass. Returns scene_text, ecology, species_to_verify, set_aside, not_added and warnings.
-    Raises HTTPException(502) and changes nothing if the result is empty, unparseable or the wrong length."""
+    """The LSA pass. Returns scene_text, ecology, added_structure, species_to_verify, set_aside, not_added
+    and warnings. Raises HTTPException(502) and changes nothing if the result is empty, unparseable or the wrong length."""
     api_key = gemini_api_key or os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured.")
@@ -804,6 +847,7 @@ def weave_lsa_into_scene(
         "IMAGE 1 (the composition being rendered):",
         types.Part.from_bytes(data=base64.b64decode(raw), mime_type=mime),
         f"SCENE TEXT:\n{scene_text}",
+        f"DIRECTOR'S LAYOUT:\n{(director_layout or '').strip() or '(none given)'}",
         f"ECOLOGY RECORD:\n{ecology_text or '(none)'}",
         f"LSA ANALYSIS:\n{analysis}",
         "Return the JSON.",
@@ -835,15 +879,17 @@ def weave_lsa_into_scene(
     if not out:
         raise HTTPException(status_code=502, detail="The LSA pass came back empty; the scene text is unchanged.")
     ratio = len(out) / max(len(scene_text), 1)
-    if not 0.8 <= ratio <= 2.0 or len(out) > 2800:
+    if not 0.8 <= ratio <= 2.0 or len(out) > 3000:
         raise HTTPException(status_code=502, detail=(
             f"The LSA pass changed the length too much ({len(scene_text)} to {len(out)} characters); the scene text is unchanged."))
     species = data.get("species_to_verify") or []
     species = [str(s).strip() for s in species if str(s).strip()] if isinstance(species, list) else []
-    warnings = sorted({m.group(0).lower() for m in _WEAVE_WARN_RE.finditer(out)})
+    warnings = sorted({m.group(0).lower() for m in _WEAVE_WARN_RE.finditer(out)}
+                      | {m.group(0) for m in _WEAVE_STREET_RE.finditer(out)})
     return {
         "scene_text": out,
         "ecology": str(data.get("ecology") or "").strip(),
+        "added_structure": _clean_added(data.get("added_structure"), out),
         "species_to_verify": species,
         "set_aside": str(data.get("set_aside") or "").strip(),
         "not_added": str(data.get("not_added") or "").strip(),

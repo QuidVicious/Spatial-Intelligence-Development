@@ -159,6 +159,26 @@
   .family-note { color: var(--lichen-grey); font-style: italic; }
   .family-warn { color: var(--rust); }
 
+  /* LSA pass: the chosen run's preview, and the structure it added, for keep or remove */
+  .lsa-preview { margin-top: 6px; display: grid; gap: 5px; }
+  .lsa-preview[hidden], .lsa-added[hidden] { display: none; }
+  .lsa-preview img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; border: 1px solid var(--panel-border); cursor: pointer; }
+  .lsa-preview-brief { font-size: 12px; color: var(--lichen-grey); white-space: pre-wrap; line-height: 1.4; }
+  .lsa-added { margin-top: 8px; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; display: grid; gap: 6px; font-size: 12px; }
+  .lsa-added-head { font: 600 13px/1.2 var(--read); color: var(--paper); }
+  .lsa-added-row { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; align-items: start; }
+  .lsa-added-row.decided { opacity: 0.55; }
+  .lsa-added-tag { font: 600 10.5px/1.6 var(--ui); letter-spacing: 0.04em; padding: 0 6px; border-radius: 3px; }
+  .lsa-added-tag.confirmed { background: var(--moss); color: #20250f; }
+  .lsa-added-tag.proposed { background: var(--xanthoria); color: #2a1a06; }
+  .lsa-added-text { color: var(--paper); }
+  .lsa-added-note { color: var(--lichen-grey); }
+  .lsa-added-acts { grid-column: 2; display: flex; gap: 6px; }
+  .lsa-added-btn { background: var(--slate-3); border: 1px solid var(--rule); border-radius: 3px; padding: 2px 8px; font-size: 11px; cursor: pointer; }
+  .lsa-added-btn:hover:not(:disabled) { border-color: var(--lichen-grey); }
+  .lsa-added-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .lsa-added-done { color: var(--lichen-grey); font-style: italic; }
+
   /* Street View angles: three readable fields under a full-width pano ID */
   .sv-angles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .sv-angles label { margin-top: 8px; }
@@ -699,11 +719,16 @@
       <h3 class="sub">LSA pass</h3>
       <label for="lsa-join-run" style="margin-top: 0;">LSA run to weave in</label>
       <select id="lsa-join-run" style="width: 100%;"><option value="">No LSA runs</option></select>
+      <div id="lsa-join-preview" class="lsa-preview" hidden>
+        <img id="lsa-join-thumb" alt="The chosen LSA run's image" />
+        <div id="lsa-join-brief" class="lsa-preview-brief"></div>
+      </div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="lsaWeave()" title="Weave the LSA run's materials, condition and biology into this run's scene text. Structure, light, season and compass words stay out. Review it in the editor before making a keystone.">LSA PASS</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="lsaWeave()" title="Weave the LSA run's materials, condition and biology into this run's scene text, with its scene layout as confirmed structure. Added structure is listed for you to keep or remove. Light, season and compass words stay out.">LSA PASS</button>
         <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before the LSA pass">UNDO</button>
       </div>
       <div id="lsa-join-status" class="status-line"></div>
+      <div id="lsa-join-added" class="lsa-added" hidden></div>
       <details id="lsa-join-notes" hidden style="font-size: 12px; color: var(--lichen-grey);">
         <summary style="margin-top: 4px;">What the LSA pass left out</summary>
         <div id="lsa-join-notes-text" style="white-space: pre-wrap; margin-top: 4px;"></div>
