@@ -158,6 +158,9 @@
   .family-link:hover { color: var(--paper); }
   .family-note { color: var(--lichen-grey); font-style: italic; }
   .family-warn { color: var(--rust); }
+  .align-ok { color: var(--moss); }
+  .align-actions { margin-top: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .align-actions .btn { color: var(--xanthoria); border-color: var(--xanthoria); font-weight: 600; }
 
   /* LSA pass: the chosen run's preview, and the structure it added, for keep or remove */
   .lsa-preview { margin-top: 6px; display: grid; gap: 5px; }
@@ -640,9 +643,9 @@
       <div id="gemini-options" class="hud-input-group">
         <div class="hud-label-row">
           <label class="hud-label">PROMPT BUDGET</label>
-          <span id="budget-readout" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">4400</span>
+          <span id="budget-readout" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">6000</span>
         </div>
-        <input type="range" id="slider-gemini-budget" min="2600" max="6000" step="100" value="4400"
+        <input type="range" id="slider-gemini-budget" min="2600" max="6000" step="100" value="6000"
                oninput="document.getElementById('budget-readout').textContent = this.value;">
       </div>
       <div id="marble-options" class="hud-input-group" style="display:none;">
@@ -780,6 +783,13 @@
       <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
         <input type="checkbox" id="chk-sv-keystone" checked /> Use this pano in MAKE KEYSTONE (form and weathering only)
       </label>
+      <label for="sv-reference" style="margin-top: 6px;">What MAKE KEYSTONE sends</label>
+      <select id="sv-reference" style="width: 100%;" title="Detail crop: aimed from the pano at the subject, 45° across, so the render gets surfaces but no street view to copy">
+        <option value="detail" selected>Detail crop on the subject (45° across)</option>
+        <option value="full">Full view, as set above</option>
+      </select>
+      <img id="sv-detail-preview" alt="The detail crop MAKE KEYSTONE will send" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 6px; border-radius: 6px; border: 2px solid var(--xanthoria);" />
+      <div id="sv-detail-note" class="hint"></div>
       <div id="sv-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
     
       </div>

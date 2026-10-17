@@ -1020,6 +1020,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('btn-sv-undo').style.display = 'none';
       document.getElementById('sv-preview').style.display = 'none';
       document.getElementById('sv-meta').textContent = '';
+      const dimg = document.getElementById('sv-detail-preview'); if (dimg) dimg.style.display = 'none';
+      const dnote = document.getElementById('sv-detail-note'); if (dnote) dnote.textContent = '';
       ['sv-pano', 'sv-heading', 'sv-pitch', 'sv-fov', 'sv-url'].forEach(id => document.getElementById(id).value = '');
       svUpdateFovNote();
       const run = selectedReplayRun();
@@ -1087,7 +1089,32 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('sv-meta').textContent =
         `Pano ${s.date || 'date unknown'} · ${s.distance_m} m from subject · heading ${s.heading}° · pitch ${s.pitch}° · ${fovTxt}` +
         `${s.source_url ? ' · from a Maps link' : ''} · ${s.copyright || '© Google'}`;
+      svShowDetail();
     }
+
+    // What MAKE KEYSTONE will actually send (2026-10-17). The full pano view pulled renders toward Street View's camera
+    // position, so by default the keystone gets a detail crop: aimed from the pano at the subject point, 45° across.
+    function svReferenceMode() { return (document.getElementById('sv-reference') || {}).value || 'detail'; }
+    // The subject the detail crop aims at: the same point the preview uses, so what is shown is what is sent.
+    function svPayload(run) {
+      const subj = svSubjectFor(run);
+      return { ...svState, reference: svReferenceMode(), subject_lat: subj ? subj.lat : null, subject_lon: subj ? subj.lon : null };
+    }
+    function svShowDetail() {
+      const img = document.getElementById('sv-detail-preview'), note = document.getElementById('sv-detail-note');
+      if (!img || !note) return;
+      const subj = svSubjectFor(selectedReplayRun());
+      if (!svState || svReferenceMode() !== 'detail') {
+        img.style.display = 'none';
+        note.textContent = svState ? 'The full view above is what MAKE KEYSTONE sends.' : '';
+        return;
+      }
+      if (!subj) { img.style.display = 'none'; note.textContent = 'No subject point on this view: the full view above will be sent instead.'; return; }
+      img.src = `${PIPE}/api/streetview/detail?pano=${encodeURIComponent(svState.pano_id)}&lat=${subj.lat}&lon=${subj.lon}&pitch=${svState.pitch}`;
+      img.style.display = 'block';
+      note.textContent = `This is what MAKE KEYSTONE sends: aimed at the subject from the pano, 45° across, pitch ${svState.pitch}° (the pitch above).`;
+    }
+    document.getElementById('sv-reference')?.addEventListener('change', svShowDetail);
 
     async function svFetchMeta(subj, panoId) {
       const resp = await fetch(PIPE + '/api/streetview/propose', {
@@ -1447,7 +1474,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const p = buildReplayPayload(run, text === replayOriginalText.trim() ? null : text);
         p.mode = 'KEYSTONE';
         p.seed = seed;
-        if (useSv) p.streetview = { ...svState };
+        if (useSv) p.streetview = svPayload(run);
         p.ab = { pair_id: pair, arm, seed, lsa_run_id: lsaJoin.run_id };
         return p;
       };
@@ -1460,7 +1487,17 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         document.getElementById('loadingOverlay').classList.remove('hidden');
         await streamPipeline(p);   // each finished arm is selected as it lands; B is selected at the end
       }
-      setReplayStatus(`A/B pair finished (seed ${seed}). The last arm made is selected; the other arm is linked below the run list.`, 'var(--accent-cyan)');
+      setReplayStatus(`A/B pair finished (seed ${seed}). Checking both arms' framing against the capture...`, 'var(--accent-cyan)');
+      const arms = replayRuns.filter(r => r.ab && r.ab.pair_id === pair);
+      const res = {};
+      for (const r of arms) { try { res[r.ab.arm] = await fetchAlignment(r.id); } catch (e) { res[r.ab.arm] = null; } }
+      const line = arm => res[arm] ? `${arm} ${res[arm].verdict === 'aligned' ? 'held' : res[arm].verdict}${res[arm].verdict === 'aligned' ? '' : ' (' + res[arm].summary + ')'}` : `${arm} not measured`;
+      const bothHeld = ['A', 'B'].every(a => res[a] && res[a].verdict === 'aligned');
+      setReplayStatus(`A/B pair finished (seed ${seed}). Framing: ${line('A')}; ${line('B')}. ` +
+        (bothHeld ? 'Both held: the surfaces can be compared.' : 'Not a fair comparison while an arm has moved: render that arm again (another seed), or realign it.'),
+        bothHeld ? 'var(--accent-cyan)' : '#ffb74d');
+      const sel = selectedReplayRun();
+      if (sel) renderRunFamily(sel);
     }
 
     // ---------------- Series ----------------
@@ -1838,12 +1875,23 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           const sq = !sv.size || sv.size === SV_SQUARE;
           const angles = `heading ${sv.heading}°, pitch ${sv.pitch}°, ` + (sq ? `fov ${sv.fov}° (square crop, before 16:9)` : `fov ${sv.fov}° across`) +
             (sv.source_url ? ', from a Maps link' : '');
-          const how = sv.used === false ? `<span class="family-warn">fetch failed, rendered without it${sv.error ? ': ' + escHtml(sv.error) : ''}</span>` : angles;
+          const ref = sv.reference === 'detail' ? `<b>detail crop</b> (heading ${sv.detail_heading}°, ${sv.detail_fov}° across, pitch ${sv.detail_pitch}°)`
+            : sv.reference === 'full' ? 'full view' : null;
+          const how0 = sv.used === false ? `<span class="family-warn">fetch failed, rendered without it${sv.error ? ': ' + escHtml(sv.error) : ''}</span>` : angles;
+          const how = ref && sv.used !== false ? `${ref}${sv.reference === 'full' ? ': ' + how0 : ''}` : how0;
           parts.push(`<div>Street View: pano ${escHtml(String(sv.pano_id).slice(0, 10))}… (${escHtml(sv.date || 'undated')}), ${how}` +
             ` <button class="family-link" data-sv="1">use these pano settings</button></div>`);
         } else {
           parts.push(`<div>Street View: <span class="family-note">no reference recorded for this keystone</span></div>`);
         }
+      }
+      if (run.realigned_from) {
+        const src = replayRuns.find(r => r.id === run.realigned_from);
+        parts.push(`<div>Realigned from: ${src ? `<button class="family-link" data-run="${escHtml(src.id)}">${escHtml(runLabel(src))}</button>`
+          : escHtml(run.realigned_from)} <span class="family-note">(original plate kept in that run)</span></div>`);
+      }
+      if (run.has_twin && !run.keystone_print_of && !run.date_plate_of && (isKeystoneRun(run) || run.ab)) {
+        parts.push(`<div id="run-alignment" data-run-id="${escHtml(run.id)}">${alignmentHtml(run.alignment || alignCache[run.id] || null)}</div>`);
       }
       if (run.lsa_run) parts.push(`<div>LSA pass from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
       if (run.ab && run.ab.pair_id) {
@@ -1862,6 +1910,70 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       box.querySelectorAll('[data-run]').forEach(b => b.addEventListener('click', () => selectReplayRun(b.dataset.run)));
       const svBtn = box.querySelector('[data-sv]');
       if (svBtn) svBtn.addEventListener('click', () => svUseKeystonePano(run));
+      wireAlignment(run);
+    }
+
+    // ---------------- Alignment (2026-10-17) ----------------
+    // Does a keystone candidate keep the capture's framing? Measured by the server (a few seconds the first time,
+    // cached after). Drifted candidates are flagged here, in the approve dialog and after an A/B pair.
+    const alignCache = {};
+
+    async function fetchAlignment(runId) {
+      if (alignCache[runId]) return alignCache[runId];
+      const resp = await fetch(PIPE + `/api/runs/${encodeURIComponent(runId)}/alignment`);
+      const d = await resp.json();
+      if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+      const r = replayRuns.find(x => x.id === runId);
+      if (r) r.alignment = d;
+      return (alignCache[runId] = d);
+    }
+
+    function alignmentHtml(a) {
+      if (!a) return 'Framing vs capture: <span class="family-note">measuring...</span>';
+      if (a.verdict === 'aligned') return `Framing vs capture: <span class="align-ok">✓ main structure held</span> <span class="family-note">(${escHtml(a.summary)}; ` +
+        `measured on the strongest edges, so check the far end of the street by eye: C in the full-screen viewer)</span>`;
+      if (a.verdict === 'uncertain') return `Framing vs capture: <span class="family-note">could not be measured reliably; check by eye (C in the full-screen viewer)</span>`;
+      return `Framing vs capture: <span class="family-warn">⚠ drifted: ${escHtml(a.summary)}</span>` +
+        (a.can_realign
+          ? `<div class="align-actions"><button class="btn" data-realign="1">REALIGN AS NEW CANDIDATE</button> ` +
+            `<span class="family-note">fixes a whole-frame shift or zoom; it cannot fix a changed perspective</span></div>`
+          : ` <span class="family-note">(too far to realign cleanly: render another candidate)</span>`);
+    }
+
+    async function wireAlignment(run) {
+      const el = document.getElementById('run-alignment');
+      if (!el) return;
+      const hook = () => {
+        const b = el.querySelector('[data-realign]');
+        if (b) b.addEventListener('click', () => realignRun(run));
+      };
+      if (run.alignment || alignCache[run.id]) { hook(); return; }
+      try {
+        const a = await fetchAlignment(run.id);
+        if (el.isConnected && el.dataset.runId === run.id) { el.innerHTML = alignmentHtml(a); hook(); }
+      } catch (e) {
+        if (el.isConnected) el.innerHTML = `Framing vs capture: <span class="family-note">not measured (${escHtml(e.message)})</span>`;
+      }
+    }
+
+    async function realignRun(run) {
+      const a = alignCache[run.id] || run.alignment;
+      if (!confirm(`Make a realigned copy of this plate as a NEW keystone candidate?\n\nThe render ${a ? 'measures: ' + a.summary : 'has drifted'}.` +
+        ` Realigning moves the whole image, so it only fully fixes a render that moved as a whole. If the model redrew the perspective` +
+        ` (a street receding at a different angle), the main building will line up but the rest will not: compare with C before approving.` +
+        ` It will be moved back onto the capture's framing; about ${a ? Math.max(1, Math.round((1 - a.coverage) * 100)) : 2}% of the frame at the edges` +
+        ` is filled by mirroring the pixels next to it, so check the edges.\n\nThis run is not changed. Continue?`)) return;
+      setReplayStatus('Realigning...', 'var(--accent-cyan)');
+      try {
+        const resp = await fetch(PIPE + `/api/runs/${encodeURIComponent(run.id)}/realign`, { method: 'POST' });
+        const d = await resp.json();
+        if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+        alignCache[d.run_id] = d.after;
+        await loadReplayRuns(false, d.run_id);
+        setReplayStatus(`Realigned copy made and selected. The main structure now lines up with the capture; ` +
+          `${(d.filled_fraction * 100).toFixed(1)}% of the frame was filled at the edges. Before approving, compare it with the capture (C in the full-screen viewer), ` +
+          `especially the far end of the street: if the perspective differs there, render another candidate instead.`, 'var(--accent-cyan)');
+      } catch (e) { setReplayStatus(`Realign failed: ${e.message}`, '#ff5252'); }
     }
 
     function setReplayStatus(msg, color) {
@@ -1907,6 +2019,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         label += ` (scene ${when}${w ? ', ' + w : ''})`;
       }
       if (r.ab && r.ab.arm) label += ` · A/B ${r.ab.arm}${r.ab.arm === 'B' ? ' (LSA)' : ''}`;
+      if (r.realigned_from) label += ' · realigned';
+      if (r.alignment && r.alignment.verdict === 'drifted') label += ' · ⚠ drifted';
       else if (r.lsa_run) label += ' · LSA pass';
       if (!document.getElementById('select-replay-view').value) label += ` · ${r.saved_view_name || 'no view'}`;
       const kids = keystonesMadeFrom(r.id);
@@ -2108,7 +2222,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       payload.mode = 'KEYSTONE';
       payload.lsa_join = lsaJoinPayload();
       if (svState && document.getElementById('chk-sv-keystone').checked) {
-        payload.streetview = { ...svState };
+        payload.streetview = svPayload(run);
         console.log(`[Keystone] with Street View reference ${svState.pano_id} (${svState.date})`);
       }
       console.log(`[Keystone] candidate from ${run.id}`);
@@ -2123,6 +2237,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const view = savedViews.find(v => v.id === run.saved_view_id);
       const replacing = keystones[run.saved_view_id];
       const warnings = keystoneWarnings(run);
+      let align = null;
+      setReplayStatus('Checking the framing against the capture...', 'var(--accent-cyan)');
+      try { align = await fetchAlignment(run.id); } catch (e) { console.warn('[Alignment]', e); }
+      setReplayStatus('');
+      if (align && align.verdict === 'drifted') warnings.push(`Framing drifted from the capture: ${align.summary}. ` +
+        'Prints keep this framing, and Cesium sun shadows will not line up with it' + (align.can_realign ? ' (realign it first: link under the run list)' : ''));
+      else if (!align || align.verdict === 'uncertain') warnings.push('Framing could not be checked against the capture: compare by eye (C in the full-screen viewer)');
       const msg = `Approve this plate as the keystone for "${view ? view.name : run.saved_view_id}"?` +
         `\n\nConditions: ${run.date || 'live'} ${fmtClock(run.time_of_day)} ${run.weather_resolved || run.weather_mode || ''}` +
         (warnings.length ? '\n\nNOT NEUTRAL, these will carry into every print:\n- ' + warnings.join('\n- ') : '\n\nConditions are neutral.') +

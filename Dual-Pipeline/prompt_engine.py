@@ -82,7 +82,7 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str =
             f"{_KEEP_FABRIC} Keep the light exactly as it is: flat, even, shadowless overcast.\n\n"
             "CHANGE ONLY THE TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves "
             "match the stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
-            f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. {phen}\n\n"
+            f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {phen}\n\n"
             "Sharp focus near to far. No blur, no vignetting."
         )
         return {"prompt": prompt, "metadata": {"renderer": "GEMINI", "mode": "PRINT", "print_variant": "season",
@@ -109,7 +109,7 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str =
         "CHANGE ONLY THESE TWO THINGS:\n"
         "1. TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves match the "
         "stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
-        f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. {phen}\n"
+        f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {phen}\n"
         f"2. LIGHT AND WEATHER:\n{light}\n\n"
         "Sharp focus near to far. No blur, no vignetting."
     )

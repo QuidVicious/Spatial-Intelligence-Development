@@ -50,6 +50,7 @@ from vision_preprocessor import delight_image
 from synthesis_engine import synthesize_twin
 from archiver import archive_run, DEFAULT_RUNS_DIR
 from composite_engine import composite_canopy
+import alignment_engine
 
 # Load Environment
 env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
@@ -285,6 +286,7 @@ RUN_FILES = {
     "spatial_twin.png": "image/png",
     "spatial_twin_raw.png": "image/png",
     "canopy_mask.png": "image/png",
+    "spatial_twin_unaligned.png": "image/png",
 }
 
 
@@ -744,13 +746,28 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             sv = request.streetview
             streetview_record = {k: sv.get(k) for k in ("pano_id", "heading", "pitch", "fov", "date", "distance_m", "copyright", "source_url", "lat", "lon")}
             streetview_record["size"] = SV_SIZE   # records made before 16:9 have no size: they were 640x640
+            want_detail = (sv.get("reference") or "detail") == "detail"
             try:
-                pano = _fetch_pano(sv["pano_id"], sv.get("heading", 0), sv.get("pitch", SV_DEFAULT_PITCH), sv.get("fov", SV_DEFAULT_FOV))
+                heading, pitch, fov = sv.get("heading", 0), sv.get("pitch", SV_DEFAULT_PITCH), sv.get("fov", SV_DEFAULT_FOV)
+                streetview_record["reference"] = "full"
+                if want_detail:
+                    s_lat = sv.get("subject_lat") if sv.get("subject_lat") is not None else telemetry.target_latitude
+                    s_lon = sv.get("subject_lon") if sv.get("subject_lon") is not None else telemetry.target_longitude
+                    if s_lat is not None and s_lon is not None:
+                        aim = _detail_aim(sv["pano_id"], s_lat, s_lon)
+                        heading, fov = aim["heading"], aim["fov"]
+                        streetview_record.update(reference="detail", detail_heading=heading, detail_fov=fov, detail_pitch=pitch)
+                    else:
+                        streetview_record["reference_note"] = "detail crop asked for, but the run has no subject point: full view sent"
+                pano = _fetch_pano(sv["pano_id"], heading, pitch, fov)
                 streetview_b64 = "data:image/jpeg;base64," + base64.b64encode(pano).decode("ascii")
-                compiled.prompt += STREETVIEW_REFERENCE_TEXT.format(date=sv.get("date") or "recently")
+                text = STREETVIEW_DETAIL_TEXT if streetview_record["reference"] == "detail" else STREETVIEW_REFERENCE_TEXT
+                compiled.prompt += text.format(date=sv.get("date") or "recently")
                 streetview_record["used"] = True
-                print(f"[StreetView] keystone reference: pano {sv['pano_id']} ({sv.get('date')}), heading {sv.get('heading')}")
-                yield stage.dispatching(f"Street View reference attached: pano {sv.get('date') or ''} (not stored)")
+                print(f"[StreetView] keystone reference: pano {sv['pano_id']} ({sv.get('date')}), {streetview_record['reference']}, "
+                      f"heading {heading}, pitch {pitch}, fov {fov}")
+                yield stage.dispatching(f"Street View reference attached ({'detail crop' if streetview_record['reference'] == 'detail' else 'full view'}): "
+                                        f"pano {sv.get('date') or ''} (not stored)")
             except Exception as e:
                 streetview_record["used"] = False
                 streetview_record["error"] = str(getattr(e, "detail", e))
@@ -1072,6 +1089,8 @@ def _run_summary(d: Path) -> dict:
         "lsa_label": (settings.get("lsa_join") or {}).get("label"),
         "ab": settings.get("ab"),
         "has_raw": (d / "spatial_twin_raw.png").exists(),
+        "alignment": _cached_alignment(d),            # None until measured (GET /api/runs/{id}/alignment)
+        "realigned_from": (settings.get("realigned_from") or {}).get("run_id"),
         "date": settings.get("date"),
         "time_of_day": settings.get("time_of_day"),
         "weather_mode": settings.get("weather_mode"),
@@ -1512,6 +1531,16 @@ async def rerun_failed(series_id: str):
 SV_META_URL = "https://maps.googleapis.com/maps/api/streetview/metadata"
 SV_IMAGE_URL = "https://maps.googleapis.com/maps/api/streetview"
 PANO_ID_RE = re.compile(r"^[A-Za-z0-9_\-]{10,120}$")
+STREETVIEW_DETAIL_TEXT = (
+    "\n\n[STREET-LEVEL REFERENCE: THE SECOND IMAGE]\n"
+    "The second image is a close-up detail photograph of the subject building, taken {date}. It is NOT a view of this "
+    "scene: it shows only part of one building, from another position, cropped tight. Use it ONLY for the form of "
+    "architectural details (openings, doors, fanlights, ironwork, stonework) and for the colour, pattern and placement of "
+    "weathering and soiling on that building. The first image alone defines composition, camera position, viewing angle, "
+    "field of view, geometry and the position of every object. Never copy the reference's vehicles, people, signs, foliage, "
+    "weather, wet surfaces, sky, light, shadows, season, camera position or framing."
+)
+
 STREETVIEW_REFERENCE_TEXT = (
     "\n\n[STREET-LEVEL REFERENCE: THE SECOND IMAGE]\n"
     "The second image is a street-level reference photograph of the subject, taken {date} from a different position. "
@@ -1645,6 +1674,10 @@ SV_SIZE = "640x360"
 SV_SIZES = ("640x360", "640x640")   # 640x640 only to re-show keystones made before the switch
 SV_DEFAULT_PITCH = 0.0
 SV_DEFAULT_FOV = 107.5
+# Detail crop (2026-10-17): the reference is aimed from the pano at the view's subject point with a narrow field of
+# view, so it carries the subject's surfaces but little street or perspective to copy. The full pano view pulled
+# renders toward Street View's camera position (DECISIONS 2026-10-17). 45 across is Don's choice for the first test.
+SV_DETAIL_FOV = 45.0
 
 
 def _fetch_pano(pano_id: str, heading: float, pitch: float, fov: float, size: str = SV_SIZE) -> bytes:
@@ -1660,6 +1693,34 @@ def _fetch_pano(pano_id: str, heading: float, pitch: float, fov: float, size: st
     if r.status_code != 200 or not r.headers.get("content-type", "").startswith("image"):
         raise HTTPException(status_code=502, detail=f"Street View image request failed ({r.status_code}).")
     return r.content
+
+
+def _pano_location(pano_id: str) -> tuple:
+    """The pano's own lat/lon, from the (free) metadata endpoint."""
+    if not PANO_ID_RE.match(pano_id or ""):
+        raise HTTPException(status_code=400, detail="Invalid pano ID.")
+    meta = requests.get(SV_META_URL, params={"key": _maps_key(), "pano": pano_id}, timeout=15).json()
+    if meta.get("status") != "OK":
+        raise HTTPException(status_code=404, detail=f"Pano metadata not found ({meta.get('status')}).")
+    return meta["location"]["lat"], meta["location"]["lng"]
+
+
+def _detail_aim(pano_id: str, subj_lat: float, subj_lon: float) -> dict:
+    """Heading and distance from the pano to the subject point, for the detail crop."""
+    plat, plon = _pano_location(pano_id)
+    return {"heading": round(_bearing(plat, plon, subj_lat, subj_lon), 1),
+            "distance_m": round(_distance_m(plat, plon, subj_lat, subj_lon), 1), "fov": SV_DETAIL_FOV}
+
+
+@app.get("/api/streetview/detail")
+def streetview_detail(pano: str, lat: float, lon: float, pitch: float = 10.0):
+    """Preview of the detail crop MAKE KEYSTONE will send: aimed from the pano at the subject point, 45 degrees across.
+    Passed straight through; never written to disk."""
+    aim = _detail_aim(pano, lat, lon)
+    img = _fetch_pano(pano, aim["heading"], pitch, aim["fov"])
+    return Response(content=img, media_type="image/jpeg",
+                    headers={"Cache-Control": "no-store", "X-Detail-Heading": str(aim["heading"]),
+                             "X-Detail-Fov": str(aim["fov"]), "Access-Control-Expose-Headers": "X-Detail-Heading, X-Detail-Fov"})
 
 
 class StreetViewProposeRequest(BaseModel):
@@ -1814,6 +1875,107 @@ def _find_compiled_prompt(d: Path) -> tuple:
             return text[i:].strip(), f.name
     return None, None
 
+
+# -------------------------------------------------------------------------
+# Alignment (2026-10-17): has a rendered plate kept the capture's framing? Measured on request, cached in the run
+# folder (alignment.json, tied to the plate file's time and size so a changed plate is measured again).
+# -------------------------------------------------------------------------
+def _plate_stamp(d: Path) -> str:
+    st = (d / "spatial_twin.png").stat()
+    return f"{st.st_mtime_ns}:{st.st_size}"
+
+
+def _cached_alignment(d: Path) -> Optional[dict]:
+    a = _read_json(d / "alignment.json")
+    if not a or not (d / "spatial_twin.png").exists():
+        return None
+    try:
+        if a.get("plate_stamp") != _plate_stamp(d) or a.get("version") != alignment_engine.VERSION:
+            return None
+    except OSError:
+        return None
+    return {k: a.get(k) for k in ("verdict", "summary", "can_realign", "coverage", "score", "scale", "rotation", "dx", "dy")}
+
+
+def _measure_alignment(d: Path) -> dict:
+    if not (d / "viewport_capture.jpg").exists() or not (d / "spatial_twin.png").exists():
+        raise HTTPException(status_code=422, detail="This run needs both a capture and a rendered plate to measure alignment.")
+    a = _read_json(d / "alignment.json")
+    stamp = _plate_stamp(d)
+    if a and a.get("plate_stamp") == stamp and a.get("version") == alignment_engine.VERSION:
+        return a
+    est = alignment_engine.measure(d / "viewport_capture.jpg", d / "spatial_twin.png")
+    if est is None:
+        raise HTTPException(status_code=501, detail="Alignment needs numpy and Pillow in the server's environment.")
+    est["plate_stamp"] = stamp
+    est["measured_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    tmp = d / "alignment.json.tmp"
+    tmp.write_text(json.dumps(est, indent=2), encoding="utf-8")
+    tmp.replace(d / "alignment.json")
+    print(f"[Alignment] {d.name}: {est['verdict']}, {est['summary']} (score {est['score']}, coverage {est['coverage']})")
+    return est
+
+
+@app.get("/api/runs/{run_id}/alignment")
+async def run_alignment(run_id: str):
+    """How the run's plate differs from its capture: verdict (aligned, drifted, uncertain), plain-words summary,
+    and the numbers. Takes a few seconds the first time; cached after that."""
+    d = _run_dir(run_id)
+    return await asyncio.to_thread(_measure_alignment, d)
+
+
+@app.post("/api/runs/{run_id}/realign")
+async def realign_run(run_id: str):
+    """Make a NEW keystone candidate whose plate is this run's plate warped back onto the capture's framing.
+    The original run is never changed, so an approved keystone, its date plates and prints stay as they were.
+    Not for prints or date plates (they follow their keystone), and only when the gap left at the edges is small."""
+    d = _run_dir(run_id)
+    meta = _read_json(d / "run_metadata.json") or {}
+    settings = meta.get("settings") or {}
+    if settings.get("keystone_print_of") or settings.get("date_plate_of"):
+        raise HTTPException(status_code=422, detail="Prints and date plates follow their keystone's framing; realign the keystone instead.")
+    est = await asyncio.to_thread(_measure_alignment, d)
+    if est["verdict"] != "drifted":
+        raise HTTPException(status_code=422, detail=f"Nothing to realign: the plate measures {est['verdict']} ({est['summary']}).")
+    if not est.get("can_realign"):
+        raise HTTPException(status_code=422, detail=(
+            f"Too far to realign cleanly: the moved render covers only {est['coverage'] * 100:.0f}% of the frame, "
+            f"so {100 - est['coverage'] * 100:.0f}% would have to be filled in at the edges. Render another candidate instead."))
+    now = datetime.now()
+    base = _RUN_STAMP_RE.sub("", d.name).rstrip("_") or "run"
+    new_id = f"{base}_{now:%Y%m%d_%H%M%S}"
+    nd = DEFAULT_RUNS_DIR / new_id
+    if nd.exists():
+        raise HTTPException(status_code=409, detail="A run with that name already exists; try again in a second.")
+    skip = {"alignment.json", "spatial_twin.png", "spatial_twin_unaligned.png", "canopy_mask.png", "spatial_twin_raw.png"}
+    def _build():
+        import shutil
+        nd.mkdir(parents=True)
+        for f in d.iterdir():
+            if f.is_file() and f.name not in skip and not f.name.endswith(".tmp"):
+                shutil.copy2(f, nd / f.name)
+        shutil.copy2(d / "spatial_twin.png", nd / "spatial_twin_unaligned.png")
+        return alignment_engine.realign(d / "viewport_capture.jpg", d / "spatial_twin.png", est, nd / "spatial_twin.png")
+    try:
+        info = await asyncio.to_thread(_build)
+    except Exception as e:
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Realign failed: {e}")
+    s2 = dict(settings)
+    s2.pop("ab", None)                               # a realigned copy is not an A/B arm
+    s2["keystone_candidate"] = True
+    s2["realigned_from"] = {"run_id": run_id,
+                            "moved": {k: est[k] for k in ("scale", "rotation", "dx", "dy", "summary", "coverage")},
+                            "filled_fraction": info["filled_fraction"]}
+    meta["settings"] = s2
+    meta["timestamp"] = f"{now:%Y%m%d_%H%M%S}"
+    mtmp = nd / "run_metadata.json.tmp"
+    mtmp.write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
+    mtmp.replace(nd / "run_metadata.json")
+    after = await asyncio.to_thread(_measure_alignment, nd)
+    print(f"[Alignment] realigned {run_id} -> new candidate {new_id}: was {est['summary']}; now {after['verdict']} "
+          f"({after['summary']}); {info['filled_fraction'] * 100:.1f}% of the frame filled at the edges")
+    return {"run_id": new_id, "before": est, "after": after, "filled_fraction": info["filled_fraction"]}
 
 @app.get("/api/runs/{run_id}/prompt")
 async def run_prompt(run_id: str):

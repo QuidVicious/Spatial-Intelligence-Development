@@ -6,6 +6,85 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-17 (afternoon): Pano as words, the detail crop, and the Loom
+
+**The detail crop did not stop the drift.** Tested, rejected as a fix.
+Built: MAKE KEYSTONE can send the pano as a crop aimed from the pano at the view's subject (45 degrees across, pitch from the Street View card; pitch 9 fitted the target building from chimney pots to kerb), with its own prompt wording ("a close-up detail... NOT a view of this scene"). B text at the old view, seed 42: drifted 132 px right, 68 px lower, 12% zoomed out, almost the same as the full-pano render. Reading: the camera position is in the subject itself (the angle of its facades, how its lines converge), not only in the street around it, so any photo of the subject from the pano's position carries the car's viewpoint. The crop still helped the surfaces. Kept in the code as an option; not a fix.
+
+**Pano as words: the finishing pass turns the pano into text, and the keystone is rendered with no pano image.** Adopted as the "keep my composition" route.
+B structure at the old view, seed 42, budget 6000, no pano image: held 4 of 4 (against 0 of 5 with a pano image, full or cropped). Streets, kerbs and the far end of the street matched the capture well. Surfaces: "all the stuff is there", not the near 1:1 match of the matched-view pano renders. Principle: words have no vantage point.
+Limits found, over four renders with the return facade described ever more exactly (from Don's Street View photo):
+- The return's ground floor rendered arched every time, with or without the word "arch" (written as "none arched", then only in positive terms: flat-lintelled rectangular openings). The front is arched, and the model arches the whole corner block.
+- Counting: blind and glazed windows mostly landed once listed floor by floor, but the top window of the bay beside the corner stayed blind twice.
+- The door case grew sidelights until the door was described exactly (plain rectangular door case, rectangular transom glazed in an X pattern).
+- Consistently wrong: the corner basement shows a door where there is a window, with no railing (Don has been saving it for a Pro edit session). One render invented a gate in the garden railing.
+- Negation does not work in image prompts: "none arched" still mentions arches.
+
+**Finding: the finishing pass rewrites structure from the pano.** Fix planned.
+On the B text it deleted the lamp, the near building's arches, steps, hoods and aprons; turned the target building round (called the side-street return five-bay with a transomed door, dropped the arched front); and flattened the terrace to "uniform four-storey houses without dormers". The same problem as the pano image, in words. Its surfaces were good, and it added the moulded eaves cornice with blocking course and the terrace's first-floor cast-iron balconettes (seen in Don's Street View photo). Fix: the finishing pass gets the weft-pass rules (Don's layout is confirmed structure; it writes surfaces, colours of doors and painted features, and opening shapes only) and a removal check.
+
+**Correction to the record: the target building's side-street return is five bays,** door in the centre bay, two bays either side (Don, from Street View). The brief and Scene layout said four; Don to correct the Scene layout. The return, from the ground up: the bay at the corner glazed, blind, glazed, blind; the bay beside it blind on the lower three floors, glazed at the top; all openings flat-lintelled; the door blue, in a plain rectangular case with an X-glazed rectangular transom; the two basement windows right of the steps glazed.
+
+**Next idea: an edit pass on the approved keystone, with the pano for one facade only.** Planned, part of the UI rebuild (the Pro edit session).
+Keystone from words (the frame holds), then a targeted edit of the approved plate: "change only the return's ground-floor openings to rectangular; the corner basement door to a window", with a pano crop as the reference for that facade. Prints edit rather than redraw and held the keystone's framing all day, and the composite pastes everything else back, so the pano cannot pull the camera. Untested.
+
+**Budget cap.** Planned.
+A 3,709-character scene text trimmed at budget 6000 (the slider's maximum); it was shortened to 3,306 by cutting wording, not facts. Raise the cap above 6000, and keep the geometric-accuracy line in a fixed slot the compiler cannot trim.
+
+**Two user-facing modes for the Street View reference.** Planned (UI rebuild).
+"Use the Street View camera": the user accepts Google's viewpoint; the tool helps match the Cesium camera to the pano (a "go to the pano's camera" button); full reference, best surfaces. "Keep my composition": the user's camera rules; the pano reaches the render as words (finishing pass with the weft rules), with the edit pass for details words cannot carry. The alignment check guards both.
+
+**Naming: the LSA Loom.** Adopted.
+After Lovelace (1843 Notes): "the Analytical Engine weaves algebraical patterns just as the Jacquard-loom weaves flowers and leaves."
+- The LSA Loom: LSA Studio, the whole tool. Public name "the LSA Loom", because "Loom" alone is an existing product name.
+- Warp: the structure, set first and never moved: the Cesium frame and the confirmed layout.
+- Weft: the LSA's knowledge: surfaces, condition, biology, species.
+- Weft pass: what was called the weave or LSA pass. Button label in plain words: ADD LSA SURFACES. Verb: throw the weft, or run the weft pass.
+- Pattern cards: the domain keys.
+- Cloth: the render.
+- Second warp: why a pano image pulls the camera: two structures under tension.
+The loom maps onto the bag-and-placement rule of 2026-10-16: the pipeline sets the warp, the LSA throws the weft. Lovelace and Jacquard references can go in public copy; the alt-history fiction around them stays internal, and generated period portraits are labelled as generated.
+
+**Next session, in order:** finishing pass with the weft rules and a removal check; budget cap and a fixed slot for the geometric-accuracy line; weft-pass removal check; rename the weave to the weft pass in code and UI; then the UI rebuild (step strip, gating, test mode, prominent status, the two reference modes, the edit pass).
+
+## 2026-10-17: Alignment check, and what moves the keystone's frame
+
+**Alignment check: each keystone candidate is measured against its capture.** Built.
+alignment_engine.py (Dual-Pipeline, numpy and Pillow only) reduces the capture and the plate to edge directions and finds the scale, rotation and shift that best line them up. Shown as "Framing vs capture" under the run list, in the approve dialog's warnings, and after an A/B pair (both arms must hold for a fair comparison). Tolerance, agreed with Don: 30 px, 5% zoom, 1 degree (the 2026-10-16 A arm measured 4% and Don judged it on frame). Cached per run in alignment.json.
+Limits: the measurement is weighted by the strongest edges, usually the main building, so "held" means the main structure held; the far end of the street is checked by eye (C in the full-screen viewer). A region-by-region check was tried and was too noisy against the photogrammetry capture.
+
+**Realign makes a new candidate with the plate warped back onto the capture.** Built, of limited use.
+The original run is never changed. Only offered when the warped render still covers 96% of the frame. It fixes a whole-frame shift or zoom, not a changed perspective: on the 2026-10-16 keystone the corner building lined up but the terrace still receded at a different angle. A perspective (camera-rotation) warp was tried and did not fix it either. When the model redraws the viewpoint, only a new render fixes it.
+
+**Finding: the Street View reference pulls the render toward its own camera position.** Adopted as the working explanation.
+The pano reference was identical on 2026-10-09 and 2026-10-16 except its shape (square then, 16:9 since). Tally, Abercromby and Nelson, seed 42:
+- 9 Oct keystone, square pano: held (1 of 1).
+- Old view, pano disagreeing with the capture (pitch 10 vs 2.4 degrees, 44 m vs 42 m from the subject): trimmed text 0 of 2 held; A text 1 of 1; B text 0 of 4 (tilted up three times; turned right without the roof phrase).
+- New saved view "LSA Alignment: Abercromby and Nelson", angles matched to the pano (heading 60.9, pitch 8.5, FOV 60; pano heading 60, pitch 10, FOV 60), 55.7 m from the subject against the pano's 44.5 m: trimmed text drifted 19% zoomed in (the pano's distance predicts about 25%); full A text with the pano held; full A text without the pano held.
+- Old view, B text without the pano: held, where it had failed 4 of 4 with it.
+Reading: a pano whose viewpoint disagrees with the capture pulls the framing toward its camera, and a trimmed or different text makes it more likely to win. Small numbers from one location: evidence, not proof.
+The pano also carries the surfaces: without it, Don judged the materials clearly worse; with the views matched, patina, soiled blocks and arched versus squared openings were right.
+Same pattern as Miller's Row: Google's version of the place overriding the one Don defined. Principle: **Cesium sets the frame; Street View is evidence for detail only.**
+
+**Next: a detail crop for the reference.** Planned.
+Send the pano as a tight view of the target facade, with no street, ground or perspective to copy, so it informs surfaces without carrying a camera position. Test against the matched-view renders: it must hold the frame and keep their surface quality.
+
+**Prompt budget default raised to 6000.** Adopted.
+A test render at the page's old default (4400) was trimmed without anyone noticing until the settings were read back. Planned: show key settings (budget, seed, pano, text length) in a summary before each render.
+
+**Bus blocking the building: the first real case.** Open.
+At the new view, parked cars in the capture hide how the side street drops from the corner, and a Synthesize render drew it flat. In the same frame, cars hide the garden railing and pavement completely, yet they rendered well because the text names them. Text restores hidden objects it names; hidden ground shape needs stronger text or the pano.
+
+**Plausibility scale: tourist versus local.** Adopted as a rating.
+Tourist-plausible: convincing to anyone who does not know the corner. Local-accurate: survives the residents who would spot the wrong lamp. Current keystones are tourist-plausible; the globe-and-cap lamp is a local-accuracy marker (a Pro Mode edit to try later).
+
+**UI rebuild notes from this session.** Planned.
+Actions must look like buttons (realign was a link). The framing line and other status under the frame are too small to notice: make them prominent, with an action when one applies. Gate controls that can spoil a run (finishing pass, LSA pass) until they are the next sensible step; a test mode that locks text, seed, pano and budget; a step strip showing where you are. A new pano needs UPDATE twice to take typed angles. The pano card starts empty for a new view. A capture needs a full Synthesize with a throwaway render. Run labels are cut off in the dropdown. Earlier: one name per thing, no auto-pick in the LSA dropdown, pasting new text starts a fresh pass, the added-structure box always appears.
+
+**Record gap:** "Fit pano to capture" and the frame outline on the pano preview (2026-10-09, adopted) are not in the current page or in viewfinder.html. Not to be restored as they were: fitting the whole frame makes the reference more of a composition to copy.
+
+**Delivery note:** the second write of pipeline.js and lsa_studio.html this morning silently delivered the first version; caught by checking file sizes. Each delivery is now checked against the expected size.
+
 ## 2026-10-16: The LSA join, stage 2, the first A/B, and a new keystone
 
 **The bag and the placement.** Adopted.

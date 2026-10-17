@@ -7925,5 +7925,57 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:0ae1da731c00d3f8355525483fb998f35c536034": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring leaf flush and extend autumn defoliation compared to southern Britain.",
+      "species": [
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-22",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Purplish-brown flower clusters precede lime-green emerging toothed, rough-textured leaves.",
+            "full_leaf": "Broad, rough, dark green obovate leaves with asymmetric bases; winged green samaras form.",
+            "colouring": "Coarse leaves shift to mottled dull greenish-yellow across massive spreading scaffold limbs.",
+            "peak": "Canopy turns rich golden yellow to muted ochre; dark grey-brown fissured bark exposed below.",
+            "falling": "Tattered yellow-brown leaves drop rapidly from upper branches, littering the curb below.",
+            "dormant": "Bare sprawling dark grey limbs with zigzag twigs, prominent dormant buds, and rough bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-22",
+            "full_leaf": "05-28",
+            "colour_onset": "10-02",
+            "peak_colour": "10-25",
+            "half_fall": "11-08",
+            "bare": "11-22"
+          },
+          "stages": {
+            "budburst": "Fat green buds expand into bronze-tinged five-lobed leaves with pendulous flower racemes.",
+            "full_leaf": "Thick, matte dark green palmate leaves with reddish petioles; pairs of winged seeds hang down.",
+            "colouring": "Leathery foliage fades from dull olive to uneven greenish-yellow, often marked with tar spots.",
+            "peak": "Warm butter-yellow and brown-speckled leaves held across thick, spreading scaffold branches.",
+            "falling": "Crisp golden-brown leaves drop steadily as bare outer twigs emerge against grey trunk.",
+            "dormant": "Stout, bare grey twigs with plump green-brown buds; deeply fissured, flaking grey-brown bark."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }
