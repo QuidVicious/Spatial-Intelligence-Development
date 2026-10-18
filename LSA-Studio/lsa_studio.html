@@ -162,7 +162,7 @@
   .align-actions { margin-top: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .align-actions .btn { color: var(--xanthoria); border-color: var(--xanthoria); font-weight: 600; }
 
-  /* LSA pass: the chosen run's preview, and the structure it added, for keep or remove */
+  /* Weft pass: the chosen run's preview, and the structure it added, for keep or remove */
   .lsa-preview { margin-top: 6px; display: grid; gap: 5px; }
   .lsa-preview[hidden], .lsa-added[hidden] { display: none; }
   .lsa-preview img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; border: 1px solid var(--panel-border); cursor: pointer; }
@@ -645,7 +645,7 @@
           <label class="hud-label">PROMPT BUDGET</label>
           <span id="budget-readout" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan);">6000</span>
         </div>
-        <input type="range" id="slider-gemini-budget" min="2600" max="6000" step="100" value="6000"
+        <input type="range" id="slider-gemini-budget" min="2600" max="8000" step="100" value="6000"
                oninput="document.getElementById('budget-readout').textContent = this.value;">
       </div>
       <div id="marble-options" class="hud-input-group" style="display:none;">
@@ -719,21 +719,21 @@
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
       <div id="run-family" class="run-family"></div>
       <button class="scene-link" id="open-scene-text" type="button" hidden>Edit this run's scene text below</button>
-      <h3 class="sub">LSA pass</h3>
-      <label for="lsa-join-run" style="margin-top: 0;">LSA run to weave in</label>
+      <h3 class="sub">Weft pass: LSA surfaces</h3>
+      <label for="lsa-join-run" style="margin-top: 0;">LSA run to draw the weft from</label>
       <select id="lsa-join-run" style="width: 100%;"><option value="">No LSA runs</option></select>
       <div id="lsa-join-preview" class="lsa-preview" hidden>
         <img id="lsa-join-thumb" alt="The chosen LSA run's image" />
         <div id="lsa-join-brief" class="lsa-preview-brief"></div>
       </div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="lsaWeave()" title="Weave the LSA run's materials, condition and biology into this run's scene text, with its scene layout as confirmed structure. Added structure is listed for you to keep or remove. Light, season and compass words stay out.">LSA PASS</button>
-        <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before the LSA pass">UNDO</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="lsaWeave()" title="The weft pass: adds the LSA run's materials, condition and biology to this run's scene text. The scene text and the LSA run's scene layout are the warp: structure that stays. Added and removed structure are listed for you to check. Light, season and compass words stay out.">ADD LSA SURFACES</button>
+        <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before the weft pass">UNDO</button>
       </div>
       <div id="lsa-join-status" class="status-line"></div>
       <div id="lsa-join-added" class="lsa-added" hidden></div>
       <details id="lsa-join-notes" hidden style="font-size: 12px; color: var(--lichen-grey);">
-        <summary style="margin-top: 4px;">What the LSA pass left out</summary>
+        <summary style="margin-top: 4px;">What the weft pass left out</summary>
         <div id="lsa-join-notes-text" style="white-space: pre-wrap; margin-top: 4px;"></div>
       </details>
       <div style="display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 11px; color: var(--text-muted);">
@@ -745,7 +745,7 @@
         <input type="checkbox" id="chk-composite" checked /> Composite outside canopy (prints, matching weather)
       </label>
       <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
-      <button onclick="makeKeystoneAB()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Two keystone candidates from this run, same seed and pano: A from the scene text before the LSA pass, B from the text after it">A/B KEYSTONES (before and after the LSA pass)</button>
+      <button onclick="makeKeystoneAB()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Two keystone candidates from this run, same seed and pano: A from the scene text before the weft pass, B from the text after it">A/B KEYSTONES (before and after the weft pass)</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
       </div>
@@ -791,6 +791,7 @@
       <img id="sv-detail-preview" alt="The detail crop MAKE KEYSTONE will send" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 6px; border-radius: 6px; border: 2px solid var(--xanthoria);" />
       <div id="sv-detail-note" class="hint"></div>
       <div id="sv-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+      <div id="sv-finish-report" class="lsa-added" hidden></div>
     
       </div>
       <div class="module">

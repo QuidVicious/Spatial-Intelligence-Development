@@ -6,6 +6,75 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-18 (evening): The clean keystone set at the matched view
+
+**A keystone recipe, written down.** Adopted. KEYSTONE_RECIPE.md (Base): the rule, the two pano jobs, nine steps, the traps hit so far, and the current set for each view. First draft of the step strip for the UI rebuild.
+
+**The clean set at "LSA Alignment: Abercromby and Nelson".** Following the recipe: source run Saturday 2026-10-17 12:00 Synthesize; finishing pass with the 2021 pano (zi3ryjlonoAA8Xl25mFo3g) for London Street and structure, then with the 2025 pano (oQ-PbrZigkImB4CxVEM1tw) for surfaces; Don corrected the first three terrace houses to three floors of windows above the street, the top floor flush, over a basement; keystone with the 2021 pano as reference image, seed 42.
+Candidate 16:08: framing held (no measurable change, 4 px). Don: overall good. Faults:
+- Two blind windows too many on the return: the corner bay's second floor and the attic of the bay beside it should be glazed. From Don's Street View photo, the return from the corner outward, from the ground up: glazed, blind, glazed, blind; then blind, blind, blind, glazed; the other three bays glazed throughout, the blue door in the middle bay.
+- The stone reads too yellow. Don: tan more than yellow, and it varies with the light across Street View dates.
+- The near building has no basement railings.
+- Still there, and for the edit pass rather than wording (Claude's reading of the render; Don did not flag them this time): arched windows inside the near building's arched recesses, and a lantern instead of the globe-and-cap lamp.
+Not yet approved. Next text is in HANDOFF_2026-10-19.md.
+
+**Colour words travel.** Finding.
+"Honey-buff" came in with the finishing pass (earlier today it was judged to match Don's photos of the near building) and was then used for the near building, the target building and the terrace. On the render it pushes everything yellow. Next text: "cool grey-tan", named positively ("not yellow" would invite yellow). Rule for the passes and the primer: name stone colour as it looks under flat overcast light, the keystone's light, not as one pano's light shows it.
+
+**Unattached sentences do not land.** Finding.
+The railings sentence ("Deep basement lightwells enclosed by ... railings") stood on its own near the end of the text; the model put railings on the target building and the terrace but not on the near building. Fixed by giving the near building its own sentence. Same rule as the weft pass's: attach every feature to the structure it belongs to.
+
+**Confirmed structure was lost between rounds.** Finding; fix planned.
+The return's window pattern was in the 2026-10-17 text and in this log, but not in the text the clean set started from, and neither pass put it back (they keep what is there; they do not restore). Claude then recalled the pattern wrongly and dropped half of it until Don's photo matched this log. Fix: confirmed details like the window pattern belong in the Scene layout, which every pass reads, not only in one run's scene text. Same for the five-bay return (still four in the LSA preset).
+
+**The detail crop at a matched pano.** One data point.
+The 16:08 candidate went out with "What MAKE KEYSTONE sends" on Detail crop (the default) instead of Full view, by mistake. It held the frame. At a matched pano either setting holds, so far; at a mismatched pano neither did (2026-10-17). The dropdown default is a trap for the UI rebuild.
+
+**A candidate made from a candidate.** Checked in the code.
+MAKE KEYSTONE takes only the selected run's capture and camera pose; a candidate carries an exact copy of its source's capture, and the pasted text replaces its scene text. So the render is the same, but the new candidate is filed under the candidate, not beside it. The recipe starts every candidate from the source capture. UI rebuild: "make another candidate" from a candidate uses its source capture.
+
+## 2026-10-18: Finishing pass with the weft rules, auto budget, location-neutral prompts
+
+**The finishing pass follows the weft rules.** Built, tested.
+The scene text's structure is confirmed and stays; the pass sets surfaces, names the colours of painted features (doors, frames, shutters, railings, trim) and states opening shapes facade by facade in positive words. It counts bays and storeys on each facade the pano shows and compares them with the text. Anything the pano seems to contradict is reported under "Where the pano seems to disagree (not applied)", never written in; Don decides. Structural additions are listed. A report under the Street View card's status line shows removed, added and disagreements.
+Test, B text with "four-bay return" planted: the old pass (2026-10-17) deleted the lamp, the arches and the dormers and turned the building round. The new pass kept all structure, named the royal-blue door, white sashes and black ironwork, corrected the near building's stone to honey-buff with patchy grey soiling (matching Don's photos), added the blind windows' pale buff infill, and on the second run (with the counting step) reported "IMAGE 2 shows five bays on the side-street return; the scene text says four". Without the counting step it missed the planted error. The text still grows about 21% against the 15% asked.
+
+**Removal check on both passes.** Built.
+The server compares the text before and after against a list of structural words (counts, openings, elements, materials, render directives) in synonym groups ("squared", "flat-headed", "rectangular" count as one feature), and counts a negated mention ("without dormers") as a removal. It does not depend on the model reporting what it dropped. Tested on the old pass's 2026-10-17 output: it caught the lamp, arches, fanlight, steps, hoods, aprons, storey counts and dormers.
+
+**The weft pass is named in the page.** Section "Weft pass: LSA surfaces", button ADD LSA SURFACES; its list always appears after a pass, removed structure first. Code identifiers keep the old names.
+
+**Auto budget, and a fixed slot for render directives.** Built.
+If the scene text and the trees would not fit, the compiler raises the budget to what they need, up to 8000 (the slider's new maximum), and the stepper says so ("budget 6149 raised from 6000 to fit the scene text"). It trims only above 8000, and says so. The slider sets the minimum. "High geometric accuracy: ..." is lifted out before trimming and put back at the end of the scene text, so it is never cut. Don's question that led to it: why make the user set a number the compiler already knows.
+
+**Location-neutral wording in this round's prompts.** Fixed.
+Don: Edinburgh-specific wording has leaked into hard code before, and fought against other places (Santa Fe as the example). This round's own prompts had it: the storey rule's example (dormers in a pitched slate roof, basement behind area railings), the position-word examples (the long curved front, the short return down the sloping side street, the terrace), setts and platts as examples of proposed structure, stone-only wording (quarry, soot, crusts), the removal list (Caithness, whinstone), and a British-only street-name check. All made general; the street-name check now also catches forms like Calle de la Vuelta, Paseo de Peralta and Canyon Road. Not yet changed: the domain engine's lenses and the Street View read still lean on masonry ("the local building stone and its quarries", "soot and gypsum crusts", "stone colour, soot or grime"). Planned with the place primer, tested at a non-masonry place against Edinburgh.
+
+**Words-only renders: the frame held 6 of 6 at the old view.** Their limits, at the near building and the return, after rewriting from Don's 2021 Street View photo:
+- The near building's ground floor rendered as arched recesses (right) but with arched windows inside them (wrong: flat-headed sashes in arched settings); the corner bay stayed a door (it is a window); triangular pediments appeared over the first-floor windows (they are cornice hoods over small balustrades of five balusters).
+- The return's ground floor stayed arched; the lamp stayed a lantern.
+These are the model's strongest priors; wording has not moved them in about eight tries. Next: the edit pass.
+- The far ground improved: London Street's facades rendered as real buildings where they had been mush behind the trees.
+
+**The edit pass is the next build.** Planned.
+Keep a words-only keystone that holds the frame; edit only what is wrong (the corner bay's door to a sash window in its arched recess; the lamp to globe and cap), with a pano crop of that part alone as reference; the composite pastes everything else back, as for prints, so the camera cannot move. First test case: the matched-view keystone's lamp.
+
+**Matched-view keystone, chosen for approval (Don to approve).** The Saturday 13:21 render at "LSA Alignment: Abercromby and Nelson" (full pano ticked, view matched to the pano's heading and pitch, A text, seed 42): framing held (1% zoomed in), surfaces judged very good, only the lamp wrong and distant London Street weak. It had been overlooked in the run list. Keystones belong to their saved view; "Abercromby and Nelson 1" still has the drifted 2026-10-16 15:11 keystone.
+
+**The K key misled.** In the full-screen viewer K shows the view's currently approved keystone, whichever run is selected. With the 9 Oct 13:43 run selected, K showed the drifted Friday keystone, and it looked as if the 13:43 run had shifted. It had not: the 13:43 render and the new 15:25 render both measured on the capture to within 1%. Fix planned: K's caption names the keystone (date, time, framing state).
+
+**A test render used the wrong text without warning.** Selecting a run reloads its own scene text over a pasted one; a render at 15:20 went out with the run's original 1,420 characters. Top item for the UI rebuild: changing the selected run never silently replaces pasted text.
+
+**Place primer.** Planned, after this round.
+When an address is entered, the system first excavates the place at coarser scales (city, district, street: the zoom inward, like the old Atget gyre), cached and reused, so a scene at Drummond Place does not spend tokens rediscovering Craigleith sandstone and Auld Reekie's soot. Design rules agreed: a range, not a portrait (what exists across the place and where, not the postcard average, which would strengthen the centroid); layered, nearest layer wins; fed into the centroid stage as the baseline the scene departs from; proposed until Don approves it, after which it becomes a reusable verified layer; cached per place. In Loom terms, the yarn stock.
+The present-day layer: street furniture (the international urban-design term: signs, bollards, lamp posts, pay-and-display machines, hydrants, traffic islands) and street utilities (cabinets, wiring, alarm boxes, entry panels). Permanent modern fixtures separate a photograph from a period painting, and the decluttering rule may be removing them with the transient clutter. Transient (cars, people, bins, scaffolding, A-boards) goes; permanent (fixed signs, cabinets, alarm boxes, wiring) stays. The primer supplies what they look like in each place.
+Plausibility scale, extended: tourist, city local (someone from Morningside), neighbourhood local (a Feuar).
+Pano dates: an older winter pano (Don used March 2021) shows structure and far ground through bare trees; surfaces and colours should come from the newest pano.
+
+**Recorded for the Scene layout:** the target building's return is five bays (Don corrected the record 2026-10-17; the LSA preset still says four until a new LSA run is made).
+
+**UI rebuild list, additions today:** star or flag promising runs and filter to them (the matched-view keystone was overlooked); K names its keystone; never overwrite pasted text on run change; the finishing-pass report placement is fine but the whole status area needs to be prominent.
+
 ## 2026-10-17 (afternoon): Pano as words, the detail crop, and the Loom
 
 **The detail crop did not stop the drift.** Tested, rejected as a fix.

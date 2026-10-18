@@ -573,7 +573,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 eco = str(lj.get("ecology") or "").strip()
                 if eco:
                     domain_result.botanical_ecology = eco
-                lsa_join_record = {k: lj.get(k) for k in ("run_id", "label", "instruction", "added_structure",
+                lsa_join_record = {k: lj.get(k) for k in ("run_id", "label", "instruction", "added_structure", "removed",
                                                           "species_to_verify", "set_aside", "not_added",
                                                           "hand_edited_after", "director_layout_used")}
                 lsa_join_record["ecology_replaced"] = bool(eco)
@@ -680,8 +680,10 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         _m = compiled.metadata
         yield stage.dispatching(
             f"Conditioning compiled: {_m.get('final_char_count', 0)} chars "
-            f"(budget {_m.get('budget', '-')}, doc {_m.get('doc_chars', '-')}"
-            f"{', TRIMMED' if _m.get('doc_trimmed') or _m.get('eco_trimmed') else ''})"
+            f"(budget {_m.get('budget', '-')}"
+            f"{' raised from ' + str(_m.get('budget_requested')) + ' to fit the scene text' if _m.get('budget_raised') else ''}"
+            f", doc {_m.get('doc_chars', '-')}"
+            f"{', TRIMMED: the scene text is longer than the ' + str(_m.get('budget')) + ' ceiling allows' if _m.get('doc_trimmed') or _m.get('eco_trimmed') else ''})"
         )
         yield stage.finish(f"Conditioning compiled for {compiled.target_model}")
 
@@ -1535,7 +1537,7 @@ STREETVIEW_DETAIL_TEXT = (
     "\n\n[STREET-LEVEL REFERENCE: THE SECOND IMAGE]\n"
     "The second image is a close-up detail photograph of the subject building, taken {date}. It is NOT a view of this "
     "scene: it shows only part of one building, from another position, cropped tight. Use it ONLY for the form of "
-    "architectural details (openings, doors, fanlights, ironwork, stonework) and for the colour, pattern and placement of "
+    "architectural details (openings, doors, ironwork, wall surfaces) and for the colour, pattern and placement of "
     "weathering and soiling on that building. The first image alone defines composition, camera position, viewing angle, "
     "field of view, geometry and the position of every object. Never copy the reference's vehicles, people, signs, foliage, "
     "weather, wet surfaces, sky, light, shadows, season, camera position or framing."
@@ -1792,17 +1794,21 @@ def streetview_read(req: StreetViewReadRequest):
 
 @app.post("/api/streetview/rewrite")
 def streetview_rewrite(req: StreetViewReadRequest):
-    """Finishing pass: the full scene text with its surface condition rewritten from the pano.
-    Nothing is saved here; the original text stays in the source run's domain_result.json."""
+    """Finishing pass (weft rules, 2026-10-18): surfaces, painted colours and opening shapes set from the pano;
+    the scene text's structure is kept; structural additions listed, contradictions reported (never applied), and
+    any structural term the pass dropped found by comparing the texts. Nothing is saved here."""
     d = _run_dir(req.run_id)
     capture = _file_data_url(d / "viewport_capture.jpg", "image/jpeg")
     if not capture:
         raise HTTPException(status_code=422, detail="This run has no capture to compare against.")
     scene = req.scene_text or load_domain_from_run(d)[0].documentary_prompt
     pano = _fetch_pano(req.pano_id, req.heading, req.pitch, req.fov)
-    revised = rewrite_condition_from_streetview(capture, pano, scene, req.date, os.getenv("GEMINI_API_KEY"))
-    print(f"[StreetView] rewrote condition from pano {req.pano_id} for {req.run_id}: {len(scene)} -> {len(revised)} chars")
-    return {"scene_text": revised, "original": scene, "pano_id": req.pano_id, "date": req.date,
+    res = rewrite_condition_from_streetview(capture, pano, scene, req.date, os.getenv("GEMINI_API_KEY"))
+    revised = res["scene_text"]
+    print(f"[StreetView] finishing pass from pano {req.pano_id} for {req.run_id}: {len(scene)} -> {len(revised)} chars"
+          f" | added {len(res['added'])} | conflicts {len(res['conflicts'])}"
+          f"{' | REMOVED: ' + ', '.join(res['removed']) if res['removed'] else ''}")
+    return {**res, "original": scene, "pano_id": req.pano_id, "date": req.date,
             "changed": revised.strip() != scene.strip()}
 
 
@@ -1832,11 +1838,12 @@ def lsa_weave(req: LsaWeaveRequest):
     out = weave_lsa_into_scene(capture, scene, domain.botanical_ecology, req.analysis, os.getenv("GEMINI_API_KEY"),
                                director_layout=req.director_layout)
     added = out.get("added_structure") or []
-    print(f"[LSA] pass from {req.lsa_run_id} on {req.run_id}: {len(scene)} -> {len(out['scene_text'])} chars"
+    print(f"[Weft] pass from {req.lsa_run_id} on {req.run_id}: {len(scene)} -> {len(out['scene_text'])} chars"
           f" | layout {'sent' if (req.director_layout or '').strip() else 'none'}"
           f" | structure added: {sum(a['status'] == 'confirmed' for a in added)} confirmed, "
           f"{sum(a['status'] == 'proposed' for a in added)} proposed"
-          f"{' | check: ' + ', '.join(out['warnings']) if out['warnings'] else ''}")
+          f"{' | check: ' + ', '.join(out['warnings']) if out['warnings'] else ''}"
+          f"{' | REMOVED: ' + ', '.join(out.get('removed') or []) if out.get('removed') else ''}")
     return {**out, "original": scene, "lsa_run_id": req.lsa_run_id}
 
 

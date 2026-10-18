@@ -692,21 +692,88 @@ def _streetview_call(instruction: str, capture_b64: str, pano_jpeg: bytes, scene
 
 
 # =========================================================================
-# STREET VIEW FINISHING PASS: rewrite the scene text's surface condition
+# STRUCTURE CHECK (2026-10-18): which structural features a pass took out of the scene text.
+# Both passes (finishing pass, weft pass) are told to keep structure; on 2026-10-16/17 both dropped it anyway
+# (the lamp, arches, dormers, storey counts, granite kerbs). Additions are listed by the model; removals are
+# checked here, by comparing the texts, so they never depend on the model owning up.
+# =========================================================================
+
+_STRUCTURE_TERMS = [
+    # counts and massing
+    r"one-storey", r"two-storey", r"three-storey", r"four-storey", r"five-storey", r"six-storey",
+    r"one-bay", r"two-bay", r"three-bay", r"four-bay", r"five-bay", r"six-bay", r"seven-bay",
+    r"attic", r"dormers?", r"mansards?", r"basements?", r"lightwells?", r"areas? railings?",
+    # openings
+    r"arch(?:ed|es)?", r"fanlights?", r"transoms?", r"blind windows?", r"sash(?:es)?", r"doors?", r"door case",
+    r"squared|square-headed|flat-(?:headed|lintelled|topped)|rectangular", r"bays?",
+    # elements
+    r"steps?", r"lamps?", r"globe", r"railings?", r"spearheads?", r"balconettes?", r"cornices?",
+    r"blocking course", r"band courses?", r"string courses?", r"rustication|rusticated", r"plinths?",
+    r"chimney(?: stacks?)?", r"(?:terracotta )?pots", r"hoods?", r"aprons?", r"pilasters?", r"pediments?",
+    r"porticos?|porticoes", r"balustrades?", r"quoins?", r"parapets?", r"gates?", r"porch(?:es)?", r"portals?",
+    r"verandas?|verandahs?", r"balcon(?:y|ies)", r"columns?", r"lintels?", r"shutters?", r"canales", r"vigas?",
+    r"towers?", r"domes?", r"gables?", r"eaves", r"awnings?", r"fences?", r"walls?",
+    # materials named as fact
+    r"granite", r"slate", r"brick", r"adobe", r"stucco", r"render(?:ed)?", r"timber", r"limestone", r"sandstone",
+    r"marble", r"concrete", r"tiles?", r"thatch",
+    # render directives
+    r"geometric accuracy", r"plumb gravity verticals", r"roof ridgelines",
+]
+_STRUCTURE_RE = [(t, re.compile(rf"\b(?:{t})\b", re.IGNORECASE)) for t in _STRUCTURE_TERMS]
+
+
+_NEGATED = re.compile(r"\b(?:without|no|never|none)\s+(?:\w+\s+){0,2}$", re.IGNORECASE)
+
+
+def _affirmed(rx, text: str) -> bool:
+    """True if the term appears at least once NOT negated ("without dormers" does not count as dormers)."""
+    for m in rx.finditer(text or ""):
+        if not _NEGATED.search(text[max(0, m.start() - 40):m.start()]):
+            return True
+    return False
+
+
+def structure_removed(before: str, after: str) -> List[str]:
+    """Structural terms affirmed in `before` and missing (or only negated) in `after`, in the words `before` used."""
+    # Each entry is a synonym group ("squared" and "flat-headed rectangular" count as the same feature), so a pass
+    # that rewords a feature is not reported as removing it.
+    gone = []
+    for _t, rx in _STRUCTURE_RE:
+        b = rx.search(before or "")
+        if b and _affirmed(rx, before) and not _affirmed(rx, after):
+            gone.append(b.group(0).lower())
+    return sorted(set(gone))
+
+
+# =========================================================================
+# STREET VIEW FINISHING PASS (revised 2026-10-18 with the weft rules)
+# The pano is evidence for SURFACES. The scene text's structure is confirmed (Don's own edits, his layout, the
+# capture) and stays. On 2026-10-17 the old pass deleted the lamp and the arches, turned the target building round
+# and removed the dormers, because the pano could not see them. Now it may only set surfaces, colours of painted
+# features and opening shapes; anything the pano seems to contradict is REPORTED, never applied.
 # =========================================================================
 
 STREETVIEW_REWRITE_INSTRUCTION = """You are an architectural surveyor and building conservator doing the finishing pass on a scene description.
 You receive two images of the same real place and the current scene description.
 IMAGE 1 is the composition being rendered, from a 3D capture. It fixes what is in frame, where it is, and the massing. Its surface detail is unreliable.
-IMAGE 2 is a street-level reference photograph of the subject, taken from a different position. It is the evidence for visible detail and for how the surfaces look today.
-Return the complete scene description, revised so that:
-- Surface condition matches IMAGE 2 and comes first. Open each structure's description with how its stone looks today (its colour as seen, its soiling, how even or uneven it really is, where darkening concentrates), then name the material and dressing beneath it. Never open with the clean quarry colour, and remove clean quarry-colour words such as blonde, pale buff or honey for stone that IMAGE 2 shows soiled. Give tone as an actual colour, not an intensity word such as light or moderate. Describe differences between buildings only where IMAGE 2 shows them.
-- Visible detail matches IMAGE 2 for structures that appear in both images: doors and fanlights, window types, pilasters and their order and how many bays they span, string courses, cornices, the roofline including dormers or their absence, railings, and the ground surface. Add detail IMAGE 2 shows; correct detail it contradicts.
-- Every architectural feature that appears in neither image is deleted, for example pediments, pilaster orders, dormers or mansard roofs that neither image shows.
-- Everything else, including tree species, stays word for word.
+IMAGE 2 is a street-level reference photograph of the subject, taken from a different position. It is the evidence for how the surfaces look today.
+SCENE TEXT is the current description. Its structure is CONFIRMED by the director: every building, storey count, bay count, opening shape, roof form, step, railing, fixture, ground material and every other structural feature it names stays, word for word where possible, even where IMAGE 2 does not show it (IMAGE 2 is taken from elsewhere and sees less).
+
+Return the scene description revised so that:
+- Surface condition matches IMAGE 2 and comes first. Open each structure's description with how its walls look today (their colour as seen, soiling, staining, fading or patching, how even or uneven it is, where it concentrates), then the material and finish beneath. Never open with the material's clean, new colour; give tone as an actual colour.
+- Colours of painted or finished features that IMAGE 2 shows are named: doors, window frames, shutters, railings, ironwork, trim.
+- Opening shapes that IMAGE 2 shows clearly on a facade the scene text describes are stated in positive words (for example flat-headed rectangular, round-arched, segmental, pointed), facade by facade.
+- COUNT before you compare: for each facade that both IMAGE 2 and the scene text describe, count its bays (vertical rows of openings) and its storeys in IMAGE 2, and compare with the scene text's numbers. Any difference goes in "conflicts" with both numbers ("IMAGE 2 shows five bays on the side-street return; the scene text says four"). Also report an opening shape, roof form or feature that IMAGE 2 clearly shows differently.
+- Detail IMAGE 2 shows and the scene text lacks may be ADDED, attached to the element it belongs to: for example a balcony, a porch, a cornice or parapet, a door surround, a transom light. List every structural addition in "added".
+- NOTHING the scene text names is deleted, merged, recounted or moved to another facade. Where IMAGE 2 seems to CONTRADICT the scene text's structure (a different bay count, a different opening shape, a feature that seems absent), leave the scene text as it is and report it in "conflicts", in one short sentence each, saying what IMAGE 2 shows.
+- Every rendering directive (for example "High geometric accuracy: ...") stays word for word, in its place.
 Ignore everything temporary or seasonal in IMAGE 2: vehicles, people, signs, scaffolding, bins, foliage, weather, wet surfaces, sky, light and shadows. Bright sun or deep shade in IMAGE 2 is light, not surface colour.
-Never add lighting, weather, season, camera, screen-position or compass language, and never use street names. Name structures by their architectural features. Keep the telegraphic style and keep the length within about 25% of the original.
-Output only the revised scene description."""
+Never add lighting, weather, season, camera, screen-position or compass language, and never use street names. Keep the telegraphic style; the revised text may be at most 15% longer than the original (put colour and condition in few words; do not repeat a description for every building), never shorter than 90% of it.
+
+Return JSON only, in exactly this shape:
+{"scene_text": "the revised scene description",
+ "added": [{"phrase": "the exact words as they appear in scene_text", "note": "a few words: what IMAGE 2 shows"}],
+ "conflicts": ["one sentence per place IMAGE 2 seems to contradict the scene text's structure"]}"""
 
 
 def rewrite_condition_from_streetview(
@@ -715,24 +782,38 @@ def rewrite_condition_from_streetview(
     scene_text: str,
     pano_date: Optional[str] = None,
     gemini_api_key: Optional[str] = None,
-) -> str:
-    """Finishing pass: the full scene text back, with condition and visible detail set from the pano
-    and features shown in neither image removed."""
+) -> Dict[str, Any]:
+    """Finishing pass. Returns {scene_text, added, conflicts, removed}: the scene text with surfaces set from the pano,
+    structural additions listed, contradictions reported (never applied), and any structural term the pass dropped
+    (found by comparing the texts). Raises HTTPException(502) and changes nothing on an empty, unparseable or
+    badly sized result."""
     out = _streetview_call(STREETVIEW_REWRITE_INSTRUCTION, capture_b64, pano_jpeg, scene_text, pano_date,
-                           "Return the revised scene description.", 4096, gemini_api_key)
-    out = re.sub(r"^```[a-z]*\s*|\s*```$", "", out).strip()
-    if not out:
-        raise HTTPException(status_code=502, detail="The rewrite came back empty; the scene text is unchanged.")
-    ratio = len(out) / max(len(scene_text), 1)
-    if not 0.6 <= ratio <= 1.6:
+                           "Return the JSON.", 4096, gemini_api_key)
+    out = re.sub(r"^```(?:json)?\s*|\s*```$", "", out).strip()
+    try:
+        data = json.loads(out)
+    except Exception:
+        raise HTTPException(status_code=502, detail="The finishing pass did not return valid JSON; the scene text is unchanged.")
+    text = str((data or {}).get("scene_text") or "").strip() if isinstance(data, dict) else ""
+    if not text:
+        raise HTTPException(status_code=502, detail="The finishing pass came back empty; the scene text is unchanged.")
+    ratio = len(text) / max(len(scene_text), 1)
+    if not 0.8 <= ratio <= 1.4:
         raise HTTPException(status_code=502, detail=(
-            f"The rewrite changed the length too much ({ratio:.0%} of the original); the scene text is unchanged."))
-    return out
-
+            f"The finishing pass changed the length too much ({len(scene_text)} to {len(text)} characters); the scene text is unchanged."))
+    added = []
+    for it in data.get("added") or []:
+        if isinstance(it, dict) and str(it.get("phrase") or "").strip():
+            p = str(it["phrase"]).strip()
+            added.append({"phrase": p, "note": str(it.get("note") or "").strip(), "found": p in text})
+    conflicts = [str(c).strip() for c in (data.get("conflicts") or []) if str(c).strip()]
+    return {"scene_text": text, "added": added, "conflicts": conflicts, "removed": structure_removed(scene_text, text)}
 
 
 # =========================================================================
-# LSA PASS (2026-10-15, revised 2026-10-16): weave an LSA Studio run into the scene text.
+# WEFT PASS (2026-10-15, revised 2026-10-16; named the weft pass 2026-10-17): throw an LSA Studio run's weft
+# (surfaces, condition, biology, species) through the scene text's warp (structure). Formerly "the weave"; the
+# code keeps its old identifiers (weave_lsa_into_scene, /api/lsa/weave).
 # The bag and the placement (DECISIONS.md, 2026-10-16): LSA Studio decides what the scene contains;
 # the pipeline decides form and position. Names go in (the director's layout and the analysis may use
 # street and place names); position words come out (the scene text the image model reads never does).
@@ -747,32 +828,32 @@ You receive:
 IMAGE 1: a 3D capture of the view being rendered. It fixes what is in frame, where each element sits, and how far it is from the camera. Its surface detail is unreliable.
 SCENE TEXT: the current scene description. The director has reviewed and edited it. It is the base text you revise.
 DIRECTOR'S LAYOUT: the director's own description of this view, checked on site and in street-level photography. It may use street names, house numbers and storey counts. Everything structural in it is CONFIRMED.
-LSA ANALYSIS: a deep domain analysis of the same place by another model. It is the authority on what the scene contains: stone, tooling, condition, chemistry, biology and species. Structure it recalls that the director's layout, the scene text and IMAGE 1 do not show is PROPOSED, not confirmed.
+LSA ANALYSIS: a deep domain analysis of the same place by another model. It is the authority on what the scene contains: materials, how they were made and worked, condition, chemistry, biology and species. Structure it recalls that the director's layout, the scene text and IMAGE 1 do not show is PROPOSED, not confirmed.
 ECOLOGY RECORD: the current time-invariant description of the trees and plants, used later to age them through the seasons.
 
 Return the scene text with the analysis's knowledge woven in and the director's layout applied.
 
 KEEP FROM THE SCENE TEXT:
 - Every structure and ground surface it names, in the same order, with its massing, storeys, bays, windows, doors, roof forms and openings.
-- Its surface-first style: each structure opens with how its stone looks today, then the material beneath.
+- Its surface-first style: each structure opens with how its walls look today, then the material beneath.
 - Its specific wording and qualifiers ("dashed" lane markings, "like the basements", a stated comparison or count): replace a word only with something more specific, never with something more general.
 - Every rendering directive, word for word and in its place: any sentence about geometric accuracy, plumb verticals, planar facades, sharp ridgelines, or how to render rather than what is there.
 
 STRUCTURE, IN THREE STATUSES:
 - CONFIRMED: storeys, bays, roof forms, dormers, attics, openings, arches, blind windows, railings and other structure named in the DIRECTOR'S LAYOUT or the SCENE TEXT, or plainly shown in IMAGE 1. Add confirmed structure the scene text lacks, for structures visible in IMAGE 1, attached to the structure it belongs to.
-- PROPOSED: structure only the LSA ANALYSIS names (for example setts, platts over basement areas, a cornice type, finials, a roof form). Add it where it belongs, as a separate short clause so it can be removed cleanly.
+- PROPOSED: structure only the LSA ANALYSIS names (for example a paving type, a cornice or parapet type, finials, a roof form, a feature on a facade the director did not mention). Add it where it belongs, as a separate short clause so it can be removed cleanly.
 - Never add structure that contradicts the DIRECTOR'S LAYOUT or IMAGE 1; list it in not_added.
 List EVERY structural feature that is in your scene text but was not in the original SCENE TEXT in added_structure, with its status. Surface condition, materials and biology are not structure and are not listed.
 
-STOREYS: count floors of windows above the pavement. Say whether the top floor is flush with the facade or an attic of dormers set into a pitched slate roof. Basements behind area railings are not counted; name them separately. Example: "three floors of windows with a fourth, attic floor of dormers in a pitched slate roof, basement behind railings below street level".
+STOREYS: count floors of windows above the ground the viewer stands on. Say whether the top floor is flush with the facade or set into the roof, and name the roof form as the layout or IMAGE 1 gives it. Floors below street level are not counted; name them separately. Example of the form: "three floors of windows with a fourth floor set into the roof, one floor below street level".
 
-NAMES IN, POSITIONS OUT: the DIRECTOR'S LAYOUT and the analysis may locate things by street names and house numbers. Translate each into words that point at IMAGE 1: which facade, which side, near or far, the long curved front, the short return down the sloping side street, the corner block, the terrace beyond. Keep the fact exactly (which openings are arched, which squared; which houses have dormers). The scene text you return never contains street names, house numbers or place names.
+NAMES IN, POSITIONS OUT: the DIRECTOR'S LAYOUT and the analysis may locate things by street names and house numbers. Translate each into words that point at IMAGE 1: which facade, which side, near or far, the long front, the short return, the corner building, the row beyond. Keep the fact exactly (which openings have which shape; which buildings have which roof form). The scene text you return never contains street names, house numbers or place names.
 
 ADD FROM THE ANALYSIS, only for structures and surfaces visible in IMAGE 1:
-- stone type and quarry character, tooling and dressing, mortar
-- condition: soiling and crusts and where they concentrate, washed runoff channels, staining, efflorescence, spalling, repairs, ironwork corrosion and paint
+- material type and source, how it was worked or finished (tooling, dressing, coursing, plaster, render, paint), mortar or binder
+- condition: soiling, crusts, fading, staining, runoff channels, cracking, erosion, efflorescence, spalling, repairs and patching, corrosion and paint wear, and where each concentrates
 - biology on surfaces: lichen, moss and algae, by species where the analysis names them, and where moisture and shelter put them
-- ground materials: paving stone, kerbs
+- ground materials: paving, kerbs, edging, unpaved ground
 Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it).
 
 DETAIL BY DISTANCE: judge each element's distance from IMAGE 1. Near elements get the full detail. Mid-distance elements get colour, staining and where soiling gathers. Far elements get overall tone in a few words.
@@ -802,7 +883,8 @@ _WEAVE_WARN_RE = re.compile(
     r"degrees?|mm lens|lens)\b", re.IGNORECASE)
 # Street-like names (case-sensitive): "Nelson St", "Abercromby Place", "Queen Street".
 _WEAVE_STREET_RE = re.compile(
-    r"\b[A-Z][a-z]+\s+(?:Place|Pl|Street|St|Row|Crescent|Square|Terrace|Lane|Road|Rd|Avenue|Ave|Circus|Gardens?)\b\.?")
+    r"\b[A-Z][a-z]+\s+(?:Place|Pl|Street|St|Row|Crescent|Square|Terrace|Lane|Road|Rd|Avenue|Ave|Circus|Gardens?|Boulevard|Blvd|Drive|Dr|Way|Court|Ct|Trail|Highway|Hwy)\b\.?"
+    r"|\b(?:Calle|Camino|Paseo|Avenida|Plaza|Rue|Via|Viale|Strasse|Straße)\s+(?:(?:de|del|la|los|las|du|des)\s+)*[A-Z][a-z]+")
 
 
 def _clean_added(raw: Any, scene: str) -> List[Dict[str, Any]]:
@@ -894,4 +976,5 @@ def weave_lsa_into_scene(
         "set_aside": str(data.get("set_aside") or "").strip(),
         "not_added": str(data.get("not_added") or "").strip(),
         "warnings": warnings,
+        "removed": structure_removed(scene_text, out),
     }

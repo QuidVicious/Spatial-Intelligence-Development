@@ -126,6 +126,13 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str =
     }
 
 
+# The most the auto budget will raise a Gemini prompt to (matches the page slider's maximum).
+BUDGET_CEILING = 8000
+
+# Sentences that tell the renderer HOW to render rather than what is there; kept whole, never trimmed.
+_DIRECTIVE_RE = re.compile(r"High geometric accuracy:[^.]*\.", re.IGNORECASE)
+
+
 def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) -> Dict[str, Any]:
     """
     Budgeted assembly. The task header and the lighting block are fixed and
@@ -137,6 +144,11 @@ def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) 
     doc_prompt = (getattr(domain_result, "documentary_prompt", "") or "").strip()
     if not doc_prompt:
         doc_prompt = "Documentary-grade architectural survey with authentic regional lithics, intact fenestration grids, and planar vertical rectification."
+    # Render directives (2026-10-18) sit in a fixed slot: taken out of the scene text before trimming and put back at
+    # its end, so a long scene text can never lose them (on 2026-10-16 the trim cut "High geometric accuracy...").
+    directives = " ".join(m.group(0).strip() for m in _DIRECTIVE_RE.finditer(doc_prompt))
+    if directives:
+        doc_prompt = re.sub(r"\s{2,}", " ", _DIRECTIVE_RE.sub(" ", doc_prompt)).strip()
     # Split runs carry this date's canopy state in `phenology`; pre-split runs
     # carry it inside botanical_ecology, so fall back to that.
     botanical_text = (
@@ -146,6 +158,14 @@ def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) 
 
     lighting_block = f"[SOLAR & ATMOSPHERIC LIGHTING OVERRIDE]\n{light_directive}"
     skeleton = len(_build_task_header("")) + len(lighting_block) + len("[SCENE GEOMETRY & AUTHENTIC LITHICS]\n") + 6
+    skeleton += len(directives) + 1 if directives else 0
+
+    # Auto budget (2026-10-18): if the scene text and the trees would not fit, raise the budget to what they need,
+    # up to BUDGET_CEILING, and say so; trimming only happens above the ceiling. The slider sets the minimum.
+    requested = budget
+    needed = skeleton + len(doc_prompt) + len(botanical_text) + 2
+    if needed > budget:
+        budget = min(needed, max(budget, BUDGET_CEILING))
 
     remaining = max(0, budget - skeleton)
     # documentary prompt carries the site, botany is supporting: 3 to 1
@@ -164,7 +184,7 @@ def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) 
     full_prompt = (
         f"{_build_task_header(eco_used)}\n\n"
         f"{lighting_block}\n\n"
-        f"[SCENE GEOMETRY & AUTHENTIC LITHICS]\n{doc_used}"
+        f"[SCENE GEOMETRY & AUTHENTIC LITHICS]\n{doc_used}" + (f" {directives}" if directives else "")
     ).strip()
 
     return {
@@ -173,10 +193,13 @@ def _render_gemini(domain_result: Any, lighting_state: Any, budget: int = 3200) 
             "renderer": "GEMINI",
             "final_char_count": len(full_prompt),
             "budget": budget,
+            "budget_requested": requested,
+            "budget_raised": budget > requested,
             "over_budget": len(full_prompt) > budget,
             "skeleton_chars": skeleton,
             "doc_chars": len(doc_used),
             "doc_trimmed": len(doc_used) < len(doc_prompt),
+            "directives_kept": directives,
             "eco_chars": len(eco_used),
             "eco_trimmed": len(eco_used) < len(botanical_text),
             "has_botanical_phenology": bool(eco_used)

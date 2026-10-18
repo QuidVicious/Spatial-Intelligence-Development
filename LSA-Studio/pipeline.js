@@ -1021,6 +1021,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('sv-preview').style.display = 'none';
       document.getElementById('sv-meta').textContent = '';
       const dimg = document.getElementById('sv-detail-preview'); if (dimg) dimg.style.display = 'none';
+      renderFinishReport(null);
       const dnote = document.getElementById('sv-detail-note'); if (dnote) dnote.textContent = '';
       ['sv-pano', 'sv-heading', 'sv-pitch', 'sv-fov', 'sv-url'].forEach(id => document.getElementById(id).value = '');
       svUpdateFovNote();
@@ -1199,14 +1200,42 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         });
         const d = await resp.json();
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
-        if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); return; }
+        if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); renderFinishReport(d); return; }
         svPreRewriteText = before;
         if (lsaJoin) lsaJoin.finishing_after = true;   // A/B: only the B text has had the finishing pass
         box.value = d.scene_text; if (typeof updateSceneState === 'function') updateSceneState();
         box.scrollTop = 0;
         document.getElementById('btn-sv-undo').style.display = '';
-        setSvStatus(`Finishing pass from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars. Review it before MAKE KEYSTONE; UNDO restores the previous text.`, 'var(--accent-cyan)');
+        renderFinishReport(d);
+        setSvStatus(`Finishing pass from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
+          (d.removed && d.removed.length ? ` It REMOVED structure: ${d.removed.join(', ')}. Check the report below.` : '') +
+          ' Review it before MAKE KEYSTONE; UNDO restores the previous text.', d.removed && d.removed.length ? '#ffb74d' : 'var(--accent-cyan)');
       } catch (e) { setSvStatus(e.message, '#ff5252'); }
+    }
+
+    // Structural terms a pass took out of the scene text (found by comparing the texts on the server).
+    function removedHtml(removed, who) {
+      if (!removed || !removed.length) return `<div class="lsa-added-note">Structure removed: none.</div>`;
+      return `<div class="lsa-added-head" style="color: var(--rust);">Removed by ${escHtml(who)}: check</div>` +
+        `<div class="lsa-added-note">These were in the scene text before and are gone now: <b>${removed.map(escHtml).join(', ')}</b>. ` +
+        `Put back what is real (UNDO, or edit by hand).</div>`;
+    }
+
+    // Finishing pass report: what it added, where the pano seems to disagree with the scene text, and what it removed.
+    function renderFinishReport(d) {
+      const el = document.getElementById('sv-finish-report');
+      if (!el) return;
+      if (!d) { el.hidden = true; el.innerHTML = ''; return; }
+      const added = d.added || [], conflicts = d.conflicts || [];
+      el.innerHTML = removedHtml(d.removed, 'the finishing pass') +
+        `<div class="lsa-added-head">Added from the pano</div>` +
+        (added.length ? added.map(a => `<div class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(a.note || '')}</span></div>`).join('')
+                      : '<div class="lsa-added-note">Nothing structural added.</div>') +
+        `<div class="lsa-added-head">Where the pano seems to disagree (not applied)</div>` +
+        (conflicts.length ? conflicts.map(c => `<div class="lsa-added-text">${escHtml(c)}</div>`).join('') +
+          '<div class="lsa-added-note">The scene text was kept. If the pano is right, edit the text by hand (and your Scene layout).</div>'
+                          : '<div class="lsa-added-note">No disagreements reported.</div>');
+      el.hidden = false;
     }
 
     function svUndoRewrite() {
@@ -1214,6 +1243,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('replay-scene-text').value = svPreRewriteText; if (typeof updateSceneState === 'function') updateSceneState();
       svPreRewriteText = null;
       document.getElementById('btn-sv-undo').style.display = 'none';
+      renderFinishReport(null);
       setSvStatus('Scene text restored to before the finishing pass.');
     }
 
@@ -1230,7 +1260,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
                       : 'These pano settings are now the view\'s current pano and will be used by the next keystone.', old ? '#ffb74d' : 'var(--accent-cyan)');
     }
 
-    // ---------------- LSA pass (2026-10-15, revised 2026-10-16) ----------------
+    // ---------------- Weft pass (2026-10-15, revised 2026-10-16; named the weft pass 2026-10-17, formerly the LSA pass) ----------------
     // Weaves an LSA Studio run into the selected pipeline run's scene text. The LSA run's brief (place, standpoint,
     // looking at, scene layout) goes with it as the director's layout: its structure is confirmed, and its street
     // names are turned into position words. Every structural addition comes back with a status (confirmed or
@@ -1340,7 +1370,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const id = document.getElementById('lsa-join-run').value;
       if (!run) { setLsaStatus('Select a pipeline run first.', '#ff5252'); return; }
       if (!id) { setLsaStatus('Choose an LSA run.', '#ff5252'); return; }
-      if (lsaJoin && !confirm('The scene text already has an LSA pass. Weave again on top of it?\n\n(UNDO first to start from the text before the pass.)')) return;
+      if (lsaJoin && !confirm('The scene text already has a weft pass. Run it again on top?\n\n(UNDO first to start from the text before the pass.)')) return;
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
       setLsaStatus('Reading the LSA run...');
@@ -1360,7 +1390,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const s = lsa.settings || {};
         lsaJoin = { run_id: id, label: s.label || id, instruction: s.instruction || null,
                     text_before: (lsaJoin ? lsaJoin.text_before : before), text_after: d.scene_text,
-                    ecology: d.ecology || '', added_structure: (d.added_structure || []).map(a => ({ ...a, decision: null })),
+                    ecology: d.ecology || '', added_structure: (d.added_structure || []).map(a => ({ ...a, decision: null })), removed: d.removed || [],
                     species_to_verify: d.species_to_verify || [],
                     set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false,
                     director_layout_used: !!layout };
@@ -1376,7 +1406,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         renderLsaAdded();
         const added = lsaJoin.added_structure;
         const nProp = added.filter(a => a.status === 'proposed').length;
-        setLsaStatus(`LSA pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
+        setLsaStatus(`Weft pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
           (layout ? '' : ' No scene layout was sent (the LSA run has none).') +
           (added.length ? ` Structure added: ${added.length - nProp} confirmed, ${nProp} proposed (listed below).` : ' No structure added.') +
           (d.warnings && d.warnings.length ? ` Check these words in the text: ${d.warnings.join(', ')}.` : '') +
@@ -1390,11 +1420,15 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     function renderLsaAdded() {
       const el = document.getElementById('lsa-join-added');
       if (!el) return;
-      const items = (lsaJoin && lsaJoin.added_structure) || [];
-      if (!items.length) { el.hidden = true; el.innerHTML = ''; return; }
+      if (!lsaJoin) { el.hidden = true; el.innerHTML = ''; return; }
+      const items = lsaJoin.added_structure || [];
+      const removed = lsaJoin.removed || [];
       const order = { proposed: 0, confirmed: 1 };
       const rows = items.map((a, i) => ({ a, i })).sort((x, y) => order[x.a.status] - order[y.a.status]);
-      el.innerHTML = `<div class="lsa-added-head">Added structure: check</div>` + rows.map(({ a, i }) => {
+      // Always shown after a pass (2026-10-18), so "nothing added" never looks like "not working".
+      el.innerHTML = removedHtml(removed, 'the weft pass') +
+        `<div class="lsa-added-head">Added structure: check</div>` +
+        (rows.length ? '' : '<div class="lsa-added-note">No structure added.</div>') + rows.map(({ a, i }) => {
         const tag = a.status === 'confirmed' ? 'Confirmed' : 'Proposed';
         const src = { layout: 'from your layout', analysis: 'from the LSA', capture: 'seen in the capture' }[a.source] || a.source;
         const state = a.decision === 'removed' ? '<span class="lsa-added-done">removed</span>'
@@ -1435,7 +1469,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('replay-scene-text').value = lsaJoin.text_before;
       if (typeof updateSceneState === 'function') updateSceneState();
       lsaReset();
-      setLsaStatus('Scene text restored to before the LSA pass.');
+      setLsaStatus('Scene text restored to before the weft pass.');
     }
 
     // What the server records with a run made from the woven text. Null when there is no pass, or it was undone.
@@ -1444,7 +1478,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const text = document.getElementById('replay-scene-text').value.trim();
       if (text === lsaJoin.text_before.trim()) return null;
       return { run_id: lsaJoin.run_id, label: lsaJoin.label, instruction: lsaJoin.instruction, ecology: lsaJoin.ecology,
-               added_structure: lsaJoin.added_structure, species_to_verify: lsaJoin.species_to_verify,
+               added_structure: lsaJoin.added_structure, removed: lsaJoin.removed || [], species_to_verify: lsaJoin.species_to_verify,
                set_aside: lsaJoin.set_aside, not_added: lsaJoin.not_added, director_layout_used: lsaJoin.director_layout_used,
                hand_edited_after: text !== lsaJoin.text_after.trim(), finishing_after: !!lsaJoin.finishing_after };
     }
@@ -1455,7 +1489,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const run = selectedReplayRun();
       if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
       if (!run.saved_view_id) { setReplayStatus('Keystones need a run tagged with a saved view.', '#ff5252'); return; }
-      if (!lsaJoin) { setReplayStatus('Run the LSA pass first: A is the scene text before it, B the text after it.', '#ff5252'); return; }
+      if (!lsaJoin) { setReplayStatus('Run the weft pass (ADD LSA SURFACES) first: A is the scene text before it, B the text after it.', '#ff5252'); return; }
       const textA = lsaJoin.text_before.trim();
       const textB = document.getElementById('replay-scene-text').value.trim();
       if (!textB || textA === textB) { setReplayStatus('The two texts are the same: nothing to compare.', '#ff5252'); return; }
@@ -1464,10 +1498,10 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const useSv = !!(svState && document.getElementById('chk-sv-keystone').checked);
       const join = lsaJoinPayload();
       const warn = [];
-      if (lsaJoin.finishing_after) warn.push('The finishing pass ran after the LSA pass, so only B has had it. For a fair test, UNDO, run the finishing pass first, then the LSA pass.');
-      if (join && join.hand_edited_after) warn.push('B has hand edits made after the LSA pass.');
+      if (lsaJoin.finishing_after) warn.push('The finishing pass ran after the weft pass, so only B has had it. For a fair test, UNDO, run the finishing pass first, then the weft pass.');
+      if (join && join.hand_edited_after) warn.push('B has hand edits made after the weft pass.');
       if (!confirm(`Make two keystone candidates from this run, both with seed ${seed} and ${useSv ? 'the same Street View pano' : 'no Street View reference'}:\n\n` +
-        `A: the scene text before the LSA pass (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
+        `A: the scene text before the weft pass (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
         (warn.length ? 'NOTE: ' + warn.join(' ') + '\n\n' : '') + 'That is two renders. Continue?')) return;
       const pair = 'ab_' + Date.now().toString(36);
       const build = (text, arm) => {
@@ -1893,7 +1927,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (run.has_twin && !run.keystone_print_of && !run.date_plate_of && (isKeystoneRun(run) || run.ab)) {
         parts.push(`<div id="run-alignment" data-run-id="${escHtml(run.id)}">${alignmentHtml(run.alignment || alignCache[run.id] || null)}</div>`);
       }
-      if (run.lsa_run) parts.push(`<div>LSA pass from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
+      if (run.lsa_run) parts.push(`<div>Weft pass from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
       if (run.ab && run.ab.pair_id) {
         const other = replayRuns.find(r => r.id !== run.id && r.ab && r.ab.pair_id === run.ab.pair_id);
         parts.push(`<div>A/B ${escHtml(run.ab.arm)}, seed ${escHtml(run.ab.seed)}: ${other
@@ -2021,7 +2055,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (r.ab && r.ab.arm) label += ` · A/B ${r.ab.arm}${r.ab.arm === 'B' ? ' (LSA)' : ''}`;
       if (r.realigned_from) label += ' · realigned';
       if (r.alignment && r.alignment.verdict === 'drifted') label += ' · ⚠ drifted';
-      else if (r.lsa_run) label += ' · LSA pass';
+      else if (r.lsa_run) label += ' · weft pass';
       if (!document.getElementById('select-replay-view').value) label += ` · ${r.saved_view_name || 'no view'}`;
       const kids = keystonesMadeFrom(r.id);
       if (kids.length) {
@@ -2373,7 +2407,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const edited = editedSceneText();
       const payload = buildReplayPayload(run, edited);
       payload.lsa_join = lsaJoinPayload();
-      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}${payload.lsa_join ? ' (LSA pass)' : ''}`);
+      console.log(`[Replay] ${run.id}${edited ? ' (scene text edited)' : ''}${payload.lsa_join ? ' (weft pass)' : ''}`);
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       await streamPipeline(payload);
