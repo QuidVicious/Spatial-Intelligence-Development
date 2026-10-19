@@ -1,51 +1,44 @@
 # Keystone recipe
 
-How to make a keystone that keeps your camera's framing and gets the place right. Written 2026-10-18 from the Abercromby and Nelson tests; the first draft of the step strip for the UI rebuild.
+How to make a keystone that keeps your camera's framing and gets the place right. Written 2026-10-18 from the Abercromby and Nelson tests, revised 2026-10-19 after user session 1 (USER_SESSION_1.md). The first draft of the step strip for the UI rebuild.
 
 ## The rule behind it
 
-Cesium sets the frame; Street View is evidence. A pano image sent with the render pulls the camera toward the pano's own position (the camera position is in every photo of the subject, even a tight crop). It is safe only when the pano was taken from where your camera stands. Words carry the pano's evidence with no viewpoint to copy.
-
-## The two panos, and their jobs
-
-| Job | Pano | Why |
-| --- | --- | --- |
-| Evidence pano: words only, via the FINISHING PASS | the newest pano (current colours and surfaces) | It never reaches the image model as a picture, so its position does not matter |
-| Reference image: sent with MAKE KEYSTONE | the pano taken closest to your camera, ideally in a bare-tree season with few cars | Its position must agree with your camera: check "m from subject" against your view's distance |
+Cesium sets the frame; LSA decides what the scene contains; Street View is evidence, read into words. A pano image sent with the render pulls the camera toward the pano's own position, and on 2026-10-19 it corrected nothing the words had not. Words carry the evidence with no viewpoint to copy, so the keystone is made from text only. The pano's work ends once it is words.
 
 ## Steps
 
-1. **View and source run.** Choose the saved view in the Runs and keystones card, then select its Synthesize run (the capture). Do this FIRST: selecting a run reloads its own scene text over anything pasted.
-2. **Scene text.** Click "Edit this run's scene text below", then paste the working text. Check the line under the box says "Edited by hand".
-3. **Evidence pano.** In the Street View card, set the newest pano (paste its ID, press UPDATE, set heading, pitch and FOV, press UPDATE again).
-4. **Finishing pass.** Press FINISHING PASS. Read the report under the status line:
-   - Removed: should say none. If not, put back what is real.
-   - Added from the pano: check each.
-   - Where the pano seems to disagree: decide each one; edit the text by hand if the pano is right (and correct the Scene layout).
-5. **Reference pano.** Set the matched pano (paste its ID, UPDATE, angles, UPDATE again). Check "m from subject" is within a metre or two of your view's distance. Tick "Use this pano in MAKE KEYSTONE"; set "What MAKE KEYSTONE sends" to Full view.
-6. **Seed.** Type the seed (42 for comparisons).
-7. **Make keystone.** Watch the Prompt Compiler line: the budget may be raised to fit; it must not say TRIMMED.
-8. **Check.** The framing line under the run list must say held. Then compare with the capture by eye: C in the full-screen viewer, especially the far end of the street.
-9. **Approve.** APPROVE AS KEYSTONE on the new candidate. It becomes the keystone for this view only.
+1. **View.** In the right-hand column, choose the saved view and press GO. If the camera floats above the street, press GO again until it sits at street level. Then leave the camera alone: Excavate and Synthesize stamp their runs with the view only if the camera is exactly on it.
+2. **Brief.** Fill in the LSA brief. In the Scene layout, name the main elements one by one (the near building, the target, the terrace, the garden) and write what you know of each: windows, doors, railings, the slope. Whatever you leave out will not be confirmed later.
+3. **LSA run.** Excavate. Check the run says it is stamped with the view.
+4. **Capture.** Synthesize. This gives the capture and the pipeline's first scene text.
+5. **Weft pass.** In the Runs and keystones card, select the new Synthesize run. Pick the LSA run by hand, check its preview, press ADD LSA SURFACES. Read the report: decide each proposed item, put back anything real that was removed, check species swaps against what you know, and read every sentence a REMOVE touched (it can leave a sentence broken).
+6. **Finishing pass.** In the Street View card, set the newest overcast pano that sees the subject, aimed at it, about 55 degrees across (UPDATE, set the angles, UPDATE again). Press FINISHING PASS. Read the report: removed, added, disagreements. "No disagreements" only means nothing in the text could be contradicted.
+7. **Director's edits.** Edit the scene text by hand: give each building its own sentence, put details on the right one, and replace any weather word (rain, sun, wet) or warm colour word the passes brought in with what the surface looks like under flat overcast light. Check the line under the box says "Edited by hand".
+8. **Keystone.** Untick "Use this pano in MAKE KEYSTONE". Check the selected run is the capture, not a candidate. Seed 42. MAKE KEYSTONE; the compiler line must not say TRIMMED. The date, time and weather panels do not matter: keystones are always noon, overcast, midwinter.
+9. **Check.** The framing line must say held; then C in the full-screen viewer, especially the far end of the street and the ground (the check measures building edges, not the slope). Check the summary line says no Street View reference.
+10. **Approve.** APPROVE AS KEYSTONE on the candidate. It becomes the keystone for this view only.
 
 ## Traps we have hit
 
-- Selecting a run replaces pasted scene text with the run's own text. Select first, paste second.
+- Selecting a run replaces the text in the box with that run's own text. Select first, paste second.
+- After MAKE KEYSTONE the new candidate is selected; a second MAKE KEYSTONE then builds from the candidate. Reselect the capture first (and paste the text again).
+- Saving a view does not make it current; only GO does. The first GO can leave the camera in the air.
+- The weft report and the finishing report describe the text as it was when they ran; they do not update after a hand edit.
 - K in the full-screen viewer shows the view's approved keystone, not the selected run.
 - A new pano needs UPDATE twice: once to load it, once to take your angles.
 - The pano card remembers one pano per view; it does not know which job it is doing.
-- "Framing vs capture: held" is measured on the strongest edges (usually the main building). Check the far end by eye.
+- "Use this pano in MAKE KEYSTONE" is ticked when the page loads.
 - Negatives do not work in scene text: "none arched" invites arches. Describe what is there.
-- Some details resist words (arched return windows, the corner door, pediments, the globe-and-cap lamp). They are for the edit pass, not more wording.
-- Older panos show older colours: take surfaces from the newest pano.
-- "What MAKE KEYSTONE sends" defaults to Detail crop, and step 5 is easy to miss. The 16:08 keystone on 2026-10-18 went out with the Detail crop by mistake and still held the frame (4 px), so at a matched pano either setting holds. Keep one setting across a comparison and note which one the run used.
-- Colour words travel. "Honey-buff" from the pano passes pushed the stone yellow; Don reads it as tan-grey that changes with the light. Name the colour as it looks under flat overcast light.
+- Weather words do not belong in scene text: "rain-washed" pulls toward wet. Describe the mark, not its cause.
+- Summer-sun panos push the stone warm (honey-buff, ochre). Take colour from overcast panos.
+- Some details resist words (window counts in a bay, the globe-and-cap lamp, pediments, arches on the return). They are for the edit pass, not more wording.
+- Parked vehicles in the capture become invented features (the bus problem). Say in the text what is really there.
 
-## Abercromby and Nelson, current set (2026-10-18)
+## Abercromby and Nelson
 
-- View: LSA Alignment: Abercromby and Nelson (55.7 m from the subject; heading 60.9, pitch 8.5, FOV 60).
-- Source run: Saturday 2026-10-17 12:00 Synthesize.
-- Evidence pano: oQ-PbrZigkImB4CxVEM1tw (June 2025, 54 m from the subject).
-- Reference pano: zi3ryjlonoAA8Xl25mFo3g (March 2021, 55.6 m; bare trees, fewer cars, London Street visible), heading 60, pitch 10, FOV 60.
+- LSA Alignment: Abercromby and Nelson (55.7 m from the subject; heading 60.9, pitch 8.5, FOV 60). Best hand-built candidate 2026-10-19 10:13 (not approved: corner bay, return door, flat Nelson Street).
+- LSA session 1: Abercromby and Nelson (50 m; heading 59, pitch 1.6, FOV 60). Session 1 runs: LSA 11:09 (not stamped), capture 11:33, keystones 14:08 (with pano) and 14:14 (text only).
+- Evidence panos: JYFr07JvOuS78jFWLRHPMA (June 2025, 44 m), oQ-PbrZigkImB4CxVEM1tw (June 2025, 54 m), zi3ryjlonoAA8Xl25mFo3g (March 2021, 55.6 m; bare trees, fewer cars).
+- Far right in these views: the straight end of Abercromby Place at Dublin Street, six three-bay houses (not London Street). The street is level in view; it falls from Albany Street to Broughton Street, out of frame.
 - Seed 42.
-- Candidate 2026-10-18 16:08: held the frame (no measurable change). Don: overall good; one blind window too many (the corner bay, second floor, should be glazed); stone too yellow. Also: the near building has no basement railings. Re-render with the colour, window-pattern and railings wording (text in HANDOFF_2026-10-19.md), same settings.

@@ -6,6 +6,31 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-19: Moderated session 1, and the clean set closed
+
+**User session 1.** Done. Don ran the tool as a first-time user from a new saved view to two keystones, Claude moderating; 46 findings in USER_SESSION_1.md (Base), grouped and prioritised. The headline is a quit point: nothing the user had made appeared where he looked, and he concluded he had broken the process. The rebuild spec starts from that file.
+
+**Keystones are made from text only by default.** Adopted. The pano's work ends once it is words. A/B on the same capture, text and seed: the pano image corrected nothing and probably caused the wrong door; text only got the door right. A pano image goes in only when it was taken from where the camera stands.
+
+**Weathering is described by its visible marks, never by the weather that made them.** Adopted, location-neutral. "Rain" anywhere in the scene text pulls the render toward wet surfaces. Every place has a weathering signature (soot crusts here; dust film and streaking on a glass tower; salt bloom in Key West; sun-bleached plaster in Santa Fe), named by its result: pale, cleaner, streaked, crusted, bleached. For the weft pass, the finishing pass and the place primer.
+
+**Finishing pass framing: aim at the subject, about 55 degrees across.** Adopted. Measured: at 55 degrees it placed real details on the right building and found a count to compare; at 105 degrees it added generic details tied to nothing. The pano is read at 640 by 360, so a wide view leaves the subject only a few dozen pixels.
+
+**Colour from overcast panos.** Adopted. "Honey-buff" came back three times today from a June pano lit by summer sun, even though the instruction says light is not surface colour. It also began on the LSA side: the 15 Oct analysis says "pale honey-buff where washed by rain", the colour its own centroid stage rejects. Colour from either side needs the director's check.
+
+**The scene text is written element by element.** Planned. The fresh pipeline text described the scene in general, so the passes had nowhere to attach what they saw, and details drifted between neighbouring buildings (balusters, balconies, a pediment). The director's layout names the main elements; the first text gives each its own sentence.
+
+**The morning's hand-built candidate (10:13).** Held the frame; colour grey-tan; railings in; the bay beside the corner right. Not approved: the corner bay all blind, the return's door arched with sidelights, and Nelson Street rendered flat. The capture's ground at the return is broken mesh, so only words carry the slope, and "steep side street" lost to the model's flat-street default. The framing check measures building edges, not the ground, so a flattened street still reads "held".
+
+**Where the scene text came from (traced).** The hand-built text was layered: the pipeline's base description, Don's structure, one weft pass from the LSA run of 15 Oct 15:37 (Desmococcus olivaceus, West Highland slate, lead-socketed railings, Caithness flags, droved Craigleith; all in that run's analysis.md), the finishing passes, and Claude's edits. The keystone recipe had no weft step; fixed today.
+
+**Corrections to the record.**
+- The distant facade on the far right of the Abercromby and Nelson views is the straight end of Abercromby Place at Dublin Street (six three-bay houses in a straight line, by the Gabriel's Road wall and the garden railing), not London Street. Entries of 2026-10-17 and 2026-10-18 that say "London Street" in that sense mean this.
+- The street is level in view; the descent begins out of frame where it becomes Albany Street, falling gradually to Broughton Street.
+- The garden boundary is a dwarf stone plinth with spearhead railings, like the basement enclosures; the near building's first-floor windows stand on blind balustrades of five balusters.
+
+**Plan.** Prompt round (weathering words, overcast colour, basements not counted as storeys); rebuild spec from the session findings; three rebuild rounds; session 2 with outside testers in early December. After: the edit pass, the place primer with a non-masonry test, a sketch set from CC-licensed photos (Geograph, Wikimedia Commons, Mapillary) for aerial and historical views, and a public privacy statement.
+
 ## 2026-10-18 (evening): The clean keystone set at the matched view
 
 **A keystone recipe, written down.** Adopted. KEYSTONE_RECIPE.md (Base): the rule, the two pano jobs, nine steps, the traps hit so far, and the current set for each view. First draft of the step strip for the UI rebuild.

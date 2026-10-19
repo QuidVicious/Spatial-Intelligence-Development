@@ -358,5 +358,20 @@
     "time": "10:30",
     "weather": "Clearing sky after a morning rain.",
     "focus": "Surfaces, patinas, foliage, materials, structures, secondary and tertiary objects and details."
+  },
+  "Abercromby and Nelson facing east": {
+    "place": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "standpoint": "Standing in the center of the street.",
+    "bearing": 59.0,
+    "subject": "Looking down Abercromby Pl at the building on the corner of Nelson and Abercromby opposite side of Nelson St.",
+    "layout": "The intersection with Nelson is mid frame left. The left frame is dominated by the sweeping, gradually curving terraces of buildings. Queen St. Garden on the right with tree branches reaching over the garden fence and sidewalk. London St. terraced facade visible in the far distant right side beyond the garden.",
+    "distance_m": 50.0,
+    "framing": "medium",
+    "camera_height": "eye level",
+    "focal_mm": 30,
+    "date": "2026-10-19",
+    "time": "10:39",
+    "weather": null,
+    "focus": "Surfaces, weathering, patina, street, curb, sidewalk, fencing, land topography, leaves, bark and garden greenery, bushes and flowers if present."
   }
 }

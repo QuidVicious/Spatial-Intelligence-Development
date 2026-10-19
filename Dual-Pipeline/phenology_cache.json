@@ -7977,5 +7977,57 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:da6d2c1292581f4dad9d6a25338dd183dc24312e": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays spring leaf-out and leads to gradual autumn senescence.",
+      "species": [
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-25",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Small purple-red flower clusters expand into pale green winged samaras before rough leaves.",
+            "full_leaf": "Broad, rough dark-green toothed leaves; mature grey-brown fissured bark.",
+            "colouring": "Dark-green rough leaves turn pale lime-green with scattered dull yellow patches.",
+            "peak": "Rough leaves turn bright ochre-yellow across the crown.",
+            "falling": "Yellow and brown leaves shed rapidly, exposing dark spreading arching limbs.",
+            "dormant": "Bare grey-brown ridged branches with dark swollen buds along stout twigs."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-28",
+            "full_leaf": "06-02",
+            "colour_onset": "09-22",
+            "peak_colour": "10-18",
+            "half_fall": "11-01",
+            "bare": "11-14"
+          },
+          "stages": {
+            "budburst": "Bright reddish-green buds open into tender lime-green heart-shaped leaves.",
+            "full_leaf": "Dark green heart-shaped leaves with dense basal sprout clusters on grey trunks.",
+            "colouring": "Heart-shaped foliage fades from deep green to dull yellow-green and pale amber.",
+            "peak": "Foliage uniformly dull golden-yellow; brown nutlets on papery bracts.",
+            "falling": "Golden leaves shed steadily, revealing dark trunk burl sprouts and upright limbs.",
+            "dormant": "Naked upright spreading canopy showing burr-studded trunks and reddish-brown twigs."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }
