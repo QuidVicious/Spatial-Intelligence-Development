@@ -19,7 +19,7 @@ Three kinds of work, in this order:
 ### Flow bugs (LSA-Studio, pipeline.js and lsa_studio.html)
 | # | Fix | From |
 | --- | --- | --- |
-| A4 | SAVE makes the saved view the current view, as GO does. Excavate and Synthesize show "Will be stamped with: [view]" or "Not stamped: camera has moved from [view]" before they run. | [6] [8] [11] |
+| A4 | The stamp depends on where the camera is, not on whether the brief is linked (root cause: loading a preset unlinks the brief, and an unlinked brief stamps nothing [49]). SAVE makes the saved view the current view, as GO does. Excavate and Synthesize show "Will be stamped with: [view]" or "Not stamped: camera has moved from [view]" before they run. | [6] [8] [11] |
 | A5 | The first GO after "Show Cesium in the frame" leaves the camera in the air. Find the cause (likely the jump runs before the frame resizes or the tiles load) and make one GO land on the street; until then show "Loading the view". | [14] |
 | A6 | After MAKE KEYSTONE the source capture stays selected (the new candidate is shown, not selected), or MAKE KEYSTONE on a candidate uses that candidate's capture. Never a candidate of a candidate. | [44] |
 | A7 | "Use this pano in MAKE KEYSTONE" starts unticked (text only is the default). The confirm dialog says "Text only" or "With pano image: [id]". | [39] [41] |
@@ -28,7 +28,9 @@ Three kinds of work, in this order:
 | A10 | The viewfinder labels what it shows: "LSA image", "Capture", "Keystone candidate", "Keystone". | [13] |
 | A11 | Excavate, the weft pass and the finishing pass use the same stepper and centred status as Synthesize: started, running, done, failed. | [5] [16] |
 | A12 | The date, time and weather panels show "Keystones always use noon, overcast, midwinter" and grey out when the next step is a keystone. | [40] |
-| A18 | The instruction dropdown defaults to the newest instruction (SI6.0), not the first in the list; the server default matches. | [7] |
+| A18 | The instruction dropdown defaults to SI6.2 (adopted 2026-10-20), not the first in the list; the server default matches. | [7] |
+| A19 | Preset Load button lights up when a preset is selected and not yet loaded, dims once loaded; the "Still needed" hint mentions the preset. Same lit/dim pattern for the pano's UPDATE. | [48] |
+| A20 | After a reload, the subject line says "Press GO to restore this view's subject" instead of "No subject set". | [47] |
 
 ### Reports (both passes)
 | # | Fix | From |
@@ -52,6 +54,7 @@ Three kinds of work, in this order:
 | B7 | Scene text written element by element: the pipeline's first text and every pass keep one labelled section per element, so details land on the right building. Method change in domain_engine.py; the compiler joins the sections for the image model. | [34] [43] [46] |
 | B8 | Under-clutter note at capture: "What is really under the parked cars?" One line the user can fill, sent with the scene text. | [42] |
 | B9 | Layout names are checked like everything else: street and place names in the layout are shown back with what the tool found there, and a mismatch is flagged rather than confirmed. | [25] |
+| B10 | Points of interest: the subject plus up to four more markers placed on the Cesium frame, each with a short description the user writes and a rank (1 = most important) the user sets. The compiler opens the scene section with a priority block: the points in rank order, each as its own element entry with its position worked out from the marker (side, height in frame, distance) and the user's description, followed by the rest of the scene with no repeats. The task and framing rules stay ahead of the block. Ranks and labels show in the UI but never reach the image model as numbers or labels (it can draw them); order and wording carry the rank. Each point also aims an evidence crop, marks an edit region for the edit pass, and is a place the framing check measures (including the ground). Test before trusting: A/B with the ranking reversed, to measure whether order changes the render. Per point, the evidence step: pick the image that sees the point best (close, facing it, unobstructed, right season), crop to it, show the crop as a thumbnail for the user to confirm, read it into words for that element only (the user's description stays confirmed; the sketch's additions come in as proposed), and never send the image to the renderer. | Don 2026-10-20; [43] [46] |
 
 ### Names (agreed with Don 2026-10-20; the Synthesize button becomes CAPTURE so "synthesis" names one step only)
 | On screen | Was | Means |

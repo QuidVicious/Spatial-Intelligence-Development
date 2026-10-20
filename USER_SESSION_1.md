@@ -17,7 +17,7 @@ Priority: P1 = blocks or misleads a first-time user; P2 = costs time or trust; P
 | 2 | The user saved in two places (a saved view on the right, a preset on the left) without knowing which mattered. Saved view, preset and Scene layout have no visible relation. | P1 |
 | 3 | "Excavate and render" does two things; the user wanted the LSA text only. | P2 |
 | 8 | Saving a view does not make it the current view (only GO does). Excavate should say "this run will be stamped with: [view]" before it runs. | P1 |
-| 6 | The LSA run was not stamped with the saved view, and nothing said so. | P1 |
+| 6 | The LSA run was not stamped with the saved view, and nothing said so. Cause found 2026-10-20: loading a preset unlinks the brief from the camera, and Excavate stamps only when linked (see 49). Workaround: press "Unlinked: relink" after loading. | P1 |
 | 44 | After MAKE KEYSTONE the new candidate becomes the selected run, so a second MAKE KEYSTONE silently builds a candidate of a candidate. Keystones always build from the capture. | P1 |
 | 12 | "No replayable runs" is jargon. Empty states name the next action: "No capture of this view yet: press Synthesize". | P1 |
 | 13 | The viewfinder shows the LSA's own picture with no label; the user took it for a keystone. Label it ("LSA image, not the keystone"). | P2 |
@@ -90,3 +90,13 @@ Priority: P1 = blocks or misleads a first-time user; P2 = costs time or trust; P
 | 29 | Withdrawn (lunch, not the tool). |
 
 What worked: the LSA found the slope unprompted ("the junction with Nelson Street drops precipitously to the north") and the weft pass carried it in, replacing the pipeline's "level asphalt"; colour came out grey-tan; the near building's arched recesses with squared windows rendered correctly in both keystones; every keystone held the frame.
+
+## Follow-up findings, 2026-10-20 (SI6 tests)
+
+| # | Finding | P |
+| --- | --- | --- |
+| 47 | After a reload the subject line says "No subject set" until GO restores it, which reads as if the subject was lost. Say "Press GO to restore this view's subject", or restore the last view. | P2 |
+| 48 | Choosing a preset in the dropdown does not load it; the hint "Still needed: standpoint, subject" does not mention the preset. Don's fix: the Load button lights up when a preset is selected and not loaded, and dims once loaded. The same lit/dim pattern for every choice that needs confirming (the pano's UPDATE). | P1 |
+| 49 | Loading a preset silently unlinks the brief, and the unlinked brief silently blocks the stamp: every Excavate after a preset load went out unstamped, however often GO was pressed. Two silent steps make a failure the user cannot see or explain. | P1 |
+| 50 | The brief's fields have no visible undo or history; one paste wiped a layout. The history line (A17) covers the brief too. | P2 |
+| 51 | "Go to the view" needed asking about after two days with the tool. Step 1 of the step strip: "View: choose it and press GO", with the control beside it. | P1 |

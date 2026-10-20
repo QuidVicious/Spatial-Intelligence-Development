@@ -9,7 +9,7 @@ Cesium sets the frame; LSA decides what the scene contains; Street View is evide
 ## Steps
 
 1. **View.** In the right-hand column, choose the saved view and press GO. If the camera floats above the street, press GO again until it sits at street level. Then leave the camera alone: Excavate and Synthesize stamp their runs with the view only if the camera is exactly on it.
-2. **Brief.** Fill in the LSA brief. In the Scene layout, name the main elements one by one (the near building, the target, the terrace, the garden) and write what you know of each: windows, doors, railings, the slope. Whatever you leave out will not be confirmed later.
+2. **Brief.** Load your preset (then relink) or fill in the LSA brief. Use SI6.2. In the Scene layout, name the main elements one by one (the near building, the target, the terrace, the garden) and write what you know of each: windows, doors, railings, the slope. Whatever you leave out will not be confirmed later.
 3. **LSA run.** Excavate. Check the run says it is stamped with the view.
 4. **Capture.** Synthesize. This gives the capture and the pipeline's first scene text.
 5. **Weft pass.** In the Runs and keystones card, select the new Synthesize run. Pick the LSA run by hand, check its preview, press ADD LSA SURFACES. Read the report: decide each proposed item, put back anything real that was removed, check species swaps against what you know, and read every sentence a REMOVE touched (it can leave a sentence broken).
@@ -24,6 +24,8 @@ Cesium sets the frame; LSA decides what the scene contains; Street View is evide
 - Selecting a run replaces the text in the box with that run's own text. Select first, paste second.
 - After MAKE KEYSTONE the new candidate is selected; a second MAKE KEYSTONE then builds from the candidate. Reselect the capture first (and paste the text again).
 - Saving a view does not make it current; only GO does. The first GO can leave the camera in the air.
+- Loading a preset unlinks the brief, and an unlinked brief stamps nothing. After Load, press "Unlinked: relink" before Excavate (until Round A fixes it).
+- Correct the model's fixed beliefs in your layout, in plain positive words ("Abercromby Pl. is level within the view").
 - The weft report and the finishing report describe the text as it was when they ran; they do not update after a hand edit.
 - K in the full-screen viewer shows the view's approved keystone, not the selected run.
 - A new pano needs UPDATE twice: once to load it, once to take your angles.
