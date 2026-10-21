@@ -123,7 +123,7 @@ class Shot(BaseModel):
 
 class RunRequest(BaseModel):
     shot: Shot
-    instruction: str = "SI3.8.md"
+    instruction: str = ""   # empty: the newest instruction (default_instruction(), 2026-10-21)
     image_model: str = "nb2"
     use_addendum: bool = True
     aspect_ratio: str = "16:9"
@@ -158,8 +158,11 @@ def build_prompt(s: Shot) -> str:
     when = " ".join(x for x in (s.date, s.time) if x)
     if when:
         lines.append(f"Date and time: {when}")
-    if s.weather:
+    if s.weather and s.weather.strip():
         lines.append(f"Weather: {s.weather.strip()}")
+    else:
+        # 2026-10-21: say so, so the instruction's rule applies (no weather given: flat overcast, no sun, no shadows).
+        lines.append("Weather: not given")
     if s.focus:
         lines.append(f"Focus: {s.focus.strip()}")
     lines += [
@@ -284,6 +287,18 @@ def pipeline_js():
     return FileResponse(BASE / "pipeline.js", media_type="text/javascript")
 
 
+def default_instruction() -> str:
+    """The newest instruction by version number (SI6.3 over SI6.2 over SI3.9), so a new user gets the current one."""
+    import re as _re
+    best, best_v = "", (-1, -1)
+    for p in INSTRUCTIONS.glob("*.md"):
+        m = _re.match(r"SI(\d+)\.(\d+)", p.name)
+        v = (int(m.group(1)), int(m.group(2))) if m else (-1, -1)
+        if v > best_v:
+            best, best_v = p.name, v
+    return best
+
+
 @app.get("/api/config")
 def config():
     models = load_models()
@@ -292,6 +307,7 @@ def config():
         "image_models": [{"id": k, **{x: v[x] for x in ("label", "model", "addendum") if x in v}}
                          for k, v in models["image_models"].items()],
         "instructions": sorted(p.name for p in INSTRUCTIONS.glob("*.md")),
+        "default_instruction": default_instruction(),
         "aspect_ratios": models["aspect_ratios"],
         "image_sizes": models["image_sizes"],
     }
@@ -352,7 +368,8 @@ def run(req: RunRequest):
     if not api_key:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not set in .env.")
     user_prompt = build_prompt(req.shot)
-    instruction = build_instruction(req.instruction, img_model, req.use_addendum)
+    instr_name = req.instruction or default_instruction()
+    instruction = build_instruction(instr_name, img_model, req.use_addendum)
 
     run_id = f"{datetime.now():%Y%m%d_%H%M%S}_{slug(req.label or req.shot.place)}"
     d = RUNS / run_id
@@ -361,7 +378,7 @@ def run(req: RunRequest):
         "run_id": run_id, "created": datetime.now().isoformat(timespec="seconds"),
         "text_model": models["text_model"], "image_model": img_model["model"],
         "image_model_label": img_model.get("label", req.image_model),
-        "instruction": req.instruction, "addendum": img_model.get("addendum") if req.use_addendum else None,
+        "instruction": instr_name, "addendum": img_model.get("addendum") if req.use_addendum else None,
         "aspect_ratio": req.aspect_ratio, "image_size": req.image_size, "label": req.label,
         "saved_view_id": req.saved_view_id, "saved_view_name": req.saved_view_name,
     }

@@ -927,6 +927,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                 "geojson": scaffold.to_geojson(),
                 "latency_ms": round(total_latency_ms, 1),
                 "replay_of": request.replay_of,
+                "mode": mode,   # A10 (2026-10-21): the page captions the frame by what this run is
                 "run_record": run_record
             }
         }

@@ -760,10 +760,12 @@ IMAGE 2 is a street-level reference photograph of the subject, taken from a diff
 SCENE TEXT is the current description. Its structure is CONFIRMED by the director: every building, storey count, bay count, opening shape, roof form, step, railing, fixture, ground material and every other structural feature it names stays, word for word where possible, even where IMAGE 2 does not show it (IMAGE 2 is taken from elsewhere and sees less).
 
 Return the scene description revised so that:
-- Surface condition matches IMAGE 2 and comes first. Open each structure's description with how its walls look today (their colour as seen, soiling, staining, fading or patching, how even or uneven it is, where it concentrates), then the material and finish beneath. Never open with the material's clean, new colour; give tone as an actual colour.
+- Surface condition matches IMAGE 2 and comes first. Open each structure's description with how its walls look today (their colour, soiling, staining, fading or patching, how even or uneven it is, where it concentrates), then the material and finish beneath. Never open with the material's clean, new colour; give tone as an actual colour.
+- COLOUR: name every colour as it would look under flat, even overcast daylight. Warmth from sunlight in IMAGE 2 is light, not the material's colour: a sunlit wall that looks golden or honey is named by its own colour (for example buff-grey, grey-tan, pale grey).
+- WEATHERING: describe it by the mark it leaves (pale, cleaner, darker, streaked, crusted, stained, bleached, chalky, flaking), never by the weather that made it: no rain, rain-washed, wet, damp, sun-bleached, frost or snow in the scene text.
 - Colours of painted or finished features that IMAGE 2 shows are named: doors, window frames, shutters, railings, ironwork, trim.
 - Opening shapes that IMAGE 2 shows clearly on a facade the scene text describes are stated in positive words (for example flat-headed rectangular, round-arched, segmental, pointed), facade by facade.
-- COUNT before you compare: for each facade that both IMAGE 2 and the scene text describe, count its bays (vertical rows of openings) and its storeys in IMAGE 2, and compare with the scene text's numbers. Any difference goes in "conflicts" with both numbers ("IMAGE 2 shows five bays on the side-street return; the scene text says four"). Also report an opening shape, roof form or feature that IMAGE 2 clearly shows differently.
+- COUNT before you compare: for each facade that both IMAGE 2 and the scene text describe, count its bays (vertical rows of openings) and its storeys in IMAGE 2 (storeys are floors of windows above the ground the viewer stands on; floors below street level are not storeys), and compare with the scene text's numbers. Any difference goes in "conflicts" with both numbers ("IMAGE 2 shows five bays on the side-street return; the scene text says four"). Also report an opening shape, roof form or feature that IMAGE 2 clearly shows differently.
 - Detail IMAGE 2 shows and the scene text lacks may be ADDED, attached to the element it belongs to: for example a balcony, a porch, a cornice or parapet, a door surround, a transom light. List every structural addition in "added".
 - NOTHING the scene text names is deleted, merged, recounted or moved to another facade. Where IMAGE 2 seems to CONTRADICT the scene text's structure (a different bay count, a different opening shape, a feature that seems absent), leave the scene text as it is and report it in "conflicts", in one short sentence each, saying what IMAGE 2 shows.
 - Every rendering directive (for example "High geometric accuracy: ...") stays word for word, in its place.
@@ -807,7 +809,10 @@ def rewrite_condition_from_streetview(
             p = str(it["phrase"]).strip()
             added.append({"phrase": p, "note": str(it.get("note") or "").strip(), "found": p in text})
     conflicts = [str(c).strip() for c in (data.get("conflicts") or []) if str(c).strip()]
-    return {"scene_text": text, "added": added, "conflicts": conflicts, "removed": structure_removed(scene_text, text)}
+    warnings = sorted({m.group(0).lower() for m in _WEAVE_WARN_RE.finditer(text)}
+                      | {m.group(0) for m in _WEAVE_STREET_RE.finditer(text)})
+    return {"scene_text": text, "added": added, "conflicts": conflicts, "removed": structure_removed(scene_text, text),
+            "warnings": warnings}
 
 
 # =========================================================================
@@ -854,12 +859,12 @@ ADD FROM THE ANALYSIS, only for structures and surfaces visible in IMAGE 1:
 - condition: soiling, crusts, fading, staining, runoff channels, cracking, erosion, efflorescence, spalling, repairs and patching, corrosion and paint wear, and where each concentrates
 - biology on surfaces: lichen, moss and algae, by species where the analysis names them, and where moisture and shelter put them
 - ground materials: paving, kerbs, edging, unpaved ground
-Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it).
+Name colours as they would look under flat, even overcast daylight, never warmed by sunlight. Attach each addition to the element it describes, in the same sentence or the one after it. Never place an addition between an element and the thing fixed to it (never between a wall and the railing on top of it).
 
 DETAIL BY DISTANCE: judge each element's distance from IMAGE 1. Near elements get the full detail. Mid-distance elements get colour, staining and where soiling gathers. Far elements get overall tone in a few words.
 
 NEVER ADD:
-- Light, sun, cast shadows, sky, weather, wetness or time of day. Exposure terms are allowed: sheltered, exposed, damp, shaded by mature trees, under projections, drip lines.
+- Light, sun, cast shadows, sky, weather, wetness, dampness or time of day, including weathering described by its cause ("rain-washed", "sun-bleached", "damp-stained"): describe the mark instead (pale, cleaner, darker, streaked, crusted, stained, bleached). Exposure terms are allowed: sheltered, exposed, shaded by mature trees, under projections, drip lines.
 - Season: leaf state or colour, fallen leaves, flowering, fruiting, fungal leaf spots.
 - Compass directions or aspects ("north-facing"): turn them into exposure terms.
 - Street names, house numbers, place names, dates, numeric rendering parameters, or camera and lens language.
@@ -879,7 +884,7 @@ Return JSON only, in exactly this shape:
 # Words that should not survive the weave; their presence is reported, not fatal.
 _WEAVE_WARN_RE = re.compile(
     r"\b(?:north|south|east|west)(?:ern|erly|-facing|\s+facing)?\b|\b(?:sun|sunlight|sunlit|shadows?|golden|"
-    r"autumn|autumnal|spring|summer|winter|october|november|yellowing|fallen leaves|wet|rain|sky|"
+    r"autumn|autumnal|spring|summer|winter|october|november|yellowing|fallen leaves|wet|rain|damp|frost|frosty|snow|glistening|puddles?|sky|"
     r"degrees?|mm lens|lens)\b", re.IGNORECASE)
 # Street-like names (case-sensitive): "Nelson St", "Abercromby Place", "Queen Street".
 _WEAVE_STREET_RE = re.compile(

@@ -275,6 +275,14 @@
   .btn { background: var(--slate-3); border: 1px solid var(--rule); border-radius: 4px; padding: 7px 12px; cursor: pointer; }
   .btn:hover { border-color: var(--lichen-grey); }
   .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  /* A19 (2026-10-21): a lit button is waiting to be pressed; it dims once its job is done. */
+  .btn.lit { border-color: var(--moss); color: var(--moss); font-weight: 600; box-shadow: inset 0 0 0 1px var(--moss); }
+  /* A10: the frame says what it is showing. */
+  .frame-caption { position: absolute; left: 8px; top: 8px; z-index: 5; max-width: calc(100% - 16px); padding: 3px 8px; border-radius: 3px;
+                   background: rgba(20, 24, 22, 0.78); color: var(--paper); font-size: 12px; pointer-events: none; }
+  .frame-caption:empty { display: none; }
+  .frame-box.live .frame-caption { display: none; }
+  .stamp-line { font-size: 11px; margin-top: 4px; min-height: 13px; }
   .run { width: 100%; margin-top: 18px; padding: 11px; background: var(--xanthoria); border: 0; color: #2a1a06; font-weight: 600; font-size: 16px; border-radius: 4px; cursor: pointer; }
   .run:disabled { background: var(--slate-3); color: var(--lichen-grey); cursor: not-allowed; }
 
@@ -369,6 +377,7 @@
       <input type="text" id="f-weather" data-field="weather" placeholder="Overcast after rain, surfaces still wet">
       <span class="off-note">Live here now: <span id="hud-live-weather-text">detecting...</span></span>
     </div>
+    <span class="off-note" style="display: block; margin-top: 4px;">Keystones ignore the date, time and weather: they are always noon, flat overcast, midwinter. These settings apply to LSA runs, Synthesize and prints.</span>
   </section>
   <section id="strip-telemetry">
     <h3>Camera</h3>
@@ -462,6 +471,7 @@
     <div class="pin">
       <button class="run" id="run" disabled>Excavate and render</button>
       <div class="hint" id="run-hint">Place, standpoint and subject are needed.</div>
+      <div class="stamp-line" id="stamp-line-lsa"></div>
     </div>
   </section>
 
@@ -484,6 +494,7 @@
       <div id="cesiumContainer"></div>
       <div class="viewport-reticle"></div>
       <span class="lock-badge">CAMERA LOCKED</span>
+      <div class="frame-caption" id="frame-caption"></div>
       <div class="frame" id="frame"><div class="empty">Describe a view on the left and excavate it, or show Cesium from the right column. Past runs open from the lists on the right.</div></div>
       <div id="loadingOverlay" class="loading-overlay hidden">
         <div class="hud-stepper-card">
@@ -673,6 +684,7 @@
       <button class="run" id="btn-synthesize-action" onclick="captureAndSynthesizeTwin()" title="Capture the Cesium view and run the pipeline">Synthesize</button>
       <button class="run" id="btn-keystone" onclick="makeKeystone()" title="Render the selected run as a neutral master plate">Make keystone</button>
       <div class="hint">Synthesize captures the Cesium camera as framed. Make keystone uses the run selected below.</div>
+      <div class="stamp-line" id="stamp-line-pipe"></div>
     </div>
     <div class="scroll">
       <div class="module" id="mod-cesium">
@@ -700,7 +712,7 @@
         <button id="btn-set-subject" class="toggle-btn" style="flex: 1; padding: 6px;" onclick="toggleSubjectPick()" title="Click this, then click the building or object the view is about">🎯 SET SUBJECT</button>
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" title="Clear the subject point" onclick="clearSubject()">✕</button>
       </div>
-      <div id="subject-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;">No subject set: captures aim at the centre of the frame.</div>
+      <div id="subject-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;">No subject yet: press GO on a saved view to restore its subject, or SET SUBJECT.</div>
     
       </div>
       <div class="module" id="mod-keystone">
@@ -781,7 +793,7 @@
         <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
       </div>
       <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
-        <input type="checkbox" id="chk-sv-keystone" checked /> Use this pano in MAKE KEYSTONE (form and weathering only)
+        <input type="checkbox" id="chk-sv-keystone" /> Use this pano in MAKE KEYSTONE (form and weathering only)
       </label>
       <label for="sv-reference" style="margin-top: 6px;">What MAKE KEYSTONE sends</label>
       <select id="sv-reference" style="width: 100%;" title="Detail crop: aimed from the pano at the subject, 45° across, so the render gets surfaces but no street view to copy">
@@ -895,7 +907,10 @@ function onChange() {
   const shot = readShot(), miss = missing(shot);
   ["place", "standpoint", "subject"].forEach(k => $("f-" + k).classList.toggle("invalid", miss.includes(k) && $("f-" + k).dataset.touched));
   $("run").disabled = miss.length > 0 || running;
-  $("run-hint").textContent = miss.length ? `Still needed: ${miss.join(", ")}.` : "Ready. \"Prompt that will be sent\" shows exactly what goes out.";
+  const pendingPreset = $("p-list") && $("p-list").value && $("p-list").value !== (typeof loadedPreset !== "undefined" ? loadedPreset : null);
+  $("run-hint").textContent = miss.length
+    ? `Still needed: ${miss.join(", ")}.` + (pendingPreset ? " Press Load to use the preset you chose, or fill these in." : "")
+    : "Ready. \"Prompt that will be sent\" shows exactly what goes out.";
   clearTimeout(previewTimer);
   if (miss.length) { $("preview").textContent = "Fill in place, standpoint and subject to see the prompt."; return; }
   previewTimer = setTimeout(async () => {
@@ -924,7 +939,7 @@ async function loadConfig() {
   }
   config = await r.json();
   $("server-status").textContent = `Connected: text model ${config.text_model}`;
-  $("o-instruction").innerHTML = config.instructions.map(n => `<option>${esc(n)}</option>`).join("");
+  $("o-instruction").innerHTML = config.instructions.map(n => `<option ${n === config.default_instruction ? "selected" : ""}>${esc(n)}</option>`).join("");
   $("o-model").innerHTML = config.image_models.map(m => `<option value="${esc(m.id)}">${esc(m.label)} (${esc(m.model)})</option>`).join("");
   $("o-aspect").innerHTML = config.aspect_ratios.map(a => `<option>${esc(a)}</option>`).join("");
   $("o-size").innerHTML = config.image_sizes.map(s => `<option ${s === "2K" ? "selected" : ""}>${esc(s)}</option>`).join("");
@@ -942,10 +957,19 @@ async function loadPresets(select) {
   $("p-list").innerHTML = `<option value="">Choose a preset</option>` + Object.keys(p).sort().map(n => `<option ${n === select ? "selected" : ""}>${esc(n)}</option>`).join("");
   return p;
 }
+var loadedPreset = null;   // var, not let: onChange() reads it before this line runs
+function updateLoadButton() {
+  const name = $("p-list").value;
+  $("p-load").classList.toggle("lit", !!name && name !== loadedPreset);
+  $("p-load").title = name && name !== loadedPreset ? "Press Load to put this preset into the brief" : "";
+  onChange();
+}
+$("p-list").addEventListener("change", updateLoadButton);
 $("p-load").addEventListener("click", async () => {
   const name = $("p-list").value; if (!name) return;
   const p = await (await fetch("/api/presets")).json();
-  writeShot(p[name]); showMessage(`Loaded preset: ${name}.`);
+  writeShot(p[name]); loadedPreset = name; updateLoadButton();
+  showMessage(`Loaded preset: ${name}. The brief is unlinked from the camera; the stamp still follows the camera.`);
 });
 $("p-save").addEventListener("click", async () => {
   const name = $("p-name").value.trim(), shot = readShot();
@@ -976,10 +1000,12 @@ $("run").addEventListener("click", async () => {
   setFrameMode("still");
   current = { run_id: null, data: {}, tab: current.tab };
   showLenses(null);
+  setFrameCaption("");
   $("frame").innerHTML = `<div class="empty">Excavating...</div>`; $("renders").innerHTML = ""; $("panel").textContent = "";
   showMessage("Sending the prompt.");
-  // Stamp the run with the saved view when the Cesium camera is linked and sitting exactly on it.
-  const atView = (linked && typeof activeSavedView !== "undefined" && activeSavedView &&
+  // A4 (2026-10-21): stamp the run with the saved view when the Cesium camera sits exactly on it, linked or not.
+  // (Loading a preset unlinks the brief, which used to block the stamp silently.)
+  const atView = (typeof activeSavedView !== "undefined" && activeSavedView &&
                   typeof cameraMatchesView === "function" && cameraMatchesView(activeSavedView)) ? activeSavedView : null;
   const body = { shot, instruction: $("o-instruction").value, image_model: $("o-model").value,
                  saved_view_id: atView ? atView.id : null, saved_view_name: atView ? atView.name : null,
@@ -1022,6 +1048,7 @@ function handle(ev) {
     stage("render", "done"); stage("saved", "done");
     showMessage(`Done in ${ev.seconds} s. Saved as ${ev.run_id}.`);
     openRun(ev.run_id);
+    if (typeof loadLsaRuns === "function") loadLsaRuns();   // A8: the new run appears in the weft pass dropdown
   } else if (ev.event === "error") {
     ["analysis", "render"].forEach(s => { if ($("st-" + s).classList.contains("active")) stage(s, "failed"); });
     showMessage(ev.message, true);
@@ -1071,6 +1098,7 @@ async function openRun(run_id, keepMessage) {
   const renders = d.renders || [];
   setFrameMode("still");
   const show = (f) => {
+    setFrameCaption(f ? `LSA image: ${d.settings && d.settings.label ? d.settings.label + ", " : ""}${run_id.slice(0, 8)} ${run_id.slice(9, 13)}. The LSA's own picture, made from text alone: not a capture or keystone.` : "");
     $("frame").innerHTML = f ? `<img alt="Render of ${esc(d.shot.place)}" src="/api/runs/${encodeURIComponent(run_id)}/image?f=${encodeURIComponent(f)}">`
                              : `<div class="empty">${esc(d.settings.error || "This run has no image.")}</div>`;
     document.querySelectorAll("#renders img").forEach(i => i.classList.toggle("on", i.dataset.f === f));
@@ -1273,9 +1301,21 @@ function drawDialLive(heading, fov, subj, lsaBearing) {
     + ` Dashed line: the LSA bearing (${Math.round(lsaBearing)}°).</span>`;
 }
 
+/* ---------- A10 (2026-10-21): the frame says what it is showing ---------- */
+function setFrameCaption(text) { const el = $("frame-caption"); if (el) el.textContent = text || ""; }
+function pipelineCaption(data) {
+  switch (data.mode) {
+    case "KEYSTONE": return "Keystone candidate (not approved yet): made from the capture, noon, flat overcast, midwinter.";
+    case "PRINT": return "Print from the approved keystone.";
+    case "DATE_PLATE": return "Date plate from the approved keystone.";
+    default: return data.replay_of ? "Replay of a capture." : "Capture: the pipeline's render of the Cesium frame (Synthesize).";
+  }
+}
+
 /* ---------- pipeline results land in the frame and the Pipeline tab ---------- */
 function showPipelineResult(data, links) {
   if (data.twin_image_b64) {
+    setFrameCaption(pipelineCaption(data));
     $("frame").innerHTML = `<img alt="Pipeline render" src="${data.twin_image_b64}">`;
     $("renders").innerHTML = "";
     setFrameMode("still");

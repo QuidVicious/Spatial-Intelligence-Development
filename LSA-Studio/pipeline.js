@@ -265,6 +265,25 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     let activeSavedView = null;  // last view reached with GO
 
     // A capture is tagged with a saved view only if the camera is still exactly there.
+    // A4 (2026-10-21): the stamp follows the camera, not the brief's link. One line before Excavate and
+    // before Synthesize says which view a run will be stamped with, or why it will not be.
+    function stampInfo() {
+      if (!viewer) return { ok: false, text: 'Not stamped with a view: Cesium is not running.' };
+      if (!activeSavedView) return { ok: false, text: 'Not stamped with a view: press GO on a saved view, or save this one.' };
+      if (!cameraMatchesView(activeSavedView)) return { ok: false, text: `Not stamped: the camera has moved from "${activeSavedView.name}". Press GO to return to it.` };
+      return { ok: true, text: `Will be stamped with the view: ${activeSavedView.name}` };
+    }
+    function updateStampLines() {
+      const s = stampInfo();
+      ['stamp-line-lsa', 'stamp-line-pipe'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = s.text;
+        el.style.color = s.ok ? 'var(--accent-cyan)' : '#ffb74d';
+      });
+    }
+    setInterval(updateStampLines, 1000);
+
     function cameraMatchesView(v) {
       if (!v || !viewer) return false;
       const c = v.camera, cam = viewer.camera;
@@ -357,7 +376,10 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const rec = await resp.json();
         input.value = '';
         await loadSavedViews(rec.id);
-        setViewsStatus(`Saved: ${rec.name}`, 'var(--accent-cyan)');
+        // A4: saving a view makes it the current view, as GO does, so runs made from here are stamped with it.
+        activeSavedView = savedViews.find(v => v.id === rec.id) || activeSavedView;
+        updateStampLines();
+        setViewsStatus(`Saved and current: ${rec.name}`, 'var(--accent-cyan)');
         console.log('[Views] saved', rec);
       } catch (e) {
         console.warn('[Views] save failed:', e);
@@ -375,7 +397,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (c.fov_deg && viewer.camera.frustum.fov !== undefined) {
         viewer.camera.frustum.fov = Cesium.Math.toRadians(c.fov_deg);
       }
-      viewer.camera.setView({
+      const applyView = () => viewer.camera.setView({
         destination: new Cesium.Cartesian3(c.x, c.y, c.z),
         orientation: {
           heading: Cesium.Math.toRadians(c.heading_deg),
@@ -383,6 +405,23 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           roll: Cesium.Math.toRadians(c.roll_deg || 0)
         }
       });
+      applyView();
+      // A5 (2026-10-21): the first GO after showing Cesium could leave the camera in the air, apparently pushed up
+      // by camera collision against coarse tiles that were still loading; a second GO landed it. Re-apply the
+      // view as the tiles load (up to 6 s), unless the user has moved the camera since.
+      const goAt = Date.now();
+      let userMoved = false;
+      const onInput = () => { userMoved = true; };
+      viewer.canvas.addEventListener('pointerdown', onInput, { once: true });
+      viewer.canvas.addEventListener('wheel', onInput, { once: true });
+      const reapply = () => {
+        if (userMoved || Date.now() - goAt > 6000) return;
+        if (!cameraMatchesView(v)) { applyView(); updateTelemetryHUD(); onCameraSettle(); }
+      };
+      [700, 1500, 3000, 5800].forEach(ms => setTimeout(reapply, ms));
+      if (googleTileset && googleTileset.allTilesLoaded && googleTileset.allTilesLoaded.addEventListener) {
+        const off = googleTileset.allTilesLoaded.addEventListener(() => { reapply(); if (typeof off === 'function') off(); });
+      }
       updateTelemetryHUD();
       onCameraSettle();
       activeSavedView = v;
@@ -393,6 +432,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (v.subject) setSubject(v.subject); else clearSubject(true);
       if (typeof saveFraming === 'function') saveFraming(`saved view ${v.name}`);
       setViewsStatus(`At: ${v.name}`, 'var(--accent-cyan)');
+      updateStampLines();
       console.log(`[Views] restored ${v.name} (${v.id})`);
     }
 
@@ -626,7 +666,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     }
 
     function describeSubject() {
-      if (!subjectPoint) { setSubjectStatus('No subject set: captures aim at the centre of the frame.'); return; }
+      if (!subjectPoint) { setSubjectStatus(activeSavedView ? 'No subject set: captures aim at the centre of the frame.' : 'No subject yet: press GO on a saved view to restore its subject, or SET SUBJECT.'); return; }
       const d = Cesium.Cartesian3.distance(viewer.camera.position, new Cesium.Cartesian3(subjectPoint.x, subjectPoint.y, subjectPoint.z));
       setSubjectStatus(`🎯 Subject: ${subjectPoint.latitude.toFixed(6)}, ${subjectPoint.longitude.toFixed(6)} | ${d.toFixed(0)} m from camera`, 'var(--accent-cyan)');
     }
@@ -649,7 +689,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (subjectEntity) { viewer.entities.remove(subjectEntity); subjectEntity = null; }
       subjectPickMode = false;
       document.getElementById('btn-set-subject').textContent = '🎯 SET SUBJECT';
-      if (!silent) describeSubject(); else setSubjectStatus('No subject set: captures aim at the centre of the frame.');
+      if (!silent) describeSubject(); else setSubjectStatus('No subject on this view: captures aim at the centre of the frame. SET SUBJECT to add one.');
     }
 
     function toggleSubjectPick() {
@@ -1227,7 +1267,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!el) return;
       if (!d) { el.hidden = true; el.innerHTML = ''; return; }
       const added = d.added || [], conflicts = d.conflicts || [];
-      el.innerHTML = removedHtml(d.removed, 'the finishing pass') +
+      el.innerHTML = removedHtml(d.removed, 'the finishing pass') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
         `<div class="lsa-added-head">Added from the pano</div>` +
         (added.length ? added.map(a => `<div class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(a.note || '')}</span></div>`).join('')
                       : '<div class="lsa-added-note">Nothing structural added.</div>') +
@@ -1236,6 +1276,32 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           '<div class="lsa-added-note">The scene text was kept. If the pano is right, edit the text by hand (and your Scene layout).</div>'
                           : '<div class="lsa-added-note">No disagreements reported.</div>');
       el.hidden = false;
+    }
+
+    // A2 (2026-10-21): a pano's season shows in the report; summer sun pushes colours warm.
+    function seasonOf(dateStr, lat) {
+      const m = /^(\d{4})-(\d{2})/.exec(dateStr || '');
+      if (!m) return null;
+      const month = parseInt(m[2], 10), south = (lat || 0) < 0;
+      const north = ['winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter'];
+      const flip = { winter: 'summer', summer: 'winter', spring: 'autumn', autumn: 'spring' };
+      const s = north[month - 1];
+      return south ? flip[s] : s;
+    }
+    function seasonNoteHtml(dateStr) {
+      const lat = svState && svState.lat;
+      const season = seasonOf(dateStr || (svState && svState.date), lat);
+      if (!season) return '';
+      const warm = season === 'summer' || season === 'spring';
+      return `<div class="lsa-added-note">Pano taken in ${escHtml(dateStr || svState.date)} (${season}).` +
+        (warm ? ' Sunlit panos push colours warm: check that no "honey", "golden" or "ochre" came in.' : '') + '</div>';
+    }
+    // A1 (2026-10-21): flagged words say why they are flagged.
+    function wordWarningsHtml(words) {
+      if (!words || !words.length) return '';
+      return `<div class="lsa-added-head">Words to check</div><div class="lsa-added-text">${words.map(escHtml).join(', ')}</div>` +
+        '<div class="lsa-added-note">Weather, light and season words pull the render toward that weather: describe the mark instead ' +
+        '(pale, cleaner, streaked, stained, bleached). Compass words become exposure words (sheltered, exposed). Street and place names become position words.</div>';
     }
 
     function svUndoRewrite() {
@@ -1302,17 +1368,19 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!sel) return;
       try { const r = await fetch('/api/runs'); lsaRuns = r.ok ? await r.json() : []; } catch (e) { lsaRuns = []; }
       lsaRuns = (Array.isArray(lsaRuns) ? lsaRuns : []).filter(lsaUsable);
+      const prev = sel.value;   // A8: a hand pick survives a refresh
       const run = selectedReplayRun();
       const viewId = run ? run.saved_view_id : null;
       const mine = lsaRuns.filter(r => viewId && r.saved_view_id === viewId);
       const rest = lsaRuns.filter(r => !mine.includes(r));
       const opt = r => `<option value="${escHtml(r.run_id)}" title="${escHtml(r.subject || '')}">${escHtml(fmtLsaRun(r))}</option>`;
-      if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA runs yet</option>'; lsaPreview(); return; }
+      if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA run yet: press Excavate in the brief on the left</option>'; lsaPreview(); return; }
       sel.innerHTML = '<option value="">Choose an LSA run</option>' +
         (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>` : '') +
         `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
-      sel.value = mine.length ? mine[0].run_id : '';
-      if (run && !lsaJoin) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
+      const kept = prev && lsaRuns.some(r => r.run_id === prev);
+      sel.value = kept ? prev : (mine.length ? mine[0].run_id : '');
+      if (run && !lsaJoin && !kept) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
         : 'No LSA run is stamped with this view yet: pick one by hand and check the preview.');
       lsaPreview();
     }
@@ -1409,7 +1477,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         setLsaStatus(`Weft pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
           (layout ? '' : ' No scene layout was sent (the LSA run has none).') +
           (added.length ? ` Structure added: ${added.length - nProp} confirmed, ${nProp} proposed (listed below).` : ' No structure added.') +
-          (d.warnings && d.warnings.length ? ` Check these words in the text: ${d.warnings.join(', ')}.` : '') +
+          (d.warnings && d.warnings.length ? ` Words to check: ${d.warnings.join(', ')} (weather, light and season words pull the render toward that weather: describe the mark instead; place names become position words).` : '') +
           ' Review it in the editor before making a keystone; UNDO restores the previous text.',
           d.warnings && d.warnings.length ? '#ffb74d' : 'var(--accent-cyan)');
       } catch (e) { setLsaStatus(e.message, '#ff5252'); }
@@ -1500,12 +1568,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const warn = [];
       if (lsaJoin.finishing_after) warn.push('The finishing pass ran after the weft pass, so only B has had it. For a fair test, UNDO, run the finishing pass first, then the weft pass.');
       if (join && join.hand_edited_after) warn.push('B has hand edits made after the weft pass.');
-      if (!confirm(`Make two keystone candidates from this run, both with seed ${seed} and ${useSv ? 'the same Street View pano' : 'no Street View reference'}:\n\n` +
+      if (!confirm(`Make two keystone candidates from this run's capture, both with seed ${seed} and ${useSv ? `the same pano image (${svState.pano_id})` : 'TEXT ONLY (no pano image)'}:\n\n` +
         `A: the scene text before the weft pass (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
         (warn.length ? 'NOTE: ' + warn.join(' ') + '\n\n' : '') + 'That is two renders. Continue?')) return;
       const pair = 'ab_' + Date.now().toString(36);
       const build = (text, arm) => {
-        const p = buildReplayPayload(run, text === replayOriginalText.trim() ? null : text);
+        const fromCapture = !!(run.keystone_candidate && run.replay_of);
+        const p = buildReplayPayload(run, (fromCapture || text !== replayOriginalText.trim()) ? text : null);
+        if (fromCapture) p.replay_of = run.replay_of;   // A6: always from the capture, with the text sent explicitly
         p.mode = 'KEYSTONE';
         p.seed = seed;
         if (useSv) p.streetview = svPayload(run);
@@ -2113,7 +2183,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       }
       sel.innerHTML = '';
       if (!replayRuns.length) {
-        sel.innerHTML = '<option value="">No replayable runs</option>';
+        sel.innerHTML = `<option value="">${viewId ? 'No capture of this view yet: press Synthesize at the top of this column' : 'No captures yet: press Synthesize at the top of this column'}</option>`;
         document.getElementById('replay-thumb').style.display = 'none';
         document.getElementById('replay-scene-text').value = '';
         replayOriginalText = '';
@@ -2249,17 +2319,29 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const run = selectedReplayRun();
       if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
       if (!run.saved_view_id) { setReplayStatus('Keystones need a run tagged with a saved view.', '#ff5252'); return; }
-      if (!confirm('Render a keystone candidate from this run?\n\nIt ignores the date, time and weather panels: bare midwinter trees, flat overcast, noon.')) return;
-      if (svState && document.getElementById('chk-sv-keystone').checked && svState.size === SV_SQUARE &&
+      // A6 (2026-10-21): a keystone is always made from the capture. If a candidate is selected, use its capture.
+      const sourceId = (run.keystone_candidate && run.replay_of) ? run.replay_of : run.id;
+      const srcRun = replayRuns.find(r => r.id === sourceId);
+      const useSv = !!(svState && document.getElementById('chk-sv-keystone').checked);
+      // A7: the dialog says plainly whether a pano image goes with the render.
+      if (!confirm(`Render a keystone candidate from the capture ${srcRun ? runLabel(srcRun) : sourceId}?` +
+        (sourceId !== run.id ? '\n(The selected run is a candidate; the new one is made from its capture, not from the candidate.)' : '') +
+        `\n\n${useSv ? `WITH PANO IMAGE: ${svState.pano_id} (${svState.date || 'undated'})` : 'TEXT ONLY: no pano image is sent.'}` +
+        '\n\nIt ignores the date, time and weather panels: bare midwinter trees, flat overcast, noon.')) return;
+      if (useSv && svState.size === SV_SQUARE &&
           !confirm('The Street View card shows a square crop from before the 16:9 switch. The keystone will fetch this pano at 16:9 with the same angles, so the reference will show less at the top and bottom than the preview.\n\nContinue?')) return;
-      const payload = buildReplayPayload(run, editedSceneText());
+      // From a candidate's capture, the text in the box is always sent: unedited, the server would otherwise
+      // fall back to the capture's own original text, not the candidate's.
+      const boxText = document.getElementById('replay-scene-text').value.trim();
+      const payload = buildReplayPayload(run, sourceId !== run.id ? (boxText || null) : editedSceneText());
+      payload.replay_of = sourceId;
       payload.mode = 'KEYSTONE';
       payload.lsa_join = lsaJoinPayload();
       if (svState && document.getElementById('chk-sv-keystone').checked) {
         payload.streetview = svPayload(run);
         console.log(`[Keystone] with Street View reference ${svState.pano_id} (${svState.date})`);
       }
-      console.log(`[Keystone] candidate from ${run.id}`);
+      console.log(`[Keystone] candidate from capture ${sourceId}${sourceId !== run.id ? ` (selected candidate ${run.id})` : ''}`);
       resetStepperHUD();
       document.getElementById('loadingOverlay').classList.remove('hidden');
       await streamPipeline(payload);
