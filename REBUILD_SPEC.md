@@ -9,6 +9,8 @@ Three kinds of work, in this order:
 
 ## Round A: fixes
 
+Status 2026-10-21: A1 to A10 and A18 to A20 delivered in A-1 and tested (A8, A9 and A12 not tested on their own). A11, A13, A14 and A21 to A25 delivered in A-2, testing. A15 to A17 open. A18 now reads: the server picks the highest SI version (SI6.3 today).
+
 ### Prompts (Dual-Pipeline, domain_engine.py)
 | # | Fix | From |
 | --- | --- | --- |
@@ -31,6 +33,11 @@ Three kinds of work, in this order:
 | A18 | The instruction dropdown defaults to SI6.2 (adopted 2026-10-20), not the first in the list; the server default matches. | [7] |
 | A19 | Preset Load button lights up when a preset is selected and not yet loaded, dims once loaded; the "Still needed" hint mentions the preset. Same lit/dim pattern for the pano's UPDATE. | [48] |
 | A20 | After a reload, the subject line says "Press GO to restore this view's subject" instead of "No subject set". | [47] |
+| A21 | Unsaved preset changes are marked under Presets; Load fills the name box so Save shot overwrites; loading over unsaved changes asks first. | [53] |
+| A22 | The editor title says which text it is: "Scene layout (your brief, left column: what the LSA reads)", "Scene text (the selected run's: what the image model reads)". | [56] [57] |
+| A23 | GO locks the camera in live mode, so editing further down the page cannot lose the framing. | [58] |
+| A24 | Status that matters sits where the user is looking, at a readable size (the GO status first). | [59] |
+| A25 | The Street View check report flags warm colour words and says why; the stamp line is rewritten only when its words change, so it can be copied; the frame caption shows a readable date. | [35] [38] |
 
 ### Reports (both passes)
 | # | Fix | From |
@@ -55,6 +62,8 @@ Three kinds of work, in this order:
 | B8 | Under-clutter note at capture: "What is really under the parked cars?" One line the user can fill, sent with the scene text. | [42] |
 | B9 | Layout names are checked like everything else: street and place names in the layout are shown back with what the tool found there, and a mismatch is flagged rather than confirmed. | [25] |
 | B10 | Points of interest: the subject plus up to four more markers placed on the Cesium frame, each with a short description the user writes and a rank (1 = most important) the user sets. The compiler opens the scene section with a priority block: the points in rank order, each as its own element entry with its position worked out from the marker (side, height in frame, distance) and the user's description, followed by the rest of the scene with no repeats. The task and framing rules stay ahead of the block. Ranks and labels show in the UI but never reach the image model as numbers or labels (it can draw them); order and wording carry the rank. Each point also aims an evidence crop, marks an edit region for the edit pass, and is a place the framing check measures (including the ground). Test before trusting: A/B with the ranking reversed, to measure whether order changes the render. Per point, the evidence step: pick the image that sees the point best (close, facing it, unobstructed, right season), crop to it, show the crop as a thumbnail for the user to confirm, read it into words for that element only (the user's description stays confirmed; the sketch's additions come in as proposed), and never send the image to the renderer. | Don 2026-10-20; [43] [46] |
+| B11 | SI6.4: a top floor whose windows sit in the wall face is counted, whatever it is called; only windows in a roof slope belong to the roof. Location-neutral in the instruction; local terms (attic storey, main cornice, blocking course) go to the place primer. | 2026-10-21 |
+| B12 | Location preview: before the first run, show and set the place's local norms (building types, counts, materials, terms) as the system's defaults for that place. Part of the place primer. Idea, to scope. | Don 2026-10-21 |
 
 ### Names (agreed with Don 2026-10-20; the Synthesize button becomes CAPTURE so "synthesis" names one step only)
 | On screen | Was | Means |

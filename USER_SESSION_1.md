@@ -100,3 +100,28 @@ What worked: the LSA found the slope unprompted ("the junction with Nelson Stree
 | 49 | Loading a preset silently unlinks the brief, and the unlinked brief silently blocks the stamp: every Excavate after a preset load went out unstamped, however often GO was pressed. Two silent steps make a failure the user cannot see or explain. | P1 |
 | 50 | The brief's fields have no visible undo or history; one paste wiped a layout. The history line (A17) covers the brief too. | P2 |
 | 51 | "Go to the view" needed asking about after two days with the tool. Step 1 of the step strip: "View: choose it and press GO", with the control beside it. | P1 |
+
+## Follow-up findings, 2026-10-21 (A-1 tests and A-2)
+
+| # | Finding | P |
+| --- | --- | --- |
+| 52 | In a layout, word count is weight. The distant Dublin Street end had a full sentence with a count; the corner building, the subject, had one clause; the Nelson Street return's blue door and steps were not mentioned and were not drawn. The layout field should prompt for the subject first and most fully (B6, B10). | P1 |
+| 53 | Presets have no unsaved-changes mark, and loading one replaces what is in the brief without a word. Fixed in A-2: a line under Presets says "Changed since you loaded ...", Load fills the name box so Save shot overwrites, and loading over unsaved changes asks first. Tested. | P1 |
+| 54 | The two run lists (Runs and keystones; the weft pass's LSA runs) look alike. Each needs a heading that says what it lists (B3). | P2 |
+| 55 | A pass's status appeared inside the cropped pano preview, not near the button pressed. Fixed in A-2 with the progress card (A11). | P1 |
+| 56 | "Scene layout" and "Scene text" are easy to confuse, in the editor title above all. Fixed in A-2: "Scene layout (your brief, left column: what the LSA reads)" and "Scene text (the selected run's: what the image model reads)". Tested. | P1 |
+| 57 | Recorded as "the editor does not refresh after a pass". Corrected: the code refreshes the editor after every pass; most likely the editor was showing the Scene layout, not the Scene text (finding 56). The fix is the clearer title, not a refresh. | P1 |
+| 58 | One stray touch in the frame moves the camera, and the Lock button scrolls out of sight while editing long fields further down: scroll down to edit, scroll back up, touch the frame, and the framing is lost and the setup repeats. Fixed in A-2: GO locks the camera in live mode. Tested; "a big one". | P1 |
+| 59 | The GO status line (10 px, under the views list) is too small to notice: "I would have never seen it." Status that matters goes where the user is looking, at a readable size. Enlarged after the test; the frame's own lock badge and outline also show the state. | P1 |
+
+Results, 2026-10-21. The progress card works: the pulsing dot and the seconds count show the run is alive, not frozen. The text-only LSA picture (late morning run, SI6.3) held Nelson Street's fall at about the right angle toward Northumberland Street, but drew the corner building with three floors above the street, dropping the attic storey, and left out the return's door and steps (finding 52). The layout said "four storeys above the street, the top floor flush with the facade": "flush" names a surface, not a count, and the model filed the attic under the roof (the same misreading as SI6.1's "three floors plus attic dormers").
+
+| # | Finding (afternoon, weft pass) | P |
+| --- | --- | --- |
+| 60 | The weft report's removal check flags rewordings as losses: "four-storey" (the count came back reworded), "blind window" (now "blind panels"), "chimney stacks" (now "stone chimneys"). In the same report "steps" was a real loss: the near building's entrance steps were gone. False alarms teach the user to ignore the one that matters. | P1 |
+| 61 | The weft pass overshot its own length cap: 2,840 characters against 2,600. | P3 |
+| 62 | Proposals are not stable between passes. The same run and text gave "segmental arched" platts once and not the second time; "whinstone gutters" came back after it was removed. A REMOVE is forgotten by the next pass, and a proposal Don confirmed is lost unless he writes it into the layout. Decisions should stay with the view: removed stays out, kept becomes confirmed. | P1 |
+| 63 | The weft pass swapped the tree species again (Ulmus glabra to Platanus x acerifolia), listed only under "verify". Evidence for A16. | P1 |
+| 64 | The new fixtures and storey rules in the weft pass made no visible difference on the first test. The lamps were left out as "unconfirmed fixtures not verified in layout or visible composition" (the rule's "only where IMAGE 1 has room" gave the model its reason, and thin poles barely show in a capture); one roof sentence still covers every building; the layout's "flush with the facade" stayed, confirmed. The layout is confirmed and outweighs the instruction: what the director knows has to be in the layout. | P1 |
+
+Results, afternoon. The LSA proposed a segmental arch under the platts, a detail Don had not noticed in eight months; he confirmed it in Street View (a subtle arcing sweep under the rigid steps; the solid ones probably enclose a cellar). The retaining wall along the descending return was kept: the basement areas read as moats around the buildings from the air. The progress overlay: "my new favorite thing", "I love that status gizmo".

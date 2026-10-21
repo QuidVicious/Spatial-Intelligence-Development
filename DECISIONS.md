@@ -6,6 +6,37 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-21: Round A-1 tested, A-2 started, SI6.3, and the attic storey
+
+**SI6.3 is the default instruction.** Adopted. LSA-Studio/lsa/instructions/SI6.3.md. Changes from SI6.2: the render prompt shows the empty place in positive words (no people, no parked cars, said as what is there rather than as a list of what is not), keeps the permanent fixtures (lamps, railings, bollards), and gives each element words in proportion to its size in the frame. The nb2 addendum matches: rule 5 the empty street with fixtures kept, rule 6 surfaces dry unless the brief's weather says otherwise, rule 8 words in proportion to frame size. The server now picks the highest SI version as the default, so a new instruction does not need a code change.
+
+**Round A-1: delivered and tested.** Files: Dual-Pipeline/domain_engine.py, Dual-Pipeline/server.py, LSA-Studio/pipeline.js, LSA-Studio/lsa_studio.html, LSA-Studio/lsa_server.py. Tested and confirmed by Don: A1 to A3 (a June pano gave "grey-tan and buff-grey", no weather words, no recount of the basement), A4 (a run stamped while the brief was unlinked), A5 (one GO landed), A6 and A7 (the confirm dialog, checked and cancelled), A10 (the frame caption), A18 (SI6.3 the default), A19 (Load lights up), A20. Not tested on their own: A8, A9, A12.
+
+**Round A-2: first part delivered.** LSA-Studio/pipeline.js and LSA-Studio/lsa_studio.html.
+- A11: one progress card in the middle of the frame for Excavate, the weft pass and the Street View check: the step's name, a live seconds count with a pulsing dot, then done or failed with a message. Done closes itself after 8 s; failed stays until OK. Tested on Excavate: "the pulsing dot and second countdown are great b/c I can see it working and not frozen."
+- 56 and 57: the editor titles say which text is which (tested).
+- 58: GO locks the camera in live mode (tested). 59: the GO status line enlarged, and it says plainly when nothing was locked.
+- 53: unsaved preset changes are marked; Load fills the name box; loading over changes asks first (tested).
+- The stamp line is rewritten only when its words change, so it can be selected and copied.
+- The frame caption reads "LSA image: 21 Oct, 10:48".
+- The Street View check report flags warm colour words (honey, golden, gold, ochre, amber, tawny) and says why: usually sunlight in the pano, not the stone. "Gold" also catches real gilding, so a flag is a prompt to look.
+- A14: a report marks itself when the scene text has changed since it was made.
+- A13: REMOVE takes out the phrase with the word that joined it, repairs the punctuation and the list "and", drops a sentence with nothing left, and shows Was and Now under the item; a sentence that may need a word is marked amber.
+Open: A15 to A17. Reports from a previous run can stay on screen after switching runs and be marked stale; harmless but misleading.
+
+**The attic storey is a floor, not roof.** Planned for SI6.4 (Round B). Don's definition: in late Georgian Edinburgh the attic storey (parapet attic, wall-head attic) rises straight up past the main cornice in the wall face, with standard rectangular windows lined up with the floors below, to keep the facade's symmetry; a blocking course or parapet at the top hides the sloping roof behind. The model files "attic" under the roof and drops it or turns it into dormers (SI6.1's "three floors plus attic dormers"; today's LSA picture with three floors above the street).
+Don's concern: the Georgian wording is location-specific and would push other places (Santa Fe) where it should not. So the instruction carries only the neutral rule: "A top floor whose windows sit in the wall face is counted, whatever it is called; only windows in a roof slope (dormers) belong to the roof." The Georgian terms (main cornice, blocking course, attic storey) go to the place primer, not the instruction.
+Idea from Don, to scope: a location preview that sets the system's defaults to the local norms of the place (building types, counts, materials, terms) before the first run; part of the place primer.
+
+**Afternoon: fixtures and storeys in the weft pass.** Tested, no effect yet. Dual-Pipeline/domain_engine.py: the weft pass instruction had no place for street furniture, so the model set lamps aside as "non-structural clutter" while the capture rule keeps "fixed streetlamps"; a PERMANENT FIXTURES section now names them (confirmed from the layout or capture, proposed from the analysis, transient things out). The STOREYS rule now counts a top floor in the wall face, says what is above it (a cornice, a parapet, and whether the roof shows behind it), and assigns each roof form to its building. First test: lamps still left out as unconfirmed, one roof sentence for all, the layout's "flush" kept (USER_SESSION_1.md, 64). Next: a proposed fixture is added as proposed whether or not the capture shows it (thin poles barely show), and the director decides.
+Decision: the layout is the lever. What the director has confirmed goes into the layout, because the passes treat the layout as confirmed and their proposals change from run to run (62).
+
+**Corrections and facts from Don, 2026-10-21.** The camera stands in the eastbound lane, left of the street's centre; the street runs forward and curves gently to the right. "Curve gently to the left" in the preset was wrong, Claude's wording from 2026-10-20, never corrected in the preset. The corner block is the end of the terrace, joined to both terraces; no dormers; a parapet with the slate roof showing behind it. The Abercromby Place facade has eleven three-bay houses, some four storeys with a parapet attic, most three with dormer attics; the six distant houses at Dublin Street have dormers. "Tenement" is kept out: outside Scotland it suggests something else. Rust staining ("ochre") on masonry and railings is real and stays.
+
+**The arch under the platts: an LSA proposal confirmed by evidence.** The weft pass proposed "segmental arched" platts from the LSA analysis; Don, who had not noticed it in eight months of study, confirmed it in Street View. The confirmation route working as designed: the model proposes, outside evidence decides.
+
+**Layout lessons (finding 52).** Word count is weight: the subject gets the most words, distant elements the fewest, and anything the user wants drawn must be named. "Flush with the facade" describes a surface, not a count; give counts as counts ("four floors of windows above the pavement"). The preset's "curve gently to the left" was wrong (see the corrections above).
+
 ## 2026-10-20: Mapillary as a second evidence source
 
 **Mapillary is evaluated and planned as an evidence source beside Street View.** Planned, after the UI rebuild. Don walked Abercromby Place, Nelson Street and Drummond Place in its viewer. What it adds, from the API documentation: images at 2048 px or full size (Street View gives 640 px); dense, often on-foot sequences with corrected position and heading, so the tool can pick the image nearest the camera or best facing the subject; a capture date per image (choose winter or overcast for colour); detected street furniture with position, facing and first and last seen dates (the place primer's present-day layer, with permanence built in); a reconstructed point cloud and mesh per cluster (sparse, but enough for the ground's trend, such as a slope); faces and plates blurred. MapillaryJS can render a 3D model inside the street imagery, the display end of historical resurrection.

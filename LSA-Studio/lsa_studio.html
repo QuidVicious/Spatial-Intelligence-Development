@@ -282,7 +282,30 @@
                    background: rgba(20, 24, 22, 0.78); color: var(--paper); font-size: 12px; pointer-events: none; }
   .frame-caption:empty { display: none; }
   .frame-box.live .frame-caption { display: none; }
-  .stamp-line { font-size: 11px; margin-top: 4px; min-height: 13px; }
+  .stamp-line { font-size: 11px; margin-top: 4px; min-height: 13px; user-select: text; }
+  /* A11 (2026-10-21): one progress card in the frame for every step that runs on its own. */
+  .task-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 8; width: min(420px, calc(100% - 32px));
+               background: var(--panel-bg); border: 1px solid var(--panel-border); border-left: 4px solid var(--moss); border-radius: 8px;
+               padding: 14px 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.55); display: flex; flex-direction: column; gap: 6px; }
+  .task-card[hidden] { display: none; }
+  .task-card.done { border-left-color: var(--moss); }
+  .task-card.failed { border-left-color: #ff5252; }
+  .task-title { font: 600 14px/1.25 var(--read); color: var(--paper); }
+  .task-msg { font-size: 12.5px; color: var(--paper); }
+  .task-time { font-size: 11.5px; color: var(--lichen-grey); }
+  .task-card.running .task-time::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%;
+                                          background: var(--moss); animation: taskpulse 1.2s ease-in-out infinite; }
+  @keyframes taskpulse { 50% { opacity: 0.25; } }
+  .task-close { align-self: flex-end; }
+  /* A14: a report written before the latest edit says so. */
+  .stale-note { border: 1px dashed #ffb74d; color: #ffb74d; border-radius: 4px; padding: 5px 8px; margin-bottom: 6px; font-size: 12px; }
+  .stale-note[hidden] { display: none; }
+  /* A13: a removal shows the sentence before and after. */
+  .lsa-added-sentence { margin: 2px 0 8px 12px; padding-left: 8px; border-left: 2px solid var(--panel-border); font-size: 12px; color: var(--lichen-grey); }
+  .lsa-added-sentence.doubt { border-left-color: #ffb74d; }
+  .lsa-added-sentence b { color: var(--paper); font-weight: 600; }
+  /* 53: the brief differs from the preset it was loaded from. */
+  #p-dirty { color: #ffb74d; }
   .run { width: 100%; margin-top: 18px; padding: 11px; background: var(--xanthoria); border: 0; color: #2a1a06; font-weight: 600; font-size: 16px; border-radius: 4px; cursor: pointer; }
   .run:disabled { background: var(--slate-3); color: var(--lichen-grey); cursor: not-allowed; }
 
@@ -462,6 +485,7 @@
       <input type="text" id="p-name" aria-label="Preset name" placeholder="Name this shot">
       <button class="btn" id="p-save">Save shot</button>
     </div>
+    <div class="stamp-line" id="p-dirty" aria-live="polite"></div>
 
     <details id="preview-box">
       <summary>Prompt that will be sent</summary>
@@ -707,7 +731,7 @@
         <button onclick="goToSavedView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">GO</button>
         <button onclick="deleteSavedView()" class="toggle-btn" title="Delete selected view" style="flex: 0 0 auto; padding: 6px 10px;">✕</button>
       </div>
-      <div id="views-status" style="font-size: 10px; color: var(--text-muted); margin-top: 5px; min-height: 12px;"></div>
+      <div id="views-status" aria-live="polite" style="font-size: 12.5px; font-weight: 600; color: var(--text-muted); margin-top: 6px; min-height: 15px;"></div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-set-subject" class="toggle-btn" style="flex: 1; padding: 6px;" onclick="toggleSubjectPick()" title="Click this, then click the building or object the view is about">🎯 SET SUBJECT</button>
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" title="Clear the subject point" onclick="clearSubject()">✕</button>
@@ -911,6 +935,7 @@ function onChange() {
   $("run-hint").textContent = miss.length
     ? `Still needed: ${miss.join(", ")}.` + (pendingPreset ? " Press Load to use the preset you chose, or fill these in." : "")
     : "Ready. \"Prompt that will be sent\" shows exactly what goes out.";
+  if (typeof updatePresetDirty === "function") updatePresetDirty();
   clearTimeout(previewTimer);
   if (miss.length) { $("preview").textContent = "Fill in place, standpoint and subject to see the prompt."; return; }
   previewTimer = setTimeout(async () => {
@@ -958,6 +983,12 @@ async function loadPresets(select) {
   return p;
 }
 var loadedPreset = null;   // var, not let: onChange() reads it before this line runs
+var loadedShot = null;     // 53: the brief as the preset left it, to tell when it has been changed since
+function presetDirty() { return !!loadedPreset && loadedShot !== null && JSON.stringify(readShot()) !== loadedShot; }
+function updatePresetDirty() {
+  const el = $("p-dirty"); if (!el) return;
+  el.textContent = presetDirty() ? `Changed since you loaded "${loadedPreset}". To keep the changes, Save shot under that name (it is filled in below the list).` : "";
+}
 function updateLoadButton() {
   const name = $("p-list").value;
   $("p-load").classList.toggle("lit", !!name && name !== loadedPreset);
@@ -968,7 +999,9 @@ $("p-list").addEventListener("change", updateLoadButton);
 $("p-load").addEventListener("click", async () => {
   const name = $("p-list").value; if (!name) return;
   const p = await (await fetch("/api/presets")).json();
-  writeShot(p[name]); loadedPreset = name; updateLoadButton();
+  if (presetDirty() && name !== loadedPreset &&
+      !confirm(`The brief has changes that are not saved to "${loadedPreset}". Load "${name}" and lose them?`)) return;
+  writeShot(p[name]); loadedPreset = name; loadedShot = JSON.stringify(readShot()); $("p-name").value = name; updateLoadButton();
   showMessage(`Loaded preset: ${name}. The brief is unlinked from the camera; the stamp still follows the camera.`);
 });
 $("p-save").addEventListener("click", async () => {
@@ -976,14 +1009,15 @@ $("p-save").addEventListener("click", async () => {
   if (!name) { showMessage("Name the shot before saving it.", true); return; }
   if (missing(shot).length) { showMessage("Fill in place, standpoint and subject before saving.", true); return; }
   const r = await fetch("/api/presets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, shot }) });
-  if (r.ok) { await loadPresets(name); $("p-name").value = ""; showMessage(`Saved preset: ${name}.`); }
+  if (r.ok) { await loadPresets(name); loadedPreset = name; loadedShot = JSON.stringify(shot); $("p-name").value = name; updateLoadButton();
+             showMessage(`Saved preset: ${name}.`); }
   else showMessage("The preset was not saved: " + (await r.json()).detail, true);
 });
 $("p-delete").addEventListener("click", async () => {
   const name = $("p-list").value; if (!name) return;
   if (!confirm(`Delete the preset "${name}"?`)) return;
   await fetch("/api/presets/" + encodeURIComponent(name), { method: "DELETE" });
-  await loadPresets(); showMessage(`Deleted preset: ${name}.`);
+  await loadPresets(); if (name === loadedPreset) { loadedPreset = null; loadedShot = null; } updateLoadButton(); showMessage(`Deleted preset: ${name}.`);
 });
 
 /* ---------- running ---------- */
@@ -1003,6 +1037,7 @@ $("run").addEventListener("click", async () => {
   setFrameCaption("");
   $("frame").innerHTML = `<div class="empty">Excavating...</div>`; $("renders").innerHTML = ""; $("panel").textContent = "";
   showMessage("Sending the prompt.");
+  if (typeof taskStart === "function") taskStart("Excavate (LSA run)", "Sending the prompt. Analysis, then the image: usually 1 to 2 minutes.");
   // A4 (2026-10-21): stamp the run with the saved view when the Cesium camera sits exactly on it, linked or not.
   // (Loading a preset unlinks the brief, which used to block the stamp silently.)
   const atView = (typeof activeSavedView !== "undefined" && activeSavedView &&
@@ -1027,6 +1062,7 @@ $("run").addEventListener("click", async () => {
     }
   } catch (e) {
     showMessage("The run did not start: " + e.message, true); stage("analysis", "failed");
+    if (typeof taskEnd === "function") taskEnd(false, "The run did not start: " + e.message);
   }
   running = false; onChange(); loadRuns();
 });
@@ -1036,10 +1072,12 @@ function handle(ev) {
     if (ev.run_id) current.run_id = ev.run_id;
     if (ev.stage === "render") { stage("analysis", "done"); stage("render", "active"); }
     showMessage(ev.message);
+    if (typeof taskUpdate === "function") taskUpdate(ev.message);
   } else if (ev.event === "analysis") {
     current.data.analysis = ev.text; current.data.lsa_metadata = ev.lsa_metadata;
     showLenses(ev.lsa_metadata);
     showMessage(`Analysis done in ${ev.seconds} s.`);
+    if (typeof taskUpdate === "function") taskUpdate(`Analysis done in ${ev.seconds} s. Making the image.`);
   } else if (ev.event === "render_prompt") {
     current.data.render_prompt = ev.text;
     if (!ev.source.startsWith("RENDER_PROMPT section")) showMessage(`No RENDER_PROMPT section found; rendering from the ${ev.source}.`, true);
@@ -1047,11 +1085,13 @@ function handle(ev) {
   } else if (ev.event === "done") {
     stage("render", "done"); stage("saved", "done");
     showMessage(`Done in ${ev.seconds} s. Saved as ${ev.run_id}.`);
+    if (typeof taskEnd === "function") taskEnd(true, `Saved as the run of ${typeof fmtRunId === "function" ? fmtRunId(ev.run_id) : ev.run_id}. It is in the Runs list and the weft pass list.`);
     openRun(ev.run_id);
     if (typeof loadLsaRuns === "function") loadLsaRuns();   // A8: the new run appears in the weft pass dropdown
   } else if (ev.event === "error") {
     ["analysis", "render"].forEach(s => { if ($("st-" + s).classList.contains("active")) stage(s, "failed"); });
     showMessage(ev.message, true);
+    if (typeof taskEnd === "function") taskEnd(false, ev.message);
     if (ev.run_id) openRun(ev.run_id, true);
   }
 }
@@ -1098,7 +1138,7 @@ async function openRun(run_id, keepMessage) {
   const renders = d.renders || [];
   setFrameMode("still");
   const show = (f) => {
-    setFrameCaption(f ? `LSA image: ${d.settings && d.settings.label ? d.settings.label + ", " : ""}${run_id.slice(0, 8)} ${run_id.slice(9, 13)}. The LSA's own picture, made from text alone: not a capture or keystone.` : "");
+    setFrameCaption(f ? `LSA image: ${d.settings && d.settings.label ? d.settings.label + ", " : ""}${typeof fmtRunId === "function" ? fmtRunId(run_id) : run_id}. The LSA's own picture, made from text alone: not a capture or keystone.` : "");
     $("frame").innerHTML = f ? `<img alt="Render of ${esc(d.shot.place)}" src="/api/runs/${encodeURIComponent(run_id)}/image?f=${encodeURIComponent(f)}">`
                              : `<div class="empty">${esc(d.settings.error || "This run has no image.")}</div>`;
     document.querySelectorAll("#renders img").forEach(i => i.classList.toggle("on", i.dataset.f === f));
@@ -1368,6 +1408,7 @@ function updateSceneState() {
   $("scene-state").classList.toggle("edited", edited);
   $("open-scene-text").hidden = !(sel && sel.value);
   if (typeof dockSourceChanged === "function") dockSourceChanged("scene");
+  if (typeof markReportsStale === "function") markReportsStale();   // A14
 }
 $("replay-scene-text").addEventListener("input", updateSceneState);
 
@@ -1383,12 +1424,12 @@ const DOCK_SOURCES = {
                 hint: "Where you stand, in words a location scout would use." },
   subject:    { stage: "brief", journey: "lsa", el: "f-subject", name: "Looking at", oneLine: true,
                 hint: "What the camera is aimed at." },
-  layout:     { stage: "brief", journey: "lsa", el: "f-layout", name: "Scene layout",
+  layout:     { stage: "brief", journey: "lsa", el: "f-layout", name: "Scene layout (your brief, left column: what the LSA reads)",
                 hint: "What you see, in plain words: what is where, and roughly how big. Describe both parts of a building in one sentence when they differ." },
   focus:      { stage: "brief", journey: "lsa", el: "f-focus", name: "Focus",
                 hint: "Name what to examine, never what you expect to find, or the test only measures your own notes." },
   prompt:     { stage: "prompt", journey: "lsa", name: "Render prompt" },
-  scene:      { stage: "scene", journey: "pipeline", el: "replay-scene-text", name: "Scene text" },
+  scene:      { stage: "scene", journey: "pipeline", el: "replay-scene-text", name: "Scene text (the selected run's: what the image model reads)" },
 };
 let dockKey = null, dockWriting = false;
 

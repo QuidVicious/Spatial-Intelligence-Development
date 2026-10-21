@@ -277,7 +277,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const s = stampInfo();
       ['stamp-line-lsa', 'stamp-line-pipe'].forEach(id => {
         const el = document.getElementById(id);
-        if (!el) return;
+        if (!el || el.textContent === s.text) return;   // rewrite only on change, so the line can be copied
         el.textContent = s.text;
         el.style.color = s.ok ? 'var(--accent-cyan)' : '#ffb74d';
       });
@@ -431,7 +431,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       }
       if (v.subject) setSubject(v.subject); else clearSubject(true);
       if (typeof saveFraming === 'function') saveFraming(`saved view ${v.name}`);
-      setViewsStatus(`At: ${v.name}`, 'var(--accent-cyan)');
+      // 58 (2026-10-21): at a saved view the camera locks, so a stray touch cannot lose the framing.
+      if (typeof setLock === 'function' && typeof frameMode !== 'undefined' && frameMode === 'live' && !cameraLocked) setLock(true);
+      setViewsStatus(typeof cameraLocked !== 'undefined' && cameraLocked
+        ? `At: ${v.name}. Camera locked: press Unlock camera above the frame to move it.`
+        : `At: ${v.name}. The frame is showing the still: press Show Cesium in the frame, then GO, to see the view and lock the camera there.`, 'var(--accent-cyan)');
       updateStampLines();
       console.log(`[Views] restored ${v.name} (${v.id})`);
     }
@@ -451,6 +455,51 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         setViewsStatus('Delete failed.', '#ff5252');
       }
     }
+
+    // A11 (2026-10-21): one progress card, centred on the frame, for every step that runs on its own
+    // (Excavate, the weft pass, the Street View check): what is running, how long, and done or failed.
+    let taskTimer = null, taskStartAt = 0;
+    function taskCard() {
+      let el = document.getElementById('task-card');
+      if (el) return el;
+      const box = document.getElementById('frame-box');
+      if (!box) return null;
+      el = document.createElement('div');
+      el.id = 'task-card'; el.className = 'task-card'; el.hidden = true; el.setAttribute('role', 'status');
+      el.innerHTML = '<div class="task-title"></div><div class="task-msg"></div><div class="task-time"></div>' +
+                     '<button class="btn task-close" type="button">OK</button>';
+      box.appendChild(el);
+      el.querySelector('.task-close').addEventListener('click', () => { el.hidden = true; });
+      return el;
+    }
+    function taskStart(title, msg) {
+      const el = taskCard(); if (!el) return;
+      el.className = 'task-card running'; el.hidden = false;
+      el.querySelector('.task-title').textContent = title;
+      el.querySelector('.task-msg').textContent = msg || '';
+      el.querySelector('.task-close').hidden = true;
+      taskStartAt = Date.now(); clearInterval(taskTimer);
+      const tick = () => { el.querySelector('.task-time').textContent = `Running: ${Math.round((Date.now() - taskStartAt) / 1000)} s`; };
+      tick(); taskTimer = setInterval(tick, 1000);
+    }
+    function taskUpdate(msg) { const el = taskCard(); if (el && !el.hidden && msg) el.querySelector('.task-msg').textContent = msg; }
+    function taskEnd(ok, msg) {
+      const el = taskCard(); if (!el) return;
+      clearInterval(taskTimer);
+      el.className = 'task-card ' + (ok ? 'done' : 'failed'); el.hidden = false;
+      el.querySelector('.task-msg').textContent = msg || '';
+      el.querySelector('.task-time').textContent = `${ok ? 'Done' : 'Failed'} after ${Math.round((Date.now() - taskStartAt) / 1000)} s`;
+      el.querySelector('.task-close').hidden = false;
+      if (ok) setTimeout(() => { if (el.classList.contains('done')) el.hidden = true; }, 8000);
+    }
+    // "20261021_104856_..." -> "21 Oct, 10:48"
+    function fmtRunId(id) {
+      const m = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})/.exec(id || '');
+      if (!m) return id || '';
+      const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1];
+      return `${+m[3]} ${mon}, ${m[4]}:${m[5]}`;
+    }
+    function hhmm() { const d = new Date(); return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; }
 
     function resetStepperHUD() {
       const stages = ['INGEST_LIGHTING', 'DOMAIN_ENGINE', 'SPATIAL_SCAFFOLD', 'PROMPT_ENGINE', 'VISION_PREPROCESSOR', 'SYNTHESIS_ENGINE', 'ARCHIVER'];
@@ -1232,6 +1281,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
       setSvStatus('Running the finishing pass against the pano...');
+      taskStart('Street View check (FINISHING PASS)', `Reading pano ${svState.pano_id} into the scene text. Usually 20 to 40 s.`);
       try {
         const resp = await fetch(PIPE + '/api/streetview/rewrite', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1240,17 +1290,38 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         });
         const d = await resp.json();
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
-        if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); renderFinishReport(d); return; }
+        if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); lastFinish = null; renderFinishReport(d);
+                          taskEnd(true, 'Nothing changed: the pano matched the scene text.'); return; }
         svPreRewriteText = before;
         if (lsaJoin) lsaJoin.finishing_after = true;   // A/B: only the B text has had the finishing pass
         box.value = d.scene_text; if (typeof updateSceneState === 'function') updateSceneState();
         box.scrollTop = 0;
         document.getElementById('btn-sv-undo').style.display = '';
+        lastFinish = { text: d.scene_text, at: hhmm() };
         renderFinishReport(d);
+        taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under the Street View card.`);
         setSvStatus(`Finishing pass from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
           (d.removed && d.removed.length ? ` It REMOVED structure: ${d.removed.join(', ')}. Check the report below.` : '') +
           ' Review it before MAKE KEYSTONE; UNDO restores the previous text.', d.removed && d.removed.length ? '#ffb74d' : 'var(--accent-cyan)');
-      } catch (e) { setSvStatus(e.message, '#ff5252'); }
+      } catch (e) { setSvStatus(e.message, '#ff5252'); taskEnd(false, e.message); }
+    }
+    let lastFinish = null;   // A14: the text the finishing report describes, and when
+
+    // A14 (2026-10-21): a report says so when the text has changed since it was made.
+    function markReportsStale() {
+      const box = document.getElementById('replay-scene-text');
+      if (!box) return;
+      const v = box.value.trim();
+      const mark = (id, rec, who) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let n = el.querySelector('.stale-note');
+        const stale = !!rec && !el.hidden && v !== (rec.text || '').trim();
+        if (stale && !n) { n = document.createElement('div'); n.className = 'stale-note'; el.prepend(n); }
+        if (n) { n.hidden = !stale; if (stale) n.textContent = `This report is from the ${who} at ${rec.at}. The text has been edited since, so parts of it may no longer apply.`; }
+      };
+      mark('lsa-join-added', lsaJoin && { text: lsaJoin.text_after, at: lsaJoin.at }, 'weft pass');
+      mark('sv-finish-report', lastFinish, 'Street View check');
     }
 
     // Structural terms a pass took out of the scene text (found by comparing the texts on the server).
@@ -1267,7 +1338,10 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!el) return;
       if (!d) { el.hidden = true; el.innerHTML = ''; return; }
       const added = d.added || [], conflicts = d.conflicts || [];
+      const warm = [...new Set(((d.scene_text || '').match(/\b(honey|golden|gold|ochre|amber|tawny)\b/gi) || []).map(w => w.toLowerCase()))];
       el.innerHTML = removedHtml(d.removed, 'the finishing pass') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
+        (warm.length ? `<div class="lsa-added-head" style="color: #ffb74d;">Warm colour words in the text: ${warm.map(escHtml).join(', ')}</div>` +
+          '<div class="lsa-added-note">Usually sunlight in the pano, not the stone. Replace them with the colour the stone has in flat overcast light (buff-grey, grey-tan, pale grey).</div>' : '') +
         `<div class="lsa-added-head">Added from the pano</div>` +
         (added.length ? added.map(a => `<div class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(a.note || '')}</span></div>`).join('')
                       : '<div class="lsa-added-note">Nothing structural added.</div>') +
@@ -1276,6 +1350,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           '<div class="lsa-added-note">The scene text was kept. If the pano is right, edit the text by hand (and your Scene layout).</div>'
                           : '<div class="lsa-added-note">No disagreements reported.</div>');
       el.hidden = false;
+      markReportsStale();
     }
 
     // A2 (2026-10-21): a pano's season shows in the report; summer sun pushes colours warm.
@@ -1309,6 +1384,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('replay-scene-text').value = svPreRewriteText; if (typeof updateSceneState === 'function') updateSceneState();
       svPreRewriteText = null;
       document.getElementById('btn-sv-undo').style.display = 'none';
+      lastFinish = null;
       renderFinishReport(null);
       setSvStatus('Scene text restored to before the finishing pass.');
     }
@@ -1447,6 +1523,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!(lsa.analysis || '').trim()) { setLsaStatus('That LSA run has no analysis.', '#ff5252'); return; }
       const layout = lsaDirectorLayout(lsa.shot);
       setLsaStatus('Weaving the analysis and your layout into the scene text (about a minute)...', 'var(--accent-cyan)');
+      taskStart('Weft pass (ADD LSA SURFACES)', 'Weaving the LSA run and your layout into the scene text. Usually about a minute.');
       try {
         const resp = await fetch(PIPE + '/api/lsa/weave', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1454,14 +1531,15 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         });
         const d = await resp.json();
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
-        if ((selectedReplayRun() || {}).id !== run.id) { setLsaStatus('The selected run changed while the pass ran; nothing was changed.', '#ffb74d'); return; }
+        if ((selectedReplayRun() || {}).id !== run.id) { setLsaStatus('The selected run changed while the pass ran; nothing was changed.', '#ffb74d');
+          taskEnd(false, 'The selected run changed while the pass ran; nothing was changed.'); return; }
         const s = lsa.settings || {};
         lsaJoin = { run_id: id, label: s.label || id, instruction: s.instruction || null,
                     text_before: (lsaJoin ? lsaJoin.text_before : before), text_after: d.scene_text,
                     ecology: d.ecology || '', added_structure: (d.added_structure || []).map(a => ({ ...a, decision: null })), removed: d.removed || [],
                     species_to_verify: d.species_to_verify || [],
                     set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false,
-                    director_layout_used: !!layout };
+                    director_layout_used: !!layout, at: hhmm() };
         box.value = d.scene_text;
         if (typeof updateSceneState === 'function') updateSceneState();
         document.getElementById('btn-lsa-undo').style.display = '';
@@ -1480,7 +1558,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           (d.warnings && d.warnings.length ? ` Words to check: ${d.warnings.join(', ')} (weather, light and season words pull the render toward that weather: describe the mark instead; place names become position words).` : '') +
           ' Review it in the editor before making a keystone; UNDO restores the previous text.',
           d.warnings && d.warnings.length ? '#ffb74d' : 'var(--accent-cyan)');
-      } catch (e) { setLsaStatus(e.message, '#ff5252'); }
+        taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under the weft pass.`);
+      } catch (e) { setLsaStatus(e.message, '#ff5252'); taskEnd(false, e.message); }
     }
 
     // The added-structure list: each item with its status, and KEEP or REMOVE. REMOVE takes the phrase out of the
@@ -1506,10 +1585,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         return `<div class="lsa-added-row ${a.status}${a.decision ? ' decided' : ''}">` +
           `<span class="lsa-added-tag ${a.status}">${tag}</span>` +
           `<span class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(src)}${a.note ? ': ' + escHtml(a.note) : ''}</span></span>` +
-          `<span class="lsa-added-acts">${state}</span></div>`;
+          `<span class="lsa-added-acts">${state}</span></div>` +
+          (a.decision === 'removed' && a.sentence_after ? `<div class="lsa-added-sentence${a.join_doubt ? ' doubt' : ''}">` +
+            `<div><b>Was:</b> ${escHtml(a.sentence_before)}</div><div><b>Now:</b> ${escHtml(a.sentence_after)}</div>` +
+            (a.join_doubt ? '<div class="lsa-added-note">This sentence may need a word where the phrase was: edit it in the scene text.</div>' : '') + '</div>' : '');
       }).join('');
       el.hidden = false;
       el.querySelectorAll('.lsa-added-btn').forEach(b => b.addEventListener('click', () => lsaDecide(+b.dataset.i, b.dataset.act)));
+      markReportsStale();
     }
 
     function lsaDecide(i, act) {
@@ -1518,18 +1601,55 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (act === 'remove') {
         const box = document.getElementById('replay-scene-text');
         if (!box.value.includes(a.phrase)) { setLsaStatus(`"${a.phrase}" is no longer in the text word for word: edit it by hand.`, '#ffb74d'); return; }
-        box.value = box.value.replace(a.phrase, '')
-          .replace(/\s*\b(and|with|or)\s*([,;.])/g, '$2')   // a dangling join word
-          .replace(/\s+([,;.])/g, '$1')            // space before punctuation
-          .replace(/([,;])\s*([,;.])/g, '$2')      // doubled punctuation
-          .replace(/[ \t]{2,}/g, ' ')
-          .replace(/^\s*[,;]\s*/gm, '');
+        const res = removeCleanly(box.value, a.phrase);
+        box.value = res.text;
+        a.sentence_before = res.before; a.sentence_after = res.after; a.join_doubt = res.doubt;
         lsaJoin.text_after = box.value;   // a removal from the list is part of the pass, not a hand edit
         if (typeof updateSceneState === 'function') updateSceneState();
-        setLsaStatus(`Removed "${a.phrase}". Read the sentence it was in: the join may need a word.`, 'var(--accent-cyan)');
+        setLsaStatus(res.doubt ? `Removed "${a.phrase}". The sentence may need a word: it is shown under the item.` : `Removed "${a.phrase}".`,
+                     res.doubt ? '#ffb74d' : 'var(--accent-cyan)');
       }
       a.decision = act === 'remove' ? 'removed' : 'kept';
       renderLsaAdded();
+    }
+
+    // A13 (2026-10-21): take a phrase out with the word that joined it, repair the punctuation, and report the
+    // sentence before and after. "doubt" means the sentence still ends a clause on a joining word, so it needs reading.
+    function removeCleanly(text, phrase) {
+      const i = text.indexOf(phrase);
+      let sStart = 0;
+      for (const m of text.slice(0, i).matchAll(/[.!?]\s+|\n/g)) sStart = m.index + m[0].length;
+      const tail = /[.!?](?=\s|$)|\n/g; tail.lastIndex = i + phrase.length;
+      const t = tail.exec(text);
+      const sEnd = t ? t.index + (t[0] === '\n' ? 0 : 1) : text.length;
+      const before = text.slice(sStart, sEnd).trim();
+      const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const joins = [
+        new RegExp(`\\s*,\\s*(?:and|with|or)?\\s*${esc}`),   // ", and PHRASE" or ", PHRASE"
+        new RegExp(`\\s+(?:and|with|or)\\s+${esc}`),          // " and PHRASE"
+        new RegExp(`\\s*;\\s*${esc}`),                        // "; PHRASE"
+        new RegExp(`${esc}\\s*(?:,|\\band\\b|\\bwith\\b)\\s*`), // "PHRASE, ..." at the start of a list
+        new RegExp(`\\s*${esc}`)];
+      let sent = before, listFix = false;
+      for (const [k, re] of joins.entries()) {
+        const m = re.exec(sent); if (!m) continue;
+        let head = sent.slice(0, m.index);
+        // "A, B and PHRASE" leaves "A, B": put the "and" back between the last two items.
+        if ((k === 0 || k === 1) && /\band\b/.test(m[0])) {
+          const c = head.lastIndexOf(', ');
+          if (c >= 0 && !/[;:]/.test(head.slice(c))) { head = head.slice(0, c) + ' and ' + head.slice(c + 2); listFix = true; }
+        }
+        sent = head + sent.slice(m.index + m[0].length); break;
+      }
+      sent = sent.replace(/\s+([,;.:])/g, '$1').replace(/([,;:])\s*([,;.:])/g, '$2').replace(/[ \t]{2,}/g, ' ')
+                 .replace(/^\s*[,;:]\s*/, '').trim();
+      if (/^[a-z]/.test(sent)) sent = sent[0].toUpperCase() + sent.slice(1);
+      const keep = sent.replace(/[.,;:!?]/g, ' ').trim().split(/\s+/).filter(Boolean).length >= 3;
+      const after = keep ? sent : '';
+      const doubt = keep && listFix || keep && /\b(?:and|with|or|of|into|onto|beneath|under|by|from|the|a|an)\s*(?:[,;.:]|$)/i.test(after);
+      const out = (text.slice(0, sStart) + after + (after && text.slice(sEnd) && !/^\s/.test(text.slice(sEnd)) ? ' ' : '') + text.slice(sEnd))
+                    .replace(/[ \t]{2,}/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+      return { text: out, before, after: after || '(sentence removed: nothing was left of it)', doubt };
     }
 
     function lsaUndo() {
