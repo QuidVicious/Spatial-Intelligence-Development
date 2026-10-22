@@ -700,16 +700,17 @@ def _streetview_call(instruction: str, capture_b64: str, pano_jpeg: bytes, scene
 
 _STRUCTURE_TERMS = [
     # counts and massing
-    r"one-storey", r"two-storey", r"three-storey", r"four-storey", r"five-storey", r"six-storey",
+    # 60 (2026-10-22): each count is a synonym group, so "four-storey" reworded as "four floors of windows" is not a loss.
+    *[rf"{n}-storey|{n} storeys?|{n} floors?" for n in ("one", "two", "three", "four", "five", "six")],
     r"one-bay", r"two-bay", r"three-bay", r"four-bay", r"five-bay", r"six-bay", r"seven-bay",
     r"attic", r"dormers?", r"mansards?", r"basements?", r"lightwells?", r"areas? railings?",
     # openings
-    r"arch(?:ed|es)?", r"fanlights?", r"transoms?", r"blind windows?", r"sash(?:es)?", r"doors?", r"door case",
+    r"arch(?:ed|es)?", r"fanlights?", r"transoms?", r"blind (?:windows?|panels?)", r"sash(?:es)?", r"doors?", r"door case",
     r"squared|square-headed|flat-(?:headed|lintelled|topped)|rectangular", r"bays?",
     # elements
     r"steps?", r"lamps?", r"globe", r"railings?", r"spearheads?", r"balconettes?", r"cornices?",
     r"blocking course", r"band courses?", r"string courses?", r"rustication|rusticated", r"plinths?",
-    r"chimney(?: stacks?)?", r"(?:terracotta )?pots", r"hoods?", r"aprons?", r"pilasters?", r"pediments?",
+    r"chimneys?(?: stacks?)?", r"(?:terracotta )?pots", r"hoods?", r"aprons?", r"pilasters?", r"pediments?",
     r"porticos?|porticoes", r"balustrades?", r"quoins?", r"parapets?", r"gates?", r"porch(?:es)?", r"portals?",
     r"verandas?|verandahs?", r"balcon(?:y|ies)", r"columns?", r"lintels?", r"shutters?", r"canales", r"vigas?",
     r"towers?", r"domes?", r"gables?", r"eaves", r"awnings?", r"fences?", r"walls?",
@@ -838,6 +839,8 @@ ECOLOGY RECORD: the current time-invariant description of the trees and plants, 
 
 Return the scene text with the analysis's knowledge woven in and the director's layout applied.
 
+THE LAYOUT OUTRANKS THE SCENE TEXT: where the DIRECTOR'S LAYOUT is more specific than the SCENE TEXT about the same element (which windows are blind or glazed on which floor and bay, which openings are arched or flat-headed, how many bays), rewrite the scene text's wording for that element to match the layout, keep it attached to that element, and list it in added_structure as confirmed from the layout.
+
 KEEP FROM THE SCENE TEXT:
 - Every structure and ground surface it names, in the same order, with its massing, storeys, bays, windows, doors, roof forms and openings.
 - Its surface-first style: each structure opens with how its walls look today, then the material beneath.
@@ -873,7 +876,7 @@ NEVER ADD:
 
 SPECIES: trees keep the scene text's species, unless the analysis or the director's layout names a more specific or different species for the same trees; then use that name in both the scene text and the ecology record, and list it in species_to_verify. Never add trees IMAGE 1 does not show. The ecology record names exactly the species the scene text names, and stays time-invariant: form, height, trunk, bark and branch structure.
 
-STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.7 times the original length, and never over 2600 characters.
+STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.7 times the original length, and never over 2900 characters. If you must shorten to fit, shorten surface description (condition, biology, tooling) of far elements first; never drop structure, and never cut the subject's details.
 
 Return JSON only, in exactly this shape:
 {"scene_text": "the revised scene text",

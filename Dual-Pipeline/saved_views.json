@@ -1599,7 +1599,79 @@
         "height_m": 107.449261499856
       },
       "created_utc": "2026-10-19T17:40:29+00:00",
-      "updated_utc": "2026-10-19T17:40:29+00:00"
+      "updated_utc": "2026-10-22T22:45:07+00:00",
+      "points": [
+        {
+          "id": "mvk0qtlr",
+          "label": "19 door",
+          "description": "On the near building on the left: a dark blue-grey panelled front door in a clean neo-classical doorcase, flanked by narrow solid panels painted the same dark colour, under a shallow pediment and a semicircular fanlight with a dark frame. Door, side panels and fanlight form one connected unit set in the round blind arch, not deep inside it. Matching flower boxes on the sills of the two windows to its right.",
+          "x": 3573332.665115387,
+          "y": -199561.47060180685,
+          "z": 5261828.421649507,
+          "latitude": 55.95665522163629,
+          "longitude": -3.196501962924576,
+          "height_m": 104.27359983622372,
+          "nx": null,
+          "ny": null,
+          "nz": null
+        },
+        {
+          "id": "mvk0s18w",
+          "label": "Nelson Face",
+          "description": "The face of the corner block turned toward the camera, across the side street: smooth ashlar with plain square-headed openings under flat stone lintels and plain flush sills. A deep blue panelled door stands alone between plain stone jambs under a rectangular transom light, at the top of stone steps. The two window bays nearest the corner, floor by floor: in the basement, both glazed; on the ground floor, the corner window glazed and the next one blind; on the first floor, both blind; on the second floor, the corner window glazed and the next one blind; in the attic, the corner window blind an",
+          "x": 3573320.488459541,
+          "y": -199529.16868033775,
+          "z": 5261838.106913203,
+          "latitude": 55.956807799162306,
+          "longitude": -3.1959965035881304,
+          "height_m": 104.48458719853997,
+          "nx": 0.12363982186943677,
+          "ny": -0.9848572922610797,
+          "nz": -0.12152904314717672
+        },
+        {
+          "id": "mvk0t3bi",
+          "label": "Abercromby front",
+          "description": "The long front of the corner block, running away from the camera along the street to the right of the corner: the ground floor is a row of round-headed arched recesses cut in channelled rusticated stone. In each, a plain rectangular sash window with a flat head sits in the lower part of the recess, and the stone of the wall fills the half-round above it. The central entrance is round-arched, under a semicircular fanlight. Upper windows are rectangular sashes in plain, square-cut stone surrounds, with first-floor sills on small square console brackets under alternate windows only.",
+          "x": 3573325.763616147,
+          "y": -199519.00180773292,
+          "z": 5261836.605919959,
+          "latitude": 55.95676527378796,
+          "longitude": -3.1958292832332167,
+          "height_m": 105.87206743005589,
+          "nx": 0.7968530333759367,
+          "ny": 0.24676580931932401,
+          "nz": -0.551481530561584
+        },
+        {
+          "id": "mvk0tido",
+          "label": "19 area",
+          "description": "On the near building on the left: a basement area runs along the pavement behind black wrought-iron spearhead railings set on a low stone plinth.",
+          "x": 3573334.59010601,
+          "y": -199561.84808865812,
+          "z": 5261830.553681974,
+          "latitude": 55.95665148111737,
+          "longitude": -3.196506278411597,
+          "height_m": 107.12798748179668,
+          "nx": null,
+          "ny": null,
+          "nz": null
+        },
+        {
+          "id": "mvk115gl",
+          "label": "Garden lamps",
+          "description": "Two tall, thin modern concrete lamp columns with inverted-cone shades, on the garden side: the first at the near edge of the middle distance, the second further along where the middle distance gives way to the far distance.",
+          "x": 3573342.572559374,
+          "y": -199547.8639766785,
+          "z": 5261818.380641626,
+          "latitude": 55.956536766056814,
+          "longitude": -3.1962756252930156,
+          "height_m": 101.06651905077507,
+          "nx": null,
+          "ny": null,
+          "nz": null
+        }
+      ]
     }
   ]
 }

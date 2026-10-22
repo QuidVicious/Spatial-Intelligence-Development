@@ -9,7 +9,31 @@ Three kinds of work, in this order:
 
 ## Round A: fixes
 
-Status 2026-10-21: A1 to A10 and A18 to A20 delivered in A-1 and tested (A8, A9 and A12 not tested on their own). A11, A13, A14 and A21 to A25 delivered in A-2, testing. A15 to A17 open. A18 now reads: the server picks the highest SI version (SI6.3 today).
+Status by item, 2026-10-22:
+
+| Item | Status |
+| --- | --- |
+| A1, A2, A3 | Done, tested |
+| A4, A5, A6, A7 | Done, tested |
+| A8 | Done; extended 22 Oct (the new run is selected after an Excavate) |
+| A9, A12 | Done, not tested on their own |
+| A10, A11 | Done, tested |
+| A13 | Done, tested; PUT BACK added 22 Oct |
+| A14 | Done, tested 22 Oct |
+| A15, A16, A17 | Open |
+| A18, A19, A20 | Done, tested (A18: the server picks the highest SI version) |
+| A21 to A24 | Done, tested |
+| A25 | Done, not tested on its own |
+| A26 | The weft pass uses the brief's layout when the brief is for the same place as the LSA run; the header says which layout and which run it used; the run preview warns when the run was made with an earlier layout. | [68] [72] |
+| A27 | After an Excavate the new run is selected on the weft pass card and ADD LSA SURFACES lights up; never run automatically. | [70] |
+| A28 | REMOVE gets PUT BACK (undo, don't ask); a removal that leaves a broken phrase is marked. | [69] |
+| A29 | "Confirmed from your layout" items list words the layout never used. To loosen: hyphens, plurals, synonyms. | [71] |
+| A30 | GO locks the camera in either frame mode; showing Cesium at the saved view locks too. | [74] |
+| A31 | Weft pass: the layout outranks the scene text where it is more specific; cap 2,900 characters, cuts far surfaces first. | [75] 2026-10-22 |
+| A32 | Removal check: rewordings of storey counts, blind windows and chimneys are not losses. | [60] |
+| A33 | The page asks before closing with unsaved brief changes. | [66] |
+| A26 to A33 | Done 22 Oct; A26, A28, A31 and A32 tested; A27, A29, A30 and A33 seen but not tested on their own |
+| A34 to A39 | Done 22 Oct, in use: the edit panel's band, switch and Done (A34); points capped at five (A35); points move only with a lit ↔, with a frame banner (A36); the frame pinned at the top (A37); the top strip trimmed (A38); the run record lists the points used (A39) |
 
 ### Prompts (Dual-Pipeline, domain_engine.py)
 | # | Fix | From |
@@ -52,16 +76,18 @@ Status 2026-10-21: A1 to A10 and A18 to A20 delivered in A-1 and tested (A8, A9 
 
 | # | Change | From |
 | --- | --- | --- |
-| B1 | Step strip across the top: View, Brief, LSA run, Capture, Add LSA synthesis, Street View check, Edit, Keystone, Approve. It shows where you are, what is next, and what you have made at each step (with links). Based on KEYSTONE_RECIPE.md. | [10] |
-| B2 | Gating: only the current step's controls are active; later steps are shown but closed with a line saying what they need. Lists filter to the current view. | [9] [22] [15] |
+| B1 | Step strip across the top: View, Brief, LSA run, Capture, Add LSA synthesis, Street View check, Edit, Keystone, Approve. It shows where you are, what is next, and what you have made at each step (with links). Based on KEYSTONE_RECIPE.md. Also: the Scene layout and Scene text must look different in the editor, by colour, and Close must say it does not save [73]. | [10] |
+| B2 | Gating: only the current step's controls are active; later steps are shown but closed with a line saying what they need. Lists filter to the current view. Also: presets filtered by view [65]. | [9] [22] [15] |
 | B3 | One name per thing, everywhere on screen (proposal below; Don decides). Internal names (weft, warp, keystone recipe) stay in code and docs. | [2] [19] |
-| B4 | One place sets the location; the address field, the Cesium search and the saved view follow it. | [1] |
+| B4 | One place sets the location; the address field, the Cesium search and the saved view follow it. Also: fields say whose location they hold (subject, camera); the pano keeps its own position [67]. | [1] |
 | B5 | The source-neutral evidence card: replaces the pano card. Each item has source, image, position, heading, date and season, role ("read for detail; never copied into the image"), licence and attribution. It proposes the best image for the job: for the Street View check, aimed at the subject, about 55 degrees across, newest overcast. | [4] [31] [32] [37] DECISIONS 2026-10-20 |
 | B6 | The brief's layout field asks for the main elements one by one (near building, subject, beyond, ground, greenery) with prompts: "What do you know about its windows, doors, railings? Does the street slope?" | [24] [34] |
 | B7 | Scene text written element by element: the pipeline's first text and every pass keep one labelled section per element, so details land on the right building. Method change in domain_engine.py; the compiler joins the sections for the image model. | [34] [43] [46] |
 | B8 | Under-clutter note at capture: "What is really under the parked cars?" One line the user can fill, sent with the scene text. | [42] |
 | B9 | Layout names are checked like everything else: street and place names in the layout are shown back with what the tool found there, and a mismatch is flagged rather than confirmed. | [25] |
 | B10 | Points of interest: the subject plus up to four more markers placed on the Cesium frame, each with a short description the user writes and a rank (1 = most important) the user sets. The compiler opens the scene section with a priority block: the points in rank order, each as its own element entry with its position worked out from the marker (side, height in frame, distance) and the user's description, followed by the rest of the scene with no repeats. The task and framing rules stay ahead of the block. Ranks and labels show in the UI but never reach the image model as numbers or labels (it can draw them); order and wording carry the rank. Each point also aims an evidence crop, marks an edit region for the edit pass, and is a place the framing check measures (including the ground). Test before trusting: A/B with the ranking reversed, to measure whether order changes the render. Per point, the evidence step: pick the image that sees the point best (close, facing it, unobstructed, right season), crop to it, show the crop as a thumbnail for the user to confirm, read it into words for that element only (the user's description stays confirmed; the sketch's additions come in as proposed), and never send the image to the renderer. | Don 2026-10-20; [43] [46] |
+| B10 status | Built 22 Oct: points stored with the view, ranked, placed with position and facing words, compiled first in the scene section, markers, move, put back. Open: evidence crops per point, the reversed-ranking A/B test, larger controls in the panel. | |
+| B13 | Run list: mark the newest run and keystone candidate, filter to the view; the way back to the points made obvious. | [78] [88] |
 | B11 | SI6.4: a top floor whose windows sit in the wall face is counted, whatever it is called; only windows in a roof slope belong to the roof. Location-neutral in the instruction; local terms (attic storey, main cornice, blocking course) go to the place primer. | 2026-10-21 |
 | B12 | Location preview: before the first run, show and set the place's local norms (building types, counts, materials, terms) as the system's defaults for that place. Part of the place primer. Idea, to scope. | Don 2026-10-21 |
 
@@ -85,7 +111,7 @@ Status 2026-10-21: A1 to A10 and A18 to A20 delivered in A-1 and tested (A8, A9 
 - C5 User session 2 with outside testers; compare with session 1.
 
 ## Parked, with reasons
-- Edit pass (window counts, the lamp, doors): after Round B, so it lands in the step strip.
+- Edit pass: moved up on 2026-10-22, next after the job slot (text alone does not hold irregular window patterns or alternating balustrades [84]). One change at a time in a marked area of a finished keystone, side by side, kept or undone; the points of interest mark the areas.
 - Place primer: with C2 and C3.
 - Sketch set from CC photos (Geograph, Wikimedia Commons, Mapillary), aerial and historical views: after C3.
 - Privacy statement: written alongside the job applications; it does not wait for code.

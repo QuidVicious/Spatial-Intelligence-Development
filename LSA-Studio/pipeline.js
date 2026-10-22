@@ -430,9 +430,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         placeFromCoords(at.latitude, at.longitude);
       }
       if (v.subject) setSubject(v.subject); else clearSubject(true);
+      loadPoisForView(v);
       if (typeof saveFraming === 'function') saveFraming(`saved view ${v.name}`);
       // 58 (2026-10-21): at a saved view the camera locks, so a stray touch cannot lose the framing.
-      if (typeof setLock === 'function' && typeof frameMode !== 'undefined' && frameMode === 'live' && !cameraLocked) setLock(true);
+      // 2026-10-22: lock in either frame mode, so switching to Cesium afterwards stays locked too.
+      if (typeof setLock === 'function' && !cameraLocked) setLock(true);
       setViewsStatus(typeof cameraLocked !== 'undefined' && cameraLocked
         ? `At: ${v.name}. Camera locked: press Unlock camera above the frame to move it.`
         : `At: ${v.name}. The frame is showing the still: press Show Cesium in the frame, then GO, to see the view and lock the camera there.`, 'var(--accent-cyan)');
@@ -763,6 +765,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     function initSubjectPicking() {
       const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
       handler.setInputAction(click => {
+        if (poiDrag) return;
+        if (poiPickMode) { addPoiAt(click.position); return; }
         if (!subjectPickMode) return;
         const pos = pickSurfaceAt(click.position);
         if (!pos) { setSubjectStatus('No surface there. Click a building, the ground, or an object.', '#ff5252'); return; }
@@ -773,10 +777,230 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
                      longitude: Cesium.Math.toDegrees(c.longitude), height_m: c.height });
         console.log('[Subject] set', subjectPoint);
       }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+      // 2026-10-22: drag a point-of-interest marker to move it. The camera is held still while dragging.
+      handler.setInputAction(down => {
+        const picked = viewer.scene.pick(down.position);
+        const i = picked && picked.id ? poiEntities.indexOf(picked.id) : -1;
+        if (i < 0 || !(poiPickMode && poiMoveIndex === i)) return;   // only the point whose ↔ is lit can be dragged
+        poiDrag = { i, inputs: viewer.scene.screenSpaceCameraController.enableInputs, moved: false };
+        viewer.scene.screenSpaceCameraController.enableInputs = false;
+        poiEntities[i].show = false;   // so the surface under the marker can be picked
+      }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+      handler.setInputAction(move => {
+        if (!poiDrag) return;
+        const pos = pickSurfaceAt(move.endPosition);
+        if (!pos) return;
+        Object.assign(poiPoints[poiDrag.i], poiPlace(pos, null));
+        poiDrag.last = move.endPosition;
+        poiEntities[poiDrag.i].position = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
+        poiDrag.moved = true;
+      }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+      handler.setInputAction(() => {
+        if (!poiDrag) return;
+        const d = poiDrag;
+        viewer.scene.screenSpaceCameraController.enableInputs = d.inputs;
+        if (poiEntities[d.i]) poiEntities[d.i].show = true;
+        if (d.moved) setTimeout(() => { poiDrag = null; }, 0); else poiDrag = null;   // a plain click still places or moves a point
+        if (d.moved && d.last) Object.assign(poiPoints[d.i], pickNormalAt(d.last) || { nx: null, ny: null, nz: null });
+        if (d.moved) { poiPickMode = false; poiMoveIndex = -1; updatePoiButton(); renderPois(); drawPoiMarkers(); savePois(); setPoiStatus(`Point ${d.i + 1} moved.`, 'var(--accent-cyan)'); }
+      }, Cesium.ScreenSpaceEventType.LEFT_UP);
       document.addEventListener('keydown', e => {
+        if (poiPickMode && e.key === 'Escape') { poiPickMode = false; poiMoveIndex = -1; updatePoiButton(); renderPois(); setPoiStatus('Cancelled.'); }
         if (subjectPickMode && e.key === 'Escape') { subjectPickMode = false; document.getElementById('btn-set-subject').textContent = '🎯 SET SUBJECT'; describeSubject(); }
       });
       viewer.camera.moveEnd.addEventListener(() => { if (subjectPoint) describeSubject(); });
+    }
+
+    // ---------------- Points of interest (B10, 2026-10-22) ----------------
+    // Up to five details per saved view, ranked by the director, each with a description the image model reads ahead of
+    // the rest of the scene. Stored with the view on the server; the label and the rank stay in this panel.
+    let poiPoints = [];          // [{ id, label, description, x, y, z, latitude, longitude, height_m }]
+    let poiEntities = [];
+    let poiPickMode = false;
+    let poiSaveTimer = null;
+    let poiLastRemoved = null;   // { point, index } for PUT BACK
+    let poiMoveIndex = -1;       // 2026-10-22: MOVE re-places an existing point instead of adding one
+    let poiDrag = null;          // { i } while a marker is being dragged
+    const POI_MAX = 5;
+
+    function setPoiStatus(msg, color) {
+      const el = document.getElementById('poi-status');
+      if (!el) return;
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg || '';
+    }
+    // A banner at the top of the frame while a point is waiting to be placed or moved: the instruction sits where the eye is.
+    function frameHint(msg) {
+      let el = document.getElementById('frame-hint');
+      const box = document.getElementById('frame-box');
+      if (!el && box) {
+        el = document.createElement('div'); el.id = 'frame-hint';
+        el.style.cssText = 'position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:7;max-width:calc(100% - 24px);' +
+          'padding:6px 14px;border-radius:5px;background:#ffb74d;color:#1b1a17;font:700 13px/1.3 var(--ui);box-shadow:0 4px 14px rgba(0,0,0,.45);pointer-events:none;';
+        box.appendChild(el);
+      }
+      if (!el) return;
+      el.textContent = msg || '';
+      el.style.display = msg ? 'block' : 'none';
+    }
+    function updatePoiButton() {
+      const b = document.getElementById('btn-add-poi');
+      if (!b) return;
+      b.textContent = poiPickMode ? (poiMoveIndex >= 0 ? `↔ CLICK THE NEW SPOT FOR POINT ${poiMoveIndex + 1}… (Esc cancels)` : '✚ CLICK THE DETAIL IN THE FRAME… (Esc cancels)') : '✚ ADD POINT OF INTEREST';
+      b.disabled = !poiPickMode && poiPoints.length >= POI_MAX;
+      frameHint(!poiPickMode ? '' : poiMoveIndex >= 0
+        ? `Moving point ${poiMoveIndex + 1}: click its new spot, or drag its marker. Esc or ↔ cancels.`
+        : 'New point of interest: click the detail in the frame. Esc cancels.');
+    }
+    function showPoiMarkers(on) { poiEntities.forEach(e => { e.show = on; }); }
+    function drawPoiMarkers() {
+      if (!viewer) return;
+      poiEntities.forEach(e => viewer.entities.remove(e));
+      poiEntities = poiPoints.map((p, i) => viewer.entities.add({
+        position: new Cesium.Cartesian3(p.x, p.y, p.z),
+        point: { pixelSize: 11, color: Cesium.Color.fromCssColorString('#ffb74d'), outlineColor: Cesium.Color.BLACK,
+                 outlineWidth: 2, disableDepthTestDistance: Number.POSITIVE_INFINITY },
+        label: { text: `${i + 1}${p.label ? ' ' + p.label : ''}`, font: '11px monospace', pixelOffset: new Cesium.Cartesian2(0, -17),
+                 fillColor: Cesium.Color.WHITE, showBackground: true, disableDepthTestDistance: Number.POSITIVE_INFINITY }
+      }));
+    }
+    function loadPoisForView(v) {
+      poiPoints = ((v && v.points) || []).map(p => ({ ...p }));
+      poiLastRemoved = null;
+      renderPois(); drawPoiMarkers(); previewPois();
+    }
+    function togglePoiPick() {
+      if (!activeSavedView) { setPoiStatus('Points of interest are kept with a saved view: press GO on one, or save this view, first.', '#ffb74d'); return; }
+      if (!poiPickMode && poiPoints.length >= POI_MAX) { setPoiStatus(`A view holds ${POI_MAX} points: remove one to add another.`, '#ffb74d'); return; }
+      poiPickMode = !poiPickMode;
+      poiMoveIndex = -1;
+      if (poiPickMode) { subjectPickMode = false; setPoiStatus('Click the detail in the Cesium frame. The camera stays locked; clicks still place points.', '#ffb74d'); }
+      else setPoiStatus('');
+      updatePoiButton();
+    }
+    // 2026-10-22: which way the clicked surface faces, from the surface a few pixels around the click. Two estimates
+    // must agree, or no direction is given (an edge, a thin object, or a broken patch of mesh).
+    function pickNormalAt(windowPos) {
+      if (!windowPos) return null;
+      const at = (dx, dy) => pickSurfaceAt(new Cesium.Cartesian2(windowPos.x + dx, windowPos.y + dy));
+      const est = d => {
+        const l = at(-d, 0), r = at(d, 0), u = at(0, -d), b = at(0, d);
+        if (!l || !r || !u || !b) return null;
+        const h = Cesium.Cartesian3.subtract(r, l, new Cesium.Cartesian3());
+        const v = Cesium.Cartesian3.subtract(b, u, new Cesium.Cartesian3());
+        const n = Cesium.Cartesian3.cross(h, v, new Cesium.Cartesian3());
+        if (Cesium.Cartesian3.magnitude(n) < 1e-9) return null;
+        Cesium.Cartesian3.normalize(n, n);
+        const toCam = Cesium.Cartesian3.subtract(viewer.camera.position, l, new Cesium.Cartesian3());
+        if (Cesium.Cartesian3.dot(n, toCam) < 0) Cesium.Cartesian3.negate(n, n);   // the side the camera sees
+        return n;
+      };
+      const a = est(8), b = est(16);
+      if (!a || !b || Cesium.Cartesian3.dot(a, b) < 0.85) return null;
+      const n = Cesium.Cartesian3.normalize(Cesium.Cartesian3.add(a, b, new Cesium.Cartesian3()), new Cesium.Cartesian3());
+      return { nx: n.x, ny: n.y, nz: n.z };
+    }
+    function poiPlace(pos, windowPos) {
+      const c = Cesium.Cartographic.fromCartesian(pos);
+      const n = pickNormalAt(windowPos) || { nx: null, ny: null, nz: null };
+      return { x: pos.x, y: pos.y, z: pos.z, latitude: Cesium.Math.toDegrees(c.latitude), longitude: Cesium.Math.toDegrees(c.longitude), height_m: c.height, ...n };
+    }
+    function addPoiAt(windowPos) {
+      const pos = pickSurfaceAt(windowPos);
+      if (!pos) { setPoiStatus('No surface there. Click a facade, a door, the ground or an object.', '#ff5252'); return; }
+      const c = Cesium.Cartographic.fromCartesian(pos);
+      if (poiMoveIndex >= 0 && poiPoints[poiMoveIndex]) {
+        Object.assign(poiPoints[poiMoveIndex], poiPlace(pos, windowPos));
+        const n = poiMoveIndex + 1; poiMoveIndex = -1; poiPickMode = false;
+        updatePoiButton(); renderPois(); drawPoiMarkers(); savePois();
+        setPoiStatus(`Point ${n} moved.`, 'var(--accent-cyan)');
+        return;
+      }
+      if (poiPoints.length >= POI_MAX) { poiPickMode = false; updatePoiButton(); setPoiStatus(`A view holds ${POI_MAX} points: remove one to add another.`, '#ffb74d'); return; }
+      poiPickMode = false;
+      poiPoints.push({ id: Date.now().toString(36), label: '', description: '', ...poiPlace(pos, windowPos) });
+      updatePoiButton(); renderPois(); drawPoiMarkers();
+      setPoiStatus('Point placed. Give it a label for yourself and a description for the image model.', 'var(--accent-cyan)');
+      const rows = document.querySelectorAll('#poi-list .poi-row');
+      rows[rows.length - 1]?.querySelector('input')?.focus();
+      savePois();
+    }
+    function renderPois() {
+      const el = document.getElementById('poi-list');
+      if (!el) return;
+      el.innerHTML = poiPoints.map((p, i) => `<div class="poi-row" data-i="${i}">` +
+        `<div class="poi-head"><span class="poi-rank" title="Rank: the model reads the points in this order">${i + 1}</span>` +
+        `<input type="text" maxlength="60" placeholder="Your label (only you see it)" value="${escHtml(p.label || '')}" data-f="label">` +
+        `<button class="toggle-btn" data-a="up" title="More important" ${i === 0 ? 'disabled' : ''}>▲</button>` +
+        `<button class="toggle-btn" data-a="down" title="Less important" ${i === poiPoints.length - 1 ? 'disabled' : ''}>▼</button>` +
+        `<button class="toggle-btn${poiPickMode && poiMoveIndex === i ? ' lit' : ''}" data-a="move" title="Move this point: click here, then click the new spot in the frame; click again to cancel. Dragging the marker also moves it.">↔</button>` +
+        `<button class="toggle-btn" data-a="remove" title="Remove this point (PUT BACK restores it)">✕</button></div>` +
+        `<textarea maxlength="600" placeholder="What it is, as the model should draw it: shape, material, colour, what it is fixed to" data-f="description">${escHtml(p.description || '')}</textarea>` +
+        `<div class="poi-where" data-where="${i}"></div></div>`).join('') +
+        (poiLastRemoved ? `<div class="poi-where">Removed: ${escHtml(poiLastRemoved.point.label || 'a point')}. <button class="lsa-added-btn" data-a="putback">PUT BACK</button></div>` : '');
+      el.querySelectorAll('.poi-row').forEach(row => {
+        const i = +row.dataset.i;
+        row.querySelectorAll('[data-f]').forEach(f => f.addEventListener('input', () => {
+          poiPoints[i][f.dataset.f] = f.value;
+          if (f.dataset.f === 'label') drawPoiMarkers();
+          clearTimeout(poiSaveTimer); poiSaveTimer = setTimeout(savePois, 700);
+        }));
+        row.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', () => poiAction(i, b.dataset.a)));
+      });
+      el.querySelector('[data-a="putback"]')?.addEventListener('click', () => poiAction(-1, 'putback'));
+      updatePoiButton();
+    }
+    function poiAction(i, a) {
+      if (a === 'up' && i > 0) [poiPoints[i - 1], poiPoints[i]] = [poiPoints[i], poiPoints[i - 1]];
+      else if (a === 'down' && i < poiPoints.length - 1) [poiPoints[i + 1], poiPoints[i]] = [poiPoints[i], poiPoints[i + 1]];
+      else if (a === 'move') {
+        if (!activeSavedView) return;
+        if (poiPickMode && poiMoveIndex === i) {   // pressed again: cancel the waiting move
+          poiPickMode = false; poiMoveIndex = -1; updatePoiButton(); renderPois(); setPoiStatus('Move cancelled.'); return;
+        }
+        poiMoveIndex = i; poiPickMode = true; subjectPickMode = false; updatePoiButton(); renderPois();
+        setPoiStatus(`Click the new spot for point ${i + 1} in the frame. Press ↔ again or Esc to cancel. (Dragging a marker moves it too.)`, '#ffb74d');
+        return;
+      }
+      else if (a === 'remove') { poiLastRemoved = { point: poiPoints[i], index: i }; poiPoints.splice(i, 1); }
+      else if (a === 'putback' && poiLastRemoved && poiPoints.length < POI_MAX) {
+        poiPoints.splice(Math.min(poiLastRemoved.index, poiPoints.length), 0, poiLastRemoved.point); poiLastRemoved = null; }
+      renderPois(); drawPoiMarkers(); savePois();
+    }
+    async function savePois() {
+      clearTimeout(poiSaveTimer);
+      if (!activeSavedView) return;
+      const id = activeSavedView.id;
+      try {
+        const r = await fetch(PIPE + '/api/views/' + encodeURIComponent(id) + '/points', {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ points: poiPoints }) });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        const sv = savedViews.find(v => v.id === id);
+        if (sv) sv.points = d.view.points;
+        if (activeSavedView && activeSavedView.id === id) activeSavedView.points = d.view.points;
+        showPoiPreview(d);
+        setPoiStatus(`Saved with the view "${activeSavedView ? activeSavedView.name : id}" at ${hhmm()}.`, 'var(--accent-cyan)');
+      } catch (e) { setPoiStatus('Points not saved: ' + e.message, '#ff5252'); }
+    }
+    async function previewPois() {
+      if (!activeSavedView) { showPoiPreview(null); return; }
+      try {
+        const r = await fetch(PIPE + '/api/views/' + encodeURIComponent(activeSavedView.id) + '/points/preview');
+        showPoiPreview(r.ok ? await r.json() : null);
+      } catch (e) { showPoiPreview(null); }
+    }
+    function showPoiPreview(d) {
+      const box = document.getElementById('poi-preview-box'), pre = document.getElementById('poi-preview');
+      if (!box || !pre) return;
+      box.hidden = !(d && d.block);
+      pre.textContent = d && d.block ? d.block : '';
+      ((d && d.points) || []).forEach(p => {
+        const i = poiPoints.findIndex(q => q.id === p.id);
+        const w = document.querySelector(`#poi-list [data-where="${i}"]`);
+        if (w) w.textContent = `In the frame: ${p.position}.`;
+      });
+      poiPoints.forEach((p, i) => { if (!(p.description || '').trim()) { const w = document.querySelector(`#poi-list [data-where="${i}"]`); if (w) w.textContent = 'No description yet: this point is not sent to the model.'; } });
     }
 
     // At capture: aim at the subject if it is in frame, otherwise fall back to the frame centre.
@@ -856,6 +1080,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
 
       // The subject marker must never appear in the seed image.
       if (subjectEntity) subjectEntity.show = false;
+      showPoiMarkers(false);
       
       // Fixed 16:9 seed so the model never has to choose a crop.
       // With "Sun and shadows" ticked, capture twice at the same camera and time: without Cesium's shadows
@@ -928,6 +1153,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       };
 
       if (subjectEntity) subjectEntity.show = true;
+      showPoiMarkers(true);
       await streamPipeline(payload);
     }
 
@@ -1439,7 +1665,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     function lsaUsable(r) { return r.has_analysis !== undefined ? !!r.has_analysis : !r.error; }
 
     // The newest LSA run stamped with the selected run's view is chosen by default; any other can be picked by hand.
-    async function loadLsaRuns() {
+    // 70 (2026-10-22): after an Excavate the new run is selected and ADD LSA SURFACES lights up (selectId).
+    async function loadLsaRuns(selectId) {
       const sel = document.getElementById('lsa-join-run');
       if (!sel) return;
       try { const r = await fetch('/api/runs'); lsaRuns = r.ok ? await r.json() : []; } catch (e) { lsaRuns = []; }
@@ -1454,9 +1681,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       sel.innerHTML = '<option value="">Choose an LSA run</option>' +
         (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>` : '') +
         `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
-      const kept = prev && lsaRuns.some(r => r.run_id === prev);
-      sel.value = kept ? prev : (mine.length ? mine[0].run_id : '');
-      if (run && !lsaJoin && !kept) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
+      const fresh = selectId && lsaRuns.some(r => r.run_id === selectId);
+      const kept = !fresh && prev && lsaRuns.some(r => r.run_id === prev);
+      sel.value = fresh ? selectId : kept ? prev : (mine.length ? mine[0].run_id : '');
+      if (fresh) {
+        setLsaStatus(`New LSA run selected: ${fmtRunId(selectId)}. Next: ADD LSA SURFACES brings it into the scene text of the selected capture.`, 'var(--accent-cyan)');
+        document.getElementById('btn-lsa-weave')?.classList.add('lit');
+      } else if (run && !lsaJoin && !kept) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
         : 'No LSA run is stamped with this view yet: pick one by hand and check the preview.');
       lsaPreview();
     }
@@ -1502,7 +1733,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const made = s.created ? new Date(s.created).toLocaleString([], { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
       const stamp = s.saved_view_name ? `made at view "${s.saved_view_name}"` : 'not stamped with a view';
       const layout = (shot.layout || '').trim();
-      brief.textContent = `${s.label || shot.place || id} · ${made} · ${s.instruction || ''} · ${stamp}\n` +
+      const cur = typeof readShot === 'function' ? readShot() : null;
+      const samePlace = cur && (cur.place || '').trim() === (shot.place || '').trim();
+      const older = samePlace && (cur.layout || '').trim() && (cur.layout || '').trim() !== layout;
+      brief.textContent = (older ? 'This run was made with an earlier scene layout than the one in your brief now. The weft pass uses your brief\'s layout; the run\'s analysis was written from the earlier one, so a new Excavate may be worth it.\n\n' : '') +
+        `${s.label || shot.place || id} · ${made} · ${s.instruction || ''} · ${stamp}\n` +
         (shot.subject ? `Looking at: ${shot.subject}\n` : '') +
         (layout ? `Scene layout: ${layout.length > 260 ? layout.slice(0, 260) + '...' : layout}`
                 : 'No scene layout in this run: only the analysis will be woven in, with no confirmed structure.');
@@ -1521,7 +1756,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       let lsa;
       try { lsa = await lsaDetail(id); } catch (e) { setLsaStatus('Could not read that LSA run: ' + e.message, '#ff5252'); return; }
       if (!(lsa.analysis || '').trim()) { setLsaStatus('That LSA run has no analysis.', '#ff5252'); return; }
-      const layout = lsaDirectorLayout(lsa.shot);
+      // 68 (2026-10-22): the layout comes from the brief as it is now when the brief is for the same place as the
+      // LSA run, so a corrected layout is used at once; otherwise from the run's own brief.
+      const cur = typeof readShot === 'function' ? readShot() : null;
+      const useBrief = !!(cur && (cur.layout || '').trim() && (cur.place || '').trim() === ((lsa.shot || {}).place || '').trim());
+      const layoutShot = useBrief ? cur : lsa.shot;
+      const layout = lsaDirectorLayout(layoutShot);
+      document.getElementById('btn-lsa-weave')?.classList.remove('lit');
       setLsaStatus('Weaving the analysis and your layout into the scene text (about a minute)...', 'var(--accent-cyan)');
       taskStart('Weft pass (ADD LSA SURFACES)', 'Weaving the LSA run and your layout into the scene text. Usually about a minute.');
       try {
@@ -1539,7 +1780,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
                     ecology: d.ecology || '', added_structure: (d.added_structure || []).map(a => ({ ...a, decision: null })), removed: d.removed || [],
                     species_to_verify: d.species_to_verify || [],
                     set_aside: d.set_aside || '', not_added: d.not_added || '', finishing_after: false,
-                    director_layout_used: !!layout, at: hhmm() };
+                    director_layout_used: !!layout, at: hhmm(),
+                    layout_from: useBrief ? 'brief' : 'run', layout_text: ((layoutShot || {}).layout || '') };
         box.value = d.scene_text;
         if (typeof updateSceneState === 'function') updateSceneState();
         document.getElementById('btn-lsa-undo').style.display = '';
@@ -1552,8 +1794,9 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         renderLsaAdded();
         const added = lsaJoin.added_structure;
         const nProp = added.filter(a => a.status === 'proposed').length;
-        setLsaStatus(`Weft pass from ${lsaJoin.label}: ${before.length} → ${d.scene_text.length} chars.` +
-          (layout ? '' : ' No scene layout was sent (the LSA run has none).') +
+        setLsaStatus(`Weft pass at ${lsaJoin.at}, using the LSA run of ${fmtRunId(id)}` + (s.label ? ` (${s.label})` : '') +
+          (layout ? (useBrief ? ' and the scene layout in your brief now' : ' and the scene layout saved with that run') : ', with no scene layout (the run has none)') +
+          `: ${before.length} → ${d.scene_text.length} chars.` +
           (added.length ? ` Structure added: ${added.length - nProp} confirmed, ${nProp} proposed (listed below).` : ' No structure added.') +
           (d.warnings && d.warnings.length ? ` Words to check: ${d.warnings.join(', ')} (weather, light and season words pull the render toward that weather: describe the mark instead; place names become position words).` : '') +
           ' Review it in the editor before making a keystone; UNDO restores the previous text.',
@@ -1578,14 +1821,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         (rows.length ? '' : '<div class="lsa-added-note">No structure added.</div>') + rows.map(({ a, i }) => {
         const tag = a.status === 'confirmed' ? 'Confirmed' : 'Proposed';
         const src = { layout: 'from your layout', analysis: 'from the LSA', capture: 'seen in the capture' }[a.source] || a.source;
-        const state = a.decision === 'removed' ? '<span class="lsa-added-done">removed</span>'
+        const state = a.decision === 'removed' ? `<span class="lsa-added-done">removed</span><button class="lsa-added-btn" data-i="${i}" data-act="putback" title="Put the words back where they were">PUT BACK</button>`
           : a.decision === 'kept' ? '<span class="lsa-added-done">kept</span>'
           : `<button class="lsa-added-btn" data-i="${i}" data-act="keep">KEEP</button>` +
             `<button class="lsa-added-btn" data-i="${i}" data-act="remove"${a.found ? '' : ' disabled title="Not found word for word in the text: edit it by hand"'}>REMOVE</button>`;
         return `<div class="lsa-added-row ${a.status}${a.decision ? ' decided' : ''}">` +
           `<span class="lsa-added-tag ${a.status}">${tag}</span>` +
           `<span class="lsa-added-text">"${escHtml(a.phrase)}" <span class="lsa-added-note">${escHtml(src)}${a.note ? ': ' + escHtml(a.note) : ''}</span></span>` +
-          `<span class="lsa-added-acts">${state}</span></div>` +
+          `<span class="lsa-added-acts">${state}</span></div>` + extraWordsHtml(a) +
           (a.decision === 'removed' && a.sentence_after ? `<div class="lsa-added-sentence${a.join_doubt ? ' doubt' : ''}">` +
             `<div><b>Was:</b> ${escHtml(a.sentence_before)}</div><div><b>Now:</b> ${escHtml(a.sentence_after)}</div>` +
             (a.join_doubt ? '<div class="lsa-added-note">This sentence may need a word where the phrase was: edit it in the scene text.</div>' : '') + '</div>' : '');
@@ -1602,6 +1845,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         const box = document.getElementById('replay-scene-text');
         if (!box.value.includes(a.phrase)) { setLsaStatus(`"${a.phrase}" is no longer in the text word for word: edit it by hand.`, '#ffb74d'); return; }
         const res = removeCleanly(box.value, a.phrase);
+        a.text_before_remove = box.value; a.text_after_remove = res.text;
         box.value = res.text;
         a.sentence_before = res.before; a.sentence_after = res.after; a.join_doubt = res.doubt;
         lsaJoin.text_after = box.value;   // a removal from the list is part of the pass, not a hand edit
@@ -1609,8 +1853,34 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         setLsaStatus(res.doubt ? `Removed "${a.phrase}". The sentence may need a word: it is shown under the item.` : `Removed "${a.phrase}".`,
                      res.doubt ? '#ffb74d' : 'var(--accent-cyan)');
       }
+      if (act === 'putback') {
+        // 69 (2026-10-22): a removal is undone in one click where it happened, instead of a confirm on every REMOVE.
+        const box = document.getElementById('replay-scene-text');
+        const gone = !a.sentence_after || a.sentence_after.startsWith('(sentence removed');
+        if (box.value === a.text_after_remove) box.value = a.text_before_remove;
+        else if (!gone && box.value.includes(a.sentence_after)) box.value = box.value.replace(a.sentence_after, a.sentence_before);
+        else { setLsaStatus(`The text has changed since "${a.phrase}" was removed, so it cannot be put back automatically. The sentence it was in is shown under the item: paste it back by hand.`, '#ffb74d'); return; }
+        lsaJoin.text_after = box.value;
+        a.decision = null; a.sentence_before = a.sentence_after = undefined;
+        if (typeof updateSceneState === 'function') updateSceneState();
+        setLsaStatus(`Put back "${a.phrase}".`, 'var(--accent-cyan)');
+        renderLsaAdded();
+        return;
+      }
       a.decision = act === 'remove' ? 'removed' : 'kept';
       renderLsaAdded();
+    }
+
+    // 71 (2026-10-22): a "confirmed from your layout" phrase can carry words the layout never used ("mutule",
+    // "fluted"); list them, so a model's addition does not pass as the director's.
+    function extraWordsHtml(a) {
+      if (!lsaJoin || a.status !== 'confirmed' || a.source !== 'layout' || !lsaJoin.layout_text) return '';
+      const known = (lsaJoin.layout_text + ' ' + (lsaJoin.text_before || '')).toLowerCase();
+      const has = w => known.includes(w) || (w.endsWith('s') && known.includes(w.slice(0, -1)));
+      const extra = [...new Set((a.phrase.toLowerCase().match(/[a-z][a-z-]{3,}/g) || []).filter(w => !has(w)))];
+      if (!extra.length) return '';
+      return `<div class="lsa-added-sentence doubt"><div class="lsa-added-note">Not in your layout: <b>${extra.map(escHtml).join(', ')}</b>. ` +
+        'The model added these; check them before keeping the item.</div></div>';
     }
 
     // A13 (2026-10-21): take a phrase out with the word that joined it, repair the punctuation, and report the
@@ -1628,8 +1898,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         new RegExp(`\\s*,\\s*(?:and|with|or)?\\s*${esc}`),   // ", and PHRASE" or ", PHRASE"
         new RegExp(`\\s+(?:and|with|or)\\s+${esc}`),          // " and PHRASE"
         new RegExp(`\\s*;\\s*${esc}`),                        // "; PHRASE"
-        new RegExp(`${esc}\\s*(?:,|\\band\\b|\\bwith\\b)\\s*`), // "PHRASE, ..." at the start of a list
-        new RegExp(`\\s*${esc}`)];
+        new RegExp(`^${esc}\\s*(?:,|\\band\\b|\\bwith\\b)\\s*`), // "PHRASE, ..." opening the sentence
+        new RegExp(`\\s*(?:\\b(?:a|an|the)\\s+)?${esc}`)];   // "a PHRASE": the article goes with it
       let sent = before, listFix = false;
       for (const [k, re] of joins.entries()) {
         const m = re.exec(sent); if (!m) continue;
@@ -1646,7 +1916,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (/^[a-z]/.test(sent)) sent = sent[0].toUpperCase() + sent.slice(1);
       const keep = sent.replace(/[.,;:!?]/g, ' ').trim().split(/\s+/).filter(Boolean).length >= 3;
       const after = keep ? sent : '';
-      const doubt = keep && listFix || keep && /\b(?:and|with|or|of|into|onto|beneath|under|by|from|the|a|an)\s*(?:[,;.:]|$)/i.test(after);
+      const orphan = /\b(?:above|below|under|over|beneath|of|in|on|with|by|to|from|into|onto|behind|along)\s+(?:with|of|in|on|by|to|from|and|above|below)\b/i;
+      const doubt = keep && listFix || keep && orphan.test(after) || keep && /\b(?:and|with|or|of|into|onto|beneath|under|by|from|the|a|an)\s*(?:[,;.:]|$)/i.test(after);
       const out = (text.slice(0, sStart) + after + (after && text.slice(sEnd) && !/^\s/.test(text.slice(sEnd)) ? ' ' : '') + text.slice(sEnd))
                     .replace(/[ \t]{2,}/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
       return { text: out, before, after: after || '(sentence removed: nothing was left of it)', doubt };
@@ -2583,6 +2854,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
                       shadows: !!document.getElementById('chk-sun-shadows')?.checked };
       try {
         if (subjectEntity) subjectEntity.show = false;
+        showPoiMarkers(false);
         if (c.fov_deg) cam.frustum.fov = Cesium.Math.toRadians(c.fov_deg);
         cam.setView({ destination: new Cesium.Cartesian3(c.x, c.y, c.z),
                       orientation: { heading: Cesium.Math.toRadians(c.heading_deg), pitch: Cesium.Math.toRadians(c.pitch_deg),
@@ -2599,6 +2871,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         cam.frustum.fov = saved.fov;
         cam.setView({ destination: saved.pos, orientation: { heading: saved.h, pitch: saved.p, roll: saved.r } });
         if (subjectEntity && saved.subj !== null) subjectEntity.show = saved.subj;
+        showPoiMarkers(true);
         updateTelemetryHUD();
       }
     }

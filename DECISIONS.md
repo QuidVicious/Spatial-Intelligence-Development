@@ -6,6 +6,40 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-22 (afternoon): Points of interest built; the edit pass moves up
+
+**Points of interest (B10): built, first version.** Up to five per saved view, stored with the view (Dual-Pipeline/saved_views.json, "points"; re-saving a view keeps them). Each has a label (the UI only), a description (what the model reads) and a position from where the director clicked. The subject stays separate: the subject is what the camera aims at; the points are the details that make the view worth making (Don: "the punctums"). At compile time the scene section opens with the points in rank order, each with its position words and the director's description, ahead of the scene text; a point wins over the layout where they disagree. The run's own scene text is not changed, so replays never add the block twice; the run record lists the points used. Not yet built from the B10 spec: evidence crops per point, the reversed-ranking A/B test.
+
+**Position words say which way the surface faces** (adopted). Sampled from the surface around the click; left out when the surface is too broken to tell. Reason: the model takes the face it sees head-on for a building's front, and swapped the corner block's two faces until the words said which was which. Location-neutral: it applies to any corner building.
+
+**Describe what is there** (adopted, for points and layouts). Positive description works where negation and loose words fail: "narrow solid panels painted the same colour" not "narrow side panels"; one element per point; each detail tied to its building.
+
+**Text has a limit, and the edit pass moves up** (adopted, Don 2026-10-22). Irregular patterns (blind and glazed windows by floor and bay, balustrades under alternate windows) come back regularised however they are worded. The edit pass (parked until after Round B) moves up to next: on a finished keystone, one small change at a time in a marked area ("make this window blind"), compared side by side, kept or undone. The points of interest mark where edits land.
+
+**UI fixes made in use** (adopted). The frame is pinned at the top of the centre column; the top strip is one compact row; the edit panel names the open text by colour and words and switches between the two texts; Done is green; points move only with their lit ↔ button, with a banner in the frame. Don: fixing function while the context is fresh leaves the final pass for appearance and layout only.
+
+**Terms.** Blind arch: an arched recess in the wall (the round-headed recess holding a window or door). Tympanum: the half-round above a window or door within an arch. Palladian window: three-part, a tall centre light flanked by narrower side lights, which the model sometimes puts where plain sashes belong. Ancon, or console: a bracket under a sill.
+
+## 2026-10-22: The layout carries the subject, and the fixes around it
+
+**The layout is the lever, confirmed.** With the corrected layout the LSA's own picture got Nelson Street's slope and the subject right from text alone, and the weft pass confirmed every fact in it: five bays front and return, the attic storey, the blind and glazed windows bay by bay, the flat-headed return, the rough-faced retaining wall, the arch under the platts, the steps, the lamps. Where the layout was vague the image guessed (arches carried onto the return; nearly every window blind). The subject's facts are written into the layout, precisely, by floor and bay.
+
+**The weft pass uses the brief's layout as it is now** (adopted). It used to read the layout saved with the LSA run, so a correction was silently ignored. Now: the brief's layout when the brief is for the same place as the run; the run's own otherwise; the header says which; the run's preview warns when it was made with an earlier layout.
+
+**The layout outranks the scene text** (adopted, Dual-Pipeline/domain_engine.py). Where the layout is more specific about an element than the scene text (blind or glazed by floor and bay, arched or flat-headed, bay counts), the pass rewrites that element to match and lists it as confirmed. Tested at 11:53: four confirmed, nothing removed.
+
+**Length by level of detail** (adopted). The weft pass cap is 2,900 characters (it was 2,600, below a text already 2,744 long, which forced a 600-character cut that the length check rightly rejected). When it must shorten it cuts the surface description of far elements first, never structure or the subject.
+
+**Undo, don't ask** (adopted). A stray click must never cost work: any one-click action that changes the text or the framing is reversible in one click where it happened. REMOVE gets PUT BACK, not a confirm dialog. The camera locks at a saved view in either frame mode.
+
+**Select, don't run** (adopted). After an Excavate the new run is selected on the weft pass card and ADD LSA SURFACES lights up; the pass is never started automatically, since it rewrites the capture's scene text and costs a model call.
+
+**Removal check, rewordings** (adopted). Storey counts, blind windows or panels, and chimneys are synonym groups, so a reworded feature is not reported as removed; real losses (granite, steps, doors) still are. "Confirmed from your layout" items now list any words the layout never used.
+
+**Facts from Don, 2026-10-22.** The corner block is a five-bay terminal on both faces. Its Abercromby Place front is "all fancy arched" (round-arched entrance with fanlight and round-arched ground-floor windows); every opening on the Nelson Street return is a flat rectangle. Window pattern on the front: the corner bay has glazed basement and ground floor, a blind first floor, a glazed second floor and a blind attic; the next bay toward the door has a glazed basement, blind ground, first and second floors and a glazed attic; every window beyond the door is glazed. The basement retaining wall on the Nelson Street side is large squared blocks with a rough face, unlike the smooth ashlar above; the rougher rubble treatment is on the Abercromby side. There are no Doric features on Abercromby Place, Nelson Street or Northumberland Street; Drummond Place and the Moray Feu have Doric relief columns and other "fancier" details, while these streets keep the plainer early New Town manner. The LSA borrowed a mutule cornice and fluted lamp columns from the fancier streets: local norms for the place primer and the location preview (B12).
+
+**Open.** The two texts (Scene layout, Scene text) are still confused in use (USER_SESSION_1.md, 73): they need to look different, not only be named differently (B1). Presets need filtering by view (65). The location fields need to say whose location they hold (67).
+
 ## 2026-10-21: Round A-1 tested, A-2 started, SI6.3, and the attic storey
 
 **SI6.3 is the default instruction.** Adopted. LSA-Studio/lsa/instructions/SI6.3.md. Changes from SI6.2: the render prompt shows the empty place in positive words (no people, no parked cars, said as what is there rather than as a list of what is not), keeps the permanent fixtures (lamps, railings, bollards), and gives each element words in proportion to its size in the frame. The nb2 addendum matches: rule 5 the empty street with fixtures kept, rule 6 surfaces dry unless the brief's weather says otherwise, rule 8 words in proportion to frame size. The server now picks the highest SI version as the default, so a new instruction does not need a code change.

@@ -125,3 +125,45 @@ Results, 2026-10-21. The progress card works: the pulsing dot and the seconds co
 | 64 | The new fixtures and storey rules in the weft pass made no visible difference on the first test. The lamps were left out as "unconfirmed fixtures not verified in layout or visible composition" (the rule's "only where IMAGE 1 has room" gave the model its reason, and thin poles barely show in a capture); one roof sentence still covers every building; the layout's "flush with the facade" stayed, confirmed. The layout is confirmed and outweighs the instruction: what the director knows has to be in the layout. | P1 |
 
 Results, afternoon. The LSA proposed a segmental arch under the platts, a detail Don had not noticed in eight months; he confirmed it in Street View (a subtle arcing sweep under the rigid steps; the solid ones probably enclose a cellar). The retaining wall along the descending return was kept: the basement areas read as moats around the buildings from the air. The progress overlay: "my new favorite thing", "I love that status gizmo".
+
+## Follow-up findings, 2026-10-22
+
+| # | Finding | P |
+| --- | --- | --- |
+| 65 | Too many presets to tell apart: 25 in all, nine for this one view, with nothing linking a preset to its view. The preset list should show only the presets saved for the view you are at (B2). | P2 |
+| 66 | Unsaved brief changes are lost when the page closes or reloads, without a word: Don believed the new layout was saved and it was not. Fixed: the page asks before leaving with unsaved brief changes. | P1 |
+| 67 | "Place", under "Where you stand", holds the subject's address (GO fills it from the subject marker), so every run is labelled "1 Nelson St" while the camera stands at 22 Abercromby Pl. Don: one field for the subject's location, one for the camera's, and every other field maps to one of them. Refinement: the pano keeps its own position, labelled as the photo's, since it is chosen to see the subject from wherever the best photo was taken (B4, B5). | P1 |
+| 68 | The weft pass read the layout saved with the LSA run, not the layout in the brief: a corrected layout was silently ignored, twice. Fixed: the brief's layout is used when the brief is for the same place; the run preview warns when the run was made with an earlier layout. | P1 |
+| 69 | Stray clicks while scrolling: an accidental REMOVE, the same class as the camera in 58. Rule: any one-click action that changes the text or the framing is reversible in one click where it happened (undo, don't ask). Fixed: PUT BACK after REMOVE. Tested. | P1 |
+| 70 | After an Excavate the weft pass list kept the previous pick, so the pass ran on yesterday's run. Don: "another recurring confusion and causes more re-work." Fixed: the new run is selected and ADD LSA SURFACES lights up; the pass is never started automatically. | P1 |
+| 71 | A "confirmed from your layout" item can carry the model's own words ("mutule", "fluted"). Fixed: a "Not in your layout" line lists them. Still too literal ("five-bay" for "five bays", "adjacent" for "next"). | P2 |
+| 72 | The header "Weft pass from <LSA run id>" read as the time of the pass. Fixed: "Weft pass at 11:53, using the LSA run of 22 Oct, 10:01 and the scene layout in your brief now". | P2 |
+| 73 | The layout was pasted into the Scene text through the floating editor: the editor shows whichever text was last clicked, the two look alike, and Close does not save (the editor writes as you type). Don: colour states (yellow while editing, green when done); the colour should also say which text is open (B1). | P1 |
+| 74 | Auto-lock did not lock when GO was pressed with the still in the frame. Fixed: GO locks in either mode, and showing Cesium at the saved view locks too. | P1 |
+| 75 | The weft pass was capped at 2,600 characters while the text was already 2,744, so it cut 600 characters and the length check rejected it (shown in red, text unchanged). Fixed: cap 2,900; when it must shorten it cuts the surface description of far elements first, never structure or the subject (level of detail by distance). | P2 |
+| 76 | Polish, for the final visual pass: the status overlay's green reads as pea green. Don: traffic-light states (yellow running, red failed or not ready, green done or ready to press), with the words kept. | P3 |
+
+Results, 2026-10-22.
+- A text-only keystone (10:28) from a scene text written from the corrected layout: Nelson Street slopes down, the near building's arched recesses with square windows are right, the arch under the platts shows. Faults: arches carried round onto the return, and nearly every window blind, both from vague text ("blind window panels across two bays").
+- With the full window pattern in the layout, the weft pass (11:53) confirmed the five bays, the rough-faced retaining wall, the blind and glazed pattern bay by bay and the flat-headed return, and removed nothing. Correction to the record: at 11:45 Claude called the weft pass unreliable at applying the layout; the layout in the brief was the old one, so the pass had never received the pattern.
+- The LSA picture from the corrected layout (10:01) got Nelson Street's slope and the subject building right from text alone. The lamps are generic ("London fog"): a resident would spot them.
+
+## Follow-up findings, 2026-10-22 afternoon (points of interest)
+
+| # | Finding | P |
+| --- | --- | --- |
+| 77 | The edit panel took a paste meant for the Scene layout into the Scene text a second time; Close does not save. Fixed: a coloured band names the open text (amber BRIEF: SCENE LAYOUT, purple RUN: SCENE TEXT), a switch in the panel moves between the two, and Close became a green Done. Don: Done should go dark once clicked. | P1 |
+| 78 | The way back to the points of interest is not obvious (they sit on the Cesium card, under the subject). Make it clearer in B1. | P2 |
+| 79 | A sixth point got in through one path without the cap; the server refused to save it. Fixed. | P2 |
+| 80 | Markers could not be moved; trying to move one added a point. Fixed: ↔ per point. Then: markers moved on any drag, and ↔ restarted the move instead of cancelling. Don: a dot must not move without the button, the button must show it is active, and the instruction must appear where the eye is. Fixed: only the point whose ↔ is lit can be dragged or moved; ↔ again or Esc cancels; an amber banner at the top of the frame says what to do. The panel's small buttons that scroll out of view remain (B1). | P1 |
+| 81 | The frame scrolls out of sight while editing below it, so banners and the framing are missed. Fixed: the frame and its bar stay pinned at the top of the centre column. | P1 |
+| 82 | The top strip wasted a band of height (the Weather note on its own line, the camera readouts wrapping). Fixed: one compact row; the keystone note sits beside the Weather title. | P2 |
+| 83 | The model swapped the two faces of the corner block: the face turned toward the camera (the Nelson Street side) was taken for the front and given the front's arches; points on both faces had identical position words. Fixed: each point's position now says which way its surface faces ("on a face turned toward the camera", "on a face running away from the camera, facing right"), measured from the surface around the click. Result: square openings and door on the Nelson face, arches back on the front. | P1 |
+| 84 | Text alone does not hold an irregular window pattern: bay by bay and floor by floor both came back as whole columns glazed or blind (one run, 15:07, got it right by chance); balustrades under alternate windows came back under every window. Goes to the edit pass. | P1 |
+| 85 | "Narrow side panels" was drawn as glazed side windows; "blue" on two doors mixed them up. Describe what is there, positively, and tie each detail to its building ("on the near building on the left"). | P2 |
+| 86 | A rectangular sash inside a round arched recess was drawn as an arched window (common in this part of town). Tried: the stone of the wall fills the half-round above a flat-headed window. Result pending. | P2 |
+| 87 | Points of interest with "wrought-iron" and first-floor windows in one description produced iron balconies at the first floor. One element per point. | P2 |
+| 88 | The run list is confusing: Don could not tell which keystone was the latest. Mark the newest and filter to the view (B2). | P1 |
+| 89 | On Claude's side: steps and texts spread across several replies are hard to find again. Each set of steps goes in one message, in order, with the texts in it. | P1 |
+
+Results, afternoon. The keystones from points of interest (14:12 to 15:30, text only, no pano: confirmed in the run record): the 19 Abercromby door dark and close to right, flower boxes right; once faces were named by how they sit to the camera, the Nelson face's openings and door came out square and the front's arches came back. Asked whether the accuracy of the roofline (chimneys, dormer attics, the flush parapet pair) meant the pano was used: it was not; the Cesium capture (Google's 3D tiles of the real street) is always sent as the frame, so roof forms and bay rhythm come from it.

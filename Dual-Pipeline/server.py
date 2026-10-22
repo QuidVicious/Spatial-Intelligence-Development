@@ -18,6 +18,8 @@ import time
 import asyncio
 import secrets
 import calendar
+import copy
+import math
 import threading
 from datetime import datetime, timezone, date as _date, timedelta
 import requests
@@ -667,8 +669,19 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         yield event_str
 
         yield stage.processing("Compiling System Contracts, Botanical Phenology, and Lithics...")
+        # B10 (2026-10-22): the view's points of interest open the scene section, most important first. The run's own
+        # scene text is not changed (a copy carries the block), so replays never add it twice.
+        compile_domain = domain_result
+        poi_record = None
+        if request.saved_view_id and not print_like:
+            _view = next((v for v in _load_views() if v.get("id") == request.saved_view_id), None)
+            _block, poi_record = poi_block(_view)
+            if _block:
+                compile_domain = copy.copy(domain_result)
+                compile_domain.documentary_prompt = _block + "\n\n" + (domain_result.documentary_prompt or "")
+                yield stage.dispatching(f"Points of interest: {len(poi_record)} from the saved view, placed first in the scene section")
         compiled = compile_conditioning(
-            domain_result=domain_result,
+            domain_result=compile_domain,
             lighting_state=lighting_state,
             target_provider=request.provider,
             telemetry=telemetry,
@@ -853,6 +866,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
                     "sun_shadows": {k: v for k, v in (sun_shadows_info or {}).items() if k != "mask_png_b64"} or None,
                     "streetview": streetview_record,
                     "lsa_join": lsa_join_record,
+                    "points_of_interest": poi_record,
                     "ab": request.ab,
                     "delight": delight_setting,
                     "mode": mode,
@@ -1017,6 +1031,7 @@ async def save_view(req: SaveViewRequest):
         "note": req.note,
         "camera": req.camera.model_dump() if hasattr(req.camera, "model_dump") else req.camera.dict(),
         "subject": req.subject,
+        "points": (existing or {}).get("points") or [],
         "created_utc": existing.get("created_utc", now) if existing else now,
         "updated_utc": now,
     }
@@ -1035,6 +1050,126 @@ async def delete_view(view_id: str):
     _write_views(kept)
     print(f"[Views] deleted: {view_id}")
     return {"deleted": view_id}
+
+
+# -------------------------------------------------------------------------
+# Points of interest (B10, 2026-10-22): up to five ranked points per saved view, each with the director's own
+# description. The prompt compiler opens the scene section with them, most important first, each placed by where
+# it sits in the frame. Ranks and labels stay in the UI: the model sees only the order and the descriptions.
+# -------------------------------------------------------------------------
+MAX_POINTS = 5
+
+
+class PointOfInterest(BaseModel):
+    id: str = Field(..., min_length=1, max_length=40)
+    label: str = Field("", max_length=60, description="The director's own name for it; shown in the UI only")
+    description: str = Field("", max_length=600, description="What the image model reads")
+    x: float
+    y: float
+    z: float
+    latitude: float
+    longitude: float
+    height_m: float
+    nx: Optional[float] = None   # which way the clicked surface faces (ECEF unit vector), when the viewer could tell
+    ny: Optional[float] = None
+    nz: Optional[float] = None
+
+
+class SavePointsRequest(BaseModel):
+    points: List[PointOfInterest] = Field(default_factory=list)
+
+
+def _frame_position(cam: dict, p: dict) -> dict:
+    """Where a point sits in the saved view's frame: x and y from -1 to 1 (left/bottom to right/top) and distance."""
+    dx, dy, dz = p["x"] - cam["x"], p["y"] - cam["y"], p["z"] - cam["z"]
+    lat, lon = math.radians(cam["latitude"]), math.radians(cam["longitude"])
+    east = -math.sin(lon) * dx + math.cos(lon) * dy
+    north = -math.sin(lat) * math.cos(lon) * dx - math.sin(lat) * math.sin(lon) * dy + math.cos(lat) * dz
+    up = math.cos(lat) * math.cos(lon) * dx + math.cos(lat) * math.sin(lon) * dy + math.sin(lat) * dz
+    dist = math.sqrt(dx * dx + dy * dy + dz * dz)
+    az = math.degrees(math.atan2(east, north))
+    rel = (az - cam.get("heading_deg", 0.0) + 540.0) % 360.0 - 180.0
+    elev = math.degrees(math.atan2(up, math.hypot(east, north))) - cam.get("pitch_deg", 0.0)
+    hfov = math.radians(cam.get("fov_deg") or 60.0)          # Cesium's fov spans the wider side (the width at 16:9)
+    aspect = (cam.get("capture_w") or 16) / (cam.get("capture_h") or 9)
+    vfov = 2 * math.atan(math.tan(hfov / 2) / aspect)
+    x = math.tan(math.radians(rel)) / math.tan(hfov / 2) if abs(rel) < 89 else (9.0 if rel > 0 else -9.0)
+    y = math.tan(math.radians(elev)) / math.tan(vfov / 2)
+    out = {"x": round(x, 3), "y": round(y, 3), "distance_m": round(dist, 1)}
+    # 2026-10-22: which way the surface faces relative to the camera, so two faces of one corner building are never
+    # confused (the model takes the face it sees head-on for the front).
+    if all(isinstance(p.get(k), (int, float)) for k in ("nx", "ny", "nz")):
+        n_e = -math.sin(lon) * p["nx"] + math.cos(lon) * p["ny"]
+        n_n = -math.sin(lat) * math.cos(lon) * p["nx"] - math.sin(lat) * math.sin(lon) * p["ny"] + math.cos(lat) * p["nz"]
+        n_u = math.cos(lat) * math.cos(lon) * p["nx"] + math.cos(lat) * math.sin(lon) * p["ny"] + math.sin(lat) * p["nz"]
+        if abs(n_u) > 0.8:
+            out["facing"] = "on a level surface"
+        else:
+            n_rel = (math.degrees(math.atan2(n_e, n_n)) - cam.get("heading_deg", 0.0) + 540.0) % 360.0 - 180.0
+            out["facing"] = ("on a face turned toward the camera" if abs(n_rel) >= 135 else
+                             "on a face running away from the camera, facing left" if n_rel <= -45 else
+                             "on a face running away from the camera, facing right" if n_rel >= 45 else
+                             "on a face turned away from the camera")
+    return out
+
+
+def _position_words(pos: dict) -> str:
+    x, y, d = pos["x"], pos["y"], pos["distance_m"]
+    if x < -1:
+        side = "just outside the frame on the left"
+    elif x > 1:
+        side = "just outside the frame on the right"
+    else:
+        side = ("at the far left" if x < -0.6 else "on the left" if x < -0.2 else "in the centre" if x <= 0.2
+                else "on the right" if x <= 0.6 else "at the far right")
+    height = "high in the frame" if y > 0.4 else "low in the frame" if y < -0.4 else "at mid height"
+    dist = "close to the camera" if d < 20 else "in the middle distance" if d < 60 else "in the distance"
+    return f"{side}, {height}, {dist}" + (f", {pos['facing']}" if pos.get("facing") else "")
+
+
+def poi_block(view: Optional[dict]):
+    """The priority block for a saved view's points, and a record of what was sent. ("", None) when there are none."""
+    if not view or not view.get("camera"):
+        return "", None
+    pts = [p for p in (view.get("points") or []) if (p.get("description") or "").strip()]
+    if not pts:
+        return "", None
+    lines, record = [], []
+    for rank, p in enumerate(pts[:MAX_POINTS], start=1):
+        pos = _frame_position(view["camera"], p)
+        words = _position_words(pos)
+        desc = re.sub(r"\s+", " ", p["description"]).strip().rstrip(".")
+        lines.append(f"- {words[0].upper() + words[1:]}: {desc}.")
+        record.append({"rank": rank, "id": p.get("id"), "label": p.get("label", ""), "position": words, "frame": pos,
+                       "description": desc})
+    block = ("[POINTS OF INTEREST, most important first. Render each exactly as described; where the scene text below "
+             "says otherwise about the same element, these entries are correct.]\n" + "\n".join(lines))
+    return block, record
+
+
+@app.put("/api/views/{view_id}/points")
+async def save_view_points(view_id: str, req: SavePointsRequest):
+    if len(req.points) > MAX_POINTS:
+        raise HTTPException(status_code=400, detail=f"A view holds at most {MAX_POINTS} points of interest.")
+    views = _load_views()
+    view = next((v for v in views if v.get("id") == view_id), None)
+    if not view:
+        raise HTTPException(status_code=404, detail="View not found.")
+    view["points"] = [p.model_dump() if hasattr(p, "model_dump") else p.dict() for p in req.points]
+    view["updated_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    _write_views(views)
+    block, record = poi_block(view)
+    print(f"[Views] points of interest for {view_id}: {len(view['points'])}")
+    return {"view": view, "block": block, "points": record or []}
+
+
+@app.get("/api/views/{view_id}/points/preview")
+async def preview_view_points(view_id: str):
+    view = next((v for v in _load_views() if v.get("id") == view_id), None)
+    if not view:
+        raise HTTPException(status_code=404, detail="View not found.")
+    block, record = poi_block(view)
+    return {"block": block, "points": record or []}
 
 
 # -------------------------------------------------------------------------
