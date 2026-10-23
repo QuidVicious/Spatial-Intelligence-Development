@@ -9,7 +9,7 @@ Three kinds of work, in this order:
 
 ## Round A: fixes
 
-Status by item, 2026-10-22:
+Status by item, 2026-10-23:
 
 | Item | Status |
 | --- | --- |
@@ -33,6 +33,7 @@ Status by item, 2026-10-22:
 | A32 | Removal check: rewordings of storey counts, blind windows and chimneys are not losses. | [60] |
 | A33 | The page asks before closing with unsaved brief changes. | [66] |
 | A26 to A33 | Done 22 Oct; A26, A28, A31 and A32 tested; A27, A29, A30 and A33 seen but not tested on their own |
+| A40 | The edit pass: built and in use 23 Oct (DECISIONS 2026-10-23). Crop with context, marker outside the area, alignment, blend inside the area only, Edge setting, sample, polygon with straightening, versions with Restore, Redo that only fills in, Back to here that confirms, the run views show the newest edited version, approval records the edited plate. Tested through approval and two prints. | [90] to [103] |
 | A34 to A39 | Done 22 Oct, in use: the edit panel's band, switch and Done (A34); points capped at five (A35); points move only with a lit ↔, with a frame banner (A36); the frame pinned at the top (A37); the top strip trimmed (A38); the run record lists the points used (A39) |
 
 ### Prompts (Dual-Pipeline, domain_engine.py)
@@ -88,6 +89,11 @@ Status by item, 2026-10-22:
 | B10 | Points of interest: the subject plus up to four more markers placed on the Cesium frame, each with a short description the user writes and a rank (1 = most important) the user sets. The compiler opens the scene section with a priority block: the points in rank order, each as its own element entry with its position worked out from the marker (side, height in frame, distance) and the user's description, followed by the rest of the scene with no repeats. The task and framing rules stay ahead of the block. Ranks and labels show in the UI but never reach the image model as numbers or labels (it can draw them); order and wording carry the rank. Each point also aims an evidence crop, marks an edit region for the edit pass, and is a place the framing check measures (including the ground). Test before trusting: A/B with the ranking reversed, to measure whether order changes the render. Per point, the evidence step: pick the image that sees the point best (close, facing it, unobstructed, right season), crop to it, show the crop as a thumbnail for the user to confirm, read it into words for that element only (the user's description stays confirmed; the sketch's additions come in as proposed), and never send the image to the renderer. | Don 2026-10-20; [43] [46] |
 | B10 status | Built 22 Oct: points stored with the view, ranked, placed with position and facing words, compiled first in the scene section, markers, move, put back. Open: evidence crops per point, the reversed-ranking A/B test, larger controls in the panel. | |
 | B13 | Run list: mark the newest run and keystone candidate, filter to the view; the way back to the points made obvious. | [78] [88] |
+| B14 | Edit Mode (Don, 23 Oct; build decided Sunday afternoon). Entering dims everything but the frame and the Edit Mode panel. Only two controls are live until a shape is chosen: Shape (green, the next step; Box, Polygon, or a point of interest, folding the Area list into it) and Exit Edit Mode (amber outline). A Fullscreen button under the frame (in-page, not the browser's, so Esc stays ours) reads Viewport while full; fullscreen stays until the user leaves it, so a shape can be checked, redrawn or corrected there. Zoom about the cursor and pan, in both views. Live corners: drag any polygon corner or box handle; hit areas scale with zoom. After Make the change the Fullscreen button becomes Compare: left and right arrow keys flip before and after (as runs flip), plus the slider, opening fully applied. Exit Edit Mode becomes a solid green Done once a change exists; both keep everything and leave. Estimate 5 to 7 hours, with the state rule retrofit (B17). | [104] |
+| B15 | Carry forward and the set-aside list: set-aside versions shown, greyed, under the line; Carry forward copies one's change onto the current version without a model call. | [98] |
+| B16 | Leftover check: after each edit, warn when marker residue is left in the result. | [102] |
+| B17 | One state, three cues: colour, shape and label for every control and status with states; the status overlay gets ● working, ✓ done, ✕ failed, ! warning; SVG symbols (Don designs) replace emoji. | DECISIONS 2026-10-23 |
+| B18 | The edit panel names the run kind (keystone candidate, keystone, print, date plate); on a print it offers to make the fix on the keystone instead. | [103] |
 | B11 | SI6.4: a top floor whose windows sit in the wall face is counted, whatever it is called; only windows in a roof slope belong to the roof. Location-neutral in the instruction; local terms (attic storey, main cornice, blocking course) go to the place primer. | 2026-10-21 |
 | B12 | Location preview: before the first run, show and set the place's local norms (building types, counts, materials, terms) as the system's defaults for that place. Part of the place primer. Idea, to scope. | Don 2026-10-21 |
 
@@ -111,7 +117,7 @@ Status by item, 2026-10-22:
 - C5 User session 2 with outside testers; compare with session 1.
 
 ## Parked, with reasons
-- Edit pass: moved up on 2026-10-22, next after the job slot (text alone does not hold irregular window patterns or alternating balustrades [84]). One change at a time in a marked area of a finished keystone, side by side, kept or undone; the points of interest mark the areas.
+- Edit pass: moved up on 2026-10-22 and built 23 Oct (A40); its next steps are B14 to B18.
 - Place primer: with C2 and C3.
 - Sketch set from CC photos (Geograph, Wikimedia Commons, Mapillary), aerial and historical views: after C3.
 - Privacy statement: written alongside the job applications; it does not wait for code.

@@ -6,6 +6,40 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-23: The edit pass built and in use; UI state rule; Edit Mode specced
+
+**The edit pass** (adopted, built, in use). One change at a time in a marked area of a finished image. The area is cropped with a margin of context (grown to a ratio the model accepts) and sent to Gemini 3.1 Flash Image twice: clean, and with a red marker drawn just outside the area; an optional sample goes as a third image. The model has no mask, so locality comes from the paste-back: the result is lined up with the original on the margin, then blended inside the area only; nothing outside it can change. Versions are edits/vN.png in the run folder with an edits.json record; the original render is version 0. Reasons: Don's four design decisions at 9:20 (one change at a time, side by side, keep or undo, points of interest mark the areas); the faults found in use (findings 90 to 95).
+
+**Approval records the edited version** (adopted, tested). The keystone record holds the plate and the edit version; prints and date plates start from that plate. Tested: version 23 approved, the date plate and the rain print both started from it.
+
+**The sample** (adopted). A correct example from the same image guides the change: proportions, panes, colour and detail. It also works as a colour reference (Don, finding 96).
+
+**Polygon select and straightening** (adopted). A polygon marks a band at an angle; its outline is the marker; only pixels inside it can change. A long band at an angle is turned level before the model sees it and turned back after (the model draws level architecture far better); a tick box turns this off. The context around a long band is measured from its thickness, not its length. Reason: finding 99.
+
+**Nothing is set aside without a second step** (adopted). Back to here confirms; Redo only fills in, and the later versions are set aside by the server only once the new version exists; Restore what was set aside brings back the last set-aside. Files are never deleted. Reason: two accidental losses in one day (finding 97).
+
+**Carry forward** (planned). Copy a set-aside version's change onto the current version, pixel for pixel, without a model call; done by hand for version 23. With it, show set-aside versions in the list. Reason: finding 98.
+
+**Leftover check** (planned). After each edit, warn when marker residue is left in the result. Reason: prints amplify faint leftovers (finding 102).
+
+**One state, three cues** (adopted, Don). Any control or status with states shows each state by colour, shape and label together, never colour alone (WCAG 1.4.1): go is green, solid, ✓ or ▶; back out is amber, outline only, ↩; destructive is red, heavy outline, ⚠, and always confirms; not yet available is grey, dashed; working is cyan, a pulsing dot. A button that changes role changes all three (Exit Edit Mode in amber outline becomes a solid green Done). The status overlay's traffic light breaks this rule and is to be fixed.
+
+**Symbols are SVG, Bauhaus in form** (adopted, Don). Simple geometric symbols (circle, square, triangle, line) in place of emoji, which render differently on each system; SVG so one symbol scales and takes its colour from the button. Don designs the set; Claude drafts placeholders so the build does not wait.
+
+**Edit Mode** (planned; whether to build on Sunday afternoon is decided then). Don's design, recorded in REBUILD_SPEC B14.
+
+**Ideas logged, not scheduled** (Don):
+- LSA Studio in the field: a mobile tool on the Pixel 10 with the director's own captures, for places with no Street View.
+- Ask the place: an inspector that answers questions about what is in the frame.
+- Expert confirmation: a loop where a local expert confirms or corrects details.
+- A 3 to 4 second animation inside a slideshow of prints (rain, a gust of wind), image to video from a finished print. The prints are Google-based renders, so where it is shown matters (clause 3.2.3(c)).
+- A soundscape from the scene text: rain and wind on the facades, trees, wood pigeons on the Water of Leith at dusk.
+- LSA Trance Machine mode: each code action makes a sound, and execution speed sets the beat.
+
+**Evidence of the method** (record, for the LSA page and the resume). The speed of iteration: an idea or limit found in use at one moment, designed and built within the hour, and tested in the same session (polygon select, the sample, Restore, the Redo fix).
+
+---
+
 ## 2026-10-22 (afternoon): Points of interest built; the edit pass moves up
 
 **Points of interest (B10): built, first version.** Up to five per saved view, stored with the view (Dual-Pipeline/saved_views.json, "points"; re-saving a view keeps them). Each has a label (the UI only), a description (what the model reads) and a position from where the director clicked. The subject stays separate: the subject is what the camera aims at; the points are the details that make the view worth making (Don: "the punctums"). At compile time the scene section opens with the points in rank order, each with its position words and the director's description, ahead of the scene text; a point wins over the layout where they disagree. The run's own scene text is not changed, so replays never add the block twice; the run record lists the points used. Not yet built from the B10 spec: evidence crops per point, the reversed-ranking A/B test.

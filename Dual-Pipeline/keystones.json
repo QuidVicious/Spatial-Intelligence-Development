@@ -231,6 +231,22 @@
           "replaced_utc": "2026-10-15T18:40:21+00:00"
         }
       ]
+    },
+    "lsa-session-1-abercromby-and-nelson": {
+      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737",
+      "view_name": "LSA session 1: Abercromby and Nelson",
+      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261019_140821",
+      "approved_from": "candidate",
+      "conditions": {
+        "date": "2026-01-15",
+        "time_of_day": 12.0,
+        "weather": "OVERCAST"
+      },
+      "warnings_acknowledged": [],
+      "plate": "edits/v23.png",
+      "edit_version": 23,
+      "approved_utc": "2026-10-23T21:26:27+00:00",
+      "history": []
     }
   }
 }

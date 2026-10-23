@@ -8029,5 +8029,85 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:f1df1a5817dd558de92ae03de62f2cee01037738": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays budburst until late spring and extends the autumn leaf-drop period.",
+      "species": [
+        {
+          "name": "Fagus sylvatica",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-28",
+            "full_leaf": "05-24",
+            "colour_onset": "10-06",
+            "peak_colour": "10-28",
+            "half_fall": "11-09",
+            "bare": "11-22"
+          },
+          "stages": {
+            "budburst": "Slender bronze buds open; silken, bright-green pleated leaves unfold along twigs.",
+            "full_leaf": "Deep green, glossy ovate leaves with wavy margins over smooth, elephant-grey bark.",
+            "colouring": "Dark green foliage turns golden-yellow and warm russet-brown across the canopy.",
+            "peak": "Brilliant coppery-orange and rich russet foliage; smooth grey branches underneath.",
+            "falling": "Faded copper-brown leaves drop steadily, exposing major ascending grey limbs.",
+            "dormant": "Smooth grey bark and spreading framework with sharp, torpedo-shaped winter buds."
+          }
+        },
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-18",
+            "full_leaf": "05-18",
+            "colour_onset": "09-24",
+            "peak_colour": "10-18",
+            "half_fall": "11-02",
+            "bare": "11-16"
+          },
+          "stages": {
+            "budburst": "Fat green buds burst; tender pale green five-lobed leaves emerge on reddish stalks.",
+            "full_leaf": "Broad, matte dark green palmate leaves; rough bark flaking in rectangular scales.",
+            "colouring": "Leaves turn dull yellow-green and ochre, often marked with dark tar spots.",
+            "peak": "Canopy turns tawny yellow and brownish-amber; winged samaras hang among leaves.",
+            "falling": "Crisp brown leaves drop rapidly; scaly grey-brown bark and limbs exposed.",
+            "dormant": "Bare grey-brown spreading limbs with flaking bark plates and stout green buds."
+          }
+        },
+        {
+          "name": "Fraxinus excelsior",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "05-08",
+            "full_leaf": "06-02",
+            "colour_onset": "09-28",
+            "peak_colour": "10-16",
+            "half_fall": "10-26",
+            "bare": "11-06"
+          },
+          "stages": {
+            "budburst": "Jet-black velvety buds swell; pale green pinnate leaflets unfurl late.",
+            "full_leaf": "Bright green pinnate leaves with lanceolate leaflets; pale grey fissured bark.",
+            "colouring": "Foliage pales from mid-green to dull greenish-yellow; bunches of keys visible.",
+            "peak": "Pale yellowish-green to butter-yellow foliage with clusters of hanging samaras.",
+            "falling": "Faded yellow leaflets detach and shed quickly; grey upturned branch tips emerge.",
+            "dormant": "Stout pale grey twigs with contrasting sooty-black buds; deeply ridged grey bark."
+          }
+        },
+        {
+          "name": "Prunus laurocerasus",
+          "habit": "evergreen",
+          "evergreen_look": "Large, thick, glossy dark green oblong leaves on dense, smooth grey-brown stems."
+        },
+        {
+          "name": "Ilex aquifolium",
+          "habit": "evergreen",
+          "evergreen_look": "Glossy, spiny-margined dark green leaves over pale grey bark; scarlet winter berries."
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

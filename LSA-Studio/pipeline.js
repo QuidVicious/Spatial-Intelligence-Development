@@ -1230,10 +1230,15 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     let keystones = {};   // view_id -> approved keystone record
     let thumbShowsRender = true;
 
+    // 2026-10-23: a run's rendered image is its newest edited version when it has one (the edit pass keeps the original as v0).
+    function plateUrl(runId, editVersion) {
+      return editVersion ? `${PIPE}/api/runs/${encodeURIComponent(runId)}/edits/image/${editVersion}?v=${editVersion}`
+                         : `${PIPE}/api/runs/${encodeURIComponent(runId)}/file/spatial_twin.png`;
+    }
     function setReplayThumb(id) {
       const thumb = document.getElementById('replay-thumb');
-      const file = thumbShowsRender ? 'spatial_twin.png' : 'viewport_capture.jpg';
-      thumb.src = `${PIPE}/api/runs/${encodeURIComponent(id)}/file/${file}`;
+      const run = replayRuns.find(r => r.id === id);
+      thumb.src = thumbShowsRender ? plateUrl(id, run && run.edit_version) : `${PIPE}/api/runs/${encodeURIComponent(id)}/file/viewport_capture.jpg`;
       thumb.title = 'Click to view full screen';
     }
 
@@ -2204,7 +2209,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       lbOpen = true;
       lbShowRender = thumbShowsRender;
       const ks = lbKeystoneFor(run);
-      if (ks) (new Image()).src = `${PIPE}/api/runs/${encodeURIComponent(ks.run_id)}/file/spatial_twin.png`;  // preload for instant K
+      if (ks) (new Image()).src = plateUrl(ks.run_id, ks.edit_version);  // preload for instant K
       document.getElementById('lightbox').style.display = 'flex';
       renderLightbox();
     }
@@ -2222,16 +2227,17 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const cap = document.getElementById('lightbox-caption');
       const ks = lbKeystoneFor(run);
       if (lbKeystoneHeld && ks) {
-        img.src = `${PIPE}/api/runs/${encodeURIComponent(ks.run_id)}/file/spatial_twin.png`;
-        cap.textContent = `★ KEYSTONE PLATE for this view (release K to return)`;
+        img.src = plateUrl(ks.run_id, ks.edit_version);
+        cap.textContent = `★ KEYSTONE PLATE for this view${ks.edit_version ? `, edited version ${ks.edit_version}` : ''} (release K to return)`;
         return;
       }
       const showRender = lbShowRender && run.has_twin;
       const raw = showRender && lbShowRaw && run.has_raw;
-      img.src = `${PIPE}/api/runs/${encodeURIComponent(run.id)}/file/${raw ? 'spatial_twin_raw.png' : (showRender ? 'spatial_twin.png' : 'viewport_capture.jpg')}`;
+      img.src = raw ? `${PIPE}/api/runs/${encodeURIComponent(run.id)}/file/spatial_twin_raw.png`
+                    : (showRender ? plateUrl(run.id, run.edit_version) : `${PIPE}/api/runs/${encodeURIComponent(run.id)}/file/viewport_capture.jpg`);
       const pos = replayRuns.findIndex(r => r.id === run.id) + 1;
       const seedTxt = run.seed !== null && run.seed !== undefined ? `seed ${run.seed}` : 'seed not recorded';
-      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${raw ? 'RAW render (before composite)' : (showRender ? (run.composite_applied ? 'composited print' : 'rendered plate') : 'Cesium capture')}   |   ${seedTxt}   |   ${pos} of ${replayRuns.length}`;
+      cap.textContent = `${runLabel(run)}   |   ${run.address || ''}   |   ${raw ? 'RAW render (before composite)' : (showRender ? (run.composite_applied ? 'composited print' : 'rendered plate') + (run.edit_version ? `, edited version ${run.edit_version}` : '') : 'Cesium capture')}   |   ${seedTxt}   |   ${pos} of ${replayRuns.length}`;
     }
 
     function lbToggle() {
@@ -2331,7 +2337,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       updateSeriesContext();
       const run = replayRuns.find(r => r.id === document.getElementById('select-replay-run').value);
       const approveBtn = document.getElementById('btn-approve-keystone');
-      approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !run.keystone_print_of && !isApprovedKeystone(run.id)) ? 'block' : 'none';
+      // 2026-10-23: an approved keystone can be approved again after edits, so prints start from the edited version.
+      const ksRec = run && run.saved_view_id ? keystones[run.saved_view_id] : null;
+      const editedSince = !!(ksRec && ksRec.run_id === (run && run.id) && (run.edit_version || 0) !== (ksRec.edit_version || 0));
+      approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !run.keystone_print_of && (!isApprovedKeystone(run.id) || editedSince)) ? 'block' : 'none';
+      approveBtn.textContent = editedSince ? `✅ APPROVE EDITED VERSION ${run.edit_version || 0} AS KEYSTONE` : '✅ APPROVE AS KEYSTONE';
       const status = document.getElementById('keystone-status');
       const viewId = keystoneContextViewId();
       const view = savedViews.find(v => v.id === viewId);
@@ -2737,6 +2747,312 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('loadingOverlay').classList.remove('hidden');
       await streamPipeline(payload);
     }
+
+    // ---------------- Edit pass (2026-10-23) ----------------
+    // One change at a time in a marked area of a run's plate. The server crops the area with context, has the image
+    // model change it, and pastes back only the area. Versions stay with the run; UNDO steps back.
+    let ep = null;   // { runId, size:[w,h], versions:[], current, box:[x,y,w,h] fractions, label, points:[], compare:{before, after} }
+    function epStatus(msg, color) { const el = document.getElementById('ep-status'); if (el) { el.textContent = msg || ''; el.style.color = color || 'var(--text-muted)'; } }
+    function epImg(v) { return `${PIPE}/api/runs/${encodeURIComponent(ep.runId)}/edits/image/${v}?t=${Date.now()}`; }
+    async function openEditPass() {
+      const run = selectedReplayRun();
+      if (!run || !run.has_twin) { setReplayStatus('Select a run with a rendered image (a keystone candidate) to edit.', '#ffb74d'); return; }
+      try {
+        const [r1, r2] = await Promise.all([fetch(`${PIPE}/api/runs/${encodeURIComponent(run.id)}/edits`), fetch(`${PIPE}/api/runs/${encodeURIComponent(run.id)}/edits/points`)]);
+        const d = await r1.json(); if (!r1.ok) throw new Error(d.detail || `HTTP ${r1.status}`);
+        const p = r2.ok ? await r2.json() : { points: [] };
+        ep = { runId: run.id, label: runLabel(run), size: d.size || [16, 9], versions: d.versions || [], current: d.current || 0, box: null, boxLabel: '', points: p.points || [], compare: null, restorable: d.restorable || 0, poly: null, draft: null, hover: null };
+      } catch (e) { setReplayStatus('Could not open the edit pass: ' + e.message, '#ff5252'); return; }
+      if (typeof setFrameMode === 'function') setFrameMode('still');
+      const area = document.getElementById('ep-area');
+      area.innerHTML = '<option value="drag">Drag a box on the image</option>' +
+        ep.points.map((pt, i) => `<option value="${i}">Point ${pt.rank}: ${escHtml(pt.label)} (${escHtml(pt.position)})</option>`).join('');
+      document.getElementById('edit-pass').hidden = false;
+      epRedoCancel(true);
+      epRenderFrame(); epRenderVersions();
+      epStatus('Drag a box on the image, or pick a point of interest, then say the change.', '#ffb74d');
+      frameHint('Edit pass: drag a box around the area to change. The controls are in the right column.');
+      document.getElementById('edit-pass').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+    function closeEditPass() {
+      document.getElementById('edit-pass').hidden = true;
+      frameHint('');
+      const runId = ep && ep.runId; ep = null;
+      if (runId) document.getElementById('frame').innerHTML = `<img alt="Edited plate" src="${PIPE}/api/runs/${encodeURIComponent(runId)}/edits/image/${(replayRuns.find(r => r.id === runId) || {}).edit_version || 0}?t=${Date.now()}">`;
+    }
+    function epRenderVersions() {
+      const run = replayRuns.find(r => r.id === ep.runId); if (run) run.edit_version = ep.current;
+      document.getElementById('ep-ver').textContent = `${ep.label} · showing version ${ep.current}${ep.current ? '' : ' (the original)'}`;
+      document.getElementById('ep-versions').innerHTML =
+        `<li>The original render ${ep.versions.length ? '<button class="lsa-added-btn" data-back="0" title="Set aside every edit">Back to here</button>' : ''}</li>` +
+        ep.versions.map((v, i) => `<li>${escHtml(v.label ? v.label + ': ' : '')}${escHtml(v.instruction)}` +
+          (i < ep.versions.length - 1 ? ` <button class="lsa-added-btn" data-back="${v.v}" title="Set aside every later version (files kept)">Back to here</button>` : '') +
+          ` <button class="lsa-added-btn" data-redo="${i}" title="Go back to just before this edit, with its box, words and sample filled in">Redo</button></li>`).join('');
+      document.querySelectorAll('#ep-versions [data-back]').forEach(b => b.addEventListener('click', () => {
+        const to = +b.dataset.back, n = ep.versions.filter(v => v.v > to).length;
+        // 2026-10-23: Back to here asks first; two accidental set-asides in one afternoon.
+        if (confirm(`Go back to ${to ? 'version ' + to : 'the original'}? This sets aside ${n} later version${n === 1 ? '' : 's'}. The files are kept, and Restore what was set aside brings them back.`)) epRevert(to);
+      }));
+      document.querySelectorAll('#ep-versions [data-redo]').forEach(b => b.addEventListener('click', () => epRedo(+b.dataset.redo)));
+      document.getElementById('ep-undo').disabled = !ep.versions.length;
+      document.getElementById('ep-restore').hidden = !ep.restorable;
+      if (ep.restorable) document.getElementById('ep-restore').textContent = `Restore what was set aside (${ep.restorable})`;
+      if (typeof updateKeystoneUI === 'function') updateKeystoneUI();
+    }
+    function epRenderFrame() {
+      const fr = document.getElementById('frame');
+      const [W, H] = ep.size;
+      const cmp = ep.compare;
+      fr.innerHTML = `<div class="ep-wrap" id="ep-wrap" style="aspect-ratio: ${W} / ${H};">` +
+        `<img alt="Current version" src="${epImg(cmp ? cmp.after : ep.current)}">` +
+        (cmp ? `<div class="ep-before" id="ep-before" style="clip-path: inset(0 0 0 100%);"><img alt="Before" src="${epImg(cmp.before)}"></div>` +
+               `<span class="ep-tag" style="left: 8px;">After: version ${cmp.after}</span><span class="ep-tag" style="right: 8px;">Before: version ${cmp.before}</span>` +
+               `<input type="range" class="ep-slider" id="ep-slider" min="0" max="100" value="100" title="Drag to compare before and after">` : '') +
+        `<div class="ep-box sample" id="ep-sample-box" hidden><span>Sample</span></div>` +
+        `<svg class="ep-poly" id="ep-poly" viewBox="0 0 1000 1000" preserveAspectRatio="none"></svg><div id="ep-dots"></div>` +
+        `<div class="ep-box" id="ep-box" hidden><span></span></div></div>`;
+      const wrap = document.getElementById('ep-wrap');
+      const slider = document.getElementById('ep-slider');
+      const panelSlider = document.getElementById('ep-slider-panel');
+      document.getElementById('ep-compare').hidden = !cmp;
+      // The panel's slider and the frame's slider move the same line between before and after.
+      const setCut = val => { const b = document.getElementById('ep-before'); if (b) b.style.clipPath = `inset(0 0 0 ${val}%)`;   // left of the line: the change; right of it: before
+                              if (slider) slider.value = val; if (panelSlider) panelSlider.value = val; };
+      if (slider) slider.addEventListener('input', () => setCut(slider.value));
+      if (panelSlider) { panelSlider.oninput = () => setCut(panelSlider.value); if (cmp) setCut(100); }   // 2026-10-23: opens fully applied; drag left to reveal the before
+      let start = null;
+      const frac = e => { const r = wrap.getBoundingClientRect(); return [Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1), Math.min(Math.max((e.clientY - r.top) / r.height, 0), 1)]; };
+      wrap.addEventListener('mousedown', e => {
+        if (e.target === slider) return;
+        document.getElementById('ep-area').value = 'drag'; e.preventDefault();
+        if (epShape() === 'poly' && !ep.samplePicking) { epPolyClick(frac(e), wrap.getBoundingClientRect()); return; }
+        start = frac(e);
+      });
+      wrap.addEventListener('dblclick', e => { if (epShape() === 'poly' && ep && ep.draft) { epPolyDedupe(wrap.getBoundingClientRect()); epPolyClose(); } });
+      window.onmousemove = e => {
+        if (ep && ep.draft && epShape() === 'poly') { ep.hover = frac(e); epDrawBox(); return; }
+        if (!start || !ep) return;
+        const p = frac(e);
+        const b = [Math.min(start[0], p[0]), Math.min(start[1], p[1]), Math.abs(p[0] - start[0]), Math.abs(p[1] - start[1])];
+        if (ep.samplePicking) ep.sample = b; else { ep.box = b; ep.boxLabel = ''; }
+        epDrawBox();
+      };
+      window.onmouseup = () => {
+        if (start && ep && ep.samplePicking) {
+          ep.samplePicking = false;
+          if (ep.sample && (ep.sample[2] < 0.01 || ep.sample[3] < 0.01)) ep.sample = null;
+          document.getElementById('ep-sample-clear').hidden = !ep.sample;
+          frameHint(ep.sample ? 'Sample set. Now drag a box around the area to change.' : '');
+          epStatus(ep.sample ? 'Sample set: it guides every change until you clear it.' : 'No sample set.', 'var(--accent-cyan)');
+          epDrawBox(); start = null; return;
+        }
+        if (start && ep && ep.box && (ep.box[2] < 0.01 || ep.box[3] < 0.01)) { ep.box = null; epDrawBox(); }
+        else if (start && ep && ep.box) frameHint('Area marked. Say the change in the right column, then press Make the change.');
+        start = null;
+      };
+      epDrawBox();
+    }
+    // Polygon select (2026-10-23): click the corners of a band that runs at an angle; close on the first corner,
+    // a double-click or Enter. Only pixels inside it can change.
+    const epShape = () => (document.getElementById('ep-shape') || {}).value || 'box';
+    function epPolyClick(p, r) {
+      if (!ep.draft) { ep.draft = [p]; ep.poly = null; ep.box = null; ep.boxLabel = ''; epDrawBox();
+        frameHint('Click the next corner. Close the shape on the first corner, with a double-click, or with Enter. Backspace removes a corner, Esc starts over.'); return; }
+      const f = ep.draft[0], near = Math.hypot((p[0] - f[0]) * r.width, (p[1] - f[1]) * r.height) < 10;
+      if (near && ep.draft.length >= 3) { epPolyClose(); return; }
+      ep.draft.push(p); epDrawBox();
+    }
+    function epPolyDedupe(r) {
+      const out = [];
+      ep.draft.forEach(p => { const q = out[out.length - 1]; if (!q || Math.hypot((p[0] - q[0]) * r.width, (p[1] - q[1]) * r.height) >= 6) out.push(p); });
+      ep.draft = out;
+    }
+    function epPolyClose() {
+      if (!ep || !ep.draft) return;
+      if (ep.draft.length < 3) { epStatus('A polygon needs at least three corners.', '#ff5252'); return; }
+      ep.poly = ep.draft; ep.draft = null; ep.hover = null;
+      const xs = ep.poly.map(p => p[0]), ys = ep.poly.map(p => p[1]);
+      ep.box = [Math.min(...xs), Math.min(...ys), Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
+      epDrawBox();
+      frameHint('Area marked. Say the change in the right column, then press Make the change.');
+      epStatus('Polygon closed. Click on the image to start a new one.', 'var(--accent-cyan)');
+    }
+    function epDrawPoly() {
+      const svg = document.getElementById('ep-poly'), dots = document.getElementById('ep-dots');
+      if (!svg || !dots) return;
+      const pts = ep.poly || ep.draft;
+      if (!pts) { svg.innerHTML = ''; dots.innerHTML = ''; return; }
+      const s = a => a.map(p => `${(p[0] * 1000).toFixed(1)},${(p[1] * 1000).toFixed(1)}`).join(' ');
+      if (ep.poly) {
+        const d = 'M0,0 H1000 V1000 H0 Z M' + ep.poly.map(p => `${p[0] * 1000},${p[1] * 1000}`).join(' L') + ' Z';
+        svg.innerHTML = `<path d="${d}" fill="rgba(0,0,0,0.25)" fill-rule="evenodd"/>` +
+          `<polygon points="${s(ep.poly)}" fill="none" stroke="#ffb74d" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
+        dots.innerHTML = '';
+      } else {
+        const line = ep.hover ? ep.draft.concat([ep.hover]) : ep.draft;
+        svg.innerHTML = `<polyline points="${s(line)}" fill="none" stroke="#ffb74d" stroke-width="2" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"/>`;
+        dots.innerHTML = ep.draft.map((p, i) => `<div class="ep-dot${i ? '' : ' first'}" style="left:${p[0] * 100}%;top:${p[1] * 100}%"></div>`).join('');
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (!ep || !ep.draft || epShape() !== 'poly') return;
+      if (e.target && /^(TEXTAREA|INPUT|SELECT)$/.test(e.target.tagName)) return;
+      if (e.key === 'Enter') { e.preventDefault(); epPolyClose(); }
+      else if (e.key === 'Escape') { ep.draft = null; ep.hover = null; epDrawBox(); frameHint('Polygon cleared. Click the first corner.'); }
+      else if (e.key === 'Backspace') { e.preventDefault(); ep.draft.pop(); if (!ep.draft.length) ep.draft = null; epDrawBox(); }
+    });
+    function epDrawBox() {
+      epDrawPoly();
+      const sb = document.getElementById('ep-sample-box');
+      if (sb) { sb.hidden = !ep.sample; if (ep.sample) Object.assign(sb.style, { left: ep.sample[0] * 100 + '%', top: ep.sample[1] * 100 + '%', width: ep.sample[2] * 100 + '%', height: ep.sample[3] * 100 + '%' }); }
+      const b = document.getElementById('ep-box'); if (!b) return;
+      if (!ep.box || ep.poly) { b.hidden = true; return; }
+      b.hidden = false;
+      Object.assign(b.style, { left: ep.box[0] * 100 + '%', top: ep.box[1] * 100 + '%', width: ep.box[2] * 100 + '%', height: ep.box[3] * 100 + '%' });
+      b.querySelector('span').textContent = ep.boxLabel || 'Area to change';
+    }
+    async function epRun() {
+      if (!ep) return;
+      const instruction = document.getElementById('ep-instruction').value.trim();
+      if (ep.draft) { epStatus('Close the polygon first: click its first corner, double-click, or press Enter.', '#ff5252'); return; }
+      if (!ep.box) { epStatus('Mark the area first: drag a box on the image, or pick a point.', '#ff5252'); return; }
+      if (instruction.length < 3) { epStatus('Say the change in a few words first.', '#ff5252'); return; }
+      const runId = ep.runId, margin = parseFloat(document.getElementById('ep-margin').value) || 0.6;
+      const redo = ep.redoFrom !== undefined && ep.redoFrom !== null && ep.redoFrom !== ep.current ? ep.redoFrom : null;
+      document.getElementById('ep-run').disabled = true;
+      epStatus('Making the change...', 'var(--accent-cyan)');
+      taskStart('Edit pass', 'Changing the marked area of the newest version. Usually 15 to 40 s.');
+      try {
+        const r = await fetch(`${PIPE}/api/runs/${encodeURIComponent(runId)}/edits`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ box: ep.box, instruction, margin, label: ep.boxLabel || null, sample: ep.sample || null,
+                                 edge: document.getElementById('ep-edge').value || 'soft', poly: ep.poly || null,
+                                 straighten: !!(document.getElementById('ep-straighten') || {}).checked, from_version: redo }) });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        if (!ep || ep.runId !== runId) return;
+        // After a redo the set-aside versions can't simply come back (they would fork the line); their files are kept.
+        if (redo !== null) ep.versions = ep.versions.filter(x => x.v <= redo);
+        ep.restorable = 0;
+        epRedoCancel(true);
+        ep.versions.push(d); ep.current = d.v; ep.compare = { before: d.base, after: d.v };
+        frameHint('');
+        epRenderFrame(); epRenderVersions();
+        epStatus(`Version ${d.v} made. Compare with the slider; Keep and continue, or Undo last.`, 'var(--accent-cyan)');
+        document.getElementById('ep-keep').hidden = false;
+        taskEnd(true, `Version ${d.v}: drag the slider across the image to compare before and after.`);
+      } catch (e) { epStatus('The change failed: ' + e.message, '#ff5252'); taskEnd(false, e.message); }
+      finally { document.getElementById('ep-run').disabled = false; }
+    }
+    async function epRevert(to, quiet) {
+      if (!ep) return false;
+      try {
+        const r = await fetch(`${PIPE}/api/runs/${encodeURIComponent(ep.runId)}/edits/revert`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ to }) });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        epRedoCancel(true);
+        ep.restorable = ep.versions.filter(v => v.v > to).length;
+        ep.versions = ep.versions.filter(v => v.v <= to); ep.current = d.current; ep.compare = null;
+        document.getElementById('ep-keep').hidden = true;
+        epRenderFrame(); epRenderVersions();
+        if (!quiet) epStatus(`Back to version ${ep.current}; ${d.set_aside} later version(s) set aside.`, 'var(--accent-cyan)');
+        return true;
+      } catch (e) { epStatus('Could not go back: ' + e.message, '#ff5252'); return false; }
+    }
+    function epRedoCancel(quiet) {
+      if (!ep) return;
+      const was = ep.redoOf; ep.redoFrom = null; ep.redoOf = null;
+      document.getElementById('ep-run').textContent = 'Make the change';
+      document.getElementById('ep-redo-cancel').hidden = true;
+      if (!quiet && was) epStatus(`Redo of version ${was} cancelled. Nothing was set aside.`, 'var(--accent-cyan)');
+    }
+    async function epRedo(i) {
+      const v = ep && ep.versions[i]; if (!v) return;
+      const keep = { box: v.box, instruction: v.instruction, sample: v.sample || null, margin: v.margin, label: v.label || '', edge: v.edge || 'soft',
+                     poly: v.poly || null, straighten: v.straighten !== false };
+      // 2026-10-23: Redo only fills in. Nothing is set aside until Make the change succeeds (the server does it then).
+      ep.redoFrom = v.base; ep.redoOf = v.v;
+      document.getElementById('ep-run').textContent = `Make the change (redo of version ${v.v})`;
+      document.getElementById('ep-redo-cancel').hidden = false;
+      ep.box = keep.box; ep.boxLabel = keep.label; ep.sample = keep.sample; ep.poly = keep.poly; ep.draft = null;
+      document.getElementById('ep-shape').value = keep.poly ? 'poly' : 'box';
+      document.getElementById('ep-straighten').checked = keep.straighten;
+      document.getElementById('ep-straighten-row').hidden = !keep.poly;
+      document.getElementById('ep-instruction').value = keep.instruction;
+      const mg = document.getElementById('ep-margin'); if (mg && keep.margin) mg.value = String(keep.margin);
+      const eg = document.getElementById('ep-edge'); if (eg) eg.value = keep.edge;
+      document.getElementById('ep-sample-clear').hidden = !ep.sample;
+      epDrawBox();
+      const later = ep.versions.filter(x => x.v > v.base).length;
+      epStatus(`Redo of version ${v.v}: its box and words are filled in. Nothing is set aside yet. Make the change builds on ${v.base ? 'version ' + v.base : 'the original'}` +
+               ` and then sets aside ${later} version${later === 1 ? '' : 's'} (files kept). Mark a new area to cancel.`, '#ffb74d');
+      frameHint('Redo: adjust the box or the words, then press Make the change. Nothing changes until you do.');
+      epRenderVersions();
+    }
+    async function epUndo() {
+      if (!ep || !ep.versions.length) return;
+      try {
+        const r = await fetch(`${PIPE}/api/runs/${encodeURIComponent(ep.runId)}/edits/undo`, { method: 'POST' });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        const gone = ep.versions.pop(); ep.current = d.current; ep.compare = null; ep.restorable = 1; epRedoCancel(true);
+        document.getElementById('ep-keep').hidden = true;
+        epRenderFrame(); epRenderVersions();
+        epStatus(`Version ${gone.v} set aside; showing version ${ep.current}.`, 'var(--accent-cyan)');
+      } catch (e) { epStatus('Undo failed: ' + e.message, '#ff5252'); }
+    }
+    document.getElementById('ep-run')?.addEventListener('click', epRun);
+    document.getElementById('ep-restore')?.addEventListener('click', async () => {
+      if (!ep) return;
+      try {
+        const r = await fetch(`${PIPE}/api/runs/${encodeURIComponent(ep.runId)}/edits/restore`, { method: 'POST' });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        ep.versions = d.versions; ep.current = d.current; ep.compare = null; ep.restorable = 0;
+        document.getElementById('ep-keep').hidden = true;
+        epRenderFrame(); epRenderVersions();
+        epStatus(`Restored: back to version ${ep.current}.`, 'var(--accent-cyan)');
+      } catch (e) { epStatus('Could not restore: ' + e.message, '#ff5252'); }
+    });
+    document.getElementById('ep-keep')?.addEventListener('click', () => {
+      if (!ep) return;
+      ep.compare = null; ep.box = null; ep.boxLabel = ''; ep.poly = null; ep.draft = null; epRedoCancel(true);
+      document.getElementById('ep-keep').hidden = true;
+      document.getElementById('ep-area').value = 'drag';
+      epRenderFrame(); epRenderVersions();
+      frameHint('Version kept. Drag a box around the next area to change.');
+      epStatus(`Version ${ep.current} kept. Mark the next area.`, 'var(--accent-cyan)');
+    });
+    document.getElementById('ep-sample')?.addEventListener('click', () => {
+      if (!ep) return;
+      if (ep.compare) document.getElementById('ep-keep').click();
+      ep.samplePicking = true;
+      frameHint('Drag a box around a correct example, such as a good window, to use as the sample.');
+      epStatus('Drag the sample box in the frame.', '#4fc3f7');
+    });
+    document.getElementById('ep-sample-clear')?.addEventListener('click', () => {
+      if (!ep) return;
+      ep.sample = null; document.getElementById('ep-sample-clear').hidden = true; epDrawBox();
+      epStatus('Sample cleared.', 'var(--accent-cyan)');
+    });
+    document.getElementById('ep-undo')?.addEventListener('click', epUndo);
+    document.getElementById('ep-redo-cancel')?.addEventListener('click', () => epRedoCancel(false));
+    document.getElementById('ep-shape')?.addEventListener('change', e => {
+      const poly = e.target.value === 'poly';
+      document.getElementById('ep-straighten-row').hidden = !poly;
+      if (!ep) return;
+      ep.box = null; ep.poly = null; ep.draft = null; ep.hover = null; ep.boxLabel = ''; epDrawBox();
+      if (poly) { frameHint('Polygon: click the corners of the area along the band. Close on the first corner, with a double-click, or with Enter.');
+                  epStatus('Click the corners on the image. Follow the band\'s top and bottom edges.', '#ffb74d'); }
+      else { frameHint('Drag a box around the area to change.'); epStatus('Drag a box on the image.', '#ffb74d'); }
+    });
+    document.getElementById('ep-exit')?.addEventListener('click', closeEditPass);
+    document.getElementById('ep-area')?.addEventListener('change', e => {
+      if (!ep) return;
+      const v = e.target.value;
+      if (v === 'drag') { epStatus('Drag a box on the image.', '#ffb74d'); return; }
+      const pt = ep.points[+v]; if (!pt) return;
+      ep.poly = null; ep.draft = null; document.getElementById('ep-shape').value = 'box'; document.getElementById('ep-straighten-row').hidden = true;
+      ep.box = pt.box.slice(); ep.boxLabel = pt.label; epDrawBox();
+      epStatus('Box placed around the point. Drag a new box if it needs adjusting.', 'var(--accent-cyan)');
+    });
 
     async function approveKeystone() {
       const run = selectedReplayRun();

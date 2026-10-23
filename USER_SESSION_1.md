@@ -167,3 +167,29 @@ Results, 2026-10-22.
 | 89 | On Claude's side: steps and texts spread across several replies are hard to find again. Each set of steps goes in one message, in order, with the texts in it. | P1 |
 
 Results, afternoon. The keystones from points of interest (14:12 to 15:30, text only, no pano: confirmed in the run record): the 19 Abercromby door dark and close to right, flower boxes right; once faces were named by how they sit to the camera, the Nelson face's openings and door came out square and the front's arches came back. Asked whether the accuracy of the roofline (chimneys, dormer attics, the flush parapet pair) meant the pano was used: it was not; the Cesium capture (Google's 3D tiles of the real street) is always sent as the frame, so roof forms and bay rhythm come from it.
+
+## Follow-up findings, 2026-10-23 (the edit pass in use)
+
+Run: the Abercromby and Nelson keystone candidate (22 Oct, 15:47). Text-only render, no pano.
+
+| # | Finding | Priority |
+| --- | --- | --- |
+| 90 | The edit pass panel opened under the pinned frame and could not be seen ("Type where?"). Fixed: the panel sits in the right column under its button. | P1 |
+| 91 | The compare slider was hard to find. Fixed: a second slider in the panel. Then: it opened at 50 per cent and its label had the direction backwards. Fixed: it opens fully applied; drag left to reveal the before. | P2 |
+| 92 | A window asked for in a box came back as a smaller window inside the box. Fixed: the prompt says the change fills the box unless the words say otherwise. | P2 |
+| 93 | The model redraws the whole crop slightly out of register, so courses of stone ghosted across the soft edge. Fixed: the result is lined up with the original on the margin (phase correlation) before blending. | P1 |
+| 94 | The soft edge reached outside the box and blurred the neighbouring building. Fixed: the softening sits inside the box and nothing outside it can change; an Edge setting (sharp, soft, very soft). Don's question: "How can I adjust the blend?" | P1 |
+| 95 | The model copied the red marker into its result (versions 2 to 4). Fixed: the marker is drawn just outside the box, and the prompt forbids red marks. Version 13 removed the line but not all of it: the soft edge sits inside the box and the box edge was only a few pixels past the line, so the line blended back. To remove a mark, draw the box well past it. | P1 |
+| 96 | A window's pane pattern was hard to get from words alone; Don asked for a sample. Built: Pick a sample (sent as a third image). Don: "The sample worked flawlessly." Later Don used a sample as a colour reference to remove a pink cast in one shot, a use it was not designed for. | P1 |
+| 97 | Back to here and Redo set versions aside with one click and no way back: versions 2 to 12 in the morning, 13, 20 and 21 in the afternoon (three stray Redo clicks); both restored by hand in edits.json. Fixed: Restore what was set aside; Back to here asks first and says how many; Redo only fills in the box, words and sample, and nothing is set aside until Make the change succeeds; Cancel redo. | P1 |
+| 98 | Going back to fix an earlier edit also set aside later good work: the arched recessed settings for the sash windows (version 18) went when the balustrade was redone from version 13, and the list never showed what was set aside. Recovered as version 23 by copying version 18's change onto version 22, without a model call. Wanted: set-aside versions shown, and Carry forward. | P1 |
+| 99 | A balustrade on a stone band that slopes in perspective was stamped level across the box. Words alone ("only along the sloping stone band, following its angle") got the angle, but the base ran too low because the box was filled. Built: polygon select; a long band at an angle is turned level for the model and turned back; the polygon prompt follows the architecture. Result: balustrades in; Don adjusted the words for count and style. | P1 |
+| 100 | After a refresh the run views showed the original render, so the edits looked lost. Fixed: the thumbnail, the full-screen viewer and the keystone (K) show the newest edited version, and the caption says which. | P1 |
+| 101 | The run's image opened on its own in a new browser tab (zoom cursor, no caption, no close). Cause not yet found. | P2 |
+| 102 | Prints amplify faint leftovers: a faint pink cast left by the marker became a clear pink box in the 3 pm rain print. Wanted: a leftover check after each edit that warns of marker residue. | P1 |
+| 103 | The pink fix was made on the rain print, not on the keystone: the edit pass opens on any run with a render and does not say which kind of run it is. The keystone (version 23) still carries the cast, so the next print brings it back. Wanted: the panel names the run kind; a print offers to make the fix on the keystone. | P1 |
+| 104 | Precise selections are hard at frame size. Don's Edit Mode design: dim everything else, fullscreen with zoom, live corners, key flip compare (REBUILD_SPEC B14). | P1 |
+| 105 | The real facades are far more soot-stained and patinated than the render. For a later weathering pass. | P3 |
+
+Results, 2026-10-23. The edit pass went from four design decisions (9:20) to its first edit at 9:35. On the keystone: 23 versions, 22 model calls, median 16 seconds per change (14 to 23), 4 with a polygon, 6 with a sample; 13 versions in the final line. Fixed by edits: the blind and glazed attic windows, the iron balconies, the doorway's fanlight, the arched recessed settings, two sloping balustrades. Approved as keystone at version 23 (the record holds the plate, edits/v23.png, and the version); the 23 Oct date plate and the 3 pm rain print both started from it. Polygon select, straightening, the sample and Carry forward were each designed and built during the session, after a limit was hit in use.
+

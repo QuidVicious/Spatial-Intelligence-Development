@@ -53,6 +53,7 @@ from synthesis_engine import synthesize_twin
 from archiver import archive_run, DEFAULT_RUNS_DIR
 from composite_engine import composite_canopy
 import alignment_engine
+import edit_engine
 
 # Load Environment
 env_path = Path(r"C:\DEV\Squid\SquidBlack\.env")
@@ -414,6 +415,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
         yield format_ndjson({"type": "ERROR", "message": f"Unknown mode: {request.mode}"})
         return
     keystone_run_id = None
+    keystone_plate = "spatial_twin.png"   # 2026-10-23: an edited keystone's approved version, when it has one
     print_like = mode in ("PRINT", "DATE_PLATE")   # both start from the approved keystone of a view
     print_variant = "full"
     date_plate_run_id = None
@@ -426,6 +428,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             yield format_ndjson({"type": "ERROR", "message": "Prints from a keystone are Gemini-only."})
             return
         keystone_run_id = ks["run_id"]
+        keystone_plate = ks.get("plate") or "spatial_twin.png"
         request.replay_of = keystone_run_id          # its capture, pose, and frozen text
         request.documentary_prompt_override = None   # a print never edits the art bible
     elif mode == "KEYSTONE" and not request.replay_of:
@@ -479,7 +482,7 @@ async def execute_pipeline_stream(request: ProcessViewRequest):
             print(f"[Keystone] neutral plate: {neutral['date']} 12:00 OVERCAST")
             replay["delighted_b64"] = None   # re-delight the source capture at the keystone setting
         if print_like:
-            plate = _file_data_url(_run_dir(keystone_run_id) / "spatial_twin.png", "image/png")
+            plate = _file_data_url(_run_dir(keystone_run_id) / keystone_plate, "image/png")
             if not plate:
                 yield format_ndjson({"type": "ERROR", "message": f"Keystone run {keystone_run_id} has no rendered plate."})
                 return
@@ -1238,6 +1241,7 @@ def _run_summary(d: Path) -> dict:
         "target_latitude": tel.get("target_latitude"),
         "target_longitude": tel.get("target_longitude"),
         "has_twin": (d / "spatial_twin.png").exists(),
+        "edit_version": _current_edit_version(d),
         "split": bool(((_read_json(d / "domain_result.json") or {}).get("metadata") or {}).get("invariant_split")),
         "weather_resolved": (meta.get("lighting_resolved") or {}).get("weather"),
         "replayable": has_seed and has_domain,
@@ -1307,6 +1311,8 @@ async def approve_keystone(req: ApproveKeystoneRequest):
             "weather": (meta.get("lighting_resolved") or {}).get("weather") or settings.get("weather_mode"),
         },
         "warnings_acknowledged": req.warnings_acknowledged,
+        "plate": _current_plate_rel(d),
+        "edit_version": _current_edit_version(d),
         "approved_utc": now,
         "history": history,
     }
@@ -2153,6 +2159,213 @@ async def run_file(run_id: str, name: str):
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"{name} not in run {run_id}.")
     return FileResponse(path, media_type=RUN_FILES[name])
+
+
+# -------------------------------------------------------------------------
+# Edit pass (2026-10-23): one change at a time in a marked area of a run's plate. Versions live in the run's
+# "edits" folder as v1.png, v2.png ...; the original spatial_twin.png is never changed (it is version 0). One straight
+# line: each edit starts from the newest kept version, and UNDO sets the newest aside (its file is kept).
+# Approving a keystone records the version it was approved at; prints start from that version.
+# -------------------------------------------------------------------------
+def _edits_manifest(d: Path) -> dict:
+    m = _read_json(d / "edits" / "edits.json") or {}
+    return m if isinstance(m.get("versions"), list) else {"versions": []}
+
+
+def _write_edits_manifest(d: Path, m: dict) -> None:
+    (d / "edits").mkdir(exist_ok=True)
+    tmp = d / "edits" / "edits.json.tmp"
+    tmp.write_text(json.dumps(m, indent=2), encoding="utf-8")
+    tmp.replace(d / "edits" / "edits.json")
+
+
+def _active_edits(d: Path) -> list:
+    return [v for v in _edits_manifest(d)["versions"] if not v.get("undone") and (d / "edits" / v["file"]).exists()]
+
+
+def _current_edit_version(d: Path) -> int:
+    act = _active_edits(d)
+    return act[-1]["v"] if act else 0
+
+
+def _current_plate_rel(d: Path) -> str:
+    act = _active_edits(d)
+    return f"edits/{act[-1]['file']}" if act else "spatial_twin.png"
+
+
+class EditRequest(BaseModel):
+    box: List[float] = Field(..., description="x, y, width, height as fractions of the image")
+    instruction: str = Field(..., min_length=3, max_length=800)
+    margin: float = Field(0.6, ge=0.15, le=2.0, description="Context around the box, as a share of its larger side")
+    label: Optional[str] = Field(None, max_length=60, description="The point of interest the box came from, if any")
+    sample: Optional[List[float]] = Field(None, description="Optional sample area (fractions) showing how it should look")
+    edge: str = Field("soft", description="sharp, soft or wide: how the change meets the original, always inside the box")
+    poly: Optional[List[List[float]]] = Field(None, description="Optional polygon (3 to 40 corners as [x, y] fractions); when set, "
+                                              "only pixels inside it can change and box is its bounding box")
+    straighten: bool = Field(True, description="Polygon only: turn a long band at an angle level before the model sees it")
+    from_version: Optional[int] = Field(None, ge=0, description="Redo: build on this earlier version; later versions are set aside "
+                                         "only once the new one is made (a failed call sets nothing aside)")
+
+
+@app.get("/api/runs/{run_id}/edits")
+async def list_edits(run_id: str):
+    d = _run_dir(run_id)
+    if not (d / "spatial_twin.png").exists():
+        raise HTTPException(status_code=404, detail="This run has no rendered plate to edit.")
+    try:
+        from PIL import Image as _Im
+        with _Im.open(d / "spatial_twin.png") as im:
+            size = list(im.size)
+    except Exception:
+        size = None
+    return {"size": size, "versions": _active_edits(d), "current": _current_edit_version(d),
+            "restorable": len(_restorable_batch(d))}
+
+
+@app.get("/api/runs/{run_id}/edits/image/{v}")
+async def edit_image(run_id: str, v: int):
+    d = _run_dir(run_id)
+    if v == 0:
+        return FileResponse(d / "spatial_twin.png", media_type="image/png")
+    rec = next((x for x in _edits_manifest(d)["versions"] if x.get("v") == v), None)
+    if not rec or not (d / "edits" / rec["file"]).exists():
+        raise HTTPException(status_code=404, detail=f"No version {v} in run {run_id}.")
+    return FileResponse(d / "edits" / rec["file"], media_type="image/png")
+
+
+@app.post("/api/runs/{run_id}/edits")
+async def make_edit(run_id: str, req: EditRequest):
+    d = _run_dir(run_id)
+    if not (d / "spatial_twin.png").exists():
+        raise HTTPException(status_code=404, detail="This run has no rendered plate to edit.")
+    if len(req.box) != 4 or not all(0.0 <= float(b) <= 1.0 for b in req.box):
+        raise HTTPException(status_code=400, detail="The box must be four fractions of the image: x, y, width, height.")
+    m = _edits_manifest(d)
+    base_v = _current_edit_version(d)
+    base_path = d / _current_plate_rel(d)
+    active = _active_edits(d)
+    if req.from_version is not None and req.from_version != base_v:
+        if req.from_version != 0 and req.from_version not in {x["v"] for x in active}:
+            raise HTTPException(status_code=400, detail=f"Version {req.from_version} is not in the current line of versions.")
+        base_v = req.from_version
+        base_path = d / ("spatial_twin.png" if base_v == 0 else f"edits/{next(x['file'] for x in active if x['v'] == base_v)}")
+    v = max([x.get("v", 0) for x in m["versions"]] + [0]) + 1
+    (d / "edits").mkdir(exist_ok=True)
+    out_name = f"v{v}.png"
+    sample = req.sample if req.sample and len(req.sample) == 4 else None
+    edge = req.edge if req.edge in ("sharp", "soft", "wide") else "soft"
+    poly = None
+    if req.poly:
+        if not (3 <= len(req.poly) <= 40) or not all(len(p) == 2 and 0.0 <= float(p[0]) <= 1.0 and 0.0 <= float(p[1]) <= 1.0 for p in req.poly):
+            raise HTTPException(status_code=400, detail="The polygon must be 3 to 40 corners, each [x, y] as fractions of the image.")
+        poly = [[float(p[0]), float(p[1])] for p in req.poly]
+        info = await asyncio.to_thread(edit_engine.apply_poly_edit, str(base_path), str(d / "edits" / out_name),
+                                       poly, req.instruction, req.margin, "gemini-3.1-flash-image", None, sample, edge, req.straighten)
+    else:
+        info = await asyncio.to_thread(edit_engine.apply_edit, str(base_path), str(d / "edits" / out_name),
+                                       req.box, req.instruction, req.margin, "gemini-3.1-flash-image", None, sample, edge)
+    rec = {"v": v, "file": out_name, "base": base_v, "box": req.box, "instruction": req.instruction.strip(),
+           "margin": req.margin, "label": req.label, "sample": req.sample, "poly": poly, "straighten": req.straighten if poly else None,
+           "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+           **info}
+    m = _edits_manifest(d)   # re-read: the call took a while
+    if req.from_version is not None:
+        now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        for x in m["versions"]:
+            if not x.get("undone") and x.get("v", 0) > base_v:
+                x["undone"], x["undone_utc"] = True, now
+    m["versions"].append(rec)
+    _write_edits_manifest(d, m)
+    print(f"[Edit] {run_id} v{v} from v{base_v}: {req.instruction.strip()[:80]}")
+    return rec
+
+
+@app.post("/api/runs/{run_id}/edits/undo")
+async def undo_edit(run_id: str):
+    d = _run_dir(run_id)
+    m = _edits_manifest(d)
+    act = [x for x in m["versions"] if not x.get("undone")]
+    if not act:
+        raise HTTPException(status_code=400, detail="Nothing to undo: this is the original.")
+    act[-1]["undone"] = True
+    act[-1]["undone_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    _write_edits_manifest(d, m)
+    print(f"[Edit] {run_id} v{act[-1]['v']} undone")
+    return {"current": _current_edit_version(d)}
+
+
+def _restorable_batch(d: Path) -> list:
+    """The versions set aside most recently in one go, if they continue the current chain (so they can come back)."""
+    m = _edits_manifest(d)
+    undone = [x for x in m["versions"] if x.get("undone") and x.get("undone_utc")]
+    if not undone:
+        return []
+    last = max(x["undone_utc"] for x in undone)
+    batch = sorted([x for x in undone if x["undone_utc"] == last], key=lambda x: x["v"])
+    cur = _current_edit_version(d)
+    chain, base = [], cur
+    for x in batch:
+        if x.get("base") == base and (d / "edits" / x["file"]).exists():
+            chain.append(x)
+            base = x["v"]
+    return chain
+
+
+@app.post("/api/runs/{run_id}/edits/restore")
+async def restore_edits(run_id: str):
+    """Undo the last Back to here, Redo or Undo: the versions it set aside come back, in order."""
+    d = _run_dir(run_id)
+    chain = {x["v"] for x in _restorable_batch(d)}
+    if not chain:
+        raise HTTPException(status_code=400, detail="Nothing set aside that continues the current version.")
+    m = _edits_manifest(d)
+    for x in m["versions"]:
+        if x.get("v") in chain:
+            x.pop("undone", None)
+            x.pop("undone_utc", None)
+    _write_edits_manifest(d, m)
+    print(f"[Edit] {run_id} restored v{sorted(chain)}")
+    return {"current": _current_edit_version(d), "versions": _active_edits(d)}
+
+
+class RevertRequest(BaseModel):
+    to: int = Field(..., ge=0, description="Version to go back to; every later version is set aside (files kept)")
+
+
+@app.post("/api/runs/{run_id}/edits/revert")
+async def revert_edits(run_id: str, req: RevertRequest):
+    d = _run_dir(run_id)
+    m = _edits_manifest(d)
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    n = 0
+    for x in m["versions"]:
+        if not x.get("undone") and x.get("v", 0) > req.to:
+            x["undone"], x["undone_utc"] = True, now
+            n += 1
+    _write_edits_manifest(d, m)
+    print(f"[Edit] {run_id} back to v{req.to} ({n} set aside)")
+    return {"current": _current_edit_version(d), "set_aside": n}
+
+
+@app.get("/api/runs/{run_id}/edits/points")
+async def edit_points(run_id: str):
+    """Boxes around the run's view's points of interest, as fractions of the image, to start an edit from."""
+    d = _run_dir(run_id)
+    settings = (_read_json(d / "run_metadata.json") or {}).get("settings") or {}
+    view = next((v for v in _load_views() if v.get("id") == settings.get("saved_view_id")), None)
+    if not view or not view.get("camera"):
+        return {"points": []}
+    out = []
+    for rank, p in enumerate(view.get("points") or [], start=1):
+        pos = _frame_position(view["camera"], p)
+        if abs(pos["x"]) > 1 or abs(pos["y"]) > 1:
+            continue
+        cx, cy = (pos["x"] + 1) / 2, (1 - pos["y"]) / 2
+        bw, bh = 0.12, 0.2
+        x0, y0 = min(max(cx - bw / 2, 0.0), 1 - bw), min(max(cy - bh / 2, 0.0), 1 - bh)
+        out.append({"rank": rank, "id": p.get("id"), "label": p.get("label") or f"Point {rank}",
+                    "box": [round(x0, 4), round(y0, 4), bw, bh], "position": _position_words(pos)})
+    return {"points": out}
 
 
 # -------------------------------------------------------------------------

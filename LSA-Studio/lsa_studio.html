@@ -328,6 +328,31 @@
   .lsa-added-sentence { margin: 2px 0 8px 12px; padding-left: 8px; border-left: 2px solid var(--panel-border); font-size: 12px; color: var(--lichen-grey); }
   .lsa-added-sentence.doubt { border-left-color: #ffb74d; }
   .lsa-added-sentence b { color: var(--paper); font-weight: 600; }
+  /* Edit pass (2026-10-23) */
+  .edit-pass { margin-top: 8px; border: 1px solid var(--rule); border-left: 4px solid #ffb74d; border-radius: 8px; padding: 10px 14px 12px; background: var(--slate-2); }
+  .edit-pass[hidden] { display: none; }
+  .ep-head { display: flex; align-items: baseline; gap: 10px; }
+  .ep-title { font: 600 16px/1.3 var(--read); color: var(--paper); }
+  .ep-ver { font-size: 12px; color: var(--lichen-grey); }
+  .ep-grid { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 8px; }
+  .edit-pass textarea { width: 100%; min-height: 64px; font-size: 13px; resize: vertical; }
+  .ep-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .ep-actions .btn.go { background: #ffb74d; border-color: #ffb74d; color: #1b1a17; font-weight: 700; }
+  .ep-versions { margin-top: 8px; font-size: 12px; color: var(--lichen-grey); }
+  .ep-versions li { margin: 2px 0; }
+  .ep-wrap { position: relative; height: 100%; max-width: 100%; margin: 0 auto; cursor: crosshair; user-select: none; }
+  .ep-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+  .ep-before { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .ep-box { position: absolute; border: 2px solid #ffb74d; box-shadow: 0 0 0 9999px rgba(0,0,0,0.25); pointer-events: none; }
+  .ep-box.sample { border-color: #4fc3f7; box-shadow: none; }
+  .ep-poly { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  .ep-dot { position: absolute; width: 9px; height: 9px; margin: -5px 0 0 -5px; border-radius: 50%; background: #ffb74d; border: 1px solid #1b1a17; pointer-events: none; }
+  .ep-dot.first { width: 13px; height: 13px; margin: -7px 0 0 -7px; background: #fff3e0; border: 2px solid #ffb74d; }
+  .ep-check { display: flex; gap: 6px; align-items: center; font-size: 12px; margin-top: 4px; }
+  .ep-box.sample span { background: #4fc3f7; }
+  .ep-box span { position: absolute; left: 0; top: -20px; background: #ffb74d; color: #1b1a17; font: 700 11px/1 var(--ui); padding: 3px 6px; border-radius: 3px; white-space: nowrap; }
+  .ep-slider { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 3; }
+  .ep-tag { position: absolute; top: 8px; z-index: 3; background: rgba(20,24,22,0.8); color: var(--paper); font: 600 11px/1 var(--ui); padding: 4px 7px; border-radius: 3px; pointer-events: none; }
   /* B10: points of interest */
   .poi-hint { font-size: 11.5px; color: var(--lichen-grey); }
   .poi-row { border: 1px solid var(--panel-border); border-left: 3px solid #ffb74d; border-radius: 4px; padding: 6px; margin-top: 6px; display: grid; gap: 4px; }
@@ -832,6 +857,46 @@
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
       </div>
+      <button id="btn-edit-pass" onclick="openEditPass()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Fix small areas of the selected run's image, one change at a time; the controls open here">✎ EDIT PASS: fix small areas</button>
+    <!-- Edit pass (2026-10-23): one change at a time in a marked area of a finished plate -->
+    <div class="edit-pass" id="edit-pass" hidden>
+      <div class="ep-head"><span class="ep-title">Edit pass</span><span class="ep-ver" id="ep-ver"></span>
+        <button class="btn" id="ep-exit" style="margin-left: auto;" title="Leave the edit pass; your versions are kept with the run">Done editing</button></div>
+      <div class="ep-grid">
+        <div><label for="ep-area">Area</label>
+          <select id="ep-area" style="width: 100%;"><option value="drag">Drag a box on the image</option></select></div>
+        <div><label for="ep-shape">Shape</label>
+          <select id="ep-shape" style="width: 100%;" title="A box for upright areas; a polygon for a band that runs at an angle, such as a cornice or balustrade in perspective">
+            <option value="box" selected>Box: drag on the image</option><option value="poly">Polygon: click the corners</option></select>
+          <label class="ep-check" id="ep-straighten-row" hidden title="The model draws level architecture far better: a long band at an angle is turned level for it, then turned back. Untick if the result looks soft.">
+            <input type="checkbox" id="ep-straighten" checked> Turn a sloping band level for the model</label></div>
+        <div><label for="ep-margin">Context around it</label>
+          <select id="ep-margin" style="width: 100%;" title="How much of the surroundings the model sees. More context keeps the change in keeping with the facade; less keeps it precise.">
+            <option value="0.35">Tight</option><option value="0.6" selected>Normal</option><option value="1.0">Wide</option></select></div>
+        <div><label for="ep-edge">Edge</label>
+          <select id="ep-edge" style="width: 100%;" title="How the change meets the original. Nothing outside the box ever changes; the softening is inside the box's edge.">
+            <option value="sharp">Sharp: next to another building or edge</option><option value="soft" selected>Soft</option><option value="wide">Very soft: open stone or sky</option></select></div>
+      </div>
+      <div class="ep-actions" style="margin-top: 6px;">
+        <button class="btn" id="ep-sample" title="Mark a correct example (a good window, say) for the model to copy; it stays set until you clear it">◎ Pick a sample</button>
+        <button class="btn" id="ep-sample-clear" hidden>Clear sample</button>
+      </div>
+      <label for="ep-instruction">The change, in plain words</label>
+      <textarea id="ep-instruction" maxlength="800" placeholder="Say what the area should show, for example: the first-floor window in this bay is blind, a flat stone panel the colour of the wall inside the same plain surround"></textarea>
+      <div class="ep-actions">
+        <button class="btn go" id="ep-run" title="Make this change to the marked area of the newest version">Make the change</button>
+        <button class="btn" id="ep-redo-cancel" hidden title="Stop the redo; nothing has been set aside">Cancel redo</button>
+        <button class="btn" id="ep-undo" title="Set the newest version aside and go back one (its file is kept)">Undo last</button>
+        <button class="btn" id="ep-restore" hidden title="Bring back the versions the last Back to here, Redo or Undo set aside">Restore what was set aside</button>
+        <button class="btn" id="ep-keep" hidden style="background: #4caf50; border-color: #4caf50; color: #0f1a10; font-weight: 700;" title="Keep this version and clear the box, ready for the next area">Keep and continue</button>
+        <span class="stamp-line" id="ep-status" style="align-self: center;"></span>
+      </div>
+      <div id="ep-compare" hidden style="margin-top: 8px;">
+        <label for="ep-slider-panel">Compare in the frame: starts fully applied; drag left to reveal the before</label>
+        <input type="range" id="ep-slider-panel" min="0" max="100" value="100" style="width: 100%;">
+      </div>
+      <ol class="ep-versions" id="ep-versions" start="0"></ol>
+    </div>
       <div id="keystone-status" style="font-size: 10px; color: var(--text-muted); margin-top: 6px; min-height: 12px;"></div>
       <button id="btn-print-keystone" onclick="printFromKeystone()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🖨 PRINT FROM KEYSTONE</button>
       <button class="scene-link" type="button" onclick="remakeDatePlate()" title="Prints of a date start from its date plate: the keystone with that date's canopy. Remake it if you don't like the leaves.">Remake the date plate for this date</button>
