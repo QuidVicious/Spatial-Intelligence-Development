@@ -6,6 +6,58 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-24: Round B flow built; "View" official; clean start; evidence card; night light
+
+**"View" is the official term** (adopted, Don). A view is a saved camera position. One view everywhere: both view dropdowns are labelled View and kept in step, and only GO moves the camera. Location labels say whose location they hold: "Go to a place (moves the camera)", "Camera at", "Place (the subject's location)". Reason: findings 67, 112, 113.
+
+**Cards and sections** (adopted). The right column is a set of cards: a card title, then sections of equal rank. Gating is soft: a section waiting on an earlier step is closed and dashed with a "Needs..." line, and opens on click. Order: Views, Runs (Runs, Add LSA synthesis), Evidence, Keystone and prints (Don: the keystone is used last), LSA runs. Presets are saved with their view and listed "Saved at this view" first. Reason: findings 9, 22, 65 (B2).
+
+**Clean start** (adopted). After a refresh nothing is selected automatically: no run, LSA run or pano. Only an action just taken selects its result (extends "Select, don't run", 2026-10-22). Reason: the auto-selection made the last session look current and caused the pink fix to land on the rain print (findings 103, 110).
+
+**Evidence card** (adopted, Don). Several images per view (up to 12, stored with the view in saved_views.json "evidence"), one in use. FIND 3 CANDIDATES ranks panos by distance, facing and date from metadata only. Detail and Vista are labels only for now. No UI for sources that do not exist yet (no vapourware); records are source-neutral so Mapillary drops in later (C1). Open against B5: the spec's "newest overcast" is not judged, since metadata says nothing about the sky.
+
+**Night light principle** (adopted). Only sources in the scene give light: the scene's own street lamps, and a few windows lit behind drawn sheer curtains. No invented light sources, and never imply an interior. "CLEAR", not "SUNNY", at night.
+
+**The location's own clock** (adopted). Date and time are always the location's, never the computer's. Live weather includes the last 3 hours of rain. Live conditions reach a print when the date is today at the location; an amber warning when Live weather is paired with a time far from now there. Reason: findings 106 to 109.
+
+**Attribution** (adopted). The Street View report ends with the Google source line; CesiumJS showCreditsOnScreen is on.
+
+**SI6.4** (written, not tested). LSA-Studio/lsa/instructions/SI6.4.md: a top floor with windows in the wall face is counted; plain words, local terms in brackets (B11). Open: the server picks the highest SI version as the default (2026-10-21), so SI6.4 is already the default before it has been tested. Test it, or pin SI6.3, before the next run that matters.
+
+**Ground truth, cinematic and fiction marked separately** (idea, Don; after Monday). In files and on the site, each output says which it is.
+
+**Ideas logged** (Don; after Monday, rank the wish list then):
+- Detail and Vista with a meaning in the pipeline, not only as labels.
+- Light sources as a confirmed list: street lamps and traffic lights from street furniture; the moon from its real position and phase.
+- A storm live cam, and 3 to 4 second print animations.
+- Thomas Weir on the West Bow (fiction).
+- 3D via Blender: a real-place version of the DeepMind pagoda sim.
+- The "Reality Engine" north star: layered, director-confirmed world-building (terrain, civil layout and street furniture, architecture, lighting, edit, fiction). Pitch it as layered world-building from real places, not as a rival to Unreal or Unity.
+
+**Still open in Round B.** B6 layout prompts, B8 under-the-cars line, B9 street names checked, B12 place primer. Edit Mode (B14 to B18): decide Sunday afternoon.
+
+### Afternoon: the guided flow
+
+**The guided flow** (adopted, Don; built and in use). The step strip becomes the way through the tool. A fresh load is dim with one green button, View. Order: View, LSA run, Capture, Add LSA, Street Level, Keystone, Edit, Approve, Prints. Clicking the green step opens its panel and rings it green. Reason: a new user does not know what to do first or in what order; Don's worst mistakes on 23 Oct came from editing a print, not the keystone, because the order was not set.
+
+**Strictly in order** (adopted, after the first test). A step can be set only when every step before it is set or skipped; everything after the green step is grey and its panels are dimmed and locked, whatever is selected. A set step stays set for the thing it was set on (the view, the LSA run, the capture, the candidate) and clears when that changes. Approve follows the keystone record, so an edit after approval sends you back to Approve. Optional steps (Add LSA, Street Level, Edit) are skipped with a named Skip button in the hint line. Reason: finding 121. Replaces the morning's soft gating.
+
+**Blue means set** (adopted, Don). Green ▶ next; rich blue ✓ set and still editable; blue outline ⤼ skipped; grey, dashed, dimmed: not yet. The blue is deep so it never reads as cyan, which stays "working". Added to the one-state-three-cues rule (2026-10-23).
+
+**Two paths at LSA run and Capture** (adopted, Don). Use one made at this view, or make a new one: a fresh place often needs a new LSA run. Choosing an LSA run puts its brief in an empty left column; a brief with other words is never replaced without asking.
+
+**Edit before Approve** (adopted; Don asked to be checked). Approval fixes the master every print starts from; editing after approval needs a second approval and leaves earlier prints stale. The edit pass works on keystone candidates only. Approve is never offered on a print or a date plate (finding 119).
+
+**"Street Level"** (adopted, Don) names the ground-level step on screen: the card, the section and the check button. Source-neutral, for Mapillary. "View" stays the camera position, so "Ground Level View" was set aside.
+
+**Add LSA length** (adopted, Don). The cap is 3,000 characters (was 2,900); the model is told the target range in numbers (90 per cent of the original up to the cap); on a miss it retries once, told how far out it was; the 80 per cent floor stays. Reason: a 2,860-character capture left 40 characters of room and the pass compacted the whole text (finding 120 and the 1,867 case).
+
+**Edit pass crop** (fix). After the crop is cut at the image edges it is trimmed to an accepted ratio again, with the whole box inside (finding 118).
+
+**Corrections to this morning's entries.** The run list was already filtered to the view (B13), and evidence items already showed licence and attribution (B5); both were listed as open in error.
+
+---
+
 ## 2026-10-23: The edit pass built and in use; UI state rule; Edit Mode specced
 
 **The edit pass** (adopted, built, in use). One change at a time in a marked area of a finished image. The area is cropped with a margin of context (grown to a ratio the model accepts) and sent to Gemini 3.1 Flash Image twice: clean, and with a red marker drawn just outside the area; an optional sample goes as a third image. The model has no mask, so locality comes from the paste-back: the result is lined up with the original on the margin, then blended inside the area only; nothing outside it can change. Versions are edits/vN.png in the run folder with an edits.json record; the original render is version 0. Reasons: Don's four design decisions at 9:20 (one change at a time, side by side, keep or undo, points of interest mark the areas); the faults found in use (findings 90 to 95).

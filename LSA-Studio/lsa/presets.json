@@ -357,7 +357,9 @@
     "date": "2026-10-09",
     "time": "10:30",
     "weather": "Clearing sky after a morning rain.",
-    "focus": "Surfaces, patinas, foliage, materials, structures, secondary and tertiary objects and details."
+    "focus": "Surfaces, patinas, foliage, materials, structures, secondary and tertiary objects and details.",
+    "saved_view_id": "lsa-session-1-abercromby-and-nelson",
+    "saved_view_name": "LSA session 1: Abercromby and Nelson"
   },
   "Abercromby and Nelson facing east": {
     "place": "1 Nelson St, Edinburgh EH3 6LF, UK",

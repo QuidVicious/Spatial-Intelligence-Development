@@ -8109,5 +8109,151 @@
       "dropped": [],
       "version": 2
     }
+  },
+  "cal:30a542ad7c57497c66233f96375d040bd57ddcd5": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate and high latitude delay spring budburst and prolong autumnal leaf retention.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-24",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Pale green pleated leaflets unfolding from stout sticky buds; olive bark visible.",
+            "full_leaf": "Broad palmate dark green leaves with winged samaras maturing amidst grey-plated bark.",
+            "colouring": "Coarse leaves dulling to yellow-brown, blotched with black tar spots; winged samaras.",
+            "peak": "Warm golden-amber to dingy yellow leaves clinging among rough plated grey-brown limbs.",
+            "falling": "Yellow-brown foliage rapidly shedding; coarse twigs and flaky bark exposed.",
+            "dormant": "Stout bare branches and grey fissured, plated bark marked with lichens and green algae."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Tilia × europaea",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-26",
+            "full_leaf": "05-30",
+            "colour_onset": "09-22",
+            "peak_colour": "10-18",
+            "half_fall": "10-31",
+            "bare": "11-14"
+          },
+          "stages": {
+            "budburst": "Bright lime-green heart-shaped leaflets expanding from red buds with basal burl shoots.",
+            "full_leaf": "Rich green cordate leaves on ascending limbs; charcoal bark with dense epicormic sprouts.",
+            "colouring": "Leaves fading from muted green to pale greenish-yellow across the upper crown.",
+            "peak": "Pale clear yellow leaves throughout, set against deeply fissured charcoal-brown bark.",
+            "falling": "Faded yellow leaves dropping quickly, revealing dense twiggy epicormic trunk growth.",
+            "dormant": "Naked arched limbs, fine twigs, and charcoal-fissured trunk with basal burrs and sprouts."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Ulmus procera",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-28",
+            "full_leaf": "06-03",
+            "colour_onset": "10-02",
+            "peak_colour": "10-25",
+            "half_fall": "11-08",
+            "bare": "11-20"
+          },
+          "stages": {
+            "budburst": "Tiny rough-textured asymmetric leaves unfurling along stiff, dark upright shoots.",
+            "full_leaf": "Rough, scabrous dark green asymmetric leaves held on stiffly ascending branches.",
+            "colouring": "Upper crown leaves transitioning from deep green to bright golden yellow.",
+            "peak": "Brilliant bright golden-yellow foliage set against rugged dark grey-brown bark.",
+            "falling": "Golden leaves detaching, exposing thick corky twigs and deeply ridged dark bark.",
+            "dormant": "Upright silhouette of rough-barked branches, fine twiggy spray, and dark furrowed trunk."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
+  },
+  "cal:5055dfd33b1e5ff58c866d1c76d9ce284c28c5fd": {
+    "address": "1 Nelson St, Edinburgh EH3 6LF, UK",
+    "calendar": {
+      "climate_note": "Edinburgh's cool maritime climate delays spring budburst into late April and produces a protracted autumn leaf fall.",
+      "species": [
+        {
+          "name": "Acer pseudoplatanus",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-20",
+            "full_leaf": "05-22",
+            "colour_onset": "09-28",
+            "peak_colour": "10-22",
+            "half_fall": "11-04",
+            "bare": "11-18"
+          },
+          "stages": {
+            "budburst": "Bright green pleated leaves unfurling alongside pendulous yellowish flower racemes.",
+            "full_leaf": "Broad dark green palmate foliage with winged samaras dangling beneath twigs.",
+            "colouring": "Leaves turning dull yellowish-brown, often marked with prominent black tar spots.",
+            "peak": "Warm dull yellow and scorched-brown foliage with dry paired samaras.",
+            "falling": "Tattered yellowish-brown leaves dropping rapidly, exposing olive-grey plated bark.",
+            "dormant": "Stout bare twigs with large green buds above charcoal-brown, scaly plated bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Fagus sylvatica",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-30",
+            "full_leaf": "05-28",
+            "colour_onset": "10-06",
+            "peak_colour": "10-28",
+            "half_fall": "11-12",
+            "bare": "11-26"
+          },
+          "stages": {
+            "budburst": "Silky-fringed lime-green leaves emerging from long, slender pointed bronze buds.",
+            "full_leaf": "Glossy deep green wavy-edged leaves casting heavy shade, spiky cupules forming.",
+            "colouring": "Leaves yellowing with russet edges; woody cupules ripening to pale brown.",
+            "peak": "Brilliant coppery-orange to golden-bronze leaves with opened four-lobed cupules.",
+            "falling": "Faded russet-brown leaves shedding to reveal smooth silver-grey columnar boles.",
+            "dormant": "Bare ascending limbs with sharp reddish-brown buds and smooth grey bark."
+          },
+          "evergreen_look": null
+        },
+        {
+          "name": "Ulmus glabra",
+          "habit": "deciduous",
+          "milestones": {
+            "budburst": "04-16",
+            "full_leaf": "05-20",
+            "colour_onset": "09-24",
+            "peak_colour": "10-16",
+            "half_fall": "10-30",
+            "bare": "11-12"
+          },
+          "stages": {
+            "budburst": "Clustered purplish-red flowers preceding rough, bright green serrated leaf tips.",
+            "full_leaf": "Large scabrid dark green leaves with asymmetric bases; disc-like samaras shed.",
+            "colouring": "Rough foliage fading to muted, patchy greenish-yellow with dry brown margins.",
+            "peak": "Bright ochre-yellow to dull gold foliage showing dark veins.",
+            "falling": "Yellow and crisp brown leaves shedding rapidly from zig-zagging twigs.",
+            "dormant": "Spreading crown of bare grey-brown twigs with deeply fissured, dark grey bark."
+          },
+          "evergreen_look": null
+        }
+      ],
+      "dropped": [],
+      "version": 2
+    }
   }
 }

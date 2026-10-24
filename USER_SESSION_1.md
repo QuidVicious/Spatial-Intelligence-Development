@@ -187,9 +187,47 @@ Run: the Abercromby and Nelson keystone candidate (22 Oct, 15:47). Text-only ren
 | 100 | After a refresh the run views showed the original render, so the edits looked lost. Fixed: the thumbnail, the full-screen viewer and the keystone (K) show the newest edited version, and the caption says which. | P1 |
 | 101 | The run's image opened on its own in a new browser tab (zoom cursor, no caption, no close). Cause not yet found. | P2 |
 | 102 | Prints amplify faint leftovers: a faint pink cast left by the marker became a clear pink box in the 3 pm rain print. Wanted: a leftover check after each edit that warns of marker residue. | P1 |
-| 103 | The pink fix was made on the rain print, not on the keystone: the edit pass opens on any run with a render and does not say which kind of run it is. The keystone (version 23) still carries the cast, so the next print brings it back. Wanted: the panel names the run kind; a print offers to make the fix on the keystone. | P1 |
+| 103 | The pink fix was made on the rain print, not on the keystone: the edit pass opens on any run with a render and does not say which kind of run it is. The keystone (version 23) still carries the cast, so the next print brings it back. Wanted: the panel names the run kind; a print offers to make the fix on the keystone. Closed 24 Oct: the cast was fixed on the keystone itself (edited version 26, approved) and the next print holds; cause of the confusion found (finding 110). The panel naming the run kind is still open (B18). | P1 |
 | 104 | Precise selections are hard at frame size. Don's Edit Mode design: dim everything else, fullscreen with zoom, live corners, key flip compare (REBUILD_SPEC B14). | P1 |
 | 105 | The real facades are far more soot-stained and patinated than the render. For a later weathering pass. | P3 |
 
 Results, 2026-10-23. The edit pass went from four design decisions (9:20) to its first edit at 9:35. On the keystone: 23 versions, 22 model calls, median 16 seconds per change (14 to 23), 4 with a polygon, 6 with a sample; 13 versions in the final line. Fixed by edits: the blind and glazed attic windows, the iron balconies, the doorway's fanlight, the arched recessed settings, two sloping balustrades. Approved as keystone at version 23 (the record holds the plate, edits/v23.png, and the version); the 23 Oct date plate and the 3 pm rain print both started from it. Polygon select, straightening, the sample and Carry forward were each designed and built during the session, after a limit was hit in use.
+
+## Follow-up findings, 2026-10-24 (Round B in use, the lighting engine)
+
+Run: 1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737 (the Abercromby and Nelson keystone).
+
+| # | Finding | P |
+| --- | --- | --- |
+| 106 | Live weather read the sky only: a print after a day of rain showed dry streets. Fixed: Live weather includes the last 3 hours of rain ("wet after rain"). | P2 |
+| 107 | Night rendered as blue hour with every lamp off, and the weather read "SUNNY" at night. Fixed: night uses the scene's own lights (the lamps in the scene lit, a few windows lit behind drawn sheer curtains, no invented light sources); "CLEAR" at night. | P2 |
+| 108 | The clock used Don's computer time as the location's time (Kingston 11:23 shown for Edinburgh, where it was 19:23). Fixed: date and time are the location's; an amber warning when Live weather is paired with a time far from now there. | P1 |
+| 109 | Live conditions never reached prints: any date counted as "another day". Fixed: live conditions reach a print when the date is today at the location. | P1 |
+| 110 | After a refresh the newest run, LSA run and pano were selected automatically, so the last session looked current. This is how the pink fix landed on the rain print (finding 103). Fixed: clean start, nothing is selected after a refresh; only an action just taken selects its result. | P1 |
+| 111 | Selecting a run never showed it in the frame. Fixed: a selected run opens in the frame with a caption. | P1 |
+| 112 | "View" was used by Claude in conversation but never labelled on screen. Fixed; now the official term (DECISIONS 2026-10-24). | P2 |
+| 113 | The two location fields did not say whose location they held. Fixed: "Camera at" and "Place (the subject's location)"; "Go to a place (moves the camera)". Follows finding 67. | P1 |
+| 114 | The print button did not show the date, time and weather it would use. Fixed: the button shows them. | P2 |
+| 115 | Evidence card: "Use" read as a setting, not an action, and "Keep the pano shown" looked redundant. Fixed: the keep line appears only when it is needed. | P2 |
+| 116 | The old cast-iron lamps on the left of the Abercromby view are missing from the render: thin poles are not in the 3D tiles. A job for the edit pass; later, street furniture from Mapillary (C2). | P2 |
+
+Priorities for 106 to 116 are Claude's proposal; Don to confirm.
+
+## Follow-up findings, 2026-10-24 afternoon (the guided flow in use)
+
+| # | Finding | P |
+| --- | --- | --- |
+| 117 | Street Level: the image marked In use is kept with the view but not loaded into the check after a clean start, and the In use item has no button. Don: "What do I do now? I don't see a way forward." Proposed: a "Show it in the check below" button on the In use item when the check is not showing it. Open. | P1 |
+| 118 | Edit pass: a box covering most of the image height (a street lamp, full height, on the right edge) came back as a smeared mess at the wrong scale, twice. Cause: the crop with context was bigger than the image, was cut at the edges, and the model was still asked for the old ratio (2:3 for a near-square crop, a 66 per cent squeeze). Fixed: the crop is trimmed to an accepted ratio after cutting, the box always inside. Not yet tested on a real edit. Small boxes, as in every earlier edit, were never affected. | P1 |
+| 119 | The ★ keystone for "LSA session 1: Abercromby and Nelson" is a date plate (24 Oct 11:12, run 20261024_111209), approved at 11:28, replacing the 22 Oct 15:47 candidate. The pink fix (version 26) is on the candidate. So the keystone carries October's canopy, every print since 11:28 started from it, and edits on it are refused. Approve was offered on date plates. Fixed: Approve never shows on a print or date plate; the edit pass names the candidate to use. To do: re-approve the 15:47 candidate. Correction to the record: the morning handoff says version 26 was approved; the keystone record says the date plate was. | P1 |
+| 120 | Add LSA failed again and again on "the last run": a keystone candidate whose text already had the LSA synthesis and the Street Level check, about 3,000 characters. Redoing it asks for more inside a full cap, so every try is cut or too long. After a restart the page did not warn that the synthesis was already in. Proposed guard: Add LSA works on a capture's first text and says so. Exact lengths not yet seen. | P1 |
+| 121 | First version of the guided flow: steps turned blue out of order (a step lit up from whatever was selected; optional steps counted as passed when a later one lit), and a second click on Skip skipped the next step too. "It's all mixed up... I got lost immediately." Fixed: strictly in order, steps latch to what they were set on, Skip named and guarded. Then the flow carried through to Edit. | P1 |
+| 122 | EDIT PASS seemed to do nothing: its refusal went to the small status line under Run. Fixed: messages under the button, with a Select it link (rule of 59). | P1 |
+| 123 | Don: Make keystone should be green when Keystone is the step, and CAPTURE dim once Capture is set. The pin buttons should follow the flow's states. For tomorrow. | P2 |
+| 124 | The Street Level check ran past 80 seconds once (usually 20 to 40). Watch. | P3 |
+| 125 | The "This view only" tick came back ticked after a refresh and read as a broken list (it was remembered). Changed: it starts off on every load. A fresh load also showed an old Rose St view as current: the View list had no empty choice. Fixed. | P2 |
+
+Results, afternoon. The guided flow went from Don's design at 15:10 to built and in use by 15:40, and after the fix (121) carried a fresh run View, LSA run, Capture, Add LSA, Street Level, Keystone to Edit. Add LSA on the 2,860-character capture first failed at 1,867 (the check worked: a third of the text cut); the cap is now 3,000 with the target range in numbers and one retry.
+
+Results, 2026-10-24. The pink cast is gone from the keystone (edited version 26, approved) and the print made from it holds. Round B items B1, B2, B3, B4, B5 and B13 were built and checked in use (REBUILD_SPEC status). SI6.4 (B11) is written and not yet tested.
 

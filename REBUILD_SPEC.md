@@ -75,6 +75,25 @@ Status by item, 2026-10-23:
 
 ## Round B: flow
 
+Status by item, 2026-10-24 (end of day):
+
+| Item | Status |
+| --- | --- |
+| B1 | Replaced by the guided flow (DECISIONS 2026-10-24 afternoon): dim start, one green step, strict order, blue for set, panels locked until reached, bigger buttons, a hint line. Built and in use; carried a run to Edit. |
+| B2 | Done: gating is done by the flow; presets and LSA runs are grouped by view, with a "This view only" tick (starts off each load). |
+| B3 | Done; plus "Street Level" for the ground-level step. |
+| B4 | Done in part: "View" official; View lists kept in step; GO moves the lists to the view; location fields say whose location. Open: one place in charge of the location ("Go to a place" still fills Place). |
+| B5 | Done: evidence card with licence and attribution per item (already there) and a role line per image that follows the MAKE KEYSTONE tick. Open: finding 117 (load the In use image into the check); "newest overcast" moves to Round C (Mapillary gives capture times). |
+| B6, B7, B8, B9, B12 | Open |
+| B10 | Built 22 Oct (see B10 status) |
+| B11 | SI6.4 written, not tested; already the server default. |
+| B13 | Done: the run list was already filtered to the view; NEWEST marked; run kind after the time. |
+| B14 to B18 | Open. Edit Mode: decide Sunday afternoon. B18 in part: the edit pass refuses prints and date plates and names the candidate. |
+| B19 | New: the pin buttons follow the flow (Make keystone green when Keystone is the step; CAPTURE dim once Capture is set). Finding 123. |
+| B20 | New: Street Level, "Show it in the check below" on the In use image. Finding 117. |
+| A41 | New: Add LSA refuses a text that already has the synthesis (a candidate's or a woven capture's) and says to use the capture or UNDO. Finding 120. |
+| A42 | Done: Add LSA cap 3,000, target range in numbers, one retry. Edit pass crop ratio fix (118). Approve never on a print or date plate (119). |
+
 | # | Change | From |
 | --- | --- | --- |
 | B1 | Step strip across the top: View, Brief, LSA run, Capture, Add LSA synthesis, Street View check, Edit, Keystone, Approve. It shows where you are, what is next, and what you have made at each step (with links). Based on KEYSTONE_RECIPE.md. Also: the Scene layout and Scene text must look different in the editor, by colour, and Close must say it does not save [73]. | [10] |
@@ -115,6 +134,9 @@ Status by item, 2026-10-23:
 - C3 The location model: element records (JSON) built from many vantage points; scene text assembled from the elements in frame.
 - C4 Final visual pass on the whole UI. Don's direction: camera metaphors throughout; the viewport as the ground-glass plate of a view camera (the right way up), with a toggleable grid overlay.
 - C5 User session 2 with outside testers; compare with session 1.
+
+## Ideas, after Monday 26 Oct (rank the wish list then; DECISIONS 2026-10-24)
+Detail and Vista with pipeline meaning; light sources as a confirmed list (street lamps and traffic lights from street furniture, the moon from its real position and phase); storm live cam and 3 to 4 s print animations; ground truth, cinematic and fiction marked separately in files and on the site; Thomas Weir on the West Bow (fiction); 3D via Blender; the "Reality Engine" north star (layered, director-confirmed world-building).
 
 ## Parked, with reasons
 - Edit pass: moved up on 2026-10-22 and built 23 Oct (A40); its next steps are B14 to B18.

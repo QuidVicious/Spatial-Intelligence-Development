@@ -84,18 +84,35 @@
   .strip #strip-telemetry { flex: 0 1 auto; }
   .strip .telemetry { display: grid; grid-template-columns: auto auto; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 1px 22px; white-space: nowrap; font: 12.5px/1.25 var(--read); }
   .strip .telemetry span b { font-size: 11px; }
-  /* Step strip: colour, shape and label together (DECISIONS 2026-10-23). Done ✓ solid; current ▶ solid green; optional ○ outline; not yet dashed grey. */
+  /* Step strip, the guided flow (2026-10-24, Don): one state, three cues (colour, shape, label).
+     Next: solid green, ▶, "next". Set: solid rich blue, ✓, "set" (done, still editable). Skipped: blue outline, ⤼.
+     Not yet: grey, dashed, ·, dimmed. Cyan stays "working"; the blue is deep so the two never read alike. */
+  :root { --flow-blue: #2f5fd0; --flow-blue-hi: #4f7ff0; --flow-green: #66bb6a; }
   header { padding: 8px 22px; align-items: center; }
-  .steps { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
-  .step { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 12px; font: 12px/1.2 var(--ui); cursor: pointer; background: none; color: var(--lichen-grey); border: 1px dashed var(--rule); }
-  .step .ic { font-size: 10px; width: 10px; text-align: center; }
-  .step.done { color: var(--paper); border: 1px solid var(--lichen-grey); }
-  .step.current { color: #10230f; background: #66bb6a; border: 1px solid #66bb6a; font-weight: 700; }
-  .step.optional { border: 1px solid var(--rule); color: var(--lichen-grey); }
-  .step.optional.done { color: var(--paper); border-color: var(--lichen-grey); }
-  .step:hover { border-color: var(--paper); }
-  .step-sep { color: var(--rule); font-size: 10px; }
-  .step-flash { outline: 2px solid #66bb6a; outline-offset: 3px; transition: outline-color 1.2s; }
+  .flow-head { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+  .steps { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .step { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 8px; font: 600 15px/1.2 var(--ui); cursor: pointer; background: none; color: var(--lichen-grey); border: 2px dashed var(--rule); opacity: .55; }
+  .step .ic { font-size: 13px; width: 13px; text-align: center; }
+  .step .n { font-size: 12px; font-weight: 400; opacity: .8; }
+  .step.done { color: #fff; background: var(--flow-blue); border: 2px solid var(--flow-blue); opacity: 1; }
+  .step.skipped { color: #cfdcff; background: none; border: 2px solid var(--flow-blue); opacity: 1; }
+  .step.current { color: #10230f; background: var(--flow-green); border: 2px solid var(--flow-green); font-weight: 700; opacity: 1; box-shadow: 0 0 0 3px rgba(102,187,106,.25); }
+  .step.locked { cursor: not-allowed; }
+  .step:not(.locked):hover { border-color: var(--paper); }
+  .step-sep { color: var(--rule); font-size: 12px; }
+  .step-skip { font: 12px/1.2 var(--ui); padding: 4px 8px; border-radius: 6px; background: none; color: var(--paper); border: 1px solid var(--lichen-grey); cursor: pointer; }
+  .flow-hint { font: 14px/1.3 var(--read); color: var(--paper); }
+  .flow-hint b { color: var(--flow-green); }
+  .step-flash { outline: 3px solid var(--flow-green); outline-offset: 3px; border-radius: 8px; animation: flowRing 0.5s ease-in-out 3; }
+  @keyframes flowRing { 0%, 100% { outline-color: var(--flow-green); } 50% { outline-color: transparent; } }
+  /* Panels for steps not reached yet: dimmed and locked; a line says which step opens them. */
+  .flow-locked { opacity: .3; pointer-events: none; user-select: none; filter: saturate(.4); }
+  .flow-current-panel { box-shadow: inset 3px 0 0 var(--flow-green); }
+  .flow-done-panel { box-shadow: inset 3px 0 0 var(--flow-blue); }
+  .flow-lockline { font: 12px/1.3 var(--ui); color: var(--lichen-grey); padding: 4px 12px; border: 1px dashed var(--rule); border-radius: 6px; margin: 6px 0; }
+  .two-paths { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .two-paths .path { border: 1px solid var(--rule); border-radius: 6px; padding: 8px; }
+  .two-paths .path-title { font: 600 13px/1.2 var(--ui); color: var(--paper); margin-bottom: 6px; }
   /* Cards and sections (2026-10-24): one size for every card title, one for every section title, same colour. */
   .module.card > h2 { font: 600 19px/1.2 var(--read); color: var(--paper); margin: 0 0 2px; }
   .card-note { font-size: 12px; color: var(--lichen-grey); margin-bottom: 10px; }
@@ -122,6 +139,10 @@
   .ev-row .toggle-btn { padding: 2px 8px; font-size: 11.5px; }
   .ev-row select { font-size: 11.5px; padding: 1px 4px; }
   .ev-inuse { font-size: 11.5px; color: #66bb6a; font-weight: 700; }
+  .ev-role { font-size: 11.5px; color: var(--paper); }
+  .ev-role-warn { color: #ffb74d; }
+  .only-view { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--lichen-grey); margin-top: 4px; font-weight: 400; }
+  .only-view input { margin: 0; }
   .ev-cand-head { font-size: 12px; color: var(--lichen-grey); margin-top: 8px; }
   .off { opacity: 0.5; }
   .off-note { font-size: 12px; color: var(--lichen-grey); }
@@ -468,7 +489,10 @@
 <body>
 <header>
   <h1>LSA Studio</h1>
-  <nav class="steps" id="steps" aria-label="Steps: where you are and what is next"></nav>
+  <div class="flow-head">
+    <nav class="steps" id="steps" aria-label="Steps: where you are and what is next"></nav>
+    <div class="flow-hint" id="flow-hint" aria-live="polite"></div>
+  </div>
   <span class="status" id="server-status">Connecting to the server...</span>
 </header>
 
@@ -538,7 +562,7 @@
 
 <main>
   <!-- left: the shot -->
-  <section class="col left" aria-label="Shot">
+  <section class="col left" id="col-left" aria-label="Shot">
     <div class="resizer" data-side="left" title="Drag to resize"></div>
     <div class="scroll">
     <h2 id="step-brief">Where you stand</h2>
@@ -602,6 +626,7 @@
       <button class="btn" id="p-load">Load</button>
       <button class="btn" id="p-delete">Delete</button>
     </div>
+    <label class="only-view" title="Off: presets saved at this view are listed first, the rest under their own heading. On: only this view's presets (the loaded one always stays listed)."><input type="checkbox" id="p-only-view"> This view only</label>
     <div class="presets" style="grid-template-columns: 1fr auto; margin-top: 6px;">
       <input type="text" id="p-name" aria-label="Preset name" placeholder="Name this shot">
       <button class="btn" id="p-save">Save shot</button>
@@ -892,10 +917,44 @@
       </div>
       <div class="module card" id="mod-keystone">
         <h2>Runs</h2>
-        <div class="card-note">Choose the run to work on; the cards below act on it</div>
-        <section class="sec" id="sec-runs">
-          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Runs</span><span class="sec-need"></span></button>
+        <div class="card-note">The LSA run, then the capture to work on; the cards below act on the capture</div>
+        <!-- 2026-10-24 (flow): step 2, the LSA run. Two paths: use one made at this view, or write a brief and Excavate. -->
+        <section class="sec" id="sec-lsarun">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">LSA run</span><span class="sec-need"></span></button>
           <div class="sec-body">
+      <div class="two-paths">
+        <div class="path">
+          <div class="path-title">Use one made at this view</div>
+          <select id="lsa-join-run" autocomplete="off" style="width: 100%;" aria-label="LSA run"><option value="">No LSA runs</option></select>
+          <label class="only-view" title="Off: LSA runs made at this view are listed first, the rest under their own heading. On: only this view's LSA runs (the chosen one always stays listed)."><input type="checkbox" id="lsa-only-view"> This view only</label>
+          <div id="lsa-join-preview" class="lsa-preview" hidden>
+            <img id="lsa-join-thumb" alt="The chosen LSA run's image" />
+            <div id="lsa-join-brief" class="lsa-preview-brief"></div>
+          </div>
+          <button class="toggle-btn" id="btn-lsa-load-brief" hidden style="width: 100%; margin-top: 6px; padding: 6px;" onclick="flowLoadLsaBrief(true)" title="Put this LSA run's Place, Standpoint, Looking at and Scene layout into the brief on the left">Load its brief into the left column</button>
+        </div>
+        <div class="path">
+          <div class="path-title">Or make a new one</div>
+          <div class="hint" style="margin-top: 0;">A fresh place needs one: write the brief on the left, then Excavate.</div>
+          <button class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 6px;" onclick="flowOpenBrief()">WRITE THE BRIEF ›</button>
+        </div>
+      </div>
+      <div id="lsa-pick-status" class="stamp-line" aria-live="polite"></div>
+          </div>
+        </section>
+        <section class="sec" id="sec-runs">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Capture</span><span class="sec-need"></span></button>
+          <div class="sec-body">
+      <div class="two-paths">
+        <div class="path">
+          <div class="path-title">Use one made at this view</div>
+          <div class="hint" style="margin-top: 0;">Choose it under Run, below.</div>
+        </div>
+        <div class="path">
+          <div class="path-title">Or make a new one</div>
+          <button class="toggle-btn" id="btn-capture-new" style="width: 100%; padding: 6px;" onclick="captureAndSynthesizeTwin()" title="Capture the Cesium view as framed and run the pipeline">CAPTURE A NEW ONE</button>
+        </div>
+      </div>
       <label for="select-replay-view" style="margin-top: 0;">View</label>
       <div style="display: flex; gap: 6px;">
         <select id="select-replay-view" autocomplete="off" style="flex: 1; min-width: 0;" onchange="loadReplayRuns()">
@@ -917,12 +976,7 @@
         <section class="sec" id="sec-addlsa">
           <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Add LSA synthesis</span><span class="sec-need"></span></button>
           <div class="sec-body">
-      <label for="lsa-join-run" style="margin-top: 0;">LSA run to add</label>
-      <select id="lsa-join-run" autocomplete="off" style="width: 100%;"><option value="">No LSA runs</option></select>
-      <div id="lsa-join-preview" class="lsa-preview" hidden>
-        <img id="lsa-join-thumb" alt="The chosen LSA run's image" />
-        <div id="lsa-join-brief" class="lsa-preview-brief"></div>
-      </div>
+      <div class="hint" style="margin-top: 0;" id="lsa-add-which">Adds the LSA run chosen above to the selected capture's scene text.</div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-lsa-weave" onclick="lsaWeave()" title="Add LSA synthesis: adds the LSA run's materials, condition and biology to this run's scene text. The scene text and your scene layout are the structure that stays. Added and removed structure are listed for you to check. Light, season and compass words stay out.">ADD LSA SYNTHESIS</button>
         <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before Add LSA synthesis">UNDO</button>
@@ -937,22 +991,22 @@
         </section>
       </div>
       <div class="module card" id="mod-streetview">
-        <h2>Evidence</h2>
-        <div class="card-note">Plein air sketches: images read for detail, never copied into the render</div>
+        <h2>Street Level</h2>
+        <div class="card-note">Plein air sketches: images read into words for detail; sent to the render only if you tick it under Street Level check</div>
         <section class="sec" id="sec-evidence">
           <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Images for this view</span><span class="sec-need"></span></button>
           <div class="sec-body">
             <ul class="ev-list" id="ev-list"></ul>
             <div style="display: flex; gap: 6px; margin-top: 6px;">
               <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="evFind()" title="Looks for outdoor Street View panos around the subject, on your camera's side, and ranks them by distance, direction and date">🔎 FIND 3 CANDIDATES</button>
-              <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-ev-keep" hidden onclick="evAddShown()" title="Keep the pano shown in the Street View check below (from a Maps link or Look), with its heading, pitch and field of view">＋ KEEP THE PANO SHOWN BELOW</button>
+              <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-ev-keep" hidden onclick="evAddShown()" title="Keep the pano shown in the Street Level check below (from a Maps link or Look), with its heading, pitch and field of view">＋ KEEP THE PANO SHOWN BELOW</button>
             </div>
             <div id="ev-cands"></div>
             <div id="ev-status" class="stamp-line" aria-live="polite"></div>
           </div>
         </section>
         <section class="sec" id="sec-sv">
-          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Street View check</span><span class="sec-need"></span></button>
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Street Level check</span><span class="sec-need"></span></button>
           <div class="sec-body">
       <div id="sv-context" class="status-line" style="margin-top: 0;">Select a run on the Runs card.</div>
       <button class="toggle-btn" id="btn-sv-last" hidden style="width: 100%; margin-top: 6px; padding: 6px;" onclick="svUseLastForView()">Use the last pano set for this view</button>
@@ -975,7 +1029,7 @@
       <div class="hint" id="sv-fov-note"></div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Street View check: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 STREET VIEW CHECK</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Street Level check: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 STREET LEVEL CHECK</button>
         <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
       </div>
       <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
@@ -1014,6 +1068,7 @@
         <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
       </div>
       <button id="btn-edit-pass" onclick="openEditPass()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Fix small areas of the selected run's image, one change at a time; the controls open here">✎ EDIT PASS: fix small areas</button>
+      <div id="ep-button-msg" class="stamp-line" aria-live="polite" style="font-size: 13px;"></div>
     <!-- Edit pass (2026-10-23): one change at a time in a marked area of a finished plate -->
     <div class="edit-pass" id="edit-pass" hidden>
       <div class="ep-head"><span class="ep-title">Edit pass</span><span class="ep-ver" id="ep-ver"></span>
@@ -1064,7 +1119,7 @@
           </div>
         </section>
       </div>
-      <div class="module">
+      <div class="module" id="mod-lsaruns">
         <h2>LSA runs</h2>
         <div class="runs-tools">
           <input type="search" id="runs-search" placeholder="Search: place, street, subject, view" autocomplete="off" aria-label="Search the LSA runs">
@@ -1233,12 +1288,26 @@ async function loadPresets(select) {
   const mine = view ? names.filter(n => p[n].saved_view_id === view.id) : [];
   const rest = names.filter(n => !mine.includes(n));
   const opt = n => `<option value="${esc(n)}" ${n === keep ? "selected" : ""}>${esc(n)}${!view && p[n].saved_view_name ? " · " + esc(p[n].saved_view_name) : ""}</option>`;
-  $("p-list").innerHTML = `<option value="">Choose a preset</option>` +
-    (mine.length ? `<optgroup label="Saved at this view">${mine.map(opt).join("")}</optgroup>` : "") +
-    (view ? `<optgroup label="${mine.length ? "Other presets" : "Presets (none saved at this view)"}">${rest.map(opt).join("")}</optgroup>` : rest.map(opt).join(""));
+  // B2 (2026-10-24): "This view only" hides the other views' presets. The preset in the box stays listed, under its own
+  // heading, so a filter never silently drops what is loaded. With no view chosen the filter has nothing to filter by.
+  const only = view && onlyViewGet("p");
+  const other = only ? rest.filter(n => n === keep || n === loadedPreset) : rest;
+  let groups;
+  if (!view) groups = rest.map(opt).join("");
+  else if (only) groups = (mine.length ? `<optgroup label="Saved at this view">${mine.map(opt).join("")}</optgroup>` : `<option value="" disabled>None saved at this view (untick "This view only" to see all)</option>`) +
+    (other.length ? `<optgroup label="Loaded, from another view">${other.map(opt).join("")}</optgroup>` : "");
+  else groups = (mine.length ? `<optgroup label="Saved at this view">${mine.map(opt).join("")}</optgroup>` : "") +
+    `<optgroup label="${mine.length ? "Other presets" : "Presets (none saved at this view)"}">${rest.map(opt).join("")}</optgroup>`;
+  $("p-list").innerHTML = `<option value="">Choose a preset</option>` + groups;
+  const box = $("p-only-view"); if (box) { box.checked = onlyViewGet("p"); box.disabled = !view; }
   return p;
 }
+// The "This view only" ticks start off on every load (Don, 24 Oct: a remembered tick read as a broken list).
+var onlyViewTicks = {};
+function onlyViewGet(k) { return !!onlyViewTicks[k]; }
+function onlyViewSet(k, on) { onlyViewTicks[k] = !!on; }
 document.addEventListener("DOMContentLoaded", () => {
+  $("p-only-view")?.addEventListener("change", e => { onlyViewSet("p", e.target.checked); loadPresets(); });
   $("select-saved-view")?.addEventListener("change", () => loadPresets());
   $("select-replay-view")?.addEventListener("change", () => setTimeout(() => loadPresets(), 0));
 });

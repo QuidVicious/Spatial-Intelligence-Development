@@ -60,7 +60,19 @@ def _crop_region(W: int, H: int, box: Tuple[int, int, int, int], margin: float, 
         cw = ch * r
     else:
         ch = cw / r
-    cw, ch = min(cw, W), min(ch, H)
+    # 2026-10-24: a box taller (or wider) than about 45% of the image grows a crop bigger than the image; cutting it at
+    # the image's edges changed its shape while the model was still asked for the old ratio, so the answer came back
+    # squeezed (a full-height box round a street lamp: facades at the wrong scale, smeared stone). After cutting, the crop
+    # is trimmed to an accepted ratio again, always keeping the whole box inside it.
+    if cw > W or ch > H:
+        cw, ch = min(cw, W), min(ch, H)
+        for key, r in sorted(_RATIOS.items(), key=lambda kv: abs(kv[1] - cw / ch)):
+            tw, th = (ch * r, ch) if cw / ch > r else (cw, cw / r)
+            if tw >= w and th >= h:
+                cw, ch = tw, th
+                break
+        else:
+            key = min(_RATIOS.items(), key=lambda kv: abs(kv[1] - cw / ch))[0]   # no accepted ratio holds the box: closest
     x0 = int(round(min(max(cx - cw / 2, 0), W - cw)))
     y0 = int(round(min(max(cy - ch / 2, 0), H - ch)))
     return (x0, y0, x0 + int(round(cw)), y0 + int(round(ch))), key

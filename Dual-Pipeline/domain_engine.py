@@ -876,7 +876,7 @@ NEVER ADD:
 
 SPECIES: trees keep the scene text's species, unless the analysis or the director's layout names a more specific or different species for the same trees; then use that name in both the scene text and the ecology record, and list it in species_to_verify. Never add trees IMAGE 1 does not show. The ecology record names exactly the species the scene text names, and stays time-invariant: form, height, trunk, bark and branch structure.
 
-STYLE AND LENGTH: the scene text's telegraphic notation. At most about 1.7 times the original length, and never over 2900 characters. If you must shorten to fit, shorten surface description (condition, biology, tooling) of far elements first; never drop structure, and never cut the subject's details.
+STYLE AND LENGTH: the scene text's telegraphic notation. The message gives the target length in characters: return a scene_text inside that range, and never over 3000 characters. Rewriting the whole text more compactly is not shortening to fit: keep every sentence about structure as it is. If you must shorten to fit, shorten surface description (condition, biology, tooling) of far elements first; never drop structure, and never cut the subject's details.
 
 Return JSON only, in exactly this shape:
 {"scene_text": "the revised scene text",
@@ -920,6 +920,9 @@ def _clean_added(raw: Any, scene: str) -> List[Dict[str, Any]]:
     return out
 
 
+WEAVE_CAP = 3000   # the LSA pass's ceiling on scene text length (Don, 2026-10-24; was 2900)
+
+
 def weave_lsa_into_scene(
     capture_b64: str,
     scene_text: str,
@@ -952,28 +955,55 @@ def weave_lsa_into_scene(
     )
     if hasattr(types, "AutomaticFunctionCallingConfig"):
         cfg["automatic_function_calling"] = types.AutomaticFunctionCallingConfig(disable=True)
+    # 2026-10-24 (Don): the cap is 3000 characters (was 2900), and the model is told the target range in numbers.
+    # The temperature is 0, so pressing ADD again repeats the same miss: on a length miss the pass retries once by
+    # itself, telling the model how far out it was. The floor stays at 80 per cent: a bigger cut drops structure.
+    n = len(scene_text)
+    hi = min(WEAVE_CAP, max(int(n * 1.7), n))
+    lo = min(int(n * 0.9), hi - 150)
+    contents.insert(-1, f"LENGTH: the SCENE TEXT above is {n} characters. Return a scene_text between {lo} and {hi} characters "
+                        f"(never over {WEAVE_CAP}). Keep every structural sentence; add the analysis's surfaces to the elements they describe.")
     client = genai.Client(api_key=api_key)
-    try:
-        response = client.models.generate_content(
-            model=DOMAIN_MODEL, contents=contents, config=types.GenerateContentConfig(**cfg),
-        )
-    except Exception as e:
-        traceback.print_exc()
-        raise HTTPException(status_code=502, detail=f"The LSA pass call failed: {e}")
-    text = re.sub(r"^```(?:json)?\s*|\s*```$", "", (response.text or "").strip())
-    try:
-        data = json.loads(text)
-    except Exception:
-        raise HTTPException(status_code=502, detail="The LSA pass did not return valid JSON; the scene text is unchanged.")
-    if not isinstance(data, dict):
-        raise HTTPException(status_code=502, detail="The LSA pass returned the wrong shape; the scene text is unchanged.")
-    out = str(data.get("scene_text") or "").strip()
-    if not out:
-        raise HTTPException(status_code=502, detail="The LSA pass came back empty; the scene text is unchanged.")
-    ratio = len(out) / max(len(scene_text), 1)
-    if not 0.8 <= ratio <= 2.0 or len(out) > 3000:
-        raise HTTPException(status_code=502, detail=(
-            f"The LSA pass changed the length too much ({len(scene_text)} to {len(out)} characters); the scene text is unchanged."))
+
+    def _attempt(extra: Optional[str]):
+        call = list(contents)
+        if extra:
+            call.insert(-1, extra)
+        try:
+            response = client.models.generate_content(
+                model=DOMAIN_MODEL, contents=call, config=types.GenerateContentConfig(**cfg),
+            )
+        except Exception as e:
+            traceback.print_exc()
+            raise HTTPException(status_code=502, detail=f"The LSA pass call failed: {e}")
+        text = re.sub(r"^```(?:json)?\s*|\s*```$", "", (response.text or "").strip())
+        try:
+            data = json.loads(text)
+        except Exception:
+            raise HTTPException(status_code=502, detail="The LSA pass did not return valid JSON; the scene text is unchanged.")
+        if not isinstance(data, dict):
+            raise HTTPException(status_code=502, detail="The LSA pass returned the wrong shape; the scene text is unchanged.")
+        out = str(data.get("scene_text") or "").strip()
+        if not out:
+            raise HTTPException(status_code=502, detail="The LSA pass came back empty; the scene text is unchanged.")
+        return data, out
+
+    def _length_ok(out: str) -> bool:
+        ratio = len(out) / max(n, 1)
+        return 0.8 <= ratio <= 2.0 and len(out) <= WEAVE_CAP
+
+    data, out = _attempt(None)
+    if not _length_ok(out):
+        first = len(out)
+        print(f"[LSA pass] length miss: {n} to {first} characters (target {lo} to {hi}); retrying once")
+        data, out = _attempt(
+            f"YOUR LAST ANSWER was {first} characters, outside the range. Return it again between {lo} and {hi} characters. "
+            + ("Too short: put back the structure and detail you cut; only far surfaces may be brief." if first < lo
+               else "Too long: shorten surface description of far elements first; never structure or the subject."))
+        if not _length_ok(out):
+            raise HTTPException(status_code=502, detail=(
+                f"The LSA pass changed the length too much twice ({n} to {first}, then {len(out)} characters; "
+                f"the target was {lo} to {hi}); the scene text is unchanged."))
     species = data.get("species_to_verify") or []
     species = [str(s).strip() for s in species if str(s).strip()] if isinstance(species, list) else []
     warnings = sorted({m.group(0).lower() for m in _WEAVE_WARN_RE.finditer(out)}

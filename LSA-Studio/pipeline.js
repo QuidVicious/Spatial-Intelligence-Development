@@ -370,11 +370,15 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       rsel.value = savedViews.some(v => v.id === rkeep) ? rkeep : '';
 
       const sel = document.getElementById('select-saved-view');
+      const keepView = sel.value;
       sel.innerHTML = '';
       if (!savedViews.length) {
         sel.innerHTML = '<option value="">No saved views</option>';
         return;
       }
+      // 2026-10-24 (flow): a fresh load starts on "Choose a view", never on the first view in the file (it showed
+      // an old Rose St view as if it were current). Reloading the list keeps the view already chosen.
+      sel.innerHTML = '<option value="">Choose a view</option>';
       for (const v of savedViews) {
         const opt = document.createElement('option');
         opt.value = v.id;
@@ -382,7 +386,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         opt.title = v.note || '';
         sel.appendChild(opt);
       }
-      if (selectId) sel.value = selectId;
+      sel.value = selectId || (savedViews.some(v => v.id === keepView) ? keepView : '');
     }
 
     function currentCameraRecord() {
@@ -487,6 +491,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         ? `At: ${v.name}. Camera locked: press Unlock camera above the frame to move it.`
         : `At: ${v.name}. The frame is showing the still: press Show Cesium in the frame, then GO, to see the view and lock the camera there.`, 'var(--accent-cyan)');
       updateStampLines();
+      // 2026-10-24 (flow): the lists follow the view reached with GO.
+      const rsel = document.getElementById('select-replay-view');
+      if (rsel && rsel.value !== v.id && [...rsel.options].some(o => o.value === v.id)) { rsel.value = v.id; loadReplayRuns(); }
+      loadLsaRuns();
+      if (typeof loadPresets === 'function') loadPresets();
       console.log(`[Views] restored ${v.name} (${v.id})`);
     }
 
@@ -507,7 +516,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     }
 
     // A11 (2026-10-21): one progress card, centred on the frame, for every step that runs on its own
-    // (Excavate, the weft pass, the Street View check): what is running, how long, and done or failed.
+    // (Excavate, the weft pass, the Street Level check): what is running, how long, and done or failed.
     let taskTimer = null, taskStartAt = 0;
     function taskCard() {
       let el = document.getElementById('task-card');
@@ -1567,8 +1576,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!run || !svState) { setSvStatus('Propose a pano first.', '#ff5252'); return; }
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
-      setSvStatus('Running the Street View check against the pano...');
-      taskStart('Street View check', `Reading pano ${svState.pano_id} into the scene text. Usually 20 to 40 s.`);
+      setSvStatus('Running the Street Level check against the pano...');
+      taskStart('Street Level check', `Reading pano ${svState.pano_id} into the scene text. Usually 20 to 40 s.`);
       try {
         const resp = await fetch(PIPE + '/api/streetview/rewrite', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1577,6 +1586,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         });
         const d = await resp.json();
         if (!resp.ok) throw new Error(d.detail || `HTTP ${resp.status}`);
+        flowStreetDoneFor = run.id;   // 2026-10-24 (flow): the Street Level step is set for this run
         if (!d.changed) { setSvStatus('The pano matched the scene text; nothing was changed.', 'var(--accent-cyan)'); lastFinish = null; renderFinishReport(d);
                           taskEnd(true, 'Nothing changed: the pano matched the scene text.'); return; }
         svPreRewriteText = before;
@@ -1587,7 +1597,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         lastFinish = { text: d.scene_text, at: hhmm() };
         renderFinishReport(d);
         taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under the Street View card.`);
-        setSvStatus(`Street View check from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
+        setSvStatus(`Street Level check from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
           (d.removed && d.removed.length ? ` It REMOVED structure: ${d.removed.join(', ')}. Check the report below.` : '') +
           ' Review it before MAKE KEYSTONE; UNDO restores the previous text.', d.removed && d.removed.length ? '#ffb74d' : 'var(--accent-cyan)');
       } catch (e) { setSvStatus(e.message, '#ff5252'); taskEnd(false, e.message); }
@@ -1608,7 +1618,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         if (n) { n.hidden = !stale; if (stale) n.textContent = `This report is from the ${who} at ${rec.at}. The text has been edited since, so parts of it may no longer apply.`; }
       };
       mark('lsa-join-added', lsaJoin && { text: lsaJoin.text_after, at: lsaJoin.at }, 'Add LSA synthesis');
-      mark('sv-finish-report', lastFinish, 'Street View check');
+      mark('sv-finish-report', lastFinish, 'Street Level check');
     }
 
     // Structural terms a pass took out of the scene text (found by comparing the texts on the server).
@@ -1626,7 +1636,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!d) { el.hidden = true; el.innerHTML = ''; return; }
       const added = d.added || [], conflicts = d.conflicts || [];
       const warm = [...new Set(((d.scene_text || '').match(/\b(honey|golden|gold|ochre|amber|tawny)\b/gi) || []).map(w => w.toLowerCase()))];
-      el.innerHTML = removedHtml(d.removed, 'the Street View check') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
+      el.innerHTML = removedHtml(d.removed, 'the Street Level check') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
         (warm.length ? `<div class="lsa-added-head" style="color: #ffb74d;">Warm colour words in the text: ${warm.map(escHtml).join(', ')}</div>` +
           '<div class="lsa-added-note">Usually sunlight in the pano, not the stone. Replace them with the colour the stone has in flat overcast light (buff-grey, grey-tan, pale grey).</div>' : '') +
         `<div class="lsa-added-head">Added from the pano</div>` +
@@ -1677,7 +1687,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('btn-sv-undo').style.display = 'none';
       lastFinish = null;
       renderFinishReport(null);
-      setSvStatus('Scene text restored to before the Street View check.');
+      setSvStatus('Scene text restored to before the Street Level check.');
     }
 
     // Make a keystone's recorded pano the view's current one, for the next keystone.
@@ -1738,11 +1748,23 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       lsaRuns = (Array.isArray(lsaRuns) ? lsaRuns : []).filter(lsaUsable);
       const prev = sel.value;   // A8: a hand pick survives a refresh
       const run = selectedReplayRun();
-      const viewId = run ? run.saved_view_id : null;
+      const viewId = run ? run.saved_view_id : (activeSavedView ? activeSavedView.id : null);
       const mine = lsaRuns.filter(r => viewId && r.saved_view_id === viewId);
       const rest = lsaRuns.filter(r => !mine.includes(r));
       const opt = r => `<option value="${escHtml(r.run_id)}" title="${escHtml(r.subject || '')}">${escHtml(fmtLsaRun(r))}</option>`;
       if (!lsaRuns.length) { sel.innerHTML = '<option value="">No LSA run yet: press Excavate in the brief on the left</option>'; lsaPreview(); return; }
+      // B2 (2026-10-24): "This view only" hides LSA runs made at other views. The chosen run (or one just made) stays
+      // listed under its own heading, so the filter never silently drops what is selected. No view, nothing to filter by.
+      const onlyBox = document.getElementById('lsa-only-view');
+      const only = !!viewId && lsaOnlyViewGet();
+      if (onlyBox) { onlyBox.checked = lsaOnlyViewGet(); onlyBox.disabled = !viewId; }
+      if (only) {
+        const held = rest.filter(r => r.run_id === prev || r.run_id === selectId);
+        sel.innerHTML = '<option value="">Choose an LSA run</option>' +
+          (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>`
+            : '<option value="" disabled>None made at this view (untick "This view only" to see all)</option>') +
+          (held.length ? `<optgroup label="Chosen, from another view">${held.map(opt).join('')}</optgroup>` : '');
+      } else
       sel.innerHTML = '<option value="">Choose an LSA run</option>' +
         (mine.length ? `<optgroup label="Made at this view">${mine.map(opt).join('')}</optgroup>` : '') +
         `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
@@ -1757,6 +1779,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         : 'No LSA run is stamped with this view yet: pick one by hand and check the preview.');
       lsaPreview();
     }
+
+    // Starts off on every load (Don, 24 Oct: a remembered tick read as a broken list).
+    let lsaOnlyView = false;
+    function lsaOnlyViewGet() { return lsaOnlyView; }
+    function lsaOnlyViewSet(on) { lsaOnlyView = !!on; }
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('lsa-only-view')?.addEventListener('change', e => { lsaOnlyViewSet(e.target.checked); loadLsaRuns(); });
+    });
 
     async function lsaDetail(id) {
       if (lsaDetailCache[id]) return lsaDetailCache[id];
@@ -1790,6 +1820,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       try { d = await lsaDetail(id); } catch (e) { brief.textContent = 'Could not read this LSA run: ' + e.message; return; }
       if ((document.getElementById('lsa-join-run') || {}).value !== id) return;   // the pick moved on meanwhile
       const s = d.settings || {}, shot = d.shot || {};
+      flowLoadLsaBrief(false);   // 2026-10-24 (flow): an empty brief takes the chosen run's brief
       if (d.image) {
         thumb.src = d.image;
         thumb.style.display = 'block';
@@ -2023,7 +2054,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const useSv = !!(svState && document.getElementById('chk-sv-keystone').checked);
       const join = lsaJoinPayload();
       const warn = [];
-      if (lsaJoin.finishing_after) warn.push('The Street View check ran after Add LSA synthesis, so only B has had it. For a fair test, UNDO, run the Street View check first, then Add LSA synthesis.');
+      if (lsaJoin.finishing_after) warn.push('The Street Level check ran after Add LSA synthesis, so only B has had it. For a fair test, UNDO, run the Street Level check first, then Add LSA synthesis.');
       if (join && join.hand_edited_after) warn.push('B has hand edits made after Add LSA synthesis.');
       if (!confirm(`Make two keystone candidates from this run's capture, both with seed ${seed} and ${useSv ? `the same pano image (${svState.pano_id})` : 'TEXT ONLY (no pano image)'}:\n\n` +
         `A: the scene text before Add LSA synthesis (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
@@ -2401,7 +2432,9 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       // 2026-10-23: an approved keystone can be approved again after edits, so prints start from the edited version.
       const ksRec = run && run.saved_view_id ? keystones[run.saved_view_id] : null;
       const editedSince = !!(ksRec && ksRec.run_id === (run && run.id) && (run.edit_version || 0) !== (ksRec.edit_version || 0));
-      approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !run.keystone_print_of && (!isApprovedKeystone(run.id) || editedSince)) ? 'block' : 'none';
+      // 2026-10-24: never on a print or a date plate. A date plate was approved as the keystone this morning, so the keystone
+      // carried October's canopy and edits on it were refused (it is rebuilt from the keystone).
+      approveBtn.style.display = (run && run.split && run.has_twin && run.saved_view_id && !flowIsPrint(run) && (!isApprovedKeystone(run.id) || editedSince)) ? 'block' : 'none';
       approveBtn.textContent = editedSince ? `✅ APPROVE EDITED VERSION ${run.edit_version || 0} AS KEYSTONE` : '✅ APPROVE AS KEYSTONE';
       const status = document.getElementById('keystone-status');
       const viewId = keystoneContextViewId();
@@ -2829,7 +2862,19 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
     function epImg(v) { return `${PIPE}/api/runs/${encodeURIComponent(ep.runId)}/edits/image/${v}?t=${Date.now()}`; }
     async function openEditPass() {
       const run = selectedReplayRun();
-      if (!run || !run.has_twin) { setReplayStatus('Select a run with a rendered image (a keystone candidate) to edit.', '#ffb74d'); return; }
+      if (!run || !run.has_twin) { epButtonMsg('Select a keystone candidate under Run first: the edit pass works on its image.', '#ffb74d'); return; }
+      // 2026-10-24 (flow): edits are made on keystone candidates only, before approval. A print or date plate is made
+      // from the keystone, so a fix made on it is lost at the next print (finding 103).
+      if (!flowIsCandidate(run)) {
+        const what = (run.mode === 'DATE_PLATE' || run.date_plate_of) ? 'a date plate' : 'a print';
+        const srcId = run.keystone_run || run.keystone_print_of || run.replay_of;
+        const src = srcId ? replayRuns.find(r => r.id === srcId) : null;
+        epButtonMsg(`Edit works on keystone candidates only. The selected run is ${what}${isApprovedKeystone(run.id) ? ', approved as the keystone by mistake' : ''}: ` +
+          `it is rebuilt from the keystone, so a fix made on it is lost. Make the fix on the candidate it came from` +
+          (src ? `: ${runLabel(src)}` : '') + '.', '#ff5252', src ? src.id : null);
+        return;
+      }
+      epButtonMsg('');
       try {
         const [r1, r2] = await Promise.all([fetch(`${PIPE}/api/runs/${encodeURIComponent(run.id)}/edits`), fetch(`${PIPE}/api/runs/${encodeURIComponent(run.id)}/edits/points`)]);
         const d = await r1.json(); if (!r1.ok) throw new Error(d.detail || `HTTP ${r1.status}`);
@@ -2846,6 +2891,17 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       epStatus('Drag a box on the image, or pick a point of interest, then say the change.', '#ffb74d');
       frameHint('Edit pass: drag a box around the area to change. The controls are in the right column.');
       document.getElementById('edit-pass').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+    // Edit pass messages sit under the EDIT PASS button, where the eye is (finding 59), with a link to the run to use.
+    function epButtonMsg(msg, color, selectId) {
+      const el = document.getElementById('ep-button-msg'); if (!el) return;
+      el.style.color = color || 'var(--text-muted)';
+      el.textContent = msg || '';
+      if (selectId) {
+        const b = document.createElement('button'); b.className = 'family-link'; b.type = 'button'; b.textContent = ' Select it';
+        b.addEventListener('click', () => { epButtonMsg(''); selectReplayRun(selectId); });
+        el.appendChild(b);
+      }
     }
     function closeEditPass() {
       document.getElementById('edit-pass').hidden = true;
@@ -3316,72 +3372,196 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (data.world_viewer_url) console.log('[Marble] world:', data.world_viewer_url);
     }
 
-    // ---- step strip (B1, 2026-10-24) --------------------------------------
-    // Where you are, what is next, and what each step has made, for the view in hand. Clicking a step jumps to its controls.
-    // Order follows KEYSTONE_RECIPE.md; Edit sits after Keystone because the edit pass works on a keystone candidate.
-    const STEPS = [
-      { key: 'view', label: 'View', target: 'mod-cesium', tip: 'Where the camera stands and looks: choose or save a view on the Cesium card' },
-      { key: 'brief', label: 'Brief', target: 'step-brief', tip: 'What you tell the LSA about the place: Place, Standpoint and Looking at on the left' },
-      { key: 'lsa', label: 'LSA run', target: 'run', tip: "The LSA's analysis and its own picture: Excavate in the brief" },
-      { key: 'capture', label: 'Capture', target: 'btn-synthesize-action', tip: "The Cesium frame and the pipeline's first text" },
-      { key: 'addlsa', label: 'Add LSA', target: 'btn-lsa-weave', optional: true, tip: "Bring the LSA's findings into the scene text (optional)" },
-      { key: 'sv', label: 'Street View check', target: 'mod-streetview', optional: true, tip: 'Read a street photo into the scene text (optional)' },
-      { key: 'keystone', label: 'Keystone', target: 'btn-keystone', tip: 'Render the keystone candidate' },
-      { key: 'edit', label: 'Edit', target: 'btn-edit-pass', optional: true, tip: 'Fix small areas of the candidate, one change at a time (optional)' },
-      { key: 'approve', label: 'Approve', target: 'btn-approve-keystone', tip: 'Approve the candidate as the keystone; prints start from it' },
+    // ---- the guided flow (2026-10-24, Don; replaces the B1 strip) ----------------------------------------------
+    // One green step at a time: View › LSA run › Capture › Add LSA › Street Level › Keystone › Edit › Approve › Prints.
+    // A step is set (blue) by what is selected now, in this session, never by what exists on disk (clean start).
+    // Steps not reached are dimmed and locked with their panels; set steps stay open to go back to.
+    // Add LSA, Street Level and Edit are optional: Skip on the strip, or passed once a later step is set.
+    // Edit comes before Approve: approval fixes the master that every print starts from (Don and Claude, 24 Oct).
+    const FLOW = [
+      { key: 'view', label: 'View', panels: ['mod-cesium', 'strip-location'], flash: ['sec-camera', 'sec-views'],
+        hint: 'Choose a saved view and press <b>GO</b>, or frame a new one in Cesium and <b>SAVE</b> it.' },
+      { key: 'lsa', label: 'LSA run', panels: ['sec-lsarun', 'col-left', 'mod-lsaruns'], flash: ['sec-lsarun'],
+        hint: 'Use an LSA run made at this view, or <b>write the brief</b> on the left and Excavate a new one.' },
+      { key: 'capture', label: 'Capture', panels: ['sec-runs', 'btn-synthesize-action'], flash: ['sec-runs'],
+        hint: 'Choose a capture made at this view under Run, or <b>CAPTURE</b> a new one.' },
+      { key: 'addlsa', label: 'Add LSA', optional: true, panels: ['sec-addlsa'], flash: ['sec-addlsa'],
+        hint: '<b>ADD LSA SYNTHESIS</b> brings the LSA run into the capture\'s scene text. Optional.' },
+      { key: 'street', label: 'Street Level', optional: true, panels: ['mod-streetview'], flash: ['sec-evidence', 'sec-sv'],
+        hint: 'Pick a street-level image for this view, then run the <b>STREET LEVEL CHECK</b>. Optional.' },
+      { key: 'keystone', label: 'Keystone', panels: ['sec-keystone', 'btn-keystone'], flash: ['btn-keystone'],
+        hint: '<b>Make keystone</b> renders a candidate from the capture; the new candidate is selected.' },
+      { key: 'edit', label: 'Edit', optional: true, panels: ['btn-edit-pass'], flash: ['btn-edit-pass'],
+        hint: '<b>EDIT PASS</b> fixes small areas of the candidate, one change at a time. Optional.' },
+      { key: 'approve', label: 'Approve', panels: ['btn-approve-keystone'], flash: ['btn-approve-keystone'],
+        hint: '<b>APPROVE AS KEYSTONE</b>: every print starts from it.' },
+      { key: 'prints', label: 'Prints', panels: ['sec-prints'], flash: ['sec-prints'],
+        hint: 'Set the date, time and weather in the strip, then <b>PRINT FROM KEYSTONE</b>.' },
     ];
-    function stepState() {
-      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
-      const viewId = (run && run.saved_view_id) || (document.getElementById('select-saved-view') || {}).value || '';
-      const view = savedViews.find(v => v.id === viewId);
-      const val = id => ((document.getElementById(id) || {}).value || '').trim();
-      const atView = (replayRuns || []).filter(r => r.saved_view_id === viewId);
-      const lsaHere = (lsaRuns || []).filter(r => r.saved_view_id === viewId);
-      const cands = atView.filter(r => isKeystoneRun(r));
-      const edited = cands.filter(r => r.edit_version);
-      const ks = viewId ? keystones[viewId] : null;
-      const made = {
-        view: view ? `View: ${view.name}` : '',
-        brief: val('f-place') && val('f-standpoint') && val('f-subject') ? `Brief: ${val('f-place')}` : '',
-        lsa: lsaHere.length ? `${lsaHere.length} LSA run${lsaHere.length === 1 ? '' : 's'} at this view` : '',
-        capture: atView.length ? `${atView.length} run${atView.length === 1 ? '' : 's'} at this view` : '',
-        addlsa: lsaJoin ? 'LSA findings added to the selected capture' : '',
-        sv: '',
-        keystone: cands.length ? `${cands.length} keystone candidate${cands.length === 1 ? '' : 's'}` : '',
-        edit: edited.length ? `${edited.length} candidate${edited.length === 1 ? '' : 's'} edited${run && run.edit_version ? `; the selected one is at version ${run.edit_version}` : ''}` : '',
-        approve: ks ? `Approved: ${fmtRunId(ks.run_id)}${ks.edit_version ? `, edited version ${ks.edit_version}` : ''}` : '',
+    // Strictly in order (fix 2026-10-24, after Don's first test): a step can be set only when every step before it is
+    // set or skipped; everything after the green step is grey, whatever is selected. A set step stays set (latched) for
+    // the thing it was set on (the view, the LSA run, the capture, the candidate) and clears when that thing changes.
+    // Approve is never latched: it follows the keystone record, so an edit after approval sends you back to Approve.
+    let flowSkips = {}, flowLatch = {}, flowStreetDoneFor = null, flowSig = '', flowSkipGuard = 0, flowLastLog = '';
+    function flowIsCandidate(r) { return !!r && isKeystoneRun(r) && !r.keystone_print_of && !(r.mode === 'DATE_PLATE' || r.date_plate_of); }
+    function flowIsPrint(r) { return !!r && !!(r.keystone_print_of || r.mode === 'DATE_PLATE' || r.date_plate_of); }
+    function flowBriefSet() {
+      const v = id => ((document.getElementById(id) || {}).value || '').trim();
+      return !!(v('f-place') && v('f-standpoint') && v('f-subject'));
+    }
+    // What is selected now: the identity each step would be set on, and whether its condition holds.
+    function flowLive() {
+      const viewSel = (document.getElementById('select-saved-view') || {}).value || '';
+      const view = activeSavedView && viewSel === activeSavedView.id ? activeSavedView : null;
+      const run = selectedReplayRun();
+      const here = view && run && run.saved_view_id === view.id ? run : null;
+      const ks = view ? keystones[view.id] : null;
+      // A print or date plate is made from the approved keystone, so Keystone to Approve are judged on that keystone.
+      const cand = flowIsCandidate(here) ? here : (flowIsPrint(here) && ks ? replayRuns.find(r => r.id === ks.run_id) || null : null);
+      const capture = cand && cand.replay_of ? replayRuns.find(r => r.id === cand.replay_of) || null : (here && !flowIsPrint(here) ? here : null);
+      const lsaId = (document.getElementById('lsa-join-run') || {}).value || '';
+      const ids = { view: view && view.id, lsa: lsaId, capture: capture && capture.id, addlsa: capture && capture.id,
+                    street: capture && capture.id, keystone: cand && cand.id, edit: cand && cand.id, approve: cand && cand.id, prints: null };
+      const streetIds = [here && here.id, capture && capture.id].filter(Boolean);
+      const ok = {
+        view: !!view,
+        lsa: !!(view && lsaId && flowBriefSet()),
+        capture: !!capture,
+        addlsa: !!(here && lsaJoin),
+        street: !!(flowStreetDoneFor && streetIds.includes(flowStreetDoneFor)),
+        keystone: !!cand,
+        edit: !!(cand && cand.edit_version),
+        approve: !!(cand && ks && ks.run_id === cand.id && (cand.edit_version || 0) === (ks.edit_version || 0)),
+        prints: false,
       };
-      const current = STEPS.find(st => !st.optional && !made[st.key]);
-      return { made, current: current ? current.key : null, viewName: view ? view.name : '' };
+      const info = {
+        view: view ? `View: ${view.name}` : '', lsa: lsaId ? `LSA run ${fmtRunId(lsaId)}, with its brief` : '',
+        capture: capture ? `Capture: ${runLabel(capture)}` : '', addlsa: 'LSA synthesis added to the scene text',
+        street: 'Street Level check run on this text', keystone: cand ? `Candidate: ${runLabel(cand)}` : '',
+        edit: cand && cand.edit_version ? `Edited: version ${cand.edit_version}` : 'Edit', approve: 'Approved: every print starts from it', prints: '',
+      };
+      return { ids, ok, info, viewName: view ? view.name : '' };
     }
-    let stepSig = '';
-    function renderSteps() {
+    function flowCompute() {
+      const L = flowLive();
+      if (flowLatch.view !== undefined && flowLatch.view !== L.ids.view) { flowLatch = {}; flowSkips = {}; flowStreetDoneFor = null; }   // a new view starts clean
+      const state = {}, set = {};
+      let cur = null;
+      FLOW.forEach((s, i) => {
+        const id = L.ids[s.key];
+        if (cur !== null) { state[s.key] = 'locked'; delete flowLatch[s.key]; return; }
+        const latched = s.key !== 'approve' && id && flowLatch[s.key] === id;
+        if (L.ok[s.key] || latched) { flowLatch[s.key] = id; state[s.key] = 'done'; set[s.key] = L.info[s.key]; return; }
+        delete flowLatch[s.key];
+        if (s.optional && id && flowSkips[s.key] === id) { state[s.key] = 'skipped'; return; }
+        cur = i; state[s.key] = 'current';
+      });
+      return { state, set, cur, viewName: L.viewName };
+    }
+    function renderSteps(force) {
       const nav = document.getElementById('steps'); if (!nav) return;
-      let st; try { st = stepState(); } catch (e) { return; }
-      const sig = JSON.stringify(st); if (sig === stepSig) return; stepSig = sig;
-      nav.innerHTML = STEPS.map((s, i) => {
-        const done = !!st.made[s.key], cur = st.current === s.key;
-        const cls = ['step', done ? 'done' : '', cur ? 'current' : '', s.optional ? 'optional' : ''].join(' ');
-        const ic = cur ? '▶' : done ? '✓' : s.optional ? '○' : '·';
-        const state = cur ? 'Next step' : done ? 'Done' : s.optional ? 'Optional' : 'Not yet';
-        const title = `${state}: ${s.tip}${done ? '\n' + st.made[s.key] : ''}`;
-        const label = s.key === 'view' && st.viewName ? `View: ${st.viewName.length > 34 ? st.viewName.slice(0, 33) + '…' : st.viewName}` : s.label;
+      let f; try { f = flowCompute(); } catch (e) { console.warn('[Flow]', e); return; }
+      const sig = JSON.stringify([f.state, f.set, f.cur]);
+      if (!force && sig === flowSig) return;
+      flowSig = sig;
+      const line = FLOW.map(s => `${s.key}:${f.state[s.key]}`).join(' ');
+      if (line !== flowLastLog) { flowLastLog = line; console.log('[Flow]', line); }   // for diagnosing a jump: paste this line
+      nav.innerHTML = FLOW.map((s, i) => {
+        const st = f.state[s.key];
+        const ic = { current: '▶', done: '✓', skipped: '⤼', locked: '·' }[st];
+        const word = { current: 'next', done: 'set', skipped: 'skipped', locked: 'not yet' }[st];
+        const label = s.key === 'view' && st === 'done' && f.viewName ? `View: ${f.viewName.length > 20 ? f.viewName.slice(0, 19) + '…' : f.viewName}` : s.label;
+        const title = `Step ${i + 1}, ${s.label}: ${word}` + (st === 'done' ? `\n${f.set[s.key]}` : '') +
+          (st === 'skipped' ? '\nClick to go back to it.' : '') + (st === 'locked' ? '\nOpens when the steps before it are set.' : '');
         return (i ? '<span class="step-sep">›</span>' : '') +
-          `<button class="${cls}" data-step="${s.key}" title="${escHtml(title)}" aria-label="${escHtml(s.label + ', ' + state)}"><span class="ic">${ic}</span>${escHtml(label)}</button>`;
-      }).join('') + (st.current ? '' : '<span class="step-sep" style="margin-left: 6px; color: #66bb6a;">✓ Keystone approved: prints are next</span>');
-      nav.querySelectorAll('.step').forEach(b => b.addEventListener('click', () => jumpToStep(b.dataset.step)));
+          `<button class="step ${st}" data-step="${s.key}"${st === 'locked' ? ' aria-disabled="true"' : ''} title="${escHtml(title)}" aria-label="${escHtml(`Step ${i + 1}, ${s.label}, ${word}`)}"><span class="ic">${ic}</span>${escHtml(label)}</button>`;
+      }).join('');
+      nav.querySelectorAll('.step').forEach(b => b.addEventListener('click', () => { if (!b.classList.contains('locked')) flowGo(b.dataset.step); }));
+      // Skip sits in the hint line and names the step it skips, so a second click cannot skip the next one by accident.
+      const hint = document.getElementById('flow-hint');
+      if (hint) {
+        const c = f.cur === null ? null : FLOW[f.cur];
+        hint.innerHTML = !c ? 'All steps are set.'
+          : `<b>Next, step ${f.cur + 1}: ${escHtml(c.label)}.</b> ${c.hint} Click the green step to open it.` +
+            (c.optional ? ` <button class="step-skip" data-skip="${c.key}">Skip ${escHtml(c.label)}</button>` : '');
+        hint.querySelectorAll('.step-skip').forEach(b => b.addEventListener('click', () => {
+          if (Date.now() < flowSkipGuard) return;
+          flowSkipGuard = Date.now() + 1200;
+          const id = flowLive().ids[b.dataset.skip];
+          if (id) { flowSkips[b.dataset.skip] = id; renderSteps(true); }
+        }));
+      }
+      flowApplyLocks(f);
     }
-    function jumpToStep(key) {
-      const s = STEPS.find(x => x.key === key); if (!s) return;
-      const el = document.getElementById(s.target); if (!el) return;
-      const det = el.closest('details'); if (det) det.open = true;
-      const sec = el.closest('.sec'); if (sec) sec.classList.remove('closed');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.classList.add('step-flash'); setTimeout(() => el.classList.remove('step-flash'), 1400);
+    function flowEls(ids) { return ids.map(id => document.getElementById(id)).filter(Boolean); }
+    function flowApplyLocks(f) {
+      FLOW.forEach((s, i) => {
+        const st = f.state[s.key], locked = st === 'locked', cur = st === 'current';
+        flowEls(s.panels).forEach(el => {
+          el.classList.toggle('flow-locked', locked);
+          el.inert = locked;
+          const panel = el.classList.contains('sec') || el.classList.contains('card');
+          el.classList.toggle('flow-current-panel', panel && cur);
+          el.classList.toggle('flow-done-panel', panel && (st === 'done' || st === 'skipped'));
+          if (el.classList.contains('sec')) {
+            el.classList.toggle('waiting', locked);
+            const need = el.querySelector('.sec-need');
+            if (need) need.textContent = locked ? `Step ${i + 1}, ${s.label}: opens after ${FLOW[i - 1].label}` : '';
+          }
+        });
+      });
+    }
+    function flowFlash(els) {
+      els.forEach(el => { el.classList.remove('step-flash'); void el.offsetWidth; el.classList.add('step-flash'); setTimeout(() => el.classList.remove('step-flash'), 1700); });
+    }
+    // Clicking a step opens its panel, scrolls to it and rings it green. A skipped step clicked is no longer skipped.
+    function flowGo(key) {
+      const s = FLOW.find(x => x.key === key); if (!s) return;
+      if (flowSkips[key]) { delete flowSkips[key]; renderSteps(true); }
+      const els = flowEls(s.flash);
+      els.forEach(el => {
+        const secs = el.classList.contains('sec') ? [el] : el.classList.contains('card') ? [...el.querySelectorAll('.sec')] : [el.closest('.sec')].filter(Boolean);
+        secs.forEach(sec => { sec.classList.remove('closed'); const h = sec.querySelector('.sec-head'); if (h) h.setAttribute('aria-expanded', 'true'); });
+      });
+      if (els[0]) els[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      flowFlash(els);
+    }
+    // LSA run step, second path: write the brief on the left, then Excavate.
+    function lsaPickStatus(msg, color) { const el = document.getElementById('lsa-pick-status'); if (el) { el.textContent = msg || ''; el.style.color = color || 'var(--text-muted)'; } }
+    function flowOpenBrief() {
+      const sel = document.getElementById('lsa-join-run');
+      if (sel && sel.value) { sel.value = ''; sel.dispatchEvent(new Event('change')); }   // a new run: the old pick is let go
+      const head = document.getElementById('step-brief');
+      if (head) head.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      flowFlash(flowEls(['col-left']));
+      setTimeout(() => document.getElementById('f-place')?.focus(), 450);
+      lsaPickStatus('Write Place, Standpoint and Looking at (and the Scene layout) on the left, then press Excavate at the bottom of the left column. The new LSA run is chosen here when it finishes.');
+    }
+    // LSA run step, first path: an LSA run chosen here brings its brief to the left column. An empty brief takes it at
+    // once; a brief with other words in it is never replaced without asking.
+    async function flowLoadLsaBrief(force) {
+      const id = (document.getElementById('lsa-join-run') || {}).value;
+      const btn = document.getElementById('btn-lsa-load-brief');
+      if (!id) { if (btn) btn.hidden = true; lsaPickStatus(''); return; }
+      let d; try { d = await lsaDetail(id); } catch (e) { lsaPickStatus('Could not read that LSA run: ' + e.message, '#ff5252'); return; }
+      if ((document.getElementById('lsa-join-run') || {}).value !== id) return;
+      const shot = (d && d.shot) || {};
+      const fields = ['place', 'standpoint', 'subject', 'layout'];
+      const el = f => document.querySelector(`#col-left [data-field="${f}"]`);
+      const val = f => ((el(f) || {}).value || '').trim();
+      const empty = fields.every(f => !val(f));
+      const same = fields.every(f => val(f) === String(shot[f] || '').trim());
+      if (same) { if (btn) btn.hidden = true; lsaPickStatus('The brief on the left is this LSA run\'s brief.', 'var(--accent-cyan)'); return; }
+      if (!force && !empty) { if (btn) btn.hidden = false; lsaPickStatus('The brief on the left is not this LSA run\'s brief. Load its brief, or keep yours.', '#ffb74d'); return; }
+      if (force && !empty && !confirm('Replace Place, Standpoint, Looking at and Scene layout on the left with this LSA run\'s brief?')) return;
+      fields.forEach(f => { const e = el(f); if (e) { e.value = shot[f] == null ? '' : String(shot[f]); e.dispatchEvent(new Event('input', { bubbles: true })); } });
+      if (btn) btn.hidden = true;
+      lsaPickStatus('Its brief is on the left: Place, Standpoint, Looking at and Scene layout.', 'var(--accent-cyan)');
+      renderSteps(true);
     }
     // ---- evidence (B5, 2026-10-24) -------------------------------------------
     // The images read for a view, kept with the view like a painter's plein air sketches: details and vistas, one in use
-    // for the Street View check. Only metadata is kept; images are fetched when shown. Source-neutral records.
+    // for the Street Level check. Only metadata is kept; images are fetched when shown. Source-neutral records.
     let evItems = [], evViewId = null, evCands = [];
     const EV_LICENCE = { streetview: 'Google Maps Platform: fetched when needed, never stored' };
     function evViewNow() {
@@ -3400,6 +3580,17 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (it.source === 'streetview') return `${PIPE}/api/streetview/image?pano=${encodeURIComponent(it.ref)}&heading=${it.heading}&pitch=${it.pitch}&fov=${it.fov}&size=${SV_SIZE}`;
       return '';
     }
+    // B5 (2026-10-24): each image says in plain words what it is for and where it goes. Detail and Vista are labels only
+    // for now (no pipeline meaning yet), so the line says what the label means, not what the pipeline does with it.
+    // "Never sent" is true only while the MAKE KEYSTONE tick is off, so the line for the image in use follows the tick.
+    const EV_ROLE_WORDS = { detail: 'Detail: a close look at the subject.', vista: 'Vista: the wider scene around it.' };
+    function evRoleLine(it) {
+      const label = EV_ROLE_WORDS[it.role === 'vista' ? 'vista' : 'detail'];
+      if (!it.active) return `<span class="ev-role">${label} Kept for reading; not in use.</span>`;
+      const tick = document.getElementById('chk-sv-keystone');
+      if (tick && tick.checked) return `<span class="ev-role ev-role-warn">${label} In use: read into words by the Street Level check, and also sent to the image model by MAKE KEYSTONE (the box is ticked under Street Level check).</span>`;
+      return `<span class="ev-role">${label} In use: read into words by the Street Level check; never sent to the image model.</span>`;
+    }
     function evRender() {
       const ul = document.getElementById('ev-list'); if (!ul) return;
       if (!evViewId) { ul.innerHTML = '<li class="hint">Choose a view first: its images are kept with it.</li>'; return; }
@@ -3411,13 +3602,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           `<div class="ev-meta"><b>${escHtml(src)}</b> · ${escHtml(it.date || 'date unknown')}${season ? ` (${season})` : ''}` +
           `<br><span class="q">${it.distance_m != null ? Math.round(it.distance_m) + ' m from the subject · ' : ''}heading ${Math.round(it.heading)}° · ${Math.round(it.fov)}° across</span>` +
           `<br><span class="q">${escHtml(it.licence || EV_LICENCE[it.source] || '')}${it.copyright ? ' · ' + escHtml(it.copyright) : ''}</span>` +
-          `<div class="ev-row">${it.active ? '<span class="ev-inuse">● In use</span>' : `<button class="toggle-btn" data-ev-use="${i}" title="Switch to this image: it shows in the Street View check below and is marked in use">Use this one</button>`}` +
+          `<br>${evRoleLine(it)}` +
+          `<div class="ev-row">${it.active ? '<span class="ev-inuse">● In use</span>' : `<button class="toggle-btn" data-ev-use="${i}" title="Switch to this image: it shows in the Street Level check below and is marked in use">Use this one</button>`}` +
           `<select data-ev-role="${i}" title="What this image is for"><option value="detail"${it.role !== 'vista' ? ' selected' : ''}>Detail</option><option value="vista"${it.role === 'vista' ? ' selected' : ''}>Vista</option></select>` +
           `<button class="toggle-btn" data-ev-del="${i}" title="Remove it from this view (nothing else changes)">✕</button></div></div></li>`;
       }).join('');
       ul.querySelectorAll('[data-ev-use]').forEach(b => b.addEventListener('click', () => evUse(+b.dataset.evUse)));
       ul.querySelectorAll('[data-ev-del]').forEach(b => b.addEventListener('click', () => evRemove(+b.dataset.evDel)));
-      ul.querySelectorAll('[data-ev-role]').forEach(sel => sel.addEventListener('change', () => { evItems[+sel.dataset.evRole].role = sel.value; evSave(); }));
+      ul.querySelectorAll('[data-ev-role]').forEach(sel => sel.addEventListener('change', async () => { evItems[+sel.dataset.evRole].role = sel.value; if (await evSave()) evRender(); }));
     }
     async function evSave() {
       if (!evViewId) return false;
@@ -3461,14 +3653,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           evCands.map((c, i) => { const it = evItemFrom(c); const season = seasonOf(c.date, c.lat);
             return `<li class="ev-item"><img alt="Candidate ${i + 1}" src="${evThumb(it)}" loading="lazy"><div class="ev-meta"><b>${i + 1}. Street View</b> · ${escHtml(c.date || 'date unknown')}${season ? ` (${season})` : ''}` +
               `<br><span class="q">${escHtml(c.why)}</span><div class="ev-row"><button class="toggle-btn" data-ev-add="${i}">＋ Keep</button>` +
-              `<button class="toggle-btn" data-ev-try="${i}" title="Show it in the Street View check below without keeping it">Look</button></div></div></li>`; }).join('') + '</ul>';
+              `<button class="toggle-btn" data-ev-try="${i}" title="Show it in the Street Level check below without keeping it">Look</button></div></div></li>`; }).join('') + '</ul>';
         box.querySelectorAll('[data-ev-add]').forEach(b => b.addEventListener('click', () => evAdd(evItemFrom(evCands[+b.dataset.evAdd]))));
         box.querySelectorAll('[data-ev-try]').forEach(b => b.addEventListener('click', () => { const c = evCands[+b.dataset.evTry]; svState = { ...c, size: SV_SIZE }; svFillInputs(false); svShowPreview(); document.getElementById('sv-preview').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }));
-        evStatus(evCands.length ? 'Keep the ones worth reading; Look shows one in the Street View check below.' : 'No candidates.', 'var(--accent-cyan)');
+        evStatus(evCands.length ? 'Keep the ones worth reading; Look shows one in the Street Level check below.' : 'No candidates.', 'var(--accent-cyan)');
       } catch (e) { evStatus(e.message, '#ff5252'); }
     }
     async function evAddShown() {
-      if (!svState || !svState.pano_id) { evStatus('No pano is shown in the Street View check below yet.', '#ff5252'); return; }
+      if (!svState || !svState.pano_id) { evStatus('No pano is shown in the Street Level check below yet.', '#ff5252'); return; }
       await evAdd(evItemFrom({ ...svState }));
     }
     async function evUse(i) {
@@ -3479,7 +3671,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         svFillInputs(false); svShowPreview();
       }
       evItems.forEach((x, j) => x.active = j === i);
-      if (await evSave()) { evRender(); evStatus('In use for the Street View check below.', 'var(--accent-cyan)'); }
+      if (await evSave()) { evRender(); evStatus('In use for the Street Level check below.', 'var(--accent-cyan)'); }
     }
     async function evRemove(i) {
       const it = evItems[i]; if (!it) return;
@@ -3494,37 +3686,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       b.hidden = !shown || !evViewId || evItems.some(x => x.source === 'streetview' && x.ref === svState.pano_id && Math.round(x.heading) === Math.round(svState.heading));
     }
     setInterval(() => { if (evViewNow() !== evViewId) evLoadForView(); evKeepButton(); }, 1000);
+    // The role line of the image in use follows the MAKE KEYSTONE tick.
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('chk-sv-keystone')?.addEventListener('change', () => evRender());
+    });
 
-    // ---- sections and gating (B2, 2026-10-24) ------------------------------
-    // A section waiting on an earlier step starts closed, dashed, with a line saying what it needs; a click opens it anyway.
-    // It changes state only when what it needs changes, so a section the director opened stays open.
-    function sectionNeeds() {
-      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
-      const viewId = (run && run.saved_view_id) || (document.getElementById('select-saved-view') || {}).value || '';
-      const needRun = run ? '' : 'Needs a run: select one under Runs';
-      return {
-        'sec-poi': viewId ? '' : 'Needs a view: choose or save one above',
-        'sec-addlsa': needRun || ((lsaRuns || []).length ? '' : 'Needs an LSA run: Excavate in the brief'),
-        'sec-keystone': needRun,
-        'sec-prints': viewId && keystones[viewId] ? '' : 'Needs an approved keystone for this view',
-        'sec-evidence': viewId ? '' : 'Needs a view: choose one on the Views card',
-        'sec-sv': needRun,
-      };
-    }
-    const secLast = {};
-    function applyGating() {
-      let needs; try { needs = sectionNeeds(); } catch (e) { return; }
-      for (const [id, need] of Object.entries(needs)) {
-        const sec = document.getElementById(id); if (!sec) continue;
-        if (secLast[id] === need) continue;
-        secLast[id] = need;
-        const editing = id === 'sec-keystone' && !document.getElementById('edit-pass').hidden;
-        sec.classList.toggle('waiting', !!need);
-        sec.classList.toggle('closed', !!need && !editing);
-        sec.querySelector('.sec-need').textContent = need;
-        sec.querySelector('.sec-head').setAttribute('aria-expanded', String(!sec.classList.contains('closed')));
-      }
-    }
+    // ---- sections (B2, 2026-10-24) ------------------------------------------------
+    // Gating is done by the guided flow above (2026-10-24): panels of steps not reached are dimmed and locked.
     document.addEventListener('click', e => {
       const head = e.target.closest && e.target.closest('.sec-head'); if (!head) return;
       const sec = head.closest('.sec'); sec.classList.toggle('closed');
@@ -3537,8 +3705,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       a.addEventListener('change', () => { if (a.value && [...b.options].some(o => o.value === a.value) && b.value !== a.value) { b.value = a.value; loadReplayRuns(); } });
       b.addEventListener('change', () => { if (b.value && [...a.options].some(o => o.value === b.value)) a.value = b.value; });
     });
-    setInterval(() => { renderSteps(); applyGating(); }, 1500);
-    window.addEventListener('DOMContentLoaded', () => setTimeout(renderSteps, 300));
+    setInterval(() => renderSteps(), 700);
+    window.addEventListener('DOMContentLoaded', () => setTimeout(() => renderSteps(true), 300));
 
     // ---- console helpers -----------------------------------------------
     window.setGlobe = function (v) { viewer.scene.globe.show = !!v; return viewer.scene.globe.show; };
