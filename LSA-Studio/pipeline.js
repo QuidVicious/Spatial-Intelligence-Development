@@ -40,7 +40,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         if (!Cesium.Ion.defaultAccessToken) {
           console.error('[Tiles] No Cesium Ion token reached the client. Check /api/config and CESIUM_ION_TOKEN in .env');
         }
-        googleTileset = await Cesium.createGooglePhotorealistic3DTileset();
+        // 2026-10-24: Google asks CesiumJS apps to show the tiles' data attribution on screen, not behind a link.
+        googleTileset = await Cesium.createGooglePhotorealistic3DTileset(undefined, { showCreditsOnScreen: true });
         viewer.scene.primitives.add(googleTileset);
         tilesLoaded = true;
         console.log('[Tiles] Google Photorealistic 3D Tiles loaded.');
@@ -80,9 +81,9 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const timeSlider = document.getElementById('input-time-slider');
       if (isLive) {
         dateInput.classList.add('disabled-el'); timeSlider.classList.add('disabled-el');
-        const now = new Date();
-        dateInput.value = now.toISOString().split('T')[0];
-        timeSlider.value = (now.getHours() + now.getMinutes() / 60.0).toFixed(2);
+        const now = nowAtLocation();   // 2026-10-24: the location's clock, not this computer's
+        dateInput.value = now.date;
+        timeSlider.value = now.hours.toFixed(2);
         updateSliderDisplay(timeSlider.value);
         syncCesiumTime();
       } else {
@@ -95,13 +96,49 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const isMarble = (prov === 'WORLD_LABS');
       document.getElementById('btn-prov-gemini').classList.toggle('active', !isMarble);
       document.getElementById('btn-prov-marble').classList.toggle('active', isMarble);
-      document.getElementById('btn-synthesize-action').textContent = isMarble ? 'Synthesize 3D world' : 'Synthesize';
+      document.getElementById('btn-synthesize-action').textContent = isMarble ? 'CAPTURE 3D world' : 'CAPTURE';
       document.getElementById('marble-options').style.display = isMarble ? 'block' : 'none';
       document.getElementById('gemini-options').style.display = isMarble ? 'none' : 'block';
     }
 
     function onViewScopeChange(val) { document.getElementById('view-scope-label').textContent = val; }
-    function onTimeSliderChange(val) { updateSliderDisplay(parseFloat(val)); syncCesiumTime(); }
+    function onTimeSliderChange(val) { timeTouched = true; updateSliderDisplay(parseFloat(val)); syncCesiumTime(); }
+    // 2026-10-24: "now" means now AT THE LOCATION. The page used this computer's clock, so 11:03 in Kingston became
+    // 11:03 in Edinburgh (really about 19:03) and Live weather (now) was paired with a different time of day.
+    let timeTouched = false;
+    function nowAtLocation() {
+      const utc = Date.now();
+      let off = null;
+      if (locationTZ) { try { off = tzOffsetMs(locationTZ, utc); } catch (e) { off = null; } }
+      if (off === null && locationLon !== null) off = Math.round(locationLon / 15) * 3600e3;
+      if (off === null) { const d = new Date(); return { date: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`, hours: d.getHours() + d.getMinutes() / 60, known: false }; }
+      const t = new Date(utc + off);
+      return { date: t.toISOString().slice(0, 10), hours: t.getUTCHours() + t.getUTCMinutes() / 60, known: true };
+    }
+    function fmtHours(h) { const hh = Math.floor(h), mm = Math.floor((h - hh) * 60); return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`; }
+    // A warning when Live weather (conditions now) is paired with a time far from now at the location; and the print
+    // button says what a print will use.
+    const WEATHER_WORDS = { AUTO: 'Live weather', SUNNY: 'Sunny', RAIN: 'Rain', FOG: 'Fog', SNOW: 'Snow', OVERCAST: 'Overcast' };
+    function updateTimeNotes() {
+      const date = (document.getElementById('input-date') || {}).value || '';
+      const hm = (document.getElementById('slider-time-display') || {}).textContent || '';
+      const warn = document.getElementById('live-mismatch');
+      if (warn) {
+        const now = nowAtLocation();
+        const [h, m] = hm.split(':').map(Number);
+        const set = h + (m || 0) / 60;
+        const apart = now.known ? Math.min(Math.abs(set - now.hours), 24 - Math.abs(set - now.hours)) : 0;
+        const show = currentWeatherMode === 'AUTO' && now.known && (apart > 1.5 || date !== now.date);
+        warn.hidden = !show;
+        if (show) warn.textContent = `Live weather is now there (${fmtHours(now.hours)}${date !== now.date ? ', ' + now.date : ''}); the time is set to ${hm}.`;
+      }
+      const pb = document.getElementById('btn-print-keystone');
+      if (pb && date) {
+        const d = new Date(date + 'T12:00:00');
+        pb.textContent = `🖨 PRINT FROM KEYSTONE: ${d.getDate()} ${d.toLocaleString('en-GB', { month: 'short' })}, ${hm}, ${WEATHER_WORDS[currentWeatherMode] || currentWeatherMode}`;
+      }
+    }
+    setInterval(updateTimeNotes, 1000);
     
     function updateSliderDisplay(val) {
       const h = Math.floor(val); const m = Math.floor((val - h) * 60);
@@ -221,7 +258,18 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
           document.getElementById('hud-live-weather-text').textContent = `${w.label} • ${Number(w.temperature_c).toFixed(1)}°C`;
           // A reply without a source is the server's fallback when the weather service failed: its "UTC" is a placeholder.
           const tz = w.source && w.timezone ? w.timezone : null;
-          if (tz !== locationTZ) { locationTZ = tz; syncCesiumTime(); }
+          if (tz !== locationTZ) {
+            locationTZ = tz;
+            // Until the director moves the time, it follows now at the location (or the live clock does).
+            const live = document.getElementById('chk-live-time');
+            if (tz && (!timeTouched || (live && live.checked))) {
+              const now = nowAtLocation();
+              document.getElementById('input-date').value = now.date;
+              document.getElementById('input-time-slider').value = now.hours.toFixed(2);
+              updateSliderDisplay(now.hours);
+            }
+            syncCesiumTime();
+          }
           const disp = document.getElementById('slider-time-display');
           if (disp) disp.title = locationTZ ? `Local time at the location (${locationTZ})` : 'Local time at the location (zone not yet known)';
         }
@@ -1071,7 +1119,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
 
     async function captureAndSynthesizeTwin() {
       if (!viewer) return;
-      if (!confirmDropEdits('Synthesize')) return;
+      if (!confirmDropEdits('CAPTURE')) return;
       if (typeof saveFraming === 'function') saveFraming('capture');
       const atView = cameraMatchesView(activeSavedView) ? activeSavedView : null;
       console.log(atView ? `[Views] capture tagged with view: ${atView.name}` : '[Views] capture not at a saved view (untagged)');
@@ -1347,7 +1395,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       svUpdateFovNote();
       const run = selectedReplayRun();
       const subj = svSubjectFor(run);
-      document.getElementById('sv-context').textContent = !run ? 'Select a run in the Replay card.'
+      document.getElementById('sv-context').textContent = !run ? 'Select a run on the Runs card.'
         : subj ? `Aims at the ${subj.source}: ${subj.lat.toFixed(6)}, ${subj.lon.toFixed(6)}`
         : 'This run has no subject or target point; set a subject on its view first.';
       setSvStatus('');
@@ -1360,8 +1408,16 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         setSvStatus(`The pano this keystone was made with${own.used === false ? ' (its fetch failed, so the render did not use it)' : ''}.`, 'var(--accent-cyan)');
         return;
       }
-      // The pano is a property of the view, not of one run: bring back the last one set for this view.
+      // The pano is a property of the view, not of one run. 2026-10-24: it is offered, not restored by itself, so nothing
+      // from an earlier session looks current until the director chooses it.
       const kept = run && svLoadForView(run.saved_view_id);
+      const lastBtn = document.getElementById('btn-sv-last');
+      if (lastBtn) { lastBtn.hidden = !kept; if (kept) lastBtn.textContent = `Use the last pano set for this view${kept.date ? ` (${kept.date})` : ''}`; }
+    }
+    function svUseLastForView() {
+      const run = selectedReplayRun();
+      const kept = run && svLoadForView(run.saved_view_id);
+      document.getElementById('btn-sv-last').hidden = true;
       if (kept) {
         const old = !kept.size || kept.size === SV_SQUARE;
         svState = { ...kept, size: SV_SIZE };
@@ -1511,8 +1567,8 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!run || !svState) { setSvStatus('Propose a pano first.', '#ff5252'); return; }
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
-      setSvStatus('Running the finishing pass against the pano...');
-      taskStart('Street View check (FINISHING PASS)', `Reading pano ${svState.pano_id} into the scene text. Usually 20 to 40 s.`);
+      setSvStatus('Running the Street View check against the pano...');
+      taskStart('Street View check', `Reading pano ${svState.pano_id} into the scene text. Usually 20 to 40 s.`);
       try {
         const resp = await fetch(PIPE + '/api/streetview/rewrite', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1531,7 +1587,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         lastFinish = { text: d.scene_text, at: hhmm() };
         renderFinishReport(d);
         taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under the Street View card.`);
-        setSvStatus(`Finishing pass from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
+        setSvStatus(`Street View check from pano ${d.pano_id} (${d.date || 'undated'}): ${before.length} → ${d.scene_text.length} chars.` +
           (d.removed && d.removed.length ? ` It REMOVED structure: ${d.removed.join(', ')}. Check the report below.` : '') +
           ' Review it before MAKE KEYSTONE; UNDO restores the previous text.', d.removed && d.removed.length ? '#ffb74d' : 'var(--accent-cyan)');
       } catch (e) { setSvStatus(e.message, '#ff5252'); taskEnd(false, e.message); }
@@ -1551,7 +1607,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         if (stale && !n) { n = document.createElement('div'); n.className = 'stale-note'; el.prepend(n); }
         if (n) { n.hidden = !stale; if (stale) n.textContent = `This report is from the ${who} at ${rec.at}. The text has been edited since, so parts of it may no longer apply.`; }
       };
-      mark('lsa-join-added', lsaJoin && { text: lsaJoin.text_after, at: lsaJoin.at }, 'weft pass');
+      mark('lsa-join-added', lsaJoin && { text: lsaJoin.text_after, at: lsaJoin.at }, 'Add LSA synthesis');
       mark('sv-finish-report', lastFinish, 'Street View check');
     }
 
@@ -1570,7 +1626,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (!d) { el.hidden = true; el.innerHTML = ''; return; }
       const added = d.added || [], conflicts = d.conflicts || [];
       const warm = [...new Set(((d.scene_text || '').match(/\b(honey|golden|gold|ochre|amber|tawny)\b/gi) || []).map(w => w.toLowerCase()))];
-      el.innerHTML = removedHtml(d.removed, 'the finishing pass') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
+      el.innerHTML = removedHtml(d.removed, 'the Street View check') + seasonNoteHtml(d.date) + wordWarningsHtml(d.warnings) +
         (warm.length ? `<div class="lsa-added-head" style="color: #ffb74d;">Warm colour words in the text: ${warm.map(escHtml).join(', ')}</div>` +
           '<div class="lsa-added-note">Usually sunlight in the pano, not the stone. Replace them with the colour the stone has in flat overcast light (buff-grey, grey-tan, pale grey).</div>' : '') +
         `<div class="lsa-added-head">Added from the pano</div>` +
@@ -1579,7 +1635,11 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         `<div class="lsa-added-head">Where the pano seems to disagree (not applied)</div>` +
         (conflicts.length ? conflicts.map(c => `<div class="lsa-added-text">${escHtml(c)}</div>`).join('') +
           '<div class="lsa-added-note">The scene text was kept. If the pano is right, edit the text by hand (and your Scene layout).</div>'
-                          : '<div class="lsa-added-note">No disagreements reported.</div>');
+                          : '<div class="lsa-added-note">No disagreements reported.</div>') +
+        // 2026-10-24: the source of the words, in the same box as the words (Google attribution; LSA Studio wrote the text).
+        `<div class="lsa-added-note" style="margin-top: 8px; border-top: 1px solid var(--rule); padding-top: 6px;">` +
+        `Imagery: Google Maps, Street View ${escHtml(d.date || (svState && svState.date) || 'date unknown')} · ${escHtml((svState && svState.copyright) || '© Google')}. ` +
+        `The description was written by LSA Studio from this image; the image itself is not stored or sent to the renderer unless you tick it for MAKE KEYSTONE.</div>`;
       el.hidden = false;
       markReportsStale();
     }
@@ -1617,7 +1677,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('btn-sv-undo').style.display = 'none';
       lastFinish = null;
       renderFinishReport(null);
-      setSvStatus('Scene text restored to before the finishing pass.');
+      setSvStatus('Scene text restored to before the Street View check.');
     }
 
     // Make a keystone's recorded pano the view's current one, for the next keystone.
@@ -1688,11 +1748,12 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         `<optgroup label="${mine.length ? 'Other LSA runs' : 'LSA runs (none made at this view)'}">${rest.map(opt).join('')}</optgroup>`;
       const fresh = selectId && lsaRuns.some(r => r.run_id === selectId);
       const kept = !fresh && prev && lsaRuns.some(r => r.run_id === prev);
-      sel.value = fresh ? selectId : kept ? prev : (mine.length ? mine[0].run_id : '');
+      // 2026-10-24: no automatic pick; the director chooses (a run made by Excavate just now is still selected).
+      sel.value = fresh ? selectId : kept ? prev : '';
       if (fresh) {
-        setLsaStatus(`New LSA run selected: ${fmtRunId(selectId)}. Next: ADD LSA SURFACES brings it into the scene text of the selected capture.`, 'var(--accent-cyan)');
+        setLsaStatus(`New LSA run selected: ${fmtRunId(selectId)}. Next: ADD LSA SYNTHESIS brings it into the scene text of the selected capture.`, 'var(--accent-cyan)');
         document.getElementById('btn-lsa-weave')?.classList.add('lit');
-      } else if (run && !lsaJoin && !kept) setLsaStatus(mine.length ? 'The newest LSA run made at this view is selected. Check the preview below.'
+      } else if (run && !lsaJoin && !kept) setLsaStatus(mine.length ? 'Choose an LSA run: those made at this view are listed first, newest at the top.'
         : 'No LSA run is stamped with this view yet: pick one by hand and check the preview.');
       lsaPreview();
     }
@@ -1741,7 +1802,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const cur = typeof readShot === 'function' ? readShot() : null;
       const samePlace = cur && (cur.place || '').trim() === (shot.place || '').trim();
       const older = samePlace && (cur.layout || '').trim() && (cur.layout || '').trim() !== layout;
-      brief.textContent = (older ? 'This run was made with an earlier scene layout than the one in your brief now. The weft pass uses your brief\'s layout; the run\'s analysis was written from the earlier one, so a new Excavate may be worth it.\n\n' : '') +
+      brief.textContent = (older ? 'This run was made with an earlier scene layout than the one in your brief now. Add LSA synthesis uses your brief\'s layout; the run\'s analysis was written from the earlier one, so a new Excavate may be worth it.\n\n' : '') +
         `${s.label || shot.place || id} · ${made} · ${s.instruction || ''} · ${stamp}\n` +
         (shot.subject ? `Looking at: ${shot.subject}\n` : '') +
         (layout ? `Scene layout: ${layout.length > 260 ? layout.slice(0, 260) + '...' : layout}`
@@ -1754,7 +1815,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const id = document.getElementById('lsa-join-run').value;
       if (!run) { setLsaStatus('Select a pipeline run first.', '#ff5252'); return; }
       if (!id) { setLsaStatus('Choose an LSA run.', '#ff5252'); return; }
-      if (lsaJoin && !confirm('The scene text already has a weft pass. Run it again on top?\n\n(UNDO first to start from the text before the pass.)')) return;
+      if (lsaJoin && !confirm('The scene text already has the LSA synthesis. Add it again on top?\n\n(UNDO first to start from the text before it.)')) return;
       const box = document.getElementById('replay-scene-text');
       const before = box.value;
       setLsaStatus('Reading the LSA run...');
@@ -1769,7 +1830,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const layout = lsaDirectorLayout(layoutShot);
       document.getElementById('btn-lsa-weave')?.classList.remove('lit');
       setLsaStatus('Weaving the analysis and your layout into the scene text (about a minute)...', 'var(--accent-cyan)');
-      taskStart('Weft pass (ADD LSA SURFACES)', 'Weaving the LSA run and your layout into the scene text. Usually about a minute.');
+      taskStart('Add LSA synthesis', 'Weaving the LSA run and your layout into the scene text. Usually about a minute.');
       try {
         const resp = await fetch(PIPE + '/api/lsa/weave', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1799,14 +1860,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         renderLsaAdded();
         const added = lsaJoin.added_structure;
         const nProp = added.filter(a => a.status === 'proposed').length;
-        setLsaStatus(`Weft pass at ${lsaJoin.at}, using the LSA run of ${fmtRunId(id)}` + (s.label ? ` (${s.label})` : '') +
+        setLsaStatus(`LSA synthesis added at ${lsaJoin.at}, using the LSA run of ${fmtRunId(id)}` + (s.label ? ` (${s.label})` : '') +
           (layout ? (useBrief ? ' and the scene layout in your brief now' : ' and the scene layout saved with that run') : ', with no scene layout (the run has none)') +
           `: ${before.length} → ${d.scene_text.length} chars.` +
           (added.length ? ` Structure added: ${added.length - nProp} confirmed, ${nProp} proposed (listed below).` : ' No structure added.') +
           (d.warnings && d.warnings.length ? ` Words to check: ${d.warnings.join(', ')} (weather, light and season words pull the render toward that weather: describe the mark instead; place names become position words).` : '') +
           ' Review it in the editor before making a keystone; UNDO restores the previous text.',
           d.warnings && d.warnings.length ? '#ffb74d' : 'var(--accent-cyan)');
-        taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under the weft pass.`);
+        taskEnd(true, `Scene text updated (${before.length} to ${d.scene_text.length} characters). Read the report under Add LSA synthesis.`);
       } catch (e) { setLsaStatus(e.message, '#ff5252'); taskEnd(false, e.message); }
     }
 
@@ -1821,7 +1882,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const order = { proposed: 0, confirmed: 1 };
       const rows = items.map((a, i) => ({ a, i })).sort((x, y) => order[x.a.status] - order[y.a.status]);
       // Always shown after a pass (2026-10-18), so "nothing added" never looks like "not working".
-      el.innerHTML = removedHtml(removed, 'the weft pass') +
+      el.innerHTML = removedHtml(removed, 'Add LSA synthesis') +
         `<div class="lsa-added-head">Added structure: check</div>` +
         (rows.length ? '' : '<div class="lsa-added-note">No structure added.</div>') + rows.map(({ a, i }) => {
         const tag = a.status === 'confirmed' ? 'Confirmed' : 'Proposed';
@@ -1933,7 +1994,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       document.getElementById('replay-scene-text').value = lsaJoin.text_before;
       if (typeof updateSceneState === 'function') updateSceneState();
       lsaReset();
-      setLsaStatus('Scene text restored to before the weft pass.');
+      setLsaStatus('Scene text restored to before Add LSA synthesis.');
     }
 
     // What the server records with a run made from the woven text. Null when there is no pass, or it was undone.
@@ -1953,7 +2014,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const run = selectedReplayRun();
       if (!run) { setReplayStatus('Pick a run first.', '#ff5252'); return; }
       if (!run.saved_view_id) { setReplayStatus('Keystones need a run tagged with a saved view.', '#ff5252'); return; }
-      if (!lsaJoin) { setReplayStatus('Run the weft pass (ADD LSA SURFACES) first: A is the scene text before it, B the text after it.', '#ff5252'); return; }
+      if (!lsaJoin) { setReplayStatus('Run ADD LSA SYNTHESIS first: A is the scene text before it, B the text after it.', '#ff5252'); return; }
       const textA = lsaJoin.text_before.trim();
       const textB = document.getElementById('replay-scene-text').value.trim();
       if (!textB || textA === textB) { setReplayStatus('The two texts are the same: nothing to compare.', '#ff5252'); return; }
@@ -1962,10 +2023,10 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       const useSv = !!(svState && document.getElementById('chk-sv-keystone').checked);
       const join = lsaJoinPayload();
       const warn = [];
-      if (lsaJoin.finishing_after) warn.push('The finishing pass ran after the weft pass, so only B has had it. For a fair test, UNDO, run the finishing pass first, then the weft pass.');
-      if (join && join.hand_edited_after) warn.push('B has hand edits made after the weft pass.');
+      if (lsaJoin.finishing_after) warn.push('The Street View check ran after Add LSA synthesis, so only B has had it. For a fair test, UNDO, run the Street View check first, then Add LSA synthesis.');
+      if (join && join.hand_edited_after) warn.push('B has hand edits made after Add LSA synthesis.');
       if (!confirm(`Make two keystone candidates from this run's capture, both with seed ${seed} and ${useSv ? `the same pano image (${svState.pano_id})` : 'TEXT ONLY (no pano image)'}:\n\n` +
-        `A: the scene text before the weft pass (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
+        `A: the scene text before Add LSA synthesis (${textA.length} chars)\nB: the scene text after it (${textB.length} chars)\n\n` +
         (warn.length ? 'NOTE: ' + warn.join(' ') + '\n\n' : '') + 'That is two renders. Continue?')) return;
       const pair = 'ab_' + Date.now().toString(36);
       const build = (text, arm) => {
@@ -2398,7 +2459,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (run.has_twin && !run.keystone_print_of && !run.date_plate_of && (isKeystoneRun(run) || run.ab)) {
         parts.push(`<div id="run-alignment" data-run-id="${escHtml(run.id)}">${alignmentHtml(run.alignment || alignCache[run.id] || null)}</div>`);
       }
-      if (run.lsa_run) parts.push(`<div>Weft pass from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
+      if (run.lsa_run) parts.push(`<div>LSA synthesis from: ${escHtml(run.lsa_label || run.lsa_run)}</div>`);
       if (run.ab && run.ab.pair_id) {
         const other = replayRuns.find(r => r.id !== run.id && r.ab && r.ab.pair_id === run.ab.pair_id);
         parts.push(`<div>A/B ${escHtml(run.ab.arm)}, seed ${escHtml(run.ab.seed)}: ${other
@@ -2509,7 +2570,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (r.mode === 'DATE_PLATE' || r.date_plate_of) return 'Date plate';
       if (r.keystone_print_of) return (r.series_frame ? `Series frame ${r.series_frame}` : 'Print') + (r.date_plate_run ? ' from date plate' : '') + (r.composite_applied ? ', composited' : '');
       if (r.replay_of) return r.scene_text_edited ? 'Replay, edited' : 'Replay';
-      return 'Synthesize';
+      return 'Capture';
     }
 
     // Label: made-at time and what it is first; scene conditions after, in brackets.
@@ -2526,7 +2587,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (r.ab && r.ab.arm) label += ` · A/B ${r.ab.arm}${r.ab.arm === 'B' ? ' (LSA)' : ''}`;
       if (r.realigned_from) label += ' · realigned';
       if (r.alignment && r.alignment.verdict === 'drifted') label += ' · ⚠ drifted';
-      else if (r.lsa_run) label += ' · weft pass';
+      else if (r.lsa_run) label += ' · LSA synthesis';
       if (!document.getElementById('select-replay-view').value) label += ` · ${r.saved_view_name || 'no view'}`;
       const kids = keystonesMadeFrom(r.id);
       if (kids.length) {
@@ -2584,7 +2645,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       }
       sel.innerHTML = '';
       if (!replayRuns.length) {
-        sel.innerHTML = `<option value="">${viewId ? 'No capture of this view yet: press Synthesize at the top of this column' : 'No captures yet: press Synthesize at the top of this column'}</option>`;
+        sel.innerHTML = `<option value="">${viewId ? 'No capture of this view yet: press CAPTURE at the top of this column' : 'No captures yet: press CAPTURE at the top of this column'}</option>`;
         document.getElementById('replay-thumb').style.display = 'none';
         document.getElementById('replay-scene-text').value = '';
         replayOriginalText = '';
@@ -2592,9 +2653,14 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         updateKeystoneUI();
         return;
       }
+      // 2026-10-24: nothing is selected until the director picks a run. Auto-selecting the newest run made the last session's
+      // work look current after a refresh, and edits went to the wrong run (finding 103).
+      sel.innerHTML = '<option value="">Choose a run (none selected)</option>';
       // Newest first, under a heading for each day.
       replayRuns.sort((a, b) => (runMadeAt(b) || 0) - (runMadeAt(a) || 0));
       let group = null, groupDay = null;
+      // B13 (2026-10-24): the newest run is marked; the kind (★ Keystone, Keystone candidate, Print...) follows the time.
+      const newestId = replayRuns.length ? replayRuns[0].id : null;
       for (const r of replayRuns) {
         const d = runMadeAt(r), day = fmtDay(d);
         if (day !== groupDay) {
@@ -2605,7 +2671,7 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
         }
         const o = document.createElement('option');
         o.value = r.id;
-        o.textContent = runLabel(r);
+        o.textContent = (r.id === newestId ? 'NEWEST · ' : '') + runLabel(r);
         o.title = `Made ${d ? d.toLocaleString() : 'at an unknown time'}\n${r.address || ''}\n${r.id}`;
         group.appendChild(o);
       }
@@ -2654,6 +2720,13 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       thumbShowsRender = !!(run && run.has_twin);
       setReplayThumb(id);
       thumb.style.display = 'block';
+      // 2026-10-24: the selected run opens in the frame (its newest edited version when it has one), captioned with what it is.
+      if (run && document.getElementById('edit-pass').hidden && typeof setFrameCaption === 'function') {
+        const src = run.has_twin ? plateUrl(id, run.edit_version) : `${PIPE}/api/runs/${encodeURIComponent(id)}/file/viewport_capture.jpg`;
+        setFrameCaption(`${runLabel(run)}${run.edit_version ? ` · edited version ${run.edit_version}` : ''}${run.has_twin ? '' : ' · capture only, no render'}`);
+        document.getElementById('frame').innerHTML = `<img alt="${escHtml(runKind(run))}" src="${src}">`;
+        if (typeof setFrameMode === 'function') setFrameMode('still');
+      }
       try {
         const resp = await fetch(`${PIPE}/api/runs/${encodeURIComponent(id)}/scene`);
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -3242,6 +3315,230 @@ const PIPE = `${location.protocol}//${location.hostname}:8000`;
       if (typeof showPipelineResult === 'function') showPipelineResult(data, links);
       if (data.world_viewer_url) console.log('[Marble] world:', data.world_viewer_url);
     }
+
+    // ---- step strip (B1, 2026-10-24) --------------------------------------
+    // Where you are, what is next, and what each step has made, for the view in hand. Clicking a step jumps to its controls.
+    // Order follows KEYSTONE_RECIPE.md; Edit sits after Keystone because the edit pass works on a keystone candidate.
+    const STEPS = [
+      { key: 'view', label: 'View', target: 'mod-cesium', tip: 'Where the camera stands and looks: choose or save a view on the Cesium card' },
+      { key: 'brief', label: 'Brief', target: 'step-brief', tip: 'What you tell the LSA about the place: Place, Standpoint and Looking at on the left' },
+      { key: 'lsa', label: 'LSA run', target: 'run', tip: "The LSA's analysis and its own picture: Excavate in the brief" },
+      { key: 'capture', label: 'Capture', target: 'btn-synthesize-action', tip: "The Cesium frame and the pipeline's first text" },
+      { key: 'addlsa', label: 'Add LSA', target: 'btn-lsa-weave', optional: true, tip: "Bring the LSA's findings into the scene text (optional)" },
+      { key: 'sv', label: 'Street View check', target: 'mod-streetview', optional: true, tip: 'Read a street photo into the scene text (optional)' },
+      { key: 'keystone', label: 'Keystone', target: 'btn-keystone', tip: 'Render the keystone candidate' },
+      { key: 'edit', label: 'Edit', target: 'btn-edit-pass', optional: true, tip: 'Fix small areas of the candidate, one change at a time (optional)' },
+      { key: 'approve', label: 'Approve', target: 'btn-approve-keystone', tip: 'Approve the candidate as the keystone; prints start from it' },
+    ];
+    function stepState() {
+      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
+      const viewId = (run && run.saved_view_id) || (document.getElementById('select-saved-view') || {}).value || '';
+      const view = savedViews.find(v => v.id === viewId);
+      const val = id => ((document.getElementById(id) || {}).value || '').trim();
+      const atView = (replayRuns || []).filter(r => r.saved_view_id === viewId);
+      const lsaHere = (lsaRuns || []).filter(r => r.saved_view_id === viewId);
+      const cands = atView.filter(r => isKeystoneRun(r));
+      const edited = cands.filter(r => r.edit_version);
+      const ks = viewId ? keystones[viewId] : null;
+      const made = {
+        view: view ? `View: ${view.name}` : '',
+        brief: val('f-place') && val('f-standpoint') && val('f-subject') ? `Brief: ${val('f-place')}` : '',
+        lsa: lsaHere.length ? `${lsaHere.length} LSA run${lsaHere.length === 1 ? '' : 's'} at this view` : '',
+        capture: atView.length ? `${atView.length} run${atView.length === 1 ? '' : 's'} at this view` : '',
+        addlsa: lsaJoin ? 'LSA findings added to the selected capture' : '',
+        sv: '',
+        keystone: cands.length ? `${cands.length} keystone candidate${cands.length === 1 ? '' : 's'}` : '',
+        edit: edited.length ? `${edited.length} candidate${edited.length === 1 ? '' : 's'} edited${run && run.edit_version ? `; the selected one is at version ${run.edit_version}` : ''}` : '',
+        approve: ks ? `Approved: ${fmtRunId(ks.run_id)}${ks.edit_version ? `, edited version ${ks.edit_version}` : ''}` : '',
+      };
+      const current = STEPS.find(st => !st.optional && !made[st.key]);
+      return { made, current: current ? current.key : null, viewName: view ? view.name : '' };
+    }
+    let stepSig = '';
+    function renderSteps() {
+      const nav = document.getElementById('steps'); if (!nav) return;
+      let st; try { st = stepState(); } catch (e) { return; }
+      const sig = JSON.stringify(st); if (sig === stepSig) return; stepSig = sig;
+      nav.innerHTML = STEPS.map((s, i) => {
+        const done = !!st.made[s.key], cur = st.current === s.key;
+        const cls = ['step', done ? 'done' : '', cur ? 'current' : '', s.optional ? 'optional' : ''].join(' ');
+        const ic = cur ? '▶' : done ? '✓' : s.optional ? '○' : '·';
+        const state = cur ? 'Next step' : done ? 'Done' : s.optional ? 'Optional' : 'Not yet';
+        const title = `${state}: ${s.tip}${done ? '\n' + st.made[s.key] : ''}`;
+        const label = s.key === 'view' && st.viewName ? `View: ${st.viewName.length > 34 ? st.viewName.slice(0, 33) + '…' : st.viewName}` : s.label;
+        return (i ? '<span class="step-sep">›</span>' : '') +
+          `<button class="${cls}" data-step="${s.key}" title="${escHtml(title)}" aria-label="${escHtml(s.label + ', ' + state)}"><span class="ic">${ic}</span>${escHtml(label)}</button>`;
+      }).join('') + (st.current ? '' : '<span class="step-sep" style="margin-left: 6px; color: #66bb6a;">✓ Keystone approved: prints are next</span>');
+      nav.querySelectorAll('.step').forEach(b => b.addEventListener('click', () => jumpToStep(b.dataset.step)));
+    }
+    function jumpToStep(key) {
+      const s = STEPS.find(x => x.key === key); if (!s) return;
+      const el = document.getElementById(s.target); if (!el) return;
+      const det = el.closest('details'); if (det) det.open = true;
+      const sec = el.closest('.sec'); if (sec) sec.classList.remove('closed');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('step-flash'); setTimeout(() => el.classList.remove('step-flash'), 1400);
+    }
+    // ---- evidence (B5, 2026-10-24) -------------------------------------------
+    // The images read for a view, kept with the view like a painter's plein air sketches: details and vistas, one in use
+    // for the Street View check. Only metadata is kept; images are fetched when shown. Source-neutral records.
+    let evItems = [], evViewId = null, evCands = [];
+    const EV_LICENCE = { streetview: 'Google Maps Platform: fetched when needed, never stored' };
+    function evViewNow() {
+      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
+      return (run && run.saved_view_id) || (document.getElementById('select-saved-view') || {}).value || '';
+    }
+    function evStatus(msg, color) { const el = document.getElementById('ev-status'); if (el) { el.textContent = msg || ''; el.style.color = color || 'var(--text-muted)'; } }
+    function evLoadForView() {
+      evViewId = evViewNow();
+      const view = savedViews.find(v => v.id === evViewId);
+      evItems = view && Array.isArray(view.evidence) ? view.evidence.map(x => ({ ...x })) : [];
+      evCands = []; document.getElementById('ev-cands').innerHTML = ''; evStatus('');
+      evRender();
+    }
+    function evThumb(it) {
+      if (it.source === 'streetview') return `${PIPE}/api/streetview/image?pano=${encodeURIComponent(it.ref)}&heading=${it.heading}&pitch=${it.pitch}&fov=${it.fov}&size=${SV_SIZE}`;
+      return '';
+    }
+    function evRender() {
+      const ul = document.getElementById('ev-list'); if (!ul) return;
+      if (!evViewId) { ul.innerHTML = '<li class="hint">Choose a view first: its images are kept with it.</li>'; return; }
+      if (!evItems.length) { ul.innerHTML = '<li class="hint">No images kept for this view yet. Find candidates, or keep the pano shown below.</li>'; return; }
+      ul.innerHTML = evItems.map((it, i) => {
+        const season = seasonOf(it.date, it.lat);
+        const src = it.source === 'streetview' ? 'Street View' : it.source;
+        return `<li class="ev-item${it.active ? ' active' : ''}"><img alt="${escHtml(src)} ${escHtml(it.date || '')}" src="${evThumb(it)}" loading="lazy">` +
+          `<div class="ev-meta"><b>${escHtml(src)}</b> · ${escHtml(it.date || 'date unknown')}${season ? ` (${season})` : ''}` +
+          `<br><span class="q">${it.distance_m != null ? Math.round(it.distance_m) + ' m from the subject · ' : ''}heading ${Math.round(it.heading)}° · ${Math.round(it.fov)}° across</span>` +
+          `<br><span class="q">${escHtml(it.licence || EV_LICENCE[it.source] || '')}${it.copyright ? ' · ' + escHtml(it.copyright) : ''}</span>` +
+          `<div class="ev-row">${it.active ? '<span class="ev-inuse">● In use</span>' : `<button class="toggle-btn" data-ev-use="${i}" title="Switch to this image: it shows in the Street View check below and is marked in use">Use this one</button>`}` +
+          `<select data-ev-role="${i}" title="What this image is for"><option value="detail"${it.role !== 'vista' ? ' selected' : ''}>Detail</option><option value="vista"${it.role === 'vista' ? ' selected' : ''}>Vista</option></select>` +
+          `<button class="toggle-btn" data-ev-del="${i}" title="Remove it from this view (nothing else changes)">✕</button></div></div></li>`;
+      }).join('');
+      ul.querySelectorAll('[data-ev-use]').forEach(b => b.addEventListener('click', () => evUse(+b.dataset.evUse)));
+      ul.querySelectorAll('[data-ev-del]').forEach(b => b.addEventListener('click', () => evRemove(+b.dataset.evDel)));
+      ul.querySelectorAll('[data-ev-role]').forEach(sel => sel.addEventListener('change', () => { evItems[+sel.dataset.evRole].role = sel.value; evSave(); }));
+    }
+    async function evSave() {
+      if (!evViewId) return false;
+      try {
+        const r = await fetch(`${PIPE}/api/views/${encodeURIComponent(evViewId)}/evidence`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: evItems }) });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        const view = savedViews.find(v => v.id === evViewId); if (view) view.evidence = d.evidence;
+        return true;
+      } catch (e) { evStatus('Could not save: ' + e.message, '#ff5252'); return false; }
+    }
+    function evItemFrom(c) {
+      return { id: `streetview:${c.pano_id}:${Math.round(c.heading)}`, source: 'streetview', ref: c.pano_id, lat: c.lat, lon: c.lon,
+               heading: c.heading, pitch: c.pitch, fov: c.fov, date: c.date || null, copyright: c.copyright || null,
+               distance_m: c.distance_m != null ? c.distance_m : null, role: 'detail', active: false,
+               added_utc: new Date().toISOString().slice(0, 19) + 'Z' };
+    }
+    async function evAdd(item) {
+      if (!evViewId) { evStatus('Choose a view first.', '#ff5252'); return; }
+      if (evItems.some(x => x.id === item.id)) { evStatus('Already kept for this view.', '#ffb74d'); return; }
+      if (evItems.length >= 12) { evStatus('A view keeps at most 12 images: remove one first.', '#ff5252'); return; }
+      evItems.push(item);
+      if (await evSave()) { evRender(); evStatus(`Kept: ${item.date || 'undated'} pano.`, 'var(--accent-cyan)'); }
+      else evItems.pop();
+    }
+    async function evFind() {
+      evViewId = evViewNow();
+      const view = savedViews.find(v => v.id === evViewId);
+      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
+      const subj = (view && view.subject) ? { lat: view.subject.latitude, lon: view.subject.longitude } : (run ? svSubjectFor(run) : null);
+      if (!subj) { evStatus('Needs a subject point: set one on the Views card (SET SUBJECT).', '#ff5252'); return; }
+      const cam = view && view.camera;
+      evStatus('Looking for panos around the subject...', 'var(--accent-cyan)');
+      try {
+        const r = await fetch(`${PIPE}/api/streetview/candidates`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lat: subj.lat, lon: subj.lon, cam_lat: cam ? cam.latitude : null, cam_lon: cam ? cam.longitude : null,
+                                 cam_heading: cam ? cam.heading_deg : null, count: 3 }) });
+        const d = await r.json(); if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+        evCands = d.candidates || [];
+        const box = document.getElementById('ev-cands');
+        box.innerHTML = `<div class="ev-cand-head">Candidates, best first (${d.found} pano${d.found === 1 ? '' : 's'} found nearby):</div><ul class="ev-list">` +
+          evCands.map((c, i) => { const it = evItemFrom(c); const season = seasonOf(c.date, c.lat);
+            return `<li class="ev-item"><img alt="Candidate ${i + 1}" src="${evThumb(it)}" loading="lazy"><div class="ev-meta"><b>${i + 1}. Street View</b> · ${escHtml(c.date || 'date unknown')}${season ? ` (${season})` : ''}` +
+              `<br><span class="q">${escHtml(c.why)}</span><div class="ev-row"><button class="toggle-btn" data-ev-add="${i}">＋ Keep</button>` +
+              `<button class="toggle-btn" data-ev-try="${i}" title="Show it in the Street View check below without keeping it">Look</button></div></div></li>`; }).join('') + '</ul>';
+        box.querySelectorAll('[data-ev-add]').forEach(b => b.addEventListener('click', () => evAdd(evItemFrom(evCands[+b.dataset.evAdd]))));
+        box.querySelectorAll('[data-ev-try]').forEach(b => b.addEventListener('click', () => { const c = evCands[+b.dataset.evTry]; svState = { ...c, size: SV_SIZE }; svFillInputs(false); svShowPreview(); document.getElementById('sv-preview').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }));
+        evStatus(evCands.length ? 'Keep the ones worth reading; Look shows one in the Street View check below.' : 'No candidates.', 'var(--accent-cyan)');
+      } catch (e) { evStatus(e.message, '#ff5252'); }
+    }
+    async function evAddShown() {
+      if (!svState || !svState.pano_id) { evStatus('No pano is shown in the Street View check below yet.', '#ff5252'); return; }
+      await evAdd(evItemFrom({ ...svState }));
+    }
+    async function evUse(i) {
+      const it = evItems[i]; if (!it) return;
+      if (it.source === 'streetview') {
+        svState = { pano_id: it.ref, heading: it.heading, pitch: it.pitch, fov: it.fov, date: it.date, distance_m: it.distance_m,
+                    copyright: it.copyright, lat: it.lat, lon: it.lon, size: SV_SIZE };
+        svFillInputs(false); svShowPreview();
+      }
+      evItems.forEach((x, j) => x.active = j === i);
+      if (await evSave()) { evRender(); evStatus('In use for the Street View check below.', 'var(--accent-cyan)'); }
+    }
+    async function evRemove(i) {
+      const it = evItems[i]; if (!it) return;
+      if (!confirm(`Remove this ${it.date || 'undated'} image from the view? Nothing else changes.`)) return;
+      evItems.splice(i, 1);
+      if (await evSave()) evRender();
+    }
+    // "Keep the pano shown below" only when the pano shown is not already kept.
+    function evKeepButton() {
+      const b = document.getElementById('btn-ev-keep'); if (!b) return;
+      const shown = svState && svState.pano_id;
+      b.hidden = !shown || !evViewId || evItems.some(x => x.source === 'streetview' && x.ref === svState.pano_id && Math.round(x.heading) === Math.round(svState.heading));
+    }
+    setInterval(() => { if (evViewNow() !== evViewId) evLoadForView(); evKeepButton(); }, 1000);
+
+    // ---- sections and gating (B2, 2026-10-24) ------------------------------
+    // A section waiting on an earlier step starts closed, dashed, with a line saying what it needs; a click opens it anyway.
+    // It changes state only when what it needs changes, so a section the director opened stays open.
+    function sectionNeeds() {
+      const run = typeof selectedReplayRun === 'function' ? selectedReplayRun() : null;
+      const viewId = (run && run.saved_view_id) || (document.getElementById('select-saved-view') || {}).value || '';
+      const needRun = run ? '' : 'Needs a run: select one under Runs';
+      return {
+        'sec-poi': viewId ? '' : 'Needs a view: choose or save one above',
+        'sec-addlsa': needRun || ((lsaRuns || []).length ? '' : 'Needs an LSA run: Excavate in the brief'),
+        'sec-keystone': needRun,
+        'sec-prints': viewId && keystones[viewId] ? '' : 'Needs an approved keystone for this view',
+        'sec-evidence': viewId ? '' : 'Needs a view: choose one on the Views card',
+        'sec-sv': needRun,
+      };
+    }
+    const secLast = {};
+    function applyGating() {
+      let needs; try { needs = sectionNeeds(); } catch (e) { return; }
+      for (const [id, need] of Object.entries(needs)) {
+        const sec = document.getElementById(id); if (!sec) continue;
+        if (secLast[id] === need) continue;
+        secLast[id] = need;
+        const editing = id === 'sec-keystone' && !document.getElementById('edit-pass').hidden;
+        sec.classList.toggle('waiting', !!need);
+        sec.classList.toggle('closed', !!need && !editing);
+        sec.querySelector('.sec-need').textContent = need;
+        sec.querySelector('.sec-head').setAttribute('aria-expanded', String(!sec.classList.contains('closed')));
+      }
+    }
+    document.addEventListener('click', e => {
+      const head = e.target.closest && e.target.closest('.sec-head'); if (!head) return;
+      const sec = head.closest('.sec'); sec.classList.toggle('closed');
+      head.setAttribute('aria-expanded', String(!sec.classList.contains('closed')));
+    });
+    // One view everywhere (B4): choosing a view on the Views card filters Runs to it, and the reverse; only GO moves the camera.
+    window.addEventListener('DOMContentLoaded', () => {
+      const a = document.getElementById('select-saved-view'), b = document.getElementById('select-replay-view');
+      if (!a || !b) return;
+      a.addEventListener('change', () => { if (a.value && [...b.options].some(o => o.value === a.value) && b.value !== a.value) { b.value = a.value; loadReplayRuns(); } });
+      b.addEventListener('change', () => { if (b.value && [...a.options].some(o => o.value === b.value)) a.value = b.value; });
+    });
+    setInterval(() => { renderSteps(); applyGating(); }, 1500);
+    window.addEventListener('DOMContentLoaded', () => setTimeout(renderSteps, 300));
 
     // ---- console helpers -----------------------------------------------
     window.setGlobe = function (v) { viewer.scene.globe.show = !!v; return viewer.scene.globe.show; };

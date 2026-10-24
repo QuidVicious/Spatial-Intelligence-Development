@@ -1599,7 +1599,7 @@
         "height_m": 107.449261499856
       },
       "created_utc": "2026-10-19T17:40:29+00:00",
-      "updated_utc": "2026-10-22T22:45:07+00:00",
+      "updated_utc": "2026-10-24T20:52:04+00:00",
       "points": [
         {
           "id": "mvk0qtlr",
@@ -1670,6 +1670,56 @@
           "nx": null,
           "ny": null,
           "nz": null
+        }
+      ],
+      "evidence": [
+        {
+          "id": "streetview:JYFr07JvOuS78jFWLRHPMA:54",
+          "source": "streetview",
+          "ref": "JYFr07JvOuS78jFWLRHPMA",
+          "lat": 55.95652485335962,
+          "lon": -3.196546374401572,
+          "heading": 54.2,
+          "pitch": 0,
+          "fov": 107.5,
+          "date": "2025-06",
+          "copyright": "\u00a9 2026 Google",
+          "distance_m": 44.3,
+          "role": "vista",
+          "active": true,
+          "added_utc": "2026-10-24T20:49:42Z"
+        },
+        {
+          "id": "streetview:AnCoIXG1D_4u_4PoKgI4hw:49",
+          "source": "streetview",
+          "ref": "AnCoIXG1D_4u_4PoKgI4hw",
+          "lat": 55.95655389604923,
+          "lon": -3.196394088389608,
+          "heading": 49.3,
+          "pitch": 0,
+          "fov": 107.5,
+          "date": "2025-06",
+          "copyright": "\u00a9 2026 Google",
+          "distance_m": 34.8,
+          "role": "detail",
+          "active": false,
+          "added_utc": "2026-10-24T20:50:09Z"
+        },
+        {
+          "id": "streetview:eh7dfU5fvmSKi45dnp-I9g:23",
+          "source": "streetview",
+          "ref": "eh7dfU5fvmSKi45dnp-I9g",
+          "lat": 55.95660942204388,
+          "lon": -3.196083199759785,
+          "heading": 23.2,
+          "pitch": 0,
+          "fov": 107.5,
+          "date": "2025-06",
+          "copyright": "\u00a9 2026 Google",
+          "distance_m": 18,
+          "role": "detail",
+          "active": false,
+          "added_utc": "2026-10-24T20:50:17Z"
         }
       ]
     }

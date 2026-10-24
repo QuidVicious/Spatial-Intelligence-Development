@@ -176,6 +176,7 @@ def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
     url = (
         f"https://api.open-meteo.com/v1/forecast?latitude={lat:.4f}&longitude={lon:.4f}"
         f"&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,cloud_cover,wind_speed_10m"
+        f"&hourly=precipitation&past_days=1&forecast_days=1"
         f"&timezone=auto"
     )
     try:
@@ -217,9 +218,29 @@ def get_live_weather(lat: float, lon: float) -> Dict[str, Any]:
                 condition = "SUNNY"
                 label = f"Clear Sky ({clouds:.0f}% cloud)"
 
+            # 2026-10-24: rain in the last three hours leaves the street wet after the sky has cleared. Live used only
+            # the sky now, so a clear evening after a day of rain rendered dry streets.
+            recent = 0.0
+            try:
+                now_s = data.get("time")
+                hrs = resp_json.get("hourly", {})
+                if now_s and hrs.get("time"):
+                    now_t = datetime.fromisoformat(now_s)
+                    for t_s, mm in zip(hrs["time"], hrs.get("precipitation") or []):
+                        t = datetime.fromisoformat(t_s)
+                        if now_t - timedelta(hours=3) < t <= now_t + timedelta(minutes=59) and mm:
+                            recent += float(mm)
+            except Exception as rerr:
+                print(f"[Weather] recent rain unavailable: {rerr}")
+            wet_after_rain = condition not in ("RAIN", "SNOW") and recent >= 0.3
+            if wet_after_rain:
+                label += f", wet after rain ({recent:.1f} mm in the last 3 h)"
+
             model = {
                 "condition": condition,
                 "label": label,
+                "recent_precip_mm": round(recent, 2),
+                "wet_after_rain": wet_after_rain,
                 "temperature_c": temp_c,
                 "precipitation_mm": precip,
                 "cloud_cover_pct": clouds,
@@ -567,16 +588,47 @@ def resolve_lighting_state(
     # AUTO means live conditions; with a custom date set, live conditions belong
     # to a different day, so they only apply when the date is today's.
     is_explicit_weather = (weather_mode.upper() != "AUTO")
-    is_custom_datetime = (date_str is not None)
+    # 2026-10-24: "custom" means another day than today at the location. Every print sends a date, so the old test
+    # (any date at all) meant live rain or overcast never applied to a print.
+    today_there = None
+    try:
+        if tz_name and ZoneInfo is not None:
+            today_there = datetime.now(ZoneInfo(tz_name)).strftime("%Y-%m-%d")
+    except Exception:
+        today_there = None
+    is_custom_datetime = (date_str is not None) and (today_there is None or date_str[:10] != today_there)
+    live_now = (not is_explicit_weather) and not is_custom_datetime
+    wet_note = ("Surfaces still wet from recent rain, though none is falling now: darkened stone, reflective paving and "
+                "roadway, small puddles at kerbs and in hollows.") if (live_now and weather_info.get("wet_after_rain")) else ""
+    # At night there is no sun: a clear sky is "clear", not "sunny".
+    sky_word = {"SUNNY": "CLEAR", "PARTLY": "PARTLY CLOUDY"}.get(active_weather, active_weather)
     use_diffuse = active_weather in DIFFUSE and (is_explicit_weather or not is_custom_datetime)
 
     if solar_elevation <= 0.0:
         is_blue_hour = solar_elevation > -6.0
         twilight_type = "Blue Hour Civil Twilight" if is_blue_hour else "Nocturnal Night Scene"
-        natural_desc = f"Calibrated {cct}K {twilight_type} (Elevation {solar_elevation:.1f}°). Weather: {active_weather}."
+        night_sky = {
+            "CLEAR": "Clear night sky.", "PARTLY CLOUDY": "Broken cloud across the night sky.",
+            "OVERCAST": "Low overcast night sky, faintly lit from below by the town.",
+            "RAIN": "Rain falling; wet, reflective paving and roadway.", "FOG": "Mist hanging in the air, haloes round every lamp.",
+            "SNOW": "Snow lying on every horizontal surface.",
+        }.get(sky_word, "")
+        # 2026-10-24: night was rendered as blue hour with every lamp off. The scene's own lights are on: only lights that
+        # are in the scene, never invented ones; lit windows behind drawn curtains, so no interior is shown or implied.
+        own_lights = (
+            "The street lamps that stand in the scene are lit, casting warm pools of light on the pavement and road below them. "
+            "A few windows glow warmly behind drawn sheer curtains; most windows are dark. "
+            "Add no lamps, signs or light sources that are not already in the scene."
+        )
+        if is_blue_hour:
+            scene_light = f"Dusk: the last deep blue light in the sky, the facades in cool shadowless twilight. {own_lights}"
+        else:
+            scene_light = (f"Night: the sky is dark and the facades are lit mainly by the street lamps, falling off into shadow "
+                           f"between them. {own_lights}")
+        natural_desc = f"Calibrated {cct}K {twilight_type} (Elevation {solar_elevation:.1f}°). Weather: {sky_word}." + (" Wet after rain." if wet_note else "")
         prompt_directive = (
-            f"LIGHTING: {cct}K {twilight_type}. Sun elevation {solar_elevation:.1f}°. "
-            f"Zero direct sunlight. Extinguish daytime cast shadows. Diffuse indigo ambient skylight with soft contact occlusion."
+            f"LIGHTING: {cct}K {twilight_type}. Sun elevation {solar_elevation:.1f}°: no sunlight and no daytime cast shadows. "
+            f"{scene_light} {night_sky} {wet_note}".strip()
         )
     elif use_diffuse:
         weather_diffuse_directives = {
@@ -623,6 +675,8 @@ def resolve_lighting_state(
             "SNOW": "Snow lying on horizontal ledges, roofs, and pavement edges.",
             "FOG": "Thin haze softening distant contrast, sun still breaking through.",
         }.get(active_weather, "Crisp clear sky with direct solar exposure.")
+        if wet_note:
+            weather_text += " " + wet_note
         natural_desc = (
             f"Calibrated {cct}K {epoch_desc} ({rel_map['summary']}, Sun Azimuth {solar_azimuth:.1f}°, "
             f"Elevation {solar_elevation:.1f}°). {weather_text}"

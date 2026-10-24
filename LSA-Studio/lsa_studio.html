@@ -66,6 +66,63 @@
   .strip section { padding: 6px 16px 7px; }
   .strip h3 { margin-bottom: 5px; }
   .strip .h3-note { font: 400 11px/1 var(--ui); color: var(--lichen-grey); }
+  /* 2026-10-24 (B1): compact top bar. Each section is a tight grid of label-over-value pairs; the step strip sits in the header. */
+  .strip { flex-wrap: wrap; }
+  .strip section { padding: 6px 14px 7px; display: block; }   /* block, not flex-wrap: a wrapped flex box sizes to all its items in one line */
+  .strip h3 { font-size: 12px; margin: 0 0 3px; }
+  .strip label { font-size: 11px; margin: 0 0 2px; color: var(--lichen-grey); }
+  .strip input[type=text], .strip input[type=date] { padding: 3px 6px; font-size: 12.5px; height: 26px; box-sizing: border-box; }
+  .strip .btn { padding: 2px 10px; height: 26px; }
+  .strip .off-note { font-size: 11px; }
+  #input-place-search { width: 170px !important; }
+  .strip .time-grid { display: grid; grid-template-columns: auto 160px; gap: 4px 12px; align-items: end; }
+  .strip .time-grid .mode-toggle { margin: 0; }
+  .strip .time-grid .toggle-btn { padding: 2px 8px; font-size: 12px; }
+  .strip .weather-row { display: flex; gap: 12px; align-items: flex-start; }
+  .strip .weather-btn { padding: 2px 7px; font-size: 11.5px; }
+  .strip #f-weather { width: 175px; }
+  .strip #strip-telemetry { flex: 0 1 auto; }
+  .strip .telemetry { display: grid; grid-template-columns: auto auto; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 1px 22px; white-space: nowrap; font: 12.5px/1.25 var(--read); }
+  .strip .telemetry span b { font-size: 11px; }
+  /* Step strip: colour, shape and label together (DECISIONS 2026-10-23). Done ✓ solid; current ▶ solid green; optional ○ outline; not yet dashed grey. */
+  header { padding: 8px 22px; align-items: center; }
+  .steps { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+  .step { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 12px; font: 12px/1.2 var(--ui); cursor: pointer; background: none; color: var(--lichen-grey); border: 1px dashed var(--rule); }
+  .step .ic { font-size: 10px; width: 10px; text-align: center; }
+  .step.done { color: var(--paper); border: 1px solid var(--lichen-grey); }
+  .step.current { color: #10230f; background: #66bb6a; border: 1px solid #66bb6a; font-weight: 700; }
+  .step.optional { border: 1px solid var(--rule); color: var(--lichen-grey); }
+  .step.optional.done { color: var(--paper); border-color: var(--lichen-grey); }
+  .step:hover { border-color: var(--paper); }
+  .step-sep { color: var(--rule); font-size: 10px; }
+  .step-flash { outline: 2px solid #66bb6a; outline-offset: 3px; transition: outline-color 1.2s; }
+  /* Cards and sections (2026-10-24): one size for every card title, one for every section title, same colour. */
+  .module.card > h2 { font: 600 19px/1.2 var(--read); color: var(--paper); margin: 0 0 2px; }
+  .card-note { font-size: 12px; color: var(--lichen-grey); margin-bottom: 10px; }
+  .sec { border: 1px solid var(--rule); border-radius: 8px; margin: 10px 0; background: var(--slate-2); }
+  .sec-head { display: flex; flex-wrap: wrap; width: 100%; align-items: baseline; gap: 2px 8px; background: none; border: 0; padding: 9px 12px 7px; cursor: pointer; text-align: left; color: var(--paper); }
+  .sec-head::before { content: '▾'; font-size: 11px; color: var(--lichen-grey); width: 10px; }
+  .sec.closed .sec-head::before { content: '▸'; }
+  .sec-title { font: 600 15px/1.2 var(--read); color: var(--paper); }
+  .sec-need { flex-basis: 100%; padding-left: 18px; font: 12px/1.3 var(--ui); color: var(--lichen-grey); }
+  .sec-need:empty { display: none; }
+  .sec-body { padding: 2px 12px 12px; }
+  .sec.closed .sec-body { display: none; }
+  .sec.waiting { border-style: dashed; }
+  .sec.waiting .sec-title { color: var(--lichen-grey); }
+  /* Evidence list (B5, 2026-10-24) */
+  .ev-list { list-style: none; margin: 0; padding: 0; }
+  .ev-item { display: grid; grid-template-columns: 112px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+  .ev-item img { width: 112px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; border: 1px solid var(--rule); background: var(--slate-3); }
+  .ev-item.active img { border: 2px solid #66bb6a; }
+  .ev-meta { font-size: 12px; line-height: 1.35; }
+  .ev-meta b { font-weight: 600; color: var(--paper); }
+  .ev-meta .q { color: var(--lichen-grey); }
+  .ev-row { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; align-items: center; }
+  .ev-row .toggle-btn { padding: 2px 8px; font-size: 11.5px; }
+  .ev-row select { font-size: 11.5px; padding: 1px 4px; }
+  .ev-inuse { font-size: 11.5px; color: #66bb6a; font-weight: 700; }
+  .ev-cand-head { font-size: 12px; color: var(--lichen-grey); margin-top: 8px; }
   .off { opacity: 0.5; }
   .off-note { font-size: 12px; color: var(--lichen-grey); }
   .telemetry { display: flex; gap: 18px; font: 13px/1.3 var(--read); }
@@ -395,6 +452,10 @@
 
   /* runs list */
   .runs { list-style: none; padding: 0; margin: 0; }
+  .runs-tools { display: flex; gap: 6px; margin-bottom: 4px; }
+  .runs-tools input { flex: 1; min-width: 0; }
+  .runs-tools select { flex: 0 0 auto; }
+  .runs-count { font-size: 12px; color: var(--lichen-grey); margin-bottom: 4px; }
   .runs li button { width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); padding: 10px 2px; cursor: pointer; }
   .runs li button:hover, .runs li button[aria-current=true] { background: var(--slate-2); }
   .runs .place { display: block; font: 600 14px/1.3 var(--read); }
@@ -407,16 +468,16 @@
 <body>
 <header>
   <h1>LSA Studio</h1>
-  <span class="sub">Set the shot on the left, ground it on the right</span>
+  <nav class="steps" id="steps" aria-label="Steps: where you are and what is next"></nav>
   <span class="status" id="server-status">Connecting to the server...</span>
 </header>
 
 <!-- conditions strip -->
 <div class="strip" aria-label="Conditions">
   <section id="strip-location">
-    <h3>Location</h3>
+    <h3>Go to a place</h3>
     <div class="f">
-      <label for="input-place-search">Address or place</label>
+      <label for="input-place-search">Address or place (moves the camera)</label>
       <div style="display: flex; gap: 6px;">
         <input type="text" id="input-place-search" placeholder="141 Duval St, Key West" style="width: 230px;"
                onkeydown="if (event.key === 'Enter') goToPlace();">
@@ -427,26 +488,27 @@
   </section>
   <section id="strip-time">
     <h3>Time and sun</h3>
-    <div class="f"><label for="input-date">Date</label><input type="date" id="input-date" data-field="date" onchange="syncCesiumTime()"></div>
-    <div class="f" style="min-width: 220px;">
-      <div class="hud-label-row"><label for="input-time-slider">Time</label><span id="slider-time-display" class="hud-val-badge">12:00</span></div>
-      <input type="range" id="input-time-slider" min="0" max="23.95" step="0.05" value="12.0" oninput="onTimeSliderChange(this.value)">
-    </div>
-    <input type="hidden" id="f-time" data-field="time">
-    <div class="f">
+    <div class="time-grid">
+      <div class="f"><label for="input-date">Date (at the location)</label><input type="date" id="input-date" data-field="date" onchange="timeTouched = true; syncCesiumTime()"></div>
+      <div class="f">
+        <div class="hud-label-row"><label for="input-time-slider">Time (at the location)</label><span id="slider-time-display" class="hud-val-badge">12:00</span></div>
+        <input type="range" id="input-time-slider" min="0" max="23.95" step="0.05" value="12.0" oninput="onTimeSliderChange(this.value)">
+      </div>
       <label class="live-toggle-wrapper"><input type="checkbox" id="chk-live-time" onchange="toggleLiveTime(this.checked)"> Live clock</label>
-      <div class="mode-toggle" style="margin: 4px 0 0;">
+      <div class="mode-toggle">
         <button id="btn-mode-solar" class="toggle-btn active" onclick="setLightingMode('SOLAR')" title="Sun position from the date and time">Sun</button>
         <button id="btn-mode-floodlight" class="toggle-btn" onclick="setLightingMode('FLOODLIGHT')">Floodlight</button>
       </div>
     </div>
+    <input type="hidden" id="f-time" data-field="time">
   </section>
   <section id="strip-weather">
-    <h3 title="Keystones ignore the date, time and weather: they are always noon, flat overcast, midwinter. These settings apply to LSA runs, Synthesize and prints.">Weather <span class="h3-note">(keystones: always noon, overcast, midwinter)</span></h3>
+    <h3 title="Keystones ignore the date, time and weather: they are always noon, flat overcast, midwinter. These settings apply to LSA runs, captures and prints.">Weather <span class="h3-note">(keystones: always noon, overcast, midwinter)</span></h3>
+    <div class="weather-row">
     <div class="f">
       <label>Pipeline</label>
       <div class="weather-grid">
-        <button class="weather-btn active" onclick="setWeatherMode('AUTO', this)">Live</button>
+        <button class="weather-btn active" onclick="setWeatherMode('AUTO', this)" title="The conditions at the location now. Pair it with the time now there (Live clock).">Live</button>
         <button class="weather-btn" onclick="setWeatherMode('SUNNY', this)">Sunny</button>
         <button class="weather-btn" onclick="setWeatherMode('RAIN', this)">Rain</button>
         <button class="weather-btn" onclick="setWeatherMode('FOG', this)">Fog</button>
@@ -456,13 +518,15 @@
     </div>
     <div class="f"><label for="f-weather">Described, for LSA</label>
       <input type="text" id="f-weather" data-field="weather" placeholder="Overcast after rain, surfaces still wet">
-      <span class="off-note">Live here now: <span id="hud-live-weather-text">detecting...</span></span>
+      <span class="off-note">Live there now: <span id="hud-live-weather-text">detecting...</span></span>
+      <span class="off-note" id="live-mismatch" hidden style="color: #ffb74d;"></span>
+    </div>
     </div>
   </section>
   <section id="strip-telemetry">
     <h3>Camera</h3>
     <div class="telemetry">
-      <span><b>Location</b><span id="current-location-text">resolving...</span></span>
+      <span><b>Camera at</b><span id="current-location-text">resolving...</span></span>
       <span><b>Position</b><span id="telemetry-coords">-</span></span>
       <span><b>Height</b><span id="telemetry-alt">-</span></span>
       <span><b>Heading / pitch</b><span id="telemetry-heading-pitch">-</span></span>
@@ -477,8 +541,8 @@
   <section class="col left" aria-label="Shot">
     <div class="resizer" data-side="left" title="Drag to resize"></div>
     <div class="scroll">
-    <h2>Where you stand</h2>
-    <label for="f-place">Place</label>
+    <h2 id="step-brief">Where you stand</h2>
+    <label for="f-place" title="Where the subject is: the place the LSA describes. The camera's own position is under Camera in the top bar.">Place (the subject's location)</label>
     <input type="text" id="f-place" data-field="place" placeholder="Ainslie Place, Edinburgh New Town" required>
     <label for="f-standpoint" class="dockable-label">Standpoint</label>
     <input type="text" id="f-standpoint" data-field="standpoint" placeholder="Centre of the street at the central pavilion" required>
@@ -630,7 +694,7 @@
     <div class="dock" id="dock" data-stage="">
       <div class="dock-band" id="dock-band" aria-live="polite"></div>
       <div class="dock-switch" role="tablist" aria-label="Which text to edit">
-        <button type="button" data-k="layout" role="tab" title="Your brief's scene layout: what the LSA and the weft pass read. Saved with Save shot.">Scene layout (brief)</button>
+        <button type="button" data-k="layout" role="tab" title="Your brief's scene layout: what the LSA and Add LSA synthesis read. Saved with Save shot.">Scene layout (brief)</button>
         <button type="button" data-k="scene" role="tab" title="The selected run's scene text: what the image model reads.">Scene text (run)</button>
       </div>
       <div class="dock-head">
@@ -663,7 +727,7 @@
     </div>
     <div class="panel" id="panel" role="tabpanel"></div>
     <div class="panel dom-panel hidden" id="panel-pipeline" role="tabpanel">
-      <p class="meta" id="pipeline-meta">No pipeline run yet. Synthesize from the top right.</p>
+      <p class="meta" id="pipeline-meta">No pipeline run yet. Press CAPTURE at the top right.</p>
       <div class="result-links" id="pipeline-links"></div>
       <div id="pipeline-prompt"></div>
     </div>
@@ -767,27 +831,38 @@
   <section class="col right" aria-label="Grounding">
     <div class="resizer" data-side="right" title="Drag to resize"></div>
     <div class="pin">
-      <button class="run" id="btn-synthesize-action" onclick="captureAndSynthesizeTwin()" title="Capture the Cesium view and run the pipeline">Synthesize</button>
+      <button class="run" id="btn-synthesize-action" onclick="captureAndSynthesizeTwin()" title="Capture the Cesium view and run the pipeline">CAPTURE</button>
       <button class="run" id="btn-keystone" onclick="makeKeystone()" title="Render the selected run as a neutral master plate">Make keystone</button>
-      <div class="hint">Synthesize captures the Cesium camera as framed. Make keystone uses the run selected below.</div>
+      <div class="hint">CAPTURE takes the Cesium camera as framed. Make keystone uses the run selected below.</div>
       <div class="stamp-line" id="stamp-line-pipe"></div>
     </div>
     <div class="scroll">
-      <div class="module" id="mod-cesium">
-        <h2>Cesium</h2>
+      <!-- 2026-10-24: cards and sections. A card title, then sections of equal rank; a section waiting on an earlier step
+           starts closed with a line saying what it needs, and opens on a click (B2). -->
+      <div class="module card" id="mod-cesium">
+        <h2>Views</h2>
+        <div class="card-note">Cesium: create, save and load camera views</div>
+        <section class="sec" id="sec-camera">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Camera and frame</span><span class="sec-need"></span></button>
+          <div class="sec-body">
         <button class="btn" id="btn-frame-mode" style="width: 100%;">Show Cesium in the frame</button>
         <label class="check" style="margin-top: 8px;" title="Cesium's own sun for the strip's date and time, with cast shadows. Test switch: while on, captures include these shadows too.">
           <input type="checkbox" id="chk-sun-shadows" onchange="setSunShadows(this.checked)"> Sun and shadows (test: shows Cesium's sun for the strip's time)
         </label>
-        <h3 class="sub">Saved views and subject</h3>
+          </div>
+        </section>
+        <section class="sec" id="sec-views">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Saved views and subject</span><span class="sec-need"></span></button>
+          <div class="sec-body">
       <div style="display: flex; gap: 6px;">
         <input type="text" id="input-view-name" placeholder="Name this view"
                style="flex: 1; min-width: 0;"
                onkeydown="if (event.key === 'Enter') saveCurrentView();" />
         <button onclick="saveCurrentView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">SAVE</button>
       </div>
-      <div style="display: flex; gap: 6px; margin-top: 6px;">
-        <select id="select-saved-view" style="flex: 1; min-width: 0;">
+      <label for="select-saved-view">View</label>
+      <div style="display: flex; gap: 6px;">
+        <select id="select-saved-view" autocomplete="off" style="flex: 1; min-width: 0;">
           <option value="">No saved views</option>
         </select>
         <button onclick="goToSavedView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">GO</button>
@@ -799,8 +874,11 @@
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" title="Clear the subject point" onclick="clearSubject()">✕</button>
       </div>
       <div id="subject-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;">No subject yet: press GO on a saved view to restore its subject, or SET SUBJECT.</div>
-      <!-- B10 (2026-10-22): points of interest, stored with the saved view -->
-      <h3 class="sub" style="margin-top: 10px;">Points of interest</h3>
+          </div>
+        </section>
+        <section class="sec" id="sec-poi">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Points of interest</span><span class="sec-need"></span></button>
+          <div class="sec-body">
       <div class="poi-hint">Up to five details that make this view worth making, most important first. Each is placed in the frame from where you click, and its description goes to the image model ahead of the rest of the scene. Labels and ranks stay here.</div>
       <button id="btn-add-poi" class="toggle-btn" style="width: 100%; padding: 6px; margin-top: 6px;" onclick="togglePoiPick()" title="Click this, then click the detail in the Cesium frame">✚ ADD POINT OF INTEREST</button>
       <div id="poi-list"></div>
@@ -809,17 +887,24 @@
         <summary>What the image model reads</summary>
         <pre class="prompt" id="poi-preview"></pre>
       </details>
-    
+          </div>
+        </section>
       </div>
-      <div class="module" id="mod-keystone">
-        <h2>Runs and keystones</h2>
+      <div class="module card" id="mod-keystone">
+        <h2>Runs</h2>
+        <div class="card-note">Choose the run to work on; the cards below act on it</div>
+        <section class="sec" id="sec-runs">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Runs</span><span class="sec-need"></span></button>
+          <div class="sec-body">
+      <label for="select-replay-view" style="margin-top: 0;">View</label>
       <div style="display: flex; gap: 6px;">
-        <select id="select-replay-view" style="flex: 1; min-width: 0;" onchange="loadReplayRuns()">
+        <select id="select-replay-view" autocomplete="off" style="flex: 1; min-width: 0;" onchange="loadReplayRuns()">
           <option value="">All runs</option>
         </select>
         <button onclick="loadReplayRuns()" class="toggle-btn" title="Refresh run list" style="flex: 0 0 auto; padding: 6px 10px;">⟳</button>
       </div>
-      <select id="select-replay-run" style="width: 100%; margin-top: 6px;" onchange="loadReplayScene()">
+      <label for="select-replay-run">Run</label>
+      <select id="select-replay-run" autocomplete="off" style="width: 100%;" onchange="loadReplayScene()">
         <option value="">No runs</option>
       </select>
       <img id="replay-thumb" alt="Run preview" onclick="openLightbox()" style="cursor: pointer; display: none; width: 100%; margin-top: 6px; border-radius: 6px; border: 1px solid var(--panel-border);" />
@@ -827,23 +912,94 @@
       <div id="replay-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
       <div id="run-family" class="run-family"></div>
       <button class="scene-link" id="open-scene-text" type="button" hidden>Edit this run's scene text below</button>
-      <h3 class="sub">Weft pass: LSA surfaces</h3>
-      <label for="lsa-join-run" style="margin-top: 0;">LSA run to draw the weft from</label>
-      <select id="lsa-join-run" style="width: 100%;"><option value="">No LSA runs</option></select>
+          </div>
+        </section>
+        <section class="sec" id="sec-addlsa">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Add LSA synthesis</span><span class="sec-need"></span></button>
+          <div class="sec-body">
+      <label for="lsa-join-run" style="margin-top: 0;">LSA run to add</label>
+      <select id="lsa-join-run" autocomplete="off" style="width: 100%;"><option value="">No LSA runs</option></select>
       <div id="lsa-join-preview" class="lsa-preview" hidden>
         <img id="lsa-join-thumb" alt="The chosen LSA run's image" />
         <div id="lsa-join-brief" class="lsa-preview-brief"></div>
       </div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-lsa-weave" onclick="lsaWeave()" title="The weft pass: adds the LSA run's materials, condition and biology to this run's scene text. The scene text and the LSA run's scene layout are the warp: structure that stays. Added and removed structure are listed for you to check. Light, season and compass words stay out.">ADD LSA SURFACES</button>
-        <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before the weft pass">UNDO</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-lsa-weave" onclick="lsaWeave()" title="Add LSA synthesis: adds the LSA run's materials, condition and biology to this run's scene text. The scene text and your scene layout are the structure that stays. Added and removed structure are listed for you to check. Light, season and compass words stay out.">ADD LSA SYNTHESIS</button>
+        <button id="btn-lsa-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="lsaUndo()" title="Put back the scene text as it was before Add LSA synthesis">UNDO</button>
       </div>
       <div id="lsa-join-status" class="status-line"></div>
       <div id="lsa-join-added" class="lsa-added" hidden></div>
       <details id="lsa-join-notes" hidden style="font-size: 12px; color: var(--lichen-grey);">
-        <summary style="margin-top: 4px;">What the weft pass left out</summary>
+        <summary style="margin-top: 4px;">What Add LSA synthesis left out</summary>
         <div id="lsa-join-notes-text" style="white-space: pre-wrap; margin-top: 4px;"></div>
       </details>
+          </div>
+        </section>
+      </div>
+      <div class="module card" id="mod-streetview">
+        <h2>Evidence</h2>
+        <div class="card-note">Plein air sketches: images read for detail, never copied into the render</div>
+        <section class="sec" id="sec-evidence">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Images for this view</span><span class="sec-need"></span></button>
+          <div class="sec-body">
+            <ul class="ev-list" id="ev-list"></ul>
+            <div style="display: flex; gap: 6px; margin-top: 6px;">
+              <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="evFind()" title="Looks for outdoor Street View panos around the subject, on your camera's side, and ranks them by distance, direction and date">🔎 FIND 3 CANDIDATES</button>
+              <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-ev-keep" hidden onclick="evAddShown()" title="Keep the pano shown in the Street View check below (from a Maps link or Look), with its heading, pitch and field of view">＋ KEEP THE PANO SHOWN BELOW</button>
+            </div>
+            <div id="ev-cands"></div>
+            <div id="ev-status" class="stamp-line" aria-live="polite"></div>
+          </div>
+        </section>
+        <section class="sec" id="sec-sv">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Street View check</span><span class="sec-need"></span></button>
+          <div class="sec-body">
+      <div id="sv-context" class="status-line" style="margin-top: 0;">Select a run on the Runs card.</div>
+      <button class="toggle-btn" id="btn-sv-last" hidden style="width: 100%; margin-top: 6px; padding: 6px;" onclick="svUseLastForView()">Use the last pano set for this view</button>
+      <label for="sv-url">Street View link from Maps</label>
+      <div style="display: flex; gap: 6px;">
+        <input type="text" id="sv-url" placeholder="Paste the whole address from the browser bar" spellcheck="false"
+               style="flex: 1; min-width: 0;" onkeydown="if (event.key === 'Enter') svFromUrl();" />
+        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;" onclick="svFromUrl()" title="Read the pano ID, heading, pitch and field of view from the link">USE</button>
+      </div>
+      <div class="hint">Sets the pano exactly as you framed it in Maps. Or pick one under Images for this view, above.</div>
+      <img id="sv-preview" alt="Street View preview" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 8px; border-radius: 6px; border: 1px solid var(--panel-border);" />
+      <div id="sv-meta" class="status-line"></div>
+      <label for="sv-pano">Pano ID</label>
+      <input type="text" id="sv-pano" spellcheck="false" placeholder="Pano ID" title="Paste a pano ID to use an older or different pano, then UPDATE" />
+      <div class="sv-angles">
+        <div><label for="sv-heading">Heading °</label><input type="number" id="sv-heading" step="0.1" title="Compass direction the reference looks, in degrees" /></div>
+        <div><label for="sv-pitch">Pitch °</label><input type="number" id="sv-pitch" step="0.1" title="Up is positive, down is negative" /></div>
+        <div><label for="sv-fov">FOV across °</label><input type="number" id="sv-fov" step="0.1" min="10" max="120" title="Horizontal field of view of the 16:9 frame (what the Street View API uses)" /></div>
+      </div>
+      <div class="hint" id="sv-fov-note"></div>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
+        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Street View check: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 STREET VIEW CHECK</button>
+        <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
+      </div>
+      <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
+        <input type="checkbox" id="chk-sv-keystone" /> Use this pano in MAKE KEYSTONE (form and weathering only)
+      </label>
+      <label for="sv-reference" style="margin-top: 6px;">What MAKE KEYSTONE sends</label>
+      <select id="sv-reference" style="width: 100%;" title="Detail crop: aimed from the pano at the subject, 45° across, so the render gets surfaces but no street view to copy">
+        <option value="detail" selected>Detail crop on the subject (45° across)</option>
+        <option value="full">Full view, as set above</option>
+      </select>
+      <img id="sv-detail-preview" alt="The detail crop MAKE KEYSTONE will send" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 6px; border-radius: 6px; border: 2px solid var(--xanthoria);" />
+      <div id="sv-detail-note" class="hint"></div>
+      <div id="sv-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
+      <div id="sv-finish-report" class="lsa-added" hidden></div>
+          </div>
+        </section>
+      </div>
+      <!-- 2026-10-24: the keystone comes last, used when everything above is set (Don). -->
+      <div class="module card" id="mod-final">
+        <h2>Keystone and prints</h2>
+        <div class="card-note">Made from the run selected under Runs, with the evidence above</div>
+        <section class="sec" id="sec-keystone">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Keystone: make, edit, approve</span><span class="sec-need"></span></button>
+          <div class="sec-body">
       <div style="display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 11px; color: var(--text-muted);">
         <label for="replay-seed" style="flex: 0 0 auto;">Seed</label>
         <input type="number" id="replay-seed" min="0" step="1" placeholder="blank = random" title="Same seed + same settings = the same image. Used by Replay, Make Keystone and Print." style="flex: 1; min-width: 0;" />
@@ -853,7 +1009,7 @@
         <input type="checkbox" id="chk-composite" checked /> Composite outside canopy (prints, matching weather)
       </label>
       <button onclick="replaySelectedRun()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🎞 REPLAY RUN</button>
-      <button onclick="makeKeystoneAB()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Two keystone candidates from this run, same seed and pano: A from the scene text before the weft pass, B from the text after it">A/B KEYSTONES (before and after the weft pass)</button>
+      <button onclick="makeKeystoneAB()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" title="Two keystone candidates from this run, same seed and pano: A from the scene text before Add LSA synthesis, B from the text after it">A/B KEYSTONES (before and after Add LSA synthesis)</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-approve-keystone" onclick="approveKeystone()" class="toggle-btn" style="flex: 1; padding: 8px; display: none;">✅ APPROVE AS KEYSTONE</button>
       </div>
@@ -897,53 +1053,27 @@
       </div>
       <ol class="ep-versions" id="ep-versions" start="0"></ol>
     </div>
+          </div>
+        </section>
+        <section class="sec" id="sec-prints">
+          <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Prints</span><span class="sec-need"></span></button>
+          <div class="sec-body">
       <div id="keystone-status" style="font-size: 10px; color: var(--text-muted); margin-top: 6px; min-height: 12px;"></div>
       <button id="btn-print-keystone" onclick="printFromKeystone()" class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;">🖨 PRINT FROM KEYSTONE</button>
       <button class="scene-link" type="button" onclick="remakeDatePlate()" title="Prints of a date start from its date plate: the keystone with that date's canopy. Remake it if you don't like the leaves.">Remake the date plate for this date</button>
-    
-      </div>
-      <div class="module" id="mod-streetview">
-        <h2>Street View</h2>
-      <div id="sv-context" class="status-line" style="margin-top: 0;">Select a run in the Runs and keystones card.</div>
-      <label for="sv-url">Street View link from Maps</label>
-      <div style="display: flex; gap: 6px;">
-        <input type="text" id="sv-url" placeholder="Paste the whole address from the browser bar" spellcheck="false"
-               style="flex: 1; min-width: 0;" onkeydown="if (event.key === 'Enter') svFromUrl();" />
-        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;" onclick="svFromUrl()" title="Read the pano ID, heading, pitch and field of view from the link">USE</button>
-      </div>
-      <div class="hint">Sets the pano exactly as you framed it in Maps. Or let the tool pick:</div>
-      <button class="toggle-btn" style="width: 100%; margin-top: 6px; padding: 8px;" onclick="svPropose()">🔎 PROPOSE NEAREST PANO FOR SUBJECT</button>
-      <img id="sv-preview" alt="Street View preview" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 8px; border-radius: 6px; border: 1px solid var(--panel-border);" />
-      <div id="sv-meta" class="status-line"></div>
-      <label for="sv-pano">Pano ID</label>
-      <input type="text" id="sv-pano" spellcheck="false" placeholder="Pano ID" title="Paste a pano ID to use an older or different pano, then UPDATE" />
-      <div class="sv-angles">
-        <div><label for="sv-heading">Heading °</label><input type="number" id="sv-heading" step="0.1" title="Compass direction the reference looks, in degrees" /></div>
-        <div><label for="sv-pitch">Pitch °</label><input type="number" id="sv-pitch" step="0.1" title="Up is positive, down is negative" /></div>
-        <div><label for="sv-fov">FOV across °</label><input type="number" id="sv-fov" step="0.1" min="10" max="120" title="Horizontal field of view of the 16:9 frame (what the Street View API uses)" /></div>
-      </div>
-      <div class="hint" id="sv-fov-note"></div>
-      <div style="display: flex; gap: 6px; margin-top: 6px;">
-        <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Finishing pass: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 FINISHING PASS</button>
-        <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
-      </div>
-      <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
-        <input type="checkbox" id="chk-sv-keystone" /> Use this pano in MAKE KEYSTONE (form and weathering only)
-      </label>
-      <label for="sv-reference" style="margin-top: 6px;">What MAKE KEYSTONE sends</label>
-      <select id="sv-reference" style="width: 100%;" title="Detail crop: aimed from the pano at the subject, 45° across, so the render gets surfaces but no street view to copy">
-        <option value="detail" selected>Detail crop on the subject (45° across)</option>
-        <option value="full">Full view, as set above</option>
-      </select>
-      <img id="sv-detail-preview" alt="The detail crop MAKE KEYSTONE will send" style="display: none; width: 100%; aspect-ratio: 16 / 9; object-fit: fill; background: var(--slate-2); margin-top: 6px; border-radius: 6px; border: 2px solid var(--xanthoria);" />
-      <div id="sv-detail-note" class="hint"></div>
-      <div id="sv-status" style="font-size: 10px; color: var(--text-muted); margin-top: 4px; min-height: 12px;"></div>
-      <div id="sv-finish-report" class="lsa-added" hidden></div>
-    
+          </div>
+        </section>
       </div>
       <div class="module">
         <h2>LSA runs</h2>
+        <div class="runs-tools">
+          <input type="search" id="runs-search" placeholder="Search: place, street, subject, view" autocomplete="off" aria-label="Search the LSA runs">
+          <select id="runs-sort" aria-label="Sort the LSA runs" autocomplete="off">
+            <option value="new">Newest made</option><option value="old">Oldest made</option>
+            <option value="changed">Last changed</option><option value="az">A to Z</option>
+          </select>
+        </div>
+        <div class="runs-count" id="runs-count"></div>
         <ul class="runs" id="runs"></ul>
       </div>
     </div>
@@ -1089,11 +1219,29 @@ function updateAddendumLabel() {
 }
 $("o-model").addEventListener("change", updateAddendumLabel);
 
+// 2026-10-24 (B2): presets saved at the current view are listed first; the rest follow under their own heading.
+function currentViewForPresets() {
+  const id = ($("select-saved-view") || {}).value || "";
+  const v = (typeof savedViews !== "undefined" ? savedViews : []).find(x => x.id === id);
+  return v ? { id: v.id, name: v.name } : null;
+}
 async function loadPresets(select) {
   const p = await (await fetch("/api/presets")).json();
-  $("p-list").innerHTML = `<option value="">Choose a preset</option>` + Object.keys(p).sort().map(n => `<option ${n === select ? "selected" : ""}>${esc(n)}</option>`).join("");
+  const keep = select !== undefined ? select : $("p-list").value;
+  const view = currentViewForPresets();
+  const names = Object.keys(p).sort();
+  const mine = view ? names.filter(n => p[n].saved_view_id === view.id) : [];
+  const rest = names.filter(n => !mine.includes(n));
+  const opt = n => `<option value="${esc(n)}" ${n === keep ? "selected" : ""}>${esc(n)}${!view && p[n].saved_view_name ? " · " + esc(p[n].saved_view_name) : ""}</option>`;
+  $("p-list").innerHTML = `<option value="">Choose a preset</option>` +
+    (mine.length ? `<optgroup label="Saved at this view">${mine.map(opt).join("")}</optgroup>` : "") +
+    (view ? `<optgroup label="${mine.length ? "Other presets" : "Presets (none saved at this view)"}">${rest.map(opt).join("")}</optgroup>` : rest.map(opt).join(""));
   return p;
 }
+document.addEventListener("DOMContentLoaded", () => {
+  $("select-saved-view")?.addEventListener("change", () => loadPresets());
+  $("select-replay-view")?.addEventListener("change", () => setTimeout(() => loadPresets(), 0));
+});
 var loadedPreset = null;   // var, not let: onChange() reads it before this line runs
 var loadedShot = null;     // 53: the brief as the preset left it, to tell when it has been changed since
 function presetDirty() { return !!loadedPreset && loadedShot !== null && JSON.stringify(readShot()) !== loadedShot; }
@@ -1122,7 +1270,9 @@ $("p-save").addEventListener("click", async () => {
   const name = $("p-name").value.trim(), shot = readShot();
   if (!name) { showMessage("Name the shot before saving it.", true); return; }
   if (missing(shot).length) { showMessage("Fill in place, standpoint and subject before saving.", true); return; }
-  const r = await fetch("/api/presets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, shot }) });
+  const view = currentViewForPresets();
+  const r = await fetch("/api/presets", { method: "POST", headers: { "Content-Type": "application/json" },
+                                          body: JSON.stringify({ name, shot, saved_view_id: view ? view.id : null, saved_view_name: view ? view.name : null }) });
   if (r.ok) { await loadPresets(name); loadedPreset = name; loadedShot = JSON.stringify(shot); $("p-name").value = name; updateLoadButton();
              showMessage(`Saved preset: ${name}.`); }
   else showMessage("The preset was not saved: " + (await r.json()).detail, true);
@@ -1199,7 +1349,7 @@ function handle(ev) {
   } else if (ev.event === "done") {
     stage("render", "done"); stage("saved", "done");
     showMessage(`Done in ${ev.seconds} s. Saved as ${ev.run_id}.`);
-    if (typeof taskEnd === "function") taskEnd(true, `Saved as the run of ${typeof fmtRunId === "function" ? fmtRunId(ev.run_id) : ev.run_id}. It is in the Runs list and the weft pass list.`);
+    if (typeof taskEnd === "function") taskEnd(true, `Saved as the run of ${typeof fmtRunId === "function" ? fmtRunId(ev.run_id) : ev.run_id}. It is in the Runs list and the Add LSA synthesis list.`);
     openRun(ev.run_id);
     if (typeof loadLsaRuns === "function") loadLsaRuns(ev.run_id);   // A8, 70: the new run appears in the weft pass list, selected
   } else if (ev.event === "error") {
@@ -1286,9 +1436,26 @@ async function rerender(run_id) {
   await openRun(run_id, true); loadRuns();
 }
 
+// 2026-10-24: the LSA runs list can be searched and sorted (newest, oldest, last changed, A to Z).
+let runsAll = [];
 async function loadRuns() {
-  let list = [];
-  try { list = await (await fetch("/api/runs")).json(); } catch { return; }
+  try { runsAll = await (await fetch("/api/runs")).json(); } catch { return; }
+  if (!Array.isArray(runsAll)) runsAll = [];
+  renderRuns();
+}
+function renderRuns() {
+  const q = ($("runs-search")?.value || "").trim().toLowerCase();
+  const how = $("runs-sort")?.value || "new";
+  const name = r => (r.label || r.place || r.run_id || "").toLowerCase();
+  const hay = r => [r.label, r.place, r.subject, r.saved_view_name, r.run_id, r.instruction].filter(Boolean).join(" ").toLowerCase();
+  const words = q.split(/\s+/).filter(Boolean);
+  let list = runsAll.filter(r => words.every(w => hay(r).includes(w)));
+  const t = v => (v ? Date.parse(v) || 0 : 0);
+  if (how === "new") list.sort((a, b) => t(b.created) - t(a.created) || (b.run_id > a.run_id ? 1 : -1));
+  else if (how === "old") list.sort((a, b) => t(a.created) - t(b.created) || (a.run_id > b.run_id ? 1 : -1));
+  else if (how === "changed") list.sort((a, b) => t(b.modified || b.created) - t(a.modified || a.created));
+  else list.sort((a, b) => name(a).localeCompare(name(b)));
+  $("runs-count").textContent = runsAll.length ? (q ? `${list.length} of ${runsAll.length} runs match` : `${runsAll.length} runs`) : "";
   $("runs").innerHTML = list.length ? list.map(r => {
     const when = r.created ? new Date(r.created).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "";
     const flag = r.error ? `<span class="flag fail">failed</span>` : (r.addendum ? "" : `<span class="flag">no addendum</span>`);
@@ -1296,9 +1463,13 @@ async function loadRuns() {
       <span class="place">${esc(r.label || r.place || r.run_id)}</span>
       <span class="what">${esc(r.subject || "")}</span>
       <span class="when">${esc(when)}</span>${flag}</button></li>`;
-  }).join("") : `<li class="meta">No runs yet. Your first one will appear here.</li>`;
+  }).join("") : `<li class="meta">${runsAll.length ? "No runs match the search." : "No runs yet. Your first one will appear here."}</li>`;
   document.querySelectorAll("#runs button").forEach(b => b.addEventListener("click", () => openRun(b.dataset.run)));
 }
+document.addEventListener("DOMContentLoaded", () => {
+  $("runs-search")?.addEventListener("input", renderRuns);
+  $("runs-sort")?.addEventListener("change", renderRuns);
+});
 
 
 /* ---------- the frame: still or live Cesium ---------- */
@@ -1465,7 +1636,7 @@ function pipelineCaption(data) {
     case "KEYSTONE": return "Keystone candidate (not approved yet): made from the capture, noon, flat overcast, midwinter.";
     case "PRINT": return "Print from the approved keystone.";
     case "DATE_PLATE": return "Date plate from the approved keystone.";
-    default: return data.replay_of ? "Replay of a capture." : "Capture: the pipeline's render of the Cesium frame (Synthesize).";
+    default: return data.replay_of ? "Replay of a capture." : "Capture: the pipeline's render of the Cesium frame (CAPTURE).";
   }
 }
 
@@ -1483,7 +1654,7 @@ function showPipelineResult(data, links) {
     + (data.world_id ? `<br><span class="meta">world ${esc(data.world_id)}</span>` : "");
   $("pipeline-prompt").textContent = data.compiled_prompt || "";
   showTab("pipeline");
-  showMessage(`Pipeline run done${secs ? " in " + secs : ""}. The run is in the Runs and keystones list.`);
+  showMessage(`Pipeline run done${secs ? " in " + secs : ""}. The run is in the Runs list.`);
 }
 
 
@@ -1541,7 +1712,7 @@ const DOCK_SOURCES = {
                 hint: "Where you stand, in words a location scout would use." },
   subject:    { stage: "brief", journey: "lsa", el: "f-subject", name: "Looking at", oneLine: true,
                 hint: "What the camera is aimed at." },
-  layout:     { stage: "brief", journey: "lsa", el: "f-layout", name: "Scene layout (your brief, left column: what the LSA and the weft pass read)",
+  layout:     { stage: "brief", journey: "lsa", el: "f-layout", name: "Scene layout (your brief, left column: what the LSA and Add LSA synthesis read)",
                 hint: "What you see, in plain words: what is where, and roughly how big. Describe both parts of a building in one sentence when they differ." },
   focus:      { stage: "brief", journey: "lsa", el: "f-focus", name: "Focus",
                 hint: "Name what to examine, never what you expect to find, or the test only measures your own notes." },
@@ -1560,7 +1731,7 @@ function promptEdited() {
   return d.render_prompt_draft != null && d.render_prompt_draft.trim() !== (d.render_prompt || "").trim();
 }
 function dockState(key) {
-  if (key === "scene") return { text: $("scene-state").textContent || "Select a run under Runs and keystones.", edited: $("scene-state").classList.contains("edited") };
+  if (key === "scene") return { text: $("scene-state").textContent || "Select a run on the Runs card.", edited: $("scene-state").classList.contains("edited") };
   if (key === "prompt") {
     const d = current.data;
     if (!current.run_id) return { text: "Open or make an LSA run first: its render prompt appears here.", edited: false };
@@ -1596,7 +1767,7 @@ function dockRender() {
   document.querySelectorAll(".dock-switch button").forEach(b => {
     b.classList.toggle("on", dockKey === b.dataset.k);
     b.setAttribute("aria-selected", dockKey === b.dataset.k ? "true" : "false");
-    if (b.dataset.k === "scene") { b.disabled = !$("select-replay-run")?.value; b.title = b.disabled ? "Select a run under Runs and keystones first." : "The selected run's scene text: what the image model reads."; }
+    if (b.dataset.k === "scene") { b.disabled = !$("select-replay-run")?.value; b.title = b.disabled ? "Select a run on the Runs card first." : "The selected run's scene text: what the image model reads."; }
   });
   $("dock-band").textContent = !src ? "" : src.stage === "brief"
     ? `BRIEF: ${src.name.split(" (")[0].toUpperCase()}. Stored in the preset only when you press Save shot.`

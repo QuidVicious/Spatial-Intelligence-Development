@@ -1035,6 +1035,7 @@ async def save_view(req: SaveViewRequest):
         "camera": req.camera.model_dump() if hasattr(req.camera, "model_dump") else req.camera.dict(),
         "subject": req.subject,
         "points": (existing or {}).get("points") or [],
+        "evidence": (existing or {}).get("evidence") or [],
         "created_utc": existing.get("created_utc", now) if existing else now,
         "updated_utc": now,
     }
@@ -1164,6 +1165,37 @@ async def save_view_points(view_id: str, req: SavePointsRequest):
     block, record = poi_block(view)
     print(f"[Views] points of interest for {view_id}: {len(view['points'])}")
     return {"view": view, "block": block, "points": record or []}
+
+
+# -------------------------------------------------------------------------
+# Evidence (B5, 2026-10-24): the images read for a view, like a painter's plein air sketches: details and vistas,
+# several per view, one in use for the Street View check. Source-neutral: each item names its source, so Mapillary
+# or the director's own photos fit the same record. Only metadata is stored; images are fetched when needed.
+MAX_EVIDENCE = 12
+
+
+class SaveEvidenceRequest(BaseModel):
+    items: List[dict] = Field(default_factory=list)
+
+
+@app.put("/api/views/{view_id}/evidence")
+async def save_view_evidence(view_id: str, req: SaveEvidenceRequest):
+    if len(req.items) > MAX_EVIDENCE:
+        raise HTTPException(status_code=400, detail=f"A view holds at most {MAX_EVIDENCE} evidence images.")
+    keep = ("id", "source", "ref", "lat", "lon", "heading", "pitch", "fov", "date", "copyright", "distance_m",
+            "role", "active", "note", "added_utc", "licence")
+    items = [{k: it.get(k) for k in keep if k in it} for it in req.items]
+    if any(not it.get("source") or not it.get("ref") for it in items):
+        raise HTTPException(status_code=400, detail="Each evidence item needs a source and a reference.")
+    views = _load_views()
+    view = next((v for v in views if v.get("id") == view_id), None)
+    if not view:
+        raise HTTPException(status_code=404, detail="View not found.")
+    view["evidence"] = items
+    view["updated_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    _write_views(views)
+    print(f"[Views] evidence for {view_id}: {len(items)}")
+    return {"evidence": items}
 
 
 @app.get("/api/views/{view_id}/points/preview")
@@ -1901,6 +1933,78 @@ def streetview_propose(req: StreetViewProposeRequest):
         "size": SV_SIZE,
         "distance_m": round(_distance_m(plat, plon, req.lat, req.lon), 1),
     }
+
+
+class StreetViewCandidatesRequest(BaseModel):
+    lat: float
+    lon: float
+    cam_lat: Optional[float] = None
+    cam_lon: Optional[float] = None
+    cam_heading: Optional[float] = None
+    count: int = Field(3, ge=1, le=5)
+
+
+def _dest(lat: float, lon: float, bearing_deg: float, dist_m: float):
+    import math
+    r = 6371000.0
+    b, p1, l1 = math.radians(bearing_deg), math.radians(lat), math.radians(lon)
+    p2 = math.asin(math.sin(p1) * math.cos(dist_m / r) + math.cos(p1) * math.sin(dist_m / r) * math.cos(b))
+    l2 = l1 + math.atan2(math.sin(b) * math.sin(dist_m / r) * math.cos(p1), math.cos(dist_m / r) - math.sin(p1) * math.sin(p2))
+    return math.degrees(p2), math.degrees(l2)
+
+
+@app.post("/api/streetview/candidates")
+def streetview_candidates(req: StreetViewCandidatesRequest):
+    """B5 (2026-10-24): up to three outdoor panos that see the subject, ranked. Metadata requests only (free); the
+    probes sit around the subject on the camera's side, so the candidates look at it roughly as the camera does."""
+    import math
+    back = _bearing(req.lat, req.lon, req.cam_lat, req.cam_lon) if req.cam_lat is not None and req.cam_lon is not None else None
+    probes = [(req.lat, req.lon)]
+    for dist in (20, 45):
+        for off in ((-60, -30, 0, 30, 60) if back is not None else (0, 60, 120, 180, 240, 300)):
+            probes.append(_dest(req.lat, req.lon, ((back if back is not None else 0) + off) % 360, dist))
+    found = {}
+    for plat_q, plon_q in probes:
+        try:
+            meta = requests.get(SV_META_URL, params={"key": _maps_key(), "source": "outdoor", "location": f"{plat_q},{plon_q}",
+                                                     "radius": 25}, timeout=10).json()
+        except Exception:
+            continue
+        if meta.get("status") == "OK" and meta.get("pano_id") and meta["pano_id"] not in found:
+            found[meta["pano_id"]] = meta
+    if not found:
+        raise HTTPException(status_code=404, detail="No outdoor Street View pano found near the subject.")
+    now = datetime.now(timezone.utc)
+    out = []
+    for pid, meta in found.items():
+        plat, plon = meta["location"]["lat"], meta["location"]["lng"]
+        d = _distance_m(plat, plon, req.lat, req.lon)
+        look = _bearing(plat, plon, req.lat, req.lon)
+        s_dist = max(0.0, 1.0 - abs(d - 30.0) / 40.0)
+        off = None
+        if req.cam_heading is not None:
+            off = abs((look - req.cam_heading + 180) % 360 - 180)
+            s_face = max(0.0, math.cos(math.radians(off)))
+        else:
+            s_face = 0.5
+        age_m = None
+        try:
+            y, mo = [int(x) for x in (meta.get("date") or "")[:7].split("-")]
+            age_m = (now.year - y) * 12 + (now.month - mo)
+        except Exception:
+            pass
+        s_age = 1.0 - min(1.0, (age_m if age_m is not None else 120) / 120.0)
+        score = 0.4 * s_dist + 0.4 * s_face + 0.2 * s_age
+        why = [f"{d:.0f} m from the subject"]
+        if off is not None:
+            why.append("looks the same way as your camera" if off < 25 else f"{off:.0f}° off your camera's direction")
+        why.append(f"taken {meta.get('date') or 'date unknown'}")
+        out.append({"pano_id": pid, "date": meta.get("date"), "copyright": meta.get("copyright"), "lat": plat, "lon": plon,
+                    "heading": round(look, 1), "pitch": SV_DEFAULT_PITCH, "fov": SV_DEFAULT_FOV, "size": SV_SIZE,
+                    "distance_m": round(d, 1), "score": round(score, 3), "why": " · ".join(why)})
+    out.sort(key=lambda c: -c["score"])
+    print(f"[StreetView] candidates: {len(found)} panos from {len(probes)} probes; top {min(req.count, len(out))} returned")
+    return {"candidates": out[:req.count], "found": len(found)}
 
 
 @app.get("/api/streetview/image")

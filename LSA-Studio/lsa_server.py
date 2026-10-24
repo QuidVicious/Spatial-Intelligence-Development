@@ -328,6 +328,9 @@ def _presets() -> dict:
 class Preset(BaseModel):
     name: str
     shot: Shot
+    # 2026-10-24 (B2): the view the preset was saved at, so the list can put this view's presets first.
+    saved_view_id: Optional[str] = None
+    saved_view_name: Optional[str] = None
 
 
 @app.get("/api/presets")
@@ -338,7 +341,10 @@ def presets():
 @app.post("/api/presets")
 def save_preset(p: Preset):
     data = _presets()
-    data[p.name.strip()] = p.shot.model_dump()
+    entry = p.shot.model_dump()
+    if p.saved_view_id:
+        entry["saved_view_id"], entry["saved_view_name"] = p.saved_view_id, p.saved_view_name
+    data[p.name.strip()] = entry
     write_json(PRESETS_PATH, data)
     return {"saved": p.name.strip()}
 
@@ -465,8 +471,18 @@ def runs():
                         "has_analysis": a.is_file() and a.stat().st_size > 0,
                         "has_layout": bool((shot.get("layout") or "").strip()),
                         "addendum": s.get("addendum"), "instruction": s.get("instruction"),
-                        "saved_view_id": s.get("saved_view_id"), "saved_view_name": s.get("saved_view_name")})
+                        "saved_view_id": s.get("saved_view_id"), "saved_view_name": s.get("saved_view_name"),
+                        # 2026-10-24: for "last changed" sorting in the LSA runs list.
+                        "modified": _last_modified(d)})
     return out
+
+
+def _last_modified(d):
+    try:
+        t = max((f.stat().st_mtime for f in d.rglob("*") if f.is_file()), default=d.stat().st_mtime)
+        return datetime.fromtimestamp(t).isoformat(timespec="seconds")
+    except Exception:
+        return None
 
 
 @app.get("/api/runs/{run_id}")
