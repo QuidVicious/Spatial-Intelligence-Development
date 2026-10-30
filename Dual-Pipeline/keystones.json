@@ -233,26 +233,29 @@
       ]
     },
     "lsa-session-1-abercromby-and-nelson": {
-      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_111209",
+      "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737",
       "view_name": "LSA session 1: Abercromby and Nelson",
-      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737",
-      "approved_from": "run",
+      "source_run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261019_140821",
+      "approved_from": "candidate",
       "conditions": {
-        "date": "2026-10-24",
+        "date": "2026-01-15",
         "time_of_day": 12.0,
         "weather": "OVERCAST"
       },
-      "warnings_acknowledged": [
-        "Trees may be in leaf: prints cannot reliably reveal what a canopy hides"
-      ],
-      "plate": "spatial_twin.png",
-      "edit_version": 0,
-      "approved_utc": "2026-10-24T18:28:26+00:00",
+      "warnings_acknowledged": [],
+      "plate": "edits/v35.png",
+      "edit_version": 35,
+      "approved_utc": "2026-10-25T22:13:40+00:00",
       "history": [
         {
           "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737",
           "approved_utc": "2026-10-24T18:11:28+00:00",
           "replaced_utc": "2026-10-24T18:28:26+00:00"
+        },
+        {
+          "run_id": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_111209",
+          "approved_utc": "2026-10-24T18:28:26+00:00",
+          "replaced_utc": "2026-10-25T15:14:55+00:00"
         }
       ]
     }

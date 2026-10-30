@@ -24,7 +24,15 @@
     "lsa-session-1-abercromby-and-nelson": {
       "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737": {
         "2026-10-23": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261023_142733",
-        "2026-10-24": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_111209"
+        "2026-10-24": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_111209",
+        "2026-10-25": {
+          "run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261025_152028",
+          "edit_version": 35
+        },
+        "2026-10-27": {
+          "run": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261027_152306",
+          "edit_version": 35
+        }
       },
       "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_111209": {
         "2026-10-24": "1_Nelson_St_Edinburgh_EH3_6LF_UK_20261024_112915"

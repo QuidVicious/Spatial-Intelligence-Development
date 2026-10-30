@@ -213,6 +213,8 @@ Run: 1_Nelson_St_Edinburgh_EH3_6LF_UK_20261022_154737 (the Abercromby and Nelson
 
 Priorities for 106 to 116 are Claude's proposal; Don to confirm.
 
+Results, 2026-10-24. The pink cast is gone from the keystone (edited version 26, approved) and the print made from it holds. Round B items B1, B2, B3, B4, B5 and B13 were built and checked in use (REBUILD_SPEC status). SI6.4 (B11) is written and not yet tested.
+
 ## Follow-up findings, 2026-10-24 afternoon (the guided flow in use)
 
 | # | Finding | P |
@@ -229,5 +231,41 @@ Priorities for 106 to 116 are Claude's proposal; Don to confirm.
 
 Results, afternoon. The guided flow went from Don's design at 15:10 to built and in use by 15:40, and after the fix (121) carried a fresh run View, LSA run, Capture, Add LSA, Street Level, Keystone to Edit. Add LSA on the 2,860-character capture first failed at 1,867 (the check worked: a third of the text cut); the cap is now 3,000 with the target range in numbers and one retry.
 
-Results, 2026-10-24. The pink cast is gone from the keystone (edited version 26, approved) and the print made from it holds. Round B items B1, B2, B3, B4, B5 and B13 were built and checked in use (REBUILD_SPEC status). SI6.4 (B11) is written and not yet tested.
+## Follow-up findings, 2026-10-25 morning (the fix block and prints)
+
+| # | Finding | P |
+| --- | --- | --- |
+| 126 | Date plates are stored by keystone run, not by edit version. After the keystone was re-approved at a new version, a print on a date that already had a plate reused the old plate and would bring back what the edit removed (the pink cast, the lamps). Fixed: each plate records the keystone's edit version and is used only at that version; plates of never-edited keystones stay valid. Tested on the real records. | P1 |
+| 127 | The print button read "PRINT FROM KEYSTONE: 9 Oct, 10:30", taken for a keystone from 9 Oct; it was the date and time in the strip, set earlier by a loaded brief without a word. Fixed: "PRINT: 25 Oct at 15:47, Sunny (live clock)". | P2 |
+| 128 | Live weather is one model's opinion: Open-Meteo reported overcast (code 3) while another service said clear and sunny, so two Live prints came out grey (and the composite kept the keystone's light, as designed for overcast). Open: show the source and its label in the strip ("Live: overcast, Open-Meteo") so it can be overruled before printing. | P1 |
+| 129 | A Live clock print sends no date, so it skipped the date plate. Fixed: it sends today's date at the location. | P2 |
+| 130 | A refresh warned "changes won't be saved" about a brief loaded from an LSA run (already stored with that run). Fixed. Don: there is no general Save, so there is no way to know the work is safe. Planned: a save status in the header ("All saved" / "Not saved: your brief") and one Save that saves exactly what it names. | P2 |
+| 131 | The approved keystone was hard to find: the run list files runs by the day they were made, so the keystone edited this morning sat under 22 Oct. Fixed: "★ APPROVED KEYSTONE · made ... · edited to version 29 · approved ..." first in the list. | P1 |
+| 132 | The clean start forgot which LSA run and run were in use ("I can't remember the one I was using a moment ago"). Fixed: LAST USED marks; nothing is selected for you. | P2 |
+| 133 | Runs, keystones and LSA runs pile up and are hard to tell apart. A better way to organise and present them is needed (Don). After Monday. | P2 |
+| 134 | The 25 Oct date plate planted a cherry laurel in a basement area and a holly by a door at 19 Abercromby; every print on that date inherited them. Cause: the plate prompt lists the species that grow at the place (laurel and holly among them) and says to apply the leaf state to every tree of each species; the composite lets "changed vegetation" through, and an invented shrub looks like that. Fixed in part: the species list is "not a planting plan"; only plants already in the plate change. Planned: a canopy zone per view, drawn once, outside which nothing can change. Not yet tested by a remake. | P1 |
+| 135 | Don: the keystone is the negative; a print is a return to the place on another day, so the rain is new every time. A moment worth keeping (a drip on a limb) belongs to a kept print, worked like spotting a finished print, not to a new keystone. Planned: mark a print as a keeper, which allows the edit pass on it. | P2 |
+| 136 | With the keystone selected, Add LSA and the Street Level check can only fail, and the card said so only after the button was pressed, in technical words. Don's design, built: the card offers two plain choices, "Printing from an approved keystone? You can skip this step" (green SKIP) and "Making a new keystone? Select its capture..." (blue SELECT THE CAPTURE); a skip opens the next step. | P1 |
+| 137 | Getting back to editing the keystone meant clicking through every step. Built: GO TO THIS VIEW'S KEYSTONE, from View straight to Edit. | P1 |
+
+Results, 2026-10-25 morning. The keystone for "LSA session 1" is the 22 Oct 15:47 candidate again, approved at edit version 29 with two modern lamps removed (finding 118's crop fix confirmed on real edits; finding 119 resolved). A sunny print with the Live clock gave the right low sun from the southwest (234°, 8° up); two Live weather prints came out grey (128). The fixes from the 24 Oct handoff (A41, B19, B20) were built before 8:15.
+
+## Follow-up findings, 2026-10-25 afternoon to 27 Oct (recovered from the chat record, 29 Oct)
+
+These were logged in chat on 25 to 27 Oct but never written here. Recovered on 29 Oct; the wording is reconstructed, not the original. Findings 138, 143 and 150 to 152 could not be recovered: Don to fill or retire them.
+
+| # | Finding | P |
+| --- | --- | --- |
+| 138 | Not recovered. | ? |
+| 139 | A night print added a street lamp that is not there, twice at the same spot on Abercromby Place, where a doorway, a railing gap and a black box line up as a dark column; the model completes the row of lamps. Planned: light sources as a confirmed list (lamps and signals from street furniture). | P2 |
+| 140 | The black box-like objects at the railing line sit where the Cesium capture has parked cars: likely the declutter step's invention, baked into the keystone. Fix on the keystone with the edit pass. | P2 |
+| 141 | The points of interest were never seen: the View step's ring and hint did not include them, and the shortcut skips the Views card. Fixed 25 Oct: the View step rings the Points of interest section and its hint mentions them. | P2 |
+| 142 | An LSA run selection seemed to clear after the Scene layout editor was opened, with no refresh. Not confirmed; note the click before it if it happens again. | P2 |
+| 143 | Not recovered. | ? |
+| 144 | Undo guard (detail not recovered). | ? |
+| 145 | Typed time entry for prints (detail not recovered). | ? |
+| 146 | A stale caption (detail not recovered). | ? |
+| 147 | The 25 Oct 15:20 date plate has soft grey blobs in the canopy, like raindrops on a lens; a neutral plate should not. Not used on the site. | P2 |
+| 148 | A clean copy button per tab (detail not recovered). | ? |
+| 149 | A pure-LSA keystone path (detail not recovered). | ? |
 

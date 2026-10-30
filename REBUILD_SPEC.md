@@ -7,6 +7,28 @@ Three kinds of work, in this order:
 - **Round B: flow.** The step strip, gating, one name per thing, the evidence card. Structure, not styling.
 - **Round C: after Mapillary.** The new source, the location model, then the final visual pass and user session 2.
 
+## Status and order, 2026-10-29
+
+Folded 29 Oct (DECISIONS 2026-10-26 to 29). Changes to this spec:
+- **C3 moves into Round B** (Don). It is the bridge to LSA Studio 3.0 and to keystone portability. B7 and Mapillary (C1, C2) follow it; C4 and C5 wait for 3.0's first output.
+- **B24 added: keystone portability.** The keystone as a model-neutral record, with an adapter per image model (request format, seed and sampling support, reference images, resolution, prompt dialect). Depends on C3.
+- **B25 added: the evidence panel.** Search as a source under the director, authority by type of claim, one Conflicts list. The Search on/off benchmark comes first.
+- **B26 added: the task tracker page** (built 29 Oct; see the tracker for the live order).
+
+- **B27 added (29 Oct evening): image model target, NB2 or NB2.1.** A dropdown for keystones, edits and prints; NB2 stays the standard bar and fallback; A/B with several renders per arm. First slice of B24. Slated in step 1, after the two tests.
+- **B14 to B18 (Edit Mode) on hold** until the edit-flow polish (Don).
+
+Slated order from here:
+1. Tests owed: SI6.4 (the server default, never formally tested); the date plate remake for bushes (134); A44.
+2. C3, the location model; write the 3.0 spec alongside it.
+3. B7, scene text element by element, built on the C3 records; B6 with it.
+4. B24, keystone portability.
+5. The Search benchmark, then B25, the evidence panel.
+6. C1 and C2, Mapillary.
+7. Round B remainder: B4, B5 (117), B8, B9, B10 leftovers, B12, A15 to A17, the 25 Oct after-Monday list (128, 130, 133, 134 canopy zone, 135 keeper prints). Edit Mode (B14 to B18): Don to decide, build or park.
+8. LSA Studio 3.0, first build: one view (Abercromby and Nelson), element records into Blender, compared against the Cesium capture.
+9. C4 final visual pass, then C5 user session 2.
+
 ## Round A: fixes
 
 Status by item, 2026-10-23:
@@ -89,10 +111,17 @@ Status by item, 2026-10-24 (end of day):
 | B11 | SI6.4 written, not tested; already the server default. |
 | B13 | Done: the run list was already filtered to the view; NEWEST marked; run kind after the time. |
 | B14 to B18 | Open. Edit Mode: decide Sunday afternoon. B18 in part: the edit pass refuses prints and date plates and names the candidate. |
-| B19 | New: the pin buttons follow the flow (Make keystone green when Keystone is the step; CAPTURE dim once Capture is set). Finding 123. |
-| B20 | New: Street Level, "Show it in the check below" on the In use image. Finding 117. |
-| A41 | New: Add LSA refuses a text that already has the synthesis (a candidate's or a woven capture's) and says to use the capture or UNDO. Finding 120. |
+| B19 | Done 25 Oct: every step's action button is green when it is the step, dimmed once set, locked before. |
+| B20 | Done 25 Oct: "Show it in the check below" on the In use image. |
+| A41 | Done 25 Oct: Add LSA refuses a keystone, candidate or print, and the card offers Skip or Select the capture (B21); asks before running on a text over 2,850 characters. |
 | A42 | Done: Add LSA cap 3,000, target range in numbers, one retry. Edit pass crop ratio fix (118). Approve never on a print or date plate (119). |
+| A43 | Done 25 Oct: date plates recorded and used by keystone edit version (126); the server refuses a date plate as a keystone (119). |
+| A44 | Done 25 Oct, not yet tested by a remake: the species list is not a planting plan in date plate and full print prompts (134). |
+| A45 | Done 25 Oct: print button names the print's conditions (127); Live clock prints get a date plate (129); a brief loaded from an LSA run is not an unsaved change (130 in part). |
+| B21 | Done 25 Oct: choice cards on Add LSA and Street Level (136). |
+| B22 | Done 25 Oct: GO TO THIS VIEW'S KEYSTONE (137). |
+| B23 | Done 25 Oct: approved keystone first in the run list; LAST USED marks (131, 132). |
+| Next, after Monday | Canopy zone per view (134); keeper prints (135); save status and Save (130); Live weather source shown (128); organising runs, keystones and LSA runs (133); Edit Mode (B14 to B18). |
 
 | # | Change | From |
 | --- | --- | --- |

@@ -6,6 +6,66 @@ Method: Don designs, sets requirements and tests; Claude writes the code.
 
 ---
 
+## 2026-10-29 (evening): Model target, Edit Mode on hold, the page transition
+
+**Image model target: NB2 or NB2.1** (adopted, Don; B27). A target dropdown for keystones, edits and prints, if it is quick to build (estimate an hour or two; the adapter drops what 2.1 refuses: seed, temperature, topP, including the edit engine's temperature 0.0). If it is not quick, target NB2 and sort out 2.1 later, unless 2.1's quality clearly outweighs losing the sampling controls. Either way NB2 stays as the fallback and the established standard bar, and the two are A/B tested. Don's reasons for 2.1: higher resolution, no temperature or top-p to fight the description, and possible model improvements, all favourable to the method. Claude's cautions, logged: today's 2.1 quality came from single-pass text-to-image at 4K, while keystones and prints are fixed frames and image-to-image edits, so 2.1 must also prove it holds the plate; without a seed, each A/B arm needs three or more renders, judged on its best and its worst. B27 is the first slice of B24 (portability).
+
+**Edit Mode on hold** (Don). B14 to B18 are not core now; they return with the edit-flow polish, where they make editing less error prone and more pleasant.
+
+**Public page: the transition from hand-run to LSA Studio** (done, Don). Framed as reproducibility: the hand-run method found the knowledge but could not be repeated (runs outpaced the record, the best early result could not be reproduced after the image model update, nothing was held still); LSA Studio records every run with its instruction, prompt, model and settings, and holds the negative still while one thing changes. Open: the public page names the tool 1.0 and the password page 2.0; one line should tie them together as two stages of one tool.
+
+**The single-pass prompt, thinking and output go on the page** (planned, Don, 30 Oct). The SI2.1 instruction and request, the model's thinking and its written output, beside the Ainslie Place 1966 renders. Don: this is what anyone asking for the password will want to read. The address is scrubbed first, everywhere it appears (request, thinking, output and screenshots).
+
+---
+
+## 2026-10-26 to 29: Pages published, Search as evidence, the single-pass series, the new order
+
+Folded 29 Oct from HANDOFF_2026-10-28.md (the corrected Downloads copy), HANDOFF_2026-10-29.md and the chat record. The 29 Oct chat on the page copy was cut short, so its detail is not all recoverable.
+
+**The site** (done, 26 to 28 Oct). The public LSA page (text-only LSA images, no Google-derived content) and the password page "LSA Studio 2.0" (Google 3D Tiles, Street View, the dual pipeline, keystones and prints) are published. Captions rewritten in one voice on 28 Oct, sequences under "Holding the Place". Invented interiors carry "The interior is the model's invention; only the street is a real place." No house numbers.
+
+**The 1966 run was a deliberate Search test** (record corrected 28 Oct evening, Don). The pure, ungrounded result is the 7 July 2026 AI Studio run (period soot, the "Auld Reekie" patina, without naming the Clean Air Act). The 15 Oct 1966 Ainslie Place session ran with Google Search grounding on, to answer "If I know, Google knows": it found the Act, with citations [1] to [8]. No rerun needed; the 1966 run is shown as the comparison, captioned as grounded.
+
+**Search returns as evidence; the evidence panel** (adopted as direction, 28 Oct; not built). Search proposes and the director confirms, like every source, and its citations are shown because they are research leads (Don: more useful than his own searches). Authority by type of claim: Cesium for geometry and position; Street View for how it looks now; Search for dates, records and named things; LSA for materials, weathering and plants; the director over all. LSA gets no veto over Search: it can flag a conflict, which goes to the director. One combined Conflicts list. Benchmark first: a short fact list scored with Search on and off (the soot and the Act, cap versus globe lamps, the Ainslie railing form).
+
+**New models** (open, 28 Oct). Nano Banana 2.1 has no seed, temperature, topP or topK, which breaks "same seed, same image" (A/B keystones, replays); the edit engine's temperature 0.0 must go before 2.1 is used there. Keep NB2 for keystones and prints for now; try 2.1 on the edit pass first. Gemini 4 Argon (text, no sampling controls, optional Search grounding, introductory price to 30 Nov) is a candidate for the LSA analysis stage and the model ladder.
+
+**The single-pass series, SI2.0 and SI2.1** (adopted, 29 Oct). A modernised Eye instruction (publicly, Emerson's "transparent eyeball"): one request produces the whole description, light, weather and season included, with no grounding. It is side A of the site, the paint: a standalone proof of the method, not an LSA Studio input. LSA Studio is two-pass: SI6.4 gives the contents of the place with no light or weather, and the second pass adds them. SI2.1 is current (Gemini 3.8 Flash in AI Studio, Search and URL context off; rendered with Nano Banana 2.1). Why it exists: the 7 July result could not be repeated once Nano Banana moved from 2.0 to 2.1, which dropped temperature and top-p; the stable negative is the answer to that, and the single pass shows the paint before the canvas. Ainslie Place, 15 Oct 1966: run A holds the soot (the hero image), run B drifts toward clean stone (the A/B). Its fact check is "No Lichen Left Unturned" (HANDOFF_2026-10-29_page-copy.md). The two renders have no shared seed (2.1), so the A/B shows renderer drift, not a controlled pair.
+
+**C3 moves into Round B** (adopted, Don, 29 Oct). The location model (element records with position, size, type and material) is the bridge to 3D: Blender needs exactly those records. Order: C3, then B7 (scene text element by element) and Mapillary (C1, C2). The final visual pass (C4) and session 2 (C5) come after LSA Studio 3.0's first output, so the UI is designed once.
+
+**Keystone portability** (planned, B24, Don 29 Oct). The keystone as a model-neutral record (the negative, the scene text, the View, the evidence references, provenance), with a small adapter per image model for what cannot be neutral (request format, seed and sampling support, number of reference images, resolution and aspect, prompt dialect). The per-model LSA addendum (nb2.md) is the same pattern on the analysis side. Caution: the record moves between models, its look does not; prints are image-to-image edits, so another model drifts in colour and detail. The fully portable layer is the C3 element records.
+
+**LSA Studio 3.0** (planned, no spec yet). 3D through Blender: a real-place version of DeepMind's pagoda demo, built from the same director-confirmed analysis, toward the Reality Engine north star. The spec is written during C3, while the element records are designed. Marble, and Atlas when available, are the second target.
+
+**A task tracker** (planned, Don 29 Oct). One page with every open item in its slated order, a plain description, the doc that logs it, and a notes panel Claude can read. Items get renumbered in sequence by a button, with the original ID kept visible for reference.
+
+---
+
+## 2026-10-25: The keystone is the negative; choice cards; the shortcut; date plates by version
+
+**The keystone is the negative** (adopted, Don and Claude). Everything every print should share lives in the keystone: structure, removed lamps, corrected stone. It stays neutral (flat light, bare trees) so any date, hour or weather can be printed from it. A print is not a darkroom print of a fixed scene but a return to the place on another day: light, weather and leaves are redrawn each time, so the rain is new every time. Fixes for every print go on the keystone; a moment worth keeping goes on a kept print (below). Don: this is also how to present the work: your places, to revisit. Claude's caution, adopted: each visit is an informed rendering of that day, not a record of it, so ground truth, cinematic and fiction stay marked (24 Oct).
+
+**Keeper prints** (planned, after Monday; finding 135). A print can be marked as a keeper: the edit pass is then allowed on it, like spotting a finished print, and its fixes stay its own. The refusal on prints will offer both: fixes for every print on the keystone, or mark this one as a keeper.
+
+**Date plates by edit version** (adopted, built; finding 126). A date plate records the keystone's edit version and is used only while the keystone is at that version. Older entries count as version 0, so plates of never-edited keystones stay valid.
+
+**The species list is not a planting plan** (adopted, built; finding 134). Date plates and full prints change only plants already in the plate; a species named for the place but not in the frame is never added; evergreens keep the foliage the plate shows. The real lock is planned: **a canopy zone per view** (after Monday), drawn once by the director with the polygon tool; only pixels inside it may take new vegetation, everything else stays the keystone's. The composite alone cannot tell new leaves from an invented shrub.
+
+**Choice cards** (adopted, Don's design; finding 136). When a step cannot apply to what is selected (Add LSA or the Street Level check on a keystone or print), its card says so first, in plain words, and offers the ways forward, one line above each button: "Printing from an approved keystone? You can skip this step" (green SKIP) and "Making a new keystone? Select its capture, then ..." (blue SELECT THE CAPTURE). The button that can only fail is hidden. A skip, from the card or the strip, opens the next step as if its button had been pressed.
+
+**The shortcut** (adopted, built; finding 137). Once GO has reached a view with an approved keystone, GO TO THIS VIEW'S KEYSTONE selects it and opens Edit; LSA run, Add LSA and Street Level are not needed for it, Capture is the keystone's own. Choosing another run ends the shortcut.
+
+**Mark, don't select** (adopted; findings 131, 132). The clean start stays: nothing is chosen for you. The approved keystone is listed first in the run list, and the run and LSA run used last at a view are marked LAST USED.
+
+**Buttons follow the flow** (adopted, built; B19). The current step's action is solid green; a set step's action is dimmed but still works; a step not reached is locked.
+
+**Planned after Monday.** A save status in the header with one Save that saves exactly what it names (finding 130); Live weather shown with its source before printing (128); a better way to organise runs, keystones and LSA runs (133).
+
+**Process rule.** Twice a write to Don's machine stored an earlier draft of a file that had been edited after it was first staged. Every file is now copied into a fresh staging folder just before it is written, and every write is checked by checksum.
+
+---
+
 ## 2026-10-24: Round B flow built; "View" official; clean start; evidence card; night light
 
 **"View" is the official term** (adopted, Don). A view is a saved camera position. One view everywhere: both view dropdowns are labelled View and kept in step, and only GO moves the camera. Location labels say whose location they hold: "Go to a place (moves the camera)", "Camera at", "Place (the subject's location)". Reason: findings 67, 112, 113.

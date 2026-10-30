@@ -62,6 +62,15 @@ _KEEP_FABRIC = (
 )
 
 
+# 2026-10-25 (finding 134): the species list names what grows at this place, not what is in the frame. A date plate told
+# about cherry laurel and holly planted a laurel in a basement area and a holly by a door; the composite let them through
+# as "changed vegetation". The list is for the plants the plate already shows.
+PLANTING_RULE = ("The species list that follows describes what grows at this place; it is not a planting plan. Change only plants "
+                 "already visible in the plate. Never add a plant, shrub, hedge, planter or tree where the plate shows none; "
+                 "a species you cannot find in the plate is left out. Evergreens and any species with no leaf cover stated "
+                 "keep exactly the foliage the plate shows.")
+
+
 def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str = "full") -> Dict[str, Any]:
     """
     PRINT mode: the seed is an approved plate, not photogrammetry.
@@ -82,7 +91,7 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str =
             f"{_KEEP_FABRIC} Keep the light exactly as it is: flat, even, shadowless overcast.\n\n"
             "CHANGE ONLY THE TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves "
             "match the stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
-            f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {phen}\n\n"
+            f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {PLANTING_RULE} {phen}\n\n"
             "Sharp focus near to far. No blur, no vignetting."
         )
         return {"prompt": prompt, "metadata": {"renderer": "GEMINI", "mode": "PRINT", "print_variant": "season",
@@ -109,7 +118,7 @@ def _render_gemini_print(domain_result: Any, lighting_state: Any, variant: str =
         "CHANGE ONLY THESE TWO THINGS:\n"
         "1. TREE CANOPY for this date. Every tree keeps its trunk and branch positions, and its leaves match the "
         "stated leaf cover exactly: at 100% no inner branches show through; at 0% the tree is bare. "
-        f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {phen}\n"
+        f"Apply this to every tree of each species; leave none bare unless its leaf cover is 0%. Only trees already in the plate get leaves: lamp columns, posts, railings and other poles are not trees, never give them leaves or branches. {PLANTING_RULE} {phen}\n"
         f"2. LIGHT AND WEATHER:\n{light}\n\n"
         "Sharp focus near to far. No blur, no vignetting."
     )

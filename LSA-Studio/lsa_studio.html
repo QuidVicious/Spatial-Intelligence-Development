@@ -108,8 +108,23 @@
   /* Panels for steps not reached yet: dimmed and locked; a line says which step opens them. */
   .flow-locked { opacity: .3; pointer-events: none; user-select: none; filter: saturate(.4); }
   .flow-current-panel { box-shadow: inset 3px 0 0 var(--flow-green); }
+  /* 2026-10-25 (Don): after the flash, the current step's sections keep a steady green ring, so the one place to act
+     stays marked while other cards are open. The ring moves on when the step is set. */
+  .flow-current-ring { outline: 3px solid var(--flow-green); outline-offset: 3px; border-radius: 8px; }
   .flow-done-panel { box-shadow: inset 3px 0 0 var(--flow-blue); }
   .flow-lockline { font: 12px/1.3 var(--ui); color: var(--lichen-grey); padding: 4px 12px; border: 1px dashed var(--rule); border-radius: 6px; margin: 6px 0; }
+  /* B19 (2026-10-25): the action buttons follow the flow. The current step's action is solid green; a set step's action
+     is dimmed but still works (to make another); a step not reached is locked with its panel. */
+  .flow-go, .run.flow-go, .toggle-btn.flow-go { background: var(--flow-green) !important; border-color: var(--flow-green) !important; color: #10230f !important; font-weight: 700; box-shadow: 0 0 0 3px rgba(102,187,106,.25); }
+  .flow-dim { opacity: .45; }
+  .flow-choice { display: grid; gap: 10px; margin: 2px 0 8px; }
+  .flow-choice[hidden] { display: none; }
+  .choice-row { display: grid; gap: 6px; }
+  .choice-text { font: 14px/1.35 var(--read); color: var(--paper); }
+  .choice-go { background: var(--flow-green) !important; border-color: var(--flow-green) !important; color: #10230f !important; font-weight: 700; padding: 8px !important; }
+  .choice-alt { background: var(--flow-blue) !important; border-color: var(--flow-blue) !important; color: #fff !important; font-weight: 700; padding: 8px !important; }
+  .flow-dim:hover { opacity: .8; }
+  .ev-show { margin-top: 4px; }
   .two-paths { display: grid; grid-template-columns: 1fr; gap: 8px; }
   .two-paths .path { border: 1px solid var(--rule); border-radius: 6px; padding: 8px; }
   .two-paths .path-title { font: 600 13px/1.2 var(--ui); color: var(--paper); margin-bottom: 6px; }
@@ -890,10 +905,12 @@
         <select id="select-saved-view" autocomplete="off" style="flex: 1; min-width: 0;">
           <option value="">No saved views</option>
         </select>
-        <button onclick="goToSavedView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">GO</button>
+        <button id="btn-view-go" onclick="goToSavedView()" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 12px;">GO</button>
         <button onclick="deleteSavedView()" class="toggle-btn" title="Delete selected view" style="flex: 0 0 auto; padding: 6px 10px;">✕</button>
       </div>
       <div id="views-status" aria-live="polite" style="font-size: 12.5px; font-weight: 600; color: var(--text-muted); margin-top: 6px; min-height: 15px;"></div>
+      <!-- 2026-10-25 (Don): a shortcut to the approved keystone, for edits, approval and prints. -->
+      <button class="toggle-btn choice-go" type="button" id="btn-go-keystone" hidden style="width: 100%; margin-top: 6px;" onclick="flowGoToKeystone()" title="Selects this view's approved keystone and goes straight to Edit; the LSA run, Add LSA and Street Level are not needed for it">GO TO THIS VIEW'S KEYSTONE ›</button>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button id="btn-set-subject" class="toggle-btn" style="flex: 1; padding: 6px;" onclick="toggleSubjectPick()" title="Click this, then click the building or object the view is about">🎯 SET SUBJECT</button>
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" title="Clear the subject point" onclick="clearSubject()">✕</button>
@@ -976,6 +993,18 @@
         <section class="sec" id="sec-addlsa">
           <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Add LSA synthesis</span><span class="sec-need"></span></button>
           <div class="sec-body">
+      <!-- 2026-10-25 (Don): when a keystone or print is selected, the card offers the two ways forward instead of a button
+           that can only fail. Plain words, one line above each button. -->
+      <div id="addlsa-choice" class="flow-choice" hidden>
+        <div class="choice-row">
+          <div class="choice-text">Printing from an approved keystone? You can skip this step.</div>
+          <button class="toggle-btn choice-go" type="button" onclick="flowSkipStep('addlsa')">SKIP ›</button>
+        </div>
+        <div class="choice-row">
+          <div class="choice-text">Making a new keystone? Select its capture, then add the LSA run.</div>
+          <button class="toggle-btn choice-alt" type="button" id="btn-addlsa-capture" onclick="addLsaSelectCapture()">SELECT THE CAPTURE</button>
+        </div>
+      </div>
       <div class="hint" style="margin-top: 0;" id="lsa-add-which">Adds the LSA run chosen above to the selected capture's scene text.</div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 1; padding: 6px;" id="btn-lsa-weave" onclick="lsaWeave()" title="Add LSA synthesis: adds the LSA run's materials, condition and biology to this run's scene text. The scene text and your scene layout are the structure that stays. Added and removed structure are listed for you to check. Light, season and compass words stay out.">ADD LSA SYNTHESIS</button>
@@ -993,6 +1022,17 @@
       <div class="module card" id="mod-streetview">
         <h2>Street Level</h2>
         <div class="card-note">Plein air sketches: images read into words for detail; sent to the render only if you tick it under Street Level check</div>
+        <!-- 2026-10-25 (Don): the same two ways forward as Add LSA when a keystone or print is selected. -->
+        <div id="street-choice" class="flow-choice" hidden>
+          <div class="choice-row">
+            <div class="choice-text">Printing from an approved keystone? You can skip this step.</div>
+            <button class="toggle-btn choice-go" type="button" onclick="flowSkipStep('street')">SKIP ›</button>
+          </div>
+          <div class="choice-row">
+            <div class="choice-text">Making a new keystone? Select its capture, then run the Street Level check.</div>
+            <button class="toggle-btn choice-alt" type="button" id="btn-street-capture" onclick="addLsaSelectCapture()">SELECT THE CAPTURE</button>
+          </div>
+        </div>
         <section class="sec" id="sec-evidence">
           <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Images for this view</span><span class="sec-need"></span></button>
           <div class="sec-body">
@@ -1029,7 +1069,7 @@
       <div class="hint" id="sv-fov-note"></div>
       <div style="display: flex; gap: 6px; margin-top: 6px;">
         <button class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px;" onclick="svApplyOverride()" title="Apply the pano ID and view settings above">↻ UPDATE</button>
-        <button class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Street Level check: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 STREET LEVEL CHECK</button>
+        <button id="btn-sv-check" class="toggle-btn" style="flex: 1; padding: 6px;" onclick="svRewrite()" title="Street Level check: set surface condition and visible detail from the pano, and remove features that appear in neither the pano nor the capture">🎨 STREET LEVEL CHECK</button>
         <button id="btn-sv-undo" class="toggle-btn" style="flex: 0 0 auto; padding: 6px 10px; display: none;" onclick="svUndoRewrite()" title="Put back the scene text as it was before the rewrite">↩ UNDO</button>
       </div>
       <label style="display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted);">

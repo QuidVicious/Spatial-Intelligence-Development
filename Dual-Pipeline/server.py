@@ -248,10 +248,25 @@ def _load_date_plates() -> dict:
     return plates if isinstance(plates, dict) else {}
 
 
+# 2026-10-25 (finding 126): a date plate is made from the keystone as it was at the time. Re-approving the same run after
+# an edit left its old plates in use, so prints on those dates brought back what the edit had removed (a pink cast,
+# street lamps). Each plate now records the keystone's edit version and is used only while the keystone is at that
+# version. Older entries (a bare run id) count as version None, so plates of never-edited keystones stay valid.
+def _keystone_edit_version(view_id: Optional[str], keystone_run: Optional[str]):
+    rec = _load_keystones().get(view_id) or {}
+    return rec.get("edit_version") if rec.get("run_id") == keystone_run else None
+
+
 def _date_plate_for(view_id: Optional[str], keystone_run: Optional[str], date: Optional[str]) -> Optional[str]:
     if not (view_id and keystone_run and date):
         return None
-    run_id = ((_load_date_plates().get(view_id) or {}).get(keystone_run) or {}).get(date[:10])
+    entry = ((_load_date_plates().get(view_id) or {}).get(keystone_run) or {}).get(date[:10])
+    run_id, version = (entry.get("run"), entry.get("edit_version")) if isinstance(entry, dict) else (entry, None)
+    if (version or 0) != (_keystone_edit_version(view_id, keystone_run) or 0):
+        if run_id:
+            print(f"[DatePlate] {view_id} {date[:10]}: plate {run_id} is from edit version {version or 0}, the keystone is now at "
+                  f"{_keystone_edit_version(view_id, keystone_run) or 0}; a fresh plate is needed")
+        return None
     if run_id and (DEFAULT_RUNS_DIR / run_id / "spatial_twin.png").exists():
         return run_id
     return None
@@ -259,7 +274,8 @@ def _date_plate_for(view_id: Optional[str], keystone_run: Optional[str], date: O
 
 def _register_date_plate(view_id: str, keystone_run: str, date: str, run_id: str) -> None:
     plates = _load_date_plates()
-    plates.setdefault(view_id, {}).setdefault(keystone_run, {})[date[:10]] = run_id
+    plates.setdefault(view_id, {}).setdefault(keystone_run, {})[date[:10]] = {
+        "run": run_id, "edit_version": _keystone_edit_version(view_id, keystone_run) or 0}
     tmp = DATE_PLATES_PATH.with_suffix(".json.tmp")
     tmp.write_text(json.dumps({"version": 1, "plates": plates}, indent=2), encoding="utf-8")
     tmp.replace(DATE_PLATES_PATH)
@@ -1318,6 +1334,9 @@ async def approve_keystone(req: ApproveKeystoneRequest):
     # so a keystone never descends from another keystone.
     if settings.get("keystone_print_of"):
         raise HTTPException(status_code=422, detail="A print cannot become a keystone; approve the run it came from instead.")
+    # 2026-10-25 (finding 119): nor a date plate. One was approved on 24 Oct, so the keystone carried that date's canopy.
+    if settings.get("mode") == "DATE_PLATE" or settings.get("date_plate_of"):
+        raise HTTPException(status_code=422, detail="A date plate cannot become a keystone; approve the keystone candidate it came from instead.")
     domain_meta = ((_read_json(d / "domain_result.json") or {}).get("metadata") or {})
     if not domain_meta.get("invariant_split"):
         raise HTTPException(status_code=422, detail="Keystones need a run made after the phenology split.")
